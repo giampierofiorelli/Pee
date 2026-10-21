@@ -1,7 +1,7 @@
 """Example knowledge and situations (development material, not evidence).
 
 Numerical reference values are standard figures recalled by the developer (Claude). They were not checked against
-the cited sources in this session, so their basis is 'published reference' and ``verified_by`` is empty. Situation
+the cited sources in this session, so their basis is 'published reference' and no verification record exists for them. Situation
 data (grain sizes, elapsed times, measured speeds) are invented and marked 'illustrative'. Every conclusion drawn
 from them is therefore labelled illustrative by the program itself. Four unrelated settings use two models:
 sediment settling in water, droplet settling in air, radioactive decay and drug elimination.

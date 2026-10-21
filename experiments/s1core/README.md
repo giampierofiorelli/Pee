@@ -24,10 +24,11 @@ It is **not** the scientific semantic universe, nor its foundation. The followin
 
 None of them is assumed to be quantitative.
 
-The design keeps room for them. Provenance (`source`, `basis`, `verified_by`), scope (`conditional`, `invariant`,
-`unknown`), what a statement holds of (`holds_of`) and the standing of conclusions are fields that any future item
-type can carry. The inference procedure is one function among the future ones; it does not define what knowledge
-is. Adding item types or inference types does not require changing these foundations.
+Provenance (`source`, `basis`, verification records), scope (`conditional`, `invariant`, `unknown`), what a statement
+holds of (`holds_of`) and the standing of conclusions are designed so that other item types could carry them.
+**Whether this architecture can actually hold non-numerical scientific knowledge without changing its foundations
+is not demonstrated.** No non-numerical content has yet been represented or used in an inference. Testing that is
+the owner's next decided step.
 
 ## 2. Representations compared against S0 (first increment)
 
@@ -53,7 +54,8 @@ A question asks for "kind *K* of the entity in role *R* of situation *S*". The p
      - **invariant:** the item declares invariance and states its justification;
      - **unknown:** the item is used only if the situation adopts it as an explicit scope assumption, and that
        assumption becomes a premise.
-   - **A value may pass to another entity** only according to what it holds of:
+   - **A value may pass to another entity** only according to what it holds of. Every chain of links to the bearer
+     is considered, and the shortest licensed chain is used:
      - **material:** through at most one `made_of` (never to a composite), and through `subkind_of` or
        `instance_of`;
      - **kind:** only through `instance_of` and `subkind_of`;
@@ -68,7 +70,9 @@ A question asks for "kind *K* of the entity in role *R* of situation *S*". The p
 4. **It lists every premise as a ground.** This covers knowledge items, givens, assumed attributes and scope
    assumptions. The grounds are sufficient: re-running on the grounds alone gives the same result.
 5. **It reports the standing of each conclusion** from its premises: illustrative, hypothetical, conditional on
-   assumptions, unverified, or verified. The interval expresses only arithmetic uncertainty. Model validity,
+   assumptions, unverified, or covered by attested verification records. A premise counts as verified only through
+   a `Verification` record that names it, gives the holder and method, and carries a fingerprint matching the
+   premise's current content. The program checks the record's integrity, not the truth of the holder's claim. The interval expresses only arithmetic uncertainty. Model validity,
    assumptions and source reliability appear in `standing` and `caveats`, never inside the interval.
 
 **At acquisition**, the program refuses:
@@ -91,10 +95,17 @@ Each defect was first shown on the earlier code with a probe. Each now has a reg
 |---|---|---|
 | A. Scope | A value with no conditions applied everywhere: an unconditioned viscosity was used at 10 °C | Scope must be declared explicitly. `unknown` is never applied without an explicit scope assumption, which becomes a premise |
 | B. Inheritance | Properties passed through chains of `made_of` (a grain received the density of silicon via quartz), and to composites (a quartz–feldspar grain received an intersected density). A population spread (caffeine half-life across adults) was used as a bound for one person | `holds_of` with link rules: at most one `made_of`, none to a composite, kind properties not through `made_of`, population and individual values never inherited |
-| C. Provenance and standing | An empty source was accepted. Illustrative and recalled values produced conclusions with no recorded standing | Non-empty `source` and a closed `basis` are required, with `verified_by`. Every conclusion carries a standing computed from its premises |
+| C. Provenance and standing | An empty source was accepted. Illustrative and recalled values produced conclusions with no recorded standing | Non-empty `source` and a closed `basis` are required. Every conclusion carries a standing computed from its premises |
 | D. Integrity | Dict fields of "frozen" items, and the store itself, were writable: a validated formula could be changed afterwards and the result changed | Mappings are copied and made read-only at acquisition. The store view is read-only |
 | E. Premises | Situation assumptions appeared only as caveat text, not as grounds | Givens, assumptions and scope assumptions are grounds; ablation removes them too. A test checks that grounds are sufficient |
 | F. Combination | Supported derivations were intersected, so a second partly agreeing source narrowed the result. Disjoint sources were reported as REFUSED | Supported derivations are combined by hull. Disjoint sources give a recorded CONFLICT, and the dependent result is UNRESOLVED |
+
+**Two defects found by the owner after `dc5020e`, now corrected:**
+
+| Defect | Correction |
+|---|---|
+| Only the first chain of links to an ancestor was kept. If that chain was barred, for example by two `made_of` steps, a licensed chain to the same bearer was lost | All simple chains are enumerated, and the shortest licensed one is used. Barred chains are reported in the trace |
+| Any non-empty string in `verified_by` made a premise count as verified | The field is removed. Verification now needs a `Verification` record: a target, a content fingerprint, a method from a closed set, an attesting holder and basis, and the cited source when the method is a comparison with it. A record whose fingerprint no longer matches is refused at acquisition and ignored at inference |
 
 **Not confirmed as defects:**
 
@@ -129,7 +140,7 @@ Every situation datum is invented, so the program itself labels every conclusion
 **Before and after acquisition.** Adding the two water values the program named as missing turns the 10 °C
 question into SUPPORTED: [0.0552, 0.0842] mm/s.
 
-## 6. Tests (43, all passing)
+## 6. Tests (47, all passing)
 
 - **Integrity (10):**
   - acquisition validation;
@@ -137,7 +148,7 @@ question into SUPPORTED: [0.0552, 0.0842] mm/s.
   - determinism and independence of item order;
   - no domain vocabulary in the mechanism;
   - invariance under renaming and under a change of units.
-- **Regression (18):** one or more tests per defect in section 4.
+- **Regression (22):** one or more tests per defect in section 4.
 - **Interpretation (15):** expected values computed by hand by the developer on examples the developer chose.
 
 These are development-level tests (T1). They are not evidence of scientific generality, and not independent
@@ -162,6 +173,9 @@ These are capabilities not yet implemented. They are not known bugs.
   - a conditional value is bounded by the conditions it states; its dependence on conditions it does not state is
     not represented (S0 T7).
   - "invariant" rests on a justification text supplied with the item, whose own basis is that of the item.
+- **Chain enumeration** considers every simple chain of links. That is exponential in the worst case. It is
+  adequate for small stores, but not yet engineered for large ones.
+- **Verification records** are checked for integrity only. Who may attest a verification is not yet governed.
 - **Revision and access:**
   - no revision with history, and no reconsideration of earlier conclusions;
   - no bidirectional access from goals to categories.

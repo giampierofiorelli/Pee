@@ -21,7 +21,7 @@ No rule names a domain, entity, kind or role: they come only from the knowledge 
 from dataclasses import dataclass, field
 
 from . import expr, units
-from .knowledge import Attribute, Link, Model, SingleValued, Value, check_situation
+from .knowledge import Attribute, Link, Model, SingleValued, Value, Verification, check_situation, fingerprint
 
 SUPPORTED, UNRESOLVED, REFUSED, CONFLICT, SKIPPED = "SUPPORTED", "UNRESOLVED", "REFUSED", "CONFLICT", "SKIPPED"
 
@@ -43,17 +43,31 @@ def _uniq(xs):
 
 
 def _lineage(kb, entity):
-    """Breadth-first ancestors: (ancestor, link ids)."""
+    """Every ancestor with ALL simple chains of links reaching it: [(ancestor, [chain, ...])], chains shortest first.
+
+    Keeping every chain matters: a property may be barred along one chain and licensed along another."""
     links = sorted(kb.of(Link), key=lambda l: l.id)
-    out, seen, queue = [], {entity}, [(entity, ())]
-    while queue:
-        e, chain = queue.pop(0)
-        out.append((e, chain))
+    chains = {entity: [()]}
+
+    def walk(e, chain, visited):
         for l in links:
-            if l.entity == e and l.target not in seen:
-                seen.add(l.target)
-                queue.append((l.target, chain + (l.id,)))
-    return out
+            if l.entity == e and l.target not in visited:
+                c = chain + (l.id,)
+                chains.setdefault(l.target, []).append(c)
+                walk(l.target, c, visited | {l.target})
+    walk(entity, (), {entity})
+    return [(anc, sorted(cs, key=lambda c: (len(c), c))) for anc, cs in chains.items()]
+
+
+def _route(kb, holds_of, chains):
+    """Shortest chain along which the property may pass: (chain, ok, reasons for barred chains)."""
+    barred = []
+    for c in chains:
+        ok, why = _passes(kb, holds_of, c)
+        if ok:
+            return c, True, barred
+        barred.append(f"via {', '.join(c)}: {why}")
+    return chains[0], False, barred
 
 
 def _passes(kb, holds_of, chain):
@@ -133,37 +147,37 @@ def _value_paths(kb, sit, entity, kind):
     if paths:
         return paths  # data given for this situation override general knowledge
     by_depth = {}
-    for anc, chain in _lineage(kb, entity):
-        by_depth.setdefault(len(chain), []).append((anc, chain))
+    for anc, chains in _lineage(kb, entity):
+        for v in kb.of(Value):
+            if v.bearer == anc and v.kind == kind:
+                chain, ok, barred = _route(kb, v.holds_of, chains)
+                by_depth.setdefault(len(chain), []).append((anc, v, chain, ok, barred))
     for depth in sorted(by_depth):
         level = []
-        for anc, chain in by_depth[depth]:
-            for v in kb.of(Value):
-                if v.bearer != anc or v.kind != kind:
-                    continue
-                tr = {"via": "value", "item": v.id, "bearer": anc, "links": list(chain), "stated": [v.lo, v.hi, v.unit],
-                      "conditions": dict(v.conditions), "scope": v.scope, "holds_of": v.holds_of,
-                      "source": v.source, "basis": v.basis}
-                ok, why = _passes(kb, v.holds_of, chain)
-                if not ok:
-                    o = Outcome(UNRESOLVED, needs=[f"{kind} of {entity}"], reasons=[f"{v.id} of {anc} not inherited: {why}"])
-                elif v.holds_of == "population":
-                    o = Outcome(UNRESOLVED, needs=[f"{kind} of {entity} as a value of the bearer, not a population spread"],
-                                reasons=[f"{v.id} is a spread over a population; it is not a bound on its value"])
+        for anc, v, chain, ok, barred in by_depth[depth]:
+            tr = {"via": "value", "item": v.id, "bearer": anc, "links": list(chain), "stated": [v.lo, v.hi, v.unit],
+                  "conditions": dict(v.conditions), "scope": v.scope, "holds_of": v.holds_of,
+                  "source": v.source, "basis": v.basis, "barred_chains": barred}
+            if not ok:
+                o = Outcome(UNRESOLVED, needs=[f"{kind} of {entity}"],
+                            reasons=[f"{v.id} of {anc} not inherited: " + "; ".join(barred)])
+            elif v.holds_of == "population":
+                o = Outcome(UNRESOLVED, needs=[f"{kind} of {entity} as a value of the bearer, not a population spread"],
+                            reasons=[f"{v.id} is a spread over a population; it is not a bound on its value"])
+            else:
+                st, prem, needs, reasons, cav = _scope(v, sit)
+                if needs is None:
+                    needs = [f"{kind} of {anc} under {_fmt_conds(sit)}"]
+                if st == SUPPORTED:
+                    lo, hi = units.to_si(v.lo, v.hi, v.unit)
+                    if chain:
+                        cav.append(f"{kind} of {entity} inherited from {anc} via {', '.join(chain)} "
+                                   f"({v.holds_of} property, defeasible)")
+                    o = Outcome(SUPPORTED, expr.Interval(lo, hi), {v.id, *chain, *prem}, caveats=cav)
                 else:
-                    st, prem, needs, reasons, cav = _scope(v, sit)
-                    if needs is None:
-                        needs = [f"{kind} of {anc} under {_fmt_conds(sit)}"]
-                    if st == SUPPORTED:
-                        lo, hi = units.to_si(v.lo, v.hi, v.unit)
-                        if chain:
-                            cav.append(f"{kind} of {entity} inherited from {anc} via {', '.join(chain)} "
-                                       f"({v.holds_of} property, defeasible)")
-                        o = Outcome(SUPPORTED, expr.Interval(lo, hi), {v.id, *chain, *prem}, caveats=cav)
-                    else:
-                        o = Outcome(st, needs=needs, reasons=reasons)
-                o.trace = dict(tr, status=o.status, reasons=o.reasons)
-                level.append(o)
+                    o = Outcome(st, needs=needs, reasons=reasons)
+            o.trace = dict(tr, status=o.status, reasons=o.reasons)
+            level.append(o)
         paths.extend(level)
         if any(p.status == SUPPORTED for p in level):
             break  # the most specific applicable level overrides inherited generic values
@@ -174,13 +188,13 @@ def _attribute(kb, sit, entity, name):
     """Most specific applicable established attribute: (list of (attribute, premises), near misses)."""
     near = []
     by_depth = {}
-    for anc, chain in _lineage(kb, entity):
+    for anc, chains in _lineage(kb, entity):
         for a in kb.of(Attribute):
             if a.bearer != anc or a.name != name:
                 continue
-            ok, why = _passes(kb, a.holds_of, chain)
+            chain, ok, barred = _route(kb, a.holds_of, chains)
             if not ok:
-                near.append(f"{a.id} ({name}={a.value} of {anc}) not inherited: {why}")
+                near.append(f"{a.id} ({name}={a.value} of {anc}) not inherited: " + "; ".join(barred))
                 continue
             st, prem, _, reasons, _ = _scope(a, sit)
             if st != SUPPORTED:
@@ -415,23 +429,36 @@ def infer(kb, sit, role, kind):
 
 def _basis(kb, sit, gid):
     if gid in kb.items:
-        it = kb.items[gid]
-        return getattr(it, "basis", "definition"), bool(getattr(it, "verified_by", ""))
+        return getattr(kb.items[gid], "basis", "definition"), kb.items[gid]
     if gid.startswith("scope:"):
-        return "assumption", False
+        return "assumption", None
     for it in tuple(sit.givens) + tuple(sit.assumptions):
         if it.id == gid:
-            return it.basis, bool(it.verified_by)
+            return it.basis, it
     raise KeyError(gid)
 
 
+def _verifications(kb, sit, gid, item):
+    """Recorded verifications that still match the premise's current content."""
+    if item is None:
+        return []
+    fp = fingerprint(item)
+    records = [v for v in kb.of(Verification) if v.target == gid] + [v for v in sit.verifications if v.target == gid]
+    return sorted(v.id for v in records if v.fingerprint == fp)
+
+
 def standing(kb, sit, grounds):
-    """Epistemic standing of a conclusion from its premises (S0 5.9): never stronger than its weakest premise."""
-    profile, unverified = {}, 0
+    """Epistemic standing of a conclusion from its premises (S0 5.9): never stronger than its weakest premise.
+
+    A premise counts as verified only through a Verification record whose fingerprint matches its current content;
+    such a record is an attested claim of its holder, so the label says 'attested'."""
+    profile, unverified, used = {}, 0, []
     for g in grounds:
-        b, ver = _basis(kb, sit, g)
+        b, item = _basis(kb, sit, g)
         profile[b] = profile.get(b, 0) + 1
-        unverified += 0 if ver or b == "definition" else 1
+        vs = _verifications(kb, sit, g, item)
+        used += vs
+        unverified += 0 if vs or b == "definition" else 1
     if "illustrative" in profile:
         label = "illustrative only: rests on illustrative premises"
     elif "hypothesis" in profile:
@@ -441,9 +468,9 @@ def standing(kb, sit, grounds):
     elif unverified:
         label = "derived from unverified premises"
     else:
-        label = "derived from verified premises"
+        label = "derived from premises with attested verification records"
     return {"attitude": "proposed", "holder": "program", "label": label, "premises_by_basis": dict(sorted(profile.items())),
-            "unverified_premises": unverified}
+            "unverified_premises": unverified, "verifications": sorted(used)}
 
 
 def ablate(kb, sit, role, kind):

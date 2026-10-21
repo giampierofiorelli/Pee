@@ -225,6 +225,22 @@ class RegressionInheritance(unittest.TestCase):
         kb.add(dataclasses.replace(qd, id="V-si", bearer="silicon", lo=2.32, hi=2.34))
         self.assertEqual(run(kb, self.sits, self.q).status, "UNRESOLVED")
 
+    def test_licensed_chain_is_used_when_another_chain_to_the_same_bearer_is_barred(self):
+        # defect reported by the owner: only the first chain to an ancestor was kept
+        qd = self.kb.items["V-quartz-density"]
+        kb = self.kb.without({qd.id})
+        for l in (K.Link("L-quartz-silica", "quartz", "made_of", "silica", source="test", basis="illustrative"),
+                  K.Link("L-zz-kind", "silt grain S1", "instance_of", "silt grain kind", source="test",
+                         basis="illustrative"),
+                  K.Link("L-zz-kind-silica", "silt grain kind", "made_of", "silica", source="test",
+                         basis="illustrative")):
+            kb.add(l)
+        kb.add(dataclasses.replace(qd, id="V-silica-density", bearer="silica"))
+        o = run(kb, self.sits, self.q)
+        self.assertEqual(o.status, "SUPPORTED")
+        self.assertIn("L-zz-kind-silica", o.grounds)
+        self.assertNotIn("L-quartz-silica", o.grounds)
+
     def test_composite_does_not_inherit_a_constituent_property(self):
         self.kb.add(K.Link("L-S1-feld", "silt grain S1", "made_of", "feldspar", source="test", basis="illustrative"))
         self.kb.add(dataclasses.replace(self.kb.items["V-quartz-density"], id="V-feld", bearer="feldspar",
@@ -274,18 +290,56 @@ class RegressionProvenance(unittest.TestCase):
         self.assertTrue(o.standing["label"].startswith("illustrative"))
         self.assertGreater(o.standing["unverified_premises"], 0)
 
-    def test_measured_and_verified_premises_are_reported_as_such(self):
+    def test_verification_needs_a_matching_record_not_a_label(self):
         kb, sits = build_kb(), situations()
         s = sits["cs137_soil"]
-        g = dataclasses.replace(s.givens[0], basis="measurement record", verified_by="test")
-        kb2 = K.KB([dataclasses.replace(i, verified_by="test") if hasattr(i, "verified_by") and
-                    getattr(i, "basis", "") != "definition" else i for i in kb.items.values()])
+        g = dataclasses.replace(s.givens[0], basis="measurement record")
+        # make every knowledge premise non-illustrative, then attest each with a record matching its content
         kb2 = K.KB([dataclasses.replace(i, basis="published reference") if isinstance(i, K.Link) and
-                    i.basis == "illustrative" else i for i in kb2.items.values()])
-        o = infer.infer(kb2, dataclasses.replace(s, givens=(g,)), "population", "remaining_fraction")
-        self.assertEqual(o.status, "SUPPORTED")
-        self.assertEqual(o.standing["label"], "derived from verified premises")
+                    i.basis == "illustrative" else i for i in kb.items.values()])
+        plain = infer.infer(kb2, dataclasses.replace(s, givens=(g,)), "population", "remaining_fraction")
+        self.assertEqual(plain.standing["label"], "derived from unverified premises")
+        for gid in sorted(plain.grounds):
+            it = kb2.items.get(gid)
+            if it is not None and it.basis != "definition":
+                kb2.add(K.Verification(f"VF-{gid}", gid, K.fingerprint(it), "compared with cited source", it.source,
+                                       holder="test reviewer", source="test record", basis="measurement record"))
+        vg = K.Verification("VF-given", g.id, K.fingerprint(g), "independent measurement", "lab log",
+                            holder="test reviewer", source="test record", basis="measurement record")
+        o = infer.infer(kb2, dataclasses.replace(s, givens=(g,), verifications=(vg,)), "population",
+                        "remaining_fraction")
+        self.assertEqual(o.standing["label"], "derived from premises with attested verification records")
+        self.assertIn("VF-given", o.standing["verifications"])
 
+
+class RegressionVerification(unittest.TestCase):
+    """Verification is a checked, attributed record, not a free text field (defect reported by the owner)."""
+
+    def setUp(self):
+        self.kb = build_kb()
+        self.v = self.kb.items["V-water-viscosity-20C"]
+
+    def record(self, **kw):
+        base = dict(id="VF-1", target=self.v.id, fingerprint=K.fingerprint(self.v), method="compared with cited source",
+                    checked_against=self.v.source, holder="reviewer", source="review log", basis="measurement record")
+        base.update(kw)
+        return K.Verification(**base)
+
+    def test_free_text_verification_field_no_longer_exists(self):
+        with self.assertRaises(TypeError):
+            dataclasses.replace(self.v, verified_by="anyone")
+
+    def test_inconsistent_records_are_refused(self):
+        for bad in (dict(fingerprint="0" * 64), dict(target="no-such-item"), dict(basis="illustrative"),
+                    dict(holder=""), dict(method="looked plausible"), dict(checked_against="another source")):
+            with self.assertRaises(K.AcquisitionError, msg=bad):
+                self.kb.add(self.record(**bad))
+
+    def test_record_does_not_cover_changed_content(self):
+        self.kb.add(self.record())
+        changed = [dataclasses.replace(i, hi=1.1) if i.id == self.v.id else i for i in self.kb.items.values()]
+        with self.assertRaises(K.AcquisitionError):
+            K.KB(changed)  # the record no longer matches the content it names
 
 class RegressionImmutability(unittest.TestCase):
     """D. Acquired knowledge cannot change after validation."""
