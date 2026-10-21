@@ -1,0 +1,381 @@
+{
+ "excluded_ambiguous": {
+  "limit": 0,
+  "compare": 0
+ },
+ "arms": {
+  "A": {
+   "limit": {
+    "all": {
+     "n": 79,
+     "justified_conclusions": 7,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 41,
+     "justified_abstentions": 31,
+     "reference_concludes": 48
+    },
+    "air_purifiers": {
+     "n": 26,
+     "justified_conclusions": 2,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 13,
+     "justified_abstentions": 11,
+     "reference_concludes": 15
+    },
+    "laptops": {
+     "n": 26,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 16,
+     "justified_abstentions": 10,
+     "reference_concludes": 16
+    },
+    "robot_floor_cleaners": {
+     "n": 27,
+     "justified_conclusions": 5,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 12,
+     "justified_abstentions": 10,
+     "reference_concludes": 17
+    },
+    "crawler_has_criterion": {
+     "n": 23,
+     "justified_conclusions": 7,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 8,
+     "justified_abstentions": 8,
+     "reference_concludes": 15
+    },
+    "crawler_has_no_criterion": {
+     "n": 56,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 33,
+     "justified_abstentions": 23,
+     "reference_concludes": 33
+    }
+   },
+   "compare": {
+    "all": {
+     "n": 21,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 17,
+     "justified_abstentions": 4,
+     "reference_concludes": 17
+    },
+    "air_purifiers": {
+     "n": 7,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 5,
+     "justified_abstentions": 2,
+     "reference_concludes": 5
+    },
+    "laptops": {
+     "n": 7,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 6,
+     "justified_abstentions": 1,
+     "reference_concludes": 6
+    },
+    "robot_floor_cleaners": {
+     "n": 7,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 6,
+     "justified_abstentions": 1,
+     "reference_concludes": 6
+    }
+   }
+  },
+  "B2-flat": {
+   "limit": {
+    "all": {
+     "n": 79,
+     "justified_conclusions": 13,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 34,
+     "justified_abstentions": 31,
+     "reference_concludes": 48
+    },
+    "air_purifiers": {
+     "n": 26,
+     "justified_conclusions": 3,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 12,
+     "justified_abstentions": 11,
+     "reference_concludes": 15
+    },
+    "laptops": {
+     "n": 26,
+     "justified_conclusions": 1,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 15,
+     "justified_abstentions": 10,
+     "reference_concludes": 16
+    },
+    "robot_floor_cleaners": {
+     "n": 27,
+     "justified_conclusions": 9,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 7,
+     "justified_abstentions": 10,
+     "reference_concludes": 17
+    },
+    "crawler_has_criterion": {
+     "n": 23,
+     "justified_conclusions": 8,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 7,
+     "justified_abstentions": 8,
+     "reference_concludes": 15
+    },
+    "crawler_has_no_criterion": {
+     "n": 56,
+     "justified_conclusions": 5,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 27,
+     "justified_abstentions": 23,
+     "reference_concludes": 33
+    }
+   },
+   "compare": {
+    "all": {
+     "n": 21,
+     "justified_conclusions": 5,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 12,
+     "justified_abstentions": 4,
+     "reference_concludes": 17
+    },
+    "air_purifiers": {
+     "n": 7,
+     "justified_conclusions": 2,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 3,
+     "justified_abstentions": 2,
+     "reference_concludes": 5
+    },
+    "laptops": {
+     "n": 7,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 6,
+     "justified_abstentions": 1,
+     "reference_concludes": 6
+    },
+    "robot_floor_cleaners": {
+     "n": 7,
+     "justified_conclusions": 3,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 3,
+     "justified_abstentions": 1,
+     "reference_concludes": 6
+    }
+   }
+  },
+  "B2": {
+   "limit": {
+    "all": {
+     "n": 79,
+     "justified_conclusions": 13,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 34,
+     "justified_abstentions": 31,
+     "reference_concludes": 48
+    },
+    "air_purifiers": {
+     "n": 26,
+     "justified_conclusions": 3,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 12,
+     "justified_abstentions": 11,
+     "reference_concludes": 15
+    },
+    "laptops": {
+     "n": 26,
+     "justified_conclusions": 1,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 15,
+     "justified_abstentions": 10,
+     "reference_concludes": 16
+    },
+    "robot_floor_cleaners": {
+     "n": 27,
+     "justified_conclusions": 9,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 7,
+     "justified_abstentions": 10,
+     "reference_concludes": 17
+    },
+    "crawler_has_criterion": {
+     "n": 23,
+     "justified_conclusions": 8,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 7,
+     "justified_abstentions": 8,
+     "reference_concludes": 15
+    },
+    "crawler_has_no_criterion": {
+     "n": 56,
+     "justified_conclusions": 5,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 27,
+     "justified_abstentions": 23,
+     "reference_concludes": 33
+    }
+   },
+   "compare": {
+    "all": {
+     "n": 21,
+     "justified_conclusions": 5,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 12,
+     "justified_abstentions": 4,
+     "reference_concludes": 17
+    },
+    "air_purifiers": {
+     "n": 7,
+     "justified_conclusions": 2,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 3,
+     "justified_abstentions": 2,
+     "reference_concludes": 5
+    },
+    "laptops": {
+     "n": 7,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 6,
+     "justified_abstentions": 1,
+     "reference_concludes": 6
+    },
+    "robot_floor_cleaners": {
+     "n": 7,
+     "justified_conclusions": 3,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 3,
+     "justified_abstentions": 1,
+     "reference_concludes": 6
+    }
+   }
+  },
+  "B2S": {
+   "limit": {
+    "all": {
+     "n": 79,
+     "justified_conclusions": 13,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 34,
+     "justified_abstentions": 31,
+     "reference_concludes": 48
+    },
+    "air_purifiers": {
+     "n": 26,
+     "justified_conclusions": 3,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 12,
+     "justified_abstentions": 11,
+     "reference_concludes": 15
+    },
+    "laptops": {
+     "n": 26,
+     "justified_conclusions": 1,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 15,
+     "justified_abstentions": 10,
+     "reference_concludes": 16
+    },
+    "robot_floor_cleaners": {
+     "n": 27,
+     "justified_conclusions": 9,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 7,
+     "justified_abstentions": 10,
+     "reference_concludes": 17
+    },
+    "crawler_has_criterion": {
+     "n": 23,
+     "justified_conclusions": 8,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 7,
+     "justified_abstentions": 8,
+     "reference_concludes": 15
+    },
+    "crawler_has_no_criterion": {
+     "n": 56,
+     "justified_conclusions": 5,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 27,
+     "justified_abstentions": 23,
+     "reference_concludes": 33
+    }
+   },
+   "compare": {
+    "all": {
+     "n": 21,
+     "justified_conclusions": 5,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 12,
+     "justified_abstentions": 4,
+     "reference_concludes": 17
+    },
+    "air_purifiers": {
+     "n": 7,
+     "justified_conclusions": 2,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 3,
+     "justified_abstentions": 2,
+     "reference_concludes": 5
+    },
+    "laptops": {
+     "n": 7,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 6,
+     "justified_abstentions": 1,
+     "reference_concludes": 6
+    },
+    "robot_floor_cleaners": {
+     "n": 7,
+     "justified_conclusions": 3,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 3,
+     "justified_abstentions": 1,
+     "reference_concludes": 6
+    }
+   }
+  }
+ },
+ "decision": {
+  "S1_B2S_unjustified_conclusions": 1,
+  "S1_pass": false,
+  "S2_B2S_justified": 13,
+  "S2_A_justified": 7,
+  "S2_pass": true,
+  "S3_B2S_justified": 13,
+  "S3_reference_concludes": 48,
+  "S3_pass": false,
+  "S4_S5": "checked separately (tests, static checks, preservation record)"
+ },
+ "reuse": {
+  "value_segmentation_B2S_vs_B2": {
+   "verdict": "neutral",
+   "justified_with": 13,
+   "justified_without": 13,
+   "items_gained": 0,
+   "items_lost": 0,
+   "unjustified_added": 0
+  },
+  "record_context_B2_vs_B2flat": {
+   "verdict": "neutral",
+   "justified_with": 13,
+   "justified_without": 13,
+   "items_gained": 0,
+   "items_lost": 0,
+   "unjustified_added": 0
+  }
+ }
+}
