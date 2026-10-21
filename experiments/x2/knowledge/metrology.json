@@ -1,0 +1,1117 @@
+{
+ "about": "Metrology frame in presupposition role (S0 4.7; plan section 3.1: metrology is knowledge, not code). Units are data: factor and offset to the coherent unit of their dimension, a dimension over named base dimensions, a scale type and, for level units, the reference they are levels of. Surfaces are matched case-insensitively, longest first. Authored by the developer from SI and common usage. Units with different references (for example dB and dB(A)) are not convertible.",
+ "provenance": {
+  "source": "BIPM SI Brochure 9th ed. (2019); IEC 60027-3 (logarithmic quantities); common usage",
+  "holder": "developer",
+  "basis": "published reference"
+ },
+ "units": [
+  {
+   "id": "m",
+   "surfaces": [
+    "m",
+    "metre",
+    "metres",
+    "meter",
+    "meters"
+   ],
+   "factor": 1,
+   "dims": {
+    "L": 1
+   }
+  },
+  {
+   "id": "cm",
+   "surfaces": [
+    "cm",
+    "centimetre",
+    "centimetres",
+    "centimeter",
+    "centimeters"
+   ],
+   "factor": 0.01,
+   "dims": {
+    "L": 1
+   }
+  },
+  {
+   "id": "mm",
+   "surfaces": [
+    "mm",
+    "millimetre",
+    "millimetres",
+    "millimeter",
+    "millimeters"
+   ],
+   "factor": 0.001,
+   "dims": {
+    "L": 1
+   }
+  },
+  {
+   "id": "km",
+   "surfaces": [
+    "km",
+    "kilometre",
+    "kilometres",
+    "kilometer",
+    "kilometers"
+   ],
+   "factor": 1000,
+   "dims": {
+    "L": 1
+   }
+  },
+  {
+   "id": "in",
+   "surfaces": [
+    "in",
+    "inch",
+    "inches",
+    "\"",
+    "''",
+    "”"
+   ],
+   "factor": 0.0254,
+   "dims": {
+    "L": 1
+   }
+  },
+  {
+   "id": "ft",
+   "surfaces": [
+    "ft",
+    "foot",
+    "feet"
+   ],
+   "factor": 0.3048,
+   "dims": {
+    "L": 1
+   }
+  },
+  {
+   "id": "mi",
+   "surfaces": [
+    "mi",
+    "mile",
+    "miles"
+   ],
+   "factor": 1609.344,
+   "dims": {
+    "L": 1
+   }
+  },
+  {
+   "id": "kg",
+   "surfaces": [
+    "kg",
+    "kgs",
+    "kilo",
+    "kilos",
+    "kilogram",
+    "kilograms",
+    "kilogramme",
+    "kilogrammes"
+   ],
+   "factor": 1,
+   "dims": {
+    "M": 1
+   }
+  },
+  {
+   "id": "g",
+   "surfaces": [
+    "g",
+    "gr",
+    "gram",
+    "grams",
+    "gramme",
+    "grammes"
+   ],
+   "factor": 0.001,
+   "dims": {
+    "M": 1
+   }
+  },
+  {
+   "id": "mg",
+   "surfaces": [
+    "mg",
+    "milligram",
+    "milligrams"
+   ],
+   "factor": 1e-06,
+   "dims": {
+    "M": 1
+   }
+  },
+  {
+   "id": "lb",
+   "surfaces": [
+    "lb",
+    "lbs",
+    "pound",
+    "pounds"
+   ],
+   "factor": 0.45359237,
+   "dims": {
+    "M": 1
+   }
+  },
+  {
+   "id": "oz",
+   "surfaces": [
+    "oz",
+    "ounce",
+    "ounces"
+   ],
+   "factor": 0.028349523125,
+   "dims": {
+    "M": 1
+   }
+  },
+  {
+   "id": "s",
+   "surfaces": [
+    "s",
+    "sec",
+    "secs",
+    "second",
+    "seconds"
+   ],
+   "factor": 1,
+   "dims": {
+    "T": 1
+   }
+  },
+  {
+   "id": "ms",
+   "surfaces": [
+    "ms",
+    "millisecond",
+    "milliseconds"
+   ],
+   "factor": 0.001,
+   "dims": {
+    "T": 1
+   }
+  },
+  {
+   "id": "min",
+   "surfaces": [
+    "min",
+    "mins",
+    "minute",
+    "minutes"
+   ],
+   "factor": 60,
+   "dims": {
+    "T": 1
+   }
+  },
+  {
+   "id": "h",
+   "surfaces": [
+    "h",
+    "hr",
+    "hrs",
+    "hour",
+    "hours"
+   ],
+   "factor": 3600,
+   "dims": {
+    "T": 1
+   }
+  },
+  {
+   "id": "day",
+   "surfaces": [
+    "day",
+    "days"
+   ],
+   "factor": 86400,
+   "dims": {
+    "T": 1
+   }
+  },
+  {
+   "id": "week",
+   "surfaces": [
+    "week",
+    "weeks"
+   ],
+   "factor": 604800,
+   "dims": {
+    "T": 1
+   }
+  },
+  {
+   "id": "month",
+   "surfaces": [
+    "month",
+    "months"
+   ],
+   "factor": 2629800,
+   "dims": {
+    "T": 1
+   }
+  },
+  {
+   "id": "year",
+   "surfaces": [
+    "year",
+    "years",
+    "yr",
+    "yrs",
+    "annum"
+   ],
+   "factor": 31557600,
+   "dims": {
+    "T": 1
+   }
+  },
+  {
+   "id": "l",
+   "surfaces": [
+    "l",
+    "litre",
+    "litres",
+    "liter",
+    "liters",
+    "ltr",
+    "ltrs",
+    "lt"
+   ],
+   "factor": 0.001,
+   "dims": {
+    "L": 3
+   }
+  },
+  {
+   "id": "ml",
+   "surfaces": [
+    "ml",
+    "millilitre",
+    "millilitres",
+    "milliliter",
+    "milliliters"
+   ],
+   "factor": 1e-06,
+   "dims": {
+    "L": 3
+   }
+  },
+  {
+   "id": "cl",
+   "surfaces": [
+    "cl",
+    "centilitre",
+    "centilitres"
+   ],
+   "factor": 1e-05,
+   "dims": {
+    "L": 3
+   }
+  },
+  {
+   "id": "m3",
+   "surfaces": [
+    "m3",
+    "m³",
+    "cubic metre",
+    "cubic metres",
+    "cubic meter",
+    "cubic meters"
+   ],
+   "factor": 1,
+   "dims": {
+    "L": 3
+   }
+  },
+  {
+   "id": "fl_oz_us",
+   "surfaces": [
+    "fl oz",
+    "fl. oz",
+    "fl.oz",
+    "fluid ounce",
+    "fluid ounces"
+   ],
+   "factor": 2.95735295625e-05,
+   "dims": {
+    "L": 3
+   }
+  },
+  {
+   "id": "qt_us",
+   "surfaces": [
+    "qt",
+    "quart",
+    "quarts"
+   ],
+   "factor": 0.000946352946,
+   "dims": {
+    "L": 3
+   }
+  },
+  {
+   "id": "gal_us",
+   "surfaces": [
+    "gal",
+    "gallon",
+    "gallons"
+   ],
+   "factor": 0.003785411784,
+   "dims": {
+    "L": 3
+   }
+  },
+  {
+   "id": "W",
+   "surfaces": [
+    "w",
+    "watt",
+    "watts"
+   ],
+   "factor": 1,
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -3
+   }
+  },
+  {
+   "id": "kW",
+   "surfaces": [
+    "kw",
+    "kilowatt",
+    "kilowatts"
+   ],
+   "factor": 1000,
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -3
+   }
+  },
+  {
+   "id": "mW",
+   "surfaces": [
+    "mw",
+    "milliwatt",
+    "milliwatts"
+   ],
+   "factor": 0.001,
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -3
+   }
+  },
+  {
+   "id": "hp",
+   "surfaces": [
+    "hp",
+    "horsepower"
+   ],
+   "factor": 745.699872,
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -3
+   }
+  },
+  {
+   "id": "Wh",
+   "surfaces": [
+    "wh",
+    "watt-hour",
+    "watt-hours",
+    "watt hour",
+    "watt hours"
+   ],
+   "factor": 3600,
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -2
+   }
+  },
+  {
+   "id": "kWh",
+   "surfaces": [
+    "kwh",
+    "kilowatt-hour",
+    "kilowatt-hours",
+    "kilowatt hour",
+    "kilowatt hours"
+   ],
+   "factor": 3600000,
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -2
+   }
+  },
+  {
+   "id": "J",
+   "surfaces": [
+    "joule",
+    "joules"
+   ],
+   "factor": 1,
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -2
+   }
+  },
+  {
+   "id": "V",
+   "surfaces": [
+    "v",
+    "volt",
+    "volts",
+    "vac",
+    "vdc"
+   ],
+   "factor": 1,
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -3,
+    "I": -1
+   }
+  },
+  {
+   "id": "mV",
+   "surfaces": [
+    "mv",
+    "millivolt",
+    "millivolts"
+   ],
+   "factor": 0.001,
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -3,
+    "I": -1
+   }
+  },
+  {
+   "id": "A",
+   "surfaces": [
+    "amp",
+    "amps",
+    "ampere",
+    "amperes"
+   ],
+   "factor": 1,
+   "dims": {
+    "I": 1
+   }
+  },
+  {
+   "id": "mA",
+   "surfaces": [
+    "ma",
+    "milliamp",
+    "milliamps",
+    "milliampere",
+    "milliamperes"
+   ],
+   "factor": 0.001,
+   "dims": {
+    "I": 1
+   }
+  },
+  {
+   "id": "Ah",
+   "surfaces": [
+    "ah",
+    "amp-hour",
+    "amp-hours",
+    "ampere-hour",
+    "ampere-hours"
+   ],
+   "factor": 3600,
+   "dims": {
+    "I": 1,
+    "T": 1
+   }
+  },
+  {
+   "id": "mAh",
+   "surfaces": [
+    "mah",
+    "milliamp-hour",
+    "milliamp-hours",
+    "milliampere-hour",
+    "milliampere-hours"
+   ],
+   "factor": 3.6,
+   "dims": {
+    "I": 1,
+    "T": 1
+   }
+  },
+  {
+   "id": "ohm",
+   "surfaces": [
+    "ohm",
+    "ohms",
+    "Ω",
+    "ω"
+   ],
+   "factor": 1,
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -3,
+    "I": -2
+   }
+  },
+  {
+   "id": "kohm",
+   "surfaces": [
+    "kohm",
+    "kΩ",
+    "kω",
+    "kilohm",
+    "kilohms"
+   ],
+   "factor": 1000,
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -3,
+    "I": -2
+   }
+  },
+  {
+   "id": "Hz",
+   "surfaces": [
+    "hz",
+    "hertz"
+   ],
+   "factor": 1,
+   "dims": {
+    "T": -1
+   }
+  },
+  {
+   "id": "kHz",
+   "surfaces": [
+    "khz",
+    "kilohertz"
+   ],
+   "factor": 1000,
+   "dims": {
+    "T": -1
+   }
+  },
+  {
+   "id": "MHz",
+   "surfaces": [
+    "mhz",
+    "megahertz"
+   ],
+   "factor": 1000000.0,
+   "dims": {
+    "T": -1
+   }
+  },
+  {
+   "id": "GHz",
+   "surfaces": [
+    "ghz",
+    "gigahertz"
+   ],
+   "factor": 1000000000.0,
+   "dims": {
+    "T": -1
+   }
+  },
+  {
+   "id": "rpm",
+   "surfaces": [
+    "rpm",
+    "r/min",
+    "rev/min",
+    "revolutions per minute"
+   ],
+   "factor": 0.016666666666666666,
+   "dims": {
+    "T": -1
+   }
+  },
+  {
+   "id": "Pa",
+   "surfaces": [
+    "pa",
+    "pascal",
+    "pascals"
+   ],
+   "factor": 1,
+   "dims": {
+    "M": 1,
+    "L": -1,
+    "T": -2
+   }
+  },
+  {
+   "id": "kPa",
+   "surfaces": [
+    "kpa",
+    "kilopascal",
+    "kilopascals"
+   ],
+   "factor": 1000,
+   "dims": {
+    "M": 1,
+    "L": -1,
+    "T": -2
+   }
+  },
+  {
+   "id": "bar",
+   "surfaces": [
+    "bar",
+    "bars"
+   ],
+   "factor": 100000,
+   "dims": {
+    "M": 1,
+    "L": -1,
+    "T": -2
+   }
+  },
+  {
+   "id": "psi",
+   "surfaces": [
+    "psi"
+   ],
+   "factor": 6894.757293168,
+   "dims": {
+    "M": 1,
+    "L": -1,
+    "T": -2
+   }
+  },
+  {
+   "id": "N",
+   "surfaces": [
+    "newton",
+    "newtons"
+   ],
+   "factor": 1,
+   "dims": {
+    "M": 1,
+    "L": 1,
+    "T": -2
+   }
+  },
+  {
+   "id": "cN",
+   "surfaces": [
+    "cn",
+    "centinewton",
+    "centinewtons"
+   ],
+   "factor": 0.01,
+   "dims": {
+    "M": 1,
+    "L": 1,
+    "T": -2
+   }
+  },
+  {
+   "id": "gf",
+   "surfaces": [
+    "gf",
+    "gram-force",
+    "grams-force",
+    "gram force",
+    "grams force"
+   ],
+   "factor": 0.00980665,
+   "dims": {
+    "M": 1,
+    "L": 1,
+    "T": -2
+   }
+  },
+  {
+   "id": "K",
+   "surfaces": [
+    "kelvin"
+   ],
+   "factor": 1,
+   "dims": {
+    "K": 1
+   }
+  },
+  {
+   "id": "degC",
+   "surfaces": [
+    "°c",
+    "ºc",
+    "˚c",
+    "° c",
+    "degc",
+    "deg c",
+    "degrees c",
+    "degree celsius",
+    "degrees celsius",
+    "celsius"
+   ],
+   "factor": 1,
+   "offset": 273.15,
+   "dims": {
+    "K": 1
+   },
+   "scale": "interval"
+  },
+  {
+   "id": "degF",
+   "surfaces": [
+    "°f",
+    "ºf",
+    "˚f",
+    "degf",
+    "degrees f",
+    "degree fahrenheit",
+    "degrees fahrenheit",
+    "fahrenheit"
+   ],
+   "factor": 0.5555555555555556,
+   "offset": 255.37222222222223,
+   "dims": {
+    "K": 1
+   },
+   "scale": "interval"
+  },
+  {
+   "id": "percent",
+   "surfaces": [
+    "%",
+    "percent",
+    "per cent"
+   ],
+   "factor": 0.01,
+   "dims": {}
+  },
+  {
+   "id": "percent_rh",
+   "surfaces": [
+    "%rh",
+    "% rh",
+    "%r.h.",
+    "% r.h.",
+    "% r.h",
+    "% humidity",
+    "% relative humidity",
+    "%relative humidity",
+    "% rel. humidity"
+   ],
+   "factor": 0.01,
+   "dims": {
+    "RH": 1
+   },
+   "note": "relative humidity, a distinct kind: never convertible with other percentages"
+  },
+  {
+   "id": "deg",
+   "surfaces": [
+    "°",
+    "º",
+    "˚",
+    "degree",
+    "degrees"
+   ],
+   "factor": 0.017453292519943295,
+   "dims": {
+    "ANGLE": 1
+   }
+  },
+  {
+   "id": "dB",
+   "surfaces": [
+    "db"
+   ],
+   "factor": 1,
+   "dims": {
+    "LEVEL": 1
+   },
+   "scale": "level",
+   "reference": "unspecified"
+  },
+  {
+   "id": "dBA",
+   "surfaces": [
+    "db(a)",
+    "dba",
+    "db a",
+    "db (a)",
+    "db-a"
+   ],
+   "factor": 1,
+   "dims": {
+    "LEVEL": 1
+   },
+   "scale": "level",
+   "reference": "A-weighted"
+  },
+  {
+   "id": "dBC",
+   "surfaces": [
+    "db(c)",
+    "dbc"
+   ],
+   "factor": 1,
+   "dims": {
+    "LEVEL": 1
+   },
+   "scale": "level",
+   "reference": "C-weighted"
+  },
+  {
+   "id": "dBSPL",
+   "surfaces": [
+    "db spl",
+    "dbspl",
+    "db(spl)"
+   ],
+   "factor": 1,
+   "dims": {
+    "LEVEL": 1
+   },
+   "scale": "level",
+   "reference": "SPL re 20 uPa"
+  },
+  {
+   "id": "bit",
+   "surfaces": [
+    "bit",
+    "bits"
+   ],
+   "factor": 1,
+   "dims": {
+    "B": 1
+   }
+  },
+  {
+   "id": "byte",
+   "surfaces": [
+    "byte",
+    "bytes"
+   ],
+   "factor": 8,
+   "dims": {
+    "B": 1
+   }
+  },
+  {
+   "id": "KB",
+   "surfaces": [
+    "kb",
+    "kilobyte",
+    "kilobytes"
+   ],
+   "factor": 8000,
+   "dims": {
+    "B": 1
+   }
+  },
+  {
+   "id": "MB",
+   "surfaces": [
+    "mb",
+    "megabyte",
+    "megabytes"
+   ],
+   "factor": 8000000.0,
+   "dims": {
+    "B": 1
+   }
+  },
+  {
+   "id": "GB",
+   "surfaces": [
+    "gb",
+    "gigabyte",
+    "gigabytes"
+   ],
+   "factor": 8000000000.0,
+   "dims": {
+    "B": 1
+   }
+  },
+  {
+   "id": "TB",
+   "surfaces": [
+    "tb",
+    "terabyte",
+    "terabytes"
+   ],
+   "factor": 8000000000000.0,
+   "dims": {
+    "B": 1
+   }
+  },
+  {
+   "id": "MiB",
+   "surfaces": [
+    "mib",
+    "mebibyte",
+    "mebibytes"
+   ],
+   "factor": 8388608,
+   "dims": {
+    "B": 1
+   }
+  },
+  {
+   "id": "GiB",
+   "surfaces": [
+    "gib",
+    "gibibyte",
+    "gibibytes"
+   ],
+   "factor": 8589934592,
+   "dims": {
+    "B": 1
+   }
+  },
+  {
+   "id": "Mbit_s",
+   "surfaces": [
+    "mbit/s",
+    "mbps"
+   ],
+   "factor": 1000000.0,
+   "dims": {
+    "B": 1,
+    "T": -1
+   }
+  },
+  {
+   "id": "Gbit_s",
+   "surfaces": [
+    "gbit/s",
+    "gbps"
+   ],
+   "factor": 1000000000.0,
+   "dims": {
+    "B": 1,
+    "T": -1
+   }
+  },
+  {
+   "id": "GBP",
+   "surfaces": [
+    "gbp",
+    "£",
+    "pound sterling",
+    "pounds sterling"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_GBP": 1
+   },
+   "note": "currencies are not convertible here: exchange rates are time-dependent facts, not metrology"
+  },
+  {
+   "id": "USD",
+   "surfaces": [
+    "usd",
+    "$",
+    "us$",
+    "dollar",
+    "dollars"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_USD": 1
+   }
+  },
+  {
+   "id": "EUR",
+   "surfaces": [
+    "eur",
+    "€",
+    "euro",
+    "euros"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_EUR": 1
+   }
+  },
+  {
+   "id": "NOK",
+   "surfaces": [
+    "nok"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_NOK": 1
+   }
+  },
+  {
+   "id": "count",
+   "surfaces": [
+    "pcs",
+    "pieces",
+    "piece",
+    "pc"
+   ],
+   "factor": 1,
+   "dims": {}
+  },
+  {
+   "id": "AUD",
+   "surfaces": [
+    "aud",
+    "a$",
+    "au$"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_AUD": 1
+   }
+  },
+  {
+   "id": "CAD",
+   "surfaces": [
+    "cad",
+    "c$",
+    "ca$"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_CAD": 1
+   }
+  }
+ ],
+ "prefix_symbols": [
+  "£",
+  "$",
+  "€",
+  "us$"
+ ],
+ "divide_words": [
+  "/",
+  "per",
+  "a",
+  "an",
+  "each",
+  "every"
+ ],
+ "tolerances": {
+  "approximate_relative": 0.05,
+  "approximate_note": "an approximate declaration ('approx. 2 kg') is read as an interval of +/- 5 % around the figure. This is an ASSUMPTION of the developer, not a standard; conclusions resting on it are labelled 'conditional on assumptions'.",
+  "agreement_relative": 0.02,
+  "agreement_note": "two declarations of one quantity within 2 % are read as agreeing (rounding and unit conversion)."
+ }
+}

@@ -13,6 +13,8 @@ Read `MISSION.md` first. It is the only brief for this project.
 - **X1** (owner, 2026-10-21): one bounded integration experiment on branch `claude/x1-integration-experiment`,
   preregistered in `experiments/x1/PREREGISTRATION.md`. It may read Crawler (`giampierofiorelli/Crawler`, `7d091ef`)
   without modifying it and use a **copy** of its store snapshot. No migration, and no change to Crawler.
+- **X2** (owner, 2026-10-21): one bounded experiment on branch `claude/x2-structural-reuse`, preregistered in
+  `experiments/x2/PREREGISTRATION.md`. Same Crawler access rules as X1. `experiments/x1` stays unchanged. Stop after X2.
 - Use the skill `.claude/skills/pee-scientific-learning/` for all S1 work.
 
 ## Independence
