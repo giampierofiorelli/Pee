@@ -173,6 +173,16 @@ class IntegrityGenerality(unittest.TestCase):
         self.assertAlmostEqual(a.interval.hi, b.interval.hi, delta=1e-12)
 
 
+class IntegrityInheritance(unittest.TestCase):
+    # Added after the first run (not part of the pre-run commit 78fd079).
+    def test_extensive_value_of_a_kind_is_not_inherited_by_its_members(self):
+        kb, sits = build_kb(), situations()
+        r = kb.items["V-fine-radius"]
+        kb2 = kb.without({r.id})
+        kb2.add(dataclasses.replace(r, id="V-kind-radius", bearer="quartz"))
+        self.assertEqual(run(kb2, sits, ("fine_sand_20C", "particle", "speed")).status, "UNRESOLVED")
+
+
 class InterpretationPositiveInference(unittest.TestCase):
     """Expected values computed by hand before the first run (see experiments/s1core/README.md)."""
 

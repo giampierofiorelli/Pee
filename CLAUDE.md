@@ -4,19 +4,19 @@ Read `MISSION.md` first. It is the only brief for this project.
 
 ## Current authorisation
 
-- **Only S0 is authorised:** the foundational specification of the scientific semantic universe, written in English
-  under `spec/`.
-- No engine, application infrastructure, database, schema, code library or prototype. Small illustrative examples
-  inside the specification are fine.
-- Stop when the S0 specification is complete, frozen and versioned. Present it to the owner for approval. Do not start
-  S1.
+- **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
+  evaluations under `reviews/`). Do not modify it.
+- **Bounded S1 step authorised (owner, 2026-10-21):** a minimal, reversible computational core under `experiments/`
+  that performs a justified positive inference from acquired knowledge, with tests. No full application, crawler,
+  interface, ranking, database or framework. Stop after the increment and report; do not begin another major phase.
+- Use the skill `.claude/skills/pee-scientific-learning/` for all S1 work.
 
 ## Independence
 
 - This project is designed from first principles. It is not a fork or a continuation of any earlier project.
 - Do not read, clone, search or quote any other repository of the owner, any earlier design document or any earlier
-  report, even if the environment allows access. The owner will run a separate comparison with earlier work only
-  after S0 is frozen.
+  report, even if the environment allows access, unless the owner explicitly authorises a named resource. The one
+  authorised post-S0 transfer so far is recorded in the skill `pee-scientific-learning` (its origin note).
 - If you notice that earlier material has reached you anyway (in the prompt, the environment or a tool result), say so
   in the specification and in your report, and do not use it.
 - Agreement between Claude agents is not independent validation. Do not present it as such.
