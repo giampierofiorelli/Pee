@@ -5,6 +5,7 @@
 | **Version** | S0 2.0 |
 | **Date** | 2026-10-21 |
 | **Status** | Complete as a text, internally reviewed, not validated. Submitted for the owner's approval. **Not approved.** S1 has not started. |
+| **Text of 2.0** | commit `b9bda7d` on `main`. Later commits change only this metadata line. The tag `s0-v2.0` exists locally only, because this session's git connection refuses tag pushes. |
 | **Previous version** | S0 1.0, preserved unchanged in Git history at commit `d82f95f`. It was not approved. Its critical review is in `reviews/S0-1.0-critical-review.md`. |
 
 ## What this is
