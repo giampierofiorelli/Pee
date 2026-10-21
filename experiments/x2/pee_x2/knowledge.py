@@ -46,12 +46,16 @@ class Quotient:
 
 class Knowledge:
     def __init__(self, with_categories=True):
+        """X2 copy of the X1 loader; the X1 file is unchanged."""
         m = _load("metrology.json")
         self.lang = _load("language.json")
         q = _load("quantities.json")
         self.units = {u["id"]: Unit(u) for u in m["units"]}
         self.surfaces = sorted(((s.lower(), u["id"]) for u in m["units"] for s in u["surfaces"]),
                                key=lambda x: -len(x[0]))
+        # abbreviations whose letter case carries meaning (B byte / b bit; M mega / m milli): matched exactly, first
+        self.cs_surfaces = sorted(((s, u["id"]) for u in m["units"] for s in u.get("case_sensitive_surfaces", ())),
+                                  key=lambda x: -len(x[0]))
         self.prefix_symbols = sorted(m["prefix_symbols"], key=len, reverse=True)
         self.divide_words = m["divide_words"]
         self.tol = m["tolerances"]

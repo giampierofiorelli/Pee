@@ -1,5 +1,5 @@
 {
- "about": "General quantity concepts (not specific to any product category). Each concept has a kind of quantity (its dimension), the terms by which it is named (anchors in language), and declared semantic properties. Selection rule (X1 section 6): a concept is included if it is a quantity kind of the metrology frame, or if its naming term recurs as a declaration label in at least two development categories (census of development records, 2026-10-21). Several concepts may share a term (polysemy, for example 'capacity' or 'size'); the dimension of the unit chooses among them, and a term never identifies a concept whose dimension disagrees with the unit. Authored by the developer; tier: definitions.",
+ "about": "General quantity concepts (not specific to any product category). Each concept has a kind of quantity (its dimension), the terms by which it is named (anchors in language), and declared semantic properties. Selection rule (X1 section 6): a concept is included if it is a quantity kind of the metrology frame, or if its naming term recurs as a declaration label in at least two development categories (census of development records, 2026-10-21). Several concepts may share a term (polysemy, for example 'capacity' or 'size'); the dimension of the unit chooses among them, and a term never identifies a concept whose dimension disagrees with the unit. Authored by the developer; tier: definitions. X2: 'generic' marks the concept that an unnamed dimensioned value of that dimension denotes ('the magnitude of that dimension of the named thing'); new concepts from development labels and the metrology frame.",
  "provenance": {
   "source": "metrology frame + census of development-category labels",
   "holder": "developer",
@@ -17,7 +17,8 @@
     "mass",
     "weighs",
     "heavy"
-   ]
+   ],
+   "generic": true
   },
   {
    "id": "Q:width",
@@ -98,7 +99,8 @@
    },
    "terms": [
     "size"
-   ]
+   ],
+   "generic": true
   },
   {
    "id": "Q:dimensions",
@@ -124,7 +126,8 @@
     "capacity",
     "volume",
     "size"
-   ]
+   ],
+   "generic": true
   },
   {
    "id": "Q:charge_capacity",
@@ -135,7 +138,8 @@
    },
    "terms": [
     "capacity"
-   ]
+   ],
+   "generic": true
   },
   {
    "id": "Q:energy_capacity",
@@ -159,7 +163,8 @@
     "capacity",
     "storage",
     "memory"
-   ]
+   ],
+   "generic": true
   },
   {
    "id": "Q:mass_capacity",
@@ -247,7 +252,8 @@
    },
    "terms": [
     "voltage"
-   ]
+   ],
+   "generic": true
   },
   {
    "id": "Q:current",
@@ -258,7 +264,8 @@
    "terms": [
     "current",
     "amperage"
-   ]
+   ],
+   "generic": true
   },
   {
    "id": "Q:resistance",
@@ -272,7 +279,8 @@
    "terms": [
     "resistance",
     "impedance"
-   ]
+   ],
+   "generic": true
   },
   {
    "id": "Q:frequency",
@@ -282,7 +290,8 @@
    },
    "terms": [
     "frequency"
-   ]
+   ],
+   "generic": true
   },
   {
    "id": "Q:rotational_speed",
@@ -430,7 +439,8 @@
    },
    "terms": [
     "pressure"
-   ]
+   ],
+   "generic": true
   },
   {
    "id": "Q:force",
@@ -442,7 +452,8 @@
    },
    "terms": [
     "force"
-   ]
+   ],
+   "generic": true
   },
   {
    "id": "Q:temperature",
@@ -453,7 +464,8 @@
    "terms": [
     "temperature",
     "temp"
-   ]
+   ],
+   "generic": true
   },
   {
    "id": "Q:flow_rate",
@@ -467,7 +479,8 @@
     "flow rate",
     "throughput"
    ],
-   "condition_sensitive": true
+   "condition_sensitive": true,
+   "generic": true
   },
   {
    "id": "Q:air_flow",
@@ -534,6 +547,84 @@
     "quantity"
    ],
    "counted": true
+  },
+  {
+   "id": "Q:duration",
+   "label": "duration (unspecified process)",
+   "dims": {
+    "T": 1
+   },
+   "terms": [
+    "time",
+    "duration"
+   ],
+   "generic": true,
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:distance_range",
+   "label": "range (distance reachable)",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "range",
+    "reach",
+    "coverage distance"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:luminance",
+   "label": "luminance (brightness)",
+   "dims": {
+    "LUMINANCE": 1
+   },
+   "terms": [
+    "brightness",
+    "luminance"
+   ],
+   "generic": true,
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:area",
+   "label": "area",
+   "dims": {
+    "L": 2
+   },
+   "terms": [
+    "area",
+    "room size",
+    "coverage",
+    "floor area"
+   ],
+   "generic": true
+  },
+  {
+   "id": "Q:ops_rate",
+   "label": "operations per second",
+   "dims": {
+    "OPS_RATE": 1
+   },
+   "terms": [
+    "iops"
+   ],
+   "generic": true,
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:energy",
+   "label": "energy (process or store not specified)",
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -2
+   },
+   "terms": [
+    "energy"
+   ],
+   "generic": true
   }
  ]
 }

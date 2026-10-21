@@ -1,14 +1,16 @@
-"""Reading of declaration labels and values, and of buyers' requirements, into structured quantity mentions.
+"""X2 reader: declaration labels, values and buyers' requirements into structured quantity mentions.
 
-Everything lexical (units, markers, separators, axis words, stopwords) comes from the knowledge files. The reader
-proposes structure; it never assumes a missing unit, never fills a missing condition and never resolves an
-ambiguity by default.
+Everything lexical (units, markers, separators, axis words, stopwords, multipliers) comes from the knowledge files.
+The reader proposes structure; it never assumes a missing unit, never fills a missing condition and never resolves an
+ambiguity by default. X2 principle P1 (closed reading): every part of a value is accounted for; words that are not are
+returned as residual qualifiers and unknown symbols as blocking residue, never dropped.
 """
 import re
 
 from .knowledge import Quotient, stem, tokens
 
 NUM = re.compile(r"(?<![\w.])(\d+(?:\.\d+)?)(?![\d])")
+ALLOWED_PUNCT = set(",.:;-–—()[]/*&'\"!?|")
 
 
 def _brackets(t):
@@ -30,7 +32,7 @@ def normalise(text):
     t = (text or "").replace(" ", " ").replace(" ", " ").replace(" ", " ")
     t = re.sub(r"(?<=\d),(?=\d{3}(?!\d))", "", t)          # 1,500 -> 1500
     t = re.sub(r"(?<=\d),(?=\d{1,2}(?!\d))", ".", t)        # 1,5 -> 1.5
-    t = re.sub(r"(?<=\d)\s*([x×])\s*(?=\d)", r" \1 ", t)       # 463x612 -> 463 x 612
+    t = re.sub(r"(?<=\d)\s*([x×])\s*(?=\d)", r" \1 ", t)    # 463x612 -> 463 x 612
     return t
 
 
@@ -41,6 +43,7 @@ class Reader:
         self.upper = sorted(L["upper_bound_markers"], key=len, reverse=True)
         self.lower = sorted(L["lower_bound_markers"], key=len, reverse=True)
         self.approx = sorted(L["approximate_markers"], key=len, reverse=True)
+        self.tolerance = sorted(L["tolerance_markers"], key=len, reverse=True)
         self.cond_markers = sorted(L["condition_markers"], key=len, reverse=True)
         self.range_seps = L["range_separators"]
         self.list_seps = L["list_separators"]
@@ -49,20 +52,26 @@ class Reader:
         self.axis_words = L["axis_words"]
         self.stop = set(L["stopwords"])
         self.article_dividers = set(L["article_dividers"])
+        self.multipliers = L["multipliers"]
+        self.structure_words = (set(self.range_seps) | set(self.list_seps) | set(self.tuple_seps) | set(self.between)
+                                | {w for m in self.upper + self.lower + self.approx for w in m.split()})
 
     # --- units --------------------------------------------------------------------------------------------
     def unit_at(self, text, i):
         """Longest unit atom starting at text[i] (after up to one space). Returns (unit, end, surface) or None."""
         j = i + 1 if i < len(text) and text[i] == " " else i
         low = text.lower()
-        for s, uid in self.k.surfaces:
-            if low.startswith(s, j):
-                end = j + len(s)
-                if s[-1].isalnum() and end < len(text) and text[end].isalnum():
-                    continue
-                if s[0].isalpha() and j > 0 and text[j - 1].isalpha():
-                    continue
-                return self.k.units[uid], end, s
+        cands = [(s, uid, True) for s, uid in self.k.cs_surfaces] + [(s, uid, False) for s, uid in self.k.surfaces]
+        for s, uid, cs in sorted(cands, key=lambda x: (-len(x[0]), not x[2])):
+            hit = text.startswith(s, j) if cs else low.startswith(s, j)
+            if not hit:
+                continue
+            end = j + len(s)
+            if s[-1].isalnum() and end < len(text) and text[end].isalnum():
+                continue
+            if s[0].isalpha() and j > 0 and text[j - 1].isalpha():
+                continue
+            return self.k.units[uid], end, s
         return None
 
     def unit_expr_at(self, text, i):
@@ -104,8 +113,14 @@ class Reader:
     def mentions(self, text):
         out = []
         for m in NUM.finditer(text):
-            unit, end, surface = None, m.end(), None
-            r = self.unit_expr_at(text, m.end())
+            num, after = float(m.group(1)), m.end()
+            mm = re.match(r"\s*(" + "|".join(map(re.escape, self.multipliers)) + r")\b", text[after:].lower()) \
+                if self.multipliers else None
+            if mm:  # '50 million' is one number
+                num *= self.multipliers[mm.group(1)]
+                after += mm.end()
+            unit, end, surface = None, after, None
+            r = self.unit_expr_at(text, after)
             start = m.start()
             if r:
                 unit, end, surface = r
@@ -113,8 +128,8 @@ class Reader:
                 p = self.prefix_unit(text, m.start())
                 if p:
                     unit, start = p
-            out.append({"num": float(m.group(1)), "unit": unit, "surface": surface, "start": start,
-                        "num_start": m.start(), "end": end})
+            out.append({"num": num, "unit": unit, "surface": surface, "start": start, "num_start": m.start(),
+                        "end": end})
         return out
 
     def _gap_kind(self, gap):
@@ -123,6 +138,8 @@ class Reader:
         mm = re.match(r"^\(\s*([a-z])\s*\)\s*(.*)$", g)
         if mm:
             axis, g = mm.group(1), mm.group(2).strip()
+        if g in self.tolerance:
+            return "tolerance", axis
         if g in self.tuple_seps:
             return "tuple", axis
         if g in self.range_seps:
@@ -132,9 +149,10 @@ class Reader:
         return None, axis
 
     def groups(self, text):
+        """Value groups plus the character spans that the structure explains (for the closed reading)."""
         text = normalise(text)
         ms = self.mentions(text)
-        groups, i = [], 0
+        groups, explained, i = [], [], 0
         while i < len(ms):
             g = [ms[i]]
             kind, axes = "single", []
@@ -142,7 +160,7 @@ class Reader:
                 k, ax = self._gap_kind(text[g[-1]["end"]:ms[i + 1]["start"]])
                 if k is None or (kind != "single" and k != kind):
                     break
-                if k == "range" and len(g) > 1:
+                if k in ("range", "tolerance") and len(g) > 1:
                     break
                 axes.append(ax)
                 kind = k
@@ -162,19 +180,17 @@ class Reader:
                 axes = [a for a in m_ax2.groups() if a]
                 end += m_ax2.end()
             if text[:g[0]["start"]].rstrip().endswith("(") and groups:
+                close = text.find(")", end)
+                explained.append((text[:g[0]["start"]].rstrip().rfind("("), close + 1 if close >= 0 else end))
                 continue  # a parenthesised quantity after a value restates it in other units; it is not a new value
             units = [x["unit"] for x in g if x["unit"] is not None]
             unit = units[-1] if units else None
-            mixed = len({u.id for u in units}) > 1
-            prefix = text[:g[0]["start"]]
-            if kind == "range" and groups == [] and any(prefix.lower().rstrip().endswith(b) for b in self.between):
-                pass
+            mixed = len({u.id for u in units}) > 1 and kind != "tolerance"
+            explained.append((g[0]["start"], end))
             groups.append({"form": kind, "values": [x["num"] for x in g], "unit": None if mixed else unit,
                            "units": [x["unit"] for x in g], "mixed_units": mixed,
                            "axes": [self.axis_words.get(a) if a else None for a in axes] if kind == "tuple" else None,
-                           "start": g[0]["start"], "end": end, "prefix": prefix, "suffix": text[end:]})
-        # a compound quantity ('2 lb 3 oz', '1 h 30 min'): consecutive single quantities of one dimension, joined
-        # by nothing but space or a full stop, with a smaller unit after a larger one, are one sum
+                           "start": g[0]["start"], "end": end, "prefix": text[:g[0]["start"]], "suffix": text[end:]})
         merged = []
         for gr in groups:
             prev = merged[-1] if merged else None
@@ -188,12 +204,11 @@ class Reader:
                 continue
             merged.append(gr)
         groups = merged
-        # 'between X and Y': a list joined by 'and' after 'between' is a range
         for gr in groups:
             if gr["form"] == "list" and len(gr["values"]) == 2 and any(
                     gr["prefix"].lower().rstrip().endswith(b) for b in self.between):
                 gr["form"] = "range"
-        return groups
+        return groups, explained, text
 
     # --- markers ------------------------------------------------------------------------------------------
     def _ends_with(self, text, markers):
@@ -227,12 +242,14 @@ class Reader:
         return None
 
     # --- conditions -------------------------------------------------------------------------------------
+    def _cond_pattern(self):
+        return r"(?:(?<=\s)|^|(?<=\())(" + "|".join(re.escape(m) for m in self.cond_markers) + r")(?=\s|\d|$)"
+
     def conditions(self, text):
         """Conditions stated in a text after condition markers: numeric (by dimension) and verbal."""
         t = normalise(text or "")
         low = t.lower()
-        pat = r"(?:(?<=\s)|^|(?<=\())(" + "|".join(re.escape(m) for m in self.cond_markers) + r")(?=\s|\d|$)"
-        idx = [(m.start(1), m.end(1)) for m in re.finditer(pat, low)]
+        idx = [(m.start(1), m.end(1)) for m in re.finditer(self._cond_pattern(), low)]
         out = []
         for n, (s, e) in enumerate(idx):
             seg = t[e: idx[n + 1][0] if n + 1 < len(idx) else len(t)]
@@ -240,16 +257,47 @@ class Reader:
                 ms = [m for m in self.mentions(part) if m["unit"] is not None]
                 if ms:
                     for m in ms:
-                        out.append(("num", m["unit"].dims, m["unit"].reference,
-                                    m["unit"].to_coherent(m["num"])))
+                        out.append(("num", m["unit"].dims, m["unit"].reference, m["unit"].to_coherent(m["num"])))
                 else:
                     words = frozenset(stem(w) for w in tokens(part) if w not in self.stop and not w.isdigit())
                     if words:
                         out.append(("text", low[s:e].strip(), words))
         return out
 
+    def residue(self, text, explained, main):
+        """P1 closed reading. Words of the value that no structure explains (residual qualifiers) and symbols that
+        nothing explains (blocking). Condition phrases after the main group are explained as conditions."""
+        mask = [False] * len(text)
+        for a, b in explained:
+            for k in range(max(0, a), min(len(text), b)):
+                mask[k] = True
+        if main is not None:
+            m = re.search(self._cond_pattern(), text[main["end"]:].lower())
+            if m:
+                for k in range(main["end"] + m.start(), len(text)):
+                    mask[k] = True
+            for markers in (self.approx, self.upper, self.lower):
+                hit = self._ends_with(main["prefix"][-30:], markers)
+                if hit:
+                    a = len(main["prefix"].lower().rstrip(" :\t")) - len(hit)
+                    for k in range(max(0, a), main["start"]):
+                        mask[k] = True
+                    break
+        rest = "".join(" " if mask[k] else ch for k, ch in enumerate(text))
+        words, symbols = set(), []
+        for t in tokens(rest):
+            if not any(ch.isalpha() for ch in t):
+                continue
+            if any(ch.isdigit() for ch in t) or t in self.stop or t in self.structure_words:
+                continue
+            words.add(stem(t))
+        for ch in rest:
+            if not (ch.isalnum() or ch.isspace() or ch in ALLOWED_PUNCT or ch in "%°$£€@<>≤≥~≈×+"):
+                symbols.append(ch)
+        return words, symbols
+
     def split_label(self, label):
-        """Label -> (phrase, label unit, axes, verbal qualifiers from brackets, conditions)."""
+        """Label -> (phrase, label unit, axes, verbal qualifiers from brackets, conditions, unit words in the label)."""
         t = normalise(label or "")
         unit, axes, quals, conds = None, None, [], []
         spans = _brackets(t)
@@ -264,7 +312,6 @@ class Reader:
                 axes = [self.axis_words[a] for a in mx.groups() if a]
             elif ma and all(a in self.axis_words for a in ma.groups()[:3] if a) and ma.group(5) and \
                     self.parse_unit_text(ma.group(5)) is not None:
-                # axes followed by '<word> <unit>' ('W x H x D in mm'): both the axis order and the unit are stated
                 axes = [self.axis_words[a] for a in ma.groups()[:3] if a]
                 unit = self.parse_unit_text(ma.group(5))
             else:
@@ -279,9 +326,14 @@ class Reader:
         if unit is None and self.parse_unit_text(body) is not None:
             unit = self.parse_unit_text(body)  # a label that is itself a unit name ('RPM') states the unit
         low = body.lower()
-        pat = r"(?:(?<=\s)|^)(" + "|".join(re.escape(m) for m in self.cond_markers) + r")(?=\s|\d|$)"
-        m = re.search(pat, low)
+        m = re.search(r"(?:(?<=\s)|^)(" + "|".join(re.escape(m) for m in self.cond_markers) + r")(?=\s|\d|$)", low)
         if m and m.start() > 0:
             conds += self.conditions(body[m.start():])
             body = body[:m.start()]
-        return body.strip(), unit, axes, quals, conds
+        # P4: a unit named as a word of the label ('Bar Pressure') may state the unit of a unitless value
+        unit_words = []
+        for w in re.findall(r"[A-Za-z][A-Za-z()]+", body):
+            u = self.parse_unit_text(w)
+            if u is not None and len(w) >= 2:
+                unit_words.append((w.lower(), u))
+        return body.strip(), unit, axes, quals, conds, unit_words

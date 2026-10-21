@@ -1,7 +1,7 @@
 {
  "about": "English lexical knowledge used to read labels, values and requirements: function words, bound and approximation markers, condition markers, list and range separators, axis words and lexical equivalences of qualifiers. It names no product, category or property. Authored by the developer from ordinary English usage.",
  "provenance": {
-  "source": "ordinary English usage",
+  "source": "ordinary English usage; X2 additions: tolerance notation, ends of an extent, number multipliers",
   "holder": "developer",
   "basis": "definition"
  },
@@ -62,7 +62,12 @@
   "net",
   "actual",
   "whole",
-  "complete"
+  "complete",
+  "itself",
+  "themselves",
+  "himself",
+  "herself",
+  "oneself"
  ],
  "stopword_note": "Stopwords carry no meaning that changes which quantity is meant. 'max'/'maximum' in a LABEL name the declared maximum operating value, which is the declared value; in a VALUE they are bound markers.",
  "upper_bound_markers": [
@@ -174,5 +179,34 @@
   "an",
   "each",
   "every"
- ]
+ ],
+ "tolerance_markers": [
+  "±",
+  "+/-",
+  "+-"
+ ],
+ "extent_upper": [
+  "upper",
+  "highest",
+  "top",
+  "uppermost",
+  "maximum",
+  "max"
+ ],
+ "extent_lower": [
+  "lower",
+  "lowest",
+  "bottom",
+  "minimum",
+  "min"
+ ],
+ "extent_neutral": [
+  "limit",
+  "end"
+ ],
+ "multipliers": {
+  "thousand": 1000.0,
+  "million": 1000000.0,
+  "billion": 1000000000.0
+ }
 }

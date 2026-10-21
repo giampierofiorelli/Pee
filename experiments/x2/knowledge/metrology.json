@@ -1,7 +1,7 @@
 {
  "about": "Metrology frame in presupposition role (S0 4.7; plan section 3.1: metrology is knowledge, not code). Units are data: factor and offset to the coherent unit of their dimension, a dimension over named base dimensions, a scale type and, for level units, the reference they are levels of. Surfaces are matched case-insensitively, longest first. Authored by the developer from SI and common usage. Units with different references (for example dB and dB(A)) are not convertible.",
  "provenance": {
-  "source": "BIPM SI Brochure 9th ed. (2019); IEC 60027-3 (logarithmic quantities); common usage",
+  "source": "BIPM SI Brochure 9th ed. (2019); IEC 60027-3 (logarithmic quantities); common usage; ISO 4217 currency codes; X2 additions from development labels (2026-10-21)",
   "holder": "developer",
   "basis": "published reference"
  },
@@ -914,50 +914,59 @@
   {
    "id": "KB",
    "surfaces": [
-    "kb",
     "kilobyte",
     "kilobytes"
    ],
    "factor": 8000,
    "dims": {
     "B": 1
-   }
+   },
+   "case_sensitive_surfaces": [
+    "KB",
+    "kB"
+   ]
   },
   {
    "id": "MB",
    "surfaces": [
-    "mb",
     "megabyte",
     "megabytes"
    ],
    "factor": 8000000.0,
    "dims": {
     "B": 1
-   }
+   },
+   "case_sensitive_surfaces": [
+    "MB"
+   ]
   },
   {
    "id": "GB",
    "surfaces": [
-    "gb",
     "gigabyte",
     "gigabytes"
    ],
    "factor": 8000000000.0,
    "dims": {
     "B": 1
-   }
+   },
+   "case_sensitive_surfaces": [
+    "GB"
+   ]
   },
   {
    "id": "TB",
    "surfaces": [
-    "tb",
     "terabyte",
     "terabytes"
    ],
    "factor": 8000000000000.0,
    "dims": {
     "B": 1
-   }
+   },
+   "case_sensitive_surfaces": [
+    "TB"
+   ]
   },
   {
    "id": "MiB",
@@ -1091,6 +1100,320 @@
    "factor": 1,
    "dims": {
     "CUR_CAD": 1
+   }
+  },
+  {
+   "id": "Mbit",
+   "surfaces": [
+    "megabit",
+    "megabits"
+   ],
+   "case_sensitive_surfaces": [
+    "Mb",
+    "Mbit"
+   ],
+   "factor": 1000000.0,
+   "dims": {
+    "B": 1
+   }
+  },
+  {
+   "id": "Gbit",
+   "surfaces": [
+    "gigabit",
+    "gigabits"
+   ],
+   "case_sensitive_surfaces": [
+    "Gb",
+    "Gbit"
+   ],
+   "factor": 1000000000.0,
+   "dims": {
+    "B": 1
+   }
+  },
+  {
+   "id": "cm3",
+   "surfaces": [
+    "cc",
+    "cm3",
+    "cm³",
+    "ccm",
+    "cubic centimetre",
+    "cubic centimetres",
+    "cubic centimeter",
+    "cubic centimeters"
+   ],
+   "factor": 1e-06,
+   "dims": {
+    "L": 3
+   }
+  },
+  {
+   "id": "cfm",
+   "surfaces": [
+    "cfm",
+    "cubic feet per minute"
+   ],
+   "factor": 0.00047194745,
+   "dims": {
+    "L": 3,
+    "T": -1
+   }
+  },
+  {
+   "id": "ft3",
+   "surfaces": [
+    "cu ft",
+    "cubic foot",
+    "cubic feet",
+    "ft3",
+    "ft³"
+   ],
+   "factor": 0.028316846592,
+   "dims": {
+    "L": 3
+   }
+  },
+  {
+   "id": "m2",
+   "surfaces": [
+    "m2",
+    "m²",
+    "sq m",
+    "sqm",
+    "square metre",
+    "square metres",
+    "square meter",
+    "square meters"
+   ],
+   "factor": 1,
+   "dims": {
+    "L": 2
+   }
+  },
+  {
+   "id": "ft2",
+   "surfaces": [
+    "sq ft",
+    "sq. ft",
+    "sq.ft",
+    "square foot",
+    "square feet",
+    "ft2",
+    "ft²"
+   ],
+   "factor": 0.09290304,
+   "dims": {
+    "L": 2
+   }
+  },
+  {
+   "id": "nit",
+   "surfaces": [
+    "nit",
+    "nits",
+    "cd/m2",
+    "cd/m²"
+   ],
+   "factor": 1,
+   "dims": {
+    "LUMINANCE": 1
+   }
+  },
+  {
+   "id": "iops",
+   "surfaces": [
+    "iops"
+   ],
+   "factor": 1,
+   "dims": {
+    "OPS_RATE": 1
+   },
+   "note": "input/output operations per second: a rate of operations, not a frequency of a periodic phenomenon"
+  },
+  {
+   "id": "ppi",
+   "surfaces": [
+    "ppi"
+   ],
+   "factor": 1,
+   "dims": {
+    "PIXEL_DENSITY": 1
+   }
+  },
+  {
+   "id": "mph",
+   "surfaces": [
+    "mph"
+   ],
+   "factor": 0.44704,
+   "dims": {
+    "L": 1,
+    "T": -1
+   }
+  },
+  {
+   "id": "kmh",
+   "surfaces": [
+    "km/h",
+    "kph",
+    "kmh"
+   ],
+   "factor": 0.2777777777777778,
+   "dims": {
+    "L": 1,
+    "T": -1
+   }
+  },
+  {
+   "id": "HKD",
+   "surfaces": [
+    "hkd"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_HKD": 1
+   }
+  },
+  {
+   "id": "JPY",
+   "surfaces": [
+    "jpy"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_JPY": 1
+   }
+  },
+  {
+   "id": "CNY",
+   "surfaces": [
+    "cny"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_CNY": 1
+   }
+  },
+  {
+   "id": "CHF",
+   "surfaces": [
+    "chf"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_CHF": 1
+   }
+  },
+  {
+   "id": "SEK",
+   "surfaces": [
+    "sek"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_SEK": 1
+   }
+  },
+  {
+   "id": "DKK",
+   "surfaces": [
+    "dkk"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_DKK": 1
+   }
+  },
+  {
+   "id": "INR",
+   "surfaces": [
+    "inr"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_INR": 1
+   }
+  },
+  {
+   "id": "KRW",
+   "surfaces": [
+    "krw"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_KRW": 1
+   }
+  },
+  {
+   "id": "NZD",
+   "surfaces": [
+    "nzd"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_NZD": 1
+   }
+  },
+  {
+   "id": "SGD",
+   "surfaces": [
+    "sgd"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_SGD": 1
+   }
+  },
+  {
+   "id": "PLN",
+   "surfaces": [
+    "pln"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_PLN": 1
+   }
+  },
+  {
+   "id": "CZK",
+   "surfaces": [
+    "czk"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_CZK": 1
+   }
+  },
+  {
+   "id": "ZAR",
+   "surfaces": [
+    "zar"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_ZAR": 1
+   }
+  },
+  {
+   "id": "MXN",
+   "surfaces": [
+    "mxn"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_MXN": 1
+   }
+  },
+  {
+   "id": "BRL",
+   "surfaces": [
+    "brl"
+   ],
+   "factor": 1,
+   "dims": {
+    "CUR_BRL": 1
    }
   }
  ],

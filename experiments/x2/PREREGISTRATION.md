@@ -194,7 +194,61 @@ The same rule applies to record context (B2 against B2-flat).
 - A counterexample changes a principle, never a single case.
 - B2-flat, B2 and B2S are frozen by one commit before the sealed material is opened.
 
-## 7. Record of execution
+## 7. Development record (before the freeze; spent material only)
+
+The developer saw no test record, question, reference or answer before the freeze.
+
+**Material.**
+- The spent X1 test set (103 questions, its sealed reference, the 2026-10-19 snapshot export), used as a regression.
+- A reading census over the X1 snapshot records (2,385 declarations).
+- A reading census over the non-drawn X2 pages: 457 declarations of 79 products. Products that also occur on test
+  pages were excluded.
+- No question set exists for the non-drawn X2 pages, so they served only to inspect readings.
+
+**Three development rounds** (prereg section 6 limit), each a general change:
+1. P1/P4 refinements:
+   - reflexive pronouns are stopwords;
+   - a label word used as the unit is not a qualifier;
+   - number multipliers in a requirement's unit scale its limit;
+   - words of a concept's own definition do not narrow it;
+   - knowledge: charge capacity marked as the generic quantity of electric charge, and a generic energy concept
+     (from development labels).
+2. P3 corrections found by the census:
+   - leftover words are judged once, by Pee, for both segmentations;
+   - agreement is checked per declaration and per verdict, as section 2 states, not per reading;
+   - Crawler's `maxAmount` (admitted in section 1) had been left out of the whitelist and is now included;
+   - verified axis letters count as explained text.
+3. P4: a unitless number followed by words that are not a unit counts the thing they name.
+
+**Regression on the spent X1 limit checks** (75 scored).
+
+| Run | Justified | Unjustified | Unjustified abstentions |
+|---|---|---|---|
+| X1 B (first run, with category knowledge for two of the three categories) | 18 | 1 | 28 |
+| X2 build after round 3, all three modes (no category knowledge for any X1 category) | 31 | 0 | 15 |
+
+Comparisons: 7 against 9 justified, with 0 unjustified in both.
+
+This is development evidence on spent material, not a held-out result. The three X2 modes gave identical answers on
+this set.
+
+**Census of segmentations (X1 snapshot).**
+- 727 declarations: the two segmentations agree.
+- 225: only Pee's segmentation reads them.
+- 11: only Crawler's verified segmentation reads them (axis letters before numbers; values restated after "/").
+- 3: they disagree, all genuine restatements.
+- 4: an unexplained symbol blocks them.
+
+**Tests (T1).** 25 constructed tests: P1–P4, the modes, quarantine access, adapter fidelity and store discipline. The
+real-snapshot fidelity check passes on a copy of the X2 store.
+
+**First-run inputs (fixed now).**
+- B arms: the adapter export of the X2 store (`records-all.json`), restricted to the 74 new revisions that hold
+  declarations (`new-revisions.json`).
+- A: a fresh copy of the X2 store.
+- Scoring: `score.py` against the sealed reference.
+
+## 8. Record of execution
 
 | Step | Commit / hash |
 |---|---|
