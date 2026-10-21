@@ -250,8 +250,8 @@ made inside X1.
 | Step | Commit / hash |
 |---|---|
 | Preregistration | this commit |
-| Draw | — |
+| Draw | ranked eligible: keyboards, coffee_machines, headphones, blenders, vacuum_cleaners. **Taught:** keyboards, coffee_machines. **Untaught:** headphones |
 | B / B0 freeze | — |
-| Questions seal | — |
+| Questions seal | `questions.json` sha256 `0358df632e41ef19dcd91fee2f54df54bb05baabf5df528b60da4ab80253f960` (103 items: 82 limit checks, 21 comparisons; the author expected 50/82 limit checks answerable, not the ~50% asked); annotator copy without author notes `323542593525f496232effa8013f7f5b251c146adbd3f75ba966cd79952f0744`. Neither file was opened by the developer |
 | Reference seal | — |
 | First runs (A, B, B0) | — |
