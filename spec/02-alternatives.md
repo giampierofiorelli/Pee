@@ -486,3 +486,35 @@ Each resolution follows from a general principle, not from the case that reveale
 - precisification follows from the theory of vagueness (3.6.4);
 - relations relative to a domain follow from the domain-relativity of extensions;
 - role-relative answers about constitutive commitments follow from the relativity of inquiry roles (D19).
+
+### FD5 — Version 2.1: identity rules
+
+**Problem.** The verification run of 2.0 (`reviews/S0-2.0-verification-run.md`) found that two blind encodings reached
+opposite, determinate identity verdicts in two of six targeted cases, a structural defect under its preregistered
+rule. The causes it identified:
+
+- goal granularity was not fixed;
+- goals were treated asymmetrically for change and symmetrically for coexistence;
+- there was no precedence between identity verdicts and extension relations;
+- the definition of anchor continuity had a gap;
+- there was no outcome for elimination;
+- two relations were missing.
+
+**Alternatives and choices:**
+
+| Issue | Alternatives considered | Choice and reason |
+|---|---|---|
+| Goal granularity | fix the most specific level (arbitrary, and it over-separates); fix the most general level (it over-merges); leave it to the encoder (the cause of the defect) | **Robustness across all admissible levels** (D5-b, 3.6.1). Admissibility is defined by the requirement condition. The principle is the supervaluation of 3.6.4, applied to goal descriptions. It privileges no level. |
+| Change versus coexistence | symmetric everywhere (the run found it makes almost every lineage indeterminate); asymmetric for change only (2.0; inconsistent) | **Goal inclusion for both.** A concept is continued or shared when one concept does all the jobs of the other. Direction applies only to lineages. |
+| Precedence | let extension relations stand in for identity (2.0, implicitly) | **Identity verdict and extension relation are independent outputs**, both always reported (3.6.3). |
+| Partial anchors | "all anchors jointly" (2.0, with a gap) | **Exhaustive definition** through the body of paradigm cases picked out by the strong anchors still in force. Descriptive anchors are moved to C and K. |
+| Elimination | a lineage label only (2.0) | **Step 0, category check**, derived from D4's rule that category commitments must allow reference to fail. Split when anchors of the concept's own instances survive. |
+| Missing relations | — | "Defined from" and "common abstract structure", stated generally. |
+| Controversy | force a verdict | **Contested cases**: holders' verdicts are recorded as attributions, the universe's verdict is indeterminate, and conclusions are evaluated under each verdict. |
+
+**What did not change.** FD1–FD4, the five planes, frames (D6), the scaffold, and all chapters other than the
+dependencies listed in the change log of `README.md`.
+
+**Development material.** Life, probability, acids and the other cases of the 2.0 run informed this revision. They
+are not evidence for it. Section 8.16 records how 2.1 classifies them, as a regression check only.
+

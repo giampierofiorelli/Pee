@@ -71,7 +71,7 @@ Conventions used throughout:
   - alternatives: theories of meaning **A1…**, units of content **U1…**, scaffolds **SC1…**, epistemic
     representations **EP-a…**, theories of revision **RV-a…**;
   - theses **T1…**, definitions **D1…** and composition operations **Op1…**;
-  - foundational decisions of version 2.0 **FD1…**, continuity dimensions **A, G, X, C** (section 3.6) and practical
+  - foundational decisions of version 2.0 **FD1…**, identity dimensions **K, A, G, X, C** (section 3.6) and practical
     grounds **PG1…**;
   - negation cases **N1…**, acquisition modes **M1…**, revision classes **L1…**, ground types **G1…**, transfer
     conditions **TC1…** and coherence criteria **C1…**;

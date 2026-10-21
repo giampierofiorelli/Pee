@@ -2,7 +2,8 @@
 
 Requirements addressed: R1, R3, R4, R8, R9, R11, R15, R16, R18.
 
-Version 2.0 replaces the model-centred thesis of 1.0 with a pluralism of representational items, withdraws
+Version 2.1 revises only the identity rules: D5-b and section 3.6, with the dependencies they require (section 2.8,
+FD5). Version 2.0 replaced the model-centred thesis of 1.0 with a pluralism of representational items, withdraws
 "degenerate models", and replaces the core/collateral identity criterion with the continuity criteria of section
 3.6. Section 2.8 compares these decisions with their alternatives. The S0 1.0 text remains in Git history at commit
 `d82f95f`.
@@ -32,9 +33,9 @@ The proposal is **anchored-role semantics in a pluralist representational univer
   respect R". Such description does not replace what the item itself represents or requires.
 - **T2 Anchored role with graded centrality.** The meaning of a concept in a frame consists of its role profile in
   that frame, with graded centrality, its anchors and its epistemic goals (D2-a).
-- **T3 Identity by continuity, with honest indeterminacy.** Identity of a concept through change, and relations
-  between concepts of different frames, are judged by continuity of anchors, epistemic goals and extension, and by
-  the centrality of the role connections that change (section 3.6). Where the evidence or the dimensions conflict,
+- **T3 Identity by continuity, with honest indeterminacy.** Identity of a concept through change, and between
+  coexisting concepts, is judged by one procedure: category, continuity of anchors, inclusion of epistemic goals
+  robust across goal granularity, and extension (section 3.6). Where the evidence or the dimensions conflict,
   the outcome is *indeterminate*. Conclusions that depend on an indeterminate case are marked as dependent on the
   reading.
 - **T4 Structured properties.** Properties are determinates of determinables with structured value spaces. Their
@@ -119,6 +120,9 @@ tracked when its role changes. There are five types:
   not "whatever …"). Otherwise the concept could never fail to refer. A purely structural characterisation is
   satisfiable almost trivially (Newman, "Mr. Russell's 'causal theory of perception'", 1928; Demopoulos and Friedman,
   1985), and non-structural anchors are what block this.
+- **Own instances versus effects.** An anchor may tie a concept to its **own instances**: samples of the substance,
+  measured values of the quantity, specimens of the kind. It may also tie the concept only to the **phenomena the
+  concept is posited to explain**. Step 0 of section 3.6.2 depends on this distinction.
 - **Paradigm anchors.** An anchor is *paradigm* for a concept if it is used to introduce or teach the concept, or if
   it is the reference standard for it. Paradigm anchors weigh most in identity judgements (section 3.6).
 
@@ -144,14 +148,24 @@ Centrality is **graded and comparative**. No threshold divides "core" from "coll
 split of 1.0, which section 2.8 shows was not operational. It keeps the answer to holism (section 2.2, A3): sharing a
 concept requires shared anchors, shared goals and agreement on central connections, not identical total roles.
 
-**D5-b Epistemic goal.** An epistemic goal of a concept is a type of question that the concept is used to answer, or
-a type of inferential or practical task it is used for, in a practice (Brigandt, "The epistemic goal of a concept",
-2010). Two examples: explaining patterns of inheritance, and explaining how a DNA sequence specifies a product. Goals
-are individuated through question types (section 7.2), which are items with presuppositions and answer spaces.
-**A goal-defining question type must be stated without using *c* itself**, in terms of explananda and other anchored
-concepts: "why do offspring resemble parents in specific traits?", not "how do genes act?". This prevents goal
-continuity from presupposing the identity it is used to judge. A concept's goals are identified from the questions,
-explanations and predictions in which the practice uses it, and this identification has grounds and can be revised.
+**D5-b Epistemic goal.** An epistemic goal of a concept *c* is a type of question (section 7.2), or of inferential or
+practical task, that the practice uses *c* to address (Brigandt, "The epistemic goal of a concept", 2010). Two
+conditions apply:
+
+- **Stated without *c*.** The question type is stated in terms of explananda and other anchored concepts: "why do
+  offspring resemble parents in specific traits?", not "how do genes act?". This prevents goal continuity from
+  presupposing the identity it is used to judge.
+- **Requirement.** Answering the question in the practice **requires applying *c***: *c* figures in the answers the
+  practice gives, or in their presuppositions. A question that the practice answers equally well without *c* is not a
+  goal of *c*, even if *c* is sometimes mentioned in answering it.
+
+**Admissible granularity.** A practice organises the goals of a concept at several levels of generality. They range
+from the specific question types used in one frame to the most general question type that still satisfies both
+conditions. **Every level that satisfies both conditions is an admissible goal description. No level is privileged
+in advance.** Section 3.6.1 assesses goal continuity at every admissible level.
+
+A concept's goals are identified from the questions, explanations and predictions in which the practice uses it. This
+identification has grounds and can be revised.
 
 **D6 Frame.** A body of **constitutive commitments**, with a declared **scope**, under which concepts have
 determinate role profiles. A frame comprises:
@@ -359,69 +373,106 @@ Rules:
 
 ### 3.6.1 Dimensions of continuity
 
-When a concept *c* is revised into *c′*, or compared with a concept *d* of another frame, four dimensions are
-assessed. Each assessment is itself a content with grounds.
+The same dimensions are used whether a concept *c* is compared with its successor *c′* (a lineage) or with a concept
+*d* that coexists with it in another frame or the same frame. Each assessment is a content with grounds.
 
 | Dim. | Question | Evidence |
 |---|---|---|
-| **A Anchors** | Are the paradigm anchors retained? Which anchors are added or dropped? | the procedures, specimens, standards and descriptions in use |
-| **G Goals** | Does the concept serve the same question types? Are any dropped or added? | the questions, explanations and predictions in which the practice uses the concept |
-| **X Extension** | Do the extensions agree on paradigm cases, and over which domain? | classification of cases |
-| **C Centrality** | Are the connections that change central or peripheral (D5)? | dependency structure in the frame |
+| **K Category** | Does the ontological category committed by the concept's anchors (D4) still hold: substance, particle, property, quantity, process, field, kind of system? | whether anything of that category answers to the anchors |
+| **A Anchors** | Do the strong paradigm anchors still in force pick out the same body of paradigm cases? | the procedures, specimens and standards in use |
+| **G Goals** | Does one concept serve all the goals of the other? | the questions, explanations and predictions in which the practice uses each concept |
+| **X Extension** | How do the extensions relate on paradigm cases, and over which domain? | classification of cases |
+| **C Centrality** | Are the connections that differ central or peripheral (D5)? | dependency structure in the frame |
 
-**Anchor continuity.** A is *preserved* when the concept's paradigm anchors remain **jointly in force**. An anchor
-remains in force if it is retained, or if it is replaced by an anchor that agrees with it on the cases it covered,
-within stated uncertainty. This is the case when an artefact standard is replaced by a definition that fixes a
-constant. Individual exemplars may be reclassified without breaking A, provided the anchors in force still pick out
-the same body of paradigm cases. A is *broken* when no paradigm anchor remains in force, or when those in force pick
-out a different body of paradigm cases.
+**Anchor continuity (A).** Only **strong** paradigm anchors count here: exemplar, operational and deferential (D4).
 
-**Goal continuity.** G is *preserved* when no goal is dropped or replaced. Added goals preserve G, because they are
-new uses of the same concept. G is *broken* when a goal is dropped or replaced.
+- A is **preserved** when the strong paradigm anchors still in force pick out the **same body of paradigm cases**. An
+  anchor is still in force if it is retained, or if it is replaced by an anchor that agrees with it on the cases it
+  covered, within stated uncertainty. Some anchors may lapse and individual exemplars may be reclassified, provided
+  this condition holds. This is **partial continuity**: the lapsed anchors are listed, and contents grounded only on
+  them are reassessed.
+- A is **broken** when no strong paradigm anchor remains in force, or when those in force pick out a different body
+  of paradigm cases.
 
-### 3.6.2 Criteria for outcomes of a change
+A failing descriptive anchor is not assessed under A. It is either a change of central connection (C) or a failure
+of category commitment (K). With this, the definition is exhaustive: A is preserved, broken, or unsettled for lack of
+evidence.
 
-The criteria below use **ordinal comparison and paradigm cases. They use no numerical thresholds.**
+**Goal continuity (G): one principle for change and for coexistence.** G is assessed by **goal inclusion**: whether
+one concept serves all the goals of the other.
 
-The rules apply **in this order**:
+- **Change *c* → *c′*:** G is preserved if every goal of *c* is a goal of *c′*, so goals may be added. It is broken
+  if some goal of *c* is not a goal of *c′*.
+- **Coexisting *c* and *d*:** G is preserved if the goals of one are included in the goals of the other, in either
+  direction. It is broken if each serves a goal the other does not.
 
-| Step | Condition | Outcome |
+The principle is the same in both cases: **a concept is continued, or shared, when one concept does all the jobs of
+the other.** Direction matters only because a successor inherits its predecessor's goals, while coexisting concepts
+have no priority over each other.
+
+**Robustness across granularity.** G is assessed at every admissible goal description (D5-b), and at least at the
+most specific and the most general admissible levels. If the result is the same at every level, G has that value.
+If it differs, G is **granularity-dependent**.
+
+### 3.6.2 The identity verdict
+
+One procedure gives the identity verdict for lineages and for coexisting concepts alike. Relations between extensions
+(3.6.3) are always reported **in addition to** the verdict, never instead of it. The steps apply in order, and **no
+numerical thresholds are used**.
+
+| Step | Condition | Identity verdict |
 |---|---|---|
-| 1 | A and G both broken | **New concept**, with lineage to *c* |
-| 2 | Exactly one of A and G broken | **Indeterminate** between meaning change and new concept, naming the broken dimension |
-| 3 | The evidence does not settle A or G | **Indeterminate (pending)**, stating the evidence that would settle it (3.6.5) |
-| 4a | A and G preserved; contents added or removed, or only peripheral connections changed; extension unchanged | **New knowledge** about *c* |
-| 4b | A and G preserved; extension settled on borderline cases only; no paradigm case reclassified | **Precisification** of *c*, a mild meaning change that leaves contents about clear cases intact |
-| 4c | A and G preserved; central connections changed, or extension changed beyond borderline cases, including reclassification of individual paradigm cases | **Meaning change** of *c*: same concept, new version |
+| 0 | **K fails**: nothing of the committed category answers to the anchors | If no strong anchor of the concept's **own instances** persists: **elimination**. Reference is empty (D3), there is no successor, and the concept remains as historical. If some persist: **split**. The persisting anchors and the goals they serve form a successor, assessed by the following steps, and the reading under the failed category is eliminated. |
+| 1 | A broken, and the extensions on paradigm cases are **disjoint** | **Distinct concepts** (in a lineage: a new concept). Identity requires some continuity of subject matter, and with no shared paradigm case the concepts are about different things, whatever goals they serve (continuity of reference: Kripke, 1980; Putnam, 1975). |
+| 2 | A broken and G broken | **Distinct concepts.** If only lexical anchors are shared and the goals are disjoint at every admissible level, the concepts are recorded as **homonymous**. |
+| 3 | Exactly one of A and G broken | **Indeterminate** between same and distinct, naming the broken dimension. |
+| 4 | G granularity-dependent, or A or G unsettled for lack of evidence | **Indeterminate**, stating the goal level at which the verdict changes, or the evidence that would settle it (3.6.5). |
+| 5 | A and G preserved | **Same concept.** In a lineage it is classified further (5a–5c below). For coexisting concepts it is one concept with frame-relative role profiles. |
 
-In a **split**, each successor is compared with the predecessor by the same rules. The rules apply to the lineage of a
-concept within one frame and across frame succession (D6). Section 3.6.3 applies to concepts of frames that coexist.
-When a concept in a successor frame is compared with its predecessor, section 3.6.2 gives the outcome and section
-3.6.3 gives the relation between extensions.
+**Classification within a lineage (step 5):**
 
-The criteria are not a decision procedure that resolves every case. They make explicit **why** a case is resolved,
-or why it is not. Disagreement between holders about such a case can be tested with the **verbal-dispute
-diagnostic**. Replace the disputed term by its candidate meanings. If the disagreement disappears, it concerned
-meaning, and it becomes a question of identity. If it persists, it concerned facts, and it becomes a disagreement
-about contents (Chalmers, "Verbal disputes", 2011).
+- **5a New knowledge:** contents added or removed, or only peripheral connections changed; extension unchanged.
+- **5b Precisification:** extension settled on borderline cases only; no paradigm case reclassified.
+- **5c Meaning change:** central connections changed, or extension changed beyond borderline cases, including
+  reclassification of individual paradigm cases.
 
-### 3.6.3 Relations between concepts of different frames
+In a **split**, each successor is compared with the predecessor by the same steps. The procedure applies within a
+frame and across frame succession (D6).
 
-For *c* in *F1* and *d* in *F2*, the dimensions are compared over the domain the frames share. Each relation may be
-stated relative to a domain of cases.
+**Contested cases.** Disagreement between holders about identity is tested with the **verbal-dispute diagnostic**.
+Replace the disputed term by its candidate meanings. If the disagreement disappears, it concerned meaning. If it
+persists, it concerned facts, and it becomes a disagreement about contents (Chalmers, "Verbal disputes", 2011). When
+holders disagree about meaning and the evidence leaves more than one verdict admissible, **the case is contested**:
 
-| Relation | Criterion (informal) |
+- the holders' verdicts are recorded as attributions (D14);
+- the universe's own verdict is indeterminate;
+- conclusions are evaluated under each admissible verdict (3.6.4).
+
+A real controversy therefore remains a controversy, with its consequences stated.
+
+The procedure is not a decision method that resolves every case. It makes explicit why a case is resolved, or why
+it is not.
+
+### 3.6.3 What a comparison reports
+
+Every comparison, whether in a lineage or between coexisting concepts, reports three things:
+
+1. **The identity verdict** of section 3.6.2.
+2. **The extension relation**, relative to a stated domain: equal, broader or narrower, overlapping, disjoint. When
+   identity or extension is indeterminate, the relation is given for each admissible reading.
+3. **Structural relations**, where they hold:
+
+| Structural relation | Holds when |
 |---|---|
-| **Same concept, frame-relative roles** | shared paradigm anchors and goals, agreeing extension on the shared domain. Role profiles may differ by frame |
-| **Co-referential, different concepts** | agreeing extension, different goals or anchors ("renate" and "cordate") |
-| **Broader / narrower** | one extension includes the other, within the shared domain |
-| **Overlapping / disjoint** | extensions intersect without inclusion / cannot intersect |
-| **Lineage-related** | one descends from the other (D15) |
-| **Homonymous** | only lexical anchors shared, and goals differ |
-| **Indeterminate** | the dimensions conflict, or the evidence is insufficient |
+| **Lineage** | one concept descends from the other (D15) |
+| **Defined from** | one concept is introduced from the other by definition or restriction (M1, Op2), as "isotope" is defined from "element" and mass number |
+| **Common abstract structure** | the role profiles of both concepts map onto one abstract structure (D8), as oscillators in different domains instantiate one differential equation |
+| **Co-reference** | the extensions are equal and the identity verdict is "distinct" ("renate" and "cordate") |
+| **Homonymy** | step 2 with only lexical anchors shared |
 
-Concepts of the *same* frame are compared in the same way. "Identical" then means the same concept recorded from two
-sources: paradigm anchors, goals and extension coincide.
+**Precedence.** The identity verdict and the extension relation are independent outputs. Neither substitutes for the
+other. Two distinct concepts may be co-referential, and one concept may have frame-relative extensions that diverge.
+"Identical" means the same concept acquired twice: verdict "same", with extensions equal on all cases.
 
 ### 3.6.4 What follows from indeterminacy
 

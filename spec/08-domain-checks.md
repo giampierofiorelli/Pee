@@ -74,10 +74,9 @@ but not a proton donor.
 - Three concepts share the lexical anchor "acid" and partly share operational anchors, such as indicators and
   titration in aqueous media. Their central connections differ.
 - Under the 2.0 criteria, Arrhenius to Brønsted–Lowry keeps the paradigm acids, titration anchors and goals, and
-  widens the extension. It is a **meaning change of one concept** (3.6.2, step 4c). Brønsted–Lowry and Lewis are both
-  in current use, so they are compared as coexisting frames (3.6.3): one concept with frame-relative role profiles,
-  whose extensions are **narrower/broader**. Version 1.0 counted three concepts. Whether chemists would endorse the
-  2.0 reading is a question the protocol of 9.7 can test (FC4).
+  widens the extension. It is a **meaning change of one concept**. Version 2.1 classifies Brønsted–Lowry → Lewis as
+  **indeterminate**, because goal inclusion depends on granularity, and the case is contested in the literature. See
+  section 8.16. Version 1.0 counted three concepts.
 - "BF₃ is an acid" is satisfied under the Lewis concept and not under the other two. Until the concept is fixed,
   the question is **ambiguous**, and recognition must resolve the ambiguity (3.6).
 - pH is a logarithmic quantity, so ratios of pH values carry no meaning. "pH 2 is twice as acidic as pH 4" treats
@@ -368,3 +367,27 @@ points where 1.0 failed or was strained. **They are not evidence that 2.0 is ade
 | H7 AlphaFold | The meaning of a model required interpretable components | Behavioural specification (D7). Predictions are records of runs of the model. Used as data, they bear on targets through a fit content grounded in blind benchmarking (D19). | — |
 | H10 Pluto | Lineage forms were not exclusive | The lineage link records the dimensions that changed: a deferential anchor added, one exemplar anchor dropped, extension narrowed, goals kept. By 3.6.2 this is a **meaning change** of the same concept (paradigm anchors and goals preserved). Holders who keep a geophysical concept hold a distinct concept with different central connections. | — |
 | H2, H3 Four Colour Theorem, Riemann hypothesis | A logically omniscient calculus cannot represent uncertainty about mathematical claims | Obligation 5 of section 4.9. | Which calculus satisfies it (O4). |
+
+## 8.16 Regression check for version 2.1 (development material, not evidence)
+
+The cases of the 2.0 verification run informed version 2.1. Their classification under 2.1 is recorded here only to
+check that the revision did not break what worked. The classifications are the designer's alone.
+
+| Case | 2.1 classification | Compared with the literature consulted in the 2.0 run |
+|---|---|---|
+| B1 electric fluid | step 0: **split**. The quantity, anchored by electroscope and torsion-balance measurements of its own instances, continues as charge (step 5c). The substance reading is eliminated | matches "substance eliminated, quantity continued" |
+| B1 imponderable fluid (category) | step 0: **elimination** | matches |
+| B2 Aristotle → Lavoisier | step 1: **distinct** (paradigm extensions disjoint) | matches |
+| B2 Lavoisier → Mendeleev → atomic number | Mendeleev's distinction is a **split** (element / simple body). For the element successor, G is granularity-dependent ("what can be isolated" passes to the simple body) → step 4 **indeterminate**. Mendeleev → atomic number: step 5c | **possibly over-indeterminate**: Hendry reads continuity through an underlying notion |
+| B3 Dalton → modern atom | 5c if "what are the ultimate constituents of matter?" was not a goal of Dalton's atom in his practice; otherwise step 4 **indeterminate**. The specification asks for the evidence on this point (step 4) | matches only if the evidence supports the first reading |
+| B4 life | step 4: **indeterminate**, granularity-dependent; contested | matches "contested" |
+| B5 chemical element (two senses) | step 1: **distinct**, structural relation "defined from" | matches "two senses" |
+| B6 credence versus chance | step 1: **distinct**, common abstract structure | matches |
+| B6 frequency versus propensity | step 5 (same concept) if the frequency concept serves no goal the propensity concept lacks; otherwise step 4 **indeterminate** | compatible with "contested" |
+| Acids: Arrhenius → Brønsted–Lowry | step 5c | matches |
+| Acids: Brønsted–Lowry → Lewis, lineage and coexisting | step 4: **indeterminate** (goal inclusion depends on granularity) | matches "contested" |
+
+**Reading.** The revision removes the opposite determinate verdicts on contested cases. It introduces a risk of
+**over-indeterminacy** where goal identification is uncertain (B2, B3). The retest of section 9.7 must be able to
+detect this.
+

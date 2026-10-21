@@ -189,6 +189,8 @@ For each case the encoder identifies, using only the specification:
 | FC4 | Section 3.6.2 yields "indeterminate" for a change that the field's literature treats as clearly resolved, either because A and G conflict (step 2), or because the evidence named as settling the case (step 3) is in fact available in the case material | FD3 is too weak, or its outcomes diverge from expert judgement. |
 | FC5 | The five planes cannot be kept apart without misrepresenting the case, for example a decision forced into an epistemic standing | FD2 fails. |
 | FC6 | On the points where S0 1.0 or P2+ leave the encoder discretion, 2.0 leaves as much or more | The claim of determinacy in section 3.4 fails. |
+| FC7 | A determinate identity verdict (same or distinct) where the field's literature is contested | The criteria are overconfident: they suppress a real controversy. |
+| FC8 | A determinate verdict contrary to a clear verdict in the literature: **same** where experts treat the concepts as distinct (**unjustified merger**), or **distinct** where they treat them as one (**unjustified separation**) | The criteria are wrong for that kind of case. |
 
 ### 9.7.4 Fair comparison
 

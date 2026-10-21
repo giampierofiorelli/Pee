@@ -2,11 +2,11 @@
 
 | | |
 |---|---|
-| **Version** | S0 2.0 |
+| **Version** | S0 2.1 |
 | **Date** | 2026-10-21 |
 | **Status** | Complete as a text, internally reviewed, not validated. Submitted for the owner's approval. **Not approved.** S1 has not started. |
-| **Text of 2.0** | commit `b9bda7d` on `main`. Later commits change only this metadata line. The tag `s0-v2.0` exists locally only, because this session's git connection refuses tag pushes. |
-| **Previous version** | S0 1.0, preserved unchanged in Git history at commit `d82f95f`. It was not approved. Its critical review is in `reviews/S0-1.0-critical-review.md`. |
+| **Text of 2.1** | the commit that adds this line; recorded in the 2.1 verification run (`reviews/S0-2.1-verification-run.md`). |
+| **Earlier versions** | S0 2.0 at commit `b9bda7d` (verified in `reviews/S0-2.0-verification-run.md`, commit `39f291e`); S0 1.0 at commit `d82f95f` (reviewed in `reviews/S0-1.0-critical-review.md`). Neither was approved. |
 
 ## What this is
 
@@ -31,8 +31,8 @@ calculus. Where S1 will need such choices, S0 states the semantic obligations th
   distinguished by what makes each correct.
 - A concept's meaning is its role profile, with graded centrality, together with its anchors in the world and its
   epistemic goals.
-- Concepts keep or lose identity by continuity of anchors, goals and extension, and indeterminate cases are recorded
-  as such.
+- Concepts keep or lose identity by one procedure, for change and for coexistence: category, continuity of anchors,
+  inclusion of goals robust across granularity, and extension. Contested and indeterminate cases are recorded as such.
 - Standing is kept apart from content, and decisions from acceptance. Revision is recorded and never silent.
 
 ## Reading order
@@ -93,3 +93,4 @@ change no thesis, definition or criterion, and **3.0** for changes to theses, de
 |---|---|---|
 | 1.0 | 2026-10-21 | First complete specification, frozen at commit `d82f95f`. Not approved. |
 | 2.0 | 2026-10-21 | Foundational revision authorised by the owner after the critical review of 1.0. See "From 1.0 to 2.0" above, and section 2.8. |
+| 2.1 | 2026-10-21 | Bounded correction of the identity rules after the 2.0 verification run found a structural defect in them. Changed: D4 (anchors of own instances), D5-b (requirement condition, admissible granularity), section 3.6 (category check, exhaustive anchor continuity, goal inclusion for change and coexistence, robustness across granularity, identity verdict and extension relation as separate outputs, elimination and split, contested cases, two structural relations), T3. Dependencies: FD5 (2.8), the lineage table (6.3), E2 and the new 8.16 (regression check), FC7–FC8 (9.7.3), O1 and O11 (10.1), labels (1.4). Nothing else changed. |

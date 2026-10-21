@@ -122,11 +122,11 @@ changed. Common combinations have names. They are labels, **not mutually exclusi
 | **Anchor change preserving extension** | anchors; extension unchanged within uncertainty | the kilogram redefined by fixing the Planck constant (2019) |
 | **Anchor change altering extension** | anchors and extension; goals kept | a survey redesign creating a break in an official statistic (E11) |
 | **Precisification** | extension settled on borderline cases; anchors and goals kept | a formal definition replacing an exemplar-based usage |
-| **Refinement / generalisation** | central connections and extension narrowed / widened; goals kept | "acid" from Arrhenius to Brønsted–Lowry to Lewis (E2) |
+| **Refinement / generalisation** | central connections and extension narrowed / widened; goals kept | an operational concept extended to new domains of measurement |
 | **Split** | successors divide anchors or goals | "jade" into jadeite and nephrite (Putnam, 1975); the "gene" concepts (E3) |
 | **Merger** | concepts judged identical | two species described separately, later judged to be one (taxonomic synonymy) |
 | **Replacement with partial correspondence** | new frame; approximate mapping in a limit | relativistic and Newtonian mass |
-| **Elimination** | reference judged empty; concept kept as historical | phlogiston and caloric as substance concepts |
+| **Elimination** | category commitment fails and no anchor of the concept's own instances survives (3.6.2, step 0); concept kept as historical | phlogiston and caloric as substance concepts |
 
 Whether a lineage link joins two versions of one concept or two concepts is decided by section 3.6.2, including the
 outcome "indeterminate".
