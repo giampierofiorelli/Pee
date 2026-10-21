@@ -16,12 +16,12 @@ can be detected (Mayo, 1996).
 | Category | What it is | Representation |
 |---|---|---|
 | **Question** | a request for information with presuppositions and a space of possible answers. Kinds include what, whether, how much, why and how (Belnap and Steel, *The Logic of Questions and Answers*, 1976; Hintikka, *Inquiry as Inquiry*, 1999) | an item whose answer space is defined by concepts. Its presuppositions are contents with standing. A question with a false presupposition is defective, and this can be detected |
-| **Goal** | a state of affairs an agent seeks | a content held with a conative attitude (D18; sections 3.5, 7.4) |
+| **Goal** | a state of affairs an agent seeks | an item with a conative mode and a content as its satisfaction condition (D18; sections 3.4, 3.5) |
 | **Inquiry** | an occurrent: a goal-directed sequence of observations, inferences and decisions | participants: agents, targets, methods, questions |
 | **Method** | a type of procedure (D16) | see section 7.3 |
 | **Study design** | a method for producing evidence of a given kind: a randomised trial, a cohort study, a case–control study, a field survey, a natural experiment, a controlled laboratory experiment | a method with known validity conditions and known biases |
 | **Instrument and protocol** | material and procedural means of observation | entities and methods with calibration and validity contents |
-| **Standard and criterion** | a norm for judging adequacy: a threshold of evidence, a reporting standard, a tolerance | a methodological content with holder and purpose |
+| **Standard and criterion** | a norm for judging adequacy: a threshold of evidence, a reporting standard, a tolerance | a norm (D18) with holder and purpose. Whether following it is reliable is a methodological content |
 | **Heuristic** | a defeasible rule of thumb for generating or prioritising hypotheses ("look for a conserved quantity"; "try the simplest model first") | a method whose reliability profile is weak or unknown, marked as such |
 | **Learning method** | a method for acquiring concepts, models or skills: M1–M6 (section 6.1), induction of models from data, analogy | a method like the others, applicable to the universe itself |
 
@@ -44,7 +44,7 @@ Any method in the universe can be described by:
    use it.
 
 Contents produced by a method carry the method in their grounds (section 5.9). **When the universe's view of a
-method changes, every content that depends on it is flagged** (section 6.3, propagation). The replication crisis in
+method changes, every item whose standing depends on it rests on a revised ground** (section 6.3, propagation). The replication crisis in
 parts of psychology and medicine shows why this matters. A large replication project found that many published
 effects did not replicate at the original strength (Open Science Collaboration, "Estimating the reproducibility of
 psychological science", 2015). That finding is methodological knowledge, and it should change the standing of
@@ -56,8 +56,8 @@ The later adviser must understand human goals, investigate solutions and evaluat
 S0 defines the semantic categories needed, without building the adviser. All of them follow from the pluralism of
 section 3.4 and the five planes of section 3.5. None is an addition for a special case.
 
-- **Goals** (D18) are contents held with a conative attitude, with a priority and with constraints. A goal is
-  satisfied when the world comes to match it. Goals are never grounds for accepting a content as true: that a person
+- **Goals** (D18) are items with a conative mode, a priority and constraints, whose satisfaction condition is a
+  content. A goal is satisfied when the world comes to match that content. Goals are never grounds for accepting a content as true: that a person
   wants a treatment to work is not evidence that it does (3.5).
 - **Requirements** are goals or norms stated for a design: "deck acceleration below a stated limit under crowd
   loading". They are typically derived from stakeholders' goals and from applicable norms.
@@ -85,11 +85,12 @@ section 3.4 and the five planes of section 3.5. None is an addition for a specia
 
   ```
   ⟨ item X meets criterion K to level L, for goal G of holder H,
-    under conditions C, compared with alternative A, on grounds Γ ⟩
+    under conditions C, compared with alternative A ⟩
   ```
 
   Every one of these parameters is mandatory. An evaluation that leaves out its conditions, its comparator or its
-  holder is incomplete, and must be marked so. The evaluative content has epistemic standing. **Acting on it is a
+  holder is incomplete, and must be marked so. Its grounds belong to its standing, not to its content. The
+  evaluative content has epistemic standing. **Acting on it is a
   separate decision.**
 - **Rated versus realised performance.** Performance under standard test conditions is a fit of a test model.
   Performance in a particular use is a transfer hypothesis (6.4) with its own grounds (example E8).

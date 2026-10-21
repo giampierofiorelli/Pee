@@ -302,8 +302,8 @@ revised, split or supplemented (T11). Only the **meta-level** (chapter 3, D1–D
   degree (Cohen, *An Essay on Belief and Acceptance*, 1992). Acceptance in a scientific setting is itself a
   decision with its own criteria (Levi, *The Enterprise of Knowledge*, 1980).
 
-**Decision.** Epistemic **standing** is separated from content, and it has six dimensions: attitude, support,
-holder, purpose, time and scope (section 5.9). Standing is always accompanied by **grounds**, the reasons on which it rests (EP-e).
+**Decision.** Epistemic **standing** is separated from content, and it has seven dimensions: attitude, support,
+holder, purpose, standard of acceptance, time and scope (section 5.9). Standing is always accompanied by **grounds**, the reasons on which it rests (EP-e).
 The *calculus* for degrees of support is **deferred to S1** (EP-b, EP-c and EP-d remain candidates). S0 only fixes the
 distinctions any calculus must preserve, such as the difference between ignorance and conflicting evidence, and
 between chance and credence (section 4.9).
@@ -353,8 +353,9 @@ standard within a fixed frame. They cannot be the whole theory.
   strong form **P2+**, with named contexts, provenance, versioning and argument structure, as defined in the review
   of 1.0.
 
-The 1.0 review found that neither rival is a better foundation. It also found that S0's advantage over P2+ lies in its
-theory of distinctions, not in model primacy (`reviews/S0-1.0-critical-review.md`, sections 2.6 and 3.3).
+The internal review of 1.0 assessed that neither rival is a better foundation. It also assessed that S0's advantage
+over P2+ lies in its theory of distinctions, not in model primacy. These are internal evaluations, not independent
+validation (`reviews/S0-1.0-critical-review.md`, sections 2.6 and 3.3).
 
 ## 2.8 Foundational decisions of version 2.0
 
@@ -448,9 +449,12 @@ operational. In the review, the H1 and H11 cases each admitted two faithful enco
 not separate rival frames over the same domain. Pure contextualism loses the stability that composition needs. The
 functional criterion can be investigated empirically in a practice, and it is allowed to give split answers (D6).
 
-**Entrenchment is decoupled from level.** H11 showed that a highly entrenched belief can be an accepted content. In
-2.0, entrenchment is the dependence of other items on an item together with the robustness of its support, whatever
-its level.
+**Entrenchment is decoupled from the class of revision.** The class of a revision describes what kind of item
+changes. Entrenchment describes how much else depends on the item, and how robust its support is. There is no
+general reason why the two should coincide. In Quine's picture any belief can become central to the web (Quine,
+1951). Gärdenfors defines epistemic entrenchment over beliefs regardless of their type (1988). In 2.0, therefore,
+entrenchment is dependence plus robustness, for an item of any class. H11 is a development case that illustrates the
+point, not its justification.
 
 **Open.**
 
@@ -475,3 +479,10 @@ consequence of those decisions where possible:
 | LD1 logical omniscience | an obligation on the standing calculus (4.9). Independent of FD1–FD3, and required by the separation of correctness from acceptance (FD2) |
 | LD9 verification design | protocol in section 9.7 |
 | LD10 bibliography | corrected in `references.md` and in the text |
+
+Each resolution follows from a general principle, not from the case that revealed it:
+
+- the behavioural specification of models follows from fit as the correctness condition of models (FD1);
+- precisification follows from the theory of vagueness (3.6.4);
+- relations relative to a domain follow from the domain-relativity of extensions;
+- role-relative answers about constitutive commitments follow from the relativity of inquiry roles (D19).

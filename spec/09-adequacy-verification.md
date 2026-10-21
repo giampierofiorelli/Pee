@@ -30,7 +30,7 @@ examples (chapter 8) are not evidence, and agreement among Claude agents is not 
 | R13 knowledge, observation, hypothesis, explanation, causality, evidence, inference | chapter 5 |
 | R14 methodological knowledge | chapter 7; D16 |
 | R15 support for a later adviser | D17, D18; 3.5; 5.11; 7.4 |
-| R16 no presupposed architecture; not assertion-based | 1.3; T1; 3.4 (pluralism; storage left to S1); notation disclaimer in 1.4 |
+| R16 no presupposed architecture; not assertion-based | 1.3; T1; 3.4 (pluralism; storage left to S1); notation disclaimer in 1.4. Describing items by contents at the meta-level is allowed (T1). It is not a storage commitment |
 | R17 theoretical grounding | chapter 2; citations throughout; `references.md` |
 | R18 what meaning is and how it is identified | 3.3; 3.6; 3.7 |
 | R19 composition | 4.1 |
@@ -46,7 +46,7 @@ procedures below test.
 | AQ1 **Coverage** | scientific knowledge from varied domains can be represented without inventing new meta-level notions | held-out cases (V2) need no addition to D1–D19, or the additions needed are minor and local |
 | AQ2 **Distinction preservation** | distinctions scientists draw are kept | minimal pairs (V3) receive distinct representations |
 | AQ3 **Identity behaviour** | sameness and difference of meaning are judged with appropriate grades, including "indeterminate" | recognition cases give the relations experts endorse, or "indeterminate" where experts disagree |
-| AQ4 **Revision behaviour** | historical changes can be replayed with correct levels and lineages, and without losing interpretability | replayed episodes (V5) match expert historical accounts |
+| AQ4 **Revision behaviour** | historical changes can be replayed with correct classes of revision and lineages, and without losing interpretability | replayed episodes (V5) match expert historical accounts |
 | AQ5 **Transfer behaviour** | licensed transfers are permitted and unlicensed ones refused, for stated reasons | transfer cases match expert judgement on licensing |
 | AQ6 **Composition** | composite meanings follow from their parts and modes, and departures are explicit | composite representations in V2 and V3 cases can be derived from the parts and the named operation, and encoders agree on them |
 | AQ7 **Non-reduction** | each item keeps its own correctness condition (3.4); no kind is forced into another | encoders assign kinds by correctness condition without discretion that changes conclusions; the comparison with P2+ (9.7.4) shows whether pluralism reduces discretion (FC6). Equal expressive power is expected and is not a failure (3.4) |
@@ -106,7 +106,7 @@ representation built under this specification:
 The list is a starting set and must be extended by the reviewers.
 
 **V5 Replay of historical revisions.** Episodes of conceptual change not used in design are replayed. The
-specification passes if it assigns appropriate revision levels and lineage forms, and if it keeps the earlier state
+specification passes if it assigns appropriate revision classes and lineage forms, and if it keeps the earlier state
 interpretable. Candidate episodes include the reclassification of Pluto (2006), the neutrino hypothesis, *Helicobacter
 pylori* and peptic ulcers, the luminiferous ether, and germ theory. Because the designer proposed these candidates,
 the final selection should be made by others.
@@ -136,7 +136,7 @@ The specification should be revised, or rejected, if any of the following is fou
    reasonable S1 choice.
 5. Rival P2+, given S0's distinctions, performs as well on all criteria, including determinacy (V6, 9.7.4). In that
    case the pluralism of section 3.4 would be a matter of organisation only, and that would have to be stated.
-6. Historical replays (V5) systematically misplace the level of revision, or lose the interpretability of older
+6. Historical replays (V5) systematically misplace the class of revision, or lose the interpretability of older
    knowledge.
 
 ## 9.6 Safeguards for independence
@@ -157,8 +157,10 @@ chosen by the designer and so that the alternatives are compared fairly.
 
 1. **Fields.** Use the six broad fields of the OECD Fields of Research and Development classification: natural
    sciences; engineering and technology; medical and health sciences; agricultural and veterinary sciences; social
-   sciences; humanities and the arts. In each, draw one subfield at random. The random seed is the hash of the commit
-   that fixes the run's protocol record, which is unknown until that commit is made.
+   sciences; humanities and the arts. In each, draw one subfield at random. The draw uses the value of a public randomness
+   beacon, for example the NIST Randomness Beacon, at a time stated in the run record. The record, including the
+   search definition of step 2, is committed before that time. To remove the designer's influence further, the search
+   definition and the beacon time should preferably be fixed by someone other than the designer.
 2. **Cases.** For each drawn subfield, the case is the most recent open-access research article in that subfield found
    by a fixed public search, defined in the run record before the draw, and published before the run date. Only
    metadata, short quotations and the encoder's own summary are stored, never the full text.
@@ -184,7 +186,7 @@ For each case the encoder identifies, using only the specification:
 | FC1 | A case needs a meta-level notion beyond D1–D19 | AQ1 fails for that field. Two or more fields failing is a structural failure. |
 | FC2 | An item fits no kind of section 3.4, or fits two kinds whose consequences differ, with no criterion to choose | FD1 fails. |
 | FC3 | A concept change or comparison receives two different outcomes from faithful encodings, and neither encoding records "indeterminate" | FD3 is not determinate enough. |
-| FC4 | Section 3.6.2 yields "indeterminate", the field's literature treats the case as clearly resolved, and the specification cannot state what evidence would resolve it | FD3 is too weak. |
+| FC4 | Section 3.6.2 yields "indeterminate" for a change that the field's literature treats as clearly resolved, either because A and G conflict (step 2), or because the evidence named as settling the case (step 3) is in fact available in the case material | FD3 is too weak, or its outcomes diverge from expert judgement. |
 | FC5 | The five planes cannot be kept apart without misrepresenting the case, for example a decision forced into an epistemic standing | FD2 fails. |
 | FC6 | On the points where S0 1.0 or P2+ leave the encoder discretion, 2.0 leaves as much or more | The claim of determinacy in section 3.4 fails. |
 

@@ -131,11 +131,14 @@ tracked when its role changes. There are five types:
 - **explanatory**: what *c* is used to explain, and what explains it;
 - **constitutive**: the constitutive commitments of *F* in which *c* figures (D6).
 
-Each connection has a degree of **centrality**: the extent to which *c*'s other connections in *F* depend on it.
-A connection is central if giving it up would make many of *c*'s inferences, measurements or explanations in *F*
-unavailable. It is peripheral if little else depends on it. This follows the dependency account of feature
-centrality (Sloman, Love and Ahn, "Feature centrality and conceptual coherence", 1998). Connections that figure in
-constitutive commitments of *F* are maximally central in *F*, because the frame's methods presuppose them.
+Each connection has a degree of **centrality**: the extent to which *c*'s other connections in *F*, and the methods
+of *F* that involve *c*, depend on it. A connection is central if giving it up would make many of *c*'s inferences,
+measurements or explanations in *F* unavailable. It is peripheral if little else depends on it. This follows the
+dependency account of feature centrality (Sloman, Love and Ahn, "Feature centrality and conceptual coherence",
+1998). Connections that figure in constitutive commitments of *F* have the highest centrality under this same
+measure. The frame's methods depend on them by presupposition (D6), so this is a consequence of the measure, not a
+separate stipulation. A calibration convention used by few inferences is still central if the frame's measurements
+presuppose it.
 
 Centrality is **graded and comparative**. No threshold divides "core" from "collateral". This replaces the binary
 split of 1.0, which section 2.8 shows was not operational. It keeps the answer to holism (section 2.2, A3): sharing a
@@ -144,8 +147,10 @@ concept requires shared anchors, shared goals and agreement on central connectio
 **D5-b Epistemic goal.** An epistemic goal of a concept is a type of question that the concept is used to answer, or
 a type of inferential or practical task it is used for, in a practice (Brigandt, "The epistemic goal of a concept",
 2010). Two examples: explaining patterns of inheritance, and explaining how a DNA sequence specifies a product. Goals
-are individuated through question types (section 7.2). Those are items with presuppositions and answer spaces, which
-avoids defining goals circularly through the concept itself. A concept's goals are identified from the questions,
+are individuated through question types (section 7.2), which are items with presuppositions and answer spaces.
+**A goal-defining question type must be stated without using *c* itself**, in terms of explananda and other anchored
+concepts: "why do offspring resemble parents in specific traits?", not "how do genes act?". This prevents goal
+continuity from presupposing the identity it is used to judge. A concept's goals are identified from the questions,
 explanations and predictions in which the practice uses it, and this identification has grounds and can be revised.
 
 **D6 Frame.** A body of **constitutive commitments**, with a declared **scope**, under which concepts have
@@ -171,11 +176,21 @@ contents**, however widely held or entrenched.
 - a frame that adds constitutive commitments to another is a **sub-frame**;
 - frames that differ in a constitutive commitment are **distinct**.
 
-**Indeterminate cases.** Whether a commitment is presupposed or tested is a question about a practice, answered with
-grounds, for example from its methods, protocols and history. It may have different answers in different parts of a
-practice. A commitment may be presupposed in interpreting one kind of record and tested in another kind of study. It
-is then recorded as constitutive for the methods that presuppose it, and as an accepted content elsewhere. Revising
-it affects both (example H11 in section 8.15).
+**Role-relative answers.** Whether a commitment is presupposed or tested is a question about a practice, answered
+with grounds from its methods, protocols and history. Because roles are relative to inquiries (D19), a commitment can
+be presupposed by one method and tested by another. It is then constitutive for the frame of the methods that
+presuppose it, and an accepted content elsewhere.
+
+**Frames are adopted, not true.** A frame has no correctness condition of its own (3.4). A holder or community
+**adopts** a frame for a scope. Adoption is a practical decision (5.11), with grounds that include the success of the
+contents and models assessed within the frame. This follows Carnap's treatment of the choice of a framework as a
+practical question (Carnap, "Empiricism, semantics, and ontology", 1950). Constitutive commitments are contents in
+the presupposition role (D19). Within the frame they are not tested. Assessed from outside, they can turn out to
+be false.
+
+**Frame succession.** Because frames that differ in a constitutive commitment are distinct, revising a frame means
+adopting a **successor frame**, linked to its predecessor by lineage (D15). The predecessor remains available and may
+remain adopted for a narrower scope.
 
 Frames are related by **intertheoretic mappings**: exact translations, approximate or limiting relations (classical
 from relativistic mechanics as v/c → 0; Nickles, "Two concepts of intertheoretic reduction", 1973; Batterman, *The
@@ -231,8 +246,8 @@ Examples are a reading, an image, a sequence file, a field note and a published 
 only through interpretation. Its interpretation is a content with standing (5.2). **"Data" is a role, not a kind:**
 records, or items derived from them, are data when they serve as evidence in an inquiry (D19).
 
-**D12 Standing.** The **epistemic** position of an item for a holder at a time: attitude, support, purpose, time and
-scope (section 5.9). Any representational item can have standing, not only contents. A model is accepted as fitting
+**D12 Standing.** The **epistemic** position of an item for a holder: attitude, support, holder, purpose, standard of
+acceptance, time and scope (section 5.9). Any representational item can have standing, not only contents. A model is accepted as fitting
 for a purpose. A method is accepted as reliable. A record is accepted as faithful.
 
 **D13 Ground.** A reason bearing on a standing (epistemic ground, section 5.9) or on a decision (practical ground,
@@ -264,14 +279,17 @@ was systematised as direction of fit by Searle (*Intentionality*, 1983).
 
 **D18 Goal, norm, value and decision.**
 
-- A **goal** is a content held by an agent with a conative attitude (*desired*, *intended*). It is satisfied when the
-  world comes to match it.
-- A **norm** is a requirement or permission issued by an authority (a regulation, a standard, a protocol). It is
-  complied with or violated.
-- A **value** is a criterion by which a holder ranks outcomes.
-- A **decision** is a holder's choice of an action or design. It rests on practical grounds (section 5.11).
+- A **goal** is an item made of a conative mode (*desired*, *intended*) held by an agent, together with a content
+  that states what would satisfy it. It is satisfied when the world comes to match that content.
+- A **norm** is an item made of a deontic mode (*required*, *permitted*, *forbidden*) and an issuing authority (a
+  regulation, a standard, a protocol, a methodological rule), together with a content that states what complies. It
+  is complied with or violated. Methodological standards, such as replication requirements or evidence thresholds,
+  are norms of this kind.
+- A **value** is a criterion, held by a holder, by which outcomes are ranked.
+- A **decision** is a holder's choice of an action, design or frame. It rests on practical grounds (section 5.11).
 
-None of these is true or false, and none is a standing. Contents *about* them are true or false.
+None of these is true or false, and none is a standing. The contents that state their conditions, and contents
+*about* them ("this norm is in force", "this standard is reliable"), are true or false.
 
 **D19 Inquiry role.** Within an inquiry, an item may serve as **data or evidence**, **representation** of a target,
 **instrument**, **procedure**, **standard**, **presupposition**, **goal** or **target**. Role is relative to the
@@ -290,7 +308,14 @@ generalises the view that what counts as data or as a model depends on its role 
 | **Practice** (D16) | — (procedural) | it is performed competently | competence |
 | **Design** (D17) | world to item | the realisation conforms to it | adequacy of the design for its goal (a content); conformance of a realisation |
 | **Goal** (D18) | world to item | the world comes to be as desired | — (conative, not epistemic) |
-| **Norm** (D18) | world to item | conduct complies | validity of the norm's authority (a content) |
+| **Norm** (D18) | world to item | conduct complies | validity and applicability of the norm (contents) |
+| **Frame** (D6) | — | no correctness condition of its own; a frame is **adopted** for a scope, by a practical decision | the contents and models formulated in it; its constitutive commitments are contents in the presupposition role (D19) |
+
+**Items and their contents.** Items other than contents often have a content as their *condition*. A goal's
+satisfaction condition, a norm's compliance condition and a design's conformance condition are each given by a
+content. The item is not that content. It adds a mode (desired, required, specified) and a direction of fit. This is
+the distinction between psychological mode and propositional content (Searle, 1983). So goals, norms and designs are
+not true or false, while the contents that state their conditions, and the contents that describe them, are.
 
 **Why this pluralism rather than a reduction.** Section 2.8 compares the alternatives. In brief:
 
@@ -298,10 +323,11 @@ generalises the view that what counts as data or as a model depends on its role 
    and inference. Fit of models by comparison in respects within domains. Fidelity of records by provenance and
    calibration. Reliability of methods by validation studies. Conformance of realisations by inspection. Reducing all
    of these to truth of statements would hide these differences in the predicates of the statements.
-2. **The criterion is determinate.** The kind of an item is fixed by its correctness condition, not by choice. This
-   removes the discretion of 1.0 over whether something was a "model" or a "content" (review of 1.0, `reviews/S0-1.0-critical-review.md`, section 2.1).
+2. **The criterion is intended to be determinate.** The kind of an item is fixed by its correctness condition, not
+   by choice. It is meant to remove the discretion of 1.0 over whether something was a "model" or a "content" (review of 1.0, `reviews/S0-1.0-critical-review.md`, section 2.1).
 3. **Nothing is forced into another kind.** Observations are not models. Designs and goals are not contents. Opaque
-   learned models are not decomposed into statements.
+   learned models are not decomposed into statements. Whether the criterion reduces discretion in practice is tested
+   by FC6 (9.7.3).
 
 **What this pluralism does not claim.** It does not claim greater *expressive power* than a well-built
 statement-based representation. Every correctness condition can be described by a content (T1), so a
@@ -343,17 +369,35 @@ assessed. Each assessment is itself a content with grounds.
 | **X Extension** | Do the extensions agree on paradigm cases, and over which domain? | classification of cases |
 | **C Centrality** | Are the connections that change central or peripheral (D5)? | dependency structure in the frame |
 
+**Anchor continuity.** A is *preserved* when the concept's paradigm anchors remain **jointly in force**. An anchor
+remains in force if it is retained, or if it is replaced by an anchor that agrees with it on the cases it covered,
+within stated uncertainty. This is the case when an artefact standard is replaced by a definition that fixes a
+constant. Individual exemplars may be reclassified without breaking A, provided the anchors in force still pick out
+the same body of paradigm cases. A is *broken* when no paradigm anchor remains in force, or when those in force pick
+out a different body of paradigm cases.
+
+**Goal continuity.** G is *preserved* when no goal is dropped or replaced. Added goals preserve G, because they are
+new uses of the same concept. G is *broken* when a goal is dropped or replaced.
+
 ### 3.6.2 Criteria for outcomes of a change
 
 The criteria below use **ordinal comparison and paradigm cases. They use no numerical thresholds.**
 
-| Outcome | Criterion |
-|---|---|
-| **New knowledge about *c*** | A and G preserved, and extension unchanged on paradigm cases. The change adds or removes contents, or alters only peripheral connections. |
-| **Precisification of *c*** | A and G preserved. The extension is settled where it was previously indeterminate (borderline cases), with no paradigm case lost. This is a form of meaning change that leaves earlier contents about clear cases intact. |
-| **Meaning change of *c*** (same concept, new version) | Paradigm anchors and goals preserved, and central connections change, or the extension changes beyond borderline cases while paradigm cases are kept. |
-| **New concept** (with lineage to *c*) | A goal is dropped or replaced, or the paradigm anchors are dropped. Also each successor in a **split** whose successors serve different goals or keep disjoint paradigm anchors. |
-| **Indeterminate** | The dimensions conflict, for example anchors preserved but goals replaced, or goals preserved but paradigm anchors dropped. Or the evidence on a dimension is insufficient. The outcome is recorded as "indeterminate between *x* and *y*", naming the conflicting dimension. |
+The rules apply **in this order**:
+
+| Step | Condition | Outcome |
+|---|---|---|
+| 1 | A and G both broken | **New concept**, with lineage to *c* |
+| 2 | Exactly one of A and G broken | **Indeterminate** between meaning change and new concept, naming the broken dimension |
+| 3 | The evidence does not settle A or G | **Indeterminate (pending)**, stating the evidence that would settle it (3.6.5) |
+| 4a | A and G preserved; contents added or removed, or only peripheral connections changed; extension unchanged | **New knowledge** about *c* |
+| 4b | A and G preserved; extension settled on borderline cases only; no paradigm case reclassified | **Precisification** of *c*, a mild meaning change that leaves contents about clear cases intact |
+| 4c | A and G preserved; central connections changed, or extension changed beyond borderline cases, including reclassification of individual paradigm cases | **Meaning change** of *c*: same concept, new version |
+
+In a **split**, each successor is compared with the predecessor by the same rules. The rules apply to the lineage of a
+concept within one frame and across frame succession (D6). Section 3.6.3 applies to concepts of frames that coexist.
+When a concept in a successor frame is compared with its predecessor, section 3.6.2 gives the outcome and section
+3.6.3 gives the relation between extensions.
 
 The criteria are not a decision procedure that resolves every case. They make explicit **why** a case is resolved,
 or why it is not. Disagreement between holders about such a case can be tested with the **verbal-dispute

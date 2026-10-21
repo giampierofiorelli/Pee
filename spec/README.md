@@ -4,7 +4,7 @@
 |---|---|
 | **Version** | S0 2.0 |
 | **Date** | 2026-10-21 |
-| **Status** | Complete; submitted for the owner's approval. **Not approved.** S1 has not started. |
+| **Status** | Complete as a text, internally reviewed, not validated. Submitted for the owner's approval. **Not approved.** S1 has not started. |
 | **Previous version** | S0 1.0, preserved unchanged in Git history at commit `d82f95f`. It was not approved. Its critical review is in `reviews/S0-1.0-critical-review.md`. |
 
 ## What this is
@@ -76,7 +76,8 @@ calculus. Where S1 will need such choices, S0 states the semantic obligations th
 - Written from first principles by one AI designer (Claude, in Claude Code sessions) for the owner of this repository.
   No earlier material of the owner was read or used (section 1.6).
 - Version 1.0 had one internal review by another Claude instance before its freeze. Version 2.0 follows the
-  designer's own preregistered critical review of 1.0. **Neither is independent validation.**
+  designer's own preregistered critical review of 1.0, and its draft was checked for consistency by another Claude
+  instance before completion. **None of these is independent validation.**
 - No independent person has reviewed either version. External validation is optional and has not been carried out
   (section 9.7.5).
 

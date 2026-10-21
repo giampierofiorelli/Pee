@@ -6,7 +6,7 @@ from different domains.
 ## 8.1 Status of these checks
 
 Version 2.0 note: E1–E11 were written for 1.0, and their wording has been updated to the 2.0 vocabulary. Section 8.15
-re-examines review cases that were used as development material for 2.0. None of these examples is evidence.
+re-examines review cases that were used as development material for 2.0. None of these examples is evidence. All verdicts in this chapter are the designer's self-assessments.
 
 
 These checks were done **during design**. The designer chose them, and some of them led to changes in the model
@@ -47,8 +47,9 @@ Temperature*, 2004.
   F-kinetic**, where temperature is proportional to a non-negative energy. The universe represents the content, its
   frame-relative possibility and the fact that the kinetic connection does not apply outside the domain of the ideal-gas
   model.
-- Relation between the F-kinetic and F-statmech concepts: **co-referential within the domain of ideal-gas
-  equilibrium systems, divergent outside it**, with a lineage (generalisation) link.
+- Relation between the F-kinetic and F-statmech concepts (2.0 criteria): paradigm anchors and goals are shared, so
+  this is **one concept with frame-relative role profiles** (3.6.3). Its frame-relative extensions **agree on
+  ideal-gas equilibrium systems and diverge outside them**.
 
 **Features exercised:** multiple anchors (D4), frame-relative central connections (D5), scale types (4.7), frame-relative nomological
 possibility (4.8), anchor change preserving extension (6.3), epistemic iteration.
@@ -72,7 +73,11 @@ but not a proton donor.
 
 - Three concepts share the lexical anchor "acid" and partly share operational anchors, such as indicators and
   titration in aqueous media. Their central connections differ.
-- The relations are **narrower/broader** within the shared chemistry frame, with a **generalisation lineage**.
+- Under the 2.0 criteria, Arrhenius to Brønsted–Lowry keeps the paradigm acids, titration anchors and goals, and
+  widens the extension. It is a **meaning change of one concept** (3.6.2, step 4c). Brønsted–Lowry and Lewis are both
+  in current use, so they are compared as coexisting frames (3.6.3): one concept with frame-relative role profiles,
+  whose extensions are **narrower/broader**. Version 1.0 counted three concepts. Whether chemists would endorse the
+  2.0 reading is a question the protocol of 9.7 can test (FC4).
 - "BF₃ is an acid" is satisfied under the Lewis concept and not under the other two. Until the concept is fixed,
   the question is **ambiguous**, and recognition must resolve the ambiguity (3.6).
 - pH is a logarithmic quantity, so ratios of pH values carry no meaning. "pH 2 is twice as acidic as pH 4" treats
@@ -357,8 +362,8 @@ points where 1.0 failed or was strained. **They are not evidence that 2.0 is ade
 
 | Case | Problem in 1.0 | Treatment in 2.0 | Residual |
 |---|---|---|---|
-| H1 Euler and *polyhedron* | Q3: "vague concept sharpened" and "theorem refuted" were both faithful readings, with different truth verdicts (F5) | The exemplar-based concept had borderline cases (the "picture frame" solid). Anchors (the paradigm polyhedra) and goals (classifying solids; the Euler relation) are preserved, so monster-barring is **precisification** (3.6.2). Under supervaluation (3.6.4), the original theorem is **reading-dependent**: true on some admissible precisifications, false on others. Exception-barring and lemma incorporation then produce new contents (L2) and new defined concepts (M1). The truth verdict is no longer left to the encoder: it is "reading-dependent", for a stated reason. | Whether the solid with a tunnel was a borderline or a clear case of the earlier concept is a historical judgement (O1). |
-| H11 *H. pylori* | The belief about the stomach could be a frame assumption (L5) or a content (L2), with different entrenchment consequences (F5) | By D6, the belief was **tested** by some studies and **presupposed** in interpreting some biopsy observations (bacteria dismissed as contamination). It is therefore an accepted content that is also constitutive for that interpretive method. Its revision is classified L2 together with L3 (method). Entrenchment comes from dependence and robustness, not from level (6.3). The consequences no longer depend on the label. | Establishing what a historical practice presupposed needs historical evidence (O2). |
+| H1 Euler and *polyhedron* | Q3: "vague concept sharpened" and "theorem refuted" were both faithful readings, with different truth verdicts (F5) | The exemplar-based concept had borderline cases (the "picture frame" solid). Anchors (the paradigm polyhedra) and goals (classifying solids; the Euler relation) are preserved, so monster-barring is **precisification** (3.6.2). Under supervaluation (3.6.4), the original theorem is **reading-dependent**: true on some admissible precisifications, false on others. Exception-barring and lemma incorporation then produce new contents (L2) and new defined concepts (M1). The specification now states the verdict ("reading-dependent") and its reason. This is a development check, not evidence. | Whether the solid with a tunnel was a borderline or a clear case of the earlier concept is a historical judgement (O1). |
+| H11 *H. pylori* | The belief about the stomach could be a frame assumption (L5) or a content (L2), with different entrenchment consequences (F5) | By D6, the belief was **tested** by some studies and **presupposed** in interpreting some biopsy observations (bacteria dismissed as contamination). It is therefore an accepted content, and also a constitutive commitment of the frame of that interpretive method (D19, D6). Its revision is L2 for the tested content and L5 for the interpretive frame, whose successor drops the commitment. Entrenchment comes from dependence and robustness, not from level (6.3). The consequences no longer depend on the label. | Establishing what a historical practice presupposed needs historical evidence (O2). |
 | H6 Millennium Footbridge | No direction of fit; no grounds for design decisions | The design is a D17 item. Its adequacy content (that no excessive lateral response occurs under expected crowds) had standing grounded in models and codes whose domain did not cover synchronous lateral excitation. Conformance of the bridge was not at issue. The observed response is a record that undermines the adequacy content. The model, the method and the code were revised (L3). The retrofit decision has practical grounds (5.11). | Trade-offs among values in the retrofit choice (O10). |
 | H7 AlphaFold | The meaning of a model required interpretable components | Behavioural specification (D7). Predictions are records of runs of the model. Used as data, they bear on targets through a fit content grounded in blind benchmarking (D19). | — |
 | H10 Pluto | Lineage forms were not exclusive | The lineage link records the dimensions that changed: a deferential anchor added, one exemplar anchor dropped, extension narrowed, goals kept. By 3.6.2 this is a **meaning change** of the same concept (paradigm anchors and goals preserved). Holders who keep a geophysical concept hold a distinct concept with different central connections. | — |

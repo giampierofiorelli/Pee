@@ -7,9 +7,10 @@ Requirements addressed: R2, R5, R6, R7, R8, R9, R10.
 The universe acquires material from four kinds of source: texts, data, people and its own inquiry. Two principles
 govern every acquisition.
 
-**Attribution before adoption.** Acquiring material first produces an **attributed** content, for example "source
-S reports content X under method M". The holder is the source, not the universe. The universe adopts X, by
-changing its own standing towards X, only by a separate step that has its own grounds. One consequence is that
+**Attribution before adoption.** Acquiring material first produces an **attributed item** of whatever kind the
+material is: a content, model, record, method or design. It comes with an attribution content such as "source S
+provides item X under method M". The holder is the source, not the universe. The universe adopts X, by changing its
+own standing towards X, only by a separate step that has its own grounds. One consequence is that
 conflicting sources never produce a contradiction: they produce two attributions and a recorded conflict.
 
 **Interpretation is a hypothesis.** Mapping external material onto concepts of the universe is an inference
@@ -45,7 +46,8 @@ principles do not automatically become accepted content of other frames.
 Recognition (section 3.6.5) decides whether acquired material expresses a concept already in the universe. Its
 outcomes drive **consolidation**:
 
-- **identical** → the two entries are one concept, and both entry histories remain part of its provenance;
+- **identical** → the two acquisitions are of one concept, and both acquisition histories remain part of its
+  provenance;
 - **same concept with frame-relative roles, or co-referential** → the relation is represented, and both role
   profiles or both concepts remain;
 - **broader / narrower / overlapping** → the relation is represented;
@@ -64,13 +66,14 @@ Revisions are classified by **what changes**. The classes describe; they do not 
 | Class | What changes | Examples |
 |---|---|---|
 | **L1 Standing** | the attitude or support of any item | a hypothesis becomes accepted; a result is retracted after a replication failure; a record is judged corrupted |
-| **L2 Content** | a content is corrected or refined | a value updated with a better measurement |
-| **L3 Model or method** | a model's specification or domain; a method's procedure, assumptions or reliability profile | adding a term; restricting a domain after anomalies; revising a design code |
+| **L2 Content or record** | a content is corrected or refined; a record is corrected or superseded | a value updated with a better measurement; a dataset re-issued after a calibration error |
+| **L3 Model or method** | a model's specification or domain; a method's procedure, assumptions or reliability profile | adding a term; restricting a domain after anomalies |
 | **L4 Concept** | a concept's role profile, anchors or goals, with the outcome classified by section 3.6.2 | redefinition of a unit; precisification; splitting a concept |
-| **L5 Frame** | a frame's constitutive commitments or scope (D6) | adopting a new theory; changing a measurement convention |
+| **L5 Frame succession** | a successor frame with different constitutive commitments or scope is adopted; the predecessor remains, linked by lineage (D6) | adopting a new theory; changing a measurement convention |
 | **L6 Scaffold** | the most general categories | admitting fields as bearers of energy and momentum alongside bodies (section 3.8) |
+| **L7 Practical item** | a goal, norm, value, design or decision is revised | a requirement changed; a design code amended; a retrofit decided |
 
-A single episode often involves several classes at once. One example is a belief that is accepted content in some
+A single episode often involves several classes at once. As D19 allows, a belief may be accepted content in some
 studies and a presupposition of interpretation in others (D6).
 
 ### Entrenchment and the choice between revisions
@@ -128,8 +131,8 @@ changed. Common combinations have names. They are labels, **not mutually exclusi
 Whether a lineage link joins two versions of one concept or two concepts is decided by section 3.6.2, including the
 outcome "indeterminate".
 
-**Older concepts are not deleted.** Newtonian mass remains the concept in use in the Newtonian frame, which is still
-accepted within its domain of application. Phlogiston remains interpretable, so that historical texts can be read
+**Older concepts are not deleted.** Newtonian mass remains the concept in use in the Newtonian frame, which remains
+adopted within its domain of application. Phlogiston remains interpretable, so that historical texts can be read
 and so that some uses of "dephlogisticated air" can be recognised as referring to oxygen. On this point see the
 analysis of context-sensitive reference in theoretical change (Kitcher, "Theories, theorists and theoretical
 change", 1978).
@@ -156,7 +159,7 @@ standing, never an automatic acceptance.
 | **TC2 Positive, negative and neutral analogy are mapped** | known similarities, known differences and unknowns are listed, and the known differences do not touch the structure the principle depends on | Hesse, 1966; Bartha, 2010 |
 | **TC3 Regime match** | the target lies in the source model's domain of application, for example in the same dimensionless regime | Buckingham, 1914 |
 | **TC4 Causal similarity** (for causal content) | the target shares the causal structure and the support factors the effect depends on. "It worked there" does not imply "it will work here" | Cartwright and Hardie, *Evidence-Based Policy*, 2012; Pearl and Bareinboim, "External validity: from do-calculus to transportability across populations", 2014 |
-| **TC5 Concept alignment** | the concepts in the principle are recognised in the target frame (section 3.6) | — |
+| **TC5 Concept alignment** | the concepts in the principle are recognised in the target frame (section 3.6). If recognition is indeterminate, the transfer hypothesis is marked as dependent on the reading (3.6.4) | — |
 
 **Kinds of transfer** differ in what they carry and in how strong a license they need:
 
@@ -209,6 +212,7 @@ The universe can grow and revise itself without losing coherence because of five
 
 1. **Attribution before adoption** keeps conflicting inputs from colliding (6.1).
 2. **Frames relativise meanings and principles**, so new domains do not overwrite old ones (D6, 6.1).
-3. **Revision is layered, entrenched and recorded**, so changes are proportionate and traceable (6.3).
+3. **Revision is classified, governed by entrenchment and recorded**, so changes are proportionate and traceable
+   (6.3).
 4. **Lineage preserves the interpretability of old knowledge** across changes of meaning (6.3).
 5. **Coherence is local, graded and checked by explicit criteria**, with conflicts contained (6.5).

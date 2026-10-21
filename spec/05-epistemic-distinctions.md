@@ -10,7 +10,7 @@ universe:
 | Notion | Category in this model |
 |---|---|
 | **Observation** | an *occurrent*: an interaction that produces records |
-| **Evidence** | a *relation* between records or phenomena and a content, relative to background assumptions |
+| **Evidence** | a *relation* between records or phenomena and a content or model, relative to background assumptions |
 | **Inference** | an *occurrent*: a step that produces a content or standing from grounds, under an inference type |
 | **Hypothesis** | a *standing*: a content, model or frame entertained or proposed as a candidate |
 | **Explanation** | a *relation* between an explanans (a model, mechanism or law with conditions) and an explanandum |
@@ -69,8 +69,9 @@ are stable features inferred from many records. Theories usually explain phenome
 
 ## 5.4 Hypothesis
 
-A hypothesis is not a special kind of content. It is a **standing**: a content, model, mechanism, frame or
-identification proposed as a candidate for acceptance. Anything representable can be hypothesised:
+A hypothesis is not a special kind of content. It is a **standing**: a content, model, mechanism or
+identification proposed as a candidate for acceptance. A successor frame proposed for adoption is a practical
+proposal (D6), assessed through the contents and models formulated in it. Anything representable can be hypothesised:
 
 - "this model fits that target" (fit hypothesis);
 - "X causes Y" (causal hypothesis);
@@ -171,7 +172,7 @@ premises and inference type. This makes every conclusion traceable (C4, section 
 (D1) with its own standing. *E* is evidence for (or against) *H* relative to background *B*:
 
 - *E* is a record, a datum or a phenomenon;
-- *H* is a content, model or frame;
+- *H* is a content or model. A frame is assessed through the contents and models formulated in it (D6);
 - *B* consists of auxiliary assumptions, the method's validity conditions and the frame (Glymour, *Theory and
   Evidence*, 1980; Achinstein, *The Book of Evidence*, 2001).
 
@@ -201,7 +202,7 @@ independence.
 ## 5.9 Standing and grounds
 
 **Standing** (D12) applies to any representational item: a content is accepted as true, a model as fitting for a
-purpose, a method as reliable, a record as faithful. It has six dimensions:
+purpose, a method as reliable, a record as faithful. It has seven dimensions:
 
 | Dimension | Values (indicative, not closed) |
 |---|---|
@@ -209,6 +210,7 @@ purpose, a method as reliable, a record as faithful. It has six dimensions:
 | **Support** | for / against / both / neither (section 4.10), each with a degree whose calculus is deferred (section 4.9) |
 | **Holder** | an agent, community, source or the universe itself (D14) |
 | **Purpose** | for which purpose an acceptance holds: explanation, prediction, design, regulation, teaching |
+| **Standard of acceptance** | the support required for acceptance for this purpose, such as a replication requirement or a severity threshold. It is a methodological norm (D18). Any role of values in setting it is stated here (3.5) |
 | **Time** | record time of the standing; any validity interval |
 | **Scope** | the targets and conditions over which the standing is meant |
 
@@ -219,9 +221,10 @@ which may contain defeaters. The ground types are:
 - **G2 Inference**: section 5.7.
 - **G3 Testimony or source**: with the source's identity and reliability record.
 - **G4 Definition or convention**: within a frame.
-- **G5 Presupposition**: of a frame or method, accepted as a working condition.
+- **G5 Presupposition**: a commitment in the presupposition role (D19) of a frame or method. It is not itself an
+  acceptance: within the frame it is not tested (D6).
 - **G6 Recognition judgement**: section 3.6.5.
-- **G7 Evidential relation**: a relation of section 5.8 from records or phenomena to the content.
+- **G7 Evidential relation**: a relation of section 5.8 from records or phenomena to the content or model.
 
 Every standing other than "entertained" must have at least one ground (C4).
 
@@ -231,8 +234,8 @@ count as grounds for it.
 
 ## 5.10 Knowledge
 
-In this universe, **knowledge is a standing**: a content, model, method or frame that a holder **accepts**, on
-**grounds that meet the standards of support** the holder and the frame set for that kind of content and purpose,
+In this universe, **knowledge is a standing**: a content, model, method or record that a holder **accepts**, on
+**grounds that meet the standard of acceptance** for that kind of item and purpose,
 with **no undefeated counter-grounds known to the holder**, within a stated **scope**.
 
 Consequences:
@@ -241,9 +244,10 @@ Consequences:
   claim to know in the sense of an infallible justified true belief. The Gettier cases showed that justified true
   belief is not sufficient for knowledge anyway (Gettier, "Is justified true belief knowledge?", 1963). The
   universe only claims to track *acceptance on adequate grounds*, which is what scientific practice can inspect.
-- **Standards are themselves represented.** "Adequate grounds" refers to methodological contents (chapter 7), for
-  example a required level of replication or a significance or severity threshold. Those contents can be inspected
-  and disputed.
+- **Standards are themselves represented.** "Adequate grounds" refers to methodological norms (D18), for example a
+  required level of replication or a significance or severity threshold. Whether following a norm is reliable is a
+  methodological content with standing. Both can be inspected and disputed. The regress of standards for standards
+  is not resolved here (O13).
 - **Knowledge has several forms.** Knowing *that* is carried by contents and models. Knowing *how* is carried by
   methods and practices (Ryle, *The Concept of Mind*, 1949). Acquaintance with particulars is carried by records and
   exemplar anchors. Tacit knowledge resists full articulation (Polanyi, *The Tacit Dimension*, 1966). The universe

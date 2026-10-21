@@ -69,10 +69,14 @@ Physics Lie*, 1983; Cartwright, *Nature's Capacities and their Measurement*, 198
 **Op8 Model composition.** This combines models by coupling (shared variables), nesting (one model gives a
 parameter of another) or multi-scale linking (a micro-model gives a constitutive relation for a macro-model).
 Composition is admissible only if the shared components are recognised as the same concept (section 3.6), their
-frames are compatible or explicitly mapped, and their domains of application overlap on the coupled region.
+frames are compatible or explicitly mapped, and their domains of application overlap on the coupled region. Where
+recognition is indeterminate, the composition is evaluated under each reading and marked as dependent on the reading
+(3.6.4).
 
 **Op9 Embedding.** This places a content under an operator: negation (4.10), modality (4.8), conditional (4.6),
-or an attitude or standing ("hypothesised that …"). Inside attitude and standing contexts, substitution of
+or an attitude ascribed to a holder ("H hypothesises that …"). Such embedding forms an **attribution content** about
+the holder (D10, D14). It is never the universe's own standing, which is not part of any content (T6). Inside
+attitude contexts, substitution of
 co-referential concepts is **not** valid in general. Someone may hypothesise that the morning star is a planet
 without hypothesising that the evening star is (Frege, 1892). The universe must preserve such opacity.
 
@@ -253,8 +257,8 @@ The universe distinguishes kinds of modality, which ordinary language merges in 
 Rules:
 
 - Nomological possibility is **relative to a frame**, because different frames have different laws.
-- **Deontic modality belongs to norms.** It is a methodological or evaluative content (chapter 7), relative to the
-  norm and to the authority behind it. It is never a statement about what is physically possible.
+- **Deontic modality belongs to norms.** It is the mode of a norm (D18), relative to the norm and the authority behind
+  it. Contents can describe what a norm requires. It is never a statement about what is physically possible.
 - **Epistemic modality is a feature of standing, not of content** (section 4.11). "It may be contamination" says that
   the holder has not excluded the contamination hypothesis. It does not say that contamination is a disposition of
   the sample.
@@ -323,7 +327,7 @@ Rules:
   follows the distinction between open-world and closed-world reasoning (Reiter, "On closed world data bases",
   1978).
 - **Gap, support, opposition and conflict are four distinct states.** Following Belnap's four informational states
-  (Belnap, "A useful four-valued logic", 1977), the universe must represent, for any content and holder, whether
+  (Belnap, "A useful four-valued logic", 1977), the universe must represent, for any item and holder, whether
   there is **support for**, **support against**, **both** (conflict) or **neither** (gap).
 - **Incompatibility is the semantic basis of negation in content.** Determinables partition their value spaces, so
   contrariety comes from the structure of property spaces. Restricted negation is relative to the domain fixed
