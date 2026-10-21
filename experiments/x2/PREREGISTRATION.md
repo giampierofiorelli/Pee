@@ -199,8 +199,8 @@ The same rule applies to record context (B2 against B2-flat).
 | Step | Commit / hash |
 |---|---|
 | Preregistration | this commit |
-| Crawler reading of the pages | — |
-| Draw | — |
+| Crawler reading of the pages | 15 wave receipts, 177 pages (all hashes match), 1,023 declarations retained by Crawler `7d091ef` into a fresh snapshot copy (`crawler_read.mjs`) |
+| Draw | eligible: air_purifiers, dishwashers, laptops, robot_floor_cleaners, soundbars, ssds, stick_vacuums. **Test (untaught): air_purifiers, laptops, robot_floor_cleaners.** Development: every other page |
 | Freeze | — |
 | Questions seal | — |
 | Reference seal | — |
