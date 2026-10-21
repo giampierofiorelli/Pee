@@ -202,7 +202,7 @@ The same rule applies to record context (B2 against B2-flat).
 | Crawler reading of the pages | 15 wave receipts, 177 pages (all hashes match), 1,023 declarations retained by Crawler `7d091ef` into a fresh snapshot copy (`crawler_read.mjs`) |
 | Draw | eligible: air_purifiers, dishwashers, laptops, robot_floor_cleaners, soundbars, ssds, stick_vacuums. **Test (untaught): air_purifiers, laptops, robot_floor_cleaners.** Development: every other page |
 | Freeze | — |
-| Questions seal | — |
-| Reference seal | — |
+| Questions seal | `questions.json` sha256 `3a48ea78e34cabadc9944f61b31e77eb86ff96dfd8e35890e6ea93a14c0f5385` (100 items: 79 limit checks, 21 comparisons; blind Claude author reading only the test categories' records); annotator copy without author notes `947ed421…2198` |
+| Reference seal | `reference.json` sha256 `947494e00faf24304d148ead179965b54c99f3eada030440c73fcd86c05caf04`. Two blind annotations (`d89a6be8…d3ce`, `aeb9d68e…e602`) agree on verdict for 99 of 100 items (Cohen κ 0.987); one adjudicated, 0 excluded. The adjudicator replied with counts only. Sealed before any arm ran and before the developer saw any test item. Incident: annotator 2 ran by mistake an unrelated script left in the shared scratchpad; it rewrote one file of earlier work (I1) with byte-identical content (sha256 checked against the committed copy). No X2 material was affected |
 | First runs | — |
 | Report | — |
