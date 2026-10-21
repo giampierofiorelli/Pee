@@ -34,8 +34,10 @@ third-party full text is stored in this repository.
 - Kripke, S. *Naming and Necessity*. Harvard University Press, 1980.
 - Lewis, D. "General semantics". *Synthese*, 1970.
 - Lewis, D. "How to define theoretical terms". *Journal of Philosophy*, 1970.
+- Lewis, D. "Putnam's paradox". *Australasian Journal of Philosophy*, 1984.
 - Lewis, D. *Counterfactuals*. Blackwell, 1973.
 - Montague, R. "Universal grammar". *Theoria*, 1970.
+- Mourelatos, A. P. D. "Events, processes, and states". *Linguistics and Philosophy*, 1978.
 - Parsons, T. *Events in the Semantics of English*. MIT Press, 1990.
 - Partee, B. "Compositionality". In Landman and Veltman (eds.), *Varieties of Formal Semantics*, 1984.
 - Price, H. "Why 'not'?". *Mind*, 1990.
@@ -44,6 +46,7 @@ third-party full text is stored in this repository.
 - Quine, W. V. O. "Two dogmas of empiricism". *Philosophical Review*, 1951.
 - Sellars, W. *Empiricism and the Philosophy of Mind*, 1956.
 - Tarski, A. "The semantic conception of truth and the foundations of semantics". *Philosophy and Phenomenological Research*, 1944.
+- Tarski, A. "Der Wahrheitsbegriff in den formalisierten Sprachen". *Studia Philosophica*, 1936 (Polish original 1933).
 - Turing, A. M. "On computable numbers, with an application to the Entscheidungsproblem". *Proceedings of the London Mathematical Society*, 1936.
 - Williamson, T. *Vagueness*. Routledge, 1994.
 - Wittgenstein, L. *Philosophical Investigations*. Blackwell, 1953.
@@ -108,6 +111,7 @@ third-party full text is stored in this repository.
 - Knight, F. H. *Risk, Uncertainty and Profit*. Houghton Mifflin, 1921.
 - Levi, I. *The Enterprise of Knowledge*. MIT Press, 1980.
 - Lewis, D. "A subjectivist's guide to objective chance". In Jeffrey (ed.), *Studies in Inductive Logic and Probability*, Vol. II, 1980.
+- Roth, D. "On the hardness of approximate reasoning". *Artificial Intelligence*, 1996.
 - Shafer, G. *A Mathematical Theory of Evidence*. Princeton University Press, 1976.
 - Spohn, W. *The Laws of Belief*. Oxford University Press, 2012.
 - Toulmin, S. *The Uses of Argument*. Cambridge University Press, 1958.
@@ -143,6 +147,7 @@ third-party full text is stored in this repository.
 - Halpern, J. Y. *Actual Causality*. MIT Press, 2016.
 - Hanson, N. R. *Patterns of Discovery*. Cambridge University Press, 1958.
 - Hempel, C. G. and Oppenheim, P. "Studies in the logic of explanation". *Philosophy of Science*, 1948.
+- Hempel, C. G. *Aspects of Scientific Explanation*. Free Press, 1965.
 - Hesse, M. *Models and Analogies in Science*. University of Notre Dame Press, 1966.
 - Hintikka, J. *Inquiry as Inquiry: A Logic of Scientific Discovery*. Kluwer, 1999.
 - Houkes, W. and Vermaas, P. E. *Technical Functions*. Springer, 2010.
@@ -164,6 +169,7 @@ third-party full text is stored in this repository.
 - Royall, R. *Statistical Evidence: A Likelihood Paradigm*. Chapman and Hall, 1997.
 - Salmon, W. C. *Scientific Explanation and the Causal Structure of the World*. Princeton University Press, 1984.
 - Spirtes, P., Glymour, C. and Scheines, R. *Causation, Prediction, and Search*, 2nd ed. MIT Press, 2000.
+- Suppe, F. (ed.). *The Structure of Scientific Theories*, 2nd ed. University of Illinois Press, 1977 (1st ed. 1974).
 - Suppes, P. "A comparison of the meaning and uses of models in mathematics and the empirical sciences". *Synthese*, 1960.
 - Thagard, P. *Conceptual Revolutions*. Princeton University Press, 1992.
 - van Fraassen, B. C. *The Scientific Image*. Oxford University Press, 1980.
@@ -200,5 +206,6 @@ third-party full text is stored in this repository.
 - Purcell, E. M. and Pound, R. V. "A nuclear spin system at negative temperature". *Physical Review*, 1951.
 - Ramsey, N. F. "Thermodynamics and statistical mechanics at negative absolute temperatures". *Physical Review*, 1956.
 - Rubin, V. C. and Ford, W. K. "Rotation of the Andromeda Nebula from a spectroscopic survey of emission regions". *Astrophysical Journal*, 1970.
+- Rubin, V. C., Ford, W. K. and Thonnard, N. "Rotational properties of 21 Sc galaxies with a large range of luminosities and radii". *Astrophysical Journal*, 1980.
 - Volterra, V. "Variazioni e fluttuazioni del numero d'individui in specie animali conviventi". *Memorie della Reale Accademia Nazionale dei Lincei*, 1926.
 - Zwicky, F. "Die Rotverschiebung von extragalaktischen Nebeln". *Helvetica Physica Acta*, 1933.

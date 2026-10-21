@@ -65,8 +65,18 @@ The work followed six steps.
 
 Conventions used throughout:
 
-- Theses are numbered **T1…**, definitions **D1…**, coherence criteria **C1…**, open problems **O1…**, examples
-  **E1…**. Chapters refer to them by these labels.
+- Labels used throughout:
+  - requirements **R1…**;
+  - evaluation criteria **K1…**;
+  - alternatives: theories of meaning **A1…**, units of content **U1…**, scaffolds **SC1…**, epistemic
+    representations **EP-a…**, theories of revision **RV-a…**;
+  - theses **T1…**, definitions **D1…** and composition operations **Op1…**;
+  - negation cases **N1…**, acquisition modes **M1…**, revision levels **L1…**, ground types **G1…**, transfer
+    conditions **TC1…** and coherence criteria **C1…**;
+  - examples **E1…**, adequacy criteria **AQ1…**, verification procedures **V1…**, rival proposals **P1…**, open
+    problems **O1…**.
+
+  Chapters refer to items by these labels.
 - Sketches written in the form `⟨ … ⟩` are **non-normative illustrations**. They are not a syntax, a data format or
   a schema, and S1 is not bound by them.
 - "Must" marks an obligation on any later representation. "May" marks something permitted but not required.

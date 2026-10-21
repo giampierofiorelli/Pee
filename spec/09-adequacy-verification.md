@@ -15,7 +15,7 @@ examples (chapter 8) are not evidence, and agreement among Claude agents is not 
 
 | Req. | Where addressed |
 |---|---|
-| R1 general scope | T11; 3.6; chapter 8 (eleven domains) |
+| R1 general scope | T11; 3.7; chapter 8 (illustration only, not evidence) |
 | R2 acquire | 6.1 |
 | R3 understand | 3.4; 3.5; 4.1; 5.1 |
 | R4 connect | D6 intertheoretic mappings; 3.5.1; 4.3 lifting; Op8 |
@@ -25,12 +25,12 @@ examples (chapter 8) are not evidence, and agreement among Claude agents is not 
 | R8 learn new concepts and domains | 6.1 (M1–M6; new domains) |
 | R9 recognise | 3.5; 6.2 |
 | R10 transfer under conditions | 6.4 (TC1–TC5) |
-| R11 concepts, entities, processes, phenomena, events, properties, relations | D2; 3.6 |
+| R11 concepts, entities, processes, phenomena, events, properties, relations | D2; 3.7 |
 | R12 context, time, change, conditions, quantities, negation, possibility, uncertainty | 4.3–4.10 |
 | R13 knowledge, observation, hypothesis, explanation, causality, evidence, inference | chapter 5 |
 | R14 methodological knowledge | chapter 7 |
 | R15 support for a later adviser | 7.4; D10 evaluative content |
-| R16 no presupposed architecture; not assertion-based | 1.3; T1; 2.3; notation disclaimer in 1.4 |
+| R16 no presupposed architecture; not assertion-based | 1.3; T1; 2.3; 3.6; notation disclaimer in 1.4 |
 | R17 theoretical grounding | chapter 2; citations throughout; `references.md` |
 | R18 what meaning is and how it is identified | 3.3–3.5 |
 | R19 composition | 4.1 |
@@ -48,8 +48,8 @@ procedures below test.
 | AQ3 **Identity behaviour** | sameness and difference of meaning are judged with appropriate grades, including "undetermined" | recognition cases give the relations experts endorse, or "undetermined" where experts disagree |
 | AQ4 **Revision behaviour** | historical changes can be replayed with correct levels and lineages, and without losing interpretability | replayed episodes (V5) match expert historical accounts |
 | AQ5 **Transfer behaviour** | licensed transfers are permitted and unlicensed ones refused, for stated reasons | transfer cases match expert judgement on licensing |
-| AQ6 **Composition** | composite meanings follow from their parts and modes, and departures are explicit | encoders agree on composite representations (V2) |
-| AQ7 **Non-assertion basis** | models, practices and records are not secretly reduced to stocks of sentences | in held-out cases, encoders make substantive use of models, records and methods. A rival statement-based proposal (P2) loses information on the same cases (V6) |
+| AQ6 **Composition** | composite meanings follow from their parts and modes, and departures are explicit | composite representations in V2 and V3 cases can be derived from the parts and the named operation, and encoders agree on them |
+| AQ7 **Non-assertion basis** | models, practices and records are not secretly reduced to stocks of sentences | in held-out cases, encoders make substantive use of models, records and methods. The comparison with P2 (V6) shows whether a statement-based encoding loses information. If it loses none, this counts against AQ7 |
 | AQ8 **Architecture neutrality** | nothing in S0 forces a particular database, language or engine | reviewers find no hidden commitment, or the commitments found are justified semantically |
 | AQ9 **Clarity** | independent encoders interpret the specification consistently | inter-encoder agreement on key decisions reaches a threshold fixed in advance (V2) |
 

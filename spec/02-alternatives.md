@@ -76,7 +76,7 @@ Role alone does not fix reference (K1): a coherent role may be realised by nothi
 combine role and reference, are open to the objection that the two factors can come apart.
 
 **Retained.** Role is half of meaning. The holism objection is answered by separating a frame-relative constitutive
-core from collateral connections (section 3.4).
+core from collateral connections (D5, section 3.3).
 
 ### A4. Conceptual spaces and geometric semantics
 
@@ -194,7 +194,7 @@ logics are chosen in advance, which goes against the mission's order of work (K8
 the description-logic approach is still fundamentally a stock of axioms (K7).
 
 **Retained.** Identity criteria for categories, the continuant/occurrent distinction and attention to dependence
-relations, but inside a scaffold that can be revised (section 3.6).
+relations, but inside a scaffold that can be revised (section 3.7).
 
 ### A12. Situation and dynamic semantics
 
@@ -238,7 +238,8 @@ frame. Section 2.7 explains why this is a principled combination rather than a l
 ## 2.3 What is the primary unit of scientific content?
 
 **U1. Sentences or assertions (statement view).** A theory is a set of sentences closed under consequence, as in the
-"received view" of logical empiricism (Carnap, "Empiricism, semantics, and ontology", 1950). This option is
+"received view" of logical empiricism, as reconstructed by Suppe (Suppe (ed.), *The Structure of Scientific
+Theories*, 1974). This option is
 excluded as a *presupposition* by R16. It is also weak on its own terms: one theory can be stated by many
 non-equivalent sets of sentences, and much scientific knowledge is held as models, data, instruments and skills,
 not as sentences.
@@ -265,73 +266,73 @@ claims exist.
 
 ## 2.4 Which ontological scaffold, if any, comes first?
 
-**S1. A fixed upper ontology of substances and qualities,** such as BFO or DOLCE.
+**SC1. A fixed upper ontology of substances and qualities,** such as BFO or DOLCE.
 *For:* disciplined categories. *Against:* hard to extend, and it commits in advance on contested metaphysics,
 such as whether processes depend on continuants.
 
-**S2. The four-category ontology,** with kinds, attributes, objects and modes (Lowe, *The Four-Category Ontology*,
-2006). *For:* it explains laws as relations between kinds. *Against:* it has the same rigidity as S1.
+**SC2. The four-category ontology,** with kinds, attributes, objects and modes (Lowe, *The Four-Category Ontology*,
+2006). *For:* it explains laws as relations between kinds. *Against:* it has the same rigidity as SC1.
 
-**S3. A process ontology,** in which processes are fundamental and things are stabilised processes (Whitehead,
+**SC3. A process ontology,** in which processes are fundamental and things are stabilised processes (Whitehead,
 *Process and Reality*, 1929; Rescher, *Process Metaphysics*, 1996; Nicholson and Dupré (eds.), *Everything Flows*,
 2018). *For:* it fits biology, chemistry and field physics, where "things" are dynamic stabilities. *Against:*
 it is less natural for metrology and for artefacts.
 
-**S4. No upper ontology,** with all categories learned bottom-up. *For:* maximal openness (R8). *Against:* without
+**SC4. No upper ontology,** with all categories learned bottom-up. *For:* maximal openness (R8). *Against:* without
 any scaffold there are no identity criteria, and recognition (R9) becomes impossible.
 
-**Decision.** A **minimal, revisable scaffold** (section 3.6). Continuants and occurrents are both basic, and
+**Decision.** A **minimal, revisable scaffold** (section 3.7). Continuants and occurrents are both basic, and
 neither is reduced to the other. Every scaffold category is itself a concept with role and anchors, so it can be
 revised, split or supplemented (T11). Only the **meta-level** (chapter 3, D1–D16) is fixed by this specification.
 
 ## 2.5 How are epistemic states represented?
 
-- **E-a. Binary acceptance:** a content is either in the knowledge base or not. This is simple, but it loses
+- **EP-a. Binary acceptance:** a content is either in the knowledge base or not. This is simple, but it loses
   degrees, reasons and disagreement.
-- **E-b. Probabilistic credence:** coherent degrees of belief (Jaynes, *Probability Theory: The Logic of Science*,
+- **EP-b. Probabilistic credence:** coherent degrees of belief (Jaynes, *Probability Theory: The Logic of Science*,
   2003). This is powerful, but it requires precise numbers that are often unavailable, and it merges ignorance with
   balanced evidence.
-- **E-c. Imprecise probabilities and belief functions:** intervals or sets of probabilities (Walley, *Statistical
+- **EP-c. Imprecise probabilities and belief functions:** intervals or sets of probabilities (Walley, *Statistical
   Reasoning with Imprecise Probabilities*, 1991), or belief functions (Shafer, *A Mathematical Theory of Evidence*,
   1976). These represent ignorance explicitly, at the cost of greater complexity.
-- **E-d. Ranking functions:** ordinal degrees of disbelief with a well-behaved revision theory (Spohn, *The Laws of
+- **EP-d. Ranking functions:** ordinal degrees of disbelief with a well-behaved revision theory (Spohn, *The Laws of
   Belief*, 2012).
-- **E-e. Argument-based standing:** a content's standing follows from the structure of reasons for and against it
+- **EP-e. Argument-based standing:** a content's standing follows from the structure of reasons for and against it
   (Toulmin, *The Uses of Argument*, 1958; Dung, "On the acceptability of arguments and its fundamental role in
   nonmonotonic reasoning, logic programming and n-person games", 1995).
-- **E-f. Belief versus acceptance:** accepting a content as a premise for a purpose differs from believing it to a
+- **EP-f. Belief versus acceptance:** accepting a content as a premise for a purpose differs from believing it to a
   degree (Cohen, *An Essay on Belief and Acceptance*, 1992). Acceptance in a scientific setting is itself a
   decision with its own criteria (Levi, *The Enterprise of Knowledge*, 1980).
 
-**Decision.** Epistemic **standing** is separated from content, and it has several dimensions: attitude, support,
-holder and time (chapter 5). Standing is always accompanied by **grounds**, the reasons on which it rests (E-e).
-The *calculus* for degrees of support is **deferred to S1** (E-b, E-c and E-d remain candidates). S0 only fixes the
+**Decision.** Epistemic **standing** is separated from content, and it has six dimensions: attitude, support,
+holder, purpose, time and scope (section 5.9). Standing is always accompanied by **grounds**, the reasons on which it rests (EP-e).
+The *calculus* for degrees of support is **deferred to S1** (EP-b, EP-c and EP-d remain candidates). S0 only fixes the
 distinctions any calculus must preserve, such as the difference between ignorance and conflicting evidence, and
 between chance and credence (section 4.9).
 
 ## 2.6 How does a body of knowledge change?
 
-- **V-a. AGM belief revision:** rational postulates for expansion, contraction and revision of belief sets
+- **RV-a. AGM belief revision:** rational postulates for expansion, contraction and revision of belief sets
   (Alchourrón, Gärdenfors and Makinson, "On the logic of theory change", 1985), with epistemic entrenchment
   (Gärdenfors, *Knowledge in Flux*, 1988). It is precise, but it operates on sets of sentences in a fixed language,
   so it cannot handle **change of meaning or of vocabulary**.
-- **V-b. Reason maintenance:** dependency-tracking systems that retract conclusions when their supports go (Doyle,
+- **RV-b. Reason maintenance:** dependency-tracking systems that retract conclusions when their supports go (Doyle,
   "A truth maintenance system", 1979; de Kleer, "An assumption-based TMS", 1986). It is good at propagation, but it
   is an engineering device with no theory of which revision to prefer.
-- **V-c. Explanatory coherence:** acceptance is maximised coherence among hypotheses and evidence, and conceptual
+- **RV-c. Explanatory coherence:** acceptance is maximised coherence among hypotheses and evidence, and conceptual
   revolutions reorganise kind and part hierarchies (Thagard, *Conceptual Revolutions*, 1992).
-- **V-d. Research programmes and paradigms:** change is structured. A protected hard core sits behind a
+- **RV-d. Research programmes and paradigms:** change is structured. A protected hard core sits behind a
   revisable protective belt (Lakatos, "Falsification and the methodology of scientific research programmes", 1970).
   Revolutions replace frameworks whose concepts may not translate (Kuhn, *The Structure of Scientific Revolutions*,
   1962). Constitutive principles are a priori only relative to a framework and can change historically (Friedman,
   *Dynamics of Reason*, 2001).
-- **V-e. Epistemic iteration:** concepts and measurement standards are refined in successive self-correcting rounds
+- **RV-e. Epistemic iteration:** concepts and measurement standards are refined in successive self-correcting rounds
   (Chang, *Inventing Temperature*, 2004).
 
 **Decision.** Revision is **layered by depth**: standing, content, model, concept, frame and scaffold
-(section 6.3). Deeper layers are more entrenched, and revising them is a recorded event in its own right (V-a's
-entrenchment, V-d's structure). Revision is **non-destructive**: the universe keeps the history of what was held,
-when and why (V-b), so changes of meaning can be traced (V-c, V-d, V-e). AGM-style postulates may serve as a local
+(section 6.3). Deeper layers are more entrenched, and revising them is a recorded event in its own right (RV-a's
+entrenchment, RV-d's structure). Revision is **non-destructive**: the universe keeps the history of what was held,
+when and why (RV-b), so changes of meaning can be traced (RV-c, V-d, RV-e). AGM-style postulates may serve as a local
 standard within a fixed frame. They cannot be the whole theory.
 
 ## 2.7 Decisions and their risks
@@ -342,9 +343,9 @@ The proposal, called **anchored-role semantics in a model-centred universe**, co
 2. Properties live in **structured determinable spaces** (A4) under measurement theory.
 3. **Models** are the primary bearers of theory. **Practices and records** are first-class. Contents are derived
    (U2, U3, U4).
-4. A **minimal, revisable scaffold** with continuants and occurrents as basic (S1/S3, made revisable).
-5. **Standing is separate from content** and carries grounds. The calculus is deferred (E-e, E-f).
-6. **Layered, non-destructive revision** that includes change of meaning (V-a to V-e).
+4. A **minimal, revisable scaffold** with continuants and occurrents as basic (SC1/SC3, made revisable).
+5. **Standing is separate from content** and carries grounds. The calculus is deferred (EP-e, EP-f).
+6. **Layered, non-destructive revision** that includes change of meaning (RV-a to RV-e).
 
 **Why this is a principled combination and not eclecticism.** Each component answers a requirement that the
 alternatives fail separately (section 2.2, comparison table). The components also meet at a single point, the
@@ -365,7 +366,7 @@ frame. As a result, the frame is the one place where context, meaning change and
 least two rivals on the same held-out cases:
 
 - **Rival P1**, a pure conceptual-space semantics extended with events (A4 + A6).
-- **Rival P2**, a statement-based formal ontology with probabilistic annotations (A11 + E-b).
+- **Rival P2**, a statement-based formal ontology with probabilistic annotations (A11 + EP-b).
 
 P2 is the conventional option. Keeping it as a comparator tests whether the departure from assertions earns its
 cost.

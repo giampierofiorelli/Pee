@@ -16,7 +16,7 @@ can be detected (Mayo, 1996).
 | Category | What it is | Representation |
 |---|---|---|
 | **Question** | a request for information with presuppositions and a space of possible answers. Kinds include what, whether, how much, why and how (Belnap and Steel, *The Logic of Questions and Answers*, 1976; Hintikka, *Inquiry as Inquiry*, 1999) | an item whose answer space is defined by concepts. Its presuppositions are contents with standing. A question with a false presupposition is defective, and this can be detected |
-| **Goal** | a state of affairs an agent seeks | a content with an agent-relative attitude "desired" (section 7.4) |
+| **Goal** | a state of affairs an agent seeks | a content with an agent-relative conative attitude "desired" (sections 5.9, 7.4) |
 | **Inquiry** | an occurrent: a goal-directed sequence of observations, inferences and decisions | participants: agents, targets, methods, questions |
 | **Method** | a type of procedure (D16) | see section 7.3 |
 | **Study design** | a method for producing evidence of a given kind: a randomised trial, a cohort study, a case–control study, a field survey, a natural experiment, a controlled laboratory experiment | a method with known validity conditions and known biases |
@@ -55,7 +55,8 @@ contents grounded in the affected practices.
 The later adviser must understand human goals and evaluate products and interventions (R15). S0 therefore defines
 the semantic categories needed, without building the adviser.
 
-- **Goals** are contents held by an agent with the attitude *desired*, with a priority and with constraints. They are
+- **Goals** are contents held by an agent with the conative attitude *desired*, with a priority and with constraints.
+  The attitude is conative, not epistemic (section 5.9). They are
   kept apart from contents the agent *accepts* as true. That a person wants a treatment to work is not evidence that
   it does.
 - **Values and criteria** are explicit methodological or evaluative contents: safety, efficacy, cost, environmental
@@ -84,7 +85,7 @@ The universe's own procedures are methods in this sense, and can be described an
 apparatus. These include its acquisition modes (6.1), recognition (3.5), revision policy (6.3) and coherence checks
 (6.5). Two limits apply:
 
-- A sufficiently expressive language cannot define its own truth predicate without paradox (Tarski, 1944). So the
+- A sufficiently expressive language cannot define its own truth predicate without paradox (Tarski, 1936; conditions in section 10.2, item 5). So the
   universe's assessments of itself must be **stratified**: a content about the reliability of a method is
   evaluated by other methods, not by itself alone. The exact form of the stratification is a choice for S1 (O13).
 - Agreement among the universe's own methods, or among copies of the same system, does not count as independent

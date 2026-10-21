@@ -65,7 +65,7 @@ are stable features inferred from many records. Theories usually explain phenome
   Biology*, 2016). The universe therefore stores records with their **production context** and keeps
   interpretations separate.
 - A phenomenon's **robustness** is detection by independent methods with different assumptions. It is a central
-  ground for accepting the phenomenon (section 5.8).
+  ground for accepting the phenomenon (section 5.8, robustness).
 
 ## 5.4 Hypothesis
 
@@ -127,7 +127,7 @@ Explanation is a relation between an **explanans** (a model, mechanism, law with
 | **Covering-law** | deriving the explanandum from laws and conditions | Hempel and Oppenheim, "Studies in the logic of explanation", 1948 |
 | **Causal-mechanical** | locating the explanandum in a causal structure or mechanism | Salmon, *Scientific Explanation and the Causal Structure of the World*, 1984; Machamer, Darden and Craver, 2000 |
 | **Unificationist** | deriving many phenomena from few argument patterns | Kitcher, "Explanatory unification and the causal structure of the world", 1989 |
-| **Statistical** | showing the explanandum is probable, or more probable, given conditions | Salmon, 1984 |
+| **Statistical** | showing the explanandum is probable, or more probable, given conditions | Hempel, *Aspects of Scientific Explanation*, 1965; Salmon, 1984 |
 | **Functional** | showing what a trait or part does in a system, or why it was selected | Wright, "Functions", 1973; Cummins, "Functional analysis", 1975 |
 | **Structural / mathematical** | showing the explanandum follows from mathematical or structural constraints | e.g. optimal packing explaining hexagonal cells |
 | **Historical / evolutionary** | narrating the sequence of events that produced the explanandum | historical sciences (Cleland, "Methodological and epistemic differences between historical science and experimental science", 2002) |
@@ -150,7 +150,7 @@ type**. The inference types are:
 |---|---|---|
 | **Deductive** | truth-preserving within a frame | valid form; premises true in the same frame. It fails by equivocation across frames |
 | **Inductive / statistical** | from samples to populations, or from data to parameters | sampling, model assumptions. It fails by bias or by unrepresentative samples |
-| **Abductive / inference to the best explanation** | from phenomena to the hypothesis that best explains them (Peirce; Lipton, *Inference to the Best Explanation*, 2nd ed., 2004) | the space of rival hypotheses considered. It fails when the true hypothesis was not considered |
+| **Abductive / inference to the best explanation** | from phenomena to the hypothesis that best explains them (Peirce, *Collected Papers*, 1931–1935; Lipton, *Inference to the Best Explanation*, 2nd ed., 2004) | the space of rival hypotheses considered. It fails when the true hypothesis was not considered |
 | **Analogical** | from a source system to a target with shared structure (Hesse, *Models and Analogies in Science*, 1966; Bartha, *By Parallel Reasoning*, 2010) | relevant similarities; absence of known critical differences. It fails by superficial similarity |
 | **Causal** | from data and assumptions to causal structure | causal assumptions such as faithfulness and no unmeasured confounding. It fails when they are violated |
 | **Model-based** | calculation or simulation within a model | the model's fit and domain. It fails outside the domain |
@@ -167,7 +167,8 @@ premises and inference type. This makes every conclusion traceable (C4, section 
 
 ## 5.8 Evidence
 
-**Evidence is a relation, not a kind of item.** *E* is evidence for (or against) *H* relative to background *B*:
+**Evidence is a relation.** Like every relation the universe represents, an evidential relation is an item
+(D1) with its own standing. *E* is evidence for (or against) *H* relative to background *B*:
 
 - *E* is a record, a datum or a phenomenon;
 - *H* is a content, model or frame;
@@ -187,13 +188,15 @@ The universe must represent the following properties of an evidential relation:
 4. **Quality**: risks of bias in the production of *E*.
 5. **Directness**: whether *E* bears on *H* directly or through a proxy or surrogate endpoint.
 6. **Relevance and scope**: whether the population or system *E* comes from matches *H*'s target.
-7. **Independence**: whether pieces of evidence share sources, methods or assumptions. **Correlated evidence must not
+7. **Robustness**: whether the same result is obtained by methods with different assumptions (5.3).
+8. **Independence**: whether pieces of evidence share sources, methods or assumptions. **Correlated evidence must not
    be counted as independent.** The same rule applies to this project: several Claude agents agreeing are not
    independent evidence.
 
 How evidence of different kinds should be **combined** (randomised trials, mechanistic studies, observational
 data, expert judgement) is an open problem (O6). S0 only requires that the elements needed for any combination
-method be represented: direction, strength, severity, quality, directness, relevance and independence.
+method be represented: direction, strength, severity, quality, directness, relevance, robustness and
+independence.
 
 ## 5.9 Standing and grounds
 
@@ -217,8 +220,13 @@ which may contain defeaters. The ground types are:
 - **G4 Definition or convention**: within a frame.
 - **G5 Presupposition**: of a frame or method, accepted as a working condition.
 - **G6 Recognition judgement**: section 3.5.
+- **G7 Evidential relation**: a relation of section 5.8 from records or phenomena to the content.
 
 Every standing other than "entertained" must have at least one ground (C4).
+
+Standing is **epistemic**. Conative attitudes such as *desired*, *intended* or *required* are a separate kind of
+attitude, held by agents towards contents (section 7.4). They are never part of epistemic standing, and they never
+count as grounds for it.
 
 ## 5.10 Knowledge
 

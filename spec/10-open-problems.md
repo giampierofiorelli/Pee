@@ -19,12 +19,13 @@ Each problem is stated with what S0 already provides and what remains unresolved
 | **O9** | **Relations between levels**: reduction, realisation, supervenience, emergence | Constitution is distinguished from causation (5.5). Whole properties are recorded on wholes (Op3). Levels are a context parameter (4.3). | No account of when properties at a higher level are reducible. What makes multi-scale model composition admissible beyond Op8's conditions. |
 | **O10** | **Values and normative criteria** in evaluation | Values are explicit, relative to a holder and kept apart from facts (7.4). | How to represent trade-offs, incommensurable values and legitimate disagreement about weights. Where values legitimately enter inference, for example in evidence thresholds (Douglas, 2009). |
 | **O11** | **Granularity of concepts**: one concept with several cores, or several concepts? | Both are representable, linked by lineage (E1, E3). | A criterion for choosing a granularity, or an argument that the choice is conventional. |
-| **O12** | **Status of abstract structures** and of modal semantics | Abstract structures are representable as used in models (3.6). Both possible-worlds and dispositional semantics are admissible (4.8). | Realism, structuralism or fictionalism about mathematics. Which modal semantics fits which content type. |
+| **O12** | **Status of abstract structures** and of modal semantics | Abstract structures are representable as used in models (3.7). Both possible-worlds and dispositional semantics are admissible (4.8). | Realism, structuralism or fictionalism about mathematics. Which modal semantics fits which content type. |
 | **O13** | **Reflexivity**: the universe assessing its own methods | A stratification requirement (7.5). | The form of stratification, and how to avoid regress while letting methods support each other. |
-| **O14** | **Whether the meta-level is complete and minimal** | D1–D16 have been tested on E1–E11. | Whether D1–D16 suffice for the areas not covered (8.14), and whether some notion is redundant. |
+| **O14** | **Whether the meta-level is complete and minimal** | D1–D16 have been applied to the design examples E1–E11 (not evidence). | Whether D1–D16 suffice for the areas not covered (8.14), and whether some notion is redundant. |
 | **O15** | **Tacit knowledge** | Its existence and its holders are representable (5.10). Methods allow procedures that are only partly described (7.3). | How far skills can be represented at all. How tacit knowledge figures in grounds. |
 | **O16** | **Cost of explicitness.** T7 requires context, and T6 requires standing and grounds, for every content. This could be prohibitively heavy. | Degenerate models (D7). Context marked "unspecified" is allowed (4.3). | Whether declared defaults (for example a default frame for a domain) can reduce the cost without breaking T7 in practice. This needs to be studied in S1. |
 | **O17** | **Interpreting scientific language**, including hedging, implicature and rhetorical structure. How hedges in texts map to standing (Hyland, *Hedging in Scientific Research Articles*, 1998). | Attribution before adoption. Interpretation is a hypothesis (6.1). | Systematic criteria for mapping linguistic hedges to the dimensions of standing. |
+| **O18** | **Whether model-centred standing reduces to standing on contents** | Standing, revision and coherence apply to models, methods, records and frames (3.6). | Whether every such standing can be faithfully re-expressed as standing on finite or infinite sets of fit contents. If it can, the departure from an assertion-based model concerns organisation, not expressive power (V6). |
 
 ## 10.2 Status of formal properties
 
@@ -33,9 +34,9 @@ can be stated for S0 itself**. Any such statement would depend on S1 choices. Wh
 which known results become relevant under which conditions:
 
 1. **First-order validity.** If S1 represents the general contents of section 4.2 in classical first-order logic
-   with at least one binary relation symbol, validity (and so the consistency checking needed by C1) is undecidable
-   in general (Church, "A note on the Entscheidungsproblem", 1936; Turing, "On computable numbers, with
-   an application to the Entscheidungsproblem", 1936). It is semi-decidable: valid formulas can be enumerated.
+   with at least one binary relation symbol, validity is undecidable in general (Church, "A note on the Entscheidungsproblem", 1936; Turing, "On computable numbers, with
+   an application to the Entscheidungsproblem", 1936). Validity, and therefore inconsistency, is semi-decidable: valid formulas can be
+   enumerated. **Consistency (satisfiability), which checking C1 requires, is not semi-decidable.**
 2. **Description logics.** If S1 restricts definitions to a description logic, decidable fragments exist. For
    example, the description logic SROIQ is decidable (Horrocks, Kutz and Sattler, "The even more irresistible
    SROIQ", 2006), and its satisfiability problem is N2EXPTIME-complete (Kazakov, "RIQ and SROIQ are harder than
@@ -46,10 +47,13 @@ which known results become relevant under which conditions:
    "On the complexity of propositional knowledge base revision, updates, and counterfactuals", 1992).
 4. **Probabilistic inference.** If S1 uses Bayesian networks over discrete variables, exact inference is NP-hard
    (Cooper, "The computational complexity of probabilistic inference using Bayesian belief networks", 1990).
-   Approximate inference within certain error bounds is also NP-hard (Dagum and Luby, "Approximating probabilistic
-   inference in Bayesian belief networks is NP-hard", 1993).
-5. **Self-reference.** If the language of the universe can express arithmetic and is used to talk about its own
-   contents, a truth predicate for that language cannot be defined within it (Tarski's undefinability theorem). This
+   Exact inference is in fact #P-hard (Roth, "On the hardness of approximate reasoning", 1996). Approximating a
+   conditional probability, given evidence, to within an absolute error smaller than 1/2 is also NP-hard (Dagum and
+   Luby, "Approximating probabilistic inference in Bayesian belief networks is NP-hard", 1993).
+5. **Self-reference.** Suppose the universe's language is interpreted classically, can represent enough arithmetic
+   for diagonalisation (for example Robinson arithmetic), and is used to talk about its own contents. Then no
+   formula of that language can define truth for that language, that is, satisfy the T-schema for all its sentences
+   (Tarski, "Der Wahrheitsbegriff in den formalisierten Sprachen", 1936). This
    is why section 7.5 requires stratification.
 
 **Consequence for S1 (stated as a conditional, not as a result).** S0 requires first-order generality with relations

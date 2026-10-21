@@ -45,12 +45,13 @@ principles do not automatically become accepted content of other frames.
 Recognition (section 3.5) decides whether acquired material expresses something already in the universe. Its
 outcomes drive **consolidation**:
 
-- **identical** → merge the two items into one, with history preserved;
-- **equivalent or co-referential** → link them, and keep both if their roles differ;
-- **broader / narrower / overlapping** → link them;
-- **undetermined** → keep both, linked, with the question open.
+- **identical** → the two entries are one concept, and both entry histories remain part of its provenance;
+- **equivalent or co-referential** → the relation is represented, and both concepts remain where their roles
+  differ;
+- **broader / narrower / overlapping** → the relation is represented;
+- **undetermined** → both concepts remain, related by "undetermined", with the question open.
 
-A later finding can **undo** a merge (a split) or **perform** a delayed merge. Both are recorded revisions
+A later finding can **undo** an identification (a split) or **establish** a delayed one. Both are recorded revisions
 (section 6.3), never silent edits.
 
 ## 6.3 Revision
@@ -64,11 +65,12 @@ A later finding can **undo** a merge (a split) or **perform** a delayed merge. B
 | **L3 Model** | a model's structure, parameters or domain of application | adding a term; restricting the domain after anomalies |
 | **L4 Concept** | a concept's role (core or collateral) or anchors | redefinition of a unit; splitting a concept |
 | **L5 Frame** | a frame's constitutive principles, admissible models or scope | adopting a new theory; changing a measurement convention |
-| **L6 Scaffold** | the most general categories | admitting a new kind of infectious agent (E10) |
+| **L6 Scaffold** | the most general categories | admitting fields as bearers of energy and momentum alongside bodies (section 3.7) |
 
-**Entrenchment.** Deeper levels are more entrenched (Gärdenfors, 1988). To resolve a conflict, the universe first
-tries shallower revisions, in the order L1 → L6. It moves deeper only when shallower revisions fail repeatedly, or
-when the evidence bears directly on a deeper item. This is a **default, not a dogma**. Lakatos's account of
+**Entrenchment.** Deeper levels are more entrenched (Gärdenfors, 1988). Other things being equal, a conflict is resolved by the least
+entrenched revision that resolves it. A deeper revision is preferred only when shallower revisions have failed
+repeatedly, or when the evidence bears directly on a deeper item. This is a semantic preference ordering, not a
+procedure. This is a **default, not a dogma**. Lakatos's account of
 degenerating research programmes (1970) describes the opposite risk: protecting a core by endless repairs of the
 periphery. So the universe records the **history of repairs** made to protect each core, and treats accumulating
 repairs as a ground for deeper revision.
@@ -77,9 +79,10 @@ repairs as a ground for deeper revision.
 revised method (if a method's reliability is downgraded, the standings that relied on it are flagged), source
 retraction and an explicit request by a holder.
 
-**Propagation.** When an item is revised, every standing whose grounds depend on it is **flagged for
-reassessment**. Flagged standings are not automatically deleted. This is the semantic obligation behind reason
-maintenance (Doyle, 1979). The decision about each flagged item is itself a recorded event.
+**Propagation.** When an item is revised, every standing whose grounds depend on it **rests on a revised ground**,
+and this must be representable. Such standings are open to reassessment, but they are not thereby withdrawn. This
+is the semantic obligation behind reason maintenance (Doyle, 1979). The outcome of each reassessment is itself an
+event of the universe.
 
 **Non-destructive history (T8).** For any past time, the universe must be able to say what it held, about what,
 with what standing and why. Revisions are events in the universe with their trigger, the change made, the grounds
@@ -96,7 +99,7 @@ Concept revisions (L4) and frame revisions (L5) create **lineage** (D15). The fo
 | **Refinement** | core sharpened; extension narrowed or made precise | "species" under a particular species concept |
 | **Generalisation** | core loosened; extension widened | "acid" from Arrhenius to Brønsted–Lowry to Lewis (E2) |
 | **Split** | one concept becomes several | "jade" into jadeite and nephrite (Putnam, 1975); the "gene" concept (E3) |
-| **Merger** | several concepts recognised as one | "morning star" and "evening star" |
+| **Merger** | several concepts recognised as one | two species described separately and later judged to be one (taxonomic synonymy). Contrast "morning star" and "evening star": these remain distinct concepts, recognised as co-referential |
 | **Replacement with partial correspondence** | a new frame's concept succeeds an old one with an approximate mapping in a limit | relativistic and Newtonian mass |
 | **Elimination** | reference judged empty; concept kept as historical, with an empty extension | phlogiston and caloric as substance concepts |
 
@@ -151,14 +154,24 @@ that do not depend on it.
 | **C2 Type and dimension coherence** | compositions respect argument roles, scaffold categories, dimensions and scale types (sections 4.1, 4.7) |
 | **C3 Anchoring** | every concept in use has at least one non-lexical anchor, or is explicitly marked as a placeholder (M6) or as a pure theoretical posit with a descriptive anchor (M4) |
 | **C4 Groundedness** | every standing other than "entertained" has grounds, and every ground can be traced to records, definitions, presuppositions or attributed sources |
-| **C5 Provenance** | every item records how it entered the universe: source, time, procedure and holder |
+| **C5 Provenance** | for every item it is representable how it entered the universe: source, time, procedure and holder |
 | **C6 Declared non-conservativity** | a new concept's effect on contents in the existing vocabulary is either nil (conservative) or recorded |
 | **C7 Historical continuity** | every revision preserves earlier states and their interpretation in their frames (T8) |
 | **C8 Scope discipline** | uses of a model or causal content beyond its domain of application are marked as extrapolations or transfer hypotheses (section 6.4) |
-| **C9 Explanatory coherence** | no accepted explanation or acceptance depends on a content the same holder rejects |
+| **C9 No reliance on rejected content** | no accepted explanation or acceptance depends on a content the same holder rejects |
 | **C10 Category separation** | content and standing; chance and credence; data and phenomena; world change and universe change; association and causation are not conflated (sections 4.11, 5.1–5.5) |
 | **C11 No forced decisions** | no closed world without declared closure (4.10); no identity or merge without grounds (3.5); "undetermined" remains available |
 | **C12 Contained conflict** | contradictions are relativised to frames or holders, or recorded as conflicts. They are never resolved by deleting the losing side without trace |
+
+**Grading.** C1–C12 are conditions that are either met or violated. The *degree* of coherence of a frame or a
+body of knowledge is a profile, not a single number. The profile covers:
+
+- the number and depth of recorded conflicts;
+- the share of standings that are grounded and robust;
+- the extent of positive **explanatory integration**: how far accepted contents explain one another and are
+  explained together, in the sense of explanatory coherence (Thagard, 1992).
+
+How these dimensions are measured is left to S1.
 
 C12 corresponds to a family of logical techniques: paraconsistent containment, and reasoning within consistent
 "chunks" with controlled exchange between them (Brown and Priest, "Chunk and permeate, a paraconsistent inference

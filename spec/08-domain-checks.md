@@ -69,9 +69,10 @@ but not a proton donor.
 - Three concepts share the lexical anchor "acid" and partly share operational anchors, such as indicators and
   titration in aqueous media. Their cores differ.
 - The relations are **narrower/broader** within the shared chemistry frame, with a **generalisation lineage**.
-- "BF₃ is an acid" is satisfied under the Lewis concept and not under the other two. Asking whether it is "true"
-  without fixing the concept is a defective question, because its presupposition fails (section 7.2).
-- pH is a logarithmic quantity, so "pH 2 is twice as acidic as pH 4" is flagged as meaningless (4.7).
+- "BF₃ is an acid" is satisfied under the Lewis concept and not under the other two. Until the concept is fixed,
+  the question is **ambiguous**, and recognition must resolve the ambiguity (3.5).
+- pH is a logarithmic quantity, so ratios of pH values carry no meaning. "pH 2 is twice as acidic as pH 4" treats
+  pH as a ratio scale. On the [H⁺] reading the claim is false, since the ratio is 100 (4.7).
 
 **Features exercised:** lexical anchors are insufficient for identity (3.5.2), relations between meanings (3.5.1),
 generalisation lineage (6.3), meaningfulness (Op5).
@@ -93,7 +94,8 @@ distinguishes several gene concepts in current use (Griffiths and Stotz, *Geneti
 - Exemplar anchors, meaning particular well-studied genes, are shared across the concepts. They are the main
   evidence for co-reference on central cases.
 - "The human genome contains about N genes" is relative to the gene concept and the annotation convention used. Its
-  value changes as annotation is revised, which is a world-time versus record-time distinction (4.4).
+  value changes as annotation is revised. This is relativity to a convention (a deferential anchor) combined with a
+revision of the universe (6.3). It is not a change in the world.
 - Interpreting a paper's use of "gene" is an interpretive hypothesis (6.1).
 
 **Features exercised:** split lineage (6.3), indeterminate reference (D3), interpretive uncertainty (4.9),
@@ -171,15 +173,16 @@ qualitative behaviour.
 - One **abstract structure**: a pair of coupled non-linear differential equations with bilinear interaction terms.
   Two models in different frames, chemical kinetics and population ecology, instantiate it.
 - Transfer from one domain to the other is licensed **structurally and heuristically** under TC1 (same relational
-  structure: growth, mass-action-like encounter and loss) and TC3 (well-mixed, large-number regime, so continuous
-  variables are adequate). The negative analogy (TC2) is listed: organisms reproduce with delays and age structure,
+  structure: growth, mass-action-like encounter and loss) TC3 (well-mixed, large-number regime, so continuous
+  variables are adequate) and TC5 (concentrations of reacting species align with population densities, and the
+  mass-action rate with the encounter rate). The negative analogy (TC2) is listed: organisms reproduce with delays and age structure,
   and real oscillating reactions are generally modelled by other mechanisms.
 - **Quantitative** transfer of parameter values is refused.
 - The model's idealisations are marked as Galilean and minimalist (Op7). Contents derived from it inherit fit
   limitations.
 
-**Features exercised:** abstract structure shared across frames (3.6), transfer conditions (6.4), refusal of transfer,
-idealisation (Op7), model composition (Op8) when predator–prey dynamics are coupled with environmental drivers.
+**Features exercised:** abstract structure shared across frames (3.7), transfer conditions (6.4), refusal of transfer,
+idealisation (Op7).
 
 **Strain:** none significant. This was a design target for R10.
 
@@ -222,8 +225,9 @@ a standard test condition. A household wants to know the performance in a cold c
 - Thermodynamics supplies a **nomological bound**: the heating COP cannot exceed T_hot / (T_hot − T_cold), with
   thermodynamic (ratio-scale) temperatures. This links back to E1.
 - A claimed COP above the bound for the stated conditions would be **nomologically impossible** in the
-  thermodynamic frame. That would be a detectable conflict (C1), whose most likely resolution is at L1 or L2 (an
-  error in the claim), not at L5 (thermodynamics).
+  thermodynamic frame. Because the claim is only attributed, this is a conflict between holders: the manufacturer's
+  claim against the thermodynamics the universe accepts. Adopting the claim would violate C1. By entrenchment, the
+  claim is the item that yields (L1 or L2), not thermodynamics (L5).
 - Performance in the household's climate is a **transfer hypothesis** from the test model to field conditions (7.4,
   rated versus realised).
 - The household's evaluation needs a goal, criteria (running cost, comfort, emissions), a comparator (the existing
@@ -236,7 +240,8 @@ checks, entrenchment in conflict resolution (6.3), rated versus realised perform
 
 ## 8.10 E9 — Dark matter (astrophysics)
 
-**Situation.** Galaxy cluster dynamics (Zwicky, 1933), flat galactic rotation curves (Rubin and Ford, 1970) and
+**Situation.** Galaxy cluster dynamics (Zwicky, 1933), galactic rotation curves (Rubin and Ford, 1970; Rubin, Ford and
+Thonnard, 1980) and
 gravitational lensing indicate more gravitating mass than is visible. Two kinds of explanation compete:
 
 - unseen matter, often taken to be non-baryonic particles;
@@ -272,14 +277,15 @@ assumption that infectious agents replicate using nucleic acids. The proposal la
 
 - Before the revision, "carries nucleic acid" was effectively **core** to the concept *infectious agent* in the
   relevant frame. Accepting prions required a **frame revision (L5)** that moved this connection from core to
-  collateral, and a **scaffold-level addition (L6)**: a new occurrent type, templated conformational propagation,
-  as a form of replication.
+  collateral, together with a **concept revision (L4)** that admitted a new occurrent type, templated
+  conformational propagation, as a form of replication. Neither is a scaffold category, so this is not an L6
+  revision.
 - The prion concept entered by **M4** and then gained operational anchors (assays) by **M3**.
 - The standing history shows a long period of contested support with many holders. Entrenchment explains the
   resistance, and the accumulating repairs to the old core (for example postulated undetected nucleic acids) are
   recorded as grounds for deeper revision (6.3).
 
-**Features exercised:** revision of a frame and the scaffold, entrenchment and repair history, acquisition modes.
+**Features exercised:** frame and concept revision, entrenchment and repair history, acquisition modes.
 
 **Strain.** Deciding *when* a core connection should be demoted is a judgement the model represents but does not
 reduce to a rule (O1).
@@ -292,7 +298,7 @@ produce **breaks in time series**: the same label measures something slightly di
 
 **Representation.**
 
-- *Unemployed* is a **conventional kind** (3.6) with a deferential anchor (a standard) and an operational anchor (a
+- *Unemployed* is a **conventional kind** (3.7) with a deferential anchor (a standard) and an operational anchor (a
   survey instrument).
 - A survey redesign is an **anchor change that alters the extension**, unlike the kilogram case. It is recorded as a
   lineage link with a correspondence on overlapping cases, often estimated from parallel runs.
@@ -313,13 +319,14 @@ across conventions.
 | E9 | Section 3.3, D4: descriptive anchors must state their **category commitment**, so that reference can fail. |
 | E11 | Section 6.3: lineage form **anchor change altering extension** added. |
 | E4 | No change; confirmed that lineage (D15) applies to contents. |
+| E10 | Reclassified after internal review as an L4/L5 revision. The L6 example is now fields (section 3.7). |
 
 Because these changes were prompted by these examples, the examples are doubly unusable as evidence for the
 corresponding features.
 
 ## 8.14 Summary
 
-| Ex. | Domain | Main features exercised | Verdict |
+| Ex. | Domain | Main features exercised | Designer's self-assessed verdict (not evidence) |
 |---|---|---|---|
 | E1 | physics, metrology | anchors, frames, scale types, frame-relative possibility | handled after amendment |
 | E2 | chemistry | lexical vs other anchors, generalisation lineage | handled |
@@ -330,7 +337,7 @@ corresponding features.
 | E7 | cognitive psychology | latent constructs, identity hypotheses, scale uncertainty | represented; not decidable (O2, O4) |
 | E8 | engineering, products | attribution, nomological bounds, evaluation | handled |
 | E9 | astrophysics | theoretical posits, background-relative evidence | handled after amendment |
-| E10 | microbiology | frame and scaffold revision, entrenchment | handled; criteria open (O1) |
+| E10 | microbiology | frame and concept revision, entrenchment | handled; criteria open (O1) |
 | E11 | economics, statistics | conventional kinds, anchor change altering extension | handled after amendment |
 
 **Not covered by these checks:** pure mathematics as a body of knowledge in its own right (the model treats

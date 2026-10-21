@@ -26,8 +26,8 @@ generalised to *catalyst*:
 - **intersective** modifiers: "aqueous solution" is a solution that is aqueous;
 - **subsective** modifiers: "large bacterium" is large *for a bacterium*. The comparison class is explicit, and in a
   property space the modifier picks a region relative to that class;
-- **privative or non-factive** modifiers: "putative gene", "virtual particle", "model organism", "simulated
-  annealing". The result is *not* a subtype of the head concept, so composition must not infer "is a gene" from
+- **privative or non-factive** modifiers: "putative gene", "virtual particle", "fake fossil", "former
+  species". The result is *not* a subtype of the head concept, so composition must not infer "is a gene" from
   "putative gene";
 - **frame-shifting** modifiers: "effective mass" (solid-state physics), "apparent magnitude". These introduce a
   concept defined in a different frame, linked to the head concept by an explicit mapping.
@@ -170,7 +170,7 @@ Change in the world is represented in three complementary ways, because differen
 The universe must also represent:
 
 - **Change of kind**: metamorphosis, phase change, a star becoming a white dwarf. Whether the entity persists through
-  the change depends on the kind's persistence criteria (section 3.6).
+  the change depends on the kind's persistence criteria (section 3.7).
 - **Change affecting identity**: fission (cell division), fusion (cell fusion, merger of galaxies), gradual
   replacement (turnover of molecules in an organism). The universe must represent the lineage relations among the
   entities involved, not force a single persisting identity.
@@ -248,10 +248,13 @@ The universe distinguishes kinds of modality, which ordinary language merges in 
 | **Chance** | has non-zero objective probability in a stochastic model | "this nucleus may decay within the next second" |
 | **Technical feasibility** | achievable with available or foreseeable means | "the material can be produced at scale" |
 | **Epistemic** (relative to a holder) | compatible with what the holder accepts | "the culprit may be contamination" |
+| **Deontic / normative** (relative to a norm and its authority) | permitted or required by a regulation, standard or protocol | "the device must not exceed the noise limit"; "the protocol permits unblinding after interim analysis" |
 
 Rules:
 
 - Nomological possibility is **relative to a frame**, because different frames have different laws.
+- **Deontic modality belongs to norms.** It is a methodological or evaluative content (chapter 7), relative to the
+  norm and to the authority behind it. It is never a statement about what is physically possible.
 - **Epistemic modality is a feature of standing, not of content** (section 4.11). "It may be contamination" says that
   the holder has not excluded the contamination hypothesis. It does not say that contamination is a disposition of
   the sample.
@@ -300,7 +303,7 @@ Obligations on any later uncertainty calculus:
 |---|---|---|
 | **N1 Gap** | nothing is represented on the matter | no record of whether compound C is toxic |
 | **N2 Denial** | a content is rejected by a holder (standing) | "the community rejects the claim that C is carcinogenic" |
-| **N3 Contradictory negation** | the content's complement, within a domain fixed by the frame | "the sample is not radioactive" |
+| **N3 Restricted (choice) negation** | the content's complement within a domain of application fixed by the frame. Absolute contradictory negation is a limiting case | "the sample is not radioactive" |
 | **N4 Incompatibility (contrariety)** | a determinate excludes others of the same determinable | being in the liquid phase excludes being solid at that point. "Not acidic" is not the same as "basic" (neutral exists) |
 | **N5 Measured absence** | a value below a detection or quantification limit | "lead < 0.5 µg/L (LOD)" is an upper bound, not zero |
 | **N6 Negative result** | a study did not detect an effect | its weight depends on the study's sensitivity: absence of evidence is evidence of absence only to the extent of the study's power |
@@ -316,7 +319,7 @@ Rules:
   (Belnap, "A useful four-valued logic", 1977), the universe must represent, for any content and holder, whether
   there is **support for**, **support against**, **both** (conflict) or **neither** (gap).
 - **Incompatibility is the semantic basis of negation in content.** Determinables partition their value spaces, so
-  contrariety comes from the structure of property spaces. Contradictory negation is relative to the domain fixed
+  contrariety comes from the structure of property spaces. Restricted negation is relative to the domain fixed
   by the frame (Price, "Why 'not'?", 1990; Horn, *A Natural History of Negation*, 1989; Brandom, 1994).
 
 ## 4.11 Two places for qualifiers: content and standing
@@ -328,7 +331,7 @@ is a major source of error, so the universe must keep them distinct and must not
 |---|---|---|
 | Probability | chance, frequency | credence, degree of support |
 | Possibility | nomological, dispositional, technical | epistemic ("may be") |
-| Negation | contradictory negation, incompatibility, measured absence | denial, rejection |
+| Negation | restricted negation, incompatibility, measured absence | denial, rejection |
 | Time | world time | record time; time of acceptance |
 | Conditions | domain of application, manifestation conditions | conditions on the validity of evidence (study design assumptions) |
 | Perspective | physical reference frame; level of description | holder; community; source |
