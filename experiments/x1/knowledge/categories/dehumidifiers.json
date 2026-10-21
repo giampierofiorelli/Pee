@@ -1,0 +1,49 @@
+{
+ "about": "Category knowledge for dehumidifiers (DEVELOPMENT category, spent). Written by the developer from general domain knowledge. The moisture extraction rate of a dehumidifier depends strongly on air temperature and relative humidity, so a figure is meaningful only with its test conditions; it is a flow of condensed water, a different quantity from the air flow through the unit.",
+ "provenance": {
+  "source": "general domain knowledge of dehumidifiers",
+  "holder": "developer",
+  "basis": "definition"
+ },
+ "category": {
+  "id": "CAT:dehumidifier",
+  "terms": [
+   "dehumidifier",
+   "dehumidifiers"
+  ]
+ },
+ "concepts": [
+  {
+   "id": "DH:extraction_rate",
+   "label": "moisture extraction rate",
+   "dims": {
+    "L": 3,
+    "T": -1
+   },
+   "terms": [
+    "extraction rate",
+    "extraction",
+    "moisture removal",
+    "water extraction",
+    "removal rate"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "DH:water_tank_capacity",
+   "label": "water tank capacity",
+   "dims": {
+    "L": 3
+   },
+   "terms": [
+    "water tank",
+    "tank",
+    "water container",
+    "tank size",
+    "water container capacity",
+    "tank capacity"
+   ]
+  }
+ ],
+ "qualifier_equivalents": {}
+}

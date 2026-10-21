@@ -11,7 +11,10 @@ from types import MappingProxyType
 KINDS_V1 = ("quantity_kind", "relation_concept", "concept", "entity", "model", "record", "content", "question",
             "inquiry", "standing", "inference_record")
 BASES = ("published reference", "measurement record", "manufacturer statement", "definition", "hypothesis",
-         "assumption", "illustrative", "derived")
+         "assumption", "illustrative", "derived",
+         # X1: a statement retained from a document whose author role is not yet established (S0 6.1, RQ6), and a
+         # buyer's stated requirement (a conative item, S0 7.4; never an epistemic ground, plan I5)
+         "document statement", "stated requirement")
 
 
 class StoreError(ValueError):

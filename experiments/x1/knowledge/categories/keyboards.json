@@ -1,0 +1,96 @@
+{
+ "about": "Category knowledge for computer keyboards (taught test category). Written by the developer from general domain knowledge BEFORE any record of this category was seen (X1 section 5). It names the category, adds category-specific quantity concepts, and states one category-specific reading of a unit symbol.",
+ "provenance": {
+  "source": "general domain knowledge of keyboard switches and specifications",
+  "holder": "developer",
+  "basis": "definition"
+ },
+ "category": {
+  "id": "CAT:keyboard",
+  "terms": [
+   "keyboard",
+   "keyboards",
+   "mechanical keyboard",
+   "gaming keyboard",
+   "wireless keyboard"
+  ]
+ },
+ "concepts": [
+  {
+   "id": "K:key_travel",
+   "label": "total key travel",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "key travel",
+    "total travel",
+    "travel distance",
+    "travel"
+   ]
+  },
+  {
+   "id": "K:actuation_point",
+   "label": "actuation point (pre-travel)",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "actuation point",
+    "actuation distance",
+    "pre-travel",
+    "pretravel",
+    "actuation travel"
+   ]
+  },
+  {
+   "id": "K:actuation_force",
+   "label": "actuation (operating) force",
+   "dims": {
+    "M": 1,
+    "L": 1,
+    "T": -2
+   },
+   "terms": [
+    "actuation force",
+    "operating force",
+    "actuation weight",
+    "switch weight",
+    "key weight"
+   ],
+   "unit_readings": {
+    "g": "gf",
+    "gram": "gf",
+    "grams": "gf",
+    "gr": "gf"
+   },
+   "unit_readings_note": "switch force is customarily written in grams meaning gram-force"
+  },
+  {
+   "id": "K:polling_rate",
+   "label": "polling (report) rate",
+   "dims": {
+    "T": -1
+   },
+   "terms": [
+    "polling rate",
+    "report rate",
+    "polling"
+   ]
+  },
+  {
+   "id": "K:key_count",
+   "label": "number of keys",
+   "dims": {},
+   "terms": [
+    "number of keys",
+    "key count",
+    "keys"
+   ],
+   "counted": true
+  }
+ ],
+ "qualifier_equivalents": {
+  "keycaps": "keycap"
+ }
+}

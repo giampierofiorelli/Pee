@@ -1,0 +1,539 @@
+{
+ "about": "General quantity concepts (not specific to any product category). Each concept has a kind of quantity (its dimension), the terms by which it is named (anchors in language), and declared semantic properties. Selection rule (X1 section 6): a concept is included if it is a quantity kind of the metrology frame, or if its naming term recurs as a declaration label in at least two development categories (census of development records, 2026-10-21). Several concepts may share a term (polysemy, for example 'capacity' or 'size'); the dimension of the unit chooses among them, and a term never identifies a concept whose dimension disagrees with the unit. Authored by the developer; tier: definitions.",
+ "provenance": {
+  "source": "metrology frame + census of development-category labels",
+  "holder": "developer",
+  "basis": "definition"
+ },
+ "concepts": [
+  {
+   "id": "Q:mass",
+   "label": "mass (weight)",
+   "dims": {
+    "M": 1
+   },
+   "terms": [
+    "weight",
+    "mass",
+    "weighs",
+    "heavy"
+   ]
+  },
+  {
+   "id": "Q:width",
+   "label": "width",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "width",
+    "wide",
+    "breadth"
+   ],
+   "axis": "width"
+  },
+  {
+   "id": "Q:height",
+   "label": "height",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "height",
+    "tall",
+    "high"
+   ],
+   "axis": "height"
+  },
+  {
+   "id": "Q:depth",
+   "label": "depth",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "depth",
+    "deep"
+   ],
+   "axis": "depth"
+  },
+  {
+   "id": "Q:length",
+   "label": "length",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "length",
+    "long"
+   ],
+   "axis": "length"
+  },
+  {
+   "id": "Q:thickness",
+   "label": "thickness",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "thickness",
+    "thick"
+   ]
+  },
+  {
+   "id": "Q:diameter",
+   "label": "diameter",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "diameter"
+   ]
+  },
+  {
+   "id": "Q:linear_size",
+   "label": "linear size (axis not stated)",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "size"
+   ]
+  },
+  {
+   "id": "Q:dimensions",
+   "label": "overall dimensions (several axes)",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "dimensions",
+    "dimension",
+    "measurements",
+    "size"
+   ],
+   "tuple_of_axes": true
+  },
+  {
+   "id": "Q:volume_capacity",
+   "label": "volume capacity",
+   "dims": {
+    "L": 3
+   },
+   "terms": [
+    "capacity",
+    "volume",
+    "size"
+   ]
+  },
+  {
+   "id": "Q:charge_capacity",
+   "label": "electric charge capacity",
+   "dims": {
+    "I": 1,
+    "T": 1
+   },
+   "terms": [
+    "capacity"
+   ]
+  },
+  {
+   "id": "Q:energy_capacity",
+   "label": "energy capacity",
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -2
+   },
+   "terms": [
+    "capacity"
+   ]
+  },
+  {
+   "id": "Q:data_capacity",
+   "label": "data storage capacity",
+   "dims": {
+    "B": 1
+   },
+   "terms": [
+    "capacity",
+    "storage",
+    "memory"
+   ]
+  },
+  {
+   "id": "Q:mass_capacity",
+   "label": "load or mass capacity",
+   "dims": {
+    "M": 1
+   },
+   "terms": [
+    "capacity",
+    "load"
+   ]
+  },
+  {
+   "id": "Q:input_power",
+   "label": "electrical input power",
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -3
+   },
+   "terms": [
+    "power",
+    "wattage",
+    "power consumption",
+    "power input",
+    "input power",
+    "power rating",
+    "powerful",
+    "watts"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:output_power",
+   "label": "output power",
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -3
+   },
+   "terms": [
+    "output power",
+    "power output"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:energy_consumption",
+   "label": "energy consumption",
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -2
+   },
+   "terms": [
+    "energy consumption",
+    "energy use",
+    "energy usage"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:energy_consumption_rate",
+   "label": "energy consumption per period",
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -3
+   },
+   "terms": [
+    "energy consumption",
+    "energy use",
+    "energy usage"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:voltage",
+   "label": "voltage",
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -3,
+    "I": -1
+   },
+   "terms": [
+    "voltage"
+   ]
+  },
+  {
+   "id": "Q:current",
+   "label": "electric current",
+   "dims": {
+    "I": 1
+   },
+   "terms": [
+    "current",
+    "amperage"
+   ]
+  },
+  {
+   "id": "Q:resistance",
+   "label": "electrical resistance or impedance",
+   "dims": {
+    "M": 1,
+    "L": 2,
+    "T": -3,
+    "I": -2
+   },
+   "terms": [
+    "resistance",
+    "impedance"
+   ]
+  },
+  {
+   "id": "Q:frequency",
+   "label": "frequency",
+   "dims": {
+    "T": -1
+   },
+   "terms": [
+    "frequency"
+   ]
+  },
+  {
+   "id": "Q:rotational_speed",
+   "label": "rotational speed",
+   "dims": {
+    "T": -1
+   },
+   "terms": [
+    "speed",
+    "rotational speed",
+    "rpm"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:linear_speed",
+   "label": "speed",
+   "dims": {
+    "L": 1,
+    "T": -1
+   },
+   "terms": [
+    "speed",
+    "fast"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:refresh_rate",
+   "label": "refresh rate",
+   "dims": {
+    "T": -1
+   },
+   "terms": [
+    "refresh rate"
+   ]
+  },
+  {
+   "id": "Q:response_time",
+   "label": "response time",
+   "dims": {
+    "T": 1
+   },
+   "terms": [
+    "response time"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:battery_runtime",
+   "label": "operating time on one battery charge",
+   "dims": {
+    "T": 1
+   },
+   "terms": [
+    "battery life",
+    "battery runtime",
+    "runtime",
+    "run time",
+    "running time",
+    "operating time",
+    "working time",
+    "playtime",
+    "play time",
+    "playback time"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:charging_time",
+   "label": "time to charge the battery",
+   "dims": {
+    "T": 1
+   },
+   "terms": [
+    "charging time",
+    "charge time",
+    "recharge time",
+    "recharging time",
+    "time to charge"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:warranty",
+   "label": "warranty period",
+   "dims": {
+    "T": 1
+   },
+   "terms": [
+    "warranty",
+    "guarantee"
+   ]
+  },
+  {
+   "id": "Q:sound_level",
+   "label": "sound level (emitted noise; acoustic quantity not specified)",
+   "dims": {
+    "LEVEL": 1
+   },
+   "terms": [
+    "noise",
+    "noise level",
+    "sound level",
+    "loudness",
+    "loud",
+    "quiet",
+    "noisy"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:sound_pressure_level",
+   "label": "sound pressure level",
+   "dims": {
+    "LEVEL": 1
+   },
+   "terms": [
+    "sound pressure",
+    "sound pressure level",
+    "spl"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:sound_power_level",
+   "label": "sound power level",
+   "dims": {
+    "LEVEL": 1
+   },
+   "terms": [
+    "sound power",
+    "sound power level",
+    "acoustic power"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:pressure",
+   "label": "pressure",
+   "dims": {
+    "M": 1,
+    "L": -1,
+    "T": -2
+   },
+   "terms": [
+    "pressure"
+   ]
+  },
+  {
+   "id": "Q:force",
+   "label": "force",
+   "dims": {
+    "M": 1,
+    "L": 1,
+    "T": -2
+   },
+   "terms": [
+    "force"
+   ]
+  },
+  {
+   "id": "Q:temperature",
+   "label": "temperature",
+   "dims": {
+    "K": 1
+   },
+   "terms": [
+    "temperature",
+    "temp"
+   ]
+  },
+  {
+   "id": "Q:flow_rate",
+   "label": "volumetric flow rate (of an unspecified substance)",
+   "dims": {
+    "L": 3,
+    "T": -1
+   },
+   "terms": [
+    "flow",
+    "flow rate",
+    "throughput"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:air_flow",
+   "label": "air volume flow rate",
+   "dims": {
+    "L": 3,
+    "T": -1
+   },
+   "terms": [
+    "air flow",
+    "airflow",
+    "air volume",
+    "air throughput"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "Q:data_rate",
+   "label": "data rate",
+   "dims": {
+    "B": 1,
+    "T": -1
+   },
+   "terms": [
+    "speed",
+    "data rate",
+    "transfer rate",
+    "bandwidth"
+   ]
+  },
+  {
+   "id": "Q:angle",
+   "label": "angle",
+   "dims": {
+    "ANGLE": 1
+   },
+   "terms": [
+    "angle",
+    "tilt",
+    "swivel"
+   ]
+  },
+  {
+   "id": "Q:price",
+   "label": "price",
+   "dims": "currency",
+   "terms": [
+    "price",
+    "cost",
+    "costs",
+    "budget",
+    "cheap",
+    "expensive",
+    "spend"
+   ]
+  },
+  {
+   "id": "Q:count",
+   "label": "number of things (a count)",
+   "dims": {},
+   "terms": [
+    "number",
+    "count",
+    "quantity"
+   ],
+   "counted": true
+  }
+ ]
+}

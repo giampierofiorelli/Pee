@@ -1,0 +1,139 @@
+{
+ "about": "Category knowledge for coffee machines (taught test category). Written by the developer from general domain knowledge BEFORE any record of this category was seen (X1 section 5). In coffee-machine specifications an unqualified 'pressure' is the pump's rated maximum pressure, a different quantity from the brewing (extraction) pressure at the coffee bed; the water tank, bean hopper and milk container are components with their own capacities.",
+ "provenance": {
+  "source": "general domain knowledge of espresso and coffee machines",
+  "holder": "developer",
+  "basis": "definition"
+ },
+ "category": {
+  "id": "CAT:coffee_machine",
+  "terms": [
+   "coffee machine",
+   "coffee machines",
+   "espresso machine",
+   "coffee maker",
+   "bean-to-cup",
+   "bean to cup",
+   "espresso maker"
+  ]
+ },
+ "concepts": [
+  {
+   "id": "C:pump_pressure",
+   "label": "pump rated pressure",
+   "dims": {
+    "M": 1,
+    "L": -1,
+    "T": -2
+   },
+   "terms": [
+    "pump pressure",
+    "pressure",
+    "bar pressure",
+    "pump"
+   ]
+  },
+  {
+   "id": "C:brew_pressure",
+   "label": "brewing (extraction) pressure",
+   "dims": {
+    "M": 1,
+    "L": -1,
+    "T": -2
+   },
+   "terms": [
+    "brewing pressure",
+    "brew pressure",
+    "extraction pressure"
+   ]
+  },
+  {
+   "id": "C:water_tank_capacity",
+   "label": "water tank capacity",
+   "dims": {
+    "L": 3
+   },
+   "terms": [
+    "water tank capacity",
+    "water tank",
+    "water reservoir",
+    "reservoir",
+    "water container",
+    "tank capacity",
+    "water capacity",
+    "tank"
+   ]
+  },
+  {
+   "id": "C:bean_hopper_capacity",
+   "label": "bean hopper capacity",
+   "dims": {
+    "M": 1
+   },
+   "terms": [
+    "bean hopper capacity",
+    "bean hopper",
+    "bean container",
+    "bean capacity",
+    "hopper"
+   ]
+  },
+  {
+   "id": "C:milk_container_capacity",
+   "label": "milk container capacity",
+   "dims": {
+    "L": 3
+   },
+   "terms": [
+    "milk container",
+    "milk jug",
+    "milk carafe",
+    "milk tank"
+   ]
+  },
+  {
+   "id": "C:heat_up_time",
+   "label": "heat-up time",
+   "dims": {
+    "T": 1
+   },
+   "terms": [
+    "heat-up time",
+    "heat up time",
+    "heating time",
+    "warm-up time",
+    "warm up time",
+    "heat-up"
+   ],
+   "condition_sensitive": true
+  },
+  {
+   "id": "C:cup_clearance",
+   "label": "maximum cup height",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "cup height",
+    "cup clearance",
+    "max cup height",
+    "maximum cup height"
+   ]
+  },
+  {
+   "id": "C:grind_settings",
+   "label": "number of grind settings",
+   "dims": {},
+   "terms": [
+    "grind settings",
+    "grinder settings",
+    "grind levels",
+    "grind size settings"
+   ],
+   "counted": true
+  }
+ ],
+ "qualifier_equivalents": {
+  "reservoir": "tank"
+ }
+}

@@ -19,8 +19,8 @@ from . import model, rules
 from .store import Item, thaw
 
 PROGRAM = {"holder": "program", "basis": "derived"}
-_RANK = ["definition", "published reference", "measurement record", "manufacturer statement", "assumption",
-         "hypothesis", "illustrative"]  # later = weaker
+_RANK = ["definition", "published reference", "measurement record", "manufacturer statement", "document statement",
+         "assumption", "hypothesis", "illustrative"]  # later = weaker
 
 
 @dataclass
