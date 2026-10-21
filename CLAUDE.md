@@ -6,9 +6,10 @@ Read `MISSION.md` first. It is the only brief for this project.
 
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
-- **S1 so far:** one bounded increment (`experiments/s1core`, numerical model-based inference) followed by one
-  architectural correction (owner, 2026-10-21). No further S1 increment is authorised until the owner decides. No
-  full application, crawler, interface, ranking, database or framework.
+- **S1 so far:** a numerical model-based service (`experiments/s1core`) and its architectural correction; the
+  architecture assessment and plan (`reviews/S1-architecture-assessment-and-plan.md`); MS0 (sealed material) and the
+  MS1 vertical slice (`experiments/universe`), owner-authorised 2026-10-21. No milestone after MS1 is authorised
+  until the owner decides. No full application, crawler, interface, ranking, database or framework.
 - Use the skill `.claude/skills/pee-scientific-learning/` for all S1 work.
 
 ## Independence

@@ -380,6 +380,50 @@ and the values are recalled and unverified. OD5 (external sources and annotators
 - an importer that re-runs the s1core example situations through the slice and compares results with direct
   s1core output.
 
+### 8.4 MS1 result (executed, revision 2)
+
+The code is in `experiments/universe`:
+- `universe/store.py` holds items, the kind registry and the universe-event log;
+- `universe/rules.py` is the rule service;
+- `universe/model.py` is the s1core adapter;
+- `universe/contract.py` holds the contract, the cooperation logic and standing;
+- `universe/loader.py` loads the material and imports the s1core examples;
+- `run.py` runs the demonstration and `tests/test_ms1.py` holds the tests.
+
+**Demonstrated (tier T1, developer-chosen material):**
+
+| Capability | Evidence |
+|---|---|
+| Numerical and non-numerical inference over the same items, cooperating in both directions | The rule service passes rate laws and rate constants along declared relations. The model service computes from them. The rule service classifies the model's result against a class definition (12D, "essentially eliminated"). Grounds chain through Standing items (test `test_numerical_and_non_numerical_results_feed_each_other`) |
+| Sealed MS0 cases | 11/11 match the expectations sealed in `7800f0b` (8 held-out cases in 3 domains not used to build the mechanism, 3 development cases) |
+| Preservation of S1 | 15/15 s1core example queries give the same status and interval through the slice as through s1core directly. The s1core suite (47 tests) passes unchanged |
+| History | the state before an acquisition is reproduced: `at(seq)` gives UNRESOLVED where the present store gives SUPPORTED |
+| Records apart from interpretations; provenance required; items read-only; proposals carry basis "derived" with an inference record and a Standing item labelled by the weakest premise | integrity tests |
+| Question presuppositions | the ethanol question presupposing first-order kinetics is detected as defective (zero-order is established and single-valued) |
+| Knowledge dependence on held-out cases | removing the rate-law content, the `made_of` semantics or the 12D definition changes the result |
+
+**Not demonstrated, and known limits:**
+- Concepts are opaque ids with labels: anchors, goals, frames, mappings and recognition (MS2) are absent.
+- The rule service implements inheritance along declared relation semantics, bounded classification and
+  presupposition checks only. It is not a general rule engine.
+- The status vocabulary in answers is still s1core's. The mapping to gap, defeater and Belnap states is planned for
+  MS3.
+- Condition matching is shared by importing a private s1core function. It should move to a shared module when the
+  numerical engine is fully ported.
+- The model adapter rebuilds a projection on every call. This is acceptable at this size and not engineered for
+  scale.
+- **Metrology finding.** While choosing held-out domains, an electrical case (capacitor discharge) was found to be
+  inexpressible, because the s1core dimension system has no electric current. That domain was avoided rather than
+  patched. It confirms that metrology must become frame knowledge (section 4) before electrical, optical or other
+  domains can be served.
+- All evidence is T1. The material and values are developer-recalled and unverified. No author-independent
+  material (OD5) has been used.
+
+**Verdict for MS1.** No fundamental incompatibility appeared. One item store and one contract carried a numerical
+and a non-numerical service. This is a first, bounded confirmation of the extensibility claim for one numerical
+and one simple rule-based inference type. It does not yet cover concepts, causal knowledge, qualitative evidence
+or practical reasoning (MS2–MS5).
+
 **Why this order.**
 
 - **MS1 first.** It forces the item store and the inference contract to meet two real consumers at once, numerical
