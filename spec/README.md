@@ -5,7 +5,7 @@
 | **Version** | S0 1.0 |
 | **Frozen** | 2026-10-21 |
 | **Status** | Frozen; submitted for the owner's approval. **Not approved yet.** S1 has not started. |
-| **Git tag** | `s0-v1.0` |
+| **Frozen text** | commit `d82f95f` on `main`. The tag `s0-v1.0` was created, but this session's git connection refused to push tags, so the owner may need to add it on GitHub. Later commits change only this metadata. |
 
 ## What this is
 
