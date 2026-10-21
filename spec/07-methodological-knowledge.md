@@ -16,7 +16,7 @@ can be detected (Mayo, 1996).
 | Category | What it is | Representation |
 |---|---|---|
 | **Question** | a request for information with presuppositions and a space of possible answers. Kinds include what, whether, how much, why and how (Belnap and Steel, *The Logic of Questions and Answers*, 1976; Hintikka, *Inquiry as Inquiry*, 1999) | an item whose answer space is defined by concepts. Its presuppositions are contents with standing. A question with a false presupposition is defective, and this can be detected |
-| **Goal** | a state of affairs an agent seeks | a content with an agent-relative conative attitude "desired" (sections 5.9, 7.4) |
+| **Goal** | a state of affairs an agent seeks | a content held with a conative attitude (D18; sections 3.5, 7.4) |
 | **Inquiry** | an occurrent: a goal-directed sequence of observations, inferences and decisions | participants: agents, targets, methods, questions |
 | **Method** | a type of procedure (D16) | see section 7.3 |
 | **Study design** | a method for producing evidence of a given kind: a randomised trial, a cohort study, a case–control study, a field survey, a natural experiment, a controlled laboratory experiment | a method with known validity conditions and known biases |
@@ -50,22 +50,37 @@ effects did not replicate at the original strength (Open Science Collaboration, 
 psychological science", 2015). That finding is methodological knowledge, and it should change the standing of
 contents grounded in the affected practices.
 
-## 7.4 Goals, values and evaluation
+## 7.4 Goals, norms, values, designs, actions and evaluation
 
-The later adviser must understand human goals and evaluate products and interventions (R15). S0 therefore defines
-the semantic categories needed, without building the adviser.
+The later adviser must understand human goals, investigate solutions and evaluate products and interventions (R15).
+S0 defines the semantic categories needed, without building the adviser. All of them follow from the pluralism of
+section 3.4 and the five planes of section 3.5. None is an addition for a special case.
 
-- **Goals** are contents held by an agent with the conative attitude *desired*, with a priority and with constraints.
-  The attitude is conative, not epistemic (section 5.9). They are
-  kept apart from contents the agent *accepts* as true. That a person wants a treatment to work is not evidence that
-  it does.
-- **Values and criteria** are explicit methodological or evaluative contents: safety, efficacy, cost, environmental
-  impact, fairness. Which values are in force, and with which weights, is relative to a holder. It is never hidden
-  inside factual contents. This follows the analysis of the legitimate and illegitimate roles of values in science
-  (Douglas, *Science, Policy, and the Value-Free Ideal*, 2009).
-- **Artefacts and interventions** are represented as entities and occurrents with **functions**: what they are
-  designed or used to do (Houkes and Vermaas, 2010). They also have **performance quantities**, measured under
-  stated conditions.
+- **Goals** (D18) are contents held with a conative attitude, with a priority and with constraints. A goal is
+  satisfied when the world comes to match it. Goals are never grounds for accepting a content as true: that a person
+  wants a treatment to work is not evidence that it does (3.5).
+- **Requirements** are goals or norms stated for a design: "deck acceleration below a stated limit under crowd
+  loading". They are typically derived from stakeholders' goals and from applicable norms.
+- **Norms** (D18) are requirements or permissions issued by an authority: regulations, design codes, protocols. Their
+  deontic modality (4.8) is relative to the norm and its authority. Whether a norm is valid, current or applicable is
+  a content with standing.
+- **Values** (D18) are criteria for ranking outcomes, such as safety, efficacy, cost, environmental impact and
+  fairness. Which values are in force, and with what weights, is relative to a holder. Values enter decisions as
+  practical grounds (PG4, 5.11). They may also set standards of acceptance for a purpose (3.5). They never serve as
+  evidence (Douglas, 2009).
+- **Designs** (D17) have a world-to-item direction of fit. Three distinct questions apply to a design:
+  - *Adequacy*: would a conforming realisation achieve the requirements? This is a causal or model-based content,
+    with standing.
+  - *Conformance*: does this realisation conform to the design? This is assessed by inspection and testing.
+  - *Choice*: why this design rather than the alternatives? This is a decision with practical grounds (5.11).
+
+  The **design space**, the set of alternatives considered, is itself an item. Its incompleteness limits what the
+  choice can claim, in the same way that the space of rival hypotheses limits inference to the best explanation (5.7).
+- **Artefacts and interventions** are entities and actions (3.8) with **functions**: what they are designed or used to
+  do (Houkes and Vermaas, 2010). They have **performance quantities** measured under stated conditions.
+- **Actions** are occurrents with an agent acting on a decision. Their observed outcomes produce records, which bear on
+  the adequacy contents and models the decision relied on. **Design failures are evidence**, as with the revision of
+  design models and codes after an unforeseen dynamic response.
 - **An evaluative content** (D10) has this form:
 
   ```
@@ -74,15 +89,15 @@ the semantic categories needed, without building the adviser.
   ```
 
   Every one of these parameters is mandatory. An evaluation that leaves out its conditions, its comparator or its
-  holder is incomplete, and must be marked so.
-- **Rated versus realised performance.** A product's performance under standard test conditions is a fit content of
-  a test model. Its performance in a particular use is a transfer hypothesis (section 6.4) with its own grounds. The
-  two must not be confused (example E8).
+  holder is incomplete, and must be marked so. The evaluative content has epistemic standing. **Acting on it is a
+  separate decision.**
+- **Rated versus realised performance.** Performance under standard test conditions is a fit of a test model.
+  Performance in a particular use is a transfer hypothesis (6.4) with its own grounds (example E8).
 
 ## 7.5 Methodological knowledge about the universe itself
 
 The universe's own procedures are methods in this sense, and can be described and assessed with the same
-apparatus. These include its acquisition modes (6.1), recognition (3.5), revision policy (6.3) and coherence checks
+apparatus. These include its acquisition modes (6.1), recognition (3.6), revision policy (6.3) and coherence checks
 (6.5). Two limits apply:
 
 - A sufficiently expressive language cannot define its own truth predicate without paradox (Tarski, 1936; conditions in section 10.2, item 5). So the

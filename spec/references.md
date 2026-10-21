@@ -1,11 +1,14 @@
 # References
 
-The sources below are cited in the specification by author, title and year. Details are given from the designer's
-general scholarly knowledge and were not all re-checked against the originals in this session (section 1.5). No
+The sources below are cited in the specification by author, title and year. For version 2.0, 68 entries of 1.0 were
+checked against authoritative metadata records, and 18 specific content claims against originals or authoritative
+secondary sources (`reviews/S0-1.0-critical-review.md`, section 1.1). The remaining entries rest on the designer's
+knowledge and have not been checked (section 1.5). No
 third-party full text is stored in this repository.
 
 ## Semantics, philosophy of language and logic
 
+- Anscombe, G. E. M. *Intention*. Blackwell, 1957.
 - Barwise, J. and Perry, J. *Situations and Attitudes*. MIT Press, 1983.
 - Belnap, N. D. "A useful four-valued logic". In Dunn and Epstein (eds.), *Modern Uses of Multiple-Valued Logic*, 1977.
 - Belnap, N. D. and Steel, T. B. *The Logic of Questions and Answers*. Yale University Press, 1976.
@@ -22,6 +25,7 @@ third-party full text is stored in this repository.
 - Field, H. "Logic, meaning, and conceptual role". *Journal of Philosophy*, 1977.
 - Fillmore, C. J. "Frame semantics". In *Linguistics in the Morning Calm*, 1982.
 - Firth, J. R. "A synopsis of linguistic theory 1930–1955". In *Studies in Linguistic Analysis*, 1957.
+- Fine, K. "Vagueness, truth and logic". *Synthese*, 1975.
 - Fodor, J. and Lepore, E. *Holism: A Shopper's Guide*. Blackwell, 1992.
 - Frege, G. "Über Sinn und Bedeutung". *Zeitschrift für Philosophie und philosophische Kritik*, 1892.
 - Harris, Z. "Distributional structure". *Word*, 1954.
@@ -34,20 +38,24 @@ third-party full text is stored in this repository.
 - Kripke, S. *Naming and Necessity*. Harvard University Press, 1980.
 - Lewis, D. "General semantics". *Synthese*, 1970.
 - Lewis, D. "How to define theoretical terms". *Journal of Philosophy*, 1970.
+- Lewis, D. "New work for a theory of universals". *Australasian Journal of Philosophy*, 1983.
 - Lewis, D. "Putnam's paradox". *Australasian Journal of Philosophy*, 1984.
+- Lewis, D. "Reduction of mind". In Guttenplan (ed.), *A Companion to the Philosophy of Mind*, 1994.
 - Lewis, D. *Counterfactuals*. Blackwell, 1973.
 - Montague, R. "Universal grammar". *Theoria*, 1970.
 - Mourelatos, A. P. D. "Events, processes, and states". *Linguistics and Philosophy*, 1978.
 - Parsons, T. *Events in the Semantics of English*. MIT Press, 1990.
 - Partee, B. "Compositionality". In Landman and Veltman (eds.), *Varieties of Formal Semantics*, 1984.
+- Newman, M. H. A. "Mr. Russell's 'causal theory of perception'". *Mind*, 1928.
 - Price, H. "Why 'not'?". *Mind*, 1990.
 - Priest, G. *In Contradiction*, 2nd ed. Oxford University Press, 2006.
 - Putnam, H. "The meaning of 'meaning'". *Minnesota Studies in the Philosophy of Science*, 1975.
 - Quine, W. V. O. "Two dogmas of empiricism". *Philosophical Review*, 1951.
 - Sellars, W. *Empiricism and the Philosophy of Mind*, 1956.
+- Searle, J. R. *Intentionality*. Cambridge University Press, 1983.
 - Tarski, A. "The semantic conception of truth and the foundations of semantics". *Philosophy and Phenomenological Research*, 1944.
-- Tarski, A. "Der Wahrheitsbegriff in den formalisierten Sprachen". *Studia Philosophica*, 1936 (Polish original 1933).
-- Turing, A. M. "On computable numbers, with an application to the Entscheidungsproblem". *Proceedings of the London Mathematical Society*, 1936.
+- Tarski, A. "Der Wahrheitsbegriff in den formalisierten Sprachen". *Studia Philosophica*, volume dated 1935, issued 1936 (Polish original 1933). The volume date was not verified.
+- Turing, A. M. "On computable numbers, with an application to the Entscheidungsproblem". *Proceedings of the London Mathematical Society*, series 2, vol. 42, 1937 (often cited as 1936).
 - Williamson, T. *Vagueness*. Routledge, 1994.
 - Wittgenstein, L. *Philosophical Investigations*. Blackwell, 1953.
 
@@ -55,6 +63,7 @@ third-party full text is stored in this repository.
 
 - Barsalou, L. W. "Frames, concepts, and conceptual fields". In Lehrer and Kittay (eds.), *Frames, Fields, and Contrasts*, 1992.
 - Barsalou, L. W. "Perceptual symbol systems". *Behavioral and Brain Sciences*, 1999.
+- Brigandt, I. "The epistemic goal of a concept: accounting for the rationality of semantic change and variation". *Synthese*, 2010.
 - Carey, S. *The Origin of Concepts*. Oxford University Press, 2009.
 - Dretske, F. *Knowledge and the Flow of Information*. MIT Press, 1981.
 - Fodor, J. *Concepts: Where Cognitive Science Went Wrong*. Oxford University Press, 1998.
@@ -67,8 +76,10 @@ third-party full text is stored in this repository.
 - Murphy, G. L. *The Big Book of Concepts*. MIT Press, 2002.
 - Murphy, G. L. and Medin, D. L. "The role of theories in conceptual coherence". *Psychological Review*, 1985.
 - Nersessian, N. J. *Creating Scientific Concepts*. MIT Press, 2008.
+- Chalmers, D. J. "Verbal disputes". *Philosophical Review*, 2011.
 - Polanyi, M. *The Tacit Dimension*. Doubleday, 1966.
 - Rosch, E. "Principles of categorization". In Rosch and Lloyd (eds.), *Cognition and Categorization*, 1978.
+- Sloman, S. A., Love, B. C. and Ahn, W.-K. "Feature centrality and conceptual coherence". *Cognitive Science*, 1998.
 - Ryle, G. *The Concept of Mind*. Hutchinson, 1949.
 
 ## Ontology and knowledge representation
@@ -105,10 +116,12 @@ third-party full text is stored in this repository.
 - Cooper, G. F. "The computational complexity of probabilistic inference using Bayesian belief networks". *Artificial Intelligence*, 1990.
 - Dagum, P. and Luby, M. "Approximating probabilistic inference in Bayesian belief networks is NP-hard". *Artificial Intelligence*, 1993.
 - Eiter, T. and Gottlob, G. "On the complexity of propositional knowledge base revision, updates, and counterfactuals". *Artificial Intelligence*, 1992.
+- Garber, D. "Old evidence and logical omniscience in Bayesian confirmation theory". In Earman (ed.), *Minnesota Studies in the Philosophy of Science* 10, 1983.
 - Gärdenfors, P. *Knowledge in Flux*. MIT Press, 1988.
 - Gettier, E. "Is justified true belief knowledge?". *Analysis*, 1963.
 - Jaynes, E. T. *Probability Theory: The Logic of Science*. Cambridge University Press, 2003.
 - Knight, F. H. *Risk, Uncertainty and Profit*. Houghton Mifflin, 1921.
+- Quine, W. V. O. and Ullian, J. S. *The Web of Belief*. Random House, 1970.
 - Levi, I. *The Enterprise of Knowledge*. MIT Press, 1980.
 - Lewis, D. "A subjectivist's guide to objective chance". In Jeffrey (ed.), *Studies in Inductive Logic and Probability*, Vol. II, 1980.
 - Roth, D. "On the hardness of approximate reasoning". *Artificial Intelligence*, 1996.
@@ -137,6 +150,7 @@ third-party full text is stored in this repository.
 - Craver, C. F. *Explaining the Brain*. Oxford University Press, 2007.
 - Cronbach, L. J. and Meehl, P. E. "Construct validity in psychological tests". *Psychological Bulletin*, 1955.
 - Cummins, R. "Functional analysis". *Journal of Philosophy*, 1975.
+- Demopoulos, W. and Friedman, M. "Bertrand Russell's *The Analysis of Matter*: its historical context and contemporary interest". *Philosophy of Science*, 1985.
 - Douglas, H. *Science, Policy, and the Value-Free Ideal*. University of Pittsburgh Press, 2009.
 - Earman, J., Roberts, J. and Smith, S. "Ceteris paribus lost". *Erkenntnis*, 2002.
 - Friedman, M. *Dynamics of Reason*. CSLI Publications, 2001.
@@ -155,8 +169,10 @@ third-party full text is stored in this repository.
 - Kitcher, P. "Explanatory unification and the causal structure of the world". In Kitcher and Salmon (eds.), *Scientific Explanation*, 1989.
 - Kuhn, T. S. *The Structure of Scientific Revolutions*. University of Chicago Press, 1962.
 - Lakatos, I. "Falsification and the methodology of scientific research programmes". In Lakatos and Musgrave (eds.), *Criticism and the Growth of Knowledge*, 1970.
+- Kuhn, T. S. *The Road since Structure*. University of Chicago Press, 2000.
 - Laudan, L. *Science and Values*. University of California Press, 1984.
 - Leonelli, S. *Data-Centric Biology*. University of Chicago Press, 2016.
+- Leonelli, S. "What distinguishes data from models?". *European Journal for Philosophy of Science*, 2019.
 - Lipton, P. *Inference to the Best Explanation*, 2nd ed. Routledge, 2004.
 - Machamer, P., Darden, L. and Craver, C. F. "Thinking about mechanisms". *Philosophy of Science*, 2000.
 - Mayo, D. G. *Error and the Growth of Experimental Knowledge*. University of Chicago Press, 1996.
@@ -166,10 +182,12 @@ third-party full text is stored in this repository.
 - Pearl, J. and Bareinboim, E. "External validity: From do-calculus to transportability across populations". *Statistical Science*, 2014.
 - Pearl, J. and Mackenzie, D. *The Book of Why*. Basic Books, 2018.
 - Peirce, C. S. *Collected Papers*, vols. 1–6, Hartshorne and Weiss (eds.). Harvard University Press, 1931–1935.
+- Reichenbach, H. *Relativitätstheorie und Erkenntnis apriori*. Springer, 1920. English translation: *The Theory of Relativity and A Priori Knowledge*, University of California Press, 1965.
 - Royall, R. *Statistical Evidence: A Likelihood Paradigm*. Chapman and Hall, 1997.
 - Salmon, W. C. *Scientific Explanation and the Causal Structure of the World*. Princeton University Press, 1984.
 - Spirtes, P., Glymour, C. and Scheines, R. *Causation, Prediction, and Search*, 2nd ed. MIT Press, 2000.
 - Suppe, F. (ed.). *The Structure of Scientific Theories*, 2nd ed. University of Illinois Press, 1977 (1st ed. 1974).
+- Suppes, P. "Models of data". In Nagel, Suppes and Tarski (eds.), *Logic, Methodology and Philosophy of Science*, 1962.
 - Suppes, P. "A comparison of the meaning and uses of models in mathematics and the empirical sciences". *Synthese*, 1960.
 - Thagard, P. *Conceptual Revolutions*. Princeton University Press, 1992.
 - van Fraassen, B. C. *The Scientific Image*. Oxford University Press, 1980.
@@ -192,6 +210,7 @@ third-party full text is stored in this repository.
 
 - Cohen, J. "A coefficient of agreement for nominal scales". *Educational and Psychological Measurement*, 1960.
 - Krippendorff, K. *Content Analysis: An Introduction to Its Methodology*, 2nd ed. Sage, 2004.
+- OECD. *Frascati Manual 2015: Guidelines for Collecting and Reporting Data on Research and Experimental Development*. OECD Publishing, 2015 (Fields of Research and Development classification).
 
 ## Scientific sources used in the examples (chapter 8)
 
@@ -206,6 +225,6 @@ third-party full text is stored in this repository.
 - Purcell, E. M. and Pound, R. V. "A nuclear spin system at negative temperature". *Physical Review*, 1951.
 - Ramsey, N. F. "Thermodynamics and statistical mechanics at negative absolute temperatures". *Physical Review*, 1956.
 - Rubin, V. C. and Ford, W. K. "Rotation of the Andromeda Nebula from a spectroscopic survey of emission regions". *Astrophysical Journal*, 1970.
-- Rubin, V. C., Ford, W. K. and Thonnard, N. "Rotational properties of 21 Sc galaxies with a large range of luminosities and radii". *Astrophysical Journal*, 1980.
+- Rubin, V. C., Ford, W. K. and Thonnard, N. "Rotational properties of 21 Sc galaxies with a large range of luminosities and radii, from NGC 4605 (R = 4 kpc) to UGC 2885 (R = 122 kpc)". *Astrophysical Journal*, 1980.
 - Volterra, V. "Variazioni e fluttuazioni del numero d'individui in specie animali conviventi". *Memorie della Reale Accademia Nazionale dei Lincei*, 1926.
 - Zwicky, F. "Die Rotverschiebung von extragalaktischen Nebeln". *Helvetica Physica Acta*, 1933.

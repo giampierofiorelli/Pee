@@ -74,7 +74,7 @@ identification proposed as a candidate for acceptance. Anything representable ca
 
 - "this model fits that target" (fit hypothesis);
 - "X causes Y" (causal hypothesis);
-- "these two terms express the same concept" (identity hypothesis, section 3.5);
+- "these two terms express the same concept" (identity hypothesis, section 3.6);
 - "this target falls within the model's domain" (scope hypothesis);
 - "this test measures that construct" (validity hypothesis);
 - "this record is free of contamination" (auxiliary hypothesis).
@@ -107,7 +107,7 @@ Causal contents are typically carried by **causal models**: structures of variab
 support three kinds of query. These are association, intervention and counterfactual, which Pearl calls the three
 rungs of a "ladder" (Pearl, *Causality*, 2009; Pearl and Mackenzie, *The Book of Why*, 2018). A causal model is a
 model in the sense of D7, with a domain of application and a fit relation to targets. This places causality inside
-the general model-centred framework, not beside it.
+the general treatment of models (D7), not beside it.
 
 **Key rules.**
 
@@ -155,7 +155,7 @@ type**. The inference types are:
 | **Causal** | from data and assumptions to causal structure | causal assumptions such as faithfulness and no unmeasured confounding. It fails when they are violated |
 | **Model-based** | calculation or simulation within a model | the model's fit and domain. It fails outside the domain |
 | **Testimonial** | from a source's report to a content | the reliability of the source. It fails by error or deception |
-| **Recognition** | from new material to an identity relation (section 3.5) | quality of anchors. It fails on homonyms |
+| **Recognition** | from new material to an identity relation (section 3.6) | quality of anchors. It fails on homonyms |
 
 **Defeasibility.** Most scientific inference is **defeasible**: new information can withdraw a conclusion. The
 universe must represent **rebutting defeaters**, which support the contrary conclusion, and **undercutting
@@ -200,7 +200,8 @@ independence.
 
 ## 5.9 Standing and grounds
 
-**Standing** (D12) has six dimensions:
+**Standing** (D12) applies to any representational item: a content is accepted as true, a model as fitting for a
+purpose, a method as reliable, a record as faithful. It has six dimensions:
 
 | Dimension | Values (indicative, not closed) |
 |---|---|
@@ -219,7 +220,7 @@ which may contain defeaters. The ground types are:
 - **G3 Testimony or source**: with the source's identity and reliability record.
 - **G4 Definition or convention**: within a frame.
 - **G5 Presupposition**: of a frame or method, accepted as a working condition.
-- **G6 Recognition judgement**: section 3.5.
+- **G6 Recognition judgement**: section 3.6.5.
 - **G7 Evidential relation**: a relation of section 5.8 from records or phenomena to the content.
 
 Every standing other than "entertained" must have at least one ground (C4).
@@ -250,3 +251,26 @@ Consequences:
 - **Settled versus frontier.** The universe can tell well-established knowledge, with high support from robust,
   independent grounds over a long time, from frontier claims. It can do so without a separate category, by reading
   the dimensions of standing.
+
+## 5.11 Practical decision and practical grounds
+
+Practical decision is the fifth plane of section 3.5. A **decision** (D18) is a holder's choice of an action, design
+or intervention. It rests on **practical grounds** of four kinds:
+
+- **PG1 Accepted contents**, including causal and model-based contents about what an action would bring about, and
+  evaluative contents about how options meet criteria (7.4).
+- **PG2 Goals** of the holder, or of those on whose behalf the holder acts.
+- **PG3 Norms** that apply: regulations, standards, protocols.
+- **PG4 Values** and their weights, which rank the expected outcomes.
+
+Rules:
+
+- A decision's grounds are recorded like epistemic grounds, so design rationale and advice can be traced
+  ("option A chosen because …").
+- **PG2–PG4 never ground an epistemic standing** (section 3.5). A decision can rest on a content accepted for a
+  purpose with a purpose-relative standard. That standard is part of the content's standing, not of the decision.
+- A decision does not change what is true. When its outcome is observed, the result is a record, and the contents it
+  supports bear on the contents in PG1. This is how practical experience feeds back into knowledge, as when a design
+  failure revises a structural model.
+- How options are compared, whether by expected value, satisficing, dominance or multi-criteria methods, is
+  methodological knowledge (chapter 7). S0 does not fix it (O10).

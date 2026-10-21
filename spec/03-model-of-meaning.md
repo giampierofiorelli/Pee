@@ -1,355 +1,465 @@
 # 3. The model of meaning
 
-Requirements addressed: R1, R3, R4, R9, R11, R16, R18.
+Requirements addressed: R1, R3, R4, R8, R9, R11, R15, R16, R18.
+
+Version 2.0 replaces the model-centred thesis of 1.0 with a pluralism of representational items, withdraws
+"degenerate models", and replaces the core/collateral identity criterion with the continuity criteria of section
+3.6. Section 2.8 compares these decisions with their alternatives. The S0 1.0 text remains in Git history at commit
+`d82f95f`.
 
 ## 3.1 Overview
 
-The proposal is **anchored-role semantics in a model-centred universe**. In one paragraph:
+The proposal is **anchored-role semantics in a pluralist representational universe**:
 
-> The semantic universe is about the world as science investigates it. Its theoretical knowledge is carried mainly by
-> **models** of **target systems**, built from **concepts** within **frames**. A concept's meaning is its **role** in
-> a frame, split into a constitutive core and collateral connections, together with its **anchors**: the exemplars,
-> procedures, descriptions, deferences and names that tie it to the world. Contents (claims about systems, states,
-> regularities, causes, fits) are **composed** from concepts when needed, and their meaning is their satisfaction
-> condition in situations or targets. How a content stands for some holder (observed, hypothesised, accepted,
-> rejected) is a separate **standing**, always with **grounds**. The universe keeps its own **history**, so that
-> revision, including revision of meaning, is recorded and never silent. Methods of inquiry are represented with the
-> same apparatus as everything else.
+> The semantic universe is about the world as science investigates and changes it. It holds several kinds of
+> **representational items**: situated and general **contents**, **models**, **records**, **methods and practices**,
+> **designs**, **goals** and **norms**. They differ in what makes each of them correct: truth, fit, fidelity,
+> reliability, conformance, satisfaction. They also differ in their **direction of fit**. None is reduced to
+> another. Whether an item serves as data, evidence, representation, instrument or standard depends on its **role
+> in an inquiry**, not on its kind. Items are built from **concepts**. A concept's meaning is its **role profile**
+> in a frame, whose connections are more or less **central**, together with its **anchors** in the world and the
+> **epistemic goals** it serves. A concept keeps its identity through change, and is related to concepts of other
+> frames, by continuity of anchors, goals and extension. Where these point in different directions, the case is
+> recorded as **indeterminate**, and conclusions that depend on it are marked. **Meaning, correctness,
+> justification, acceptance and practical decision** are kept distinct. History is recorded, so no revision is
+> silent.
 
 ## 3.2 Theses
 
-- **T1 Model-centred content.** The primary bearers of theoretical content are models of target systems. Claims and
-  propositions are derived contents, not the basic stock.
-- **T2 Anchored role.** The meaning of a concept in a frame consists of its role in that frame (constitutive core
-  plus collateral connections) and its anchors.
-- **T3 Frame-relativity with graded identity.** Sameness of meaning is judged relative to frames, and it is graded:
-  identity, equivalence, co-reference, overlap, lineage, difference or *undetermined*.
+- **T1 Pluralism by correctness condition.** The universe holds representational items of several kinds,
+  individuated by their correctness conditions and direction of fit (section 3.4). No kind is the primary bearer to
+  which the others reduce. Every item can also be *described* by contents, for example "model M fits target T in
+  respect R". Such description does not replace what the item itself represents or requires.
+- **T2 Anchored role with graded centrality.** The meaning of a concept in a frame consists of its role profile in
+  that frame, with graded centrality, its anchors and its epistemic goals (D2-a).
+- **T3 Identity by continuity, with honest indeterminacy.** Identity of a concept through change, and relations
+  between concepts of different frames, are judged by continuity of anchors, epistemic goals and extension, and by
+  the centrality of the role connections that change (section 3.6). Where the evidence or the dimensions conflict,
+  the outcome is *indeterminate*. Conclusions that depend on an indeterminate case are marked as dependent on the
+  reading.
 - **T4 Structured properties.** Properties are determinates of determinables with structured value spaces. Their
   scale types fix which comparisons and operations are meaningful.
 - **T5 Systematic composition.** The meaning of a composite is fixed by the meanings of its parts, the mode of
   composition and the context. Departures from this are explicit and named (section 4.1).
-- **T6 Separation of content and standing.** What is represented (content) is kept apart from how it is held
-  (standing). Standing always has grounds and a holder.
-- **T7 Explicit situatedness.** Every content is relative to a frame, and where relevant to a situation, a time, a
+- **T6 Five distinct planes.** *Meaning* (what an item says or requires), *correctness* (whether it is true, fits, is
+  faithful, reliable, conformed to or satisfied), *justification* (the grounds bearing on correctness),
+  *acceptance* (epistemic standing) and *practical decision* (choice of action) are distinct. None settles another
+  (section 3.5).
+- **T7 Explicit situatedness.** Every item is relative to a frame, and where relevant to a situation, a time, a
   perspective and conditions. Being context-free is a declared invariance, never a default.
-- **T8 History is part of the universe.** Acquisitions and revisions are events in the universe with reasons. For
-  any earlier time, it must be possible to say what was held, with what standing and why. This is needed to
-  interpret older texts and data in their own frames (R3, R6), to trace revisions (R5) and to answer the
-  competency questions of section 9.4. The required granularity of the retained history is a question for S1
-  (O16). The semantic obligation is that no change of standing, concept or frame is silent.
-- **T9 Local, graded coherence.** Coherence is required within frames and is assessed by explicit criteria.
-  Conflict between frames, or between sources, is represented and contained, never allowed to spread to unrelated
-  content.
-- **T10 Reflexive methodology.** Methods of inquiry and learning are represented in the same universe and with the
-  same apparatus as the phenomena they investigate. They can therefore be questioned, supported and revised.
-- **T11 Openness.** No list of domain categories is closed. Only the meta-level notions D1–D16 are fixed by this
-  specification. The ontological scaffold (section 3.7) is a revisable frame like any other.
+- **T8 History is part of the universe.** Acquisitions, revisions and decisions are events in the universe with
+  reasons. For any earlier time, it must be possible to say what was held, with what standing and why. The required
+  granularity of retained history is a question for S1 (O16). The semantic obligation is that no change of standing,
+  concept, frame or decision is silent.
+- **T9 Local, graded coherence.** Coherence is required within frames and is assessed by explicit criteria
+  (section 6.5). Conflict between frames, or between holders, is represented and contained, never allowed to spread
+  to unrelated items.
+- **T10 Reflexive methodology.** Methods of inquiry and learning are represented in the same universe, with the same
+  apparatus as the phenomena they investigate. They can therefore be questioned, supported and revised.
+- **T11 Openness.** No list of domain categories is closed. Only the meta-level notions D1–D19 are fixed by this
+  specification. The ontological scaffold (section 3.8) is a revisable frame like any other.
 
 ## 3.3 Meta-level notions
 
 The meta-level is the fixed vocabulary in which the universe is described. Everything else, including "entity",
 "process" or "gene", is a concept *inside* the universe.
 
-**D1 Semantic universe.** The totality of the items described below, their relations and their history. An *item*
-is anything the universe can individuate and talk about: a concept, a frame, a model, a content, a record, a
-standing, a method, an agent, and so on. Items are not data records. The word only marks "something
-individuated".
+**D1 Semantic universe.** The totality of items, their relations and their history. An *item* is anything the
+universe can individuate and talk about: a concept, a frame, a representational item (D10, D11, D16–D18), a
+standing, a decision, an agent, and so on. "Item" only marks "something individuated". It carries no commitment to
+a storage structure.
 
 **D2 Concept.** A unit of meaning that can apply to things, take values or relate things. Concepts include kinds
-(electron, acid), determinables (mass, colour, fitness), relations (catalyses, is part of), occurrent types
-(diffusion, speciation), and so on. A concept has a meaning (D2-a) and an extension (D3). Concepts are not words:
-one term may express several concepts, and one concept may have many terms.
+(electron, acid), determinables (mass, colour, fitness), relations (catalyses, is part of) and occurrent types
+(diffusion, speciation). A concept has a meaning (D2-a) and an extension (D3). Concepts are not words: one term may
+express several concepts, and one concept may have many terms. Concepts are not themselves correct or incorrect.
+They apply or fail to apply.
 
 **D2-a Meaning of a concept.** For a concept *c* in frame *F*:
 
 ```
-meaning_F(c) = ⟨ core_F(c), collateral_F(c), anchors(c) ⟩
+meaning_F(c) = ⟨ role-profile_F(c) with centrality, anchors(c), goals(c) ⟩
 ```
 
-- `core_F(c)` is the part of *c*'s role that is constitutive in *F* (D5).
-- `collateral_F(c)` is the rest of its role in *F*.
-- `anchors(c)` is the set of anchors (D4). Anchors belong to the concept rather than to a single frame, because
-  they are what allows a concept to be tracked *across* frames.
+- `role-profile_F(c)` is the set of *c*'s connections in *F*, each with a degree of centrality (D5).
+- `anchors(c)` is the set of anchors (D4).
+- `goals(c)` is the set of epistemic goals the concept serves (D5-b).
 
-**D3 Extension and reference.** The extension of *c* is what in the world satisfies *c*. Following the
-treatment of theoretical terms by their role (Lewis, "How to define theoretical terms", 1970) and the
-later "best deserver" idea (Lewis, "Putnam's paradox", 1984), the extension is
-whatever best satisfies *c*'s anchors and constitutive core together. Three outcomes are possible, and all three must
-be representable:
+Anchors and goals belong to the concept rather than to one frame. They are what lets a concept be tracked across
+frames and through change.
 
-- **determinate reference**: one best satisfier, or one best class of satisfiers;
-- **empty reference**: nothing satisfies the core and anchors well enough (for example caloric or phlogiston, read
-  as substance concepts);
-- **indeterminate reference**: several candidates satisfy them equally well. A known example is the claim that
-  Newtonian "mass" partially denotes both relativistic mass and rest mass (Field, "Theory change and the
-  indeterminacy of reference", 1973).
+**D3 Extension and reference.** The extension of *c* is what in the world satisfies *c*. It is whatever best
+satisfies *c*'s anchors and the central connections of its role together. "Best" is understood as the most
+*eligible* candidate, following the discussion of reference determination in Lewis ("New work for a theory of
+universals", 1983; "Putnam's paradox", 1984). Three outcomes must be representable:
 
-**D4 Anchor.** A link that ties a concept to the world independently of the concept's current role, so that the
-concept can be tracked when its role changes. There are five types:
+- **determinate reference**: one best candidate, or one best class of candidates;
+- **empty reference**: no candidate is good enough (caloric or phlogiston, read as substance concepts);
+- **indeterminate reference**: several candidates are equally good. S0 treats this as **partial reference to each
+  candidate** (Field, "Theory change and the indeterminacy of reference", 1973). It does not treat it as failure of
+  reference, which was Lewis's earlier view (Lewis, "How to define theoretical terms", 1970). This is a choice, and
+  section 3.6.4 states its consequences.
 
-| Anchor type | Ties the concept to | Example |
-|---|---|---|
-| **Exemplar** | particular samples, specimens, cases or images taken as paradigmatic | a type specimen in biological nomenclature; a historical prototype standard |
-| **Operational** | a procedure whose outcome settles whether the concept applies, or what value it takes | a titration; a calibrated thermometer reading; a standardised questionnaire |
-| **Descriptive** | a description in terms of other anchored concepts | "whatever produces the observed galactic rotation curves" |
-| **Deferential** | a community, standard or authority whose usage fixes the concept | an internationally agreed definition of a unit |
-| **Lexical** | a term in a language and community | the word "acid" in chemistry |
+**D4 Anchor.** A link that ties a concept to the world independently of its current role, so the concept can be
+tracked when its role changes. There are five types:
 
-Anchors differ in strength. **Lexical anchors are the weakest and never suffice for identity of meaning on their
-own** (section 3.5). A concept may have several anchors, and they may diverge. Two thermometers built on different
-principles may disagree outside their calibration range. Whether anchors agree is an empirical matter that the
-universe represents, not a definitional fact it assumes (Chang, *Inventing Temperature*, 2004). A purely
-theoretical concept may start with only descriptive anchors (section 6.1, mode M4).
+| Anchor type | Ties the concept to | Example | Strength |
+|---|---|---|---|
+| **Exemplar** | particular samples, specimens, cases or images taken as paradigmatic | a type specimen; a reference material | strong |
+| **Operational** | a procedure whose outcome settles whether the concept applies, or what value it takes | a titration; a calibrated thermometer; a validated questionnaire | strong |
+| **Deferential** | a community, standard or authority whose usage fixes the concept | an internationally agreed unit definition | strong |
+| **Descriptive** | a description in terms of other anchored concepts | "unseen matter producing the observed rotation curves" | weaker |
+| **Lexical** | a term in a language and community | the word "acid" in chemistry | weakest; never sufficient for identity |
 
-Anchors are independent of *the concept's own* role, not of all frames. A descriptive anchor uses other concepts,
-whose meanings depend on their own frames. Descriptive anchors are therefore weaker than exemplar, operational and
-deferential anchors. A chain of descriptive anchors must end in anchors of those three types, or the concept is
-anchored only within the conceptual system (O3).
+- **Divergence.** Anchors can diverge. Two thermometers built on different principles may disagree. Whether
+  anchors agree is an empirical matter, represented with grounds (Chang, *Inventing Temperature*, 2004).
+- **Descriptive anchors use other concepts.** A chain of descriptive anchors must end in exemplar, operational or
+  deferential anchors, or the concept is anchored only within the conceptual system (O3).
+- **Category commitment.** A descriptive anchor must state its category commitment ("unseen *matter* that …",
+  not "whatever …"). Otherwise the concept could never fail to refer. A purely structural characterisation is
+  satisfiable almost trivially (Newman, "Mr. Russell's 'causal theory of perception'", 1928; Demopoulos and Friedman,
+  1985), and non-structural anchors are what block this.
+- **Paradigm anchors.** An anchor is *paradigm* for a concept if it is used to introduce or teach the concept, or if
+  it is the reference standard for it. Paradigm anchors weigh most in identity judgements (section 3.6).
 
-A **descriptive anchor must state its category commitment**, for example "unseen *matter* that produces …" rather
-than "whatever produces …". Without that commitment the concept would refer to whatever turns out to explain the
-phenomenon, so it could never fail to refer, and a real scientific question would be hidden (E9, chapter 8).
+**D5 Role profile and centrality.** The role profile of *c* in *F* is the set of *c*'s connections to other items in
+*F*:
 
-**D5 Role.** The role of *c* in *F* is the set of *c*'s connections to other items in *F*:
+- **structural**: positions in model types, such as variable, parameter, conserved quantity or participant role;
+- **inferential**: what follows within *F* from applying *c*;
+- **measurement**: how values or applications of *c* are determined;
+- **explanatory**: what *c* is used to explain, and what explains it;
+- **constitutive**: the constitutive commitments of *F* in which *c* figures (D6).
 
-- **constitutive** connections: principles of *F* that fix what *c* is within *F*. In classical mechanics, for
-  example, the second law partly constitutes force and inertial mass.
-- **structural** connections: the positions *c* occupies in *F*'s model types, such as variable, parameter,
-  conserved quantity, participant role or component.
-- **inferential** connections: what follows within *F* from applying *c*.
-- **measurement** connections: how values or applications of *c* are determined within *F*.
-- **explanatory** connections: what *c* is used to explain, and what explains it.
+Each connection has a degree of **centrality**: the extent to which *c*'s other connections in *F* depend on it.
+A connection is central if giving it up would make many of *c*'s inferences, measurements or explanations in *F*
+unavailable. It is peripheral if little else depends on it. This follows the dependency account of feature
+centrality (Sloman, Love and Ahn, "Feature centrality and conceptual coherence", 1998). Connections that figure in
+constitutive commitments of *F* are maximally central in *F*, because the frame's methods presuppose them.
 
-The split between core and collateral is **relative to the frame and revisable**. This answers the holism
-objection (section 2.2, A3) without restoring a fixed analytic/synthetic distinction. Quine argued that no statement
-is immune to revision (Quine, "Two dogmas of empiricism", 1951). The model agrees: core connections can be revised,
-but revising them is a *change of frame* and is recorded as such. Within a frame, the core gives meanings the
-stability needed to share and compose them. This follows the idea of a constitutive a priori that is relative to a
-framework (Friedman, *Dynamics of Reason*, 2001; Carnap, "Empiricism, semantics, and ontology", 1950).
+Centrality is **graded and comparative**. No threshold divides "core" from "collateral". This replaces the binary
+split of 1.0, which section 2.8 shows was not operational. It keeps the answer to holism (section 2.2, A3): sharing a
+concept requires shared anchors, shared goals and agreement on central connections, not identical total roles.
 
-**D6 Frame.** A coherent body of presuppositions under which concepts have determinate roles. A frame comprises:
+**D5-b Epistemic goal.** An epistemic goal of a concept is a type of question that the concept is used to answer, or
+a type of inferential or practical task it is used for, in a practice (Brigandt, "The epistemic goal of a concept",
+2010). Two examples: explaining patterns of inheritance, and explaining how a DNA sequence specifies a product. Goals
+are individuated through question types (section 7.2). Those are items with presuppositions and answer spaces, which
+avoids defining goals circularly through the concept itself. A concept's goals are identified from the questions,
+explanations and predictions in which the practice uses it, and this identification has grounds and can be revised.
 
-1. its concepts;
-2. its constitutive principles;
-3. its admissible model types;
-4. its measurement conventions and scale choices;
-5. its background assumptions;
-6. its declared **scope**, the range of systems and conditions it claims to cover;
-7. its relations to other frames.
+**D6 Frame.** A body of **constitutive commitments**, with a declared **scope**, under which concepts have
+determinate role profiles. A frame comprises:
 
-Frames may be specialised (a sub-frame adds principles), combined (when their concepts can be aligned) or related by
-**intertheoretic mappings**. Such mappings include exact translations, approximate or limiting relations (for
-example, classical from relativistic mechanics as v/c → 0; Nickles, "Two concepts of intertheoretic reduction",
-1973; Batterman, *The Devil in the Details*, 2002) and partial alignments. A theory, a research programme, a
-measurement convention, a disciplinary perspective and a commonsense background are all frames at different scales.
-Frames are items: they are acquired, compared, assessed and revised.
+1. its constitutive commitments;
+2. the concepts whose role profiles it determines;
+3. its admissible model types and measurement conventions;
+4. its scope, the systems and conditions it claims to cover;
+5. its relations to other frames.
 
-**D7 Model.** A structure intended to represent a class of target systems. A model has:
+**Criterion for constitutive commitments.** A commitment is constitutive in a practice if the practice's methods of
+measurement, inference or record interpretation **presuppose it rather than test it**. Giving it up would leave
+those methods without their warrant. This develops Reichenbach's distinction between principles of coordination and
+empirical laws (Reichenbach, *The Theory of Relativity and A Priori Knowledge*, 1920), as revived in Friedman's
+relativised a priori (*Dynamics of Reason*, 2001). Commitments that a practice's methods test are **accepted
+contents**, however widely held or entrenched.
 
-- components: entity roles, occurrent roles and quantities;
-- relations and constraints among them, such as laws, equations, mechanisms or rules;
-- parameters;
-- idealisations and abstractions, explicitly marked (section 4.1, operation Op7);
-- a **domain of application**, the conditions under which it is meant to apply;
+**Individuation of frames:**
+
+- two bodies of commitments are **the same frame** if their constitutive commitments are equivalent and their scopes
+  overlap;
+- a frame that adds constitutive commitments to another is a **sub-frame**;
+- frames that differ in a constitutive commitment are **distinct**.
+
+**Indeterminate cases.** Whether a commitment is presupposed or tested is a question about a practice, answered with
+grounds, for example from its methods, protocols and history. It may have different answers in different parts of a
+practice. A commitment may be presupposed in interpreting one kind of record and tested in another kind of study. It
+is then recorded as constitutive for the methods that presuppose it, and as an accepted content elsewhere. Revising
+it affects both (example H11 in section 8.15).
+
+Frames are related by **intertheoretic mappings**: exact translations, approximate or limiting relations (classical
+from relativistic mechanics as v/c → 0; Nickles, "Two concepts of intertheoretic reduction", 1973; Batterman, *The
+Devil in the Details*, 2002) and partial alignments. A theory, a research programme, a measurement convention, a
+disciplinary perspective and a commonsense background can each be a frame.
+
+**D7 Model.** An item intended to represent a class of target systems, whose correctness is **fit**: it fits or
+fails to fit targets, *in specified respects, to a specified degree, within a domain of application*. A model has:
+
+- either a **structural** specification, with interpretable components (entity roles, occurrent roles, quantities),
+  relations and constraints among them (laws, equations, mechanisms, rules) and parameters;
+- or a **behavioural** specification only, a mapping from inputs to outputs, as in many learned models, whose
+  internal components have no interpretation;
+- marked idealisations and abstractions (section 4.1, Op7);
+- a **domain of application**;
 - the frame in which it is formulated.
 
-Models can be mathematical, mechanistic, statistical, diagrammatic, material (a scale model, a model organism) or
-computational. A model is not true or false. It **fits** or fails to fit a target, *in specified respects and to a
-specified degree*.
+Models may be mathematical, mechanistic, statistical, diagrammatic, material (a scale model, a model organism),
+computational or learned. **A single observation or measured value is not a model.** It is a record (D11), and its
+interpretation is a situated content (D10). A processed body of data *may* serve as a model of data, when it plays the
+role of representing a target in an inquiry (D19; Suppes, "Models of data", 1962; Leonelli, "What distinguishes data
+from models?", 2019).
 
-*Degenerate models.* A single measured fact is a model with one target and one quantity, and with the measurement
-conditions as its domain of application. One example is the boiling temperature of a water sample at a given
-pressure. Treating it this way costs little: the measurement conditions must be stated anyway (T7).
+**D8 Target.** What a representational item is about. It may be a particular system (this cell culture), a kind of
+system (any dilute gas), or an **abstract structure** (the natural numbers, the class of polyhedra), for mathematical
+contents and models. Concrete targets are delimited by boundaries, environment and the variables of interest.
 
-**D8 Target system.** The part of the world a model is about: a particular system (this cell culture, this galaxy)
-or a kind of system (any dilute gas, any predator–prey community). Targets are delimited by boundaries, environment
-and the variables of interest.
+**D9 Situation.** A delimited part of the world at a time, or over an interval, about which contents can be evaluated.
+Situations are partial (Barwise and Perry, *Situations and Attitudes*, 1983).
 
-**D9 Situation.** A delimited part of the world at a time, or over an interval, about which contents can be
-evaluated. Situations are partial: a content about a situation says nothing about what lies outside it (Barwise and
-Perry, *Situations and Attitudes*, 1983).
+**D10 Content.** An item composed from concepts (section 4.1), whose correctness is **truth**, possibly graded or
+approximate. Its satisfaction condition is the situations, targets or structures under which it is true. Content
+kinds include at least the following. The list is open (T11):
 
-**D10 Content.** A composite of concepts and items, formed by the composition operations of section 4.1, that has a
-**satisfaction condition**: the situations, targets or model–target relations under which it holds, possibly to a
-degree. Content kinds include at least the following. The list is open (T11):
-
-| Kind | Satisfied when | Example |
+| Kind | True when | Example |
 |---|---|---|
 | **Situated** | a situation is as described | "sample S had temperature 293.2 ± 0.1 K at time t" |
-| **General** | a regularity holds over a kind or population. It is universal, statistical, generic or ceteris paribus (section 4.2) | "aqueous strong acids have pH < 7 at 25 °C" |
-| **Fit** | a model represents a target in given respects within a given tolerance (Giere's "theoretical hypothesis") | "the logistic model fits this yeast culture's growth to within 5 %" |
-| **Causal** | a causal relation holds at type or token level (section 5.5) | "this mutation reduces enzyme activity" |
-| **Modal or dispositional** | a possibility, necessity or disposition obtains (section 4.8) | "this alloy is brittle below 150 K" |
-| **Methodological** | a method has a given property for given purposes under given conditions (chapter 7) | "randomisation blocks confounding by unmeasured covariates in expectation" |
-| **Evaluative** | an item meets a criterion relative to a goal (chapter 7) | "device D reaches efficiency ≥ 3.5 under test condition C" |
-| **Identity** | two concepts or items stand in a relation of section 3.5.1 | "'expression' in paper P means protein level" |
-| **Attribution** | a holder reports or holds a content (6.1) | "source S reports X under method M" |
-| **Relational-epistemic** | an evidential or explanatory relation holds (5.6, 5.8) | "phenomenon Φ is evidence for H relative to B"; "mechanism K explains Φ" |
-| **Scope** | a target falls within a model's domain of application (6.4) | "this patient falls within the trial's domain" |
+| **General** | a regularity holds over a kind, population or structure (universal, statistical, generic, ceteris paribus; section 4.2) | "aqueous strong acids have pH < 7 at 25 °C"; "every planar map is four-colourable" |
+| **Causal** | a causal relation holds at type or token level (5.5) | "this mutation reduces enzyme activity" |
+| **Modal or dispositional** | a possibility, necessity or disposition obtains (4.8) | "this alloy is brittle below 150 K" |
+| **Descriptive of an item** | an item meets its correctness condition, or has a property: fit, fidelity, reliability, conformance (T1) | "the logistic model fits this culture to within 5 %"; "this assay is reliable for serum samples" |
+| **Evaluative** | an item meets a criterion relative to a goal (7.4) | "device D reaches efficiency ≥ 3.5 under condition C" |
+| **Identity** | concepts stand in a relation of section 3.6.3 | "'expression' in paper P means protein level" |
+| **Attribution** | a holder reports, holds or desires something (D14) | "source S reports X"; "the patient believes p" |
+| **Relational-epistemic** | an evidential or explanatory relation holds (5.6, 5.8) | "Φ is evidence for H relative to B" |
+| **Scope** | a target falls within an item's domain of application (6.4) | "this patient falls within the trial's domain" |
 
-Question presuppositions (7.2) are contents of these kinds.
+Being represented is not being asserted. A content is accepted only by a standing (T6).
 
-Contents do not hold or fail to hold because they are *in* the universe. Being represented is not the same as
-being asserted (T6).
+**D11 Record.** An item produced by an observation, measurement, experiment, simulation or communication, whose
+correctness is **fidelity** to its production event: accurate, complete, uncorrupted, with correct provenance.
+Examples are a reading, an image, a sequence file, a field note and a published table. A record bears on the world
+only through interpretation. Its interpretation is a content with standing (5.2). **"Data" is a role, not a kind:**
+records, or items derived from them, are data when they serve as evidence in an inquiry (D19).
 
-**D11 Record.** A durable trace produced by an observation, measurement, experiment, simulation or communication:
-for example a reading, an image, a sequence file, a field note or a published table. Records are about their
-production event first and about the world only through interpretation (section 5.2). A text is a record whose
-interpretation yields contents.
+**D12 Standing.** The **epistemic** position of an item for a holder at a time: attitude, support, purpose, time and
+scope (section 5.9). Any representational item can have standing, not only contents. A model is accepted as fitting
+for a purpose. A method is accepted as reliable. A record is accepted as faithful.
 
-**D12 Standing.** The epistemic position of a content (or model, method or frame) for a holder at a time. Standing
-has several dimensions and is defined in section 5.9.
+**D13 Ground.** A reason bearing on a standing (epistemic ground, section 5.9) or on a decision (practical ground,
+section 5.11), with its own standing in turn.
 
-**D13 Ground.** A reason on which a standing rests, such as an observation, an inference, testimony, a definition or
-a methodological presupposition, with its own standing in turn (section 5.9).
+**D14 Holder.** An agent, group, community, source or the universe itself, to whom a standing, an attitude or a
+decision is attributed. Two kinds of holder must be kept apart:
 
-**D14 Holder.** An agent, group, community, source or the universe itself, *as a holder*, to whom a standing is
-attributed. Keeping holders explicit lets the universe represent disagreement without contradiction: "community
-A accepts *p*, community B rejects *p*" is coherent.
+- the **universe's own** standings, and those of the holders on whose behalf it reasons;
+- **attitudes of agents studied in the world**, such as participants' beliefs or a community's classification
+  practices. These are attribution contents *about* the world. They are never standings of the universe, and they
+  enter its standing only through an explicit adoption with grounds (section 6.1).
 
-**D15 Lineage.** The relation between successive versions of a concept, frame, model or content across revisions.
-Its forms are refinement, generalisation, specialisation, split, merger, replacement and elimination (section 6.3).
+**D15 Lineage.** The relation between successive versions of a concept, frame, model or content. Each lineage link
+records **which dimensions changed**: anchors, goals, extension, central connections. Named forms such as refinement,
+generalisation or split are labels for common combinations. They are not mutually exclusive categories
+(section 6.3).
 
-**D16 Practice and method.** A practice is a structured, repeatable way of acting in inquiry. A method is a type of
-procedure, with purposes, preconditions, assumptions, steps, outputs and known failure modes (chapter 7). Practices
-and methods are items: they can be the subject of content, standing and revision (T10).
+**D16 Method and practice.** A method is a type of procedure whose correctness is **reliability or validity** for a
+purpose under conditions. It has preconditions, assumptions, steps, outputs and known failure modes (chapter 7). A
+practice is a structured, repeatable way of acting, partly tacit, whose correctness is **competent performance**.
 
-## 3.4 What constitutes a meaning
+**D17 Design.** An item that specifies an artefact, intervention or procedure that is to be brought about, with a
+**world-to-item direction of fit**. It is correct when what is realised **conforms** to it. A design is not a model:
+a model fails when the world does not fit it, while a realisation fails when it does not fit the design. Whether a
+conforming realisation would achieve its goal is a separate content, of causal or model-based kind, with its own
+standing (section 7.4). The distinction comes from Anscombe's shopping-list example (Anscombe, *Intention*, 1957). It
+was systematised as direction of fit by Searle (*Intentionality*, 1983).
 
-Combining the above:
+**D18 Goal, norm, value and decision.**
 
-1. **Concepts** have meaning through anchored role (D2-a). The anchor component explains how a concept is about the
-   world and how it can be tracked across theory change. The role component explains how it is connected,
-   inferentially productive and learnable from its place in a theory.
-2. **Contents** have meaning through satisfaction conditions in situations or targets (D10), which are fixed
-   compositionally (T5) from the meanings of their concepts.
-3. **Models** have meaning through the meanings of their components, together with their stated domain of
-   application. The meaning of a model fixes *which targets it could fit, in which respects*. It does not settle
-   whether it does fit them.
-4. **Records** have meaning through their production event, including instrument, protocol, conditions and holder,
-   together with an interpretation that is itself a content with standing.
-5. **Sense and reference are both kept.** Two concepts may be co-extensive but differ in role, as with "renate" (having
-   kidneys) and "cordate" (having a heart) in the classic example. Two concepts may also share a lexical anchor but differ in extension, as with
-   "power" in physics and in statistics. The model represents both situations.
-6. **Meaning is relative to a frame, but not trapped in it.** Anchors are shared across frames, and intertheoretic
-   mappings (D6) relate roles. Together they make it possible to compare meanings across frames, even when the
-   comparison returns "partly the same" or "undetermined".
+- A **goal** is a content held by an agent with a conative attitude (*desired*, *intended*). It is satisfied when the
+  world comes to match it.
+- A **norm** is a requirement or permission issued by an authority (a regulation, a standard, a protocol). It is
+  complied with or violated.
+- A **value** is a criterion by which a holder ranks outcomes.
+- A **decision** is a holder's choice of an action or design. It rests on practical grounds (section 5.11).
 
-## 3.5 How meaning is identified
+None of these is true or false, and none is a standing. Contents *about* them are true or false.
 
-There are two problems. **Individuation** asks when two concepts or contents in the universe are the same.
-**Recognition** asks when new material, such as a text, a dataset or a statement by an expert, expresses a meaning
-the universe already has.
+**D19 Inquiry role.** Within an inquiry, an item may serve as **data or evidence**, **representation** of a target,
+**instrument**, **procedure**, **standard**, **presupposition**, **goal** or **target**. Role is relative to the
+inquiry. Kind is fixed by the correctness condition. The same item can play different roles in different inquiries:
+a simulation output (a record) serves as data in a later study, and a dataset serves as a model of data. This
+generalises the view that what counts as data or as a model depends on its role in inquiry (Leonelli, 2019).
 
-### 3.5.1 Relations between meanings
+## 3.4 Pluralism by correctness condition
 
-For concepts *c1* (frame *F1*) and *c2* (frame *F2*), the universe must be able to represent each of the following
-relations, together with the grounds for it:
+| Kind of item | Direction of fit | Correct when | Standing typically concerns |
+|---|---|---|---|
+| **Content** (D10) | item to world | true, possibly to a degree or approximately, in the situation, target or structure | truth |
+| **Model** (D7) | item to world | it fits targets in stated respects, to a stated degree, within its domain | fit |
+| **Record** (D11) | item to its production event | it is a faithful trace of how it was produced | fidelity |
+| **Method** (D16) | — (procedural) | it is reliable or valid for its purpose under its conditions | reliability, validity |
+| **Practice** (D16) | — (procedural) | it is performed competently | competence |
+| **Design** (D17) | world to item | the realisation conforms to it | adequacy of the design for its goal (a content); conformance of a realisation |
+| **Goal** (D18) | world to item | the world comes to be as desired | — (conative, not epistemic) |
+| **Norm** (D18) | world to item | conduct complies | validity of the norm's authority (a content) |
 
-| Relation | Condition (informal) |
+**Why this pluralism rather than a reduction.** Section 2.8 compares the alternatives. In brief:
+
+1. **Each kind is assessed by different methods and revised differently.** Truth of contents is assessed by evidence
+   and inference. Fit of models by comparison in respects within domains. Fidelity of records by provenance and
+   calibration. Reliability of methods by validation studies. Conformance of realisations by inspection. Reducing all
+   of these to truth of statements would hide these differences in the predicates of the statements.
+2. **The criterion is determinate.** The kind of an item is fixed by its correctness condition, not by choice. This
+   removes the discretion of 1.0 over whether something was a "model" or a "content" (review of 1.0, `reviews/S0-1.0-critical-review.md`, section 2.1).
+3. **Nothing is forced into another kind.** Observations are not models. Designs and goals are not contents. Opaque
+   learned models are not decomposed into statements.
+
+**What this pluralism does not claim.** It does not claim greater *expressive power* than a well-built
+statement-based representation. Every correctness condition can be described by a content (T1), so a
+statement-based representation with contexts and provenance can express the same information at the meta-level
+(review of 1.0, Part 3). The claim is semantic: different items are correct in different ways. **How items are stored or
+encoded, including as statements, is a question for S1.** This settles open problem O18 of 1.0 (section 10.1).
+
+## 3.5 Five planes: meaning, correctness, justification, acceptance, decision
+
+| Plane | Question | Determined by | Not determined by |
+|---|---|---|---|
+| **Meaning** | What does the item say or require? | concepts' anchored roles, composition, frame (3.3, 4.1) | whether it is correct |
+| **Correctness** | Is it true, does it fit, is it faithful, reliable, conformed to or satisfied? | the world, or the structure, together with the meaning | what anyone holds |
+| **Justification** | What bears on its correctness? | grounds: records, inferences, evidence, testimony (5.7–5.9) | acceptance; grounds may be strong yet a holder may suspend judgement |
+| **Acceptance** | Does a holder accept it, for what purpose, to what degree? | grounds weighed against **standards** of acceptance for the purpose (5.9, 5.10) | goals and values as evidence |
+| **Practical decision** | What will a holder do or make? | accepted contents, including evaluative ones, together with goals, norms and values (5.11) | — |
+
+Rules:
+
+- **No plane settles another.** Meaning fixes correctness conditions, not correctness. Strong justification does not
+  amount to acceptance without standards. Acceptance does not amount to a decision without goals.
+- **No wishful thinking.** Goals, values and decisions are never grounds for accepting a content as true.
+- **Values may set standards of acceptance.** Values can legitimately influence *how much* support is required for
+  accepting a content for a purpose, the "inductive risk" role. They can never stand in for evidence (Douglas,
+  *Science, Policy, and the Value-Free Ideal*, 2009). This indirect role must be represented explicitly, as part of
+  the standard of acceptance, so it can be inspected.
+
+## 3.6 Identity, change and relations between frames
+
+### 3.6.1 Dimensions of continuity
+
+When a concept *c* is revised into *c′*, or compared with a concept *d* of another frame, four dimensions are
+assessed. Each assessment is itself a content with grounds.
+
+| Dim. | Question | Evidence |
+|---|---|---|
+| **A Anchors** | Are the paradigm anchors retained? Which anchors are added or dropped? | the procedures, specimens, standards and descriptions in use |
+| **G Goals** | Does the concept serve the same question types? Are any dropped or added? | the questions, explanations and predictions in which the practice uses the concept |
+| **X Extension** | Do the extensions agree on paradigm cases, and over which domain? | classification of cases |
+| **C Centrality** | Are the connections that change central or peripheral (D5)? | dependency structure in the frame |
+
+### 3.6.2 Criteria for outcomes of a change
+
+The criteria below use **ordinal comparison and paradigm cases. They use no numerical thresholds.**
+
+| Outcome | Criterion |
 |---|---|
-| **Identical** | same meaning in every frame where either occurs: inter-derivable cores in each such frame, the same anchors and the same extension. Typically one concept acquired twice from different sources |
-| **Equivalent in F** | in frame *F* their cores are inter-derivable and their anchors coincide |
-| **Co-referential** | same extension (by shared anchors or by evidence) but different roles |
-| **Broader / narrower** | the extension of one includes the other's, within a stated frame |
-| **Overlapping** | extensions intersect, and neither includes the other |
-| **Disjoint** | extensions cannot intersect, within a stated frame |
-| **Lineage-related** | one is a revision of the other (refinement, split, merger, …; D15) |
-| **Homonymous** | same lexical anchor, unrelated meanings |
-| **Undetermined** | the evidence does not settle the relation |
+| **New knowledge about *c*** | A and G preserved, and extension unchanged on paradigm cases. The change adds or removes contents, or alters only peripheral connections. |
+| **Precisification of *c*** | A and G preserved. The extension is settled where it was previously indeterminate (borderline cases), with no paradigm case lost. This is a form of meaning change that leaves earlier contents about clear cases intact. |
+| **Meaning change of *c*** (same concept, new version) | Paradigm anchors and goals preserved, and central connections change, or the extension changes beyond borderline cases while paradigm cases are kept. |
+| **New concept** (with lineage to *c*) | A goal is dropped or replaced, or the paradigm anchors are dropped. Also each successor in a **split** whose successors serve different goals or keep disjoint paradigm anchors. |
+| **Indeterminate** | The dimensions conflict, for example anchors preserved but goals replaced, or goals preserved but paradigm anchors dropped. Or the evidence on a dimension is insufficient. The outcome is recorded as "indeterminate between *x* and *y*", naming the conflicting dimension. |
 
-Each relation may be stated **relative to a domain of cases**. For example, two temperature concepts can be
-co-referential on equilibrium ideal-gas systems and diverge elsewhere (E1, chapter 8). A relation stated without a
-domain claims to hold across all cases.
+The criteria are not a decision procedure that resolves every case. They make explicit **why** a case is resolved,
+or why it is not. Disagreement between holders about such a case can be tested with the **verbal-dispute
+diagnostic**. Replace the disputed term by its candidate meanings. If the disagreement disappears, it concerned
+meaning, and it becomes a question of identity. If it persists, it concerned facts, and it becomes a disagreement
+about contents (Chalmers, "Verbal disputes", 2011).
 
-"Undetermined" is a legitimate, recorded outcome, not a failure. Forcing a decision when the evidence does not
-support one is a coherence violation (C11, section 6.5).
+### 3.6.3 Relations between concepts of different frames
 
-### 3.5.2 Evidence for recognition
+For *c* in *F1* and *d* in *F2*, the dimensions are compared over the domain the frames share. Each relation may be
+stated relative to a domain of cases.
 
-Evidence that two expressions share a meaning, from strongest to weakest:
+| Relation | Criterion (informal) |
+|---|---|
+| **Same concept, frame-relative roles** | shared paradigm anchors and goals, agreeing extension on the shared domain. Role profiles may differ by frame |
+| **Co-referential, different concepts** | agreeing extension, different goals or anchors ("renate" and "cordate") |
+| **Broader / narrower** | one extension includes the other, within the shared domain |
+| **Overlapping / disjoint** | extensions intersect without inclusion / cannot intersect |
+| **Lineage-related** | one descends from the other (D15) |
+| **Homonymous** | only lexical anchors shared, and goals differ |
+| **Indeterminate** | the dimensions conflict, or the evidence is insufficient |
 
-1. **Shared operational anchors.** The same procedure determines the concept's application, with the same scale
-   and the same reference standards.
-2. **Shared exemplar anchors.** The same paradigm cases, specimens or reference samples.
-3. **Shared deferential anchors.** The same standard, authority or community definition.
-4. **Structural congruence of role.** The concepts occupy corresponding positions in models with matching
-   structure. For example, both are conserved quantities appearing in balance equations of the same form. This is
-   tested by structure mapping, which aligns relations as well as attributes (Gentner, "Structure-mapping: A
-   theoretical framework for analogy", 1983).
-5. **Agreement of extension** on cases already known.
-6. **Similarity of usage** in texts (distributional evidence; section 2.2, A7).
-7. **Same term.** This is the weakest evidence. Many scientific terms are homonyms across fields: "significance",
-   "power", "fitness", "stress", "model".
+Concepts of the *same* frame are compared in the same way. "Identical" then means the same concept recorded from two
+sources: paradigm anchors, goals and extension coincide.
 
-Recognition is an **inference with standing**, not a lookup. Its result is a relation from 3.5.1, with grounds and a
-degree of support. It can be revised. When recognition cannot reach a decision, the new material is admitted as a
-*provisional concept* linked to its candidates by "undetermined" (mode M6, section 6.1). This is how the universe
-can both **recognise** known knowledge (R9) and **learn** new concepts (R8) without merging them prematurely.
+### 3.6.4 What follows from indeterminacy
 
-## 3.6 Why this is not an assertion-based model
+Indeterminacy is not resolved by fiat. When a conclusion depends on an indeterminate identity, an indeterminate
+reference or a vague concept, it is evaluated **under each admissible reading**:
 
-The mission forbids presupposing a model based on assertions. A reviewer could object that standing, grounds,
-coherence and revision all act on contents, so the model is assertions with metadata after all. Three features
-answer this objection, and one part of it remains open.
+- a conclusion that holds under every admissible reading is **reading-independent**;
+- a conclusion whose correctness differs across readings is **reading-dependent**. It is marked as such, and its
+  standing cannot exceed what the reading allows.
 
-1. **Standing, revision and coherence apply to non-propositional items directly.**
-   - A *model* can be accepted for a purpose and domain, or revised at level L3, without any sentence being
-     asserted.
-   - A *method* has a reliability standing (7.3).
-   - A *record* has a standing of integrity, for example "contaminated", "valid" or "superseded by recalibration".
-   - A *frame* is adopted or abandoned (L5).
-   - Coherence criteria C2, C3, C6 and C8 constrain concepts, models and uses of models, not sentences.
-2. **One model yields indefinitely many contents.** The universe does not hold the list of these contents. It holds
-   the model, and forms contents when a question needs them (D10). Accepting a model is not equivalent to accepting
-   a finite set of sentences, because the model's fit is qualified by respects, degree and domain.
-3. **Concepts have meaning before any content is asserted.** Anchors and roles give meaning independently of which
-   contents are held.
+This is the supervaluationist treatment of vagueness (Fine, "Vagueness, truth and logic", 1975), applied to identity
+and reference as well. **A vague concept is represented by its range of admissible precisifications.** Partial
+reference (D3) is handled the same way: each candidate referent is an admissible reading.
 
-**What remains open.** Whether every standing on a model can be faithfully re-expressed as standing on a set of fit
-contents is not settled. If it can, the difference from an assertion-based model is one of organisation and
-economy, not of expressive power. This is tested by the comparison with rival P2 (V6) and recorded as O18.
+### 3.6.5 Recognition
 
-## 3.7 The ontological scaffold
+Recognition asks whether new material expresses a concept the universe already has. It applies the same dimensions to
+the evidence available. That evidence is, from strongest to weakest:
+
+1. shared operational anchors;
+2. shared exemplar anchors;
+3. shared deferential anchors;
+4. structural congruence of central connections, tested by structure mapping (Gentner, "Structure-mapping: A
+   theoretical framework for analogy", 1983);
+5. shared goals, as shown by the questions in which the terms are used;
+6. agreement of extension on known cases;
+7. similarity of usage;
+8. the same term, which is the weakest evidence.
+
+Recognition is an inference with standing. When it cannot decide, the material is admitted as a **provisional
+concept**, related to its candidates by "indeterminate" (M6, section 6.1). A provisional concept must state **what
+evidence would resolve it**: which anchor, goal or extension comparison is missing. It is reassessed when such
+evidence arrives. This is the guard against both premature merging and unbounded duplication.
+
+## 3.7 What constitutes a meaning: summary
+
+1. **Concepts** mean through role profile, anchors and goals (D2-a).
+2. **Contents** mean through truth conditions fixed compositionally (D10, T5).
+3. **Models** mean through their structural or behavioural specification together with their domain. Their meaning
+   fixes which targets they could fit, and in which respects.
+4. **Records** mean through their production event. Their bearing on the world comes through interpretation.
+5. **Methods and practices** mean through their purpose, conditions and procedure.
+6. **Designs, goals and norms** mean through what would satisfy them or conform to them.
+7. **Sense and reference are both kept.** Co-referential concepts can differ in goals and anchors. Homonyms share
+   only lexical anchors.
+
+## 3.8 The ontological scaffold
 
 The scaffold is the first frame: a small set of very general concepts with identity criteria. It is *revisable*
-(T11). It exists so that recognition, composition and coherence checking have something to work with. The choice of
-these categories is defended in section 2.4, and the categories are tested in chapter 8.
+(T11), and the alternatives are discussed in section 2.4.
 
 | Category | What it is | Identity and persistence | Typical properties |
 |---|---|---|---|
-| **Entity** (continuant) | something that persists through time and can change while remaining the same thing: an electron, a cell, a mountain, an instrument, an organism | identity criteria depend on the kind. Persistence through change is governed by kind-specific conditions (e.g. a cell persists through growth but not through division) | qualities, dispositions, parts, locations |
-| **Occurrent** | something that happens or unfolds in time | identity by participants, time span and type | duration, rate, phase, participants |
-| — *Process* | an occurrent with no inherent end point, whose temporal parts are occurrents of the same type (diffusion, metabolism, erosion). It can be measured while it runs (Mourelatos, "Events, processes, and states", 1978) | | rate, intensity |
-| — *Event* | a countable occurrent with an inherent culmination or change of state: a mutation, an impact, a phase transition, a measurement act | | time, location, outcome |
-| **State** | the holding of determinate values by an entity or system over an interval | identity by bearer, determinable, value and interval | stability, duration |
-| **Phenomenon** | a stable, reproducible feature of the world, identified across occasions and usually inferred from many data: superconductivity, the photoelectric effect, circadian rhythm, the placebo response | identity by the pattern and its conditions of occurrence, not by any single occasion (Bogen and Woodward, "Saving the phenomena", 1988) | conditions of occurrence, robustness, magnitude |
-| **Property** | a way something is, a determinate of a determinable (Johnson, *Logic, Part I*, 1921). Bearers include entities, occurrents, relations and systems | identity by determinable and position in its value space | scale type, dimension |
-| — *Quantity* | a determinable whose determinates admit measurement on a scale (section 4.7) | | dimension, unit, uncertainty |
-| — *Disposition* | a property defined by what would occur under manifestation conditions: solubility, fragility, half-life, infectivity (Mumford, *Dispositions*, 1998) | identity by its manifestation and stimulus conditions | manifestation probability |
-| **Relation** | something that holds between several relata, each in a role: catalyses(enzyme, reaction), orbits(body, centre) | identity by type and relata-in-roles | direction, strength, duration |
-| — *Relator* | a relation treated as an item with properties of its own: a chemical bond with a length and energy, a symbiosis with a duration (Guizzardi, *Ontological Foundations for Structural Conceptual Models*, 2005) | | |
-| **Kind** | a concept whose extension is a class of things sharing projectible properties. Kinds may be natural (often clusters of properties maintained by underlying mechanisms; Boyd, "Homeostasis, species, and higher taxa", 1999), artefactual (defined by function) or conventional | identity by meaning (D2-a) | |
-| **Collection and population** | a plurality treated as a unit, with properties that may be distributive, collective or statistical (section 4.1, Op3) | identity by membership criteria, not fixed membership | size, distribution, composition |
-| **System** | an entity or collection considered with its internal organisation, boundaries and environment | identity by organisation and boundary criteria | variables, states, dynamics |
-| **Information item** | an item that is *about* something: a record, a text, a model description, an image | identity by content and by production | provenance, fidelity |
-| **Agent** | an entity that acts for goals: a researcher, a community, an institution, an organism (in a frame that permits it) | | goals, capabilities, standing |
+| **Entity** (continuant) | something that persists through time and can change while remaining the same thing | kind-specific persistence conditions (a cell persists through growth but not through division) | qualities, dispositions, parts, locations |
+| **Occurrent** | something that happens or unfolds in time | participants, time span, type | duration, rate, phase |
+| — *Process* | an occurrent with no inherent end point, whose temporal parts are occurrents of the same type (diffusion, metabolism, erosion) (Mourelatos, "Events, processes, and states", 1978) | | rate, intensity |
+| — *Event* | a countable occurrent with an inherent culmination or change of state (a mutation, an impact, a measurement act) | | time, location, outcome |
+| — *Action* | an occurrent with an agent acting on an intention or decision (an intervention, a construction, an experiment) | agent, intention, time | outcome, conformance to plan |
+| **State** | determinate values held by an entity or system over an interval | bearer, determinable, value, interval | stability |
+| **Phenomenon** | a stable, reproducible feature of the world identified across occasions, usually inferred from many data (Bogen and Woodward, "Saving the phenomena", 1988) | pattern and conditions of occurrence | robustness, magnitude |
+| **Property** | a determinate of a determinable (Johnson, *Logic, Part I*, 1921) | determinable and position in its value space | scale type, dimension |
+| — *Quantity* | a determinable whose determinates admit measurement on a scale (4.7) | | dimension, unit, uncertainty |
+| — *Disposition* | a property defined by manifestation under conditions (Mumford, *Dispositions*, 1998) | manifestation and stimulus conditions | manifestation probability |
+| **Relation** / *Relator* | something holding between relata in roles; a relator has properties of its own (Guizzardi, 2005) | type and relata in roles | direction, strength |
+| **Kind** | a concept whose extension shares projectible properties: natural, artefactual or conventional (Boyd, 1999, for natural kinds as property clusters) | meaning (D2-a) | |
+| **Collection / population** | a plurality treated as a unit, with distributive, collective or statistical properties (Op3) | membership criteria | size, distribution |
+| **System** | an entity or collection with organisation, boundary and environment | organisation and boundary | variables, dynamics |
+| **Agent** | an entity that acts for goals: a researcher, a community, an institution, an organism (where a frame allows) | | goals, capabilities |
 | **Artefact** | an entity made or used for a function (Houkes and Vermaas, *Technical Functions*, 2010) | | function, performance |
-| **Abstract structure** | a mathematical or formal structure used in models: a group, a differential equation, a probability space | identity by structure | |
+| **Abstract structure** | a mathematical or formal structure (a group, a graph, a probability space) | identity by structure | |
+| **Information item** | an item about something: a record, a text, a model description, a design document | content and production | provenance, fidelity |
 
 Remarks:
 
-- **Continuants and occurrents are both basic.** A process may be described as the history of a continuant ("the
-  cell divided"), or a continuant as a stabilised process ("a vortex", "a flame", "an organism as metabolic
-  flow"). Both descriptions are admissible in different frames (section 2.4, SC3). The universe records which
-  description a frame uses, and how they map onto each other.
-- **Phenomena are items, not contents.** The photoelectric effect is a pattern in the world. "The photoelectric
-  effect occurs above a threshold frequency" is a general content (4.2) *about* that phenomenon.
-- **Phenomena are not data.** Data are records of particular occasions. Phenomena are stable features inferred from
-  data. This distinction is central to R13 (section 5.3).
-- **The status of abstract structures** (realist, fictionalist or structuralist) is not settled here (O12). The
-  universe only needs to represent their use in models.
-- **New categories** can be added, and existing ones split or merged, by scaffold revision (section 6.3), the
-  deepest level of revision. One historical example is the admission of fields as bearers of energy and momentum in their own right, not merely
-as descriptions of forces between bodies. A scaffold limited to bodies and their qualities would have had to be
-revised for this.
+- **Continuants and occurrents are both basic.** Both process-first and thing-first descriptions are admissible in
+  different frames (section 2.4, SC3), with explicit mappings between them.
+- **Phenomena are items, not contents, and not data** (section 5.3). "The photoelectric effect occurs above a
+  threshold frequency" is a general content *about* the phenomenon.
+- **Representational items are also information items.** Contents, models, records, designs and methods exist in
+  the world as texts, files or practices. They have authors, dates and provenance. This is how studied classification
+  practices can act causally on the world, as in looping effects of human kinds.
+- **The status of abstract structures** is not settled (O12). The universe only needs to represent their use as
+  targets and in models.
+- **New categories** can be added by scaffold revision (section 6.3). An example is the admission of fields as bearers
+  of energy and momentum alongside bodies.

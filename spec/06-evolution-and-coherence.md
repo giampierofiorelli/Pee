@@ -13,7 +13,7 @@ changing its own standing towards X, only by a separate step that has its own gr
 conflicting sources never produce a contradiction: they produce two attributions and a recorded conflict.
 
 **Interpretation is a hypothesis.** Mapping external material onto concepts of the universe is an inference
-(recognition, section 3.5). It has interpretive uncertainty (section 4.9), so the interpretation is itself a content
+(recognition, section 3.6). It has interpretive uncertainty (section 4.9), so the interpretation is itself a content
 with standing, and it can be revised. Example: "in this paper, 'expression' means the protein level, not the mRNA
 level".
 
@@ -21,12 +21,12 @@ level".
 
 | Mode | How the concept enters | Initial meaning | Example |
 |---|---|---|---|
-| **M1 Definition** | composed from existing concepts (section 4.1) | core = the definition; anchors inherited | "specific heat capacity" from heat, mass and temperature |
+| **M1 Definition** | composed from existing concepts (section 4.1) | the definition gives the central connections; anchors inherited | "specific heat capacity" from heat, mass and temperature |
 | **M2 Abstraction from exemplars** | a region or prototype is formed in a property space from cases (Gärdenfors, 2000) | exemplar anchors; role grows with use | a new cell morphology class from microscopy images |
 | **M3 Operational introduction** | a new procedure defines what is measured (Bridgman, *The Logic of Modern Physics*, 1927) | operational anchor; role to be discovered. The well-known limit of operationalism, that each procedure would define a different concept, is handled by allowing several operational anchors and testing whether they agree | a new assay-defined biomarker |
-| **M4 Theoretical posit** | introduced as "whatever plays role R" (Lewis, "How to define theoretical terms", 1970) | descriptive anchor; core = role R. Reference may later prove empty | a hypothesised particle; a latent trait |
+| **M4 Theoretical posit** | introduced as "whatever plays role R" (Lewis, "How to define theoretical terms", 1970) | descriptive anchor with category commitment; role R is central. Reference may later prove empty | a hypothesised particle; a latent trait |
 | **M5 Model-based or analogical construction** | built by adapting a model from another domain (Nersessian, *Creating Scientific Concepts*, 2008) | role transferred, flagged as hypothesis (section 6.4) | "field" from fluids to electromagnetism |
-| **M6 Provisional placeholder** | material that cannot be recognised is admitted as a placeholder concept linked to candidates by "undetermined" (section 3.5). The placeholder gains structure as relations accumulate, in the spirit of Carey's bootstrapping with placeholder structures (Carey, *The Origin of Concepts*, 2009) | lexical and source anchors only; minimal role | an unfamiliar term in a paper from an unfamiliar field |
+| **M6 Provisional placeholder** | material that cannot be recognised is admitted as a placeholder concept linked to candidates by "indeterminate" (section 3.6). The placeholder gains structure as relations accumulate, in the spirit of Carey's bootstrapping with placeholder structures (Carey, *The Origin of Concepts*, 2009) | lexical and source anchors only; minimal role; must state what evidence would resolve it (3.6.5) | an unfamiliar term in a paper from an unfamiliar field |
 
 **Conservative extension.** A concept introduced by definition (M1) must not change what follows in the old
 vocabulary: it is a conservative extension. Concepts introduced by M3–M5 can be **non-conservative**, adding
@@ -42,66 +42,91 @@ principles do not automatically become accepted content of other frames.
 
 ## 6.2 Recognition and consolidation
 
-Recognition (section 3.5) decides whether acquired material expresses something already in the universe. Its
+Recognition (section 3.6.5) decides whether acquired material expresses a concept already in the universe. Its
 outcomes drive **consolidation**:
 
 - **identical** → the two entries are one concept, and both entry histories remain part of its provenance;
-- **equivalent or co-referential** → the relation is represented, and both concepts remain where their roles
-  differ;
+- **same concept with frame-relative roles, or co-referential** → the relation is represented, and both role
+  profiles or both concepts remain;
 - **broader / narrower / overlapping** → the relation is represented;
-- **undetermined** → both concepts remain, related by "undetermined", with the question open.
+- **indeterminate** → both concepts remain, related by "indeterminate", with the missing evidence stated
+  (3.6.5).
 
 A later finding can **undo** an identification (a split) or **establish** a delayed one. Both are recorded revisions
 (section 6.3), never silent edits.
 
 ## 6.3 Revision
 
-### Levels of revision
+### What a revision changes
 
-| Level | What changes | Examples |
+Revisions are classified by **what changes**. The classes describe; they do not rank.
+
+| Class | What changes | Examples |
 |---|---|---|
-| **L1 Standing** | attitude or support of a content | a hypothesis becomes accepted; an accepted result is retracted after a replication failure |
+| **L1 Standing** | the attitude or support of any item | a hypothesis becomes accepted; a result is retracted after a replication failure; a record is judged corrupted |
 | **L2 Content** | a content is corrected or refined | a value updated with a better measurement |
-| **L3 Model** | a model's structure, parameters or domain of application | adding a term; restricting the domain after anomalies |
-| **L4 Concept** | a concept's role (core or collateral) or anchors | redefinition of a unit; splitting a concept |
-| **L5 Frame** | a frame's constitutive principles, admissible models or scope | adopting a new theory; changing a measurement convention |
-| **L6 Scaffold** | the most general categories | admitting fields as bearers of energy and momentum alongside bodies (section 3.7) |
+| **L3 Model or method** | a model's specification or domain; a method's procedure, assumptions or reliability profile | adding a term; restricting a domain after anomalies; revising a design code |
+| **L4 Concept** | a concept's role profile, anchors or goals, with the outcome classified by section 3.6.2 | redefinition of a unit; precisification; splitting a concept |
+| **L5 Frame** | a frame's constitutive commitments or scope (D6) | adopting a new theory; changing a measurement convention |
+| **L6 Scaffold** | the most general categories | admitting fields as bearers of energy and momentum alongside bodies (section 3.8) |
 
-**Entrenchment.** Deeper levels are more entrenched (Gärdenfors, 1988). Other things being equal, a conflict is resolved by the least
-entrenched revision that resolves it. A deeper revision is preferred only when shallower revisions have failed
-repeatedly, or when the evidence bears directly on a deeper item. This is a semantic preference ordering, not a
-procedure. This is a **default, not a dogma**. Lakatos's account of
-degenerating research programmes (1970) describes the opposite risk: protecting a core by endless repairs of the
-periphery. So the universe records the **history of repairs** made to protect each core, and treats accumulating
-repairs as a ground for deeper revision.
+A single episode often involves several classes at once. One example is a belief that is accepted content in some
+studies and a presupposition of interpretation in others (D6).
 
-**Triggers for revision** include new evidence, detected conflict, accumulating anomalies, recognition results, a
-revised method (if a method's reliability is downgraded, the standings that relied on it are flagged), source
-retraction and an explicit request by a holder.
+### Entrenchment and the choice between revisions
 
-**Propagation.** When an item is revised, every standing whose grounds depend on it **rests on a revised ground**,
-and this must be representable. Such standings are open to reassessment, but they are not thereby withdrawn. This
-is the semantic obligation behind reason maintenance (Doyle, 1979). The outcome of each reassessment is itself an
-event of the universe.
+**Entrenchment** is a property of an item, whatever its class. It has two components:
 
-**Non-destructive history (T8).** For any past time, the universe must be able to say what it held, about what,
-with what standing and why. Revisions are events in the universe with their trigger, the change made, the grounds
-and the agent or procedure responsible.
+- how many other standings, methods and interpretations **depend on it** through grounds or presupposition;
+- how **robust and long-standing** its support is: independent methods, replication, time.
+
+Other things being equal, a conflict is resolved by the revision that **disturbs least entrenched material**. This
+corresponds to minimal mutilation, or the virtue of conservatism (Quine and Ullian, *The Web of Belief*, 1970), and
+to epistemic entrenchment (Gärdenfors, 1988). It is a preference ordering, not a procedure, and it is a **default,
+not a dogma**. Lakatos's account of degenerating research programmes (1970) describes the risk of protecting an
+entrenched item by endless repairs elsewhere. The universe therefore records the **history of repairs** made to
+protect an item, and treats accumulating repairs as a ground for revising the item itself.
+
+Version 1.0 equated entrenchment with depth of level. Version 2.0 does not, because a highly entrenched belief can be
+an ordinary accepted content (section 2.8, FD3).
+
+**Triggers for revision** include:
+
+- new evidence, detected conflict or accumulating anomalies;
+- recognition results;
+- a revised method: if a method's reliability is downgraded, the standings that relied on it rest on a revised
+  ground;
+- the observed outcome of an action or design;
+- source retraction;
+- an explicit request by a holder.
+
+**Propagation.** When an item is revised, every standing and decision whose grounds depend on it **rests on a revised
+ground**, and this must be representable. Such standings are open to reassessment, but they are not thereby
+withdrawn. This is the semantic obligation behind reason maintenance (Doyle, 1979). The outcome of each reassessment
+is itself an event of the universe.
+
+**Non-destructive history (T8).** For any past time, the universe must be able to say what it held, about what, with
+what standing and why. Revisions are events with their trigger, the change made, the grounds and the agent or
+procedure responsible.
 
 ### Lineage of meaning
 
-Concept revisions (L4) and frame revisions (L5) create **lineage** (D15). The forms are:
+A concept or frame revision creates a **lineage** link (D15). The link records which dimensions of section 3.6.1
+changed. Common combinations have names. They are labels, **not mutually exclusive categories**:
 
-| Form | Description | Example |
+| Label | Typical dimensions changed | Example |
 |---|---|---|
-| **Anchor change preserving extension** | new anchors, same extension within stated uncertainty | the kilogram redefined by fixing the Planck constant (2019) |
-| **Anchor change altering extension** | new anchors that change what the concept covers, with a correspondence on overlapping cases | a survey redesign creating a break in an official statistic (E11) |
-| **Refinement** | core sharpened; extension narrowed or made precise | "species" under a particular species concept |
-| **Generalisation** | core loosened; extension widened | "acid" from Arrhenius to Brønsted–Lowry to Lewis (E2) |
-| **Split** | one concept becomes several | "jade" into jadeite and nephrite (Putnam, 1975); the "gene" concept (E3) |
-| **Merger** | several concepts recognised as one | two species described separately and later judged to be one (taxonomic synonymy). Contrast "morning star" and "evening star": these remain distinct concepts, recognised as co-referential |
-| **Replacement with partial correspondence** | a new frame's concept succeeds an old one with an approximate mapping in a limit | relativistic and Newtonian mass |
-| **Elimination** | reference judged empty; concept kept as historical, with an empty extension | phlogiston and caloric as substance concepts |
+| **Anchor change preserving extension** | anchors; extension unchanged within uncertainty | the kilogram redefined by fixing the Planck constant (2019) |
+| **Anchor change altering extension** | anchors and extension; goals kept | a survey redesign creating a break in an official statistic (E11) |
+| **Precisification** | extension settled on borderline cases; anchors and goals kept | a formal definition replacing an exemplar-based usage |
+| **Refinement / generalisation** | central connections and extension narrowed / widened; goals kept | "acid" from Arrhenius to Brønsted–Lowry to Lewis (E2) |
+| **Split** | successors divide anchors or goals | "jade" into jadeite and nephrite (Putnam, 1975); the "gene" concepts (E3) |
+| **Merger** | concepts judged identical | two species described separately, later judged to be one (taxonomic synonymy) |
+| **Replacement with partial correspondence** | new frame; approximate mapping in a limit | relativistic and Newtonian mass |
+| **Elimination** | reference judged empty; concept kept as historical | phlogiston and caloric as substance concepts |
+
+Whether a lineage link joins two versions of one concept or two concepts is decided by section 3.6.2, including the
+outcome "indeterminate".
 
 **Older concepts are not deleted.** Newtonian mass remains the concept in use in the Newtonian frame, which is still
 accepted within its domain of application. Phlogiston remains interpretable, so that historical texts can be read
@@ -112,7 +137,7 @@ change", 1978).
 **Incommensurability.** Kuhn argued that concepts of successive paradigms may not be fully translatable (1962). The
 model does not require full translation. It requires only **partial mappings**: shared anchors, limiting
 relations and correspondences of extension on shared cases. Where no mapping can be established, the relation is
-recorded as "undetermined". Thus incommensurability is represented as a fact about frames. It is not a breakdown of
+recorded as "indeterminate". Thus incommensurability is represented as a fact about frames. It is not a breakdown of
 the universe.
 
 ## 6.4 Reuse and transfer of principles
@@ -131,7 +156,7 @@ standing, never an automatic acceptance.
 | **TC2 Positive, negative and neutral analogy are mapped** | known similarities, known differences and unknowns are listed, and the known differences do not touch the structure the principle depends on | Hesse, 1966; Bartha, 2010 |
 | **TC3 Regime match** | the target lies in the source model's domain of application, for example in the same dimensionless regime | Buckingham, 1914 |
 | **TC4 Causal similarity** (for causal content) | the target shares the causal structure and the support factors the effect depends on. "It worked there" does not imply "it will work here" | Cartwright and Hardie, *Evidence-Based Policy*, 2012; Pearl and Bareinboim, "External validity: from do-calculus to transportability across populations", 2014 |
-| **TC5 Concept alignment** | the concepts in the principle are recognised in the target frame (section 3.5) | — |
+| **TC5 Concept alignment** | the concepts in the principle are recognised in the target frame (section 3.6) | — |
 
 **Kinds of transfer** differ in what they carry and in how strong a license they need:
 
@@ -152,15 +177,15 @@ that do not depend on it.
 |---|---|
 | **C1 Frame-local consistency** | within a frame, no holder accepts both a content and its contradictory negation (or incompatible contents) without a recorded conflict |
 | **C2 Type and dimension coherence** | compositions respect argument roles, scaffold categories, dimensions and scale types (sections 4.1, 4.7) |
-| **C3 Anchoring** | every concept in use has at least one non-lexical anchor, or is explicitly marked as a placeholder (M6) or as a pure theoretical posit with a descriptive anchor (M4) |
-| **C4 Groundedness** | every standing other than "entertained" has grounds, and every ground can be traced to records, definitions, presuppositions or attributed sources |
+| **C3 Anchoring** | every concept in use has at least one non-lexical anchor and at least one stated goal, or is explicitly marked as a placeholder (M6) or as a pure theoretical posit with a descriptive anchor (M4) |
+| **C4 Groundedness** | every standing other than "entertained", and every decision, has grounds, and every ground can be traced to records, definitions, presuppositions or attributed sources |
 | **C5 Provenance** | for every item it is representable how it entered the universe: source, time, procedure and holder |
 | **C6 Declared non-conservativity** | a new concept's effect on contents in the existing vocabulary is either nil (conservative) or recorded |
 | **C7 Historical continuity** | every revision preserves earlier states and their interpretation in their frames (T8) |
 | **C8 Scope discipline** | uses of a model or causal content beyond its domain of application are marked as extrapolations or transfer hypotheses (section 6.4) |
 | **C9 No reliance on rejected content** | no accepted explanation or acceptance depends on a content the same holder rejects |
-| **C10 Category separation** | content and standing; chance and credence; data and phenomena; world change and universe change; association and causation are not conflated (sections 4.11, 5.1–5.5) |
-| **C11 No forced decisions** | no closed world without declared closure (4.10); no identity or merge without grounds (3.5); "undetermined" remains available |
+| **C10 Category separation** | the five planes (3.5); kinds of item by correctness condition (3.4); chance and credence; data and phenomena; world change and universe change; association and causation are not conflated (sections 4.11, 5.1–5.5) |
+| **C11 No forced resolutions** | no closed world without declared closure (4.10); no identity or merge without grounds (3.6); "indeterminate" remains available, and conclusions that depend on an indeterminate case are marked as dependent on the reading (3.6.4) |
 | **C12 Contained conflict** | contradictions are relativised to frames or holders, or recorded as conflicts. They are never resolved by deleting the losing side without trace |
 
 **Grading.** C1–C12 are conditions that are either met or violated. The *degree* of coherence of a frame or a

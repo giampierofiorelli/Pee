@@ -10,7 +10,7 @@ directly. Confidential data, unpublishable scientific material and private evalu
 
 | Stage | Content | Status |
 |---|---|---|
-| S0 | Foundational specification of the semantic universe (in English) | **Frozen as version 1.0 (2026-10-21); awaiting owner approval** |
+| S0 | Foundational specification of the semantic universe (in English) | **Version 2.0 (2026-10-21) submitted for owner approval. Version 1.0 (commit `d82f95f`) was reviewed and not approved.** |
 | S1 | Computational representation | Not authorised |
 | S2 | Full knowledge cycle (acquisition, interpretation, evaluation, revision, use) | Not authorised |
 | S3 | Verification plan | Not authorised |
@@ -27,3 +27,4 @@ computational architecture.
 - `MISSION.md` — the owner's mission for this project (original Italian text and an English translation).
 - `CLAUDE.md` — working rules for the Claude Code sessions that work in this repository.
 - `spec/` — the S0 foundational specification (start at `spec/README.md`).
+- `reviews/` — critical reviews of S0 versions.

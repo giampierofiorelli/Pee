@@ -76,7 +76,8 @@ Role alone does not fix reference (K1): a coherent role may be realised by nothi
 combine role and reference, are open to the objection that the two factors can come apart.
 
 **Retained.** Role is half of meaning. The holism objection is answered by separating a frame-relative constitutive
-core from collateral connections (D5, section 3.3).
+core from collateral connections. In 2.0 this answer is restated as graded centrality, shared anchors and
+shared goals (D5, section 3.3).
 
 ### A4. Conceptual spaces and geometric semantics
 
@@ -135,7 +136,7 @@ structure", 1954; Firth, "A synopsis of linguistic theory 1930–1955", 1957).
 fact from hypothesis (R13). Choosing it would also presuppose a computational substrate, against R16.
 
 **Retained.** Patterns of use are admissible evidence for recognising a meaning, never its definition
-(section 3.5). Any later computational use of distributional methods belongs to S1 or later, and stays subordinate
+(section 3.6). Any later computational use of distributional methods belongs to S1 or later, and stays subordinate
 to this specification.
 
 ### A8. Meaning as use, and social externalism
@@ -194,7 +195,7 @@ logics are chosen in advance, which goes against the mission's order of work (K8
 the description-logic approach is still fundamentally a stock of axioms (K7).
 
 **Retained.** Identity criteria for categories, the continuant/occurrent distinction and attention to dependence
-relations, but inside a scaffold that can be revised (section 3.7).
+relations, but inside a scaffold that can be revised (section 3.8).
 
 ### A12. Situation and dynamic semantics
 
@@ -257,12 +258,9 @@ measuring and calculating (Hacking, *Representing and Intervening*, 1983; Chang,
 **U4. Data-driven patterns.** Knowledge consists of regularities extracted from data. Data are relational: they
 count as evidence for some claims within some practices (Leonelli, *Data-Centric Biology*, 2016).
 
-**Decision.** **Models are the primary bearers of theoretical content (U2).** **Practices are first-class (U3)** and
-carry methodological knowledge (chapter 7). **Records of data (U4)** are first-class carriers of empirical input.
-Contents such as claims and propositions are **derived**: they are formed by composition when a question, an
-inference or an evaluation needs them. One example is the content that a given model fits a given target in
-certain respects. Contents are not the stock from which the universe is built. This meets R16 without denying that
-claims exist.
+**Decision (2.0).** No single unit is primary. Contents, models, records, methods and practices, designs, goals
+and norms are co-fundamental kinds of representational item, individuated by their correctness conditions
+(section 3.4). Version 1.0 had chosen model primacy (U2). Section 2.8 (FD1) records why that choice was withdrawn.
 
 ## 2.4 Which ontological scaffold, if any, comes first?
 
@@ -281,9 +279,9 @@ it is less natural for metrology and for artefacts.
 **SC4. No upper ontology,** with all categories learned bottom-up. *For:* maximal openness (R8). *Against:* without
 any scaffold there are no identity criteria, and recognition (R9) becomes impossible.
 
-**Decision.** A **minimal, revisable scaffold** (section 3.7). Continuants and occurrents are both basic, and
+**Decision.** A **minimal, revisable scaffold** (section 3.8). Continuants and occurrents are both basic, and
 neither is reduced to the other. Every scaffold category is itself a concept with role and anchors, so it can be
-revised, split or supplemented (T11). Only the **meta-level** (chapter 3, D1–D16) is fixed by this specification.
+revised, split or supplemented (T11). Only the **meta-level** (chapter 3, D1–D19) is fixed by this specification.
 
 ## 2.5 How are epistemic states represented?
 
@@ -329,44 +327,151 @@ between chance and credence (section 4.9).
 - **RV-e. Epistemic iteration:** concepts and measurement standards are refined in successive self-correcting rounds
   (Chang, *Inventing Temperature*, 2004).
 
-**Decision.** Revision is **layered by depth**: standing, content, model, concept, frame and scaffold
-(section 6.3). Deeper layers are more entrenched, and revising them is a recorded event in its own right (RV-a's
-entrenchment, RV-d's structure). Revision is **non-destructive**: the universe keeps the history of what was held,
-when and why (RV-b), so changes of meaning can be traced (RV-c, V-d, RV-e). AGM-style postulates may serve as a local
+**Decision (2.0).** Revisions are **classified by what changes**: standing, content, model or method, concept,
+frame or scaffold (section 6.3). The preference among possible revisions is governed by **entrenchment**, meaning
+how much else depends on an item and how robust its support is. It is not governed by the level of the item (RV-a's
+entrenchment; Quine and Ullian, *The Web of Belief*, 1970, on conservatism). Version 1.0 tied entrenchment to level,
+and section 2.8 (FD3) explains why that was changed. Revision is **non-destructive**: the universe keeps the history
+of what was held, when and why (RV-b), so changes of meaning can be traced (RV-c, RV-d, RV-e). AGM-style postulates may serve as a local
 standard within a fixed frame. They cannot be the whole theory.
 
-## 2.7 Decisions and their risks
+## 2.7 Decisions of version 1.0 and their status in 2.0
 
-The proposal, called **anchored-role semantics in a model-centred universe**, consists of the following decisions:
+| 1.0 decision | Status in 2.0 |
+|---|---|
+| 1. Meaning = frame-relative role + anchors, with a constitutive core to block holism | **Revised** (FD3): role profile with graded centrality, anchors and epistemic goals. No binary core. |
+| 2. Properties in structured determinable spaces (A4) under measurement theory | **Kept.** |
+| 3. Models primary; practices and records first-class; contents derived | **Replaced** (FD1): pluralism by correctness condition. |
+| 4. Minimal, revisable scaffold with continuants and occurrents as basic | **Kept**, with *action* added as an occurrent type (FD2). |
+| 5. Standing separate from content, with grounds; calculus deferred | **Kept and extended** (FD2): five planes, with practical grounds for decisions. |
+| 6. Layered, non-destructive revision including change of meaning | **Kept**, with entrenchment decoupled from level (FD3). |
 
-1. Meaning = frame-relative **role** + **anchors** (A3 + A1/A8/A9), with a constitutive core to block holism.
-2. Properties live in **structured determinable spaces** (A4) under measurement theory.
-3. **Models** are the primary bearers of theory. **Practices and records** are first-class. Contents are derived
-   (U2, U3, U4).
-4. A **minimal, revisable scaffold** with continuants and occurrents as basic (SC1/SC3, made revisable).
-5. **Standing is separate from content** and carries grounds. The calculus is deferred (EP-e, EP-f).
-6. **Layered, non-destructive revision** that includes change of meaning (RV-a to RV-e).
-
-**Why this is a principled combination and not eclecticism.** Each component answers a requirement that the
-alternatives fail separately (section 2.2, comparison table). The components also meet at a single point, the
-**frame**: role, constitutive core, admissible models, measurement conventions and scope are all relative to a
-frame. As a result, the frame is the one place where context, meaning change and incommensurability are handled.
-
-**Risks.**
-
-- Two-factor theories can let role and anchor come apart. The model treats this divergence as information
-  (reference may be empty or indeterminate, D3) rather than as a contradiction, but the criteria for resolving it
-  remain partly open (O1, O2).
-- A model-centred universe may make simple factual knowledge, such as "the boiling point of water at 101.325 kPa is
-  about 373 K", seem heavy. Section 3.3 shows that such contents are degenerate models, and the cost is examined in
-  chapter 8.
-- Deferring the uncertainty calculus leaves S1 with a substantial choice (O4).
-
-**Rival proposals kept for comparison.** Chapter 9 requires the adequacy check to compare this proposal against at
-least two rivals on the same held-out cases:
+**Rival proposals kept for comparison.** These are unchanged:
 
 - **Rival P1**, a pure conceptual-space semantics extended with events (A4 + A6).
-- **Rival P2**, a statement-based formal ontology with probabilistic annotations (A11 + EP-b).
+- **Rival P2**, a statement-based formal ontology with probabilistic annotations (A11 + EP-b). It is judged in its
+  strong form **P2+**, with named contexts, provenance, versioning and argument structure, as defined in the review
+  of 1.0.
 
-P2 is the conventional option. Keeping it as a comparator tests whether the departure from assertions earns its
-cost.
+The 1.0 review found that neither rival is a better foundation. It also found that S0's advantage over P2+ lies in its
+theory of distinctions, not in model primacy (`reviews/S0-1.0-critical-review.md`, sections 2.6 and 3.3).
+
+## 2.8 Foundational decisions of version 2.0
+
+Each decision below states the problem found in 1.0, the alternatives, the choice, why, and what remains open.
+The review cases (H1–H11) were used as **development material** for these decisions. They are not evidence for them.
+
+### FD1 — What kinds of item are fundamental
+
+**Problem.** In the review, model primacy (T1 of 1.0) did no work that a strong statement-based representation (P2+)
+could not also do, so the failure condition F3 was met. Representing single observations as "degenerate models"
+conflicted with the treatment of records (D11) and duplicated conditions.
+
+**Alternatives:**
+
+| Option | Description | Assessment |
+|---|---|---|
+| FD1-a Model primacy (1.0) | models are the bearers of theory; other items are derived | Organisational only (F3). It forces observations and designs into the model form. |
+| FD1-b Content primacy | everything is ultimately a set of truth-apt contents with metadata (P2+) | Expressively adequate at the meta-level. It hides the different correctness conditions inside predicates, and it presupposes the assertion-based model that the mission excludes. |
+| FD1-c Record or data primacy | everything is built up from data (data-centric empiricism) | It cannot account for theoretical models, norms or designs without reconstructing them as derived. Data are a role, not a kind (Leonelli, 2019). |
+| FD1-d Practice primacy | everything is an aspect of practices (Hacking, 1983; Chang, 2012) | It fits methodological knowledge well, but it makes truth and fit of particular contents and models derivative and hard to assess. |
+| FD1-e **Pluralism by correctness condition** | several co-fundamental kinds, individuated by correctness condition and direction of fit; role in inquiry is relative | Chosen. |
+
+**Why FD1-e.**
+
+1. It follows a single principle, the correctness condition, rather than a list. The principle is grounded in the
+   theory of direction of fit (Anscombe, 1957; Searle, 1983).
+2. It gives a determinate criterion for the kind of an item.
+3. It makes design, goals and norms first-class without bolting them on, which addresses the review's concern SP4.
+4. It does not claim expressive superiority over FD1-b. It claims fidelity to how science assesses different
+   items, and it leaves storage to S1.
+5. It withdraws degenerate models: an observation produces a record, and its interpretation is a situated content.
+
+**Open.** Whether the list of correctness conditions is complete (O14).
+
+### FD2 — Keeping meaning, correctness, justification, acceptance and decision apart
+
+**Problem.** In 1.0, standing was epistemic, yet chapter 7 attached goals and decisions to it without grounds of their
+own (review LD5, SP4).
+
+**Alternatives:**
+
+- FD2-a: one generic "attitude" covering belief and desire.
+- FD2-b: decision-theoretic integration, with credences and utilities combined into expected value.
+- FD2-c: **five distinct planes**, with practical grounds for decisions and an explicit, inspectable role for values in
+  standards of acceptance.
+
+**Choice: FD2-c.** FD2-a merges epistemic and conative attitudes, which invites wishful thinking. FD2-b presupposes a
+precise calculus that S0 defers (4.9), and it cannot represent norms and incommensurable values without further
+assumptions. FD2-c keeps decision theory admissible as one possible S1 treatment of the practical plane. The
+indirect role of values in acceptance follows Douglas (2009).
+
+**Open.** How to represent trade-offs between incommensurable values (O10).
+
+### FD3 — Identity and evolution of concepts, and individuation of frames
+
+**Problem.** The binary core/collateral split carried identity, revision level and entrenchment, but was not
+operational. In the review, the H1 and H11 cases each admitted two faithful encodings with different consequences
+(failure condition F5). Frames were not individuated.
+
+**Alternatives for identity through change:**
+
+| Option | Source | Assessment |
+|---|---|---|
+| FD3-a Frame-relative core (1.0) | Carnap; Friedman (2001) | No operational boundary. Friedman's support is for theory-level principles, not concept cores. |
+| FD3-b Anchor continuity only | causal-historical theories (Kripke, 1980; Putnam, 1975) | Strong for natural kinds. It cannot handle reference failure, theoretical posits or a change of purpose. |
+| FD3-c Epistemic-goal continuity | Brigandt (2010) | Explains rational meaning change. Goal individuation needs a basis. |
+| FD3-d Graded centrality | Sloman, Love and Ahn (1998) | Avoids an analytic boundary. Gives no identity criterion on its own. |
+| FD3-e Contextual diagnostics | Chalmers (2011), verbal disputes | Operational for disagreements, not for single changes. |
+| FD3-f Taxonomic structure | Kuhn (2000) | Precise for kind terms. Silent for quantities. |
+| FD3-g **Combined continuity criteria** | anchors (b) + goals (c) + extension, with centrality (d) for role change and the diagnostic (e) for disagreements | Chosen. |
+
+**Why FD3-g.**
+
+1. Each component covers a failure of the others. Anchors without goals cannot see a change of purpose. Goals
+   without anchors cannot see a change of subject matter. Centrality replaces the binary core.
+2. Goals are individuated through question types, which already exist as items in the universe (7.2).
+3. **When the dimensions conflict, the outcome is indeterminate, by rule.** Conclusions are evaluated under each
+   reading, following supervaluation (Fine, 1975). The method needs no numerical thresholds.
+4. Taxonomic structure (FD3-f) is kept as evidence within dimension X for kind terms. It is not a separate criterion.
+
+**Alternatives for individuating frames:**
+
+- by theory, as a set of principles;
+- by community, as Kuhn's disciplinary matrix;
+- by domain of inquiry;
+- no frames at all, with pure contextualism;
+- **by constitutive commitments**: what a practice's methods presuppose rather than test (Reichenbach, 1920;
+  Friedman, 2001).
+
+**Choice:** constitutive commitments, with scope. Theories and communities do not have sharp boundaries. Domains do
+not separate rival frames over the same domain. Pure contextualism loses the stability that composition needs. The
+functional criterion can be investigated empirically in a practice, and it is allowed to give split answers (D6).
+
+**Entrenchment is decoupled from level.** H11 showed that a highly entrenched belief can be an accepted content. In
+2.0, entrenchment is the dependence of other items on an item together with the robustness of its support, whatever
+its level.
+
+**Open.**
+
+- How to compare continuity on a dimension when evidence is partial (O1, revised).
+- How to establish what a practice presupposes, especially for historical practices (O2, revised).
+
+### FD4 — Order of work for the local corrections
+
+The local defects LD1–LD11 found in the review were integrated **after** FD1–FD3, and each was resolved as a
+consequence of those decisions where possible:
+
+| Defect | Resolution in 2.0 |
+|---|---|
+| LD2 degenerate models | withdrawn (FD1; D7) |
+| LD3 opaque models | behavioural specification (D7, from FD1's correctness condition "fit") |
+| LD4 direction of fit | designs (D17), from FD1 |
+| LD5 practical grounds | practical plane (5.11), from FD2 |
+| LD6 lineage forms | lineage by dimensions (D15), from FD3 |
+| LD7 attributions in the world | two kinds of holder (D14), from FD2 |
+| LD8 mathematical domains | abstract structures as targets (D8), from FD1 |
+| LD11 vagueness | admissible precisifications (3.6.4), from FD3 |
+| LD1 logical omniscience | an obligation on the standing calculus (4.9). Independent of FD1–FD3, and required by the separation of correctness from acceptance (FD2) |
+| LD9 verification design | protocol in section 9.7 |
+| LD10 bibliography | corrected in `references.md` and in the text |

@@ -68,7 +68,7 @@ Physics Lie*, 1983; Cartwright, *Nature's Capacities and their Measurement*, 198
 
 **Op8 Model composition.** This combines models by coupling (shared variables), nesting (one model gives a
 parameter of another) or multi-scale linking (a micro-model gives a constitutive relation for a macro-model).
-Composition is admissible only if the shared components are recognised as the same concept (section 3.5), their
+Composition is admissible only if the shared components are recognised as the same concept (section 3.6), their
 frames are compatible or explicitly mapped, and their domains of application overlap on the coupled region.
 
 **Op9 Embedding.** This places a content under an operator: negation (4.10), modality (4.8), conditional (4.6),
@@ -88,7 +88,7 @@ context parameters (Partee, "Compositionality", 1984). Four apparent exceptions 
 
 1. **Context dependence** is not an exception. Context is a parameter of composition (Op6).
 2. **Typicality does not compose**, as the "pet fish" case shows. Typicality is part of a concept's exemplar
-   anchoring, not of its core, so composing cores remains systematic while typical features of composites must be
+   anchoring, not of its central connections, so composing role profiles remains systematic while typical features of composites must be
    learned or inferred separately.
 3. **Lexicalised composites** (Op10) are new concepts and are not decomposed.
 4. **Emergence** concerns the world, not meaning. That a whole has properties not predictable from its parts does
@@ -170,7 +170,7 @@ Change in the world is represented in three complementary ways, because differen
 The universe must also represent:
 
 - **Change of kind**: metamorphosis, phase change, a star becoming a white dwarf. Whether the entity persists through
-  the change depends on the kind's persistence criteria (section 3.7).
+  the change depends on the kind's persistence criteria (section 3.8).
 - **Change affecting identity**: fission (cell division), fusion (cell fusion, merger of galaxies), gradual
   replacement (turnover of molecules in an organism). The universe must represent the lineage relations among the
   entities involved, not force a single persisting identity.
@@ -275,7 +275,7 @@ component of a content or model that it concerns.
 | **Structural / model** | in the choice between models | linear versus threshold dose–response |
 | **Scope** | in whether a target falls within a model's domain | will a drug's effect in adults transfer to children? |
 | **Interpretive** | in the reading of a record or text | which concept a term in a paper expresses |
-| **Vagueness** | in the concept itself (borderline cases) | species boundaries in ring species; "obese" (Williamson, *Vagueness*, 1994) |
+| **Vagueness** | in the concept itself (borderline cases), represented by a range of admissible precisifications (3.6.4) | species boundaries in ring species; "obese" (Williamson, *Vagueness*, 1994) |
 | **Epistemic (credence)** | in standing (holder-side) | how strongly a hypothesis is supported |
 | **Deep uncertainty / ignorance** | in standing, when no warranted distribution exists | novel technologies; unprecedented climate regimes (Knight, *Risk, Uncertainty and Profit*, 1921) |
 | **Disagreement** | in standing across holders | expert panels split on a causal claim |
@@ -292,8 +292,15 @@ Obligations on any later uncertainty calculus:
    way.
 4. **Propagation must be possible.** Uncertainty in inputs must be traceable to uncertainty in derived quantities and
    conclusions, as the GUM requires for measurement.
-5. **The calculus is not fixed in S0.** Probabilistic, imprecise, ranking-based and qualitative grading schemes are
-   all admissible if they meet obligations 1–4 (section 2.5).
+5. **No logical omniscience.** A holder's support for a content may fall short of certainty even when the content is
+   a logical or mathematical consequence of what the holder accepts, until a derivation is available. Uncertainty
+   about unproved conjectures, unchecked proofs and underived consequences must be representable. Standard
+   probabilistic credence assigns probability 1 to every logical truth and cannot do this without modification
+   (Garber, "Old evidence and logical omniscience in Bayesian confirmation theory", 1983).
+6. **Vagueness is not a probability.** Borderline application is represented by admissible precisifications
+   (3.6.4), not by credence or chance.
+7. **The calculus is not fixed in S0.** Probabilistic, imprecise, ranking-based and qualitative grading schemes are
+   all admissible if they meet obligations 1–6 (section 2.5).
 
 ## 4.10 Negation and absence
 

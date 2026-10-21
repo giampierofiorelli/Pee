@@ -5,6 +5,10 @@ from different domains.
 
 ## 8.1 Status of these checks
 
+Version 2.0 note: E1–E11 were written for 1.0, and their wording has been updated to the 2.0 vocabulary. Section 8.15
+re-examines review cases that were used as development material for 2.0. None of these examples is evidence.
+
+
 These checks were done **during design**. The designer chose them, and some of them led to changes in the model
 (section 8.13). Under the project rules they therefore **cannot serve as independent evidence** of adequacy. They
 show that the model can be applied to varied cases, and where it is strained. Independent assessment requires the
@@ -36,21 +40,21 @@ Temperature*, 2004.
 - Four frames:
   - *F-thermometry*, where temperature is an ordinal and later interval quantity;
   - *F-thermodynamics*, where it is a ratio quantity with an absolute zero;
-  - *F-kinetic*, where the core links temperature to mean translational kinetic energy for ideal gases, within that
+  - *F-kinetic*, where a central connection links temperature to mean translational kinetic energy for ideal gases, within that
     model's domain;
-  - *F-statmech*, where the core is 1/T = ∂S/∂E.
+  - *F-statmech*, where the central connection is 1/T = ∂S/∂E.
 - "This spin system has T = −0.5 K" is **nomologically possible in F-statmech**, and **not satisfiable in
   F-kinetic**, where temperature is proportional to a non-negative energy. The universe represents the content, its
-  frame-relative possibility and the fact that the kinetic core does not apply outside the domain of the ideal-gas
+  frame-relative possibility and the fact that the kinetic connection does not apply outside the domain of the ideal-gas
   model.
 - Relation between the F-kinetic and F-statmech concepts: **co-referential within the domain of ideal-gas
   equilibrium systems, divergent outside it**, with a lineage (generalisation) link.
 
-**Features exercised:** multiple anchors (D4), frame-relative core (D5), scale types (4.7), frame-relative nomological
+**Features exercised:** multiple anchors (D4), frame-relative central connections (D5), scale types (4.7), frame-relative nomological
 possibility (4.8), anchor change preserving extension (6.3), epistemic iteration.
 
 **Strain.** The identity relation had to be stated **relative to a domain of cases**. This led to a change in section
-3.5.1 (section 8.13). Whether "temperature" names one concept with several cores or several lineage-related
+3.6.3 (section 8.13). Whether "temperature" names one concept with frame-relative role profiles or several lineage-related
 concepts is not forced by the model. Both readings are representable. The choice of granularity is open problem O11.
 
 ## 8.3 E2 — Acids (chemistry)
@@ -67,14 +71,14 @@ but not a proton donor.
 **Representation.**
 
 - Three concepts share the lexical anchor "acid" and partly share operational anchors, such as indicators and
-  titration in aqueous media. Their cores differ.
+  titration in aqueous media. Their central connections differ.
 - The relations are **narrower/broader** within the shared chemistry frame, with a **generalisation lineage**.
 - "BF₃ is an acid" is satisfied under the Lewis concept and not under the other two. Until the concept is fixed,
-  the question is **ambiguous**, and recognition must resolve the ambiguity (3.5).
+  the question is **ambiguous**, and recognition must resolve the ambiguity (3.6).
 - pH is a logarithmic quantity, so ratios of pH values carry no meaning. "pH 2 is twice as acidic as pH 4" treats
   pH as a ratio scale. On the [H⁺] reading the claim is false, since the ratio is 100 (4.7).
 
-**Features exercised:** lexical anchors are insufficient for identity (3.5.2), relations between meanings (3.5.1),
+**Features exercised:** lexical anchors are insufficient for identity (3.6.5), relations between meanings (3.6.3),
 generalisation lineage (6.3), meaningfulness (Op5).
 
 **Strain:** none significant. This is a case the model was built to handle.
@@ -88,7 +92,7 @@ distinguishes several gene concepts in current use (Griffiths and Stotz, *Geneti
 
 **Representation.**
 
-- A **split lineage**: several concepts descend from the Mendelian factor, each with its own core and anchors. The
+- A **split lineage**: several concepts descend from the Mendelian factor, each with its own central connections and anchors. The
   anchors include breeding experiments, genetic maps and sequence annotation conventions, which are deferential
   anchors to annotation consortia.
 - Exemplar anchors, meaning particular well-studied genes, are shared across the concepts. They are the main
@@ -181,7 +185,7 @@ qualitative behaviour.
 - The model's idealisations are marked as Galilean and minimalist (Op7). Contents derived from it inherit fit
   limitations.
 
-**Features exercised:** abstract structure shared across frames (3.7), transfer conditions (6.4), refusal of transfer,
+**Features exercised:** abstract structure shared across frames (3.8), transfer conditions (6.4), refusal of transfer,
 idealisation (Op7).
 
 **Strain:** none significant. This was a design target for R10.
@@ -198,7 +202,7 @@ whose scores correlate only partly.
 - *Working-memory capacity* is a **latent quantity** (4.7). Its existence and its measurement validity are
   contents with standing (Cronbach and Meehl, 1955; Borsboom, 2005).
 - Each task gives an **operational anchor**. Whether the tasks measure the same construct is an **identity
-  hypothesis**, currently **overlapping** or **undetermined** (3.5.1).
+  hypothesis**, currently **overlapping** or **indeterminate** (3.6.3).
 - "Capacity ≈ 4 chunks" and "capacity ≈ 7 items" are relative to different units: chunks versus items. They are
   not a direct contradiction. Recognising this depends on the role structure of the concept of a chunk.
 - The **scale type** of test scores (ordinal or interval) is itself uncertain. That limits the meaningful operations
@@ -275,19 +279,19 @@ assumption that infectious agents replicate using nucleic acids. The proposal la
 
 **Representation.**
 
-- Before the revision, "carries nucleic acid" was effectively **core** to the concept *infectious agent* in the
-  relevant frame. Accepting prions required a **frame revision (L5)** that moved this connection from core to
-  collateral, together with a **concept revision (L4)** that admitted a new occurrent type, templated
+- Before the revision, "carries nucleic acid" was effectively a **highly central** connection of the concept
+  *infectious agent*, presupposed by the relevant methods. Accepting prions required a **frame revision (L5)** that
+  removed it from the frame's constitutive commitments and made it peripheral, together with a **concept revision (L4)** that admitted a new occurrent type, templated
   conformational propagation, as a form of replication. Neither is a scaffold category, so this is not an L6
   revision.
 - The prion concept entered by **M4** and then gained operational anchors (assays) by **M3**.
 - The standing history shows a long period of contested support with many holders. Entrenchment explains the
-  resistance, and the accumulating repairs to the old core (for example postulated undetected nucleic acids) are
+  resistance, and the accumulating repairs to the old commitment (for example postulated undetected nucleic acids) are
   recorded as grounds for deeper revision (6.3).
 
 **Features exercised:** frame and concept revision, entrenchment and repair history, acquisition modes.
 
-**Strain.** Deciding *when* a core connection should be demoted is a judgement the model represents but does not
+**Strain.** Deciding *when* a central connection should be demoted is a judgement the model represents but does not
 reduce to a rule (O1).
 
 ## 8.12 E11 — The unemployment rate (economics and official statistics)
@@ -298,11 +302,11 @@ produce **breaks in time series**: the same label measures something slightly di
 
 **Representation.**
 
-- *Unemployed* is a **conventional kind** (3.7) with a deferential anchor (a standard) and an operational anchor (a
+- *Unemployed* is a **conventional kind** (3.8) with a deferential anchor (a standard) and an operational anchor (a
   survey instrument).
 - A survey redesign is an **anchor change that alters the extension**, unlike the kilogram case. It is recorded as a
   lineage link with a correspondence on overlapping cases, often estimated from parallel runs.
-- Comparisons across a break are flagged, as is any cross-country comparison under different conventions (3.5.1:
+- Comparisons across a break are flagged, as is any cross-country comparison under different conventions (3.6.3:
   "overlapping", not "identical").
 
 **Features exercised:** conventional kinds, deferential anchors, anchor change altering extension (6.3), recognition
@@ -315,11 +319,11 @@ across conventions.
 
 | Check | Change |
 |---|---|
-| E1 | Section 3.5.1: relations between meanings can be stated **relative to a domain of cases** (e.g. "co-referential on ideal-gas equilibrium systems"). |
+| E1 | Section 3.6.3: relations between meanings can be stated **relative to a domain of cases** (e.g. "co-referential on ideal-gas equilibrium systems"). |
 | E9 | Section 3.3, D4: descriptive anchors must state their **category commitment**, so that reference can fail. |
 | E11 | Section 6.3: lineage form **anchor change altering extension** added. |
 | E4 | No change; confirmed that lineage (D15) applies to contents. |
-| E10 | Reclassified after internal review as an L4/L5 revision. The L6 example is now fields (section 3.7). |
+| E10 | Reclassified after internal review as an L4/L5 revision. The L6 example is now fields (section 3.8). |
 
 Because these changes were prompted by these examples, the examples are doubly unusable as evidence for the
 corresponding features.
@@ -344,3 +348,18 @@ corresponding features.
 mathematics only as abstract structure used in models); qualitative and interpretive social research; engineering
 design knowledge beyond evaluation; and very large-scale data-driven science, where models are learned rather than
 posed. These are priority areas for the held-out cases (chapter 9).
+
+## 8.15 Development re-checks for version 2.0
+
+The review of 1.0 used held-out cases H1–H11 (`reviews/S0-1.0-critical-review.md`). Version 2.0 was designed with
+those results in view, so the cases are now **development material**. The re-checks below show how 2.0 treats the
+points where 1.0 failed or was strained. **They are not evidence that 2.0 is adequate.**
+
+| Case | Problem in 1.0 | Treatment in 2.0 | Residual |
+|---|---|---|---|
+| H1 Euler and *polyhedron* | Q3: "vague concept sharpened" and "theorem refuted" were both faithful readings, with different truth verdicts (F5) | The exemplar-based concept had borderline cases (the "picture frame" solid). Anchors (the paradigm polyhedra) and goals (classifying solids; the Euler relation) are preserved, so monster-barring is **precisification** (3.6.2). Under supervaluation (3.6.4), the original theorem is **reading-dependent**: true on some admissible precisifications, false on others. Exception-barring and lemma incorporation then produce new contents (L2) and new defined concepts (M1). The truth verdict is no longer left to the encoder: it is "reading-dependent", for a stated reason. | Whether the solid with a tunnel was a borderline or a clear case of the earlier concept is a historical judgement (O1). |
+| H11 *H. pylori* | The belief about the stomach could be a frame assumption (L5) or a content (L2), with different entrenchment consequences (F5) | By D6, the belief was **tested** by some studies and **presupposed** in interpreting some biopsy observations (bacteria dismissed as contamination). It is therefore an accepted content that is also constitutive for that interpretive method. Its revision is classified L2 together with L3 (method). Entrenchment comes from dependence and robustness, not from level (6.3). The consequences no longer depend on the label. | Establishing what a historical practice presupposed needs historical evidence (O2). |
+| H6 Millennium Footbridge | No direction of fit; no grounds for design decisions | The design is a D17 item. Its adequacy content (that no excessive lateral response occurs under expected crowds) had standing grounded in models and codes whose domain did not cover synchronous lateral excitation. Conformance of the bridge was not at issue. The observed response is a record that undermines the adequacy content. The model, the method and the code were revised (L3). The retrofit decision has practical grounds (5.11). | Trade-offs among values in the retrofit choice (O10). |
+| H7 AlphaFold | The meaning of a model required interpretable components | Behavioural specification (D7). Predictions are records of runs of the model. Used as data, they bear on targets through a fit content grounded in blind benchmarking (D19). | — |
+| H10 Pluto | Lineage forms were not exclusive | The lineage link records the dimensions that changed: a deferential anchor added, one exemplar anchor dropped, extension narrowed, goals kept. By 3.6.2 this is a **meaning change** of the same concept (paradigm anchors and goals preserved). Holders who keep a geophysical concept hold a distinct concept with different central connections. | — |
+| H2, H3 Four Colour Theorem, Riemann hypothesis | A logically omniscient calculus cannot represent uncertainty about mathematical claims | Obligation 5 of section 4.9. | Which calculus satisfies it (O4). |

@@ -71,10 +71,12 @@ Conventions used throughout:
   - alternatives: theories of meaning **A1…**, units of content **U1…**, scaffolds **SC1…**, epistemic
     representations **EP-a…**, theories of revision **RV-a…**;
   - theses **T1…**, definitions **D1…** and composition operations **Op1…**;
+  - foundational decisions of version 2.0 **FD1…**, continuity dimensions **A, G, X, C** (section 3.6) and practical
+    grounds **PG1…**;
   - negation cases **N1…**, acquisition modes **M1…**, revision levels **L1…**, ground types **G1…**, transfer
     conditions **TC1…** and coherence criteria **C1…**;
-  - examples **E1…**, adequacy criteria **AQ1…**, verification procedures **V1…**, rival proposals **P1…**, open
-    problems **O1…**.
+  - examples **E1…**, adequacy criteria **AQ1…**, verification procedures **V1…**, failure conditions of the 2.0
+    protocol **FC1…**, rival proposals **P1…**, open problems **O1…**.
 
   Chapters refer to items by these labels.
 - Sketches written in the form `⟨ … ⟩` are **non-normative illustrations**. They are not a syntax, a data format or
@@ -83,26 +85,30 @@ Conventions used throughout:
 
 ## 1.5 Limits of the method
 
-- **Single designer.** The specification was written by one AI system (Claude, working in a Claude Code session).
-  It has had no review by independent people. Where another Claude instance critiqued a draft (see the change log in
-  `README.md`), that critique is **not** independent validation and is not offered as such.
+- **Single designer.** The specification was written by one AI system (Claude, working in Claude Code sessions).
+  Two internal reviews preceded version 2.0. In 1.0 another Claude instance critiqued a draft. After 1.0 the designer
+  carried out a preregistered critical review (`reviews/S0-1.0-critical-review.md`). Neither is independent
+  validation, and neither is offered as such. No independent person has reviewed the specification.
 - **Sources.** The theoretical sources are cited by author, title and year from the designer's general scholarly
   knowledge. No third-party full texts were retrieved, stored or quoted at length. Bibliographic details were not
   all re-checked against the originals in this session, so the owner or a reviewer should spot-check them before
   relying on a specific citation.
-- **Examples are not evidence.** Every example in this document was used while designing the model (chapter 8).
-  Under the project rules, these examples can never count as independent evidence of the model's adequacy.
-  Chapter 9 requires held-out cases chosen by someone other than the designer.
+- **Examples are not evidence.** Every example in this document was used while designing the model, including the
+  review cases H1–H11, which became development material for 2.0 (chapter 8). Under the project rules, these
+  examples can never count as evidence of the model's adequacy. Section 9.7 defines a protocol whose cases are
+  selected by a rule the designer cannot steer.
 
 ## 1.6 Independence statement
 
 - This specification was designed from first principles for this repository. It is not a fork or continuation of any
   earlier project.
-- Only this repository's own files were read: `MISSION.md`, `CLAUDE.md`, `README.md` and `spec/README.md`. No other
+- Only this repository's own files were read: `MISSION.md`, `CLAUDE.md`, `README.md`, `spec/` and, for 2.0, the
+  review in `reviews/`. No other
   repository, earlier design document or earlier report of the owner was read, cloned, searched or quoted.
 - The session environment exposed unrelated connectors (for example a meeting-notes service and a music-player
   service). None of them was used.
-- No earlier material of the owner reached the designer through the prompt, the environment or tool results.
+- No earlier material of the owner reached the designer through the prompt, the environment or tool results. The
+  sources consulted for 2.0 were published scholarly works, identified in `references.md`.
 - The designer's general training may include public texts that it cannot list. It has no awareness of having
   drawn on any earlier work of the owner. The separate comparison with earlier work, which the owner plans for after
   the freeze, is the appropriate check on this point.
