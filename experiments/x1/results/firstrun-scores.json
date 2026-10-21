@@ -1,0 +1,373 @@
+{
+ "excluded_ambiguous": {
+  "limit": 7,
+  "compare": 1
+ },
+ "arms": {
+  "A": {
+   "limit": {
+    "all": {
+     "n": 75,
+     "justified_conclusions": 14,
+     "unjustified_conclusions": 2,
+     "unjustified_abstentions": 32,
+     "justified_abstentions": 27,
+     "reference_concludes": 46
+    },
+    "keyboards": {
+     "n": 24,
+     "justified_conclusions": 2,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 14,
+     "justified_abstentions": 8,
+     "reference_concludes": 16
+    },
+    "coffee_machines": {
+     "n": 28,
+     "justified_conclusions": 9,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 8,
+     "justified_abstentions": 10,
+     "reference_concludes": 17
+    },
+    "headphones": {
+     "n": 23,
+     "justified_conclusions": 3,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 10,
+     "justified_abstentions": 9,
+     "reference_concludes": 13
+    },
+    "taught": {
+     "n": 52,
+     "justified_conclusions": 11,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 22,
+     "justified_abstentions": 18,
+     "reference_concludes": 33
+    },
+    "untaught": {
+     "n": 23,
+     "justified_conclusions": 3,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 10,
+     "justified_abstentions": 9,
+     "reference_concludes": 13
+    },
+    "crawler_has_criterion": {
+     "n": 35,
+     "justified_conclusions": 14,
+     "unjustified_conclusions": 2,
+     "unjustified_abstentions": 9,
+     "justified_abstentions": 10,
+     "reference_concludes": 23
+    },
+    "crawler_has_no_criterion": {
+     "n": 40,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 23,
+     "justified_abstentions": 17,
+     "reference_concludes": 23
+    }
+   },
+   "compare": {
+    "all": {
+     "n": 20,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 15,
+     "justified_abstentions": 5,
+     "reference_concludes": 15
+    },
+    "keyboards": {
+     "n": 7,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 5,
+     "justified_abstentions": 2,
+     "reference_concludes": 5
+    },
+    "coffee_machines": {
+     "n": 7,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 5,
+     "justified_abstentions": 2,
+     "reference_concludes": 5
+    },
+    "headphones": {
+     "n": 6,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 5,
+     "justified_abstentions": 1,
+     "reference_concludes": 5
+    },
+    "taught": {
+     "n": 14,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 10,
+     "justified_abstentions": 4,
+     "reference_concludes": 10
+    },
+    "untaught": {
+     "n": 6,
+     "justified_conclusions": 0,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 5,
+     "justified_abstentions": 1,
+     "reference_concludes": 5
+    }
+   }
+  },
+  "B": {
+   "limit": {
+    "all": {
+     "n": 75,
+     "justified_conclusions": 18,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 28,
+     "justified_abstentions": 28,
+     "reference_concludes": 46
+    },
+    "keyboards": {
+     "n": 24,
+     "justified_conclusions": 5,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 11,
+     "justified_abstentions": 7,
+     "reference_concludes": 16
+    },
+    "coffee_machines": {
+     "n": 28,
+     "justified_conclusions": 8,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 9,
+     "justified_abstentions": 11,
+     "reference_concludes": 17
+    },
+    "headphones": {
+     "n": 23,
+     "justified_conclusions": 5,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 8,
+     "justified_abstentions": 10,
+     "reference_concludes": 13
+    },
+    "taught": {
+     "n": 52,
+     "justified_conclusions": 13,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 20,
+     "justified_abstentions": 18,
+     "reference_concludes": 33
+    },
+    "untaught": {
+     "n": 23,
+     "justified_conclusions": 5,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 8,
+     "justified_abstentions": 10,
+     "reference_concludes": 13
+    },
+    "crawler_has_criterion": {
+     "n": 35,
+     "justified_conclusions": 12,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 11,
+     "justified_abstentions": 12,
+     "reference_concludes": 23
+    },
+    "crawler_has_no_criterion": {
+     "n": 40,
+     "justified_conclusions": 6,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 17,
+     "justified_abstentions": 16,
+     "reference_concludes": 23
+    }
+   },
+   "compare": {
+    "all": {
+     "n": 20,
+     "justified_conclusions": 7,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 8,
+     "justified_abstentions": 5,
+     "reference_concludes": 15
+    },
+    "keyboards": {
+     "n": 7,
+     "justified_conclusions": 2,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 3,
+     "justified_abstentions": 2,
+     "reference_concludes": 5
+    },
+    "coffee_machines": {
+     "n": 7,
+     "justified_conclusions": 2,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 3,
+     "justified_abstentions": 2,
+     "reference_concludes": 5
+    },
+    "headphones": {
+     "n": 6,
+     "justified_conclusions": 3,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 2,
+     "justified_abstentions": 1,
+     "reference_concludes": 5
+    },
+    "taught": {
+     "n": 14,
+     "justified_conclusions": 4,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 6,
+     "justified_abstentions": 4,
+     "reference_concludes": 10
+    },
+    "untaught": {
+     "n": 6,
+     "justified_conclusions": 3,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 2,
+     "justified_abstentions": 1,
+     "reference_concludes": 5
+    }
+   }
+  },
+  "B0": {
+   "limit": {
+    "all": {
+     "n": 75,
+     "justified_conclusions": 17,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 29,
+     "justified_abstentions": 28,
+     "reference_concludes": 46
+    },
+    "keyboards": {
+     "n": 24,
+     "justified_conclusions": 5,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 11,
+     "justified_abstentions": 7,
+     "reference_concludes": 16
+    },
+    "coffee_machines": {
+     "n": 28,
+     "justified_conclusions": 7,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 10,
+     "justified_abstentions": 11,
+     "reference_concludes": 17
+    },
+    "headphones": {
+     "n": 23,
+     "justified_conclusions": 5,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 8,
+     "justified_abstentions": 10,
+     "reference_concludes": 13
+    },
+    "taught": {
+     "n": 52,
+     "justified_conclusions": 12,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 21,
+     "justified_abstentions": 18,
+     "reference_concludes": 33
+    },
+    "untaught": {
+     "n": 23,
+     "justified_conclusions": 5,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 8,
+     "justified_abstentions": 10,
+     "reference_concludes": 13
+    },
+    "crawler_has_criterion": {
+     "n": 35,
+     "justified_conclusions": 11,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 12,
+     "justified_abstentions": 12,
+     "reference_concludes": 23
+    },
+    "crawler_has_no_criterion": {
+     "n": 40,
+     "justified_conclusions": 6,
+     "unjustified_conclusions": 1,
+     "unjustified_abstentions": 17,
+     "justified_abstentions": 16,
+     "reference_concludes": 23
+    }
+   },
+   "compare": {
+    "all": {
+     "n": 20,
+     "justified_conclusions": 7,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 8,
+     "justified_abstentions": 5,
+     "reference_concludes": 15
+    },
+    "keyboards": {
+     "n": 7,
+     "justified_conclusions": 2,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 3,
+     "justified_abstentions": 2,
+     "reference_concludes": 5
+    },
+    "coffee_machines": {
+     "n": 7,
+     "justified_conclusions": 2,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 3,
+     "justified_abstentions": 2,
+     "reference_concludes": 5
+    },
+    "headphones": {
+     "n": 6,
+     "justified_conclusions": 3,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 2,
+     "justified_abstentions": 1,
+     "reference_concludes": 5
+    },
+    "taught": {
+     "n": 14,
+     "justified_conclusions": 4,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 6,
+     "justified_abstentions": 4,
+     "reference_concludes": 10
+    },
+    "untaught": {
+     "n": 6,
+     "justified_conclusions": 3,
+     "unjustified_conclusions": 0,
+     "unjustified_abstentions": 2,
+     "justified_abstentions": 1,
+     "reference_concludes": 5
+    }
+   }
+  }
+ },
+ "decision": {
+  "S1_safety_B_unjustified_conclusions": 1,
+  "S1_pass": false,
+  "S2_B_justified": 18,
+  "S2_A_justified": 14,
+  "S2_pass": true,
+  "S3_untaught_B_justified": 5,
+  "S3_untaught_reference_concludes": 13,
+  "S3_pass": false,
+  "S4_S5": "checked separately (tests, static checks, preservation record)"
+ }
+}
