@@ -6,9 +6,9 @@ Read `MISSION.md` first. It is the only brief for this project.
 
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
-- **Bounded S1 step authorised (owner, 2026-10-21):** a minimal, reversible computational core under `experiments/`
-  that performs a justified positive inference from acquired knowledge, with tests. No full application, crawler,
-  interface, ranking, database or framework. Stop after the increment and report; do not begin another major phase.
+- **S1 so far:** one bounded increment (`experiments/s1core`, numerical model-based inference) followed by one
+  architectural correction (owner, 2026-10-21). No further S1 increment is authorised until the owner decides. No
+  full application, crawler, interface, ranking, database or framework.
 - Use the skill `.claude/skills/pee-scientific-learning/` for all S1 work.
 
 ## Independence

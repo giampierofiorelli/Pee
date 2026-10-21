@@ -12,6 +12,7 @@ SHOW = [("silt_20C", "particle", "speed", "mm/s"), ("silt_20C", "particle", "tra
         ("fog_droplet_no_pressure", "particle", "speed", "mm/s"), ("microfibre", "particle", "speed", "mm/s"),
         ("cs137_soil", "population", "remaining_fraction", "1"),
         ("caffeine_adult", "population", "remaining_fraction", "1"),
+        ("caffeine_adult_unmeasured", "population", "remaining_fraction", "1"),
         ("caffeine_neonate", "population", "remaining_fraction", "1"),
         ("ethanol_saturated", "population", "remaining_fraction", "1")]
 
@@ -29,6 +30,8 @@ def main(trace=False):
         o = infer.infer(kb, sits[s], role, kind)
         print(f"\n== {s}: {kind} -> {line(o, unit)}")
         print("   grounds:", ", ".join(sorted(o.grounds)) or "-")
+        if o.standing:
+            print(f"   standing: {o.standing['label']}; premises by basis {o.standing['premises_by_basis']}")
         for label, xs in (("needs", o.needs), ("reasons", o.reasons), ("caveats", o.caveats)):
             for x in xs:
                 print(f"   {label}: {x}")

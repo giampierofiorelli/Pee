@@ -1,152 +1,168 @@
-# S1 core — first positive model-based inference
+# S1 core — numerical model-based inference component
 
-Bounded S1 increment (owner authorisation, 2026-10-21). Python standard library only; no LLM at runtime.
-Run: `python3 run.py [--trace]`; tests: `python3 -m unittest discover -s tests -t .` (from this directory).
+The first S1 increment (`dfa16d9`) and one architectural correction, both authorised by the owner on 2026-10-21.
+Python standard library only; no LLM at runtime.
 
-## 1. Representations compared against S0
+- Run the demo: `python3 run.py [--trace]`.
+- Run the tests from this directory: `python3 -m unittest discover -s tests -t .`.
 
-| Candidate | Fits S0 | Fails S0 | Verdict |
-|---|---|---|---|
-| Triple / property graph | relations as items, provenance by reification | n-ary contents with conditions (4.6) need heavy reification; no quantity algebra (Op5, 4.7); open world must be added | not first |
-| Logic programming (Datalog/Prolog) | traceable derivations (C4), relational rules, decidable fragment (Datalog) | numbers with units, dimensions and uncertainty (4.7, 4.9) sit outside the logic; scope conditions become ad hoc guards | useful later for relational rules |
-| Description logic (OWL) | classification, open world (4.10) | weak quantities and n-ary conditions; heavy toolchain | not first |
-| Vector / embedding | similarity for recognition (3.6) | no grounds, no conditions, no dimensions (C2, C4) | rejected for inference |
-| Probabilistic / causal graphical models | causal content (5.5) | S0 defers the calculus (4.9.7); needs data this step lacks | later, for causal content |
-| **Models as items with domains of application, typed quantities and inference records** | S0 D7 models with domains (4.6(1)); model-based inference (5.7); reuse as scope hypothesis and transfer conditions (6.4 TC1, TC3); quantities with dimensions and uncertainty (4.7, 4.9); provenance and grounds (5.9, C4, C5) | relational and causal reasoning are thin; no identity reasoning (3.6) | **selected** |
+## 1. What this is, and what it is not
 
-The selected approach is a set of immutable items with provenance, plus one general inference procedure. Nothing
-is stored beyond Python objects, so it is reversible: the items can later be mapped to a relational, logical or
-graph store without changing their meaning.
+This is **one component**. It implements one of the eight inference types of S0 5.7: model-based inference. It
+evaluates mathematical models whose solved forms are supplied with the knowledge. It checks each model's domain
+of application and propagates interval uncertainty.
 
-## 2. Design questions (skill §3.1)
+It is **not** the scientific semantic universe, nor its foundation. The following are absent:
 
-1. **Where it sits.** It covers S0 model-based inference (5.7). Its parts:
-   - models (D7) with a domain of application (4.6(1));
-   - role filling (Op1) and situating (Op6);
-   - quantity composition with dimensional homogeneity (Op5, C2);
-   - idealisation caveats (Op7);
-   - uncertainty kept on its component and propagated (4.9.3–4);
-   - the gap rule: nothing missing becomes a negation (4.10, C11);
-   - grounds for every conclusion (5.9, C4);
-   - scope discipline (C8);
-   - incompatibility (N4).
-2. **Knowledge it reads and writes.**
-   - **Reads:**
-     - quantity kinds;
-     - values with conditions and provenance;
-     - attributes with conditions;
-     - links (`instance_of`, `subkind_of`, `made_of`);
-     - single-valued determinables;
-     - models;
-     - situations.
-   - **Writes:** nothing persistent. Each conclusion is a proposed content with its grounds, needs, caveats and
-     trace (standing "proposed", holder: the program).
-3. **Unfamiliar domains, and what stays reusable.** The mechanism names no domain, entity, kind or role (a test
-   enforces this). A new domain needs only knowledge items. The mechanism and its safeguards stay reusable:
-   - acquisition validation;
-   - condition-bound applicability;
-   - domain checks;
-   - interval propagation;
-   - knowledge ablation.
+- concepts and identity (S0 3.6);
+- mechanisms and processes as structures;
+- qualitative, causal and evidential relations (5.5, 5.8);
+- explanations (5.6);
+- goals, norms and interventions (7.4);
+- revision with history (6.3);
+- recognition of new concepts (6.1–6.2).
 
-## 3. What the program does
+None of them is assumed to be quantitative.
 
-Given a question of the form "kind *K* of the entity in role *R* of situation *S*", the program:
+The design keeps room for them. Provenance (`source`, `basis`, `verified_by`), scope (`conditional`, `invariant`,
+`unknown`), what a statement holds of (`holds_of`) and the standing of conclusions are fields that any future item
+type can carry. The inference procedure is one function among the future ones; it does not define what knowledge
+is. Adding item types or inference types does not require changing these foundations.
 
-1. **Collects values** of that entity whose stated conditions the situation states and meets.
-   - Intensive kinds may also be inherited through links. Extensive kinds never are.
-   - The most specific applicable level wins.
-2. **Applies every model** that has a solved form for *K* and role *R*. A model is applied only if:
-   - its categorical requirements are established in knowledge, or explicitly assumed by the situation (an
-     assumption becomes an idealisation caveat);
-   - every input can be derived recursively.
-3. **Evaluates the form** with interval arithmetic.
-4. **Checks the model's domain conditions** on the derived values, including the output:
-   - **violated** → REFUSED;
-   - **undecided** by the uncertainty, or by an uncertain bound → UNRESOLVED;
-   - **holds** → SUPPORTED.
-5. **Combines results:**
-   - several supported derivations are intersected, and an empty intersection gives CONFLICT;
-   - every non-supported outcome names what is missing (`needs`).
+## 2. Representations compared against S0 (first increment)
 
-Acquired knowledge is validated: a model form whose dimension differs from its variable's, a unit of the wrong
-dimension, an unknown unit, an undeclared variable or a duplicate id is refused.
+| Candidate | Verdict against S0 |
+|---|---|
+| Triple / property graph | n-ary conditioned contents (4.6) and quantity algebra (Op5, 4.7) need heavy reification. Not chosen first |
+| Logic programming | traceable (C4), but units, dimensions and uncertainty sit outside the logic. Useful later for relational rules |
+| Description logic | weak for quantities and n-ary conditions; heavy toolchain |
+| Vector / embedding | no grounds, conditions or dimensions (C2, C4). Rejected for inference |
+| Probabilistic / causal models | causal content (5.5), but S0 defers the calculus (4.9.7). Later |
+| **Models with domains of application as items, typed quantities, recorded inferences** | matches D7, 4.6(1), 5.7, 6.4 TC3, 4.7, 4.9 and C4/C5. **Selected for this component** |
 
-## 4. Actual output (`python3 run.py`, first run of this code)
+The items are immutable Python objects with provenance, so the choice is reversible.
 
-| Situation (domain) | Question | Result |
+## 3. Behaviour
+
+A question asks for "kind *K* of the entity in role *R* of situation *S*". The program answers it in five steps.
+
+1. **It collects candidate values for *K*.**
+   - **Givens of the situation** (boundary and initial data, S0 4.6(2)) are used first.
+   - **Values from knowledge** are used only if their scope covers the situation:
+     - **conditional:** the situation states and meets each condition;
+     - **invariant:** the item declares invariance and states its justification;
+     - **unknown:** the item is used only if the situation adopts it as an explicit scope assumption, and that
+       assumption becomes a premise.
+   - **A value may pass to another entity** only according to what it holds of:
+     - **material:** through at most one `made_of` (never to a composite), and through `subkind_of` or
+       `instance_of`;
+     - **kind:** only through `instance_of` and `subkind_of`;
+     - **population** spreads and **individual** values never pass.
+2. **It applies models with a solved form for *K*.** It does so only if:
+   - their categorical requirements are established or explicitly assumed;
+   - their inputs can be derived recursively;
+   - their domain conditions hold on the derived values. A violated condition gives REFUSED. A condition the
+     uncertainty cannot decide gives UNRESOLVED.
+3. **It combines supported derivations by their hull, never by intersection.** Disjoint results are a CONFLICT.
+   A conflict upstream makes the dependent result UNRESOLVED, not REFUSED.
+4. **It lists every premise as a ground.** This covers knowledge items, givens, assumed attributes and scope
+   assumptions. The grounds are sufficient: re-running on the grounds alone gives the same result.
+5. **It reports the standing of each conclusion** from its premises: illustrative, hypothetical, conditional on
+   assumptions, unverified, or verified. The interval expresses only arithmetic uncertainty. Model validity,
+   assumptions and source reliability appear in `standing` and `caveats`, never inside the interval.
+
+**At acquisition**, the program refuses:
+
+- missing provenance;
+- undeclared scope, or an invariance with no justification;
+- an extensive quantity declared as a material property;
+- a model form or condition with the wrong dimension;
+- unknown units or variables;
+- duplicate ids.
+
+Acquired items and the store are read-only. Knowledge changes only through an explicit `add`, or through
+`without`, which returns a new store.
+
+## 4. Architectural correction (after `dfa16d9`)
+
+Each defect was first shown on the earlier code with a probe. Each now has a regression test.
+
+| Concern | Defect shown in code | Correction |
 |---|---|---|
-| silt grain, water 20 °C (sedimentology) | settling speed | SUPPORTED [0.0721, 0.110] mm/s |
-| same | time to settle 1 m (two-model chain) | SUPPORTED [2.53, 3.85] h |
-| coarse sand grain | settling speed | REFUSED: particle Reynolds number [98, 127] is outside the Stokes domain |
-| fine sand grain | settling speed | UNRESOLVED: Reynolds number [0.83, 0.96] falls within the uncertain bound [0.1, 1] |
-| silt grain, water 10 °C | settling speed | UNRESOLVED: water viscosity and density are known only at 20 °C. The program names them as needs |
-| silt grain, no temperature stated | settling speed | UNRESOLVED: the situation must state temperature |
-| grain with measured speed (inverse problem) | radius | SUPPORTED [11.7, 13.0] µm |
-| droplet in air 20 °C, 101.325 kPa (atmospheric) | fall speed | SUPPORTED [2.41, 3.64] mm/s |
-| same, pressure not stated | fall speed | UNRESOLVED: air density holds only at a stated pressure |
-| microplastic fibre | settling speed | REFUSED: its shape is a fibre, which excludes the sphere the model requires |
-| Cs-137 in soil after 40 a (radioactivity) | remaining fraction | SUPPORTED [0.3967, 0.3989] |
-| caffeine, healthy adult, 12 h (pharmacokinetics) | remaining fraction | SUPPORTED [0.0625, 0.305] |
-| caffeine, neonate | remaining fraction | UNRESOLVED: half-life and rate law are known only for healthy adults |
-| ethanol above enzyme saturation | remaining fraction | REFUSED: zero-order elimination excludes the first-order model |
+| A. Scope | A value with no conditions applied everywhere: an unconditioned viscosity was used at 10 °C | Scope must be declared explicitly. `unknown` is never applied without an explicit scope assumption, which becomes a premise |
+| B. Inheritance | Properties passed through chains of `made_of` (a grain received the density of silicon via quartz), and to composites (a quartz–feldspar grain received an intersected density). A population spread (caffeine half-life across adults) was used as a bound for one person | `holds_of` with link rules: at most one `made_of`, none to a composite, kind properties not through `made_of`, population and individual values never inherited |
+| C. Provenance and standing | An empty source was accepted. Illustrative and recalled values produced conclusions with no recorded standing | Non-empty `source` and a closed `basis` are required, with `verified_by`. Every conclusion carries a standing computed from its premises |
+| D. Integrity | Dict fields of "frozen" items, and the store itself, were writable: a validated formula could be changed afterwards and the result changed | Mappings are copied and made read-only at acquisition. The store view is read-only |
+| E. Premises | Situation assumptions appeared only as caveat text, not as grounds | Givens, assumptions and scope assumptions are grounds; ablation removes them too. A test checks that grounds are sufficient |
+| F. Combination | Supported derivations were intersected, so a second partly agreeing source narrowed the result. Disjoint sources were reported as REFUSED | Supported derivations are combined by hull. Disjoint sources give a recorded CONFLICT, and the dependent result is UNRESOLVED |
 
-**Ablation.** Removing any single ground of the silt settling time (11 items) or of the Cs-137 fraction (7 items)
-turns the result from SUPPORTED to UNRESOLVED.
+**Not confirmed as defects:**
 
-**Before and after acquisition.** Two values for water at 10 °C were added, exactly the knowledge the program had
-named in `needs`. The silt question then changed from UNRESOLVED to SUPPORTED, with a speed of [0.0552, 0.0842]
-mm/s and a settling time over 1 m of [3.30, 5.03] h.
+- The status set and the domain checks behaved as intended.
+- The mechanism contains no domain vocabulary.
+- The "most specific level wins" rule matches S0's defeasible generics.
+- The earlier ablation shows that the mechanism uses what it lists. It does not show scientific dependence in
+  general, because the examples were built with single derivation paths. The new sufficiency test checks the trace
+  in both directions, but it is still a property of the program, not of science.
 
-**Domain knowledge matters.** With Stokes' domain condition removed, the coarse-sand speed becomes SUPPORTED, which
-is an over-reach. With the condition present, the result is REFUSED.
+## 5. Current output (`python3 run.py`)
 
-## 5. Tests (26, all passing)
+Every situation datum is invented, so the program itself labels every conclusion "illustrative only".
 
-- **Integrity** (11 tests; they do not depend on any scientific reading):
-  - acquisition refuses invalid knowledge (4 cases);
-  - statuses, grounds and needs are traceable;
-  - results are deterministic and independent of item order;
-  - the mechanism contains no domain vocabulary;
-  - results are invariant under consistent renaming of every kind, role and entity;
-  - results are invariant under a change of units;
-  - an extensive value of a kind is not inherited by its members.
-- **Interpretation** (15 tests): positive inferences, prohibited inferences and knowledge dependence. The developer
-  computed the expected values by hand. These tests show the mechanism behaves as intended on development
-  examples. They are T1 evidence and **not independent validation**: the same developer chose the examples, the
-  values and the mechanism.
-- **History.** All tests except the inheritance test were committed before the first run (`78fd079`). All passed on
-  that first run. The inheritance test was added afterwards and passed.
+| Situation | Question | Result |
+|---|---|---|
+| silt grain, water 20 °C | settling speed / time over 1 m | SUPPORTED [0.0721, 0.110] mm/s / [2.53, 3.85] h |
+| coarse sand grain | speed | REFUSED (particle Reynolds number [98, 127] is outside the Stokes domain) |
+| fine sand grain | speed | UNRESOLVED (Reynolds number [0.83, 0.96] falls within the uncertain bound [0.1, 1]) |
+| silt grain, 10 °C / no temperature stated | speed | UNRESOLVED (names the missing water data, or the missing condition) |
+| grain of measured speed | radius (inverse problem) | SUPPORTED [11.7, 13.0] µm |
+| droplet in air / pressure not stated | fall speed | SUPPORTED [2.41, 3.64] mm/s / UNRESOLVED |
+| microplastic fibre | speed | REFUSED (its shape excludes the sphere the model requires) |
+| Cs-137 after 40 a | remaining fraction | SUPPORTED [0.3967, 0.3989] |
+| caffeine, subject P (individual half-life given) | remaining fraction after 12 h | SUPPORTED [0.177, 0.202] |
+| caffeine, subject P2 (only the adult population spread known) | same | UNRESOLVED |
+| caffeine, neonate / ethanol above enzyme saturation | same | UNRESOLVED / REFUSED |
 
-## 6. Limitations and open points
+**Ablation.** Removing any single premise turns SUPPORTED into UNRESOLVED. This holds for the silt settling time
+(13 premises, assumptions included) and for the Cs-137 fraction (7 premises).
 
-- **One inference type.** Only model-based inference is implemented, over explicit solved forms supplied with each
-  model. There is no symbolic solving, causal or statistical inference, identity reasoning (S0 3.6) or analogy
-  beyond role filling.
-- **The program knows only what it is given.**
-  - Stokes is given only one domain condition. Slip correction for very small particles and wall effects are
-    absent, so a conclusion is as good as its acquired domain knowledge.
-  - The program cannot judge that a term is negligible, for example air density beside water density.
-- **Intervals are conservative.** They are not probabilistic. Correlated inputs widen them. There is no
-  distinction yet between kinds of uncertainty beyond intervals, caveats and assumptions.
-- **Conditions match by containment or equality.** There is no model of how a value varies with a condition (for
-  example viscosity with temperature), and no tolerance knowledge.
-- **Values without conditions** apply everywhere. This is flagged as a caveat, not prevented.
-- **Numerical knowledge** is recalled reference data, not re-checked in this session. The caffeine figures are
-  illustrative.
-- **Evidence level.** All evidence is T1, on examples designed alongside the mechanism. No transfer to material
-  unseen by the developer has been shown.
-- **Learning is single-step.** Learning is shown only as "the program names the missing knowledge; adding it
-  changes the result". No persistence, revision or reconsideration of earlier conclusions is automated.
-- **Bidirectional access** (from goals to categories, and back) is not implemented.
+**Before and after acquisition.** Adding the two water values the program named as missing turns the 10 °C
+question into SUPPORTED: [0.0552, 0.0842] mm/s.
 
-## 7. Next highest-value objective
+## 6. Tests (43, all passing)
 
-Test the same mechanism on **material the developer did not choose**:
+- **Integrity (10):**
+  - acquisition validation;
+  - traceability;
+  - determinism and independence of item order;
+  - no domain vocabulary in the mechanism;
+  - invariance under renaming and under a change of units.
+- **Regression (18):** one or more tests per defect in section 4.
+- **Interpretation (15):** expected values computed by hand by the developer on examples the developer chose.
 
-- models and values drawn by a fixed rule from an outside source, in a domain not used here;
-- expectations sealed before the run (T2).
+These are development-level tests (T1). They are not evidence of scientific generality, and not independent
+validation.
 
-Then add the first missing S0 capability that this run exposes. The most likely candidate is the
-**condition-dependence of quantities**: a model of how a value varies with a condition, licensed only within its
-own range, so that a measurement at 20 °C can be carried to 10 °C legitimately, never by default.
+## 7. Limitations and future work
+
+These are capabilities not yet implemented. They are not known bugs.
+
+- **Inference:**
+  - only model-based inference exists, over solved forms supplied with each model; there is no symbolic solving;
+  - no causal, statistical, analogical or recognition inference.
+- **Knowledge:**
+  - no concepts, mechanisms, qualitative evidence, explanations, goals or interventions as items;
+  - link and determinable vocabularies are closed sets in code (`instance_of`, `subkind_of`, `made_of`);
+  - a value's dependence on a condition, for example viscosity on temperature, cannot be represented.
+- **Uncertainty:**
+  - intervals are conservative but not probabilistic;
+  - population spreads are kept but cannot yet be used: distributional reasoning is absent;
+  - there is no weighting of sources: the hull is the only combination rule.
+- **Applicability:**
+  - a conditional value is bounded by the conditions it states; its dependence on conditions it does not state is
+    not represented (S0 T7).
+  - "invariant" rests on a justification text supplied with the item, whose own basis is that of the item.
+- **Revision and access:**
+  - no revision with history, and no reconsideration of earlier conclusions;
+  - no bidirectional access from goals to categories.
+- **Data:** numerical knowledge is recalled and unverified; situation data are illustrative.

@@ -1,11 +1,14 @@
-"""Tests for the S1 model-based inference core, written before the implementation.
+"""Tests for the S1 model-based inference core.
 
 * ``Integrity*`` classes check properties that do not depend on any scientific reading: acquisition validation,
   traceability, determinism, invariance under renaming, unit changes and item order, and absence of example
   vocabulary in the mechanism.
-* ``Interpretation*`` classes check outcomes whose expected values the developer (Claude) computed by hand from the
-  example knowledge before the first run. They show the mechanism behaves as intended on development examples.
-  They are NOT independent validation: the examples were chosen by the same developer who wrote the mechanism.
+* ``Regression*`` classes were added in the architectural correction. Each one fixes a defect demonstrated on the
+  code at commit dfa16d9: applicability scope, inheritance, provenance and standing, mutation after acquisition,
+  premises and assumptions, and combination of evidence.
+* ``Interpretation*`` classes check outcomes whose expected values the developer (Claude) computed by hand. They are
+  development-level (T1) tests on examples chosen by the developer, NOT independent validation and not evidence of
+  scientific generality.
 """
 import dataclasses
 import pathlib
@@ -14,7 +17,7 @@ import re
 import unittest
 
 from s1core import infer, knowledge as K
-from s1core.examples import build_kb, later_acquisitions, situations
+from s1core.examples import build_kb, given, later_acquisitions, situations
 
 STATUSES = {"SUPPORTED", "UNRESOLVED", "REFUSED", "CONFLICT"}
 
@@ -25,6 +28,7 @@ QUERIES = [  # (situation, role, kind)
     ("fog_droplet", "particle", "speed"), ("fog_droplet_no_pressure", "particle", "speed"),
     ("microfibre", "particle", "speed"), ("grain_sizing", "particle", "radius"),
     ("cs137_soil", "population", "remaining_fraction"), ("caffeine_adult", "population", "remaining_fraction"),
+    ("caffeine_adult_unmeasured", "population", "remaining_fraction"),
     ("caffeine_neonate", "population", "remaining_fraction"), ("ethanol_saturated", "population", "remaining_fraction"),
 ]
 
@@ -43,19 +47,21 @@ def snapshot(kb, sits):
     return out
 
 
+def sit_ids(sit):
+    return {x.id for x in tuple(sit.givens) + tuple(sit.assumptions)}
+
+
 class IntegrityAcquisition(unittest.TestCase):
     def test_dimensionally_wrong_model_form_is_rejected(self):
         kb = build_kb()
-        stokes = kb.items["M-stokes"]
-        bad = dataclasses.replace(stokes, id="M-bad", forms={"v": "2*(rho_p-rho_f)*g*r/(9*mu)"})
+        bad = dataclasses.replace(kb.items["M-stokes"], id="M-bad", forms={"v": "2*(rho_p-rho_f)*g*r/(9*mu)"})
         with self.assertRaises(K.AcquisitionError):
             kb.add(bad)
 
     def test_value_with_unit_of_wrong_dimension_is_rejected(self):
         kb = build_kb()
-        v = kb.items["V-water-viscosity-20C"]
         with self.assertRaises(K.AcquisitionError):
-            kb.add(dataclasses.replace(v, id="V-bad", unit="m/s"))
+            kb.add(dataclasses.replace(kb.items["V-water-viscosity-20C"], id="V-bad", unit="m/s"))
 
     def test_unknown_unit_and_duplicate_id_rejected(self):
         kb = build_kb()
@@ -67,22 +73,21 @@ class IntegrityAcquisition(unittest.TestCase):
 
     def test_form_using_undeclared_variable_rejected(self):
         kb = build_kb()
-        stokes = kb.items["M-stokes"]
         with self.assertRaises(K.AcquisitionError):
-            kb.add(dataclasses.replace(stokes, id="M-bad3", forms={"v": "2*(rho_p-rho_f)*g*r^2/(9*nu)"}))
+            kb.add(dataclasses.replace(kb.items["M-stokes"], id="M-bad3", forms={"v": "2*(rho_p-rho_f)*g*r^2/(9*nu)"}))
 
 
 class IntegrityTrace(unittest.TestCase):
     def setUp(self):
         self.kb, self.sits = build_kb(), situations()
 
-    def test_closed_status_set_and_grounds_are_real_items(self):
+    def test_closed_status_set_and_grounds_are_real_premises(self):
         for q in QUERIES:
             o = run(self.kb, self.sits, q)
             self.assertIn(o.status, STATUSES, q)
             self.assertTrue(o.trace, q)
             for g in o.grounds:
-                self.assertIn(g, self.kb.items, q)
+                self.assertTrue(g in self.kb.items or g in sit_ids(self.sits[q[0]]) or g.startswith("scope:"), (q, g))
             if o.status == "SUPPORTED":
                 self.assertIsNotNone(o.interval, q)
                 self.assertTrue(o.grounds, q)
@@ -120,11 +125,12 @@ class IntegrityGenerality(unittest.TestCase):
 
     def test_invariant_under_consistent_renaming(self):
         kb, sits = build_kb(), situations()
+        keys = ("id", "bearer", "kind", "name", "entity", "target", "value")
         names = set()
-        for it in kb.items.values():
+        every = list(kb.items.values()) + [x for s in sits.values() for x in tuple(s.givens) + tuple(s.assumptions)]
+        for it in every:
             for f in dataclasses.fields(it):
-                if f.name in ("id", "bearer", "kind", "name", "entity", "target", "value") and isinstance(
-                        getattr(it, f.name), str):
+                if f.name in keys and isinstance(getattr(it, f.name), str):
                     names.add(getattr(it, f.name))
         for s in sits.values():
             names |= set(s.roles) | set(s.roles.values())
@@ -132,15 +138,15 @@ class IntegrityGenerality(unittest.TestCase):
         r = lambda x: mapping.get(x, x) if isinstance(x, str) else x
 
         def conds(c):
-            return {r(k): (r(v) if isinstance(v, str) else v) for k, v in c.items()}
+            return None if c is None else {r(k): (r(v) if isinstance(v, str) else v) for k, v in c.items()}
 
         def ren(it):
             ch = {}
             for f in dataclasses.fields(it):
                 val = getattr(it, f.name)
-                if f.name in ("id", "bearer", "kind", "name", "entity", "target", "value"):
+                if f.name in keys:
                     ch[f.name] = r(val)
-                elif f.name == "conditions" and isinstance(val, dict):
+                elif f.name == "conditions" and val is not None and not isinstance(val, tuple):
                     ch[f.name] = conds(val)
                 elif f.name == "variables":
                     ch[f.name] = {s: (r(role), r(kd)) for s, (role, kd) in val.items()}
@@ -150,8 +156,9 @@ class IntegrityGenerality(unittest.TestCase):
 
         kb2 = K.KB([ren(i) for i in kb.items.values()])
         sits2 = {k: dataclasses.replace(s, roles={r(a): r(b) for a, b in s.roles.items()},
-                                        conditions=conds(s.conditions),
-                                        assumptions=tuple(ren(a) for a in s.assumptions))
+                                        conditions=conds(s.conditions), givens=tuple(ren(g) for g in s.givens),
+                                        assumptions=tuple(ren(a) for a in s.assumptions),
+                                        scope_assumptions=tuple(r(i) for i in s.scope_assumptions))
                  for k, s in sits.items()}
         base = snapshot(kb, sits)
         renamed = [(o.status, (round(o.interval.lo, 12), round(o.interval.hi, 12)) if o.interval else None)
@@ -160,31 +167,199 @@ class IntegrityGenerality(unittest.TestCase):
 
     def test_invariant_under_change_of_units(self):
         kb, sits = build_kb(), situations()
-        q = ("silt_20C", "particle", "speed")
-        a = run(kb, sits, q)
-        r = kb.items["V-silt-radius"]
+        a = infer.infer(kb, sits["silt_20C"], "particle", "speed")
         d = kb.items["V-quartz-density"]
-        kb2 = kb.without({r.id, d.id})
-        kb2.add(dataclasses.replace(r, lo=r.lo / 1000, hi=r.hi / 1000, unit="mm"))
+        kb2 = kb.without({d.id})
         kb2.add(dataclasses.replace(d, lo=d.lo * 1000, hi=d.hi * 1000, unit="kg/m3"))
-        b = run(kb2, sits, q)
+        s = sits["silt_20C"]
+        g = [x for x in s.givens if x.id == "G-silt-radius"][0]
+        s2 = dataclasses.replace(s, givens=tuple(dataclasses.replace(x, lo=g.lo / 1000, hi=g.hi / 1000, unit="mm")
+                                                 if x.id == g.id else x for x in s.givens))
+        b = infer.infer(kb2, s2, "particle", "speed")
         self.assertEqual(a.status, b.status)
         self.assertAlmostEqual(a.interval.lo, b.interval.lo, delta=1e-12)
         self.assertAlmostEqual(a.interval.hi, b.interval.hi, delta=1e-12)
 
 
-class IntegrityInheritance(unittest.TestCase):
-    # Added after the first run (not part of the pre-run commit 78fd079).
-    def test_extensive_value_of_a_kind_is_not_inherited_by_its_members(self):
+class RegressionScope(unittest.TestCase):
+    """A. Unknown conditions are never read as universal validity."""
+
+    def setUp(self):
+        self.kb, self.sits = build_kb(), situations()
+        v = self.kb.items["V-water-viscosity-20C"]
+        d = self.kb.items["V-water-density-20C"]
+        self.kb.add(dataclasses.replace(v, id="V-visc-unknown", conditions={}, scope="unknown"))
+        self.kb.add(dataclasses.replace(d, id="V-dens-unknown", conditions={}, scope="unknown"))
+
+    def test_unknown_scope_value_is_not_applied(self):
+        o = run(self.kb, self.sits, ("silt_10C", "particle", "speed"))
+        self.assertEqual(o.status, "UNRESOLVED")
+        self.assertTrue(any("V-visc-unknown" in n for n in o.needs), o.needs)
+
+    def test_explicit_scope_assumption_applies_it_as_a_recorded_premise(self):
+        s = dataclasses.replace(self.sits["silt_10C"], scope_assumptions=("V-visc-unknown", "V-dens-unknown"))
+        o = infer.infer(self.kb, s, "particle", "speed")
+        self.assertEqual(o.status, "SUPPORTED")
+        self.assertIn("scope:V-visc-unknown@silt_10C", o.grounds)
+        self.assertEqual(o.standing["premises_by_basis"].get("assumption", 0) >= 2, True)
+
+    def test_scope_must_be_declared_and_justified(self):
+        v = self.kb.items["V-water-viscosity-20C"]
+        for bad in (dict(scope=None), dict(conditions=None), dict(scope="conditional", conditions={}),
+                    dict(scope="invariant", conditions={}, invariance=""), dict(holds_of=None)):
+            with self.assertRaises(K.AcquisitionError, msg=bad):
+                self.kb.add(dataclasses.replace(v, id="V-x", **bad))
+
+
+class RegressionInheritance(unittest.TestCase):
+    """B. Properties pass only along links appropriate to what they describe."""
+
+    def setUp(self):
+        self.kb, self.sits = build_kb(), situations()
+        self.q = ("silt_20C", "particle", "speed")
+
+    def test_material_property_does_not_pass_through_two_made_of_steps(self):
+        qd = self.kb.items["V-quartz-density"]
+        kb = self.kb.without({qd.id})
+        kb.add(K.Link("L-q-si", "quartz", "made_of", "silicon", source="test", basis="illustrative"))
+        kb.add(dataclasses.replace(qd, id="V-si", bearer="silicon", lo=2.32, hi=2.34))
+        self.assertEqual(run(kb, self.sits, self.q).status, "UNRESOLVED")
+
+    def test_composite_does_not_inherit_a_constituent_property(self):
+        self.kb.add(K.Link("L-S1-feld", "silt grain S1", "made_of", "feldspar", source="test", basis="illustrative"))
+        self.kb.add(dataclasses.replace(self.kb.items["V-quartz-density"], id="V-feld", bearer="feldspar",
+                                        lo=2.55, hi=2.65))
+        o = run(self.kb, self.sits, self.q)
+        self.assertEqual(o.status, "UNRESOLVED")
+        self.assertTrue(any("composite" in r for r in o.reasons), o.reasons)
+
+    def test_kind_property_does_not_pass_through_made_of(self):
+        self.kb.add(dataclasses.replace(self.kb.items["A-fibre-shape"], id="A-quartz-shape", bearer="quartz",
+                                        holds_of="kind"))
+        self.assertEqual(run(self.kb, self.sits, self.q).status, "SUPPORTED")  # S1 keeps its own assumed shape
+
+    def test_population_spread_is_not_a_bound_for_a_member(self):
+        o = run(self.kb, self.sits, ("caffeine_adult_unmeasured", "population", "remaining_fraction"))
+        self.assertEqual(o.status, "UNRESOLVED")
+        self.assertTrue(any("population" in r for r in o.reasons), o.reasons)
+
+    def test_individual_value_of_a_kind_is_not_inherited(self):
+        s = self.sits["fine_sand_20C"]
+        s2 = dataclasses.replace(s, givens=())
+        self.kb.add(dataclasses.replace(s.givens[0], id="V-kind-radius", bearer="quartz", scope="invariant",
+                                        holds_of="individual", conditions={}, basis="illustrative"))
+        self.assertEqual(infer.infer(self.kb, s2, "particle", "speed").status, "UNRESOLVED")
+
+    def test_extensive_quantity_cannot_be_a_material_property(self):
+        g = self.sits["silt_20C"].givens[0]
+        with self.assertRaises(K.AcquisitionError):
+            self.kb.add(dataclasses.replace(g, id="V-mat-radius", bearer="quartz", holds_of="material"))
+
+
+class RegressionProvenance(unittest.TestCase):
+    """C. Knowledge needs provenance; conclusions keep the standing of their premises."""
+
+    def test_missing_source_or_basis_is_refused(self):
+        kb = build_kb()
+        v = kb.items["V-water-viscosity-20C"]
+        for bad in (dict(source=""), dict(basis=None), dict(basis="trust me")):
+            with self.assertRaises(K.AcquisitionError, msg=bad):
+                kb.add(dataclasses.replace(v, id="V-y", **bad))
+        with self.assertRaises(K.AcquisitionError):
+            kb.add(K.Link("L-noprov", "a", "made_of", "b"))
+
+    def test_conclusion_standing_follows_its_weakest_premises(self):
         kb, sits = build_kb(), situations()
-        r = kb.items["V-fine-radius"]
-        kb2 = kb.without({r.id})
-        kb2.add(dataclasses.replace(r, id="V-kind-radius", bearer="quartz"))
-        self.assertEqual(run(kb2, sits, ("fine_sand_20C", "particle", "speed")).status, "UNRESOLVED")
+        o = run(kb, sits, ("silt_20C", "particle", "speed"))
+        self.assertTrue(o.standing["label"].startswith("illustrative"))
+        self.assertGreater(o.standing["unverified_premises"], 0)
+
+    def test_measured_and_verified_premises_are_reported_as_such(self):
+        kb, sits = build_kb(), situations()
+        s = sits["cs137_soil"]
+        g = dataclasses.replace(s.givens[0], basis="measurement record", verified_by="test")
+        kb2 = K.KB([dataclasses.replace(i, verified_by="test") if hasattr(i, "verified_by") and
+                    getattr(i, "basis", "") != "definition" else i for i in kb.items.values()])
+        kb2 = K.KB([dataclasses.replace(i, basis="published reference") if isinstance(i, K.Link) and
+                    i.basis == "illustrative" else i for i in kb2.items.values()])
+        o = infer.infer(kb2, dataclasses.replace(s, givens=(g,)), "population", "remaining_fraction")
+        self.assertEqual(o.status, "SUPPORTED")
+        self.assertEqual(o.standing["label"], "derived from verified premises")
+
+
+class RegressionImmutability(unittest.TestCase):
+    """D. Acquired knowledge cannot change after validation."""
+
+    def test_item_mappings_are_read_only(self):
+        kb = build_kb()
+        with self.assertRaises(TypeError):
+            kb.items["M-stokes"].forms["v"] = "2*(rho_p-rho_f)*g*r/(9*mu)"
+        with self.assertRaises(TypeError):
+            kb.items["V-water-viscosity-20C"].conditions["temperature"] = (10.0, 10.0, "degC")
+        with self.assertRaises(TypeError):
+            kb.items["X"] = "anything"
+        with self.assertRaises(TypeError):
+            situations()["silt_20C"].conditions["temperature"] = (10.0, 10.0, "degC")
+
+    def test_source_dict_changes_do_not_reach_the_item(self):
+        forms = {"t": "d/v", "d": "v*t", "v": "d/t"}
+        kb = build_kb()
+        m = dataclasses.replace(kb.items["M-uniform-motion"], id="M-u2", forms=forms)
+        kb.add(m)
+        forms["v"] = "d"
+        self.assertEqual(kb.items["M-u2"].forms["v"], "d/t")
+
+
+class RegressionPremises(unittest.TestCase):
+    """E. Every premise is a ground, including situation assumptions; grounds are sufficient and necessary."""
+
+    def setUp(self):
+        self.kb, self.sits = build_kb(), situations()
+
+    def test_situation_assumptions_are_grounds(self):
+        o = run(self.kb, self.sits, ("silt_20C", "particle", "speed"))
+        self.assertIn("assume-silt_20C-shape", o.grounds)
+        self.assertIn("assume-silt_20C-motion", o.grounds)
+        self.assertIn("G-silt-radius", o.grounds)
+
+    def test_grounds_alone_reproduce_every_supported_result(self):
+        kinds = [i for i in self.kb.items.values() if isinstance(i, K.QuantityKind)]
+        for q in QUERIES:
+            o = run(self.kb, self.sits, q)
+            if o.status != "SUPPORTED":
+                continue
+            kb2 = K.KB(kinds + [self.kb.items[g] for g in sorted(o.grounds) if g in self.kb.items])
+            s = self.sits[q[0]]
+            s2 = dataclasses.replace(s, givens=tuple(x for x in s.givens if x.id in o.grounds),
+                                     assumptions=tuple(x for x in s.assumptions if x.id in o.grounds))
+            o2 = infer.infer(kb2, s2, q[1], q[2])
+            self.assertEqual((o.status, repr(o.interval)), (o2.status, repr(o2.interval)), q)
+
+
+class RegressionCombination(unittest.TestCase):
+    """F. Different sources are not intersected into false precision; conflict is recorded, not a refusal."""
+
+    def setUp(self):
+        self.kb, self.sits = build_kb(), situations()
+        self.v = self.kb.items["V-water-viscosity-20C"]
+
+    def test_overlapping_sources_are_combined_by_hull(self):
+        base = run(self.kb, self.sits, ("silt_20C", "particle", "speed"))
+        self.kb.add(dataclasses.replace(self.v, id="V-visc-other", lo=1.0015, hi=1.05, source="another source"))
+        o = run(self.kb, self.sits, ("silt_20C", "particle", "speed"))
+        self.assertEqual(o.status, "SUPPORTED")
+        self.assertLessEqual(o.interval.lo, base.interval.lo)
+        self.assertGreaterEqual(o.interval.hi, base.interval.hi - 1e-15)
+
+    def test_disjoint_sources_are_a_conflict_not_a_domain_refusal(self):
+        self.kb.add(dataclasses.replace(self.v, id="V-visc-bad", lo=1.2, hi=1.3, source="another source"))
+        o = run(self.kb, self.sits, ("silt_20C", "particle", "speed"))
+        self.assertEqual(o.status, "UNRESOLVED")
+        self.assertTrue(any("disagree" in r for r in o.reasons), o.reasons)
 
 
 class InterpretationPositiveInference(unittest.TestCase):
-    """Expected values computed by hand before the first run (see experiments/s1core/README.md)."""
+    """Expected values computed by hand (see experiments/s1core/README.md)."""
 
     def setUp(self):
         self.kb, self.sits = build_kb(), situations()
@@ -224,8 +399,8 @@ class InterpretationPositiveInference(unittest.TestCase):
         self.assertLess(cs.interval.hi - cs.interval.lo, 0.01)
         caf = self.q("caffeine_adult", "population", "remaining_fraction")
         self.assertEqual(caf.status, "SUPPORTED")
-        self.assertAlmostEqual(caf.interval.lo, 0.0625, places=4)
-        self.assertAlmostEqual(caf.interval.hi, 0.30475, places=4)
+        self.assertAlmostEqual(caf.interval.lo, 2 ** (-12 / 4.8), places=6)
+        self.assertAlmostEqual(caf.interval.hi, 2 ** (-12 / 5.2), places=6)
 
 
 class InterpretationProhibitedInference(unittest.TestCase):
@@ -279,8 +454,7 @@ class InterpretationKnowledgeDependence(unittest.TestCase):
 
     def test_acquiring_the_named_missing_knowledge_resolves_the_question(self):
         q = ("silt_10C", "particle", "speed")
-        before = run(self.kb, self.sits, q)
-        self.assertEqual(before.status, "UNRESOLVED")
+        self.assertEqual(run(self.kb, self.sits, q).status, "UNRESOLVED")
         for item in later_acquisitions():
             self.kb.add(item)
         after = run(self.kb, self.sits, q)

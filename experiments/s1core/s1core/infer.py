@@ -2,21 +2,26 @@
 
 Goal: a quantity kind of the entity filling a role in a situation. The program looks for
 
-1. values of that entity (or, for intensive kinds, of what it belongs to or is made of) whose stated conditions are
-   met by the situation (4.6; a value never applies where its conditions are not stated or not met);
+1. givens of the situation, and values of that entity or inherited under the rules of ``holds_of`` (material,
+   kind, population, individual), whose scope covers the situation: stated conditions met (4.6), a declared
+   invariance, or an unknown scope explicitly adopted by the situation as a scope assumption (6.4);
 2. models with a solved form for that kind and role. A model is applied only if its categorical requirements are
    established or explicitly assumed in the situation, all inputs can be derived recursively, and its quantitative
    domain conditions are shown to hold on the derived values (TC3, C8). A violated condition refuses the result;
    a condition the uncertainty cannot decide leaves it unresolved.
 
-Every outcome carries status, a conservative interval in coherent SI units, the item ids it rests on, what is
-missing, the reasons for any refusal, caveats (assumptions, inheritance, unstated conditions) and a full trace.
+Every outcome carries status, a conservative interval in coherent SI units, every premise it rests on (knowledge
+items, situation givens and assumptions), what is missing, the reasons for any refusal, caveats, the epistemic
+standing inherited from its premises, and a full trace. The interval expresses only arithmetic uncertainty of the
+inputs; model validity, assumptions and source reliability are reported separately in ``standing`` and ``caveats``.
+Several supported derivations are combined by their hull, never by intersection, because nothing here establishes
+that every source is a valid bound; disjoint results are a recorded CONFLICT (C12).
 No rule names a domain, entity, kind or role: they come only from the knowledge and the situation.
 """
 from dataclasses import dataclass, field
 
 from . import expr, units
-from .knowledge import Attribute, Link, Model, SingleValued, Value
+from .knowledge import Attribute, Link, Model, SingleValued, Value, check_situation
 
 SUPPORTED, UNRESOLVED, REFUSED, CONFLICT, SKIPPED = "SUPPORTED", "UNRESOLVED", "REFUSED", "CONFLICT", "SKIPPED"
 
@@ -30,6 +35,7 @@ class Outcome:
     reasons: list = field(default_factory=list)
     caveats: list = field(default_factory=list)
     trace: dict = field(default_factory=dict)
+    standing: dict = field(default_factory=dict)
 
 
 def _uniq(xs):
@@ -37,24 +43,63 @@ def _uniq(xs):
 
 
 def _lineage(kb, entity):
-    """Breadth-first ancestors: (ancestor, link ids, passes through made_of)."""
+    """Breadth-first ancestors: (ancestor, link ids)."""
     links = sorted(kb.of(Link), key=lambda l: l.id)
-    out, seen, queue = [], {entity}, [(entity, (), False)]
+    out, seen, queue = [], {entity}, [(entity, ())]
     while queue:
-        e, chain, made = queue.pop(0)
-        out.append((e, chain, made))
+        e, chain = queue.pop(0)
+        out.append((e, chain))
         for l in links:
             if l.entity == e and l.target not in seen:
                 seen.add(l.target)
-                queue.append((l.target, chain + (l.id,), made or l.relation == "made_of"))
+                queue.append((l.target, chain + (l.id,)))
     return out
+
+
+def _passes(kb, holds_of, chain):
+    """May a property of this kind of bearer pass along this chain of links? Returns (bool, reason)."""
+    if not chain:
+        return True, ""
+    if holds_of in ("individual", "population"):
+        return False, f"a {holds_of} property does not pass to other entities"
+    links = [kb.items[i] for i in chain]
+    made = [l for l in links if l.relation == "made_of"]
+    if holds_of == "kind" and made:
+        return False, f"a kind property does not pass through made_of ({made[0].id})"
+    if len(made) > 1:
+        return False, f"material properties do not pass through two made_of steps ({made[0].id}, {made[1].id})"
+    for l in made:
+        n = sum(1 for x in kb.of(Link) if x.entity == l.entity and x.relation == "made_of")
+        if n > 1:
+            return False, f"{l.entity} is a composite ({n} made_of links); a property of the whole is not a property of a part"
+    return True, ""
+
+
+def _scope(item, sit):
+    """Does the item's declared scope cover the situation? Returns (status, premises, needs, reasons, caveats)."""
+    if item.scope == "invariant":
+        return SUPPORTED, set(), [], [], [f"{item.id} declared invariant: {item.invariance}"]
+    if item.scope == "unknown":
+        if item.id in sit.scope_assumptions:
+            return (SUPPORTED, {f"scope:{item.id}@{sit.id}"}, [], [],
+                    [f"assumed in situation {sit.id}: {item.id} applies here although its conditions are unknown"])
+        return (UNRESOLVED, set(), [f"conditions under which {item.id} holds (or an explicit scope assumption)"],
+                [f"{item.id} not applied: its conditions of validity are unknown"], [])
+    missing, mismatch = _match(item.conditions, sit)
+    if missing:
+        return (UNRESOLVED, set(), [f"state {k} in situation {sit.id} ({item.id} holds only under a stated {k})"
+                                    for k in missing],
+                [f"{item.id} not applicable: situation does not state {', '.join(missing)}"], [])
+    if mismatch:
+        return UNRESOLVED, set(), None, [f"{item.id} not applicable: " + "; ".join(mismatch)], []
+    return SUPPORTED, set(), [], [], []
 
 
 def _match(conds, sit):
     """Conditions of a value or attribute against the situation: (missing names, mismatches)."""
     missing, mismatch = [], []
     for k, v in sorted(conds.items()):
-        s = sit.conditions.get(k)
+        s = (sit.conditions or {}).get(k)
         if s is None:
             missing.append(k)
         elif isinstance(v, str) or isinstance(s, str):
@@ -73,15 +118,22 @@ def _match(conds, sit):
 
 def _fmt_conds(sit):
     return ", ".join(f"{k}={v if isinstance(v, str) else f'{v[0]:g}-{v[1]:g} {v[2]}'}"
-                     for k, v in sorted(sit.conditions.items())) or "no stated conditions"
+                     for k, v in sorted((sit.conditions or {}).items())) or "no stated conditions"
 
 
-def _value_paths(kb, sit, entity, kind, intensive):
+def _value_paths(kb, sit, entity, kind):
     paths = []
+    for g in sit.givens:
+        if g.bearer == entity and g.kind == kind:
+            lo, hi = units.to_si(g.lo, g.hi, g.unit)
+            o = Outcome(SUPPORTED, expr.Interval(lo, hi), {g.id})
+            o.trace = {"via": "given", "item": g.id, "stated": [g.lo, g.hi, g.unit], "source": g.source,
+                       "basis": g.basis, "status": SUPPORTED}
+            paths.append(o)
+    if paths:
+        return paths  # data given for this situation override general knowledge
     by_depth = {}
-    for anc, chain, _ in _lineage(kb, entity):
-        if anc != entity and not intensive:
-            continue  # an extensive value of a kind or material is not a value of its members or parts
+    for anc, chain in _lineage(kb, entity):
         by_depth.setdefault(len(chain), []).append((anc, chain))
     for depth in sorted(by_depth):
         level = []
@@ -89,24 +141,27 @@ def _value_paths(kb, sit, entity, kind, intensive):
             for v in kb.of(Value):
                 if v.bearer != anc or v.kind != kind:
                     continue
-                missing, mismatch = _match(v.conditions, sit)
                 tr = {"via": "value", "item": v.id, "bearer": anc, "links": list(chain), "stated": [v.lo, v.hi, v.unit],
-                      "conditions": {k: c for k, c in v.conditions.items()}, "source": v.source, "ground": v.ground}
-                if missing:
-                    o = Outcome(UNRESOLVED, needs=[f"state {k} in situation {sit.id} ({v.id} holds only under a stated "
-                                                   f"{k})" for k in missing],
-                                reasons=[f"{v.id} not applicable: situation does not state {', '.join(missing)}"])
-                elif mismatch:
-                    o = Outcome(UNRESOLVED, needs=[f"{kind} of {anc} under {_fmt_conds(sit)}"],
-                                reasons=[f"{v.id} not applicable: " + "; ".join(mismatch)])
+                      "conditions": dict(v.conditions), "scope": v.scope, "holds_of": v.holds_of,
+                      "source": v.source, "basis": v.basis}
+                ok, why = _passes(kb, v.holds_of, chain)
+                if not ok:
+                    o = Outcome(UNRESOLVED, needs=[f"{kind} of {entity}"], reasons=[f"{v.id} of {anc} not inherited: {why}"])
+                elif v.holds_of == "population":
+                    o = Outcome(UNRESOLVED, needs=[f"{kind} of {entity} as a value of the bearer, not a population spread"],
+                                reasons=[f"{v.id} is a spread over a population; it is not a bound on its value"])
                 else:
-                    lo, hi = units.to_si(v.lo, v.hi, v.unit)
-                    cav = []
-                    if chain:
-                        cav.append(f"{kind} of {entity} inherited from {anc} via {', '.join(chain)} (generic, defeasible)")
-                    if not v.conditions:
-                        cav.append(f"{v.id} states no conditions; any dependence on conditions is not represented")
-                    o = Outcome(SUPPORTED, expr.Interval(lo, hi), {v.id, *chain}, caveats=cav)
+                    st, prem, needs, reasons, cav = _scope(v, sit)
+                    if needs is None:
+                        needs = [f"{kind} of {anc} under {_fmt_conds(sit)}"]
+                    if st == SUPPORTED:
+                        lo, hi = units.to_si(v.lo, v.hi, v.unit)
+                        if chain:
+                            cav.append(f"{kind} of {entity} inherited from {anc} via {', '.join(chain)} "
+                                       f"({v.holds_of} property, defeasible)")
+                        o = Outcome(SUPPORTED, expr.Interval(lo, hi), {v.id, *chain, *prem}, caveats=cav)
+                    else:
+                        o = Outcome(st, needs=needs, reasons=reasons)
                 o.trace = dict(tr, status=o.status, reasons=o.reasons)
                 level.append(o)
         paths.extend(level)
@@ -116,19 +171,22 @@ def _value_paths(kb, sit, entity, kind, intensive):
 
 
 def _attribute(kb, sit, entity, name):
-    """Most specific applicable established attribute. Returns (found list, near misses)."""
+    """Most specific applicable established attribute: (list of (attribute, premises), near misses)."""
     near = []
     by_depth = {}
-    for anc, chain, made in _lineage(kb, entity):
+    for anc, chain in _lineage(kb, entity):
         for a in kb.of(Attribute):
-            if a.bearer != anc or a.name != name or (made and not a.material):
+            if a.bearer != anc or a.name != name:
                 continue
-            missing, mismatch = _match(a.conditions, sit)
-            if missing or mismatch:
-                near.append(f"{a.id} ({name}={a.value} of {anc}) not applicable: "
-                            + "; ".join([f"situation does not state {m}" for m in missing] + mismatch))
+            ok, why = _passes(kb, a.holds_of, chain)
+            if not ok:
+                near.append(f"{a.id} ({name}={a.value} of {anc}) not inherited: {why}")
+                continue
+            st, prem, _, reasons, _ = _scope(a, sit)
+            if st != SUPPORTED:
+                near += [f"{a.id} ({name}={a.value} of {anc}): {r}" for r in reasons]
             else:
-                by_depth.setdefault(len(chain), []).append((a, chain))
+                by_depth.setdefault(len(chain), []).append((a, {a.id, *chain, *prem}))
     if not by_depth:
         return [], near
     return by_depth[min(by_depth)], near
@@ -141,16 +199,16 @@ def _requirement(kb, sit, entity, req):
     tr = {"requirement": f"{req.name} of {entity} = {req.value}"}
     if len({a.value for a, _ in found}) > 1:
         return Outcome(UNRESOLVED, reasons=[f"conflicting established values of {req.name} for {entity}"],
-                       grounds={a.id for a, _ in found}, trace=dict(tr, status=UNRESOLVED))
+                       grounds=set().union(*(p for _, p in found)), trace=dict(tr, status=UNRESOLVED))
     if found:
-        a, chain = found[0]
-        g = {a.id, *chain}
+        a, g = found[0]
+        chain = [x for x in g if x != a.id and x in kb.items]
         if assumed and assumed[0].value != a.value:
             return Outcome(UNRESOLVED, grounds=g, reasons=[f"situation assumes {req.name}={assumed[0].value} for "
                                                            f"{entity} but {a.id} establishes {a.value}"],
                            trace=dict(tr, status=UNRESOLVED))
         if a.value == req.value:
-            cav = [f"{req.name} of {entity} inherited from {a.bearer} via {', '.join(chain)}"] if chain else []
+            cav = [f"{req.name} of {entity} inherited from {a.bearer} via {', '.join(sorted(chain))}"] if chain else []
             return Outcome(SUPPORTED, grounds=g, caveats=cav, trace=dict(tr, status=SUPPORTED, by=a.id))
         if single:
             return Outcome(REFUSED, grounds=g | {single[0].id},
@@ -162,11 +220,12 @@ def _requirement(kb, sit, entity, req):
     if assumed:
         a = assumed[0]
         if a.value == req.value:
-            return Outcome(SUPPORTED, caveats=[f"assumed in situation {sit.id}: {req.name} of {entity} = {a.value} "
-                                               f"(idealisation, not established)"],
+            return Outcome(SUPPORTED, grounds={a.id},
+                           caveats=[f"assumed in situation {sit.id}: {req.name} of {entity} = {a.value} "
+                                    f"(idealisation, not established)"],
                            trace=dict(tr, status=SUPPORTED, by=f"assumption {a.id}"))
         status = REFUSED if single else UNRESOLVED
-        return Outcome(status, reasons=[f"situation assumes {req.name}={a.value}, model requires {req.value}"],
+        return Outcome(status, grounds={a.id}, reasons=[f"situation assumes {req.name}={a.value}, model requires {req.value}"],
                        trace=dict(tr, status=status))
     return Outcome(UNRESOLVED, needs=[f"{req.name} of {entity} (model requires {req.value})"],
                    reasons=near or [f"nothing establishes {req.name} of {entity}"], trace=dict(tr, status=UNRESOLVED))
@@ -183,13 +242,13 @@ def _decide(iv, op, lo, hi):
 
 
 def _combine(parts):
-    """Status of a step from its parts: any skipped -> skipped; unresolved; refused or conflict -> refused."""
+    """Status of a step from its parts: any skipped -> skipped; unresolved or conflict -> unresolved; refused."""
     st = {p.status for p in parts}
     if SKIPPED in st:
         return SKIPPED
-    if UNRESOLVED in st:
+    if UNRESOLVED in st or CONFLICT in st:
         return UNRESOLVED
-    if REFUSED in st or CONFLICT in st:
+    if REFUSED in st:
         return REFUSED
     return SUPPORTED
 
@@ -296,7 +355,7 @@ def _derive(kb, sit, entity, kind, stack):
     if kind not in kinds:
         return Outcome(UNRESOLVED, needs=[f"quantity kind {kind}"], reasons=[f"unknown kind {kind}"],
                        trace={"goal": goal, "status": UNRESOLVED})
-    paths = _value_paths(kb, sit, entity, kind, kinds[kind].intensive)
+    paths = _value_paths(kb, sit, entity, kind)
     for m in kb.of(Model):
         for sym, (role, k) in sorted(m.variables.items()):
             if k == kind and sit.roles.get(role) == entity and sym in m.forms:
@@ -305,15 +364,19 @@ def _derive(kb, sit, entity, kind, stack):
     sup = [p for p in live if p.status == SUPPORTED]
     o = Outcome(UNRESOLVED)
     if sup:
-        iv = sup[0].interval
-        for p in sup[1:]:
-            iv = iv.intersect(p.interval) if iv else None
-        o.status, o.interval = (SUPPORTED, iv) if iv else (CONFLICT, None)
+        disjoint = [(a, b) for i, a in enumerate(sup) for b in sup[i + 1:] if a.interval.intersect(b.interval) is None]
         for p in sup:
             o.grounds |= p.grounds
             o.caveats += p.caveats
-        if not iv:
+        if disjoint:
+            o.status = CONFLICT
             o.reasons.append(f"derivations of {goal} disagree: " + ", ".join(repr(p.interval) for p in sup))
+            o.needs.append(f"resolution of the conflict on {goal} (which source or derivation applies)")
+        else:
+            o.status = SUPPORTED
+            o.interval = expr.Interval(min(p.interval.lo for p in sup), max(p.interval.hi for p in sup))
+            if len(sup) > 1:
+                o.caveats.append(f"{len(sup)} derivations of {goal} combined by their hull (not intersected)")
     elif live:
         o.status = UNRESOLVED if any(p.status in (UNRESOLVED, CONFLICT) for p in live) else REFUSED
         for p in live:
@@ -335,6 +398,7 @@ def _derive(kb, sit, entity, kind, stack):
 
 def infer(kb, sit, role, kind):
     """Answer: what is `kind` of the entity filling `role` in situation `sit`?"""
+    check_situation(kb, sit)
     entity = sit.roles.get(role)
     if entity is None:
         return Outcome(UNRESOLVED, needs=[f"fill role {role}"], reasons=[f"role {role} unfilled"],
@@ -343,13 +407,59 @@ def infer(kb, sit, role, kind):
     if o.status == SKIPPED:
         o.status = UNRESOLVED
         o.needs = [f"{kind} of {entity}: an independent value or model"]
+    o.standing = standing(kb, sit, o.grounds)
     o.trace = {"query": f"{kind} of {entity} in situation {sit.id}", "inference_type": "model-based (S0 5.7)",
-               "standing": "proposed by the program; rests on the grounds listed (S0 5.9, 6.4 scope hypothesis)",
-               **o.trace, "status": o.status}
+               "standing": o.standing, **o.trace, "status": o.status}
     return o
+
+
+def _basis(kb, sit, gid):
+    if gid in kb.items:
+        it = kb.items[gid]
+        return getattr(it, "basis", "definition"), bool(getattr(it, "verified_by", ""))
+    if gid.startswith("scope:"):
+        return "assumption", False
+    for it in tuple(sit.givens) + tuple(sit.assumptions):
+        if it.id == gid:
+            return it.basis, bool(it.verified_by)
+    raise KeyError(gid)
+
+
+def standing(kb, sit, grounds):
+    """Epistemic standing of a conclusion from its premises (S0 5.9): never stronger than its weakest premise."""
+    profile, unverified = {}, 0
+    for g in grounds:
+        b, ver = _basis(kb, sit, g)
+        profile[b] = profile.get(b, 0) + 1
+        unverified += 0 if ver or b == "definition" else 1
+    if "illustrative" in profile:
+        label = "illustrative only: rests on illustrative premises"
+    elif "hypothesis" in profile:
+        label = "hypothetical: rests on hypotheses"
+    elif "assumption" in profile:
+        label = "conditional on assumptions"
+    elif unverified:
+        label = "derived from unverified premises"
+    else:
+        label = "derived from verified premises"
+    return {"attitude": "proposed", "holder": "program", "label": label, "premises_by_basis": dict(sorted(profile.items())),
+            "unverified_premises": unverified}
 
 
 def ablate(kb, sit, role, kind):
     """Remove each ground of the answer in turn and report the new status."""
+    import dataclasses
     base = infer(kb, sit, role, kind)
-    return [(g, infer(kb.without({g}), sit, role, kind).status) for g in sorted(base.grounds)]
+    out = []
+    for g in sorted(base.grounds):
+        if g in kb.items:
+            o = infer(kb.without({g}), sit, role, kind)
+        elif g.startswith("scope:"):
+            sid = g[len("scope:"):].split("@")[0]
+            o = infer(kb, dataclasses.replace(sit, scope_assumptions=tuple(x for x in sit.scope_assumptions if x != sid)),
+                      role, kind)
+        else:
+            o = infer(kb, dataclasses.replace(sit, givens=tuple(x for x in sit.givens if x.id != g),
+                                              assumptions=tuple(x for x in sit.assumptions if x.id != g)), role, kind)
+        out.append((g, o.status))
+    return out
