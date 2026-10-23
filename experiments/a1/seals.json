@@ -1,0 +1,71 @@
+{
+ "note": "A-1 sealed and development material, produced by Claude agents before any A-1 code (not independent validation). Hashes of private files in $PRIVATE/a1; the files stay private.",
+ "document": {
+  "container": "PEE-THREE-SCIENTIFIC-RESEARCH-PACKAGES.zip",
+  "container_sha256": "25ace2c09c391a3b6e5a29e8771585c5350c7f9760adca9fdaf33b0540bc2f93",
+  "member": "PEE-DEHUMIDIFIERS-CONSOLIDATED-RESEARCH-2026-10-15.md",
+  "member_sha256": "83b982274d6ac233e39240cd4d64eede7d2f02eebd8b5c597b3173e12c59a498",
+  "sealed_lines": [
+   713,
+   924
+  ]
+ },
+ "R": {
+  "file": "sealed/R-reference.json",
+  "propositions": 343,
+  "register": 60,
+  "non_scientific": 18,
+  "scoring_rule": "Fixed before code: measure A is computed over the 325 propositions not flagged non_scientific (register descriptions included); the same counts over all 343 are reported as secondary. Annotators A (340) and B (322); adjudicated per addendum by four agents (RJ-B, RJ-C, RJ-D, RJ-E) under one shared convention list."
+ },
+ "QS": {
+  "file": "sealed/QS-reference.json",
+  "items": 60,
+  "live": 59,
+  "dropped": [
+   "Q50"
+  ],
+  "determinate": 45,
+  "abstention": 14,
+  "agreement_author_blind": "58/60 before adjudication; 18 items flagged by the blind answerer; adjudication: 41 agreed, 12 resolved, 6 repaired, 1 dropped",
+  "scoring_rule": "Q01 honours its equivalent_answers field; answers are compared after normalising case and whitespace; numeric answers match when number and unit agree (or a stated equivalent)."
+ },
+ "development": {
+  "files": [
+   "dev/annot-dev.json (245 propositions)",
+   "dev/QD-author.json (30 questions)"
+  ],
+  "status": "spent by design"
+ },
+ "exposure": "Before sealing, the developer saw the headings of lines 713-924 (section 1.2 of REPORT) and, contrary to their instructions, three adjudicators' reports quoted short fragments of the sealed passage (a prohibition about double-counting latent heat; an authority's indoor RH guidance with its ranges; that a handbook treats moisture exchange through air movement and vapour-pressure differences). No body text was otherwise read.",
+ "files": {
+  "sealed/QS-adjudication.json": "d98f5ee245a07168936feee973a66f8da5ef1d8dc953936fe7efdc7350541565",
+  "sealed/QS-author.json": "1bd187d2effdb19f4e2d526561b09213f49eeec0c8fd31fd29d6700c1f737296",
+  "sealed/QS-blind-answers.json": "d9db2764f4923963aaa2f15a53d6ddb5f973eac698c40691ed8e14457c62caa0",
+  "sealed/QS-blind.json": "07907a76d30a1c5a2aad68920a22080fae1893d245efae73d42bb9d6e0b407d3",
+  "sealed/QS-reference.json": "4faf73c175dbe83f1f2aca22f6a80f3b0a7b7785cb3f7fecfd6d56ca99dd5fe0",
+  "sealed/R-reference.json": "f51dafeaae77f37c0de5e56a994271bbf9ebf4604531c127d7d90017f38e6c39",
+  "sealed/adj/B-annot-A.json": "224dabb87bbaede5e309d7ce13abe3077f95c3531f2beb5a250d1eff43c5837a",
+  "sealed/adj/B-annot-B.json": "71a147ae9bb0c0d7fcd9fbe0f193054048bf152c0e8d31b85e0d2ccca6bb134c",
+  "sealed/adj/B-decisions.json": "02ef59cd305af6a295623bd93738acb6bb1638d0e8e2958774cdb97742fb1ca4",
+  "sealed/adj/B-reference.json": "798f6b22efdbdd662ac05deab42bbedd02e8a3e16cbf4362ffe6ea4ca94a7990",
+  "sealed/adj/C-annot-A.json": "959f14848dbc9334e5687df3fc42cf38ac820e2d5ff9ea87c2a293c4e720603b",
+  "sealed/adj/C-annot-B.json": "7403fe132ad7b79389ee0808a8a2a67a967c4566f81fd569e55d50352a799532",
+  "sealed/adj/C-decisions.json": "eba87fdaffc50ec03c931b6df1945c2f8e89217557d233def0a845d545fa5533",
+  "sealed/adj/C-reference.json": "dc9a5396de8912545c726ebe8bcb3185ec7e50974efd8e3831758c8cb29a69f6",
+  "sealed/adj/D-annot-A.json": "2f025d5d9be55811166d84106d5ee8b36886ebed2c64e96ca357fdd8804fb9a0",
+  "sealed/adj/D-annot-B.json": "420dc5e7855ca65517427bc1e66173016b3abdfd578c67427242040c48f21501",
+  "sealed/adj/D-decisions.json": "73f05df4b7edbb927eba4fab5bc150feddea4382c3f50f80c95a7be0ced0c63c",
+  "sealed/adj/D-reference.json": "03266574af1309ec4191b282adefc53b4528ba53cce526934b1c98bfdd97f9bc",
+  "sealed/adj/E-annot-A.json": "e6068456485d21145a6b9c5239db06243a1033c30273114030590f33b9ccdbd2",
+  "sealed/adj/E-annot-B.json": "a93d99d3d89ef785574ea9543981b241ef00a03f7d453eb8d52310cdb4f4502e",
+  "sealed/adj/E-decisions.json": "e67b13a29ee1bd130976a657af1fd123301f20e7946e341eed2171c67a6d7c9d",
+  "sealed/adj/E-reference.json": "75cf869a5a5c6a196fa3e401b281996d3f10063a2b160dfa87dba1fba825abd9",
+  "sealed/adj/buildD.py": "9c4c82bf8e8ee9064aba1d0d40226a9c7747f9c8e5fefb9d804b0095c519c366",
+  "sealed/annot-A.json": "1fa0eddaa674ad0b98023d2c37b79be375b16d4f476e848523c0af4a0d114ac2",
+  "sealed/annot-B.json": "bd9c6021823188329fa7c2777889a56bf1217623230e208f3642f75c8ed94d0a",
+  "dev/QD-author.json": "ef9990692b4e8cdb565f8f18edb3b2eded1ae0223791564f66c353937ac31702",
+  "dev/annot-dev.json": "9ec5b867d95d7a1cc05a0a9fb127e71d8c0db63b5b8e060457fafc6273ccb0eb",
+  "passages/dev.txt": "1f70fb90f8c1fba76b3b71ba926ef3562010ecce97233ccd43e459a56a242369",
+  "passages/sealed-713-924.txt": "169c89e709d03de882f85c411976dcc023ce51c841e012ae99e42a61bb1ba37a"
+ }
+}
