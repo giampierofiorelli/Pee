@@ -305,6 +305,30 @@ class F9Tables(unittest.TestCase):
                          [("not assimilated", ["a cell that states no single value"])])
 
 
+class F9Lifecycle(unittest.TestCase):
+    """Post-check correction (REPORT.md §7.1): table rows are audited apart from sentences, so a document with a
+    property table still completes the assimilation lifecycle."""
+
+    def test_a_document_with_a_value_table_completes(self):
+        import tempfile
+        import zipfile
+        from universe import assimilate
+        md = ("# Steel\n\nSteel is an alloy of iron and carbon.\n\n| Property | Value |\n|---|---|\n"
+              "| Yield strength | 250 MPa |\n| Remark | not stated here |\n")
+        with tempfile.TemporaryDirectory() as tmp:
+            z = pathlib.Path(tmp) / "orig.zip"
+            with zipfile.ZipFile(z, "w") as zf:
+                zf.writestr("steel.md", md)
+            st = A.base()
+            rec, text = assimilate.assimilate(st, z, "fixture author", pathlib.Path(tmp) / "work", member="steel.md")
+            a = rec["audit"]
+            self.assertTrue(a["every_sentence_accounted"])
+            self.assertEqual((a["table_rows"], a["table_row_entries"], a["every_table_row_accounted"]), (2, 2, True))
+            self.assertEqual(a["table_row_statuses"], {"acquired": 1, "not assimilated": 1})
+            res = assimilate.complete(st, [rec], [text], pathlib.Path(tmp) / "u.gz", {rec["document"]: (z, "steel.md")})
+            self.assertTrue(res["ok"], res)
+
+
 class F10Time(unittest.TestCase):
     K = case("F10", [("reporting rules", "# Reporting\n\nFrom 18 February 2027, laboratories must report the "
                                          "measurement uncertainty.\n")],

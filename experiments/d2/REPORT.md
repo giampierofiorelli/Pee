@@ -231,16 +231,45 @@ The reader's unresolved terms are identical before and after D-2 (no designation
 
    | Document | Change |
    |---|---|
-   | AP | sentences acquired 539 → 543; partial 251 → 252; concepts 1951 → 1950 |
+   | AP | sentences acquired 539 → 538; partial 251 → 252; concepts 1951 → 1950 |
    | DH | propositions 866 → 867; restated 13 → 12; concepts 1372 → 1376 |
    | THREE-DH | concepts 333 → 332 |
 
    They come from dates, value conditions and reporting frames. They were not inspected sentence by sentence (the
    documents are private), and they changed no QS answer.
 
+   *Correction made in the post-check commit:* this table first read "AP sentences acquired 539 → 543". The old
+   audit counted the 5 acquired table rows as sentences. The sentence count is 538 (§7.1).
+
 ### 7.1 Post-check correction (separate commit)
 
-*To be filled by the post-check commit.*
+**Correction.**
+- `assimilate` now audits sentences and table rows apart. It adds `table_rows`, `table_row_entries`,
+  `every_table_row_accounted` and `table_row_statuses`.
+- The lifecycle requires both audits to be complete.
+- Regression test: `test_d2.F9Lifecycle`. A document with a value table completes the lifecycle.
+
+**This was done after the final check, and is labelled post hoc.** It departs from the protocol's "one final
+check". It is kept in its own commit so the owner can accept or revert it.
+
+**Post-hoc rerun** (K+ rebuilt, QS answered again):
+- **Lifecycle.** `ok: true`: saved, reloaded, working copies removed, originals unchanged.
+- **QS answers.** Identical to the final check on all 59 questions.
+- **Every row of the K+ tables is now in the coverage ledger** (513 rows, none missing):
+
+  | Document | Table rows | Acquired | Read as prose | Not assimilated |
+  |---|---|---|---|---|
+  | AP | 215 | 5 | 187 | 23 |
+  | DH | 146 | 0 | 126 | 20 |
+  | THREE-DH | 152 | 0 | 132 | 20 |
+
+**What the ledger shows.**
+- The owner's package tables are almost all prose cells. Their sentences are read as sentences, as before D-2.
+- Only 5 rows state single values that F9 can read.
+- The 63 rows not assimilated are cells holding several values, text with values, or no value. Each is recorded
+  with its reason.
+- So F9 adds little knowledge from these packages. Its effect is the coverage account.
+- Private rows: `pee-knowledge/private-eval/pee-d2/qs-D2-postcheck*.json` (SHA-256 `9c1e3962…6546`).
 
 ## 8. Costs
 

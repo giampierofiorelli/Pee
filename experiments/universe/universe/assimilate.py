@@ -57,6 +57,18 @@ def _sentence_count(doc, lex):
     return n
 
 
+def _table_row_count(doc):
+    """D-2 (F9): the table rows the ledger must account for (every row but a header row)."""
+    n = 0
+    for t in doc.get("tables", ()):
+        rows = {}
+        for c in t["cells"]:
+            rows.setdefault(c["row"], []).append(c)
+        head = sorted(rows.get(0, []), key=lambda c: c["col"])
+        n += len(rows) - (1 if head and head[0].get("header") else 0)
+    return n
+
+
 def assimilate(store, original, holder, workdir, url=None, member=None):
     """Read one document through its working copy into ``store``. Returns the assimilation record (no text) and the
     working copy's text, which the caller passes to the retention guard and then discards."""
@@ -68,13 +80,21 @@ def assimilate(store, original, holder, workdir, url=None, member=None):
     doc = markdown.read(text, url, holder)
     lex = acquisition.Lexicon(store)
     expected = _sentence_count(doc, lex)
-    # a teaching document is read for its knowledge; its tables are not product data (the page reader of Route B,
-    # which keeps cell text as records, is not used here)
+    # a teaching document is read for its knowledge; the page reader of Route B, which keeps cell text as records, is
+    # not used here. D-2 (F9): the values its property/value tables state are read as claims, and every table row is
+    # accounted for in the ledger, apart from the sentences
     k = knowledge_acquisition.acquire_knowledge(store, doc, lex, propositions=True)
     ledger = k.get("ledger") or []
-    audit = {"sentences_segmented": expected, "ledger_entries": len(ledger),
-             "every_sentence_accounted": len(ledger) == expected,
-             "statuses": {s: sum(1 for e in ledger if e["status"] == s) for s in ("acquired", "partial", "unresolved")}}
+    sents = [e for e in ledger if e.get("kind") != "table row"]
+    rows = [e for e in ledger if e.get("kind") == "table row"]
+    expected_rows = _table_row_count(doc)
+    audit = {"sentences_segmented": expected, "ledger_entries": len(sents),
+             "every_sentence_accounted": len(sents) == expected,
+             "statuses": {s: sum(1 for e in sents if e["status"] == s) for s in ("acquired", "partial", "unresolved")},
+             "table_rows": expected_rows, "table_row_entries": len(rows),
+             "every_table_row_accounted": len(rows) == expected_rows,
+             "table_row_statuses": {s: sum(1 for e in rows if e["status"] == s) for s in sorted({e["status"]
+                                                                                                for e in rows})}}
     rec = {"document": url, "name": name, "holder": holder, "original_sha256": before,
            "working_copy": str(copy), "bytes": len(text.encode()), "read_at": time.strftime("%Y-%m-%dT%H:%M:%SZ",
                                                                                             time.gmtime()),
@@ -87,7 +107,8 @@ def assimilate(store, original, holder, workdir, url=None, member=None):
 def complete(store, records, texts, snapshot, originals):
     """Audit, save, reload and compare; then remove the working copies and record the removal; save again.
     ``originals`` maps each record's document to (original path, member) for the integrity check."""
-    failures = [r["document"] for r in records if not r["audit"]["every_sentence_accounted"]]
+    failures = [r["document"] for r in records if not r["audit"]["every_sentence_accounted"]
+                or not r["audit"].get("every_table_row_accounted", True)]
     if failures:
         return {"ok": False, "why": "ledger incomplete", "documents": failures}
     try:
