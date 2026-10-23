@@ -2,10 +2,24 @@
 
 | | |
 |---|---|
-| **Status** | **Design only.** Nothing is installed, downloaded or run. Execution needs an explicit owner authorisation (section 9) |
+| **Status** | **Design only, revision 1** (owner corrections of 2026-10-23, section 0). Nothing is installed, downloaded or run. Execution of each stage needs an explicit owner authorisation |
 | **Basis** | The owner's message of 2026-10-23 (recommendations, `ORGANISATION.md` §7.3): design the next experiment, without running it |
 | **Branch** | `claude/pee-operational` |
 | **Unchanged** | S0, `engine-ts/`, the A-1 reader and the dependency rule of `CLAUDE.md` |
+
+## 0. Revision 1: the owner's corrections and decisions (2026-10-23)
+
+| Point | Owner's position | Effect on this design |
+|---|---|---|
+| Neural models | A limited experimental exception, at first for **one promising model only**, after its licence and CPU feasibility are verified | Stage V picks one model by fixed criteria (section 6). No second model is installed unless the owner decides so |
+| Evidence kind | The proposed rule is **not approved**. A scientific synthesis, an original measurement and an expert judgement stay distinct, even when one author writes them all | The rule of section 7 is replaced: the kind is that of the **support given for the claim**, never that of the writer |
+| Sealed material | Soundbars approved, after checking that it is really unused | The exposure census of section 7 is a precondition of stage S |
+| A-1 + NLI verifier | Included: an important comparison | Arm A+V is in, at stage F and at stage S |
+| Permanent acquisition | Postponed. No new knowledge is admitted automatically during C-1 | No admission bar is set; nothing is persisted |
+| Spending | Do not spend 15–20 agents now; first a cheap check of model feasibility | New stage **F** (section 6): no agents at all |
+
+**The goal stated by the owner.** Find out whether a neural model understands scientific relations better than the
+current rules. The goal is not to build another complex system.
 
 ## 1. The question
 
@@ -108,14 +122,23 @@ Every arm uses the O-2 path unchanged: `markdown.read` → `read_units` → **ar
 
 At most **three** arms are judged (A, L and L+V), plus A+V only if the owner wants it (section 9).
 
-## 6. Stages, each with a stop rule
+## 6. Stages, each with a stop rule (revision 1)
+
+Each stage needs the owner's go-ahead. The first three use **no agents**.
 
 | Stage | What | Spends | Stop rule |
 |---|---|---|---|
-| **V — verification** (no installation) | Check each candidate's licence, size, memory, CPU speed, dependencies, offline use and download source from primary sources | a few searches | A candidate is dropped if its licence is not permissive, it needs more than 12 GB of memory, or it cannot run offline |
-| **P — probe** (after authorisation) | Install in an isolated virtual environment and cache **outside every repository**. Time 20 development sentences of the spent speakers material | local CPU only | A candidate is dropped above 30 s per sentence or 12 GB of memory |
-| **D — development** | Prompt, grammar and verifier threshold fixed on spent material: the O-2 speakers references R (238) and D (269), judged with **the same protocol as the sealed test** (two judges, an adjudicator, the conventions). This is the O-2 lesson: choices made with one unadjudicated judge did not transfer | agents | at most three prompt or threshold revisions; then freeze |
-| **S — sealed** | A new sealed reference annotated **before** any C-1 run (section 7), then the frozen arms run once, blind judging and scoring | agents | one first run, committed unchanged; at most one change cycle, labelled "after change" |
+| **V: verification** (no installation) | Check the candidates' licence, size, memory, CPU speed, dependencies, offline use and download source from primary sources. **Choose one model** by fixed criteria, in this order: (1) a permissive licence (MIT, Apache-2.0, BSD); (2) at most 8 GB of memory at 4-bit; (3) constrained JSON output; (4) the strongest published instruction-following and extraction results among the rest | web searches only | No candidate passes: stop and report |
+| **P: probe** | Install that one model in an isolated environment outside every repository. Time it on 20 sentences of the spent speakers material | local CPU only | Above 30 s per sentence or 12 GB of memory: stop and report |
+| **F: feasibility** (new, cheap) | Run A, L, A+V and L+V on the **spent** speakers prose (the O-2 references R, 238 propositions, and D, 269). Score with an **automatic proxy**: lexical alignment of items to reference propositions, as A-1's `fidelity.proxy`, then mechanical comparison of relation, polarity, attitude, evidence kind and attribution | local CPU; no agents | L's relation agreement must beat A's by at least 0.10, and its polarity agreement must not fall below A's. Otherwise stop: no agent is spent |
+| **D: development** (only if F passes) | Prompt, grammar and verifier threshold, fixed on spent material, judged with the sealed-test protocol (two judges, an adjudicator, the conventions) | about 6 agents | at most three revisions, then freeze |
+| **S: sealed** (only if D is authorised) | A new sealed reference on Soundbars prose (after the exposure census), the frozen arms run once, blind judging, scoring | about 10–12 agents | one first run, unchanged; at most one change cycle |
+
+**What F can and cannot show.**
+- **The proxy is not a fidelity judgement.** It is a cheap screen. It runs on material that is spent, and A-1 was not
+  tuned on it, so A-1 is not advantaged.
+- **What a pass means.** Only that a model is worth the agents' cost.
+- **What a fail means.** It saves them.
 
 ## 7. Material and reference
 
@@ -124,11 +147,20 @@ At most **three** arms are judged (A, L and L+V), plus A+V only if the owner wan
   - its tables were used by Crawler N1 (H2), so only prose would be scored;
   - its prose was never used by any reader;
   - a hash-based split fixes the sections.
-- **Evidence kind needs an owner rule before annotation.** The O-2 reference disagreed on it at 0.54. The
-  ambiguity is `synthesis` against `none_stated` for the author's own uncited claims, and it should be settled in
-  the annotation guide. **Proposal:** the second O-2 arbitrator's rule. An author's own scientific claim is
-  `synthesis`, with or without citation. `none_stated` is only for claims about the document itself and for
-  procedural directives with no scientific support.
+- **Evidence kind needs an owner rule before annotation** (revision 1).
+  - **Why.** The O-2 reference disagreed on it at 0.54. The proposed rule that an author's own claim is always
+    `synthesis` is **withdrawn**.
+  - **The rule now proposed, for the owner's approval.** The evidence kind is the kind of **support the passage gives
+    for that claim**. It is never decided by who writes it. The kinds stay distinct even within one author's text:
+    - `original_measurement`: a measured result of an identified study or test;
+    - `expert_judgement`: a qualitative judgement presented as such;
+    - `standard_or_regulation`: what a named standard, regulator or programme states;
+    - `guidance`: an authority's advice;
+    - `synthesis`: the author's scientific explanation, combining knowledge or sources;
+    - `none_stated`: no support of any kind is given.
+  - **The case annotators disagreed on.** An unsupported directive or a statement about the document itself is
+    `none_stated`. An explanatory claim is `synthesis` only when the passage presents it as the author's scientific
+    account. Where the passage gives no way to tell, it is marked `undetermined`, not guessed.
 - **Annotation.** Two blind annotators, an adjudicator, and a second, independent arbitration of the four key
   fields: relation, polarity, attitude with evidence kind, and attribution.
 
@@ -171,18 +203,21 @@ explicitly by the owner.
 - **Clean-up.** Everything is removed at the end of C-1.
 - **The rule itself.** It stays unchanged.
 
-**Owner decisions needed before execution:**
-1. Authorise C-1's execution and this exception, or narrow it, for example to one candidate model only.
-2. The evidence-kind rule for the annotation guide (section 7).
-3. The sealed material: 08 soundbars prose, or another named source.
-4. Whether arm A+V is included.
-5. The admission bar (section 8), or leave it for later.
+**Decisions taken (revision 1):**
+- a limited exception for one model;
+- Soundbars approved, after the census;
+- arm A+V included;
+- admission postponed.
+
+**Still needed before execution:**
+1. The go-ahead for stages V and P, and then for F.
+2. Approval, or correction, of the evidence-kind rule in section 7, before any annotation (stage S).
 
 ## 10. Cost, roughly
 
 | Kind of cost | Estimate |
 |---|---|
-| **Agents** | about 15–20 runs (O-2 used about 25): annotation 2, adjudication 1, second arbitration 1, development judging about 6, sealed judging 6 with 3 adjudications. Mechanical grading shortens each judgement |
+| **Agents** | **0** for stages V, P and F; about 6 for D and 10–12 for S, only if F passes and the owner authorises them |
 | **Local compute** (unverified; the probe measures it) | a 3–4 B 4-bit model on 4 CPUs, of the order of 10 tokens/s generated. For about 120 prose lines and about 250 propositions, roughly 30–60 minutes per arm. The verifier adds a few minutes |
 | **Disk** | 2–3 GB of weights per model candidate, plus about 1–2 GB of runtime |
 | **Money** | none: no paid service, no licence |
@@ -193,3 +228,41 @@ explicitly by the owner.
 - **Not a verdict on all models.** A small local model may still fall short of the admission bar. C-1 would show by
   how much, not whether any model could reach it.
 - **Speakers material is spent.** It serves only for development.
+
+## 12. What published work says (searched 2026-10-23; secondary summaries, to be checked against the papers)
+
+1. **Zero-shot extraction of scientific relations is still weak, even for large models.**
+   - **Biomedical triplets.** A 2025 benchmark of zero-shot relation-triplet extraction (13,867 texts, 61 corpora)
+     found no model above F1 0.5 on the triplet task on any dataset.
+   - **Multiple relations.** Another 2025 benchmark found that even GPT-4-class models struggle with sentences that
+     state several relations with different predicates.
+   - **Expectation for C-1.** A small model used zero-shot should not be expected to reach the admission bar.
+2. **Task adaptation matters more than size.** A 2025 study ("Sub-Billion, Super-Frontier") reports that sub-billion
+   models fine-tuned on task data beat zero-shot frontier models on relation extraction.
+   - This is reported through a co-author's post and a write-up; the paper itself was not read.
+   - **For Pee.** The 507 annotated propositions of O-2 (spent, so usable for training) could later adapt a small model
+     or a schema extractor. That would be a separate decision, and it needs fresh sealed material for testing.
+3. **Checking each extracted triple against its source with NLI is an established guard against invented
+   content.**
+   - **Examples.** EchoLLM filters LLM triples with an entailment check, using a threshold tuned on held-out data, and
+     Amazon's RefChecker classifies each triplet as entailed, neutral or contradicted.
+   - **For Pee.** This supports arms A+V and L+V.
+4. **Epistemic status (certainty and hedging) is not solved by large models.**
+   - **Certainty.** Hedge words explain only part of perceived certainty (Pei and Jurgens, EMNLP 2021).
+   - **Rules can win.** A rule-based system outperformed LLMs on scientific uncertainty detection (UnScientify, 2025).
+   - **For Pee.** Attitude and evidence kind may be better kept with explicit rules, checked by the verifier, than
+     handed to a small model.
+5. **GLiNER2 does support custom relation types and runs on CPU.** It is a schema-based extractor (EMNLP 2025 demo,
+   Apache-2.0), with a stated size of 205 M or 340 M parameters. No relation-extraction benchmark figures were found.
+   It remains a candidate for stage V, not an assumed arm.
+
+**Sources** (as found):
+- https://themodelwire.com/article/sub-billion-super-frontier-small-language-models-rival-zero-shot-frontier-llms-o-01KVS58CP3EHDA4Z9RTXR821CS
+- https://aclanthology.org/people/aviv-brokman/unverified/
+- https://arxiv.org/html/2602.11886v1
+- https://www.sourcepulse.org/projects/1839174
+- https://arxiv.org/pdf/2310.14564v1
+- https://preview.aclanthology.org/setup/2021.emnlp-main.784
+- https://www.emergentmind.com/papers/2503.11376
+- https://huggingface.co/fastino/gliner2-large-v1
+- https://arxiv.org/html/2507.18546v1

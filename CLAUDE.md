@@ -61,7 +61,7 @@ None of these modifies S0.
   - **First sealed run done** (`experiments/o2/REPORT.md` §4–9): A-1 is best, and the hybrid does not improve on it.
     The change cycle has not been run.
   - The recommendations received afterwards (`ORGANISATION.md` §7.3) are **not** owner authorisations.
-- **C-1** (design only; `experiments/c1/DESIGN.md`): a comparison of more capable local interpreters, connected to
+- **C-1** (design only, revision 1 after the owner's corrections; `experiments/c1/DESIGN.md`): a comparison of more capable local interpreters, connected to
   S0, aimed at the relation errors.
   - Nothing is installed or run.
   - Execution needs an explicit owner authorisation, including the limited exception to the dependency rule.
