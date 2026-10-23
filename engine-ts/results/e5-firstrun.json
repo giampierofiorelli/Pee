@@ -1,0 +1,1253 @@
+{
+ "note": "First run of E5, unchanged. reference = Crawler 7d091ef full build in a scratch copy (git archive); pee = engine-ts at cadbc43. Roots omitted.",
+ "reference": {
+  "files": 103,
+  "pass": 1812,
+  "fail": 1,
+  "rows": [
+   {
+    "test": "tests/adaptive_schema_evolution.test.ts",
+    "status": 0,
+    "pass": 12,
+    "fail": 0
+   },
+   {
+    "test": "tests/approved_web_reader.test.ts",
+    "status": 0,
+    "pass": 7,
+    "fail": 0
+   },
+   {
+    "test": "tests/approved_web_reader_transport.test.ts",
+    "status": 0,
+    "pass": 17,
+    "fail": 0
+   },
+   {
+    "test": "tests/category_cognitive_mesh.test.ts",
+    "status": 0,
+    "pass": 22,
+    "fail": 0
+   },
+   {
+    "test": "tests/category_evidence_matrix.test.ts",
+    "status": 0,
+    "pass": 12,
+    "fail": 0
+   },
+   {
+    "test": "tests/category_research_execution.test.ts",
+    "status": 0,
+    "pass": 14,
+    "fail": 0
+   },
+   {
+    "test": "tests/document_semantics.test.ts",
+    "status": 0,
+    "pass": 10,
+    "fail": 0
+   },
+   {
+    "test": "tests/i1_node_engines.test.ts",
+    "status": 0,
+    "pass": 2,
+    "fail": 0
+   },
+   {
+    "test": "tests/knowledge_link.test.ts",
+    "status": 0,
+    "pass": 25,
+    "fail": 0
+   },
+   {
+    "test": "tests/knowledge_rules.test.ts",
+    "status": 0,
+    "pass": 9,
+    "fail": 0
+   },
+   {
+    "test": "tests/knowledge_translation.test.ts",
+    "status": 0,
+    "pass": 27,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase100_adaptive_preference_envelope.test.ts",
+    "status": 0,
+    "pass": 18,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase109_source_wide_semantic_intake.test.ts",
+    "status": 0,
+    "pass": 20,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase110_local_semantic_extractor.test.ts",
+    "status": 0,
+    "pass": 24,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase111_long_context_and_query_ambiguity.test.ts",
+    "status": 0,
+    "pass": 25,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase114_hygiene_capability_audit.test.ts",
+    "status": 0,
+    "pass": 14,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase115_hygiene_process_reasoning.test.ts",
+    "status": 0,
+    "pass": 26,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase116_category_function_model.test.ts",
+    "status": 0,
+    "pass": 33,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase122_native_local_retrieval.test.ts",
+    "status": 0,
+    "pass": 5,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase122_native_question_to_research.test.ts",
+    "status": 0,
+    "pass": 19,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase123_local_semantic_evidence_bridge.test.ts",
+    "status": 0,
+    "pass": 6,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase123_native_learned_intent.test.ts",
+    "status": 0,
+    "pass": 23,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase125_compositional_dialogue_frame.test.ts",
+    "status": 0,
+    "pass": 38,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase126_conversational_clarification_policy.test.ts",
+    "status": 0,
+    "pass": 25,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase127_stateful_clarification.test.ts",
+    "status": 0,
+    "pass": 27,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase128_category_cognition_dialogue_bridge.test.ts",
+    "status": 0,
+    "pass": 33,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase129_category_growth_cycle.test.ts",
+    "status": 0,
+    "pass": 25,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase131_local_relation_learning.test.ts",
+    "status": 0,
+    "pass": 11,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase134_atomic_context_evidence.test.ts",
+    "status": 0,
+    "pass": 34,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase139_unmarked_english_candidate_reader.test.ts",
+    "status": 0,
+    "pass": 29,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase144_cross_category_observation_graph.test.ts",
+    "status": 0,
+    "pass": 26,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase145_unit_context_bridge.test.ts",
+    "status": 0,
+    "pass": 30,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase146_compound_conditions.test.ts",
+    "status": 0,
+    "pass": 35,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase147_local_claim_attachment.test.ts",
+    "status": 0,
+    "pass": 30,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase148_document_reference_hypotheses.test.ts",
+    "status": 0,
+    "pass": 24,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase149_bidirectional_document.test.ts",
+    "status": 0,
+    "pass": 27,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase151_type_aware_discourse_recovery.test.ts",
+    "status": 0,
+    "pass": 24,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase152_product_surface_safety.test.ts",
+    "status": 0,
+    "pass": 24,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase153_entity_inventory.test.ts",
+    "status": 0,
+    "pass": 36,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase154_oss_context_and_labels.test.ts",
+    "status": 0,
+    "pass": 12,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase155_review_orchestrator.test.ts",
+    "status": 0,
+    "pass": 14,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase156_document_engine.test.ts",
+    "status": 0,
+    "pass": 8,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase156_source_ports.test.ts",
+    "status": 0,
+    "pass": 7,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase159_gliner25_colab_coordinator.test.ts",
+    "status": 0,
+    "pass": 12,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase164_user_request_journey.test.ts",
+    "status": 0,
+    "pass": 21,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase165_request_context_audit.test.ts",
+    "status": 0,
+    "pass": 16,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase172_goal_suitability_guide.test.ts",
+    "status": 0,
+    "pass": 24,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase174_category_transfer.test.ts",
+    "status": 0,
+    "pass": 71,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase175_discourse_semantics.test.ts",
+    "status": 0,
+    "pass": 67,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase176_turn_state_ledger.test.ts",
+    "status": 0,
+    "pass": 42,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase177_web_decision.test.ts",
+    "status": 0,
+    "pass": 56,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase179_category_learning.test.ts",
+    "status": 0,
+    "pass": 45,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase193_screening_memory.test.ts",
+    "status": 0,
+    "pass": 49,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase220_autonomous_discovery_worker.test.ts",
+    "status": 0,
+    "pass": 11,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase221_authorized_feed_discovery.test.ts",
+    "status": 0,
+    "pass": 11,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase222_transient_public_page_observer.test.ts",
+    "status": 0,
+    "pass": 15,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase223_search_and_public_metadata.test.ts",
+    "status": 0,
+    "pass": 14,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase227_explicit_table_headers.test.ts",
+    "status": 0,
+    "pass": 10,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase228_document_observer.test.ts",
+    "status": 0,
+    "pass": 12,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase229_pdf_geometry.test.ts",
+    "status": 0,
+    "pass": 10,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase230_original_pdf_hardening.test.ts",
+    "status": 0,
+    "pass": 6,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase231_component_pdf_tables.test.ts",
+    "status": 0,
+    "pass": 6,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase232_variant_pdf_weights.test.ts",
+    "status": 0,
+    "pass": 9,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase233_scoped_pdf_numeric_ranges.test.ts",
+    "status": 0,
+    "pass": 9,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase234_pdf_explicit_option_scope.test.ts",
+    "status": 0,
+    "pass": 9,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase235_pdf_new_real_classes.test.ts",
+    "status": 0,
+    "pass": 13,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase236_configuration_and_program_scope.test.ts",
+    "status": 0,
+    "pass": 13,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase237_programme_tables.test.ts",
+    "status": 0,
+    "pass": 11,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase238_document_discrepancies.test.ts",
+    "status": 0,
+    "pass": 11,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase238_english_scoped_manual.test.ts",
+    "status": 0,
+    "pass": 7,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase239_document_cooking_guides.test.ts",
+    "status": 0,
+    "pass": 12,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase240_visual_table_slots.test.ts",
+    "status": 0,
+    "pass": 6,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase241_unified_product_facts.test.ts",
+    "status": 0,
+    "pass": 18,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase243_budgeted_category_search.test.ts",
+    "status": 0,
+    "pass": 31,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase244_live_navigation.test.ts",
+    "status": 0,
+    "pass": 10,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase245_spec_extraction.test.ts",
+    "status": 0,
+    "pass": 41,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase247_extraction_generalization.test.ts",
+    "status": 0,
+    "pass": 13,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase247_prioritization.test.ts",
+    "status": 0,
+    "pass": 2,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase249_retention_policy.test.ts",
+    "status": 0,
+    "pass": 6,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase250_knowledge_snapshot.test.ts",
+    "status": 1,
+    "pass": 9,
+    "fail": 1
+   },
+   {
+    "test": "tests/phase252_review_semantics.test.ts",
+    "status": 0,
+    "pass": 1,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase270_comparative_results.test.ts",
+    "status": 0,
+    "pass": 3,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase270_qualitative_retention.test.ts",
+    "status": 0,
+    "pass": 2,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase72_semantic_intake.test.ts",
+    "status": 0,
+    "pass": 9,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase82_market_watch.test.ts",
+    "status": 0,
+    "pass": 17,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase96_qualitative_review_evidence.test.ts",
+    "status": 0,
+    "pass": 15,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase98_tradeoff_value_model.test.ts",
+    "status": 0,
+    "pass": 13,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase99_qualitative_tradeoff_bridge.test.ts",
+    "status": 0,
+    "pass": 19,
+    "fail": 0
+   },
+   {
+    "test": "tests/product_facts.test.ts",
+    "status": 0,
+    "pass": 17,
+    "fail": 0
+   },
+   {
+    "test": "tests/rendered_text1f.test.ts",
+    "status": 0,
+    "pass": 2,
+    "fail": 0
+   },
+   {
+    "test": "tests/s80_table_identity.test.ts",
+    "status": 0,
+    "pass": 6,
+    "fail": 0
+   },
+   {
+    "test": "tests/s83_consolidation.test.ts",
+    "status": 0,
+    "pass": 3,
+    "fail": 0
+   },
+   {
+    "test": "tests/s87b_observation_model.test.ts",
+    "status": 0,
+    "pass": 5,
+    "fail": 0
+   },
+   {
+    "test": "tests/s87e_reconstruction.test.ts",
+    "status": 0,
+    "pass": 4,
+    "fail": 0
+   },
+   {
+    "test": "tests/s88_property_definitions.test.ts",
+    "status": 0,
+    "pass": 7,
+    "fail": 0
+   },
+   {
+    "test": "tests/s94_table_relations.test.ts",
+    "status": 0,
+    "pass": 3,
+    "fail": 0
+   },
+   {
+    "test": "tests/s96_scientific_entities.test.ts",
+    "status": 0,
+    "pass": 6,
+    "fail": 0
+   },
+   {
+    "test": "tests/s98_operational_path.test.ts",
+    "status": 0,
+    "pass": 4,
+    "fail": 0
+   },
+   {
+    "test": "tests/step3_versioned_reading.test.ts",
+    "status": 0,
+    "pass": 11,
+    "fail": 0
+   },
+   {
+    "test": "tests/table_interpreter1g.test.ts",
+    "status": 0,
+    "pass": 16,
+    "fail": 0
+   },
+   {
+    "test": "tests/table_ledger1e.test.ts",
+    "status": 0,
+    "pass": 7,
+    "fail": 0
+   },
+   {
+    "test": "tests/table_lessons1e.test.ts",
+    "status": 0,
+    "pass": 10,
+    "fail": 0
+   },
+   {
+    "test": "tests/web_evidence_acquisition.test.ts",
+    "status": 0,
+    "pass": 15,
+    "fail": 0
+   }
+  ]
+ },
+ "pee": {
+  "files": 103,
+  "pass": 1613,
+  "fail": 137,
+  "rows": [
+   {
+    "test": "tests/adaptive_schema_evolution.test.ts",
+    "status": 0,
+    "pass": 12,
+    "fail": 0
+   },
+   {
+    "test": "tests/approved_web_reader.test.ts",
+    "status": 0,
+    "pass": 7,
+    "fail": 0
+   },
+   {
+    "test": "tests/approved_web_reader_transport.test.ts",
+    "status": 0,
+    "pass": 17,
+    "fail": 0
+   },
+   {
+    "test": "tests/category_cognitive_mesh.test.ts",
+    "status": 0,
+    "pass": 22,
+    "fail": 0
+   },
+   {
+    "test": "tests/category_evidence_matrix.test.ts",
+    "status": 0,
+    "pass": 12,
+    "fail": 0
+   },
+   {
+    "test": "tests/category_research_execution.test.ts",
+    "status": 0,
+    "pass": 14,
+    "fail": 0
+   },
+   {
+    "test": "tests/document_semantics.test.ts",
+    "status": 0,
+    "pass": 10,
+    "fail": 0
+   },
+   {
+    "test": "tests/i1_node_engines.test.ts",
+    "status": 1,
+    "pass": 1,
+    "fail": 1
+   },
+   {
+    "test": "tests/knowledge_link.test.ts",
+    "status": 0,
+    "pass": 25,
+    "fail": 0
+   },
+   {
+    "test": "tests/knowledge_rules.test.ts",
+    "status": 0,
+    "pass": 9,
+    "fail": 0
+   },
+   {
+    "test": "tests/knowledge_translation.test.ts",
+    "status": 0,
+    "pass": 27,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase100_adaptive_preference_envelope.test.ts",
+    "status": 0,
+    "pass": 18,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase109_source_wide_semantic_intake.test.ts",
+    "status": 0,
+    "pass": 20,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase110_local_semantic_extractor.test.ts",
+    "status": 0,
+    "pass": 24,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase111_long_context_and_query_ambiguity.test.ts",
+    "status": 0,
+    "pass": 25,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase114_hygiene_capability_audit.test.ts",
+    "status": 0,
+    "pass": 14,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase115_hygiene_process_reasoning.test.ts",
+    "status": 0,
+    "pass": 26,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase116_category_function_model.test.ts",
+    "status": 0,
+    "pass": 33,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase122_native_local_retrieval.test.ts",
+    "status": 0,
+    "pass": 5,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase122_native_question_to_research.test.ts",
+    "status": 0,
+    "pass": 19,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase123_local_semantic_evidence_bridge.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 1
+   },
+   {
+    "test": "tests/phase123_native_learned_intent.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 1
+   },
+   {
+    "test": "tests/phase125_compositional_dialogue_frame.test.ts",
+    "status": 1,
+    "pass": 36,
+    "fail": 2
+   },
+   {
+    "test": "tests/phase126_conversational_clarification_policy.test.ts",
+    "status": 0,
+    "pass": 25,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase127_stateful_clarification.test.ts",
+    "status": 0,
+    "pass": 27,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase128_category_cognition_dialogue_bridge.test.ts",
+    "status": 0,
+    "pass": 33,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase129_category_growth_cycle.test.ts",
+    "status": 0,
+    "pass": 25,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase131_local_relation_learning.test.ts",
+    "status": 0,
+    "pass": 11,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase134_atomic_context_evidence.test.ts",
+    "status": 0,
+    "pass": 34,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase139_unmarked_english_candidate_reader.test.ts",
+    "status": 0,
+    "pass": 29,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase144_cross_category_observation_graph.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 1
+   },
+   {
+    "test": "tests/phase145_unit_context_bridge.test.ts",
+    "status": 0,
+    "pass": 30,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase146_compound_conditions.test.ts",
+    "status": 0,
+    "pass": 35,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase147_local_claim_attachment.test.ts",
+    "status": 0,
+    "pass": 30,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase148_document_reference_hypotheses.test.ts",
+    "status": 0,
+    "pass": 24,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase149_bidirectional_document.test.ts",
+    "status": 0,
+    "pass": 27,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase151_type_aware_discourse_recovery.test.ts",
+    "status": 0,
+    "pass": 24,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase152_product_surface_safety.test.ts",
+    "status": 0,
+    "pass": 24,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase153_entity_inventory.test.ts",
+    "status": 0,
+    "pass": 36,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase154_oss_context_and_labels.test.ts",
+    "status": 0,
+    "pass": 12,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase155_review_orchestrator.test.ts",
+    "status": 0,
+    "pass": 14,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase156_document_engine.test.ts",
+    "status": 0,
+    "pass": 8,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase156_source_ports.test.ts",
+    "status": 0,
+    "pass": 7,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase159_gliner25_colab_coordinator.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 1
+   },
+   {
+    "test": "tests/phase164_user_request_journey.test.ts",
+    "status": 0,
+    "pass": 21,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase165_request_context_audit.test.ts",
+    "status": 0,
+    "pass": 16,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase172_goal_suitability_guide.test.ts",
+    "status": 0,
+    "pass": 24,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase174_category_transfer.test.ts",
+    "status": 0,
+    "pass": 71,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase175_discourse_semantics.test.ts",
+    "status": 0,
+    "pass": 67,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase176_turn_state_ledger.test.ts",
+    "status": 0,
+    "pass": 42,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase177_web_decision.test.ts",
+    "status": 0,
+    "pass": 56,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase179_category_learning.test.ts",
+    "status": 0,
+    "pass": 45,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase193_screening_memory.test.ts",
+    "status": 0,
+    "pass": 49,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase220_autonomous_discovery_worker.test.ts",
+    "status": 0,
+    "pass": 11,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase221_authorized_feed_discovery.test.ts",
+    "status": 0,
+    "pass": 11,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase222_transient_public_page_observer.test.ts",
+    "status": 0,
+    "pass": 15,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase223_search_and_public_metadata.test.ts",
+    "status": 0,
+    "pass": 14,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase227_explicit_table_headers.test.ts",
+    "status": 0,
+    "pass": 10,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase228_document_observer.test.ts",
+    "status": 1,
+    "pass": 4,
+    "fail": 8
+   },
+   {
+    "test": "tests/phase229_pdf_geometry.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 10
+   },
+   {
+    "test": "tests/phase230_original_pdf_hardening.test.ts",
+    "status": 1,
+    "pass": 2,
+    "fail": 4
+   },
+   {
+    "test": "tests/phase231_component_pdf_tables.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 6
+   },
+   {
+    "test": "tests/phase232_variant_pdf_weights.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 9
+   },
+   {
+    "test": "tests/phase233_scoped_pdf_numeric_ranges.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 9
+   },
+   {
+    "test": "tests/phase234_pdf_explicit_option_scope.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 9
+   },
+   {
+    "test": "tests/phase235_pdf_new_real_classes.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 13
+   },
+   {
+    "test": "tests/phase236_configuration_and_program_scope.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 13
+   },
+   {
+    "test": "tests/phase237_programme_tables.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 11
+   },
+   {
+    "test": "tests/phase238_document_discrepancies.test.ts",
+    "status": 1,
+    "pass": 7,
+    "fail": 4
+   },
+   {
+    "test": "tests/phase238_english_scoped_manual.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 7
+   },
+   {
+    "test": "tests/phase239_document_cooking_guides.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 12
+   },
+   {
+    "test": "tests/phase240_visual_table_slots.test.ts",
+    "status": 1,
+    "pass": 0,
+    "fail": 6
+   },
+   {
+    "test": "tests/phase241_unified_product_facts.test.ts",
+    "status": 0,
+    "pass": 18,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase243_budgeted_category_search.test.ts",
+    "status": 0,
+    "pass": 31,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase244_live_navigation.test.ts",
+    "status": 0,
+    "pass": 10,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase245_spec_extraction.test.ts",
+    "status": 0,
+    "pass": 41,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase247_extraction_generalization.test.ts",
+    "status": 0,
+    "pass": 13,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase247_prioritization.test.ts",
+    "status": 0,
+    "pass": 2,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase249_retention_policy.test.ts",
+    "status": 0,
+    "pass": 6,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase250_knowledge_snapshot.test.ts",
+    "status": 1,
+    "pass": 2,
+    "fail": 8
+   },
+   {
+    "test": "tests/phase252_review_semantics.test.ts",
+    "status": 0,
+    "pass": 1,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase270_comparative_results.test.ts",
+    "status": 0,
+    "pass": 3,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase270_qualitative_retention.test.ts",
+    "status": 0,
+    "pass": 2,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase72_semantic_intake.test.ts",
+    "status": 0,
+    "pass": 9,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase82_market_watch.test.ts",
+    "status": 0,
+    "pass": 17,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase96_qualitative_review_evidence.test.ts",
+    "status": 0,
+    "pass": 15,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase98_tradeoff_value_model.test.ts",
+    "status": 0,
+    "pass": 13,
+    "fail": 0
+   },
+   {
+    "test": "tests/phase99_qualitative_tradeoff_bridge.test.ts",
+    "status": 0,
+    "pass": 19,
+    "fail": 0
+   },
+   {
+    "test": "tests/product_facts.test.ts",
+    "status": 0,
+    "pass": 17,
+    "fail": 0
+   },
+   {
+    "test": "tests/rendered_text1f.test.ts",
+    "status": 0,
+    "pass": 2,
+    "fail": 0
+   },
+   {
+    "test": "tests/s80_table_identity.test.ts",
+    "status": 0,
+    "pass": 6,
+    "fail": 0
+   },
+   {
+    "test": "tests/s83_consolidation.test.ts",
+    "status": 0,
+    "pass": 3,
+    "fail": 0
+   },
+   {
+    "test": "tests/s87b_observation_model.test.ts",
+    "status": 0,
+    "pass": 5,
+    "fail": 0
+   },
+   {
+    "test": "tests/s87e_reconstruction.test.ts",
+    "status": 0,
+    "pass": 4,
+    "fail": 0
+   },
+   {
+    "test": "tests/s88_property_definitions.test.ts",
+    "status": 1,
+    "pass": 6,
+    "fail": 1
+   },
+   {
+    "test": "tests/s94_table_relations.test.ts",
+    "status": 0,
+    "pass": 3,
+    "fail": 0
+   },
+   {
+    "test": "tests/s96_scientific_entities.test.ts",
+    "status": 0,
+    "pass": 6,
+    "fail": 0
+   },
+   {
+    "test": "tests/s98_operational_path.test.ts",
+    "status": 0,
+    "pass": 4,
+    "fail": 0
+   },
+   {
+    "test": "tests/step3_versioned_reading.test.ts",
+    "status": 0,
+    "pass": 11,
+    "fail": 0
+   },
+   {
+    "test": "tests/table_interpreter1g.test.ts",
+    "status": 0,
+    "pass": 16,
+    "fail": 0
+   },
+   {
+    "test": "tests/table_ledger1e.test.ts",
+    "status": 0,
+    "pass": 7,
+    "fail": 0
+   },
+   {
+    "test": "tests/table_lessons1e.test.ts",
+    "status": 0,
+    "pass": 10,
+    "fail": 0
+   },
+   {
+    "test": "tests/web_evidence_acquisition.test.ts",
+    "status": 0,
+    "pass": 15,
+    "fail": 0
+   }
+  ]
+ }
+}
