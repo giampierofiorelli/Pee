@@ -353,6 +353,13 @@ def _evidence_class(label, lex):
     return ids[0] if len(ids) == 1 else None
 
 
+def _proposed_section(headings, lex):
+    """Whether a section's headings label it a proposal: a heading word is a one-word term of the evidence class that
+    knowledge marks as a proposal."""
+    words = {w for h in headings for w in re.findall(r"[a-z]+", h.lower())}
+    return any(w in words for w in lex.proposal_terms)
+
+
 def _labels_in(codes):
     return [c.strip() for c in codes if LABEL.match(c.strip()) and len(c.strip()) >= 3]
 
@@ -380,8 +387,18 @@ def read_units(doc, lex):
         labels = _labels_in(b.get("codes", ()))
         if len(set(labels)) >= 3:
             legend.update(labels)
-    for lab in sorted(legend):
-        units_out.append({"type": "label", "label": lab, "class": _evidence_class(lab, lex), "record": None})
+    used = set()
+    for b in doc.get("blocks", ()):
+        used.update(_labels_in(b.get("codes", ())))
+    for t in doc.get("tables", ()):
+        for c in t["cells"]:
+            used.update(_labels_in(c.get("codes", ())))
+    for lab in sorted(legend | used):
+        cls = _evidence_class(lab, lex)
+        if cls:  # a label that names no evidence class (a research state, a comparison category) is not one
+            units_out.append({"type": "label", "label": lab, "class": cls, "record": None})
+        else:
+            units_out.append({"type": "abstained", "what": f"label names no evidence class: {lab}", "record": None})
     # A4-A7: tables
     for t in doc.get("tables", ()):
         rows = {}
@@ -406,6 +423,8 @@ def read_units(doc, lex):
             elif kind == "method":
                 m = _method_unit(cells, headers, lex, rec)
                 if m:
+                    # a method in a section its author labels proposed is a proposal, not an established method
+                    m["proposed"] = _proposed_section(t.get("headingPath") or (), lex)
                     units_out.append(m)
             for c in cells:  # each cell on its own: a cell's statement never runs into the next cell
                 units_out += _non_identity(c["text"], c.get("codes", ()), lex, rec)
@@ -743,6 +762,8 @@ def _rep_method(ctx, u):
     mid = f"MT:{_h(ctx.url, _key(name))}"
     n = re.sub(r"\([^)]*\)", " ", name)
     terms = {_norm(n), _norm(YEAR.sub(" ", n))}
+    if "," in n:  # "10 CFR Part 430 Subpart B, Appendix X1": the last designation names the method too
+        terms.add(_norm(YEAR.sub(" ", n.rsplit(",", 1)[1])))
     first = n.split()[0] if n.split() else ""
     if "/" in first:
         terms.add(_norm(YEAR.sub(" ", n.split("/", 1)[1])))
@@ -790,7 +811,8 @@ def _rep_method(ctx, u):
             values.setdefault(q, set()).add(tuple(v))
     if all(len(v) == 1 for v in values.values()) and len(sets) > 1:
         sets = {None: {q: list(next(iter(v))) for q, v in values.items()}}
-    body = {"label": name, "category": "test standard", "editions": list(u.get("editions") or []), "terms": terms,
+    body = {"label": name, "category": "proposed method" if u.get("proposed") else "test standard",
+            "editions": list(u.get("editions") or []), "terms": terms,
             "measures": sorted(measures), "condition_sets": [{"variant": v, "conditions": cs} for v, cs in
                                                               sorted(sets.items(), key=lambda x: str(x[0]))],
             "negative_scope": bool(u.get("does_not_establish")), "document": ctx.url}

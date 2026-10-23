@@ -397,7 +397,10 @@
     "highest speed",
     "max speed",
     "min speed",
-    "idle"
+    "idle",
+    "high speed",
+    "low speed",
+    "medium speed"
    ]
   },
   {
@@ -708,7 +711,8 @@
     "proposal"
    ],
    "basis": "hypothesis",
-   "independent_test_evidence": false
+   "independent_test_evidence": false,
+   "proposal": true
   },
   {
    "id": "E:illustrative",

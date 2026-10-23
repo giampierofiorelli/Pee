@@ -156,7 +156,8 @@ class Provenance(unittest.TestCase):
         got = {self.st.get(c).body["label"]: self.st.get(c).body["evidence_class"] for c in self.s["labels"]}
         self.assertEqual(got, {"PHYSICS": "E:physical_relation", "ORIGINAL_TEST": "E:original_measurement",
                                "MANUFACTURER_DECLARED": "E:manufacturer_declaration",
-                               "PROPOSED_TEST": "E:proposed_method"})
+                               "PROPOSED_TEST": "E:proposed_method",
+                               "STANDARD_CATALOGUE": "E:standard_description"})  # a label used in the register too
 
     def test_statement_attribution_keeps_citation_and_class(self):
         atts = [self.st.get(a).body for a in self.s["attributions"]]

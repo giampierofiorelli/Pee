@@ -13,7 +13,8 @@ harness only maps verdicts to the question set's labels.
 
 Rules fixed before the first run:
 * a property phrase is askable when its placement gives exactly one kind of quantity that is a determinable of the
-  bearer, no named thing and at most one part and one setting; other words are recorded, never turned into conditions;
+  bearer, no named thing, at most one part and one setting, and no word that universe items leave unexplained (freeze
+  2 restores this I-2 rule; freeze 1 tolerated such words, which caused two critical errors in the E2 first run);
 * conditions come from the condition slots of the property phrase and from the question's and the situation's
   condition phrases (``acquisition.read_conditions``, with the
   question's kind for its influence quantities); unexplained words there are recorded;
@@ -126,6 +127,10 @@ def answer(base, q):
     row = {"id": q["id"], "type": qq["type"]}
     kind, part, setting, why, extra_words, pconds = read_property(lex, qq["property"])
     row["property_unplaced"] = extra_words
+    if not why and extra_words:
+        # every word of the property must be explained by universe items (the I-2 rule); a dropped qualifier
+        # ("formaldehyde", "independently measured") changes what is asked (freeze 2, after the E2 diagnosis)
+        why = "property words not explained by universe items: " + " ".join(extra_words)
     if why:
         row.update({"answer": "undetermined", "askable": False, "why": why, "informed": False})
         return row
@@ -156,7 +161,8 @@ def answer(base, q):
             if a in ents and b in ents:
                 readings.append(recognition.adopt_reading(st, iid, co.id, "buyer",
                                                           "the buyer designates one product by its name"))
-    roles = {f"r{i}": ents[0] for i, ents in enumerate(designated)}
+    # a single-product question names its role "bearer", the role models bind their variables to (s1core; freeze 2)
+    roles = {"bearer": designated[0][0]} if qq["type"] == "limit" else {f"r{i}": ents[0] for i, ents in enumerate(designated)}
     givens = []
     for g in q["situation"].get("givens") or []:
         r = read_given(lex, g)
@@ -178,7 +184,7 @@ def answer(base, q):
             return row
         st.acquire(Item(f"D:{qid}", "content", {"form": "class_definition", "class": f"K:{qid}", "kind": kind,
                                                  "op": OPS[qq["comparator"]], "bound": qq["value"], "unit": unit}, BUYER))
-        question = {"role": "r0", "class": f"K:{qid}"}
+        question = {"role": "bearer", "class": f"K:{qid}"}
     elif qq["type"] == "compare":
         question = {"role": "r0", "compare": ["r0", "r1"], "kind": kind}
     else:

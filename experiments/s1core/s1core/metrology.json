@@ -1228,6 +1228,21 @@
    "surfaces": [
     "kg/kWh"
    ]
+  },
+  "L/h": {
+   "factor": 2.7777777777777776e-07,
+   "offset": 0.0,
+   "dims": {
+    "L": 3,
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "L/h",
+    "l/h",
+    "litres per hour",
+    "liters per hour"
+   ]
   }
  }
 }

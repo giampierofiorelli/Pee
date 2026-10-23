@@ -20,7 +20,8 @@
   "it",
   "is",
   "from",
-  "as"
+  "as",
+  "my"
  ],
  "range_separators": [
   "–",
@@ -168,7 +169,8 @@
    "source/version",
    "programme",
    "program",
-   "certification"
+   "certification",
+   "test id"
   ]
  },
  "negative_scope_headers": [

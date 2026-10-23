@@ -69,6 +69,8 @@ class Lexicon:
                               key=lambda x: -len(x[0]))
         cs = {c.id: thaw(c.body) for c in store.of("concept") if current(store, c.id)}
         self.evidence_classes = {i: c.get("terms", []) for i, c in cs.items() if c.get("category") == "evidence class"}
+        self.proposal_terms = {t.lower() for c in cs.values() if c.get("category") == "evidence class"
+                               and c.get("proposal") for t in c.get("terms", ()) if " " not in t}
         self.lang = cs["L:en"]
         self.stop = set(self.lang["stopwords"])
         self.separators = set(self.lang.get("separators", ()))
@@ -396,11 +398,13 @@ def _place_text(raw, lex, unit):
             if f" {w} " in text:
                 out["extent"].append(end)
                 text = text.replace(f" {w} ", " ")
-    # units written as words in the header
+    # units written as words in the header; they are removed only after the kinds are matched, so that a kind term
+    # written with unit words ("changes per hour") is still found (F-1)
+    unit_words = []
     for s, u in lex.surfaces:
         if sum(ch.isalpha() for ch in s) >= 2 and s.lower() not in lex.stop and f" {_norm(s)} " in text:
             out["units"].append(u)
-            text = text.replace(f" {_norm(s)} ", " ")
+            unit_words.append(_norm(s))
     hunit = unit or (out["units"][0] if out["units"] else None)
     # kinds: the longest anchor term of a kind whose dimension agrees with the value's unit
     best, cands = 0, []
@@ -425,8 +429,17 @@ def _place_text(raw, lex, unit):
                     cands.append((kid, tt))
     if cands:
         out["kinds"] = sorted({k for k, _ in cands})
-        for _, tt in cands:
+        for kid, tt in cands:
             text = text.replace(tt, " ")
+            # a kind term that contains a value of one of the kind's defining conditions names that value too
+            # ("dust CADR" for a quantity defined per test material, F-1)
+            for t, vid, of in lex.nvalues:
+                if of in lex.kinds[kid].get("defining_conditions", ()) and f" {t} " in tt:
+                    out["nconds"].setdefault(of, [])
+                    if vid not in out["nconds"][of]:
+                        out["nconds"][of].append(vid)
+    for w in unit_words:
+        text = text.replace(f" {w} ", " ")
     # values of named conditions (a test material), test standards, parts and the bearer's artefact kind
     vals, text = _take(text, [(t, (i, of)) for t, i, of in lex.nvalues])
     for i, of in vals:
