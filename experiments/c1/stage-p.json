@@ -1,0 +1,54 @@
+{
+ "schema": "pee.c1.stage-p.v1",
+ "date": "2026-10-23",
+ "note": "Stage P: timing probe on 20 sentences of the spent speakers development split (O-2 dev). Counts and labels only; no document text.",
+ "model": {
+  "file": "Phi-4-mini-instruct-Q4_K_M.gguf",
+  "sha256": "88c00229914083cd112853aab84ed51b87bdf6b9ce42f532d8c85c7c63b1730a",
+  "source": "unsloth/Phi-4-mini-instruct-GGUF"
+ },
+ "runtime": {
+  "llama-cpp-python": "0.3.36 (built from the PyPI source; the 0.3.19 prebuilt wheel is musl-linked and does not load here)",
+  "threads": 4,
+  "n_ctx": 4096,
+  "temperature": 0.0,
+  "constrained": "JSON schema"
+ },
+ "interpreter_sha256": "5928abb6f5ce72274cbc30bbd881e3b52072dbdce8ce7aa179e8de18de05c4c5",
+ "timing": {
+  "sentences": 20,
+  "total_s": 615.4,
+  "mean_s": 30.8,
+  "median_s": 17.5,
+  "max_s": 173.9,
+  "wall_s_with_load": 624
+ },
+ "memory": {
+  "peak_rss_gb": 5.75
+ },
+ "stop_rule": "above 30 s per sentence or 12 GB: stop",
+ "outcome": "stop: mean 30.9 s per sentence exceeds 30 s (memory within the limit)",
+ "observation_not_a_measure": {
+  "units": 25,
+  "read_errors": 1,
+  "relation": {
+   "other": 25
+  },
+  "polarity": {
+   "affirmed": 19,
+   "negated": 6
+  },
+  "attitude": {
+   "asserted": 21,
+   "reported": 4
+  },
+  "with_citation": 5,
+  "note": "every relation was the generic 'other', the error C-1 targets; 20 sentences, no reference comparison, so this is a signal, not a result"
+ },
+ "full_run_estimate": {
+  "sentences_dev": 229,
+  "sentences_spent_sealed": 232,
+  "read_hours_at_mean": 4.0,
+  "plus_verification": "two verifier passes (A+V, L+V), several seconds per unit"
+ }
+}

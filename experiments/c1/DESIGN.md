@@ -290,3 +290,16 @@ with constrained output. No separate NLI model is installed.
 - **What stays the same.** Arms A, L, A+V and L+V are kept.
 - **What a fail would mean.** If the model fails as a verifier, a dedicated NLI model would be a later owner
   decision.
+
+## 14. Stage P result (2026-10-23): stopped
+
+**The stop rule was met** (`stage-p.json`).
+- **Time.** Phi-4-mini, 4-bit, on 4 CPUs: **30.9 s per sentence** on average (median 17.5 s, maximum 174 s), against a
+  limit of 30 s.
+- **Memory.** Peak 5.75 GB, within the limit.
+
+**A signal, not a measure.** On the 20 development sentences, all 25 propositions the model wrote used the generic
+relation `other`, the very error C-1 targets.
+
+**Not done.** Stage F, the verifier and any prompt change were not run, as the stop rule requires. The decision is
+the owner's (section 0).
