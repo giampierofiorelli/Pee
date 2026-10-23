@@ -16,5 +16,18 @@
   "experiments/r1/common.py": "2adcbed9011760c3c14e8aa7a51d18fd2cd8ed237baaa1870a853f11eef1fab4",
   "experiments/r1/p0.py": "8c7275a76f3e5577fa2801f01dd0504410378c7a7115c8654d6aece827955f16"
  },
- "note": "Gated files (crawler_tables.py) are frozen by hash here and committed with the comparison, as preservation/check.py requires."
+ "note": "Gated files (crawler_tables.py) are frozen by hash here and committed with the comparison, as preservation/check.py requires.",
+ "freeze_S": {
+  "code": {
+   "engine-ts/pee-tools/tables-bridge.mjs": "ae540a02ef8c2183beff37360a713d2847f35996cde4ed61632d9878ad789c62",
+   "experiments/universe/universe/crawler_tables.py": "6467419c0afda99f9cedfff3fc5b1d197efd9d1f3523cc0dda2b7ed3f2fdaa98",
+   "experiments/universe/universe/propositions.py": "fbc883ac6c82ec694b4c82188027d80b9040b120c5e6c88d99c3299f3f60b095",
+   "experiments/r1/arms.py": "9b870da8c2226fd7df2a02dde5aa6b9de058fa71805b4e7bbc7517f48900da46",
+   "experiments/r1/score.py": "fae98a6c8eba14cdb94e582750b2d83c9a5476e04ded25ace7a1dd7263e40150",
+   "experiments/r1/run.py": "1bbb84bfe393817fcbd282fc0f2f979a4402b818cab94e4b12929c3865ea33d2",
+   "experiments/r1/common.py": "2adcbed9011760c3c14e8aa7a51d18fd2cd8ed237baaa1870a853f11eef1fab4"
+  },
+  "development": "6 development tables; 2 of at most 3 reformulations of S (description words nearest the value; quotation marks of every kind, then a correction of word offsets); no reference exists for the development tables, so S was inspected, not scored",
+  "scorer_rules": "fixed in experiments/r1/score.py docstring; M3 uses structured property and entity, preserved essential conditions"
+ }
 }
