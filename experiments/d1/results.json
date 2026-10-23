@@ -1,0 +1,156 @@
+{
+ "schema": "pee.d1.results.v1",
+ "code": "9b0a619 (A1 c85b4bf)",
+ "cases": [
+  {
+   "case": "K1",
+   "first_loss": "S3 (reader condition format)",
+   "effect": "reader universe answers 'increases' for dry soil (unjustified); correct units: undetermined",
+   "class": "observed defect SD8"
+  },
+  {
+   "case": "K2",
+   "first_loss": "S3 (value loses its condition)",
+   "effect": "reader universe gives 100 °C at 2 atm (unjustified); correct units: undetermined",
+   "class": "observed defect SD8"
+  },
+  {
+   "case": "K3",
+   "first_loss": "none",
+   "effect": "no",
+   "class": "kept"
+  },
+  {
+   "case": "K4",
+   "first_loss": "S6 (no deontic inference); S5 for the reader (action nominalisation)",
+   "effect": "'recommended?' undetermined instead of no",
+   "class": "system limit SD6; reader limit"
+  },
+  {
+   "case": "K5",
+   "first_loss": "none with correct units; S3 for the reader (prepositional phrase split from the action)",
+   "effect": "reader: term unresolved",
+   "class": "kept; reader limit"
+  },
+  {
+   "case": "K6",
+   "first_loss": "none",
+   "effect": "undetermined, not licensed",
+   "class": "kept"
+  },
+  {
+   "case": "K7",
+   "first_loss": "S1/S6 (reported cited result meets the independent-evidence requirement)",
+   "effect": "satisfies_evidence true although the source was never examined",
+   "class": "observed defect SD4"
+  },
+  {
+   "case": "K8",
+   "first_loss": "S6 (declared value answered as a value); S3 for the reader (reporter lost)",
+   "effect": "value 20 h returned with no evidence standing",
+   "class": "architectural question SD5; reader limit"
+  },
+  {
+   "case": "K9",
+   "first_loss": "none observed",
+   "effect": "cross-paragraph anaphor resolved through the heading, which coincides",
+   "class": "inconclusive"
+  },
+  {
+   "case": "K10",
+   "first_loss": "S4 (property table not acquired in the teaching route)",
+   "effect": "value unreachable; silent",
+   "class": "system limit SD7 (by design, unmeasured)"
+  },
+  {
+   "case": "K11",
+   "first_loss": "S5 (recognition returns both holders' concepts; the rules treat them as one subject)",
+   "effect": "'yes' true of one sense only",
+   "class": "observed defect SD3"
+  },
+  {
+   "case": "K12",
+   "first_loss": "none",
+   "effect": "variant recognised; broader term refused",
+   "class": "kept"
+  },
+  {
+   "case": "K13",
+   "first_loss": "S6 (caveat of an unstated condition dropped)",
+   "effect": "'increases' with no condition shown",
+   "class": "observed defect SD1"
+  },
+  {
+   "case": "K14",
+   "first_loss": "none with correct units; S3 for the reader (attitude words kept in the subject)",
+   "effect": "reader: term unresolved",
+   "class": "kept; reader limit"
+  },
+  {
+   "case": "K15",
+   "first_loss": "none",
+   "effect": "not licensed",
+   "class": "kept"
+  },
+  {
+   "case": "K16",
+   "first_loss": "S6 (influence ignores a contrary source)",
+   "effect": "'increases' despite a denial; holds says the claims conflict",
+   "class": "observed defect SD2"
+  },
+  {
+   "case": "post hoc",
+   "first_loss": "S5 (recognition cache keyed by id(store) and seq)",
+   "effect": "a universe reads another universe's index (2 of 6 trials)",
+   "class": "observed defect SD9"
+  },
+  {
+   "case": "Speakers 135",
+   "first_loss": "S3",
+   "effect": "reporter with an adverb ('explicitly says') not recognised; cited context is paragraph-level, so the specific source of each claim (R03, R11, R12) is lost",
+   "class": "reader limit; limit of the citation-block principle"
+  },
+  {
+   "case": "Speakers 276",
+   "first_loss": "S3 (minor)",
+   "effect": "the earlier critical errors (prohibition, 'but' flip) are gone; modality 'may' lost",
+   "class": "reader limit"
+  },
+  {
+   "case": "Speakers 506",
+   "first_loss": "none for the norms observed",
+   "effect": "prohibition and fronted condition kept",
+   "class": "kept"
+  },
+  {
+   "case": "Speakers 541",
+   "first_loss": "S3",
+   "effect": "coordinated predicates merged into the subject ('ipx7 tests … and does not establish'); standard as source not recognised",
+   "class": "reader limit"
+  },
+  {
+   "case": "Speakers 549",
+   "first_loss": "S3, then S6",
+   "effect": "the date condition ('from 18 February 2027') is lost; even if kept, time is not modelled and SD1 would drop it",
+   "class": "reader limit; system limit (temporal applicability)"
+  },
+  {
+   "case": "Dehumidifiers Q30",
+   "first_loss": "S3",
+   "effect": "guidance attributed to a source is read as the author's synthesis; the evidence answer is wrong",
+   "class": "reader limit (source type)"
+  },
+  {
+   "case": "Dehumidifiers Q37",
+   "first_loss": "S3, visible at S5",
+   "effect": "value and comparative merged into the concept ('less adult wheezing or 0.64 …'); the question term names nothing",
+   "class": "reader limit"
+  },
+  {
+   "case": "Dehumidifiers Q49",
+   "first_loss": "evaluation format",
+   "effect": "the question names a qualified quantity ('indoor RH below 60%') as one term; even a correct universe holds no such concept",
+   "class": "evaluation limit EL2"
+  }
+ ]
+}

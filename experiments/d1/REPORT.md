@@ -97,3 +97,109 @@ published, never text.
 - **Not reliability rates.** The cases are few and constructed. They locate mechanisms; they do not estimate
   frequencies.
 - **Not independent.** Claude chose the cases and wrote the expectations.
+
+## 4. Outcome
+
+**The first point of loss is often not the reader.** With correct units written by hand, so that the reader is
+bypassed:
+- representation keeps content, conditions, polarity, attitude, statement status, bearer and cited sources (K1–K3,
+  K5, K6, K9, K12, K14, K15);
+- **the rules, recognition and the evidence requirement then produce unjustified conclusions in six constructed
+  cases** (SD1–SD4, SD9; SD3 also through recognition);
+- **two more losses are by design:** prohibitions draw no inference, and property tables are not acquired.
+
+**The reader adds its own losses** (SD8, and the reader limits of §6). Its condition format defeats the rules'
+condition model. The rules then answer as if no condition existed.
+
+**Run.** `audit.py` ran once on the 16 constructed cases. A second run, with the recognition cache cleared for
+every build because of SD9, gave identical answers. The probes listed in §5 were added post hoc, on the same cases,
+and are labelled as such. The authentic cases used the frozen A1 export and one dehumidifier universe.
+
+## 5. Structural defects demonstrated (reproduced by `test_findings.py`)
+
+| # | Stage | Defect (with correct knowledge unless stated) | Case | Effect |
+|---|---|---|---|---|
+| **SD1** | S6 | `conditions_fit` returns the unstated conditions as caveats, but `influence`, `holds` and `value` drop them | K13 | A claim true only "when the soil is saturated" is answered without that condition: an over-generalisation |
+| **SD2** | S6 | `influence` ignores a contrary source when an affirming edge exists; `holds` reports the conflict | K16 | "increases", although another source denies it |
+| **SD3** | S5 | `recognition.designate` returns every concept with the term, across holders. The rules treat the set as one subject | K11 | "yes" for a definition true of only one sense. The same mechanism would merge two products with one name |
+| **SD4** | S1→S6 | A result the document reports from a cited source gets the class "measured by the publisher". `satisfies_evidence` then meets an independent-measurement requirement, although `cited_sources_examined` is false and is never consulted | K7 | **Fidelity is promoted to verification.** The document's report counts as independent test evidence |
+| **SD8** | S3→S6 (interface) | The reader writes a condition as `{concept: clause text, value: marker}` ("soil is saturated", "when"). The rules expect `{concept, value}` ("soil", "saturated"). A value claim loses its condition entirely | K1, K2; Speakers 549 | **Every condition the reader produces is invisible to the rules.** Dry soil gets "increases"; 2 atm gets 100 °C. Present since A-1 |
+| **SD9** | S5 | The recognition index cache is keyed by `(id(store), store.seq)`. A new universe can take a freed universe's id and read its index (found post hoc, 2 of 6 trials) | probe | One universe recognises another universe's concepts. It affects any process that builds several universes. T-1's runs built one per process and are not affected; D-1's answers were re-run with the cache cleared, and were unchanged |
+
+**By design, not misbehaviour** (system limits with structural consequences):
+
+| # | Stage | Limit | Case | Effect |
+|---|---|---|---|---|
+| **SD5** | S6 | `reported` licenses answers, and answers carry no evidence class | K8 | A manufacturer's declared value is returned as the value |
+| **SD6** | S6 | The controlled forms `other: prohibits` and `other: permits` carry no inference (MS1 has no deontic semantics) | K4 | "Is X recommended?" is answered "undetermined", not "no" |
+| **SD7** | S4 | The teaching route reads only definition and method tables. Property and value tables are dropped with no trace | K10 | Tabular knowledge is lost. O-2 and T-1 scored prose only, so this loss was never measured |
+| — | S4/S6 | Time is not modelled: no "from date" applicability | Speakers 549 | A future obligation reads as a present one |
+
+## 6. Reader limits (S3), confirmed on authentic cases
+
+**What W3 fixed.** The earlier critical errors on Speakers lines 276, 506 and 541 (prohibitions, fronted conditions,
+"but") no longer occur.
+
+**What remains:**
+
+| Limit | Authentic | Constructed |
+|---|---|---|
+| A source type is not recognised (a standard, guidance, or "X explicitly says") | Speakers 135, 541; Q30 | — |
+| A value, bound or comparative is merged into a concept | Q37 | K2 (duplicate `has_property`) |
+| Coordinated predicates are merged into the subject | Speakers 541 | — |
+| A temporal condition ("from …") is lost | Speakers 549 | — |
+| Negation scope over a modal adverb ("not automatically") | Speakers 549 | — |
+| Attitude words are kept in the subject ("we hypothesise that biochar") | — | K14 |
+| A reporter is lost in a value claim | — | K8 |
+| The action's form differs between the norm and the question (imperative against gerund); a prepositional phrase is split from the action | — | K4, K5 |
+| The citation block gives paragraph-level context only, so it cannot say which source supports which claim | Speakers 135 | — |
+
+## 7. Evaluation limits that prevent conclusions
+
+| # | Limit |
+|---|---|
+| EL1 | The mechanical scorer is not valid (proxy 0.72). Reference text is hashed (`PROTOCOL.md` §4) |
+| EL2 | The question format can name a qualified quantity or a compound as one term ("indoor RH below 60 %", "odds ratio for adult wheezing"). Even a correct universe holds no such concept. Part of A-1's oracle loss (6 of 45) is the format, not reasoning |
+| EL3 | O-2 and T-1 scored prose only. The tabular losses (SD7) are invisible to every result so far |
+| EL4 | Every measure is fidelity to the document. None measures verification. SD4 shows the system itself does not keep the two apart |
+| EL5 | Rule outputs were never checked against correct knowledge before D-1. The T-1 reasoning gate (§9.2) mixes reader errors with SD1–SD3 |
+
+## 8. What to fix before continuing T-1, and the owner's decisions
+
+**To fix first, each a separate authorised change with tests** (none was corrected here):
+
+| # | Fix | Why first |
+|---|---|---|
+| 1 | **SD8: one condition contract** between the reader and the representation (concept, value), with the clause kept as provenance | Without it, every condition W3 reads is unusable, and every condition-dependent answer is unjustified |
+| 2 | **SD9: the recognition cache** keyed by the store itself, not by `id()` | It can silently corrupt any multi-universe comparison: arms, ablations, the judges' material |
+| 3 | **SD1 and SD2: rules that surface caveats and conflicts** in `influence`, `holds` and `value` | The reasoning check of T-1 currently rewards over-generalisation |
+| 4 | **SD3: an indeterminate reference** answered under each reading (S0 3.6), never as a union | Needed before product names enter the universe (`CLAUDE.md`: never merge on similar names) |
+| 5 | **EL2: a question-format rule.** Terms name concepts; qualifiers go to conditions | Needed before Q2 is written for the sealed stage |
+
+**Architectural decisions for the owner:**
+1. **Evidence (SD4).** May a result *reported* from a cited, unexamined source ever meet an independent-evidence
+   requirement? **Recommended: no.**
+   - Keep "the document reports S's measurement" as its own class.
+   - It meets the requirement only after S is examined.
+2. **Licensing and standing (SD5).** Should `reported` third-party claims, a manufacturer's above all, license
+   answers? If they do, should every answer carry its evidence class?
+3. **Deontic semantics (SD6).** Give MS1 inference for obligation, recommendation, prohibition and permission, or
+   keep them as stored labels.
+4. **Tables in teaching documents (SD7)** and **time (549).** Should property tables and dated applicability enter
+   the universe? If so, the next evaluation must score them.
+
+**Not covered by this audit.** Explanation, qualification and context links between claims. Reliability rates: the
+cases locate mechanisms; they do not estimate frequencies.
+
+## 9. Cost
+
+- **Agents:** 0.
+- **Compute:**
+  - one assimilation of the dehumidifier universe (about 70 s);
+  - two runs over 16 small constructed cases, a few seconds each;
+  - the probes.
+- **Data:** no new material. The spent Speakers export of T-1 and the private references were read; only labels are
+  published.
+- **Claude session:** this session's context reached about 0.74 million tokens, cumulative over T-1 and D-1.
+
+Stopped at the end of the audit. The three agents and the Soundbars test remain suspended.

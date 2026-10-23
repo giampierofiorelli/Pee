@@ -88,6 +88,12 @@ None of these modifies S0.
     - **Final check:** no critical regression; reasoning 5 → 7 correct. Two development label counts rose by one.
     - **Under the frozen `PROTOCOL.md` §11.3, the three agents were not used.** The owner decides.
     - Stage 3 (Soundbars) is not authorised.
+- **D-1** (owner, 2026-10-23; `experiments/d1/REPORT.md`): a diagnostic audit of the pipeline, with no agents and no
+  corrections. **Done.**
+  - **Structural defects found:**
+    - with correct knowledge: SD1–SD4 (rules, recognition, evidence) and SD9 (the recognition cache);
+    - at the reader–representation interface: SD8 (the condition format).
+  - Nothing is corrected. The three T-1 agents and Soundbars remain suspended until the owner decides.
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
 - Every step names its owner authorisation, and fixes its criteria before any code, as before.
