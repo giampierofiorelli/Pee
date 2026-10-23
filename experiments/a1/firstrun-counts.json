@@ -1,0 +1,150 @@
+{
+ "note": "A-1 sealed first run on freeze_1, unchanged. Counts only; rows (answers, propositions, renders) stay private.",
+ "freeze": "73c1e9ac178af86ac0a695db8c7762551b7402e8ec75dc02ba0c2b3d66645ee4",
+ "files": {
+  "firstrun/build-K.json": "9f324efb675488592aa97d8afce5eb434090913226d0e801bdf8811860871ce0",
+  "firstrun/build-Kplus.json": "8f4828400e20fc0162ef0b02076d87eb61579b20b2ad6d03ed4305104ea1eda3",
+  "firstrun/eval-Kplus.universe.gz.manifest.json": "2a2b7dba2e9e12c0add26ae461651a4cf6b2166cee0f7557fe3c675a0e34dc5f",
+  "firstrun/fidelity-export-Kplus.json": "da0dccfa88a939c76def3f2a9c82c90f6197a19849d8b4772f46b7ba04c9124a",
+  "firstrun/oracle.universe.gz.manifest.json": "588a35d8e329e02271555f1e00e2ce266d81e88fb1aa774caaf5342efdac7b4f",
+  "firstrun/qs-K-inprocess.json": "420fc9a32dd9a6e6606b057a35c4ffe8928efcfe670b06d01ce55fc2cc54168d",
+  "firstrun/qs-Kplus-inprocess.json": "d4385140f33e45903afbd8ee0afec09876f4174f157bf6dc6c9a87b6be63457b",
+  "firstrun/qs-oracle.json": "39b675e2ce9f4790942e71f961fa4a35c3a1cc1c7eb8bdb1e5679ba6bec40b9e"
+ },
+ "builds": {
+  "K": {
+   "documents": [
+    {
+     "document": "document:AP",
+     "original_sha256": "848a345b00d5e93e9a118310eef16ecca77c476f7c9fa2b90a0bf3df13eaec19",
+     "bytes": 192727,
+     "audit": {
+      "sentences_segmented": 1571,
+      "ledger_entries": 1571,
+      "every_sentence_accounted": true,
+      "statuses": {
+       "acquired": 832,
+       "partial": 257,
+       "unresolved": 482
+      }
+     },
+     "propositions": 1888,
+     "restated": 16,
+     "concepts": 2844
+    },
+    {
+     "document": "document:DH",
+     "original_sha256": "3f8a15376f8f8188d52a505ef91f80f361430c2ef907d524ec4c580d78e15444",
+     "bytes": 143509,
+     "audit": {
+      "sentences_segmented": 1311,
+      "ledger_entries": 1311,
+      "every_sentence_accounted": true,
+      "statuses": {
+       "acquired": 571,
+       "partial": 228,
+       "unresolved": 512
+      }
+     },
+     "propositions": 1322,
+     "restated": 15,
+     "concepts": 1992
+    }
+   ],
+   "lifecycle": {
+    "ok": false,
+    "why": "retention guard",
+    "detail": "{\"long_string_count\": 2, \"copied_run_count\": 1, \"long_strings\": [[\"C:ee264c927623d2a0\", 245], [\"C:ee264c927623d2a0\", 245]], \"copied_runs\": [\"LEDGER:ebdacbcbd6d52f79\"]}"
+   }
+  },
+  "Kplus": {
+   "documents": [
+    {
+     "document": "document:AP",
+     "original_sha256": "848a345b00d5e93e9a118310eef16ecca77c476f7c9fa2b90a0bf3df13eaec19",
+     "bytes": 192727,
+     "audit": {
+      "sentences_segmented": 1571,
+      "ledger_entries": 1571,
+      "every_sentence_accounted": true,
+      "statuses": {
+       "acquired": 832,
+       "partial": 257,
+       "unresolved": 482
+      }
+     },
+     "propositions": 1888,
+     "restated": 16,
+     "concepts": 2844
+    },
+    {
+     "document": "document:DH",
+     "original_sha256": "3f8a15376f8f8188d52a505ef91f80f361430c2ef907d524ec4c580d78e15444",
+     "bytes": 143509,
+     "audit": {
+      "sentences_segmented": 1311,
+      "ledger_entries": 1311,
+      "every_sentence_accounted": true,
+      "statuses": {
+       "acquired": 571,
+       "partial": 228,
+       "unresolved": 512
+      }
+     },
+     "propositions": 1322,
+     "restated": 15,
+     "concepts": 1992
+    },
+    {
+     "document": "document:THREE-DH",
+     "original_sha256": "83b982274d6ac233e39240cd4d64eede7d2f02eebd8b5c597b3173e12c59a498",
+     "bytes": 137295,
+     "audit": {
+      "sentences_segmented": 1231,
+      "ledger_entries": 1231,
+      "every_sentence_accounted": true,
+      "statuses": {
+       "acquired": 626,
+       "partial": 212,
+       "unresolved": 393
+      }
+     },
+     "propositions": 316,
+     "restated": 1136,
+     "concepts": 436
+    }
+   ],
+   "lifecycle": {
+    "ok": false,
+    "why": "retention guard",
+    "detail": "{\"long_string_count\": 2, \"copied_run_count\": 1, \"long_strings\": [[\"C:ee264c927623d2a0\", 245], [\"C:ee264c927623d2a0\", 245]], \"copied_runs\": [\"LEDGER:ebdacbcbd6d52f79\"]}"
+   }
+  }
+ },
+ "QS": {
+  "qs-K-inprocess": {
+   "lost decision (uninformed)": 45,
+   "uninformed abstention": 13,
+   "justified abstention": 1
+  },
+  "qs-Kplus-inprocess": {
+   "lost decision (uninformed)": 32,
+   "lost decision": 7,
+   "justified abstention": 3,
+   "uninformed abstention": 11,
+   "correct decision": 5,
+   "unjustified decision": 1
+  },
+  "qs-oracle": {
+   "correct decision": 6,
+   "lost decision (uninformed)": 33,
+   "justified abstention": 4,
+   "uninformed abstention": 10,
+   "lost decision": 6
+  }
+ },
+ "fidelity_export": {
+  "propositions_lines_713_924": 297,
+  "note": "exported from an evaluation copy of the frozen K+ reading, because the retention guard refused to persist it"
+ }
+}
