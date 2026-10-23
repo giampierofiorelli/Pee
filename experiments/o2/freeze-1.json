@@ -1,0 +1,51 @@
+{
+ "schema": "pee.o2.freeze.v1",
+ "freeze": 1,
+ "note": "Frozen before the sealed passages' outputs were produced or opened.",
+ "code": {
+  "o2.py": "1f07ded4c8190de87ed56846dd0e60d933b0a067fd69cc9b5c6353c29c3b1f7d",
+  "bridge.mjs": "46ec4f2d5632ffcb6d3dbdd2b2b425d5d9b144feae62ab4c3587e819967b1e44",
+  "hybrid-choices.json": "530251c5e70ee91d37c9a018ee7a7ea5962a973c1429dadac20a96ba5c41df15",
+  "judge-guide.md": "4b9fde4e236f3561f13cdc300f51f247c88a62d1a880161efd83068e6214f796"
+ },
+ "engine_ts_reader_sha256": "770afcf36a424be79ac3823c6a49d5d17cd5981d2188d6e3654781ca17fecc34",
+ "a1_reader_sha256": "1764a7f6ee1a1736dd177cae83d5989d646a32d95ec56fb3f1ccf85a69772c7b",
+ "development_counts": {
+  "A": {
+   "u": {
+    "spurious": 32,
+    "faithful": 107,
+    "unfaithful": 141
+   },
+   "r": {
+    "complete": 26,
+    "missed": 99,
+    "partial": 144
+   },
+   "critical": {
+    "1": 9,
+    "3": 19,
+    "5": 1,
+    "6": 3
+   }
+  },
+  "T": {
+   "u": {
+    "faithful": 57,
+    "unfaithful": 42,
+    "spurious": 2
+   },
+   "r": {
+    "missed": 171,
+    "partial": 92,
+    "complete": 6
+   },
+   "critical": {
+    "2": 9,
+    "3": 10
+   }
+  },
+  "D_propositions": 269,
+  "spent": true
+ }
+}
