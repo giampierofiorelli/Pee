@@ -66,6 +66,11 @@ None of these modifies S0.
   - Nothing is installed or run.
   - Execution needs an explicit owner authorisation, including the limited exception to the dependency rule.
   - Qwen stays suspended.
+- **T-1** (design only; `experiments/t1/DESIGN.md`): the owner's documents translated sentence by sentence into the
+  universe, then reasoning from the universe alone.
+  - The existing reader is improved from its measured errors, with selective abstention element by element.
+  - The 27 relations are unchanged unless the owner decides otherwise.
+  - Nothing is run without the owner's go-ahead.
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
 - Every step names its owner authorisation, and fixes its criteria before any code, as before.
