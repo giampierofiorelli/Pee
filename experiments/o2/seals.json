@@ -51,5 +51,25 @@
    "dropped": 1
   }
  },
- "exposure": "Claude (the experimenter) has not read the sealed passage or R; it saw counts only."
+ "exposure": "Claude (the experimenter) has not read the sealed passage or R; it saw counts only.",
+ "evidence_audit": {
+  "added": "2026-10-23, at the owner's request (REPORT section 4.1), before any sealed run; R itself is unchanged",
+  "files": {
+   "evidence-audit-input.json": "ba548f0815f75562ef66bfbb022bdb948d9c7a8b2b5be2aee6a55e4b4c84e65e",
+   "evidence-audit.json": "78b88fca97cb0ba20f31ee0cf1e15b7fa76224dc4cbaa51fc6e047f9d98bc8b2",
+   "contested.json": "c6c5f61b7b6346c52e2caec1f245e1f5bd9021da8f1c9a4761b012857cb44d2e"
+  },
+  "agreement_between_annotators_on_226_paired_propositions": {
+   "document_attitude": 1.0,
+   "polarity": 0.95,
+   "attributed_to": 0.9,
+   "conditions_count": 0.94,
+   "modality": 0.88,
+   "content_kind": 0.82,
+   "evidence_kind": 0.54
+  },
+  "evidence_kind_disagreements": 103,
+  "second_adjudicator_agrees_with_first": 67,
+  "contested": 36
+ }
 }
