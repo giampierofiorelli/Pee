@@ -377,3 +377,23 @@ Stage 2 is not authorised.
 - **The deferred seal is not yet complete** (`PROTOCOL.md` §7.1). A freeze step comes before any W3 code.
 
 Stopped at the stage-2 authorisation point.
+
+## 12. Freeze step (2026-10-23)
+
+**Authorised by the owner:** the freeze only. No W3–W5, no agents, no Soundbars semantics. A-1's spent dehumidifier
+questions are used for the stage-2 reasoning check.
+
+**Done** (`PROTOCOL.md` §4, §7.1, §9; hashes in `freeze-1.json`):
+- **The Soundbars document is identified and the R2 selection fixed.** `freeze.py`, in an isolated process, reuses
+  O-2's rules and reproduces O-2's split exactly. R2 has 31 sections (235 prose lines); a reserve of 53 lines is left
+  untouched.
+- **The exposure census is clean.**
+- **Inclusion criteria, both question protocols and the stop conditions are frozen.**
+- **The scorer is written** (`score.py`, no inherited grades).
+- **The A-1 question harness reproduces A-1's answers on 59 of 59.**
+
+**Blocker.** The scorer's proxy check fails: 0.72 against 0.85 on the adjudicated sealed judgement. A0's items match
+only 7 of the 36 readable norms. The mechanical pre-filter of option B can therefore only be inconclusive. Changing
+its role needs the owner's decision (`PROTOCOL.md` §10).
+
+Development is not authorised.

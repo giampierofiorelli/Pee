@@ -1,0 +1,536 @@
+{
+ "schema": "pee.t1.r2-selection.v1",
+ "package_sha256": "da3593ccab6e784050a8d7b5815bdb9fdd8cb5f11c2f42f0cee85238b0ce04c3",
+ "package_bytes": 98613,
+ "md_entries": 8,
+ "rules": {
+  "document": "the single entry ending COMPLETE-RESEARCH-COMPENDIUM.md",
+  "prose": "O-2's section eligibility (any non-blank, non-heading, non-table line); scored lines exclude code blocks and rules",
+  "sections": "top-level # or ## sections",
+  "register": "first section with 0.9 of its 8-word shingles in SOURCE-REGISTER.md; it and everything after are not scored",
+  "exposure": "a section is excluded when more than 0.2 of its prose shingles occur in any spent package (every other package in pee-knowledge/research-packages)",
+  "order": "sections sorted by sha256(salt + first line number), as O-2",
+  "salt": "t1-r2-soundbars-section-",
+  "r2": "sections in that order until at least 160 prose lines; the rest is a reserve, untouched"
+ },
+ "inventory_overlap_reported_only": {
+  "inventory_sha256": "49c06f818ca3b82fad96696d6ab6fbbe5786c9db57bc2cb2f02dcbff4e43b80a",
+  "r2_prose_shingles_in_inventory": 0.0
+ },
+ "document": "COMPLETE-RESEARCH-COMPENDIUM.md",
+ "document_sha256": "c7e706045209a59f420c3bb4a9f3fe364ae4a8f8baed9afb3be130acb1101b5a",
+ "document_bytes": 100851,
+ "document_lines": 867,
+ "register_start": 635,
+ "sections": [
+  {
+   "lines": [
+    1,
+    18
+   ],
+   "prose": 8,
+   "code_or_rule": 1,
+   "table": 0,
+   "exposure": 0.047,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    19,
+    21
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    23,
+    33
+   ],
+   "prose": 7,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.047,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    34,
+    51
+   ],
+   "prose": 11,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    52,
+    68
+   ],
+   "prose": 2,
+   "code_or_rule": 0,
+   "table": 10,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    69,
+    94
+   ],
+   "prose": 8,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    95,
+    113
+   ],
+   "prose": 3,
+   "code_or_rule": 0,
+   "table": 10,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    114,
+    132
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 14,
+   "exposure": 0.0,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    133,
+    155
+   ],
+   "prose": 3,
+   "code_or_rule": 0,
+   "table": 10,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    156,
+    170
+   ],
+   "prose": 9,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    171,
+    178
+   ],
+   "prose": 3,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    179,
+    186
+   ],
+   "prose": 3,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    187,
+    196
+   ],
+   "prose": 4,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    197,
+    207
+   ],
+   "prose": 3,
+   "code_or_rule": 1,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    208,
+    210
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    211,
+    214
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    215,
+    236
+   ],
+   "prose": 8,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    237,
+    251
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 10,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    252,
+    269
+   ],
+   "prose": 8,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    270,
+    283
+   ],
+   "prose": 6,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    284,
+    290
+   ],
+   "prose": 1,
+   "code_or_rule": 1,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    291,
+    293
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    294,
+    297
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    298,
+    304
+   ],
+   "prose": 4,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    305,
+    486
+   ],
+   "prose": 144,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    487,
+    492
+   ],
+   "prose": 2,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    493,
+    496
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    497,
+    503
+   ],
+   "prose": 1,
+   "code_or_rule": 1,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    504,
+    506
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    507,
+    510
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    511,
+    518
+   ],
+   "prose": 3,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    519,
+    524
+   ],
+   "prose": 2,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    525,
+    530
+   ],
+   "prose": 2,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    531,
+    536
+   ],
+   "prose": 2,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    537,
+    540
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "reserve"
+  },
+  {
+   "lines": [
+    541,
+    547
+   ],
+   "prose": 4,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    548,
+    551
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    552,
+    558
+   ],
+   "prose": 1,
+   "code_or_rule": 1,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    559,
+    561
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    562,
+    565
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    566,
+    576
+   ],
+   "prose": 8,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    592,
+    603
+   ],
+   "prose": 5,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    604,
+    617
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 9,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    618,
+    631
+   ],
+   "prose": 7,
+   "code_or_rule": 1,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  },
+  {
+   "lines": [
+    632,
+    634
+   ],
+   "prose": 1,
+   "code_or_rule": 0,
+   "table": 0,
+   "exposure": 0.0,
+   "set": "R2"
+  }
+ ],
+ "counts": {
+  "R2": {
+   "sections": 31,
+   "prose": 235
+  },
+  "reserve": {
+   "sections": 14,
+   "prose": 53
+  },
+  "excluded": {
+   "sections": 0,
+   "prose": 0
+  }
+ }
+}

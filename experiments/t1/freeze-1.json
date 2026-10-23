@@ -1,0 +1,119 @@
+{
+ "schema": "pee.t1.freeze.v1",
+ "freeze": 1,
+ "note": "Frozen before any W3-W5 code. A1 does not exist yet.",
+ "files": {
+  "t1/annotation-guide.md": "13718a95e6f8779114d51df673e2025cbe888651097394e31e8651a0b018cfb6",
+  "t1/W2-RELATIONS.md": "11d4b8eb056329b31c41f0b6be06ff71c066b6422967b2d8e13d6ae11c0eaefc",
+  "t1/freeze.py": "2f3e761a7621840a2a18bdad7c613ba0c8c67ff0a40b311e98c1fcd3ff3aae6f",
+  "t1/score.py": "a851d4b59acb35d804f29c4c5263ceec0c6664a61c3afce2455fab9548e97e01",
+  "t1/r2-selection.json": "929ad549adf4b799a75ebdd40d9c7785083cf064f1280851f534530a1e925019",
+  "a1/answer.py": "8ad321516162323cf36853c0fe078731bd3ad9ba9630a5ef5859acef782a59a6",
+  "a1/question-format.md": "0901a23917680bb187a947bca544b46dc2b5c553c7a01e6e1265637cf551b69d",
+  "o2/o2.py": "1f07ded4c8190de87ed56846dd0e60d933b0a067fd69cc9b5c6353c29c3b1f7d",
+  "universe/universe/propositions.py": "1764a7f6ee1a1736dd177cae83d5989d646a32d95ec56fb3f1ccf85a69772c7b"
+ },
+ "note_protocol": "PROTOCOL.md is frozen at the commit that adds this file",
+ "soundbars": {
+  "package_sha256": "da3593ccab6e784050a8d7b5815bdb9fdd8cb5f11c2f42f0cee85238b0ce04c3",
+  "document": "COMPLETE-RESEARCH-COMPENDIUM.md",
+  "document_sha256": "c7e706045209a59f420c3bb4a9f3fe364ae4a8f8baed9afb3be130acb1101b5a"
+ },
+ "private_inputs_sha256": {
+  "pee-o2/annotations/R.json": "52db7c2c6873c8edbc6f6393ba1f3b3520cf887d7f834ec3bee2df070874cf7c",
+  "pee-o2/annotations/D-ann.json": "b168dedb4376450d8a9d429e420762900af99563c00f83f0682b8bdd2b9d0241",
+  "pee-o2/sealed/final-Y.json": "0158a51b6d743e7274034735e03b9a5aa87d73fe028fe3f0cff001e1a91ef75f",
+  "pee-o2/dev/judge-list-K.json": "61fbac6a38f438087a115a17e838a425b5074c64225cb61cd2d0d831e85bf67c",
+  "pee-o2/sealed/contested-labels.json": "850bd925fad3c751fd92a7a05ef017217f3c72f780535ed874222d2741b756e1",
+  "pee-a1/sealed/QS-reference.json": "b8646cda572e40b08ab4aa81b84bea15d6168e3443827a4b7b84951d9edabbfe",
+  "pee-a1/dev/QD-author.json": "29c7b85a92656b4dfed4fe82cba8fccfcd39a9199245c9e40f95869bc61b9b45"
+ },
+ "A0_exports_sha256": {
+  "sealed": "49a35939bf3b73867a620a4b3013a2d64b479ea75ac071c16c980b37d6fcf3a2",
+  "dev": "78e725723ae5aac357f28514ae8ea9503ea2a342a0afa664f2e0fdc7f1a76413"
+ },
+ "proxy_check": {
+  "sealed_adjudicated": {
+   "compared": 72,
+   "agreement_first_definition": 0.5278,
+   "agreement_program_decision": 0.722
+  },
+  "dev_one_judge": {
+   "compared": 94,
+   "agreement_first_definition": 0.4149,
+   "agreement_program_decision": 0.638
+  },
+  "threshold": 0.85,
+  "passed": false
+ },
+ "A0_mechanical": {
+  "sealed": {
+   "items_matched": 35,
+   "reference_readable": 87,
+   "readable_matched": 35,
+   "norms_readable": 21,
+   "norms_matched": 4,
+   "elements": {
+    "right": 288,
+    "wrong": 41,
+    "missing": 23,
+    "unscored": 33,
+    "absent": 572
+   },
+   "right_element_share": 0.3117,
+   "wrong_rate": 0.1246,
+   "complete_faithful_coverage": 0.023,
+   "critical_mechanical": {
+    "7": 1
+   }
+  },
+  "dev": {
+   "items_matched": 40,
+   "reference_readable": 129,
+   "readable_matched": 37,
+   "norms_readable": 15,
+   "norms_matched": 3,
+   "elements": {
+    "right": 313,
+    "wrong": 31,
+    "missing": 29,
+    "unscored": 34,
+    "absent": 1012
+   },
+   "right_element_share": 0.226,
+   "wrong_rate": 0.0887,
+   "complete_faithful_coverage": 0.031,
+   "critical_mechanical": {}
+  }
+ },
+ "A0_reasoning_QS_askable": {
+  "askable": 47,
+  "determinate": 38,
+  "excluded_hashed_terms": [
+   "Q01",
+   "Q02",
+   "Q03",
+   "Q06",
+   "Q15",
+   "Q22",
+   "Q26",
+   "Q33",
+   "Q47",
+   "Q54",
+   "Q58",
+   "Q60"
+  ],
+  "dropped": [
+   "Q50"
+  ],
+  "reproduction_of_A1_first_run": "59 of 59 identical",
+  "counts": {
+   "correct decision": 5,
+   "unjustified decision": 1,
+   "lost decision": 6,
+   "lost decision (uninformed)": 26,
+   "justified abstention": 3,
+   "uninformed abstention": 6
+  }
+ }
+}

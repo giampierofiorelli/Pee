@@ -136,21 +136,58 @@ The originals were not kept (O-2 §1.4). Only these propositions keep their subj
 | Development (spent) | 129 of 269 | 15 of 59 | 95 |
 | **Total** | **216 of 507 (43 %)** | **36 of 143 (25 %)** | 140 |
 
-**Mechanical scoring therefore needs these rules, fixed now:**
-1. **Carried grades.** An A1 item identical to an A0 item (lines, subject, object) keeps A0's adjudicated match and
-   its subject and object grades. Its other elements are re-scored by the label rules of §2.
-2. **Mechanical match.** Any other item is matched to a readable reference proposition when:
+**Mechanical scoring rules** (implemented in `score.py`, identical for both arms):
+1. **No carried grades** (correction made in the freeze step). The first version let an A1 item identical to an A0
+   item keep A0's adjudicated grades. That is asymmetric: A0 would be graded by the adjudicator and A1 by the
+   program. **Both arms are now graded only by the program.**
+2. **Mechanical match.** An item is matched to a readable reference proposition when:
    - the lines overlap;
-   - the content-word overlap (Jaccard) of subject and of object is each at least 0.5.
-3. **Unscorable.** An item that is neither carried nor matched is counted as unscorable and reported, for both arms.
-4. **Proxy check before any A1 code.** On the readable subset, the mechanical match and subject/object grade must
-   agree with A0's adjudicated grades on at least **0.85** of items. Otherwise the mechanical gate is not valid, and
-   §8 decision 2 applies.
-5. **Gate measures** (right-element share, complete faithful coverage, wrong rate, uninterpreted share) are computed
-   **on the readable subset**, the same for both arms, over the elements A0 can express.
+   - the content-word overlap (Jaccard) of subject and of object (or the equal value) is each at least 0.5.
+3. **Unscorable.** An unmatched item is counted as unscorable and reported, for both arms. It is never counted as
+   right or as an absent error.
+4. **Proxy check before any A1 code.** On the readable subset, the program's decision ("this item states this
+   proposition, with the right subject and object") must agree with the adjudicated judgement on at least **0.85** of
+   items. Nothing is copied: both sides are computed separately.
+5. **Gate measures** (right-element share, complete faithful coverage, wrong rate) are computed **on the readable
+   subset**, the same for both arms, over the elements A0 can express.
 
-**Limit.** The main target of W3 is norms, and only 25 % of them are mechanically measurable. A gate passed on the
-readable subset alone is weak evidence for norms, and it is not a demonstration of general improvement.
+**Proxy check result (freeze step, 2026-10-23): failed.**
+
+| Judgement compared | Items | Agreement as first written | Agreement on the program's decision |
+|---|---|---|---|
+| Sealed, adjudicated (`final-Y`) | 72 | 0.53 | **0.72** |
+| Development, one judge (`judge-list-K`) | 94 | 0.41 | 0.64 |
+
+- **The first definition was wrong.** It counted, as disagreement, items that both sides treat as "not the right
+  proposition". The second definition is post hoc, and it is reported as such.
+- **Neither definition reaches 0.85.** The threshold and the Jaccard parameter were **not** changed.
+- **Where the program disagrees, it is one-sided.**
+  - When the program matches an item, it agrees with the adjudicator in **38 of 38** sealed cases (39 of 40 in
+    development).
+  - It misses 20 sealed items, and 33 in development, that the adjudicator judged right. These are paraphrases of
+    the reference concept.
+
+**A0 under the program** (readable subset; baseline for stage 2):
+
+| | Sealed | Development |
+|---|---|---|
+| Readable reference propositions | 87 | 129 |
+| Matched by an A0 item | 35 | 37 |
+| Norms matched (of readable) | **4 of 21** | **3 of 15** |
+| Right-element share | 0.312 | 0.226 |
+| Wrong rate (matched items) | 0.125 | 0.089 |
+| Mechanical critical errors | 1 (type 7) | 0 |
+
+**Consequence.**
+- **The mechanical check cannot show an improvement.** It is not valid as a measure (0.72 < 0.85), and it sees 7 of
+  the 36 readable norms.
+- **Under §4.1 it is therefore *inconclusive*,** whatever A1 does.
+- **What it can still do.** The program is reliable when it does match (38 of 38). It can therefore screen matched
+  items for critical **regressions** in labelled elements: polarity, force, attitude and source. It cannot show
+  gains.
+
+**Limit.** The main target of W3 is norms. They are measurable mechanically only through the readable subset, and
+the program matches very few of them.
 
 ### 4.1 Stage-2 sequence (owner decision: option B, conditional)
 
@@ -166,9 +203,15 @@ readable subset alone is weak evidence for norms, and it is not a demonstration 
    - **Who:** at most two blind judges and one adjudicator.
    - **What:** A0 and A1 under random labels, on the same spent Speakers prose, under §5.
    - **When:** adjudication conventions fixed before judging.
-4. **If step 2 fails,** the result is reported and stage 2 stops there.
-   - No agent is used.
-   - No new iteration is made to get around the failure.
+4. **Three outcomes, fixed now:**
+   - **Positive:** every condition of step 2 holds, and the coverage is sufficient. Coverage is sufficient when at
+     least 50 % of readable reference propositions and at least 20 readable norms are matched in both arms.
+   - **Failure:** a condition of step 2 that can be measured fails. This includes any increase in a mechanically
+     detected critical type, or in unjustified answers on the questions (§9.2). The result is reported, and stage 2
+     stops: no agents, no new iteration.
+   - **Inconclusive:** the proxy check is below 0.85, or the coverage is insufficient. An inconclusive result is
+     never counted as success or as failure. **The proxy check already makes the mechanical check inconclusive
+     (§4).** What happens next is an owner decision (§10).
 5. **New capabilities** (the norm bearer, `unclear` forces) are reported apart from the fields A0 can express.
    - A bearer `product` with no basis in the text is a type-7 error, never a gain.
 6. **Not independent.** Claude judges on spent material are development evidence, not independent validation.
@@ -238,31 +281,29 @@ All of these are committed before any W3 code:
 
 **The reader never accesses the Soundbars text.**
 
-### 7.1 Freeze status at the end of stage 1 (2026-10-23)
+### 7.1 Freeze status after the freeze step (2026-10-23)
 
-Checked without reading Soundbars content. The file is identified from Git metadata only. Its blob was not
-downloaded.
+Every check below ran without Claude or the reader seeing Soundbars text. `freeze.py` reads the package bytes in an
+isolated process (`python3 -I`), and writes only structural numbers and whole-file hashes. No heading, fragment or
+fragment hash is written.
 
 | Item | State |
 |---|---|
-| Soundbars package and file | **Identified, not frozen.** `pee-knowledge` `research-packages/PEE-CATEGORY-RESEARCH-08-SOUNDBARS-COMPLETE-v1.0.0.zip`, git blob `29ec3329…ed2c`. The file inside the zip is not chosen |
-| Exposure census | **Not done.** It needs a script that hashes the text without reading it (O-2 §1.2) |
-| Selection method and hash split | **Method stated** (as O-2 §1.3, `DESIGN.md` §4.1). **Not applied** |
-| Inclusion criteria | **Partly stated:** prose only; tables are excluded because Crawler N1 used them. Not written as a frozen list |
-| Annotation guide with the evidence rule | **Done**: `annotation-guide.md` (W2 decisions applied) |
-| The 27 relations after W2 | **Done**: unchanged, plus the controlled forms of D3 and D5 |
-| Question protocol | **Not frozen.** `DESIGN.md` §4.1 names the additions, but no protocol document consolidates them (type-7 and source questions, for example) |
-| Metrics, gates, critical types | **Done**: `DESIGN.md` §8.1–8.3 and this protocol (§2, §4.1) |
-| Scorer and proxy check (§4) | **Not written.** This is code for the stage-2 preparation |
-| Development questions on Speakers | **Do not exist.** The stage-2 gate "justified answers on development questions do not decrease" (§8.1) cannot be measured on Speakers. The only spent question sets are A-1's, on dehumidifiers |
+| Soundbars package | **Frozen.** `PEE-CATEGORY-RESEARCH-08-SOUNDBARS-COMPLETE-v1.0.0.zip`, SHA-256 `da3593cc…04c3` |
+| Document inside the package | **Frozen** by the rule "the single entry ending `COMPLETE-RESEARCH-COMPENDIUM.md`", as in O-2. SHA-256 `c7e70604…1b5a`, 100,851 bytes, 867 lines; 8 Markdown entries in the package |
+| Selection rules | **Validated on spent material.** `freeze.py check-o2` reproduces O-2's speakers split exactly: 84 development and 113 sealed prose lines, and the register at line 745. O-2's "first line" is the section's first line **number**; no text is hashed |
+| Exposure census | **Done.** No Pee experiment read the package. 0 of 45 sections exceed 0.2 shingle overlap with any other owner package (maximum 0.047, shared boilerplate). The Crawler-era paraphrased inventory (`research-inventory/phase271/soundbars.json`) shares 0.0 of R2's 8-word shingles. That inventory is Claude exposure in Crawler; it is measured, not used to exclude. Tables are excluded because Crawler N1 used Soundbars table rows |
+| Selection and split | **Done** (`r2-selection.json`). R2 has 31 sections and 235 scored prose lines. The reserve has 14 sections and 53 lines, left untouched. No section is excluded. The source register (line 635 on) is read but not scored. The 160-line target was overshot by one long section; the rule was not changed after the result |
+| Inclusion criteria | **Frozen** (§9.1) |
+| Annotation guide, the 27 relations after W2 | **Frozen**: `annotation-guide.md`, `W2-RELATIONS.md` |
+| Question protocols | **Frozen**: stage 2 (A-1 questions, §9.2) and the sealed stage (Q2, §9.3) |
+| Metrics, gates, critical types, outcomes, stop conditions | **Frozen**: `DESIGN.md` §8.1–8.3, this protocol §2, §4.1 and §9.4 |
+| Scorer | **Written and frozen** (`score.py`). **Its proxy check failed** (§4): 0.72 against 0.85 |
+| A0 baselines | **Recorded**: the mechanical score (§4) and the reasoning baseline (§9.2) |
+| Hashes of everything above | `freeze-1.json` |
 
-**The freeze is not complete.** Before any W3 code, a freeze step needs its own authorisation. It would cover:
-- the census and split, by script, without reading the text;
-- the inclusion list;
-- the question protocol;
-- the scorer with its proxy check;
-- a decision on the development-question gate: use A-1's spent dehumidifier questions, or drop the gate for stage 2
-  and keep it for the sealed stage.
+**The freeze is complete as a record. The mechanical pre-filter of option B is not valid.** Stage 2, as decided,
+would end "inconclusive" before any agent could be justified (§10).
 
 ## 8. Owner's decisions (2026-10-23)
 
@@ -271,4 +312,116 @@ downloaded.
 3. **Type 7 is approved,** including the procedural-to-product bearer error. **Type 3 is widened** to a real promotion
    of a hypothetical case. Both apply to both arms, without double counting (§2.6).
 
+4. **Stage-2 reasoning questions:** A-1's spent dehumidifier questions, the same for both readers, answered from
+   each reader's own universe without the document (§9.2). It is a diagnostic, not independent validation.
+5. **The freeze step is authorised** (no agents, no W3–W5, no Soundbars semantics). It is done (§7.1, §9).
+
 Stage 2 itself is **not authorised yet**.
+
+## 9. Inclusion criteria, question protocols and stop conditions (frozen in the freeze step)
+
+### 9.1 Inclusion criteria (R2, the sealed stage)
+
+**Scored:**
+- the prose lines of the 31 R2 sections in `r2-selection.json`. A prose line is not blank, and not a heading, a table
+  row, a code-block line or a horizontal rule.
+
+**Read by annotators but not scored:**
+- headings, tables (Crawler N1 exposure), code and rules;
+- the source register, from line 635 on.
+
+**Not scored:**
+- propositions the annotators flag `non_scientific`;
+- elements marked `unclear` (`annotation-guide.md` §4).
+
+**Untouched:** the reserve sections. They are kept for a later re-measurement.
+
+### 9.2 Stage 2 reasoning check: A-1's questions (owner decision)
+
+**The question set.** A-1's sealed question set QS on the THREE dehumidifier document.
+- It is spent: private copy `pee-a1/sealed/QS-reference.json`, SHA-256 `b8646cda…bbfe`.
+- 59 questions are live (Q50 was dropped at adjudication).
+
+**Askable: 47 questions, 38 of them determinate.**
+- 12 questions have a term replaced by its hash in the private copy: Q01, Q02, Q03, Q06, Q15, Q22, Q26, Q33, Q47,
+  Q54, Q58 and Q60.
+- They are **excluded for both arms**.
+- Their terms are not reconstructed.
+
+**The arms.**
+- Each reader builds its own K+ universe (air purifiers, the R01–R39 dehumidifier package, the THREE dehumidifier
+  document), with `experiments/a1/answer.py inprocess K+`. A0 uses the frozen reader; A1 uses its own reader, and
+  nothing else differs.
+- **Answers come from the store only.** `answer.py` never reads a document while answering.
+- **Answering is in process.** A-1's retention guard refuses persistence (A-1 stop rule A6), so no snapshot can be
+  answered in a new process. This is the A-1 comparison point, and it is stated as a limit.
+
+**Harness verified.**
+- The A0 rebuild reproduces A-1's recorded answers on **59 of 59** questions (answer and outcome both identical to
+  the first run and the after-change run).
+- **A0 baseline on the 47 askable questions:**
+  - correct: 5;
+  - unjustified: 1;
+  - lost: 6;
+  - lost (uninformed): 26;
+  - justified abstention: 3;
+  - uninformed abstention: 6.
+
+**Gate.** A1 has:
+- correct decisions plus justified abstentions **not lower** than A0;
+- unjustified decisions **not higher**.
+
+**Development rule.**
+- W5 may be developed only on A-1's development questions QD: `pee-a1/dev/QD-author.json`, SHA-256 `29c7b85a…9b45`,
+  22 of 30 askable.
+- **QS answers are not inspected during development.** QS is run once, on the frozen A1.
+
+**Status of this check.** It is a development diagnostic. It is not independent evidence of generalisation.
+
+### 9.3 Question protocol for the sealed stage (Q2, Soundbars)
+
+**Base.** The A-1 format (`experiments/a1/question-format.md`), with:
+- an author agent;
+- a blind answerer from the passage;
+- adjudication.
+
+These are stage-3 agents, not yet authorised.
+
+**Additions, fixed now:**
+1. Questions rely only on R2 lines. At least 40 % have a determinate answer.
+2. **At least 6 questions of each trap kind:**
+   - **Deontic:** a `holds` question on `requires`, `recommends` or `other: prohibits`, where confusing the force
+     changes the answer.
+   - **Promotion:** a `status` question on a proposal or an illustrative case.
+   - **Evidence:** an `evidence` question.
+   - **Condition:** a `holds` or `influence` question whose answer depends on a stated condition.
+3. **Evidence answers use the T-1 `evidence_nature` values.** The harness maps the universe's evidence classes to
+   them through the table of §3: deterministic, and the same for both arms.
+4. **Outcomes are A-1's.** An answer that turns an obligation into a recommendation or a permission, or the reverse,
+   is an unjustified decision **and** a type-7 critical error. It is counted once.
+
+### 9.4 Stop conditions for stage 2 (frozen)
+
+| # | Condition | Effect |
+|---|---|---|
+| T1 | The proxy check is below 0.85 | The mechanical check is inconclusive (**met now**) |
+| T2 | Insufficient coverage (§4.1) | Inconclusive |
+| T3 | A measurable condition of §4.1 or §9.2 fails | Failure: report and stop; no agents, no new iteration |
+| T4 | A correction needs an S0 change, a change to the W2 decisions or new category words | Stop; owner decision |
+| T5 | The reader, or Claude while developing, accesses Soundbars content | The sealed stage is invalid |
+
+## 10. Decision needed before development
+
+The owner's option B assumed a mechanical pre-filter that could show "promising" results. It cannot (§4). Three
+ways forward:
+
+- **A. Change the role of the mechanical check (recommended).** It becomes a **regression screen only**: the
+  program is reliable when it matches (38 of 38).
+  - The agents (at most three, as decided) are spent only if all of these hold:
+    - mechanically detected critical errors do not increase;
+    - matched-item labels (polarity, force, attitude, source) do not get worse;
+    - the reasoning gate of §9.2 holds.
+  - The improvement itself is judged only by the agents.
+- **B. Recalibrate the matcher.** Fit it on the development judgement and validate it on the sealed adjudicated one.
+  The sealed adjudication has already been seen in this step, so the validation would be weak. Not recommended.
+- **C. Do not develop.** Keep A0, and re-examine the more capable reader.
