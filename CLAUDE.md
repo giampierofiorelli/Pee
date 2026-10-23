@@ -77,8 +77,12 @@ None of these modifies S0.
   - **Stage 0 done** (`experiments/t1/W1-DIAGNOSIS.md`). Recommendation: proceed, narrowed.
   - **Stage 1 (Rules)** (owner, 2026-10-23: option A, stage 1 only; `experiments/t1/DESIGN.md` §10). **Done:**
     `annotation-guide.md`, `W2-RELATIONS.md` and `PROTOCOL.md`, as documents only.
-    - Waiting for the owner: the W2 decisions, the stage-2 judging mode and critical type 7.
-    - W3–W5 and the sealed test are not authorised.
+    - **Closed with the owner's decisions** (`DESIGN.md` §11):
+      - W2 D1–D7 approved;
+      - critical type 7 approved;
+      - stage-2 judging is option B, conditional on a mechanical check (at most three agents).
+    - **The deferred seal is not complete** (`PROTOCOL.md` §7.1).
+    - The freeze step, W3–W5, agents and the sealed test are not authorised.
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
 - Every step names its owner authorisation, and fixes its criteria before any code, as before.

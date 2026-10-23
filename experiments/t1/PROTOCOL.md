@@ -72,6 +72,8 @@ Three measures, each reported for both arms.
 - **On the spent references, the measure is the link.** Their `attributed_to` lists the paragraph's citation block
   for every claim, so it is treated as `cited_sources` there.
 - **No judgement of specific attribution is possible on spent material.**
+- **Whether a linked source actually supports the claim** is a third question. It needs the source itself, and it is
+  not scored in T-1. A correct link is never reported as verified support.
 - **The old ratio is still reported, labelled as such.** It is right ÷ (right + wrong), where an empty matching
   an empty counts as right.
 
@@ -85,8 +87,15 @@ Three measures, each reported for both arms.
 - **Types 1–6** are unchanged.
 - **Two additions apply to both arms:**
   - **Type 3 is widened.** It includes an `illustrative_example` held as an observed result.
-  - **New type 7.** An obligation held as a recommendation or a permission, or the reverse, or a prohibition held as
-    an obligation. This is the error the owner put first for product advice.
+  - **Type 3 applies only to a real promotion.** The hypothetical case must be held as an observed result.
+  - **New type 7.** It covers:
+    - a deontic force confused (obligation, recommendation, permission or prohibition held as another);
+    - a procedural obligation held as a **requirement on a product** (bearer `product` where the reference has
+      `procedure`), when it would change an advice decision such as an exclusion or a shortlist condition.
+- **No double counting.** One wrong element gives at most one critical error. When several types fit, the first in
+  the order 1, 7, 3, 4, 5, 2, 6 is counted. For example, "do not X" read as a recommendation to X is type 1, not also
+  type 7.
+- **The same conventions apply to A0 and A1.**
 - **The gate** of `DESIGN.md` §8.1 and §8.3 ("critical errors of types 1, 3, 4 and 5 not higher") includes type 7.
 
 ## 3. Spent references: the label mapping
@@ -141,7 +150,28 @@ The originals were not kept (O-2 §1.4). Only these propositions keep their subj
    **on the readable subset**, the same for both arms, over the elements A0 can express.
 
 **Limit.** The main target of W3 is norms, and only 25 % of them are mechanically measurable. A gate passed on the
-readable subset alone is weak evidence for norms (§8, decision 2).
+readable subset alone is weak evidence for norms, and it is not a demonstration of general improvement.
+
+### 4.1 Stage-2 sequence (owner decision: option B, conditional)
+
+1. **A mechanical check first, with no agents.**
+   - It runs on the readable subset, with coverage and limits stated.
+   - It reports the unscorable share and the norms measured (36 of 143).
+2. **The three agents are spent only if all of these hold:**
+   - the proxy check of §4 rule 4 reaches at least 0.85;
+   - the right-element share of A1 is higher than A0's (elements A0 can express);
+   - critical errors of types 1, 3, 4, 5 and 7 are not higher, and none of the critical types increases;
+   - the wrong rate is not higher.
+3. **The development judgement.**
+   - **Who:** at most two blind judges and one adjudicator.
+   - **What:** A0 and A1 under random labels, on the same spent Speakers prose, under §5.
+   - **When:** adjudication conventions fixed before judging.
+4. **If step 2 fails,** the result is reported and stage 2 stops there.
+   - No agent is used.
+   - No new iteration is made to get around the failure.
+5. **New capabilities** (the norm bearer, `unclear` forces) are reported apart from the fields A0 can express.
+   - A bearer `product` with no basis in the text is a type-7 error, never a gain.
+6. **Not independent.** Claude judges on spent material are development evidence, not independent validation.
 
 ## 5. The sealed stage (R2), for the judge guide
 
@@ -208,16 +238,37 @@ All of these are committed before any W3 code:
 
 **The reader never accesses the Soundbars text.**
 
-## 8. Decisions for the owner
+### 7.1 Freeze status at the end of stage 1 (2026-10-23)
 
-1. **The W2 decisions D1–D7** (`W2-RELATIONS.md`). D5 and D6 matter most for advice.
-2. **How stage 2 is judged.**
-   - **(a) Mechanical only, on the readable subset** (§4). This uses 0 agents. Norms are 25 % measurable.
-   - **(b) A development judgement.** Two judges and one adjudicator, blind to the arm, under §5. A0 and A1 are judged
-     together on spent development prose. This needs 3 agents, and it departs from stage 2's "0 agents".
-   - **Recommended: (b),** for three reasons:
-     - O-2 found that development choices made with weaker judging than the sealed test did not transfer (O-2 §5.3,
-       §8.3);
-     - the norms W3 targets are mostly unreadable mechanically;
-     - (a) stays as a mechanical cross-check.
-3. **Type 7 and the widened type 3** (§2.6). They change the critical counts, for both arms.
+Checked without reading Soundbars content. The file is identified from Git metadata only. Its blob was not
+downloaded.
+
+| Item | State |
+|---|---|
+| Soundbars package and file | **Identified, not frozen.** `pee-knowledge` `research-packages/PEE-CATEGORY-RESEARCH-08-SOUNDBARS-COMPLETE-v1.0.0.zip`, git blob `29ec3329…ed2c`. The file inside the zip is not chosen |
+| Exposure census | **Not done.** It needs a script that hashes the text without reading it (O-2 §1.2) |
+| Selection method and hash split | **Method stated** (as O-2 §1.3, `DESIGN.md` §4.1). **Not applied** |
+| Inclusion criteria | **Partly stated:** prose only; tables are excluded because Crawler N1 used them. Not written as a frozen list |
+| Annotation guide with the evidence rule | **Done**: `annotation-guide.md` (W2 decisions applied) |
+| The 27 relations after W2 | **Done**: unchanged, plus the controlled forms of D3 and D5 |
+| Question protocol | **Not frozen.** `DESIGN.md` §4.1 names the additions, but no protocol document consolidates them (type-7 and source questions, for example) |
+| Metrics, gates, critical types | **Done**: `DESIGN.md` §8.1–8.3 and this protocol (§2, §4.1) |
+| Scorer and proxy check (§4) | **Not written.** This is code for the stage-2 preparation |
+| Development questions on Speakers | **Do not exist.** The stage-2 gate "justified answers on development questions do not decrease" (§8.1) cannot be measured on Speakers. The only spent question sets are A-1's, on dehumidifiers |
+
+**The freeze is not complete.** Before any W3 code, a freeze step needs its own authorisation. It would cover:
+- the census and split, by script, without reading the text;
+- the inclusion list;
+- the question protocol;
+- the scorer with its proxy check;
+- a decision on the development-question gate: use A-1's spent dehumidifier questions, or drop the gate for stage 2
+  and keep it for the sealed stage.
+
+## 8. Owner's decisions (2026-10-23)
+
+1. **W2 D1–D7 are approved**, with precisions (`W2-RELATIONS.md`, top).
+2. **Stage 2 uses option B, conditional** (§4.1): first the mechanical check, then at most three agents.
+3. **Type 7 is approved,** including the procedural-to-product bearer error. **Type 3 is widened** to a real promotion
+   of a hypothetical case. Both apply to both arms, without double counting (§2.6).
+
+Stage 2 itself is **not authorised yet**.

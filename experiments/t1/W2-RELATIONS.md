@@ -7,6 +7,21 @@
 | **Unchanged** | S0, the A-1 reader, the A-1 annotation guide, every earlier result |
 | **Basis** | Annotator disagreement (C-1 §18); the causes found in W1 (`W1-DIAGNOSIS.md` §3–4) |
 
+## Owner's decisions (2026-10-23, after review with ChatGPT)
+
+**D1–D7 are approved**, option A where options were offered, with these precisions:
+
+| # | Decision |
+|---|---|
+| D1–D4 | The distinctions are kept: indicator against category; scope against proof; equality against comparability; obligation against recommendation. `establishes` needs evidence that is actually sufficient for the conclusion, under the stated conditions |
+| D5 | `other: prohibits` and `other: permits` are controlled forms, scored exactly. The 27 relations are unchanged |
+| D6 | A procedural step is an obligation **only when the procedure actually prescribes it as necessary**. The bearer is kept. Otherwise the force is `uncertain` (selective abstention) |
+| D7 | A heading's predicate is inherited only when the heading justifies it. An ordered list gives `exceeds` only when **the dimension and the direction** of the comparison are stated. Otherwise the order means nothing |
+| Bearer | A procedural obligation is never a requirement on a product |
+
+The sections below keep the proposals as written. The decisions above win where they are more precise. The amended
+guide (`annotation-guide.md`) applies them.
+
 All examples below come from fields other than speakers. They were written for this review, so they are design
 examples and can never serve as evidence.
 

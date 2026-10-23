@@ -5,7 +5,7 @@
 | **Authorised by** | Owner, 2026-10-23: T-1 stage 1 (Rules) |
 | **Base** | `experiments/a1/annotation-guide.md`, **unchanged**. It stays the guide of A-1, O-2 and C-1 |
 | **Use** | Annotators of the sealed reference R2 read both documents. Where they conflict, this one wins |
-| **Freeze** | Before stage 2 (`DESIGN.md` §8.4), after the owner's W2 decisions. Sections marked *pending W2* take the decided option |
+| **Freeze** | Before stage 2 (`DESIGN.md` §8.4). The W2 decisions of 2026-10-23 (`W2-RELATIONS.md`) are applied below |
 
 ## 1. Evidence in four dimensions (replaces `evidence_kind`)
 
@@ -40,6 +40,8 @@ This is the evidence rule the owner approved (`DESIGN.md` §8.2, revision 2). It
 | `cited_sources` | Source identifiers cited for the passage unit that states the claim: in its sentence, or in a citation block closing its paragraph. This is a **bibliographic link**. How far the source supports the claim is not decided |
 | `attributed_to` | Only when the passage presents the claim **as the source's**: a reporting verb ("X finds", "according to X"), X as the grammatical subject of the claim, or a result of an identified study. Otherwise null |
 
+- **Whether the source actually supports the claim** is a third question. It is not annotated: it needs the source
+  itself.
 - A claim may have `cited_sources` and no `attributed_to`. This is the usual case for an author's synthesis followed
   by references.
 - **Never** copy a paragraph's citation block into `attributed_to`.
@@ -51,18 +53,22 @@ This is the evidence rule the owner approved (`DESIGN.md` §8.2, revision 2). It
 | `deontic_force` | `obligation`, `prohibition`, `recommendation`, `discouragement`, `permission`, `unclear` |
 | `norm_bearer` | `product` (a device or system), `procedure` (a method, protocol, test or schema), `user` (the reader or buyer), `adviser` (PEE itself), or `other: …` |
 
-- **The relation** follows W2 D4–D6 (*pending W2*). The recommended options:
+- **The relation** (W2 D4–D5):
   - `requires` for obligations;
   - `recommends` for recommendations;
   - the controlled form `other: prohibits` for prohibitions;
   - `other: permits` for permissions.
 - **Never write a prohibition as a negated `requires`.** "Not required" is a permission to omit.
-- **The force comes from the passage, in this order:**
-  1. explicit markers;
-  2. a step of a procedure (bearer `procedure`);
-  3. advice to a reader (bearer `user`).
+- **The force comes from the passage, in this order (W2 D6):**
+  1. **Explicit markers decide:** `must`, `required`, `never`, `do not`, `should`, `consider`, `prefer`.
+  2. **A step of a procedure is an obligation (bearer `procedure`) only when the procedure prescribes it as
+     necessary.** For example, the text calls the steps mandatory, or says the method is invalid without the step.
+     Being a step is not enough.
+  3. **Advice addressed to a reader** is a recommendation (bearer `user`).
 
-  Otherwise it is `unclear` (D6, *pending W2*).
+  Otherwise the force is `unclear`.
+- **A procedural obligation never makes a requirement on a product.** "The procedure requires a calibrated
+  instrument" says nothing about which product to buy.
 - **Modality.** Keep the modal of the sentence. It never changes the force: "should" stays a recommendation even if
   it is written `necessary`.
 
@@ -73,24 +79,26 @@ itself does not decide it.
 - This is the annotator's statement about the **text**, not about the reader.
 - An `unclear` element is not scored for either arm.
 
-## 5. Lists governed by a heading (*pending W2*, D7)
+## 5. Lists governed by a heading (W2 D7)
 
-- **Recommended option A.** The heading gives the predicate only through existing relations:
-  - a class heading → `is_a`;
-  - an ordered list → `exceeds` between consecutive items, with the dimension named;
-  - a status heading ("open questions", "research gaps") → `document_attitude` `questioned` or content kind
-    `unknown`.
-- **Any other heading** gives no predicate.
+The heading gives the predicate **only when the heading justifies it**, and only through existing relations:
+- **A heading that explicitly names a class** → `is_a`.
+- **An ordered list** → `exceeds` between consecutive items, **only when the heading states the dimension and the
+  direction** (for example "ranked from strongest to weakest evidence"). Otherwise the order is not a ranking.
+- **A status heading** ("open questions", "research gaps") → `document_attitude` `questioned`, or content kind
+  `unknown`.
 
-## 6. Definitions sharpened by W2 (*pending W2*, D1–D3)
+Any other heading gives no predicate: each item stands alone.
 
-| Relation | Test, when the owner adopts it |
+## 6. Definitions sharpened by W2 (D1–D3)
+
+| Relation | Test |
 |---|---|
 | `is_a` | "every X is a Y" |
 | `indicates` | "observing X is a reason to believe Y" |
 | Threshold that **defines** a category | `is_a` or `defined_as` |
 | Threshold that is **evidence** of a state | `indicates` |
-| `establishes` | needs an evidential subject and an object that can be true or false |
+| `establishes` | needs an evidential subject that is sufficient for the conclusion under the stated conditions, and an object that can be true or false |
 | `applies_to` | has a domain or condition as its object |
 | `equals` | identity or equality only |
 | Comparability | the controlled form `other: comparable_with`, with polarity |

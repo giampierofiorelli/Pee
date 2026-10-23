@@ -362,3 +362,18 @@ subject and object readable. Mechanical scoring alone therefore measures the nor
 - the new critical type 7.
 
 Stage 2 is not authorised.
+
+## 11. Stage 1 closed (2026-10-23): the owner's decisions applied
+
+- **W2 D1–D7 approved**, with precisions:
+  - D6: a step is obligatory only when the procedure prescribes it as necessary;
+  - D7: `exceeds` only with a stated dimension and direction.
+
+  They are applied in `annotation-guide.md` and recorded in `W2-RELATIONS.md`.
+- **Critical errors.** Type 7 is approved, including the procedural-to-product bearer error. Type 3 is widened to a
+  real promotion of a hypothetical case. No double counting.
+- **Stage-2 evaluation:** option B, conditional. First a mechanical check; then at most three agents, only if it
+  passes (`PROTOCOL.md` §4.1).
+- **The deferred seal is not yet complete** (`PROTOCOL.md` §7.1). A freeze step comes before any W3 code.
+
+Stopped at the stage-2 authorisation point.
