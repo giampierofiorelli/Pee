@@ -70,7 +70,10 @@ None of these modifies S0.
   universe, then reasoning from the universe alone.
   - The existing reader is improved from its measured errors, with selective abstention element by element.
   - The 27 relations are unchanged unless the owner decides otherwise.
-  - Nothing is run without the owner's go-ahead.
+  - Revision 2 (owner, 2026-10-23; `experiments/t1/DESIGN.md` §8.4): the deferred seal of Soundbars is accepted, and
+    **only stage 0 (Diagnosis)** is authorised.
+  - Stage 0 uses no agents, no Soundbars content and no S0 change. Preferably it runs in a new session attached to
+    Pee alone.
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
 - Every step names its owner authorisation, and fixes its criteria before any code, as before.

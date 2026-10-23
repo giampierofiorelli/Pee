@@ -222,9 +222,9 @@ order of decisions.
 
 | Stage | Work | Agents | Proceed only if |
 |---|---|---|---|
-| **0. Diagnosis** | W1 on spent material | 0 | The causes that general principles can fix cover at least half of A-1's errors; otherwise stop the rule-reader path |
+| **0. Diagnosis** | W1 on spent material | 0 | Judged on several criteria, not one threshold (revision 2, 8.4). The causes are weighed by share, by **severity** (negation, condition, attribution, promotion), by **impact on reasoning**, and by whether a general principle can fix them. A small class that holds most negation errors counts. The outcome is a reasoned recommendation: proceed, change approach, or stop |
 | **1. Rules** | The evidence rule (8.2) in the annotation guide; W2, the unstable relation pairs | 0 | The owner approves; ChatGPT may review |
-| **2. Development** | W3–W5, measured **mechanically** on spent material, as in C-1 F′ | 0 | Exact relation accuracy is up by at least 0.10, negation errors are not up, and the **right-element share** (8.3) is not down |
+| **2. Development** | W3–W5, measured **mechanically** on spent material, as in C-1 F′ | 0 | **All** of these, on development: the right-element share (8.3) **increases**; critical errors, negation errors above all, do not increase; complete faithful coverage does not decrease; the uninterpreted share is reported; justified answers on development questions do not decrease. Exact relation accuracy (+0.10) is an **indicator**, never sufficient alone. A failure is documented, and no further attempt is made to get around the rule |
 | **3. Sealed test** | R2 and Q2 on Soundbars, then the frozen arms and blind judging | about 13 | — (this is the result) |
 
 **When R2 is sealed: an open decision for the owner.** The O-2 rule was to seal the reference before any code change.
@@ -252,8 +252,13 @@ content from its attribution, holder and standing (D10, D14, 5.8–5.9).
 - **Unknown is unknown.** Independence that is not stated is `unknown`, never assumed.
 - **Fidelity is separate from probative value.** A correctly extracted claim is not thereby true. Fidelity is scored
   on its own, and the probative value never raises a claim's standing.
-- **Manufacturer declarations stay declarations.** A manufacturer's declaration is `declaration`, `interested`,
-  whatever measurement words it uses (`CLAUDE.md`, Evidence).
+- **Two kinds of manufacturer evidence** (revision 2). A party's documented measurement, with method, conditions and
+  value, is `measurement` with independence `interested`. A party's plain commercial statement is `declaration` with
+  independence `interested`.
+  - Neither is independent. Neither is ever an independent test or ranking (`CLAUDE.md`, Evidence), and neither is
+    given scientific validity that has not been shown.
+  - Their probative content still differs, and the distinction is kept.
+  - Measurement words in a statement without a documented method do not make it a measurement.
 - **Hypothetical cases stay hypothetical.** A constructed teaching case is `illustrative_example`, never
   `observed_result`.
 
@@ -279,3 +284,40 @@ favoured an arm that marks almost everything uncertain. Per reference propositio
 - **Complete faithful coverage.** It is not lower.
 - **Reasoning.** On Q2, more correct answers and no more unjustified ones.
 - **Abstention.** The uninterpreted share is reported beside every comparison.
+
+
+## 8.4 Revision 2 (2026-10-23): the owner's decisions after ChatGPT's review
+
+**The owner's decision, in the owner's words:**
+
+> Approvo entrambe le decisioni: accettiamo il sigillo differito per risparmiare agenti e autorizziamo la sola
+> diagnosi iniziale, preferibilmente in una nuova sessione Claude Code collegata a Pee.
+
+**1. Deferred seal, accepted.** The O-2 rule is departed from knowingly, and on the owner's record.
+- **Frozen before any development (stage 2).** All of these are fixed and committed:
+  - the Soundbars package and file;
+  - the exposure census;
+  - the **selection method** and the hash split of the sections;
+  - the inclusion criteria;
+  - the annotation guide with the evidence rule (8.2);
+  - the definitions of the 27 relations, after the owner's W2 decisions;
+  - the question protocol (A-1's format with the T-1 additions);
+  - the metrics (8.3);
+  - the gates and stop rules (8.1).
+
+  **The reader never accesses the Soundbars text.**
+- **After both readers (A0, A1) are frozen.** Agents blind to the development results produce R2 and Q2. They are
+  sealed, the arms are evaluated, and no further correction is made beyond the one change cycle.
+- **The protocol is never adapted to results.**
+
+**2. Stage gates corrected.**
+- Stage 0 is judged on share, severity, impact on reasoning and generalisability.
+- Stage 2 requires the right-element share to **increase**, together with the other controls (8.1).
+
+**3. Evidence corrected.** A party's documented measurement is distinguished from a plain commercial statement. Both
+stay non-independent (8.2).
+
+**4. Authorised now: stage 0 (Diagnosis) only.**
+- **Not used:** agents and the Soundbars content.
+- **Unchanged:** S0.
+- **Where:** preferably in a new Claude Code session attached to Pee alone.
