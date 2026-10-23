@@ -1,0 +1,20 @@
+{
+ "schema": "pee.r1.seals.v1",
+ "reference": {
+  "path": "private:pee-knowledge/private-eval/pee-r1/reference.json",
+  "sha256": "b8ed9862ce334dbee086d19702de8c9a47ccdbe5c65a923c3be52767fe18c773",
+  "items": 56,
+  "written_by": "Claude, before any arm ran on the sealed tables"
+ },
+ "p0": {
+  "result": "p0-firstrun.json",
+  "passes": true
+ },
+ "code_at_seal": {
+  "engine-ts/pee-tools/tables-bridge.mjs": "ae540a02ef8c2183beff37360a713d2847f35996cde4ed61632d9878ad789c62",
+  "experiments/universe/universe/crawler_tables.py": "750f9ef6f1cc426e423b6b4fc6895ca65267deb61051405523d70bad6696a2dc",
+  "experiments/r1/common.py": "2adcbed9011760c3c14e8aa7a51d18fd2cd8ed237baaa1870a853f11eef1fab4",
+  "experiments/r1/p0.py": "8c7275a76f3e5577fa2801f01dd0504410378c7a7115c8654d6aece827955f16"
+ },
+ "note": "Gated files (crawler_tables.py) are frozen by hash here and committed with the comparison, as preservation/check.py requires."
+}
