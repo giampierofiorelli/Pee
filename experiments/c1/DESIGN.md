@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Status** | **Design only, revision 1** (owner corrections of 2026-10-23, section 0). Nothing is installed, downloaded or run. Execution of each stage needs an explicit owner authorisation |
+| **Status** | **Revision 2.** The owner said "Procedi come ritieni" (2026-10-23) after revision 1. Claude reads this as the go-ahead for the agent-free stages V, P and F only (section 6). Stages D and S still need the owner's explicit authorisation and the evidence-kind rule |
 | **Basis** | The owner's message of 2026-10-23 (recommendations, `ORGANISATION.md` §7.3): design the next experiment, without running it |
 | **Branch** | `claude/pee-operational` |
 | **Unchanged** | S0, `engine-ts/`, the A-1 reader and the dependency rule of `CLAUDE.md` |
@@ -266,3 +266,27 @@ explicitly by the owner.
 - https://www.emergentmind.com/papers/2503.11376
 - https://huggingface.co/fastino/gliner2-large-v1
 - https://arxiv.org/html/2507.18546v1
+
+## 13. Revision 2: lessons from comparable projects, and one model for both roles
+
+**Lessons from comparable projects** (sources in the conversation of 2026-10-23):
+- **SemRep.** Strict precision is about 0.55, and errors include lost negations. Filtering after extraction raised
+  one application from 0.67 to 0.91.
+- **ORKG and CS-KG.** They rely on human curation. LLM verification raised precision from 0.75 to 0.87, but lost
+  recall.
+- **Negation and speculation.** Modules trained on annotated corpora (BioScope) beat generic rules by 20–30 F1.
+- **Claim decomposition.** It is itself a source of error.
+
+**What follows for C-1:**
+- **Precision before recall.** The verifier arms matter most.
+- **The record, per relation type.** F and S report precision per relation type, because a future admission
+  policy, if the owner sets one, would admit by relation type, never in bulk.
+- **Admission stays outside C-1.** Human review of a sample would be part of any later admission, as in every
+  comparable project.
+
+**One model for both roles.** The owner limited the exception to one model at first. The verifier V is therefore the
+**same** local model used as an entailment judge: "Does this sentence state this proposition? yes / no / unclear",
+with constrained output. No separate NLI model is installed.
+- **What stays the same.** Arms A, L, A+V and L+V are kept.
+- **What a fail would mean.** If the model fails as a verifier, a dedicated NLI model would be a later owner
+  decision.
