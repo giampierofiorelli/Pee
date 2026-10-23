@@ -47,8 +47,28 @@ class Lexicon:
     """Everything acquisition may read words with, gathered from universe items (never from a private list)."""
 
     def __init__(self, store):
-        self.kinds = {k.id: thaw(k.body) for k in store.of("quantity_kind") if k.body.get("terms")}
-        cs = {c.id: thaw(c.body) for c in store.of("concept")}
+        from .dependencies import current
+        # kinds of quantity: the base ones and those acquired from documents, while current (F-1); a kind acquired
+        # from a document may be anchored by symbols (matched as written) as well as by terms
+        self.kinds = {k.id: thaw(k.body) for k in store.of("quantity_kind")
+                      if (k.body.get("terms") or k.body.get("symbols")) and current(store, k.id)}
+        for c in store.of("content", form="anchor"):
+            if c.body.get("kind") in self.kinds and current(store, c.id):
+                kb = self.kinds[c.body["kind"]]
+                kb["terms"] = sorted(set(kb.get("terms", [])) | set(c.body.get("terms", ())))
+                kb["symbols"] = sorted(set(kb.get("symbols", [])) | set(c.body.get("symbols", ())))
+        roles = {r.body.get("structural_role"): r.id for r in store.of("relation_concept") if r.body.get("structural_role")}
+        # influence quantities a document states (a kind written as a function of them) define its measurand
+        for c in store.of("content", form="relation"):
+            if c.body.get("relation") == roles.get("influence") and c.body.get("subject") in self.kinds \
+                    and c.body.get("object") and current(store, c.id):
+                dc = self.kinds[c.body["subject"]].setdefault("defining_conditions", [])
+                if c.body["object"] not in dc:
+                    dc.append(c.body["object"])
+        self.symbols = sorted(((s, kid) for kid, kb in self.kinds.items() for s in kb.get("symbols", ())),
+                              key=lambda x: -len(x[0]))
+        cs = {c.id: thaw(c.body) for c in store.of("concept") if current(store, c.id)}
+        self.evidence_classes = {i: c.get("terms", []) for i, c in cs.items() if c.get("category") == "evidence class"}
         self.lang = cs["L:en"]
         self.stop = set(self.lang["stopwords"])
         self.separators = set(self.lang.get("separators", ()))
@@ -68,13 +88,16 @@ class Lexicon:
                                  for t in c.get("terms", ())), key=lambda x: -len(x[0]))
         self.labels = {i: c.get("label", i) for i, c in cs.items()}
         # relation concepts are found by the structural role their knowledge item declares, never by name
-        roles = {r.body.get("structural_role"): r.id for r in store.of("relation_concept") if r.body.get("structural_role")}
         self.parthood, self.instantiation = roles.get("parthood"), roles.get("instantiation")
+        self.influence, self.non_identity = roles.get("influence"), roles.get("non_identity")
         self.method = next(i for i, c in cs.items() if c.get("category") == "method")
         self.method_terms = sorted(cs[self.method]["terms"], key=len, reverse=True)
         # test standards are method items (S0 D16, D18) with lexical anchors
         self.standards = sorted(((_norm(t), m.id) for m in store.of("method") if m.body.get("category") == "test standard"
-                                 for t in m.body.get("terms", ())), key=lambda x: -len(x[0]))
+                                 and current(store, m.id) for t in m.body.get("terms", ())), key=lambda x: -len(x[0]))
+        # the condition sets a method fixes for the kinds it measures (F-1, acquired from documents)
+        self.method_conditions = {m.id: (thaw(m.body.get("condition_sets") or []), list(m.body.get("measures") or []))
+                                  for m in store.of("method") if current(store, m.id)}
         surf = []
         for u, ss in units.SURFACES.items():
             for s in ss:
@@ -148,6 +171,9 @@ def parse_values(text, lex):
             elif gap in ("±", "+/-", "+-") and len(group) == 1:
                 form = "tolerance"
             elif gap in L["list_separators"] and form in ("single", "list"):
+                u_next = lex.unit_at(text, nums[k + 1]["end"])
+                if u and u_next and not units.same_dims(units.dims_of(u[0]), units.dims_of(u_next[0])):
+                    break  # "2 m, 50 Hz": values of different dimensions are separate values, not one list (F-1)
                 form = "list"
             else:
                 break
@@ -300,7 +326,7 @@ def _dims_ok(kind_body, unit):
 def _empty():
     return {"kinds": [], "settings": [], "aliases": [], "qconds": {}, "nconds": {}, "entities": [], "parts": [],
             "bearer_kinds": [], "standards": [], "procedures": [], "units": [], "extent": [], "values": [],
-            "unplaced": []}
+            "unplaced": [], "loose": []}
 
 
 def _merge(out, sub, skip=()):
@@ -354,6 +380,9 @@ def _place_text(raw, lex, unit):
             text = text.replace(" " + span + " ", " ")
             out["unplaced"].append(span.replace(" ", ""))
             out["values"].append(span)
+            # kept for placement once the header's kind is known (an influence quantity of that kind, F-1)
+            out["loose"].append({"token": span.replace(" ", ""), "n": v["numbers"][0][0], "unit": v["unit"],
+                                 "after": _norm(raw[v["end"]:]).split()[:2]})
     # settings: a numbered setting word with its number, or named settings in text order
     for w in lex.setting_numbered:
         for m in re.finditer(rf" ({re.escape(w)}) (\d+|[ivx]+) ", text):
@@ -378,7 +407,15 @@ def _place_text(raw, lex, unit):
     for kid, kb in lex.kinds.items():
         if not _dims_ok(kb, hunit):
             continue
-        for t in kb["terms"]:
+        for s in kb.get("symbols", ()):  # a symbol is matched as written, as a whole token (F-1)
+            ns = " " + _norm(s) + " "
+            if re.search(rf"(?<![\w.]){re.escape(s)}(?![\w])", raw) and ns.strip() and ns in text:
+                n = len(ns.split())
+                if n > best:
+                    best, cands = n, []
+                if n == best:
+                    cands.append((kid, ns))
+        for t in kb.get("terms", ()):
             tt = " " + _norm(t) + " "
             if tt.strip() and tt in text:
                 n = len(tt.split())
@@ -412,6 +449,57 @@ def _place_text(raw, lex, unit):
     out["unplaced"] += [w for w in text.split() if w not in lex.stop and not w.isdigit() and w not in axis
                         and w not in lex.separators and re.search(r"[^\W\d_]", w)]
     return out
+
+
+def influence_conditions(lex, kind, loose):
+    """Conditions keyed by the influence quantities of ``kind`` (its defining conditions that are quantities), read
+    from values a header or a question states beside the kind: a value followed by a term or symbol of one influence
+    quantity is that quantity; a bare value is the influence quantity whose dimension it has, when exactly one has it.
+    Returns (conditions, the unplaced tokens it explains)."""
+    kb = lex.kinds.get(kind) or {}
+    infl = []
+    for d in kb.get("defining_conditions", ()):
+        if d in lex.kinds:
+            infl.append((d, units.pad(lex.kinds[d]["dims"]), {_norm(t) for t in lex.kinds[d].get("terms", ())}
+                         | {_norm(s) for s in lex.kinds[d].get("symbols", ())}, lex.kinds[d].get("scale")))
+        elif d in lex.qconds:
+            infl.append((d, units.dim(**lex.qconds[d]["quantity_dims"]), {_norm(m) for m in lex.qconds[d]["markers"]},
+                         None))
+    conds, used = {}, set()
+    for lv in loose:
+        ud = units.dims_of(lv["unit"])
+        level = units.SCALE.get(lv["unit"]) == "level"
+        fits = [i for i in infl if units.same_dims(i[1], ud) and (i[3] == "level") == level]
+        named = [i for i in fits if lv["after"] and (lv["after"][0] in i[2] or " ".join(lv["after"]) in i[2])]
+        pick = named if len(named) == 1 else (fits if len(fits) == 1 else [])
+        if pick and pick[0][0] not in conds:
+            d = pick[0][0]
+            conds[d] = [lv["n"], lv["n"], lv["unit"]]
+            used.add(lv["token"])
+            if named:
+                used.update(w for w in lv["after"] if w in pick[0][2])
+                used.update(" ".join(lv["after"]).split() if " ".join(lv["after"]) in pick[0][2] else [])
+    return conds, used
+
+
+def read_conditions(text, lex, kind=None):
+    """A question's or a situation's conditions read like a header (the same placement as documents). Returns
+    (conditions, words not explained by universe items)."""
+    if not text:
+        return {}, []
+    p = place(text, lex, {}, None)
+    conds = {k: list(v) for k, v in p["qconds"].items()}
+    for k, vs in p["nconds"].items():
+        conds[k] = vs[0]
+    if p["settings"]:
+        conds[lex.setting] = "V:setting:" + p["settings"][0]
+    leftover = list(p["unplaced"]) + list(p["extent"])
+    if kind:
+        ic, used = influence_conditions(lex, kind, p["loose"])
+        for k, v in ic.items():
+            conds.setdefault(k, v)
+        leftover = [w for w in leftover if w not in used]
+    return conds, leftover
 
 
 def place(segment, lex, names, unit):
@@ -666,6 +754,11 @@ def acquire_document(store, doc):
                                        "source_type_operator_asserted": doc.get("sourceTypeOperatorAsserted")},
                                [rid], "the source reports this record (attribution, not adoption)")
                 _interpret(ctx, rid, rec, v, label, colpath, rowpath, default, aid, tmethods, scope)
+    # the knowledge the document states (definitions, notation, formulas, standards, citations; F-1)
+    from .knowledge_acquisition import acquire_knowledge
+    known = acquire_knowledge(store, doc, lex)
+    if known.get("units"):
+        summary["knowledge"] = known
     return summary
 
 
@@ -749,6 +842,18 @@ def _interpret(ctx, rid, rec, v, label, colpath, rowpath, default, aid, tmethods
     if not method_ids and len(tmethods) == 1:
         method_ids = list(tmethods)
     unplaced = every("unplaced")
+    if len(kinds) == 1:
+        # values the header states beside the kind are its influence quantities when the kind's knowledge says so
+        iconds, used = influence_conditions(lex, kinds[0], [lv for p in placed for lv in p["loose"]])
+        for k, iv in iconds.items():
+            qconds.setdefault(k, iv)
+        unplaced = [w for w in unplaced if w not in used]
+        # conditions a named method fixes for this kind, when it fixes exactly one set (F-1, design 2.4 (iii))
+        for m in method_ids:
+            sets, measures = lex.method_conditions.get(m, ([], []))
+            if len(sets) == 1 and kinds[0] in measures:
+                for k, mv in sets[0]["conditions"].items():
+                    qconds.setdefault(k, list(mv))
     incomplete = []
     if unplaced:
         incomplete.append("header words not placed in any slot: " + " ".join(unplaced))

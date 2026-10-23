@@ -271,7 +271,8 @@
     "sound pressure level",
     "loudness",
     "decibel level",
-    "sound"
+    "sound",
+    "sound pressure"
    ],
    "scale": "level",
    "determinable": "bearer",
@@ -526,6 +527,21 @@
     "kind"
    ],
    "structural_role": "instantiation"
+  },
+  {
+   "id": "R:depends_on",
+   "kind": "relation_concept",
+   "label": "the value of the subject quantity depends on the object quantity or condition (an influence quantity, JCGM 200:2012 2.52; a defining condition of the measurand, 2.3)",
+   "transfers": [],
+   "structural_role": "influence"
+  },
+  {
+   "id": "R:distinct",
+   "kind": "relation_concept",
+   "label": "the two designated quantities or notions are not the same and are not interchangeable",
+   "transfers": [],
+   "structural_role": "non_identity",
+   "symmetric": true
   },
   {
    "id": "E:physical_relation",

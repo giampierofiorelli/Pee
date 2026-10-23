@@ -182,5 +182,19 @@
  "non_identity_markers": [
   "!=",
   "≠"
+ ],
+ "unit_connectors": [
+  "or",
+  "and",
+  "/",
+  ",",
+  "in",
+  "e.g.",
+  "commonly",
+  "often",
+  "usually",
+  "typically",
+  "sometimes",
+  "approximately"
  ]
 }

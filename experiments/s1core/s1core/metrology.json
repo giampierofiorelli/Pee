@@ -1091,7 +1091,10 @@
     "pints per day",
     "pints/24h",
     "pints/24 h",
-    "pt/day"
+    "pt/day",
+    "US pints/day",
+    "US pints per day",
+    "US pint/day"
    ]
   },
   "kg/h": {
@@ -1212,6 +1215,18 @@
     "μg/m³",
     "μg/m3",
     "ug/m3"
+   ]
+  },
+  "kg/kWh": {
+   "factor": 2.7777777777777776e-07,
+   "offset": 0.0,
+   "dims": {
+    "L": -2,
+    "T": 2
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "kg/kWh"
    ]
   }
  }

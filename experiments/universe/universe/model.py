@@ -88,7 +88,7 @@ def project(store, inquiry):
     """Transient s1core knowledge base and situation for one inquiry."""
     entities = set(inquiry.body["roles"].values())
     items = [_kind(k) for k in store.of("quantity_kind")]
-    items += [_model(m) for m in store.of("model")]
+    items += [_model(m) for m in store.of("model") if current(store, m.id)]
     items += [K.SingleValued(f"SV:{c.id}", c.id, source=c.provenance["source"])
               for c in store.of("concept") if c.body.get("single_valued")]
     givens, assumptions = [], []
