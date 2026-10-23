@@ -1,0 +1,363 @@
+{
+ "note": "After-change runs on freeze_2 (spent material; never held-out), and the E2b runs on freeze_1 (first run) and freeze_2. Counts only; the rows (values, texts) are private.",
+ "freeze_2": "5c5e3a055a6da913e1410184a02d00e626d2a3fbe8d0d0b23109088a8b9caa39",
+ "files": {
+  "afterchange/e1-AP.json": "207830de54307785d5098b31e17275919230829667e854dee68a42e31adf1592",
+  "afterchange/e1-DH.json": "4036a5849e96ee6cedf97a90cb3d037b7f49c2dabb3d71d009134e7db3debd47",
+  "afterchange/e2b-Q.json": "255c8cd4b7468f99b39841d6ad64a4a624de5ade364524fc28bc386f23f0d5ad",
+  "afterchange/e2b-QR.json": "895694ce614a30243dc0587ae92f48016f661739dace4e09ca92a1a9310f8873",
+  "afterchange/e4-fidelity-RFC.json": "8fb8aa13839a44e9d507df023a1681a8dd54203d1518c3331b54b9e5601774ab",
+  "afterchange/pages-K0.json": "370e7f46cb71a7bc557a20906361254126f7e1358e63c48cf25ad555493129b0",
+  "afterchange/pages-K1.json": "b2b2d322f396221d0e55b2dcd2966e9e3be7b0ea4921d2e622d85d22357165ad",
+  "afterchange/pages-KI2.json": "bc7fed7a1f56b4a46524bdcb50959c9f003f4b20d5dd88ead09aff3fb64b1eaa",
+  "afterchange/q-K0.json": "b9c0df77b27c91bbbfc423e6f4f981336df419826888dc87b36f8bbbc83c2c31",
+  "afterchange/q-K1.json": "e9c78d27b2c4ade7d4846f36b083d12df314f1779c5562fe57fe59273fa98a67",
+  "afterchange/q-KI2.json": "9b797be7f6f63424a987b9ec4fc42ef4df715c4c534a005e45b709331e11280f",
+  "afterchange/q-ORACLE.json": "1ef993834c7b5219e6ceadc687efaa74ee17ddea371fa9895d0203fbf652a904",
+  "afterchange/qr-K0.json": "c0682de4334c19d98706669ac46c313c12d3ef661f134b7455668c92ab430fe8",
+  "afterchange/qr-K1.json": "429c1419c1f7304d61c87c23e348cbbb0b1bf57a93deb44a29e534797ed2fa98",
+  "firstrun/e2b-Q.json": "72e0468621ead27e88ca259ccf061e7488fa0f9fed088969c0915cdb23e8f76b",
+  "firstrun/e2b-QR.json": "895694ce614a30243dc0587ae92f48016f661739dace4e09ca92a1a9310f8873"
+ },
+ "E1": {
+  "AP": {
+   "by_type": {
+    "kind": {
+     "reference_units": 8,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0,
+     "missed": 8
+    },
+    "formula": {
+     "reference_units": 12,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0,
+     "missed": 4,
+     "correct abstention": 8
+    },
+    "distinct": {
+     "reference_units": 79,
+     "produced": 9,
+     "read_units": 9,
+     "unmatched_produced": 0,
+     "missed": 70,
+     "correct": 9
+    },
+    "method": {
+     "reference_units": 38,
+     "produced": 17,
+     "read_units": 17,
+     "unmatched_produced": 0,
+     "missed": 21,
+     "correct": 17
+    },
+    "reference": {
+     "reference_units": 72,
+     "produced": 72,
+     "read_units": 72,
+     "unmatched_produced": 0,
+     "correct": 55,
+     "partial": 17
+    },
+    "unresolved_citation": {
+     "reference_units": 0,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0
+    },
+    "label": {
+     "reference_units": 41,
+     "produced": 28,
+     "read_units": 28,
+     "unmatched_produced": 1,
+     "missed": 14,
+     "correct": 27
+    }
+   },
+   "totals": {
+    "produced": 126,
+    "correct": 108,
+    "strict_precision": 0.857,
+    "reference_units": 250,
+    "acquired": 125,
+    "recall": 0.5,
+    "critical_errors": 0
+   },
+   "critical": []
+  },
+  "DH": {
+   "by_type": {
+    "kind": {
+     "reference_units": 8,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0,
+     "missed": 8
+    },
+    "formula": {
+     "reference_units": 3,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0,
+     "missed": 1,
+     "correct abstention": 2
+    },
+    "distinct": {
+     "reference_units": 21,
+     "produced": 1,
+     "read_units": 1,
+     "unmatched_produced": 0,
+     "correct": 1,
+     "missed": 20
+    },
+    "method": {
+     "reference_units": 7,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0,
+     "missed": 7
+    },
+    "reference": {
+     "reference_units": 4,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0,
+     "missed": 4
+    },
+    "unresolved_citation": {
+     "reference_units": 26,
+     "produced": 26,
+     "read_units": 26,
+     "unmatched_produced": 0,
+     "correct": 26
+    },
+    "label": {
+     "reference_units": 16,
+     "produced": 14,
+     "read_units": 14,
+     "unmatched_produced": 1,
+     "correct": 13,
+     "missed": 3
+    }
+   },
+   "totals": {
+    "produced": 15,
+    "correct": 14,
+    "strict_precision": 0.933,
+    "reference_units": 85,
+    "acquired": 40,
+    "recall": 0.471,
+    "critical_errors": 0
+   },
+   "critical": []
+  }
+ },
+ "Q": {
+  "ORACLE": {
+   "counts": {
+    "correct decision": 6,
+    "lost decision (uninformed)": 24,
+    "uninformed abstention": 22,
+    "justified abstention": 5,
+    "lost decision": 3
+   }
+  },
+  "K0": {
+   "counts": {
+    "lost decision (uninformed)": 30,
+    "lost decision": 1,
+    "correct decision": 2,
+    "uninformed abstention": 27
+   }
+  },
+  "K1": {
+   "counts": {
+    "correct decision": 4,
+    "lost decision": 1,
+    "lost decision (uninformed)": 28,
+    "uninformed abstention": 27
+   }
+  },
+  "KI2": {
+   "counts": {
+    "correct decision": 4,
+    "lost decision": 1,
+    "lost decision (uninformed)": 28,
+    "uninformed abstention": 27
+   }
+  }
+ },
+ "QR": {
+  "K0": {
+   "counts": {
+    "lost decision (uninformed)": 15,
+    "uninformed abstention": 15
+   }
+  },
+  "K1": {
+   "counts": {
+    "lost decision (uninformed)": 15,
+    "uninformed abstention": 15
+   }
+  }
+ },
+ "pages": {
+  "K0": {
+   "air purifiers": {
+    "pages": 20,
+    "contents": 735,
+    "complete": 97
+   },
+   "other categories": {
+    "pages": 7,
+    "contents": 2034,
+    "complete": 22
+   },
+   "robot vacuums": {
+    "pages": 11,
+    "contents": 57,
+    "complete": 3
+   }
+  },
+  "K1": {
+   "air purifiers": {
+    "pages": 20,
+    "contents": 735,
+    "complete": 102
+   },
+   "other categories": {
+    "pages": 7,
+    "contents": 2034,
+    "complete": 22
+   },
+   "robot vacuums": {
+    "pages": 11,
+    "contents": 57,
+    "complete": 3
+   }
+  },
+  "KI2": {
+   "air purifiers": {
+    "pages": 20,
+    "contents": 735,
+    "complete": 138
+   },
+   "other categories": {
+    "pages": 7,
+    "contents": 2034,
+    "complete": 22
+   },
+   "robot vacuums": {
+    "pages": 11,
+    "contents": 61,
+    "complete": 23
+   }
+  }
+ },
+ "E2b": {
+  "freeze_1": {
+   "Q": {
+    "correct decision": 15,
+    "lost decision": 18,
+    "justified abstention": 25,
+    "unjustified decision": 2
+   },
+   "QR": {
+    "lost decision (uninformed)": 5,
+    "correct decision": 6,
+    "lost decision": 4,
+    "unjustified decision": 2,
+    "justified abstention": 11,
+    "uninformed abstention": 2
+   }
+  },
+  "freeze_2": {
+   "Q": {
+    "correct decision": 16,
+    "lost decision": 17,
+    "justified abstention": 25,
+    "unjustified decision": 2
+   },
+   "QR": {
+    "lost decision (uninformed)": 5,
+    "correct decision": 6,
+    "lost decision": 4,
+    "unjustified decision": 2,
+    "justified abstention": 11,
+    "uninformed abstention": 2
+   }
+  },
+  "positive_questions": {
+   "Q": 33,
+   "QR": 15
+  }
+ },
+ "E4_fidelity": {
+  "by_type": {
+   "kind": {
+    "reference_units": 17,
+    "produced": 0,
+    "read_units": 16,
+    "unmatched_produced": 0,
+    "missed": 17
+   },
+   "formula": {
+    "reference_units": 2,
+    "produced": 0,
+    "read_units": 0,
+    "unmatched_produced": 0,
+    "missed": 2
+   },
+   "distinct": {
+    "reference_units": 9,
+    "produced": 1,
+    "read_units": 1,
+    "unmatched_produced": 0,
+    "correct": 1,
+    "missed": 8
+   },
+   "method": {
+    "reference_units": 25,
+    "produced": 0,
+    "read_units": 0,
+    "unmatched_produced": 0,
+    "missed": 25
+   },
+   "reference": {
+    "reference_units": 14,
+    "produced": 1,
+    "read_units": 1,
+    "unmatched_produced": 0,
+    "correct": 1,
+    "missed": 13
+   },
+   "unresolved_citation": {
+    "reference_units": 0,
+    "produced": 39,
+    "read_units": 39,
+    "unmatched_produced": 39
+   },
+   "label": {
+    "reference_units": 26,
+    "produced": 15,
+    "read_units": 15,
+    "unmatched_produced": 0,
+    "missed": 11,
+    "correct": 11,
+    "wrong": 4
+   }
+  },
+  "totals": {
+   "produced": 17,
+   "correct": 13,
+   "strict_precision": 0.765,
+   "reference_units": 93,
+   "acquired": 17,
+   "recall": 0.183,
+   "critical_errors": 0
+  },
+  "critical": []
+ }
+}

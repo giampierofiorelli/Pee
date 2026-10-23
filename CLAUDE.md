@@ -25,6 +25,11 @@ Read `MISSION.md` first. It is the only brief for this project.
   identity readings, parts, determinables and spans, conditions, methods, contexts, dependencies and lifting), on
   branch `claude/i2-semantic-linking` from I-1; criteria fixed before code in `experiments/i2/REPORT.md` sections 0–3.
   Crawler read-only; no S0 change, no MS2, no migration; X1, X2, V1 and I-1 unchanged. Stop after I-2.
+- **F-1** (owner, 2026-10-23): initial scientific formation on branch `claude/f1-scientific-formation` from I-2: a
+  general acquisition mechanism for research documents (`universe/markdown.py`, `universe/knowledge_acquisition.py`),
+  the consolidated transversal base, guided acquisition of the air-purifier and dehumidifier packages (robot package
+  for evaluation only); criteria fixed before code in `experiments/f1/REPORT.md` sections 0–3. Crawler read-only; no
+  S0 change, no MS2, no migration; X1, X2, V1, I-1 and I-2 unchanged. Closed on stop rules F4 and F6. Stop after F-1.
 - Use the skill `.claude/skills/pee-scientific-learning/` for all S1 work.
 
 ## Independence

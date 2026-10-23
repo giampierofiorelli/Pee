@@ -341,3 +341,295 @@ Product recommendations are **not** a criterion.
 - **F5.** A first run of E3 in which the frozen hashes differ between arms is invalid and is repeated.
 - **F6.** Any critical error in E1, or any unjustified decision in E2, is reported as a defect to block. It is never
   reported as a success.
+
+## 4. Outcome at a glance
+
+**F-1 is closed on its stop rules F4 and F6.** The mechanism exists and runs without critical acquisition errors, but
+it does not reach its own thresholds.
+
+- **Fidelity (E1).** Precision was below threshold on the first run (0.81 and 0.29 against 0.85). Recall reached about
+  0.38 against an expected 0.50.
+- **Rules (E2).** The first oracle run produced 2 unjustified decisions (F6). Both came from a tolerant harness rule,
+  which freeze 2 corrected.
+- **Rules given complete representation (E2b).** With knowledge that is complete and correct, the rules decide
+  correctly on 16 of 33 positive questions. A precise catalogue of reasoning limits explains the other 17 (section 9).
+- **Knowledge only (E3).** Adding the acquired knowledge improves decisions (2 → 4 correct) and adds no unjustified
+  decision.
+- **Transfer (E4).** None on questions; partial on the reading of the robot package.
+
+The single change cycle that F4 allows was used. Every after-change number is on **spent** material and is never
+held-out evidence.
+
+| | Criterion | Threshold | First run (freeze 1) | After change (freeze 2, spent) |
+|---|---|---|---|---|
+| F1-a | E1 critical errors | 0 | **0** (AP 0, DH 0) | 0 |
+| F1-b | E1 strict precision (correct ÷ produced) | ≥ 0.85 | **not met**: AP 77/95 = 0.81; DH 4/14 = 0.29 | AP 108/126 = 0.86; DH 14/15 = 0.93 |
+| F1-c | E1 recall (acquired ÷ reference units) | ≥ 0.50 expected | **not met**: AP 95/250 = 0.38; DH 32/85 = 0.38 | AP 125/250 = 0.50; DH 40/85 = 0.47 |
+| F1-d | E2 unjustified decisions, oracle store | 0 | **not met: 2** (defect, F6) | 0 |
+| F1-e | E2 correct ÷ positive questions, oracle store | ≥ 0.80 | **not met**: 3/33 = 0.09 | 6/33 = 0.18 |
+| F1-e′ | E2b (complete representation) correct ÷ positive | — (added after E2) | 15/33 = 0.45; unjustified 2 | 16/33 = 0.48; unjustified 2 |
+| F1-f | E3 unjustified, K1 against K0 | K1 ≤ K0 | **met**: 0 against 0 | 0 against 0 |
+| F1-g | E3 correct, K1 against K0 | K1 > K0 | **met**: 4 against 2 | 4 against 2 |
+| F1-h | Regressions | none | — | **none** (section 8) |
+| F1-i | No category vocabulary in code | pass | pass | pass |
+
+**Stop rules:**
+
+| Rule | Status |
+|---|---|
+| F1 (needs an S0 change) | not triggered |
+| F2 (needs category words in code) | not triggered |
+| F3 (three reformulations without reaching the thresholds on development) | not triggered: the development thresholds were reached before freeze 1 |
+| F4 (one change cycle after the held-out run) | **used** (section 6); no second cycle |
+| F5 (hashes differ between arms) | not triggered: every arm of a run uses one freeze |
+| F6 (an E1 critical error or an E2 unjustified decision) | **triggered** by the 2 unjustified E2 decisions on the first run; reported as a defect |
+
+Product recommendations were not counted anywhere.
+
+## 5. What was implemented (capabilities, by maturity and kind)
+
+All of it is in the existing universe modules. There is no parallel architecture and no category word in code.
+
+| Capability | Where | Kind | Maturity |
+|---|---|---|---|
+| Markdown research-document reader: headings, blocks, tables, codes, citations, locators | `universe/markdown.py` | reading | operational on the packages; measured (E1, E4) |
+| Reading research documents into units: kinds with symbol, unit, dimension, family and dependencies; formulas; non-identity; methods with editions and condition sets; register entries; unresolved citations; evidence labels; usage anchors | `knowledge_acquisition.read_units` | vocabulary and inference acquisition | operational; measured |
+| Representation of units as store items with source, holder, attribution, standing and premises; dimension checks through the s1core metrology | `knowledge_acquisition.represent` | representation | operational; the same function serves acquired, oracle and gold units |
+| Identity discipline: one symbol is one kind within a document; never merged across documents; same symbol and dimension give an indeterminate co-reference proposal; only base kinds can support | `knowledge_acquisition` | identity | operational; 0 merge errors measured |
+| Acquired knowledge used for reading: current kinds, symbols, anchors, influence quantities as defining conditions, method condition sets, evidence classes, proposal terms; relation roles found by structural role, never by id | `acquisition.Lexicon`, `influence_conditions`, `read_conditions` | reading guided by knowledge | operational; measured (E3 pages) |
+| Transversal base consolidated: one file, 0 duplicates; category items moved to `legacy-i2-category.json`; 15 evidence classes; `depends_on` and `distinct` relations | `knowledge/general.json` | vocabulary | operational |
+| Metrology additions (°F, ft³, US pints, L/s, L/d, pt/d, kg/h, L/kWh, cfm/W, kWh/a, ppm, ppb, µg/m³, g/m³, kg/kWh, L/h, h⁻¹) | `s1core/metrology.json` | vocabulary | operational |
+
+**Formation types.** The transversal base is **initial formation**: it was curated by the developer and audited for
+duplicates (`base-audit.json`). The air-purifier and dehumidifier knowledge is **guided acquisition**: Pee's code read
+documents the owner selected, and **no category statement was entered by hand**. **Autonomous learning** (choosing
+what to read, judging what is missing, revising without a developer) was not attempted and is **not** claimed.
+
+**Acquired from the two taught packages (K1, freeze 1):**
+
+| Package | Records | Attributions | Kinds | Supports | Models | Distinct | Methods | Register sources | Labels | Abstained |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Air purifiers 04 v1.2.0 | 214 | 200 | 6 | 5 | 2 | 13 | 17 | 72 | 18 | 7 |
+| Dehumidifiers (with R01–R39) | 224 | 171 | 13 | 4 | 0 | 10 | 13 | 38 | 21 | 5 |
+
+Every cited source is held with `examined: False`. Pee holds what the package says about a source, never the source
+itself. Unresolved citations are listed and never invented.
+
+## 6. The change cycle (F4), after the first-run diagnosis
+
+The first runs are committed unchanged (`firstrun-counts.json`). Their diagnosis led to one change cycle (`3c9594c`,
+freeze 2 in `seals.json` with `changed_from_freeze_1`). Each change is general, and none names a category term.
+
+| | Change | Cause found in the first run |
+|---|---|---|
+| C1 | Question harness: every word of the asked property must be explained by universe items (restores the I-2 rule) | the 2 unjustified E2 decisions (Q-AP-21, Q-DH-27): a dropped qualifier ("formaldehyde", "independently measured") changed the question |
+| C2 | A single-product question binds the role `bearer`, the role models use | models never applied in E2 (role `r0`) |
+| C3 | Unit words are removed from a header only after kind terms are matched | a kind written with unit words ("changes per hour") was not found |
+| C4 | A kind term containing a value of one of the kind's defining conditions names that value ("dust CADR") | family values lost on reading |
+| C5 | Evidence labels used in the text are acquired as well as those in the legend; a label naming no evidence class is an abstention | labels missed in E1 |
+| C6 | A method in a section headed as a proposal is a proposed method, not a standard; the last designation after a comma also names the method | proposals classed as standards; methods missed |
+| C7 | Frame additions: the metrology units above, three operating-speed values, "test id" as a method row type, one stopword | units and row types missing |
+| C8 | Test updates for C1–C7 | — |
+
+C1 and C2 are harness fixes. C3–C7 change acquisition and reading. **The E1 held-out units were diagnosed before
+C3–C6, so the after-change E1 numbers are tuned and spent.**
+
+## 7. Measured results
+
+### 7.1 E1: fidelity of acquisition (sealed blind reference, two annotators plus adjudication)
+
+| Unit type | AP reference | AP first run | AP after change | DH reference | DH first run | DH after change |
+|---|---|---|---|---|---|---|
+| kind | 8 | 0 acquired | 0 | 8 | 0 | 0 |
+| formula | 12 (4 definitions) | 0; 8 correct abstentions | same | 3 (1 definition) | 0; 2 correct abstentions | same |
+| distinct | 79 | 9 correct | 9 correct | 21 | 1 correct | 1 correct |
+| method | 38 | 0 | 17 correct | 7 | 0 | 0 |
+| reference (register) | 72 | 55 correct, 17 partial (URL differs) | same | 4 | 0 | 0 |
+| unresolved citation | 0 | 0 | 0 | 26 | 26 correct | 26 correct |
+| evidence label | 41 | 13 correct, 1 abstained | 27 correct | 16 | 3 correct, 2 abstained (8 unmatched) | 13 correct |
+| **Critical errors** | | **0** | 0 | | **0** | 0 |
+
+**Reading:**
+
+- **Kinds.** All 16 held-out reference kinds are introduced in running prose or in the "where" list of an equation,
+  often without a unit. The reader takes definitions only from definition tables, symbol legends and notation lines,
+  so it produced no kind there. This is the largest recall loss, together with non-identity statements written in
+  prose (70 of 79 missed in AP).
+- **Provenance.** There were no critical errors: no source marked as examined, no foreign holder, no declaration
+  classed as a measurement, no invented register entry, and no wrong dimension.
+
+### 7.2 E2: rules on the oracle store (sealed questions Q: 60 questions, 33 positive; reference agreement 60/60)
+
+| Outcome | First run | After change |
+|---|---|---|
+| correct decision | 3 | 6 |
+| unjustified decision (critical) | **2** | 0 |
+| lost decision | 8 | 3 |
+| lost decision (uninformed: Pee could not read the input) | 22 | 24 |
+| justified abstention | 5 | 5 |
+| uninformed abstention | 20 | 22 |
+
+**Design flaw found by E2.** In this run the oracle supplied the knowledge, but Pee still had to *read* every product
+sheet and question. Most losses are therefore reading losses, not reasoning losses, so E2 cannot answer the owner's
+question "sa ma non ragiona" by itself. **E2b** was added for this reason (written after the diagnosis; `cfce9bc`).
+
+### 7.3 E2b: rules given a complete and correct representation
+
+- **Method.**
+  - An independent annotator, who did not see the expected answers, wrote structured representations of each question:
+    quantities, units, dependencies, formulas, non-identities, document rows with conditions and methods, the
+    situation and the question.
+  - A mechanical harness (`gold.py`) turns them into universe items through the same `represent` and `_propose` paths.
+    Nothing is read from text.
+  - Seal: `seals.json` `E2b_gold`. Its hash was recorded before the runs but committed with this report, so Git does
+    not attest the order.
+
+| Outcome | Q, freeze 1 | Q, freeze 2 | QR (robots), freeze 1 | QR, freeze 2 |
+|---|---|---|---|---|
+| correct decision | 15 | 16 | 6 | 6 |
+| unjustified decision | 2 | 2 | 2 | 2 |
+| lost decision | 18 | 17 | 4 | 4 |
+| lost decision (uninformed) | 0 | 0 | 5 | 5 |
+| justified abstention | 25 | 25 | 11 | 11 |
+| uninformed abstention | 0 | 0 | 2 | 2 |
+| positive questions | 33 | 33 | 15 | 15 |
+
+**The 19 failures on Q (freeze 2), each traced to its first cause:**
+
+| Cause | Questions | n |
+|---|---|---|
+| Implicit defining condition: the package's convention (smoke CADR when no aerosol is named) is not represented, so a value conditioned on a named aerosol never applies | AP-07, AP-08, AP-11, AP-14 | 4 |
+| Comparability bound to one document: two values of the same kind under the same stated conditions, in different documents, count as different measuring series or methods | AP-04, AP-10, DH-04, DH-15 | 4 |
+| Condition matching without unit conversion or tolerance (65 °F against 18.3 °C) | DH-07, DH-08, DH-14 | 3 |
+| No selection over the available comparisons | AP-15, DH-13 | 2 |
+| A quantity missing for one entity (not traced further) | AP-29, DH-11 | 2 |
+| A given not representable (counts per day or year) | AP-13 | 1 |
+| A derived result with no coherent SI unit: the model gives 2.08 L/kWh correctly, but no unit of factor 1 exists for m³/J, so the result cannot become a content | DH-10 | 1 |
+| **No evidence requirement in the rules**: a declared value answers a question that asks for an independent measurement (unjustified) | AP-24, DH-27 | 2 |
+| *Uninformed: none* | | 0 |
+
+**Robots (QR, freeze 2):**
+
+- **Unjustified (2):**
+  - QR-20: the scope of a standard is not represented.
+  - QR-09: the annotator encoded the buyer's requirement as a situation given. The harness attached it to the product,
+    and it answered its own question. This is a gold-input error that the harness accepted without a check.
+- **Uninformed (7):**
+  - harness defect H-1 (QR-01, 13, 17, 19, 26): a gold kind whose name equals a base kind ("runtime") is represented
+    as a support of the base kind, and `gold.py` looks up only document kinds;
+  - multi-product documents not designated (QR-05, 07, 15);
+  - a unit outside the metrology (QR-24).
+- **Lost (4):**
+  - subsumption of named condition values (QR-03);
+  - dependencies on counts (QR-10);
+  - an unstated operating setting (QR-12);
+  - a missing quantity (QR-29).
+
+H-1 also hides one airflow row in AP-20; that question remains a justified abstention.
+
+**Answer to "Pee sa ma non ragiona".**
+
+- With complete and correct representation, the rules **do** reason: limits, comparisons, models with unit
+  conversion, condition-dependent applicability and justified abstention all work on the 16 + 25 Q answers.
+- The rules are **not yet reliable**. They have no evidence requirement, which produces 2 unjustified decisions on Q.
+- Five general limits (section 9) lose about half of the positive decisions.
+- These are rule-and-representation limits, now separated from reading limits. **E2b is post hoc** (designed after
+  E2) and is a diagnosis, not a held-out validation.
+
+### 7.4 E3: knowledge only, before and after (same freeze for every arm)
+
+| Arm | Q correct | Q unjustified | Q lost | Q lost (uninformed) | Q uninformed abstention | Q justified abstention |
+|---|---|---|---|---|---|---|
+| K0 (base), first run | 2 | 0 | 3 | 28 | 27 | 0 |
+| K1 (base + acquired), first run | **4** | **0** | 4 | 25 | 27 | 0 |
+| K_I2 (hand-entered I-2 items), first run | 4 | 0 | 4 | 25 | 26 | 1 |
+| K0, after change | 2 | 0 | 1 | 30 | 27 | 0 |
+| K1, after change | 4 | 0 | 1 | 28 | 27 | 0 |
+| K_I2, after change | 4 | 0 | 1 | 28 | 27 | 0 |
+
+- **First run.** K1 gains Q-AP-01 and Q-AP-09 from acquired knowledge ("non sapeva", now "sa"). K1 equals the
+  hand-entered I-2 knowledge on correct decisions.
+- **After change.** The gains are Q-AP-01 and Q-AP-05.
+- **Main loss.** "Lost (uninformed)" dominates: Pee cannot read the question or the sheet, whatever it knows.
+
+**Reading of the spent product pages (complete contents ÷ contents):**
+
+| Group | K0 | K1 | K_I2 |
+|---|---|---|---|
+| Air purifiers (20 pages) | 97 / 735 | **102 / 735** | 138 / 735 |
+| Robot vacuums (11 pages) | 3 / 57 | 3 / 57 | 23 / 61 |
+| Other categories (7 pages) | 22 / 2,034 | 22 / 2,034 | 22 / 2,034 |
+
+The 5 contents that K1 adds were hand-checked: 5 of 5 are correct. They are smoke CADR values on one page, read with
+the acquired CADR kind, its challenge-aerosol condition and the right product. No content was lost or changed kind.
+The hand-entered I-2 items still read more: 36 more on air purifiers and 20 on robots. Their terms were written for
+those pages. The same counts hold after the change.
+
+### 7.5 E4: transfer to robot vacuums (exploratory)
+
+- **Questions (QR, 30, 15 positive).** K0 and K1 give **identical** answers: there is no transfer.
+  - The first run had 1 unjustified decision in both arms.
+  - After the change there were 0 correct and 0 unjustified decisions: 15 uninformed lost decisions and 15 uninformed
+    abstentions.
+- **Reading the robot package with the frozen mechanism, against a small blind reference of 93 units:**
+  - first run: precision 2/10 = 0.20, recall 0.02;
+  - after change: 13/17 = 0.76, recall 0.18;
+  - critical errors: 0.
+- **Register format not read.** Its 39 citations are listed as unresolved, and none is invented. This format was
+  deliberately not tuned.
+- **Pages.** The robot pages read no better under K1, as expected, because no robot knowledge was taught.
+
+## 8. Preservation and tests
+
+- **Crawler** is at `7d091ef` with a clean tree: read only, never modified.
+- **Unchanged since `da5252a`:** S0 (`spec/`), `experiments/x1`, `x2`, `i1`, `i2` and `reviews/`.
+- **Suites:**
+  - universe: 89 OK, including 24 new F-1 tests on a pond-pump fixture, a domain never used in design;
+  - s1core: 47 OK;
+  - x1: 18 OK;
+  - x2: 25 OK.
+- **I-2 vertical increment** (`legacy=True`): 5 of 5 checks pass.
+- **I-2 X2 regression:** answers identical row by row (correct 3, lost 9, not askable 53, correct abstention 35). It
+  acquires 48 more records, all incomplete, from values the new reader now separates.
+- **Vocabulary.** The MS1 test and the new F-1 test pass: the acquisition code names no package term. Relation ids are
+  found by structural role.
+- **Freeze 2.** All 26 files in `seals.json` match the committed code.
+
+## 9. Open limits (what remains, in order of measured effect)
+
+1. **Reading questions and product sheets** is the dominant loss on the user path: 25 to 30 of 60 decisions are lost
+   uninformed. Acquired knowledge cannot help until the input is read.
+2. **The rules have no evidence requirement.** A question asking for independent measurements is answered from a
+   declaration. This is the one critical defect left at the rules level (2 of 33 on Q in E2b).
+3. **Comparability is tied to one document.** Equal stated conditions and methods in different documents are not
+   recognised as one measuring series.
+4. **Conditions** are matched without unit conversion or tolerance, and without subsumption of named values.
+5. **Implicit conventions** (a default test material or a standard's scope) are not represented as defeasible
+   defining conditions.
+6. **Derived quantities:**
+   - no selection over derived or compared values;
+   - no content for a result whose dimension has no coherent unit (m³/J);
+   - no givens that are counts per period.
+7. **Acquisition recall:**
+   - kinds and non-identities written in prose and equation "where" lists;
+   - method editions in prose;
+   - the robot register format.
+8. **Harness defect H-1** in `gold.py`: base-kind supports are not looked up. It affects 5 robot questions and one
+   AP row. Also, a gold requirement given as a datum is not checked.
+
+**What is not demonstrated:**
+
+- autonomous learning;
+- reliability of the rules on unseen material: E2b is post hoc;
+- independent validation: every annotator, author and judge was a Claude agent, which is not independent.
+
+## 10. Next step (proposal only; nothing is authorised by this report)
+
+The smallest step with the largest measured effect is a bounded increment on the **rules**, with a new sealed set
+because Q and QR are now spent:
+
+- an evidence requirement in the inquiry (limit 2);
+- comparability across documents by stated method and conditions (limit 3);
+- unit-converted and subsumed condition matching (limit 4).
+
+Reading questions and sheets (limit 1) is the next largest. It is a separate increment.

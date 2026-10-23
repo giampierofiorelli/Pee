@@ -109,5 +109,10 @@
    "universe/universe/acquisition.py",
    "universe/universe/knowledge_acquisition.py"
   ]
+ },
+ "E2b_gold": {
+  "Q": "572b1c09436f4f380c49528fc24b391800febf86c6cf914d6a0a5aadfe5ba95d",
+  "QR": "9173899af95ea4a3bdcbddf3c44c2d11a0e2d8a2ebd853432d654c48fb5f671e",
+  "note": "gold representations by an independent annotator who did not see the expected answers; sealed before the E2b runs"
  }
 }
