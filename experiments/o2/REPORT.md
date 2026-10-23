@@ -483,7 +483,7 @@ unfaithful ones.
 | `pee-knowledge/private-eval/pee-o2/` | copies of the same, with strings of 6 or more words or over 60 characters replaced by SHA-256; `MANIFEST.json` holds the original and copy hashes; no passages, no document text |
 | `results-counts.json`, `seals.json`, `freeze-1.json`, `hybrid-choices.json` (this directory) | public counts, hashes and the frozen choices |
 
-## 10. Owner decision after the report (2026-10-23, verbatim)
+## 10. Recommendations received after the report (2026-10-23, verbatim; not an owner authorisation)
 
 > Il risultato è deludente, ma chiarisce finalmente una questione importante: il merging dei lettori, così com’è stato
 > realizzato, non funziona.
@@ -507,8 +507,9 @@ unfaithful ones.
 >
 > E nessuna acquisizione permanente finché la fedeltà non sarà sufficientemente affidabile.
 
-**Consequence.** O-2 is **closed**. The change cycle is not used, and A-1's reader stays as the provisional prose
-reader.
+**Correction (2026-10-23).** On first recording, Claude called this text an owner decision. The owner pointed out
+that it holds recommendations, not an explicit authorisation (`ORGANISATION.md` §7.3).
+- **O-2's state.** The first sealed run is done, and the change cycle has not been run.
 
 **Measured fact added for the next decision** (post hoc, sealed material already spent): A-1's precision is 0.35, and
 0.44 if evidence-kind errors are ignored. The element most often wrong in its unfaithful items is the **relation**

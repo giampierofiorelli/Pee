@@ -117,11 +117,6 @@ options Claude offered; "adopted" means the owner gave a recommendation of secti
 | D9 | Branch name `claude/pee-operational` | Option chosen |
 | D10 | Claude writes these instructions | Option chosen ("Sì, scrivi le istruzioni") |
 | D11 | Organisation confirmed coherent after review; the unchanged import of about 131 files is authorised, with verifiable provenance and equivalence tests before any semantic integration; no change to Crawler; no automatic promotion of knowledge into the universe | Owner message after reviewing this document, once this section was corrected |
-| D12 | O-2 closed without its change cycle; the merge of the two rule-based prose readers, as built, does not work | Owner decision after the O-2 report (`experiments/o2/REPORT.md` §10) |
-| D13 | A-1's reader is the **provisional** prose reader, not the solution (precision 0.35 is insufficient) | Same |
-| D14 | All capabilities imported from Crawler are kept; O-2 says nothing about tables, specifications or web pages | Same |
-| D15 | The strategy of combining linguistic rules is **suspended**. The next investment is the quality of scientific interpretation: before adding rules, evaluate a more capable interpreter, possibly neural and local, connected to S0 | Same |
-| D16 | No permanent acquisition of knowledge until fidelity is reliable enough | Same |
 
 ### 7.2 Recommendations received in the conversation (Italian, verbatim)
 
@@ -181,3 +176,30 @@ bind only as far as section 7.1 records a decision adopting them.
 > così da preservare le capacità di Crawler senza introdurre modifiche durante il trasferimento. Prima si verificano
 > compilazione e comportamento equivalente. Solo dopo si eliminano le dipendenze superflue, con modifiche separate e
 > test. L'obiettivo non è mantenere per sempre 32.000 righe, ma non perdere funzionalità durante l'integrazione.
+
+### 7.3 Recommendations received after O-2 (not owner authorisations)
+
+**Correction (2026-10-23).** On first recording, Claude entered these five points as owner decisions D12–D16. The
+owner pointed out that they were recommendations relayed in the owner's message, not an explicit authorisation. They
+are kept here as recommendations (R-O2-1 to R-O2-5).
+- **They bind no work.**
+- **What already holds independently.** The O-2 change cycle has not been run. No knowledge is admitted, by O-2's own
+  rules.
+
+| # | Recommendation |
+|---|---|
+| R-O2-1 | Do not use the O-2 change cycle; the result is clear enough |
+| R-O2-2 | Keep A-1's reader as the **provisional** prose reader, not as the solution (precision 0.35 is insufficient) |
+| R-O2-3 | Keep all capabilities imported from Crawler; O-2 says nothing about tables, specifications or web pages |
+| R-O2-4 | Suspend the strategy of combining linguistic rules; before adding rules, evaluate a more capable interpreter, possibly neural and local, connected to S0 |
+| R-O2-5 | No permanent acquisition of knowledge until fidelity is reliable enough |
+
+**A later message** (2026-10-23) recommended the next steps:
+- design the next experiment only, without running it;
+- a limited exception for neural models during experimentation, without changing the dependency rule;
+- keep Qwen suspended until its exclusion is re-examined;
+- local, CPU-compatible models only, with no paid services and no installation before requirements and costs are
+  checked;
+- the 96 relation errors as the priority.
+
+**Design produced.** `experiments/c1/DESIGN.md`. Nothing is installed or run.
