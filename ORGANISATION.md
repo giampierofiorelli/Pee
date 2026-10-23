@@ -78,7 +78,8 @@ The first import brings Crawler's reading and understanding capabilities:
 - qualitative extraction;
 - the retention policy that guards what may be kept.
 
-The full import closure is about 131 files (about 32,000 lines, measured on 2026-10-23). The reason is a few hub
+The first estimate of the import closure was about 131 files (about 32,000 lines). The exact closure of the O-1 roots,
+measured before the import, is 114 source files (27,262 lines); `engine-ts/README.md` lists everything imported. The reason is a few hub
 imports: for example, the specification extractor imports one constant from the web reader, which pulls in the
 network code and SQLite.
 
