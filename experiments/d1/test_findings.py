@@ -27,6 +27,7 @@ class StructuralDefects(unittest.TestCase):
     def setUp(self):
         recognition._INDEX.clear()  # SD9: never let a freed store's index answer for this one
 
+    @unittest.expectedFailure  # corrected by D-2 (experiments/d2/REPORT.md)
     def test_sd9_recognition_index_can_leak_between_universes(self):
         """The cache key (id(store), store.seq) can collide when a store is freed and a new one is built."""
         import gc
@@ -52,6 +53,7 @@ class StructuralDefects(unittest.TestCase):
         if not seen:
             self.skipTest("no id collision in 30 trials on this interpreter run")
         self.assertTrue(seen[0])
+    @unittest.expectedFailure  # corrected by D-2 (experiments/d2/REPORT.md)
     def test_sd1_unstated_condition_is_dropped(self):
         st, _, _ = A.build(C["K13"], use_reader=False)  # correct knowledge: holds only when the soil is saturated
         p = rules.propositions(st)[0]
@@ -60,18 +62,22 @@ class StructuralDefects(unittest.TestCase):
         self.assertEqual(r["answer"], "increases")  # … but the answer carries no trace of it
         self.assertNotIn("caveats", r)
 
+    @unittest.expectedFailure  # corrected by D-2 (experiments/d2/REPORT.md)
     def test_sd2_influence_ignores_a_contrary_source(self):
         st, _, _ = A.build(C["K16"], use_reader=False)
         m, s = d(st, "mulch"), d(st, "soil moisture")
         self.assertEqual(rules.holds(st, m, "increases", s)["answer"], "undetermined")  # holds sees the conflict
         self.assertEqual(rules.influence(st, m, s)["answer"], "increases")  # influence does not
 
+    # D-2 (F6): still passes. The rule is called here with the union of both holders' concepts, which `designate`
+    # still returns; the correction is `recognition.readings` and the per-reading harness (experiments/d2)
     def test_sd3_homonyms_of_two_holders_are_merged_by_recognition(self):
         st, _, _ = A.build(C["K11"], use_reader=False)
         ids = d(st, "resolution")
         self.assertEqual(len({st.get(i).body.get("holder") for i in ids}), 2)
         self.assertEqual(rules.holds(st, ids, "defined_as", d(st, "number of pixels"))["answer"], "yes")
 
+    @unittest.expectedFailure  # corrected by D-2 (experiments/d2/REPORT.md)
     def test_sd4_a_reported_cited_result_meets_the_independent_evidence_requirement(self):
         st, _, _ = A.build(C["K7"], use_reader=False)
         p = rules.propositions(st)[0]
@@ -79,26 +85,31 @@ class StructuralDefects(unittest.TestCase):
         self.assertFalse(att.get("cited_sources_examined"))
         self.assertTrue(rules.satisfies_evidence(st, p, "E:original_measurement"))
 
+    @unittest.expectedFailure  # corrected by D-2 (experiments/d2/REPORT.md)
     def test_sd5_a_declared_value_is_answered_as_a_value(self):
         st, _, _ = A.build(C["K8"], use_reader=False)
         r = rules.value(st, d(st, "battery life"))
         self.assertEqual(r["answer"], {"number": 20, "unit": "h"})
         self.assertNotIn("evidence", r)
 
+    @unittest.expectedFailure  # corrected by D-2 (experiments/d2/REPORT.md)
     def test_sd6_a_prohibition_draws_no_inference(self):
         st, _, _ = A.build(C["K4"], use_reader=False)
         self.assertEqual(rules.holds(st, d(st, "pipetting by mouth"), "recommends", None)["answer"], "undetermined")
 
+    @unittest.expectedFailure  # corrected by D-2 (experiments/d2/REPORT.md)
     def test_sd7_a_property_table_in_a_teaching_document_is_not_acquired(self):
         st, _, _ = A.build(C["K10"], use_reader=True)
         self.assertEqual(d(st, "yield strength"), set())
 
+    @unittest.expectedFailure  # corrected by D-2 (experiments/d2/REPORT.md)
     def test_sd8_reader_conditions_cannot_meet_query_conditions(self):
         st, _, units = A.build(C["K1"], use_reader=True)
         self.assertEqual(units[0]["conditions"], [{"concept": "soil is saturated", "value": "when"}])
         q = C["K1"]["questions"][1]  # dry soil: the document says nothing
         self.assertEqual(A.harness.answer(st, q)["answer"], "increases")
 
+    @unittest.expectedFailure  # corrected by D-2 (experiments/d2/REPORT.md)
     def test_sd8b_reader_values_lose_their_condition(self):
         st, _, _ = A.build(C["K2"], use_reader=True)
         q = C["K2"]["questions"][1]  # 2 atm: the document says nothing

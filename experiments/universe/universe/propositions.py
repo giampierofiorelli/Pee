@@ -314,6 +314,138 @@ DEONTIC_DECL = re.compile(r"^(.{2,90}?)\s+(must not|should not|may not|must|shou
                           r"is required to|are required to)\s+(?:be\s+)?(.+)$", re.I)
 
 
+def _report_frame(frame, raw):
+    """A reporting frame "<reporter> <reporting verb> (that) <content>": the match (reporter, verb, content), or None."""
+    m = re.match(r"^(.{2,60}?)\s+(" + "|".join(sorted((re.escape(x.strip()) for x in frame.att.get("reported", ())
+                                                        if x.strip() and len(x.split()) <= 2), key=len, reverse=True))
+                 + r")\s+(?:that\s+)?(.+)$", raw, re.I) if frame.att.get("reported") else None
+    _prep = r"(?:in|at|on|by|during|from|with|under|for|over|across)\b"
+    if m and ((m.group(2).lower().endswith("ed") and re.match(r"^" + _prep, m.group(3), re.I)) or
+              re.match(r"^\w+ed\s+" + _prep, m.group(3), re.I)):
+        m = None  # T-1: "reports observed in one clinic": a participle in a reduced relative, not a reporting frame
+    return m
+
+
+# --- D-2: the condition contract (F5, F10) ---------------------------------------------------------------------------
+# A condition is a concept and its value (S0 4.6, T7): "the soil is saturated" -> soil: saturated; "at 1 atm" -> the
+# kind the unit's dimension names: 1 atm; "from 18 February 2027" -> point in time: from 2027-02-18. A clause that
+# cannot be decomposed stays a condition with its text and marker; it is never dropped.
+
+def _temporal_markers(frame):
+    return (frame.P.get("temporal") or {}).get("markers") or {}
+
+
+def _date_iso(frame, text):
+    """The ISO form of a calendar date written alone ("2027-02-18", "18 February 2027", "February 18, 2027")."""
+    months = list((frame.P.get("temporal") or {}).get("months") or ())
+    t = " ".join(str(text or "").lower().replace(",", " ").split()).strip(" .;")
+    g = re.fullmatch(r"(\d{4})-(\d{2})-(\d{2})", t)
+    if g:
+        y, mo, d = int(g[1]), int(g[2]), int(g[3])
+    else:
+        g = re.fullmatch(r"(\d{1,2}) ([a-z]+) (\d{4})", t) or re.fullmatch(r"([a-z]+) (\d{1,2}) (\d{4})", t)
+        if not g:
+            return None
+        d, mname = (g[1], g[2]) if g[1].isdigit() else (g[2], g[1])
+        if mname not in months:
+            return None
+        y, mo, d = int(g[3]), months.index(mname) + 1, int(d)
+    import datetime
+    try:
+        return datetime.date(y, mo, d).isoformat()
+    except ValueError:
+        return None
+
+
+def _date_re(frame):
+    months = "|".join((frame.P.get("temporal") or {}).get("months") or ()) or "-"
+    return (r"(?:\d{4}-\d{2}-\d{2}|\d{1,2}\s+(?:" + months + r")\s+\d{4}|(?:" + months +
+            r")\s+\d{1,2},?\s+\d{4})")
+
+
+def _temporal(frame, clause):
+    """Dated bounds of a clause ("from 18 February 2027"): the clause without them, and their conditions."""
+    mk = _temporal_markers(frame)
+    if not mk:
+        return clause, []
+    alt = "|".join(re.escape(x) for x in sorted(mk, key=len, reverse=True))
+    rx = re.compile(r"(?<![\w-])(" + alt + r")\s+(" + _date_re(frame) + r")(?![\w-])", re.I)
+    conds = []
+    for m in rx.finditer(clause):
+        iso = _date_iso(frame, m.group(2))
+        if iso:
+            conds.append({"marker": m.group(1).lower(), "text": iso, "span": m.group(0)})
+    if not conds:
+        return clause, []
+    rest = rx.sub(" ", clause)
+    rest = re.sub(r"^[\s,;:]+", "", " ".join(rest.split()))
+    return (rest[:1].upper() + rest[1:]) if rest else rest, conds
+
+
+def _time_kind_term(frame):
+    """The term of the kind that is a point in time (a frame quantity of dimension T), from knowledge."""
+    from s1core import units
+    hits = [kb for kb in frame.lex.kinds.values() if kb.get("determinable") == "frame" and not kb.get("document")
+            and units.same_dims(units.pad(kb["dims"]), units.dim(T=1)) and kb.get("terms")]
+    return hits[0]["terms"][0] if len(hits) == 1 else None
+
+
+def _quantity_condition(frame, text):
+    """A condition that is a value with a unit ("1 atm") names the general kind of the unit's dimension."""
+    from s1core import units
+    from .acquisition import parse_values
+    t = " ".join(str(text or "").split()).strip(" ,;.")
+    vals = parse_values(t, frame.lex)
+    if len(vals) != 1 or not vals[0].get("unit") or len(t[:vals[0]["start"]].strip()) or len(t[vals[0]["end"]:].strip()):
+        return None
+    try:
+        ud = units.dims_of(vals[0]["unit"])
+    except (KeyError, ValueError):
+        return None
+    hits = [kb for kb in frame.lex.kinds.values() if kb.get("determinable") == "dimension" and not kb.get("document")
+            and kb.get("terms") and units.same_dims(units.pad(kb["dims"]), ud)]
+    if len(hits) != 1:
+        return None
+    return {"concept": hits[0]["terms"][0], "value": t.lower()}
+
+
+def _state_condition(frame, text):
+    """A condition stating a property of a concept ("soil is saturated") is that concept with that value."""
+    phs = sorted({ph.strip() for ph, name in frame.relations if name == "has_property" and len(ph.split()) == 1},
+                 key=len, reverse=True)
+    if not phs:
+        return None
+    m = re.match(r"^(.{2,80}?)\s+(?:" + "|".join(re.escape(x) for x in phs) + r")\s+(?!not\b)(.{2,60})$", text, re.I)
+    if not m:
+        return None
+    x, _ = _concept_phrase(frame, m.group(1), "subject")
+    v = " ".join(w for w in m.group(2).split() if w.lower() not in frame.det).strip(" ,;.")
+    if not x or not v or len(v.split()) > 3:
+        return None
+    return {"concept": x, "value": v.lower()}
+
+
+def condition_units(frame, conds):
+    """D-2 (F5, F10): reader conditions as the units' {concept, value}."""
+    out = []
+    tk = _time_kind_term(frame)
+    mk = _temporal_markers(frame)
+    for x in conds or ():
+        if x.get("marker", "").lower() in mk and tk:
+            iso = _date_iso(frame, x.get("text"))
+            if iso:
+                out.append({"concept": tk, "value": f"{mk[x['marker'].lower()]} {iso}"})
+                continue
+        q = _quantity_condition(frame, x.get("text"))
+        if q:
+            out.append(q)
+            continue
+        for y in _clean_conditions(frame, [x]):
+            if y.get("text"):
+                out.append(_state_condition(frame, y["text"]) or {"concept": y["text"], "value": y["marker"]})
+    return out
+
+
 def read_clause(frame, clause, ctx):
     """Claims stated by one clause. ``ctx`` holds the previous subject and the heading subject."""
     raw = clause
@@ -353,13 +485,7 @@ def read_clause(frame, clause, ctx):
             extra.append(d)
         return main + extra
     # a reporting frame ("WHO guidance shows that X …"): the reporter is recorded and X is read
-    m = re.match(r"^(.{2,60}?)\s+(" + "|".join(sorted((re.escape(x.strip()) for x in frame.att.get("reported", ())
-                                                        if x.strip() and len(x.split()) <= 2), key=len, reverse=True))
-                 + r")\s+(?:that\s+)?(.+)$", raw, re.I) if frame.att.get("reported") else None
-    _prep = r"(?:in|at|on|by|during|from|with|under|for|over|across)\b"
-    if m and ((m.group(2).lower().endswith("ed") and re.match(r"^" + _prep, m.group(3), re.I)) or
-              re.match(r"^\w+ed\s+" + _prep, m.group(3), re.I)):
-        m = None  # T-1: "reports observed in one clinic": a participle in a reduced relative, not a reporting frame
+    m = _report_frame(frame, raw)
     if m and _find_relations(frame, _negations(m.group(3))[0])[1]:
         claims = read_clause(frame, m.group(3), ctx)
         for c in claims:
@@ -528,8 +654,16 @@ def read_values(frame, clause):
                     len(clause[v["end"]:ci["start"]]) < 20:
                 val["ci95"] = [ci["numbers"][0][0], ci["numbers"][1][0]]
                 break
+        # D-2 (F5, D-1 SD8b): the condition that follows the value ("100 °C at 1 atm") is the value's condition,
+        # up to the next value or clause boundary
+        def _cond_lead(w):  # a value introduced by a condition marker belongs to the condition
+            b = " " + " ".join(clause[:w["start"]].lower().split()[-3:]) + " "
+            return any(b.endswith(" " + c.strip() + " ") for c in frame.cond)
+        nxt = next((w["start"] for w in vals[k + 1:] if w["start"] > v["end"] and not _cond_lead(w)), len(clause))
+        tail = re.split(r"[;,]|\s+and\s+|\s+but\s+", clause[v["end"]:nxt])[0]
+        conds = _split_conditions(frame, "value " + tail.strip())[1] if tail.strip() else []
         out.append({"relation": "has_value", "subject": phrase, "object": None, "value": val,
-                    "polarity": "affirmed", "modality": "actual", "conditions": [], "left": [],
+                    "polarity": "affirmed", "modality": "actual", "conditions": conds, "left": [],
                     "content_kind": "quantitative", "spans": [core if cand else "", clause[v["start"]:v["end"]]]})
     return out
 
@@ -617,6 +751,106 @@ def _segments(doc):
                     yield c.get("locator"), list(t.get("headingPath") or ()) + [lead], c["text"], "table cell"
 
 
+def _cell_value(frame, text, header):
+    """D-2 (F9): the value a table cell states, when the cell is one value (its unit in the cell or in the column
+    header's parentheses); else None."""
+    from .acquisition import parse_values
+    t = " ".join(str(text or "").split())
+    vals = parse_values(t, frame.lex)
+    if not vals or len(vals) != 1 or t[:vals[0]["start"]].strip() or t[vals[0]["end"]:].strip(" ."):
+        return None
+    v = vals[0]
+    if not v.get("unit"):
+        hu = re.findall(r"\(([^)]{1,15})\)", header or "")
+        if hu:
+            w = parse_values(t + " " + hu[-1].strip(), frame.lex)
+            if len(w) == 1 and w[0].get("unit"):
+                v = w[0]
+    nums = v["numbers"]
+    if v["form"] == "range" and len(nums) == 2:
+        return {"lo": nums[0][0], "hi": nums[1][0], "unit": v["unit"]}
+    if v["form"] not in ("single",):
+        return None
+    out = {"number": nums[0][0], "unit": v["unit"]}
+    if v.get("bound") in ("upper", "lower"):
+        out["bound"] = v["bound"]
+    return out
+
+
+def read_tables(frame, doc, n0=0):
+    """D-2 (F9, D-1 SD7; owner decision 4): the values of property/value tables as ``has_value`` units. A table whose
+    value column the header names as values ("Property | Value") gives each row's quantity its value; a table whose
+    columns are quantities gives each value under its row entity, as a condition (never a merged entity). Every row
+    is accounted for in the ledger: acquired, read as prose, or not assimilated with its reason."""
+    vh = {_norm(x) for x in (frame.P.get("value_headers") or {}).get("terms", ())}
+    units, ledger, n = [], [], n0
+    for ti, t in enumerate(doc.get("tables", ())):
+        rows = {}
+        for c in t["cells"]:
+            rows.setdefault(c["row"], []).append(c)
+        head = sorted(rows.get(0, []), key=lambda c: c["col"])
+        header = {c["col"]: c["text"] for c in head} if head and head[0].get("header") else {}
+        hp = list(t.get("headingPath") or ())
+        illustrative = bool(frame.has(frame.illustrative, hp[-1] if hp else ""))
+        proposed = bool(frame.has(frame.att.get("proposed", ()), " ".join(hp)))
+        for r, cells in sorted(rows.items()):
+            if header and r == 0:
+                continue
+            cells = sorted(cells, key=lambda c: c["col"])
+            lead = " ".join((cells[0]["text"] if cells else "").split()).strip(" *_")
+            row_text = " | ".join(c["text"] for c in cells)
+            entry = {"locator": f"table {ti + 1} row {r}", "sha256": _sha(row_text), "words": len(_words(row_text)),
+                     "kind": "table row"}
+            produced, reasons = [], []
+            for c in cells[1:]:
+                h = header.get(c["col"], "")
+                val = _cell_value(frame, c["text"], h)
+                if val is None:
+                    reasons.append("a prose cell, read as sentences" if len(c["text"].split()) >= 4 else
+                                   "a cell that states no single value")
+                    continue
+                hq = re.sub(r"\([^)]*\)", " ", h).strip()
+                if not lead:
+                    reasons.append("a value without a row label")
+                    continue
+                if not hq or _norm(hq) in vh:  # a property/value table: the row names the quantity
+                    subject, conds = _concept_phrase(frame, lead, "subject")[0], []
+                else:  # a matrix: the column names the quantity, the row the entity it is stated of
+                    kind_of_row = re.sub(r"\([^)]*\)", " ", header.get(cells[0]["col"], "")).strip()
+                    if not kind_of_row:
+                        reasons.append("a row entity whose kind no header names")
+                        continue
+                    subject = _concept_phrase(frame, hq, "subject")[0]
+                    conds = [{"concept": _concept_phrase(frame, kind_of_row, "subject")[0], "value": lead.lower()}]
+                if not subject:
+                    reasons.append("no quantity named")
+                    continue
+                n += 1
+                u = {"type": "proposition", "id": f"T{n:05d}", "content_kind": "quantitative", "relation": "has_value",
+                     "subject": subject, "object": None, "value": val, "polarity": "affirmed", "modality": "actual",
+                     "generality": "generic", "conditions": conds,
+                     "document_attitude": "proposed" if proposed else "asserted", "evidence_kind": "synthesis",
+                     "attributed_to": [], "cited_sources": [], "depends_on": [], "explains": [], "qualifies": None,
+                     "record": {"text": row_text, "locator": c.get("locator") or entry["locator"], "section": hp}}
+                if illustrative:
+                    u["statement_status"] = "illustrative_example"
+                units.append(u)
+                produced.append(u["id"])
+            entry["claims"] = produced
+            if produced and not [x for x in reasons if not x.startswith("a prose cell")]:
+                entry["status"] = "acquired"
+            elif produced:
+                entry["status"] = "partial"
+            elif reasons and all(x.startswith("a prose cell") for x in reasons):
+                entry["status"] = "read as prose"
+            else:
+                entry["status"] = "not assimilated"
+            if reasons:
+                entry["reasons"] = sorted(set(reasons))
+            ledger.append(entry)
+    return units, ledger
+
+
 def read_propositions(doc, lex):
     """Proposition units and the coverage ledger of one document (reading only; nothing is written)."""
     frame = Frame(lex)
@@ -657,7 +891,26 @@ def read_propositions(doc, lex):
             for ci, cl in enumerate(clauses):
                 ctx = {"previous": prev, "procedural": procedural,
                        "heading": hsub if kind in ("list item", "ordered item", "table cell") or ci == 0 else None}
-                for c in read_clause(frame, cl, ctx) + read_values(frame, cl):
+                # D-2 (F10): dated bounds are conditions of every claim of the clause
+                cl, tconds = _temporal(frame, cl)
+                # D-2 (F7, D-1 SD5): a value reported by a named source ("the manufacturer states a battery life of
+                # 20 hours") is read inside the reporting frame and keeps its reporter
+                rf = _report_frame(frame, cl)
+                vals = read_values(frame, rf.group(3)) if rf else read_values(frame, cl)
+                if rf:
+                    for v in vals:
+                        v["reported_by"] = _concept_phrase(frame, rf.group(1), "subject")[0]
+                        v.setdefault("spans", []).append(rf.group(1))
+                        v["phrase"] = rf.group(2)
+                found = read_clause(frame, cl, ctx)
+                # D-2 (F5): a copular claim whose object is the value just read is that value, not a second claim
+                vsubj = {v["subject"] for v in vals}
+                found = [c for c in found if not (c.get("relation") == "has_property" and c.get("subject") in vsubj
+                                                  and re.match(r"^\s*[\d.,]+", c.get("object") or ""))]
+                for c in found + vals:
+                    if tconds and not c.get("unresolved"):
+                        c["conditions"] = list(c.get("conditions") or []) + [dict(t) for t in tconds]
+                for c in found + vals:
                     if c.get("unresolved"):
                         entry.setdefault("reasons", []).append(c["unresolved"])
                         continue
@@ -685,8 +938,7 @@ def read_propositions(doc, lex):
                          "value": c.get("value"),
                          "polarity": c["polarity"], "modality": c["modality"],
                          "generality": "generic" if c["modality"] in ("actual", "typical") else "ceteris_paribus",
-                         "conditions": [{"concept": x["text"], "value": x["marker"]}
-                                        for x in _clean_conditions(frame, c.get("conditions", ())) if x.get("text")],
+                         "conditions": condition_units(frame, c.get("conditions", ())),
                          "document_attitude": "reported" if reported else c_att,
                          "evidence_kind": ev_kind,
                          # T-1: citing is not attributing. A cited identifier is a bibliographic link; the claim is
@@ -721,7 +973,8 @@ def read_propositions(doc, lex):
                         explained |= set(_words(span))
                     explained |= set(_words(c.get("phrase") or ""))
                     for x in c.get("conditions", ()):
-                        explained |= set(_words(x.get("text"))) | set(_words(x.get("marker")))
+                        explained |= set(_words(x.get("text"))) | set(_words(x.get("marker"))) | \
+                            set(_words(x.get("span")))
                     explained -= {w.lower() for w in c.get("left", ())}
                     prev = c["subject"]
             content = [w for w in _words(body) if w not in frame.stop and not w[0].isdigit()]
@@ -739,7 +992,8 @@ def read_propositions(doc, lex):
             ledger.append(entry)
         for u in block_units:  # the closing citation block of the paragraph: cited context of each claim
             u["cited_sources"] = sorted(set(u.get("cited_sources") or ()) | set(block_cites))
-    return {"units": units, "ledger": ledger}
+    tu, tl = read_tables(frame, doc)
+    return {"units": units + tu, "ledger": ledger + tl}
 
 
 __all__ = ["read_propositions", "sentences", "Frame", "KIND_OF"]

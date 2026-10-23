@@ -134,10 +134,54 @@ def answer(store, q):
     if unresolved:
         return dict(row, answer=("not stated" if t in ("status", "evidence") else "not covered" if t == "consistent"
                                  else "undetermined"), informed=False, why="a term names no concept in the universe")
+    combos = _reading_combinations(store, sets)
+    results = [(rd, _ask(store, t, a, s, conds) if all(s[k] for k in s if sets[k]) else
+                {"answer": "undetermined", "why": "a term names nothing in this reading", "grounds": []})
+               for rd, s in combos]
+    if len(results) == 1:
+        return dict(row, informed=True, **results[0][1])
+    # D-2 (F6, D-1 SD3; S0 3.6): a term with several readings is answered under each; the answer is the common one,
+    # otherwise undetermined, with each reading's answer
+    per = [{"reading": rd, "answer": r.get("answer"), "grounds": r.get("grounds", [])} for rd, r in results]
+    keys = {json.dumps(r.get("answer"), sort_keys=True, default=str) for _, r in results}
+    if len(keys) == 1:
+        return dict(row, informed=True, **dict(results[0][1], readings=per))
+    # the conclusion that would follow if the readings named one thing: reading-dependent (S0 3.6.4), never the answer
+    joint = _ask(store, t, a, sets, conds)
+    return dict(row, informed=True, answer="undetermined", why="indeterminate reference", readings=per,
+                if_identical={"answer": joint.get("answer"), "why": joint.get("why"), "grounds": joint.get("grounds")},
+                grounds=sorted({g for _, r in results for g in r.get("grounds", [])}))
+
+
+def _reading_combinations(store, sets):
+    """D-2 (F6): the readings of a question. Each holder's concepts are one perspective on every term, with general
+    knowledge (no holder) shared by all; concepts of different holders are combined only where an identity is recorded
+    (``recognition.readings``). A term that names nothing in a perspective is unresolved there. One perspective, or
+    none, gives one reading."""
+    parts = {k: recognition.readings(store, ids) for k, ids in sets.items() if ids}
+
+    def holders(part):
+        return {store.get(i).body.get("holder") for i in part if store.has(i)} - {None}
+
+    persp = sorted({frozenset(holders(p)) for ps in parts.values() for p in ps} - {frozenset()}, key=sorted)
+    if len(persp) <= 1:
+        return [({}, sets)]
+    out = []
+    for h in persp:
+        s, rd = dict(sets), {}
+        for k, ps in parts.items():
+            ids = set().union(*[p for p in ps if holders(p) == set(h) or not holders(p)])
+            s[k] = ids
+            rd[k] = sorted(ids)
+        out.append(({"holder": sorted(h), "terms": rd}, s))
+    return out
+
+
+def _ask(store, t, a, sets, conds):
     if t == "influence":
         r = rules.influence(store, sets["cause"], sets["effect"], conds)
     elif t == "holds":
-        r = rules.holds(store, sets["subject"], a["relation"], sets.get("object"), conds)
+        r = rules.holds(store, sets["subject"], a["relation"], sets.get("object"), conds, bearer=a.get("bearer"))
     elif t == "consistent":
         r = rules.consistent(store, sets["subject"], a["relation"], sets.get("object"), a.get("polarity", "affirmed"),
                              conds)
@@ -166,7 +210,7 @@ def answer(store, q):
                  "all": words, "grounds": [p.id for p in ps]}
     else:
         r = {"answer": "undetermined", "why": f"unknown question type {t}"}
-    return dict(row, informed=True, **r)
+    return r
 
 
 def _unit(u):

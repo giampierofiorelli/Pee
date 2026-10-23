@@ -20,6 +20,21 @@
    "determinable": "dimension"
   },
   {
+   "id": "Q:point_in_time",
+   "kind": "quantity_kind",
+   "label": "point in time (calendar date)",
+   "dims": {
+    "T": 1
+   },
+   "terms": [
+    "point in time",
+    "calendar date"
+   ],
+   "determinable": "frame",
+   "scale": "interval",
+   "about": "D-2 (F10): time as a quantity in a frame (S0 4.x): a calendar date on the Gregorian calendar. Dates are compared as points and intervals (Allen, 'Maintaining knowledge about temporal intervals', 1983); a date is never a duration"
+  },
+  {
    "id": "Q:warranty_period",
    "kind": "quantity_kind",
    "label": "warranty period",

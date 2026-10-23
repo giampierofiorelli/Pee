@@ -99,7 +99,9 @@ class Reader(unittest.TestCase):
     def test_modality_and_conditions(self):
         c = claims(self.u, "heavy rainfall", "causes")[0]
         self.assertEqual(c["modality"], "possible")
-        self.assertTrue(c["conditions"] and c["conditions"][0]["value"] == "when")
+        # D-2 (F5): the condition is a concept and its value (before D-2: {"concept": "soil is saturated",
+        # "value": "when"}, which no query condition could meet; D-1 SD8)
+        self.assertEqual(c["conditions"], [{"concept": "soil", "value": "saturated"}])
 
     def test_proposal_and_prohibition(self):
         norms = [x for x in self.u if x["content_kind"] == "norm"]

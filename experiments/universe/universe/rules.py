@@ -470,19 +470,150 @@ def _cond_terms(store, conds):
     return out
 
 
+def _lang(store):
+    """The proposition-reading section of the language knowledge (temporal markers, deontic modes)."""
+    return (store.get("L:en").body.get("propositions") or {}) if store.has("L:en") else {}
+
+
+def _date(store, text):
+    """D-2 (F10): (side, date) for a value naming a calendar date with an optional temporal marker ("from
+    2027-02-18", "until 1 March 2026", "2026-10-23"), else None. The markers and month names are language knowledge."""
+    import datetime
+    import re as _re
+    tm = _lang(store).get("temporal") or {}
+    markers, months = tm.get("markers") or {}, list(tm.get("months") or ())
+    t = " ".join(str(text or "").lower().replace(",", " ").split())
+    side = "on"
+    for m in sorted(markers, key=len, reverse=True):
+        if t.startswith(m + " "):
+            side, t = markers[m], t[len(m) + 1:]
+            break
+    try:
+        g = _re.fullmatch(r"(\d{4})-(\d{2})-(\d{2})", t)
+        if g:
+            return side, datetime.date(int(g[1]), int(g[2]), int(g[3]))
+        g = _re.fullmatch(r"(\d{1,2}) ([a-z]+) (\d{4})", t) or _re.fullmatch(r"([a-z]+) (\d{1,2}) (\d{4})", t)
+        if g:
+            d, mo = (g[1], g[2]) if g[1].isdigit() else (g[2], g[1])
+            if mo in months:
+                return side, datetime.date(int(g[3]), months.index(mo) + 1, int(d))
+    except ValueError:
+        return None
+    return None
+
+
+def _date_fits(prop_side, prop_date, q_side, q_date):
+    """Whether the time a query names falls within the interval a claim's date bounds (Allen 1983). A query interval
+    fits only when it lies wholly inside; otherwise the claim is not known to hold then."""
+    lo, hi = {"from": (prop_date, None), "after": (prop_date, None), "until": (None, prop_date),
+              "before": (None, prop_date), "on": (prop_date, prop_date)}[prop_side]
+    open_lo, open_hi = prop_side == "after", prop_side == "before"
+    if q_side == "on":
+        return (lo is None or q_date > lo or (q_date == lo and not open_lo)) and \
+            (hi is None or q_date < hi or (q_date == hi and not open_hi))
+    if q_side in ("from", "after"):  # the query asks about an unbounded future from q_date
+        return hi is None and lo is not None and (q_date > lo or (q_date == lo and not open_lo))
+    if q_side in ("until", "before"):
+        return lo is None and hi is not None and (q_date < hi or (q_date == hi and not open_hi))
+    return False
+
+
+def _value_fits(store, vals, q):
+    for a in vals:
+        da = _date(store, a)
+        for b in q:
+            db = _date(store, b)
+            if da and db:
+                if _date_fits(da[0], da[1], db[0], db[1]):
+                    return True
+                continue
+            if a == b or a in b or b in a:
+                return True
+    return False
+
+
 def conditions_fit(store, prop, query):
     """(fits, caveat): a claim stated under conditions applies when the query's conditions do not contradict them.
-    ``query`` maps concept ids to sets of value words. A condition the query does not state is a caveat."""
+    ``query`` maps concept ids to sets of value words. A condition the query does not state is a caveat. D-2 (F10):
+    calendar dates are compared as points and intervals, never as words."""
     pc = _cond_terms(store, prop.body.get("conditions"))
     caveats = []
     for cid, vals in pc.items():
         if cid in query:
             q = query[cid]
-            if not any(a == b or a in b or b in a for a in vals for b in q):
+            if not _value_fits(store, vals, q):
                 return False, f"{prop.id}: holds under {sorted(vals)} of {cid}; the question states {sorted(q)}"
         else:
             caveats.append(cid)
     return True, caveats
+
+
+def _label(store, i):
+    return (store.get(i).body.get("label") or i) if i and store.has(i) else i
+
+
+def conditional_on(store, pids, query_conds):
+    """D-2 (F3, D-1 SD1; S0 T7): the conditions of a conclusion's grounds that the query does not state. A
+    conclusion drawn from them holds only under these; a chain accumulates the conditions of all its links."""
+    out = {}
+    for pid in pids or ():
+        if not store.has(pid):
+            continue
+        for c in store.get(pid).body.get("conditions") or ():
+            cid = c.get("concept")
+            if cid in (query_conds or {}):
+                continue
+            out.setdefault(cid, set()).add(" ".join(str(c.get("value") or "").split()))
+    return [{"concept": cid, "label": _label(store, cid), "values": sorted(v)} for cid, v in sorted(out.items(),
+                                                                                               key=lambda x: str(x))]
+
+
+def _according_to(store, atts):
+    out = set()
+    for a in atts:
+        b = a.body
+        if b.get("attitude") == "reported" or b.get("attributed_to") or b.get("cites"):
+            for x in list(b.get("attributed_to") or ()) + list(b.get("cites") or ()):
+                if x:
+                    out.add(_label(store, x))
+    return sorted(out)
+
+
+def standing_of(store, pids):
+    """D-2 (F7, D-1 SD5; S0 D10, D14): the standing of each ground of a conclusion: who holds it, with which
+    attitude and evidence, according to whom, and under which conditions. A reported claim stays attributed."""
+    out = []
+    for pid in pids or ():
+        if not store.has(pid):
+            continue
+        atts = attributions(store, pid)
+        out.append({"ground": pid, "attitudes": sorted({a.body.get("attitude") for a in atts} - {None}),
+                    "evidence_classes": sorted(evidence_classes(store, pid)),
+                    "according_to": _according_to(store, atts),
+                    "conditions": [{"concept": _label(store, c.get("concept")), "value": c.get("value")}
+                                   for c in store.get(pid).body.get("conditions") or ()]})
+    return out
+
+
+def _qualify(store, r, query_conds):
+    """D-2 (F3, F7): a determinate answer carries the conditions it rests on and the standing of its grounds."""
+    if r.get("answer") in ("undetermined",) or not r.get("grounds"):
+        return r
+    grounds = [g for g in r["grounds"] if store.has(g) and store.get(g).body.get("form") == "proposition"]
+    cond = conditional_on(store, grounds, query_conds)
+    if cond:
+        r["conditional_on"] = cond
+        r["caveats"] = [f"holds only when {c['label']}: {', '.join(c['values'])}; the question does not state it"
+                        for c in cond]
+    ev = standing_of(store, grounds)
+    if ev:
+        r["evidence"] = ev
+        if all("asserted" not in e["attitudes"] for e in ev):
+            r["standing"] = "attributed: reported by the source, not asserted"
+            acc = sorted({x for e in ev for x in e["according_to"]})
+            if acc:
+                r["according_to"] = acc
+    return r
 
 
 def _licensed(store, p):
@@ -525,27 +656,35 @@ def influence(store, causes, effects, query_conds=None, max_len=3):
     """The effect of the cause concepts on the effect concepts: increases, decreases, affects, no effect, or
     undetermined, with grounds. Direct claims first; then chains of signed influences (a chain is unsigned when any
     link is). A licensed negated claim of an effect answers "no effect"; a claim the document states as not established
-    answers "undetermined"."""
-    query_conds = query_conds or {}
+    answers "undetermined". D-2 (F4, D-1 SD2): a licensed claim that denies the direction of a direct claim, under
+    conditions that fit the query, is a conflict between sources and answers "undetermined". D-2 (F3, F7): a
+    determinate answer carries the conditions and the standing of its grounds."""
+    return _qualify(store, _influence(store, causes, effects, query_conds or {}, max_len), query_conds or {})
+
+
+def _influence(store, causes, effects, query_conds, max_len):
     causes, effects = set(causes), set(effects)
     meta = relation_meta(store)
-    neg, unknown = [], []
+    neg, denials, unknown = [], [], []
     for p in propositions(store):
         b = p.body
         if b.get("subject") in causes and b.get("object") in effects and \
                 (meta.get(b.get("relation")) or {}).get("role") == "effect":
             if b.get("content_kind") == "unknown":
                 unknown.append(p.id)
-            elif b.get("polarity") == "negated" and _licensed(store, p) and conditions_fit(store, p, query_conds)[0] \
-                    and (meta[b["relation"]].get("sign") in (0, None) or b.get("relation") in ()):
-                neg.append(p.id)
+            elif b.get("polarity") == "negated" and _licensed(store, p) and conditions_fit(store, p, query_conds)[0]:
+                sign = meta[b["relation"]].get("sign")
+                denials.append((p.id, sign))
+                if sign in (0, None):
+                    neg.append(p.id)
     edges = _edges(store, query_conds)
     direct = [e for e in edges if e[0] in causes and e[1] in effects]
     if direct:
         signs = {e[2] for e in direct}
         grounds = [e[3] for e in direct]
-        if neg:
-            return {"answer": "undetermined", "why": "the claims conflict", "grounds": grounds + neg}
+        denied = [pid for pid, sg in denials if sg in (0, None) or sg in signs]
+        if denied:
+            return {"answer": "undetermined", "why": "the sources conflict", "grounds": grounds + denied}
         if 1 in signs and -1 in signs:
             return {"answer": "undetermined", "why": "claims of opposite direction", "grounds": grounds}
         ans = "increases" if signs == {1} else "decreases" if signs == {-1} else (
@@ -600,8 +739,93 @@ def _verb(designation):
     return designation.split(":", 1)[1].strip() if designation.startswith("other") and ":" in designation else None
 
 
-def holds(store, subjects, designation, objects, query_conds=None):
-    """Whether the universe licenses the claim: yes, no (it licenses the contrary) or undetermined."""
+def holds(store, subjects, designation, objects, query_conds=None, bearer=None):
+    """Whether the universe licenses the claim: yes, no (it licenses the contrary) or undetermined. D-2 (F8): on a
+    norm, the deontic inferences of S0 D18 between norms on the same action, bearer and fitting conditions. D-2 (F3,
+    F7): a determinate answer carries the conditions and the standing of its grounds."""
+    r = _holds(store, subjects, designation, objects, query_conds or {})
+    if r.get("answer") == "undetermined" and r.get("why") in ("not stated",):
+        d = deontic(store, subjects, designation, objects, query_conds or {}, bearer)
+        if d is not None:
+            r = d
+    return _qualify(store, r, query_conds or {})
+
+
+def _mode(store, p):
+    """The deontic mode (S0 D18) a licensed, affirmed norm proposition states, from language knowledge; else None."""
+    if p.body.get("polarity") != "affirmed":
+        return None
+    modes = (_lang(store).get("deontic") or {}).get("modes") or {}
+    m = relation_meta(store).get(p.body.get("relation")) or {}
+    for d in m.get("designations") or ():
+        if d == "other":
+            v = p.body.get("verb")
+            return next((modes[k] for k in modes if k != "about" and v and _stem(k) == _stem(v)), None)
+        if d in modes:
+            return modes[d]
+    return None
+
+
+def _bearer(store, p):
+    bs = {a.body.get("norm_bearer") for a in attributions(store, p.id)} - {None}
+    return bs.pop() if len(bs) == 1 else (None if not bs else "several")
+
+
+def deontic(store, subjects, designation, objects, query_conds, bearer=None):
+    """D-2 (F8, D-1 SD6; S0 D18; von Wright 1951): what the stated norms on the same action entail for the asked
+    mode. Obligation and recommendation imply permission; prohibition excludes permission, recommendation and
+    obligation, and any of these excludes prohibition. Norms of different bearers, or of a bearer other than the
+    asked one, entail nothing for each other. The absence of a recommendation is never a prohibition, and a negated
+    recommendation (a discouragement) is not a prohibition. Returns None when nothing is entailed."""
+    modes = (_lang(store).get("deontic") or {}).get("modes") or {}
+    rid, neg = relation_for(store, designation)
+    if rid is None or neg:
+        return None
+    asked = None
+    for d in relation_meta(store)[rid]["designations"]:
+        if d == "other":
+            v = _verb(designation)
+            asked = next((modes[k] for k in modes if k != "about" and v and _stem(k) == _stem(v)), None)
+        elif d in modes:
+            asked = modes[d]
+    if asked is None:
+        return None
+    subjects = set(subjects)
+    objs = set(objects) if objects is not None else None
+    found = {}
+    for p in propositions(store):
+        b = p.body
+        if b.get("subject") not in subjects or not _licensed(store, p):
+            continue
+        if (b.get("object") is not None) if objs is None else (b.get("object") not in objs):
+            continue  # the same action: the same subject, and the same object or none
+        m = _mode(store, p)
+        if m is None or not conditions_fit(store, p, query_conds)[0]:
+            continue
+        found.setdefault(_bearer(store, p), []).append((m, p.id))
+    if bearer is not None:
+        found = {k: v for k, v in found.items() if k == bearer}
+    if len(found) != 1 or "several" in found:
+        return None if not found else {"answer": "undetermined", "why": "norms of different bearers",
+                                       "grounds": [pid for v in found.values() for _, pid in v]}
+    (who, norms), = found.items()
+    have = {m for m, _ in norms}
+    pos = {"required", "recommended", "permitted"}
+    if asked in pos and "forbidden" in have:
+        g = [pid for m, pid in norms if m == "forbidden"]
+        return {"answer": "no", "inference": "deontic (forbidden excludes " + asked + ")", "grounds": g, "bearer": who}
+    if asked == "forbidden" and have & pos:
+        g = [pid for m, pid in norms if m in pos]
+        return {"answer": "no", "inference": "deontic (" + "/".join(sorted(have & pos)) + " excludes forbidden)",
+                "grounds": g, "bearer": who}
+    if asked == "permitted" and have & {"required", "recommended"}:
+        g = [pid for m, pid in norms if m in ("required", "recommended")]
+        return {"answer": "yes", "inference": "deontic (" + "/".join(sorted(have & {"required", "recommended"})) +
+                " implies permitted)", "grounds": g, "bearer": who}
+    return None
+
+
+def _holds(store, subjects, designation, objects, query_conds=None):
     rid, neg = relation_for(store, designation)
     if rid is None:
         return {"answer": "undetermined", "why": f"no relation concept designated {designation}", "grounds": []}
@@ -664,7 +888,12 @@ def consistent(store, subjects, designation, objects, polarity, query_conds=None
 
 
 def value(store, subjects, query_conds=None):
-    """The value the universe licenses for a quantity concept (a has_value proposition)."""
+    """The value the universe licenses for a quantity concept (a has_value proposition). D-2 (F3, F7): with the
+    conditions it holds under and the standing of its grounds (a declaration stays a declaration, by whom)."""
+    return _qualify(store, _value(store, subjects, query_conds), query_conds or {})
+
+
+def _value(store, subjects, query_conds=None):
     rid, _ = relation_for(store, "has_value")
     ps = [p for p in _matching(store, set(subjects), rid, None, query_conds or {}) if _licensed(store, p)
           and p.body.get("value")]
@@ -695,9 +924,30 @@ def evidence_of(store, content):
 
 
 def satisfies_evidence(store, content, required):
-    """Whether a content has the evidence an inquiry requires: a class that knowledge marks as independent test
-    evidence, when the requirement is a measurement. The requirement and the classes are matched through the
-    evidence-class concepts and their terms, never by name in code."""
+    """Whether a content has the evidence an inquiry requires (``evidence_assessment``)."""
+    return evidence_assessment(store, content, required)["satisfied"]
+
+
+def _second_hand(b):
+    """An attribution that reports what another source found: a reported attitude, a cited source or a named
+    source the claim is attributed to (S0 D10; citing for context is not attributing)."""
+    return b.get("attitude") == "reported" or bool(b.get("cites")) or bool(b.get("attributed_to")) or \
+        bool(b.get("unresolved"))
+
+
+def _examined(b):
+    """D-2 (F2; owner decision 1; GRADE: Guyatt et al. 2008, 2011): a second-hand result counts as independent
+    evidence only when the cited source was examined and its independence and method were recorded on the
+    attribution. Applicability is checked by the conditions (``conditions_fit``), never here."""
+    return bool(b.get("cited_sources_examined")) and b.get("independence") == "independent" and bool(b.get("method"))
+
+
+def evidence_assessment(store, content, required):
+    """Whether a content has the evidence an inquiry requires, with the reason: a class that knowledge marks as
+    independent test evidence, when the requirement is a measurement. The requirement and the classes are matched
+    through the evidence-class concepts and their terms, never by name in code. D-2 (F2, D-1 SD4): a class that an
+    attribution reports second-hand meets an independent-evidence requirement only when the source was examined
+    (``_examined``); a cited but unexamined source never does."""
     classes = {c.id: c.body for c in store.of("concept") if c.body.get("category") == "evidence class"}
 
     def cls(x):
@@ -709,12 +959,26 @@ def satisfies_evidence(store, content, required):
 
     want = cls(required)
     if want is None:
-        return False
+        return {"satisfied": False, "reason": f"no evidence class is named {required}"}
     need_independent = classes[want].get("independent_test_evidence")
-    for e in evidence_of(store, content):
-        c = cls(e)
+    held = []
+    for a in store.of("content", form="attribution"):
+        b = a.body
+        if not (b.get("content") == content.id or (content.body.get("interprets") and
+                                                    b.get("reports") == content.body.get("interprets"))):
+            continue
+        for e in list(b.get("evidence_classes") or ()) + ([b["evidence"]] if b.get("evidence") else []):
+            held.append((cls(e), b))
+    reasons = []
+    for c, b in held:
         if c is None:
             continue
         if c == want or (need_independent and classes[c].get("independent_test_evidence")):
-            return True
-    return False
+            if need_independent and _second_hand(b) and not _examined(b):
+                reasons.append("cited source not examined" if not b.get("cited_sources_examined") else
+                               "independence or method of the examined source not recorded")
+                continue
+            return {"satisfied": True, "reason": "the required evidence is held"}
+    if reasons:
+        return {"satisfied": False, "reason": "; ".join(sorted(set(reasons)))}
+    return {"satisfied": False, "reason": "no attribution gives the required evidence"}

@@ -275,6 +275,58 @@
     "kPa"
    ]
   },
+  "MPa": {
+   "factor": 1000000.0,
+   "offset": 0.0,
+   "dims": {
+    "L": -1.0,
+    "M": 1.0,
+    "T": -2.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "MPa"
+   ]
+  },
+  "GPa": {
+   "factor": 1000000000.0,
+   "offset": 0.0,
+   "dims": {
+    "L": -1.0,
+    "M": 1.0,
+    "T": -2.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "GPa"
+   ]
+  },
+  "bar": {
+   "factor": 100000.0,
+   "offset": 0.0,
+   "dims": {
+    "L": -1.0,
+    "M": 1.0,
+    "T": -2.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "bar"
+   ]
+  },
+  "atm": {
+   "factor": 101325.0,
+   "offset": 0.0,
+   "dims": {
+    "L": -1.0,
+    "M": 1.0,
+    "T": -2.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "atm"
+   ]
+  },
   "Pa s": {
    "factor": 1.0,
    "offset": 0.0,

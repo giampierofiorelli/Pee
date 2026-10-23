@@ -94,6 +94,13 @@ None of these modifies S0.
     - with correct knowledge: SD1–SD4 (rules, recognition, evidence) and SD9 (the recognition cache);
     - at the reader–representation interface: SD8 (the condition format).
   - Nothing is corrected. The three T-1 agents and Soundbars remain suspended until the owner decides.
+- **D-2** (owner, 2026-10-23; `experiments/d2/REPORT.md`): correct D-1's structural defects (F1–F11), with no agents,
+  no Soundbars content, no change to the A0/A1 freezes and no category words. **Done; stopped at the decision point.**
+  - Corrected: the cache (SD9), evidence (SD4), caveats (SD1), conflicts (SD2), the condition contract (SD8),
+    readings for homonyms (SD3), standing (SD5), deontic inference (SD6), tables (SD7), dates; plus a question-format
+    validator (EL2).
+  - Open: designation in the reader; identity across sources; examining cited sources.
+  - The final check found one regression (the assimilation lifecycle audit); its correction is a separate commit.
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
 - Every step names its owner authorisation, and fixes its criteria before any code, as before.

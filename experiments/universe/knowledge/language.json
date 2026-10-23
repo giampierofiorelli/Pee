@@ -1152,7 +1152,17 @@
    "obligation": ["must", "required", "is required to", "are required to", "mandatory", "need to", "needs to", "has to", "have to", "always", "only"],
    "recommendation": ["should", "consider", "prefer", "ideally", "if useful", "is recommended", "are recommended", "recommended"],
    "prohibition": ["do not", "don't", "never", "avoid", "refuse", "must not", "should not", "may not", "prohibit", "prohibited", "forbid", "forbidden"],
-   "negative_verbs": ["avoid", "refuse", "prohibit", "forbid"]
+   "negative_verbs": ["avoid", "refuse", "prohibit", "forbid"],
+   "modes": {"about": "D-2 (F8): the deontic mode (S0 D18) each norm designation states. Obligation implies permission; prohibition excludes permission, recommendation and obligation (von Wright, 'Deontic logic', 1951). The absence of a recommendation is never a prohibition.", "requires": "required", "recommends": "recommended", "prohibits": "forbidden", "permits": "permitted"}
+  },
+  "value_headers": {
+   "about": "D-2 (F9): column headers that say a column holds the values of the quantity each row names (a property/value table), not a quantity of its own.",
+   "terms": ["value", "values", "typical value", "typical values", "nominal value", "nominal values"]
+  },
+  "temporal": {
+   "about": "D-2 (F10): closed-class markers that bound a statement in time with a calendar date, and the month names of English dates. Each marker gives the side of the interval the date bounds (Allen 1983).",
+   "markers": {"from": "from", "since": "from", "as of": "from", "starting": "from", "after": "after", "until": "until", "till": "until", "before": "before", "on": "on"},
+   "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
   },
   "fronted_condition_markers": ["if", "when", "whenever", "unless", "once", "only if", "provided that", "even if", "where", "for"],
   "illustrative_words": ["example", "examples", "worked example", "case", "cases", "scenario", "scenarios", "illustration", "illustrative", "hypothetical"],

@@ -16,6 +16,7 @@ The service reads entity items only. It never reads documents and never decides 
 import hashlib
 import json
 import re
+import weakref
 
 from .standing import label
 from .store import Item
@@ -87,14 +88,17 @@ def _stem_words(t):
     return " ".join(out)
 
 
-_INDEX = {}
+# D-2 (F1, D-1 SD9): the index is cached per store object in a weak-keyed mapping, with the store state it was built
+# at. A key of ``id(store)`` could be reused by a new store once the old one is freed (Python's ``id()`` is unique only
+# during an object's lifetime), and that store would read another universe's index.
+_INDEX = weakref.WeakKeyDictionary()
 
 
 def _index(store):
-    """Normalised terms of every concept and kind, cached per store state."""
-    key = (id(store), store.seq)
-    if key in _INDEX:
-        return _INDEX[key]
+    """Normalised terms of every concept and kind, cached per store object and state."""
+    hit = _INDEX.get(store)
+    if hit is not None and hit[0] == store.seq:
+        return hit[1]
     from .knowledge_acquisition import _term
     lang = store.get("L:en").body if store.has("L:en") else {}
     stop = set((lang.get("propositions") or {}).get("determiners") or ()) | set(lang.get("stopwords") or ())
@@ -110,9 +114,8 @@ def _index(store):
             words = [w for w in _term(x).split() if w not in stop]
             if words:
                 rows.append((c.id, " ".join(words), _stem_words(" ".join(words))))
-    _INDEX.clear()
-    _INDEX[key] = (rows, stop)
-    return _INDEX[key]
+    _INDEX[store] = (store.seq, (rows, stop))
+    return rows, stop
 
 
 def designate(store, term, approximate=True, threshold=0.6):
@@ -171,3 +174,34 @@ def designate_with_basis(store, term, approximate=True, threshold=0.6):
         elif abs(j - best) < 1e-9:
             ids.add(i)
     return (ids, f"approximate ({best:.2f})") if best >= threshold else (set(), None)
+
+
+def _identities(store):
+    """Pairs of concepts or kinds whose identity is recorded: a co-reference whose verdict is "same", or one an
+    adopted identity reading accepts. An indeterminate proposal records no identity (S0 3.6.5)."""
+    adopted = {store.get(r.body["co_reference"]).id for r in store.of("content", form="identity_reading")
+               if store.has(r.body.get("co_reference") or "")}
+    out = []
+    for c in store.of("content", form="co_reference"):
+        if c.body.get("verdict") == "same" or c.id in adopted:
+            out.append(tuple(c.body.get("relata") or ()))
+    return out
+
+
+def readings(store, ids):
+    """D-2 (F6, D-1 SD3; S0 3.6 indeterminate reference): the readings of a designation. Each holder's concepts form
+    one reading (S0 D2: one holder's term names one concept, ``knowledge_acquisition.concept_for``); general
+    knowledge (no holder) is a reading of its own. Readings are joined only where an identity is recorded. Returns a
+    list of id sets, one per reading, in a stable order; a designation of one holder has one reading."""
+    groups = {}
+    for i in ids or ():
+        h = store.get(i).body.get("holder") if store.has(i) else None
+        groups.setdefault(h or "", set()).add(i)
+    parts = [set(v) for _, v in sorted(groups.items())]
+    for a, b in _identities(store):
+        pa = next((p for p in parts if a in p), None)
+        pb = next((p for p in parts if b in p), None)
+        if pa is not None and pb is not None and pa is not pb:
+            pa |= pb
+            parts.remove(pb)
+    return parts

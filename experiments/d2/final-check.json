@@ -1,0 +1,511 @@
+{
+ "schema": "pee.d2.final-check.v1",
+ "cases": [
+  {
+   "id": "K1",
+   "focus": "conditions",
+   "questions": [
+    {
+     "id": "K1q1",
+     "expected": "increases",
+     "correct": {
+      "answer": "increases",
+      "informed": true
+     },
+     "reader": {
+      "answer": "increases",
+      "informed": true
+     }
+    },
+    {
+     "id": "K1q2",
+     "expected": "undetermined",
+     "correct": {
+      "answer": "undetermined",
+      "why": "no claim or chain of claims links them",
+      "informed": true
+     },
+     "reader": {
+      "answer": "undetermined",
+      "why": "no claim or chain of claims links them",
+      "informed": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "K2",
+   "focus": "conditions on values",
+   "questions": [
+    {
+     "id": "K2q1",
+     "expected": {
+      "number": 100,
+      "unit": "°C"
+     },
+     "correct": {
+      "answer": {
+       "number": 100,
+       "unit": "°C"
+      },
+      "informed": true
+     },
+     "reader": {
+      "answer": {
+       "number": 100.0,
+       "unit": "degC"
+      },
+      "informed": true
+     }
+    },
+    {
+     "id": "K2q2",
+     "expected": "undetermined",
+     "correct": {
+      "answer": "undetermined",
+      "why": "no value stated",
+      "informed": true
+     },
+     "reader": {
+      "answer": "undetermined",
+      "why": "no value stated",
+      "informed": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "K3",
+   "focus": "negation",
+   "questions": [
+    {
+     "id": "K3q1",
+     "expected": "no",
+     "correct": {
+      "answer": "no",
+      "informed": true
+     },
+     "reader": {
+      "answer": "no",
+      "informed": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "K4",
+   "focus": "prohibition",
+   "questions": [
+    {
+     "id": "K4q1",
+     "expected": "no",
+     "correct": {
+      "answer": "no",
+      "informed": true
+     },
+     "reader": {
+      "answer": "undetermined",
+      "why": "a term names no concept in the universe",
+      "informed": false
+     }
+    },
+    {
+     "id": "K4q2",
+     "expected": "yes",
+     "correct": {
+      "answer": "yes",
+      "informed": true
+     },
+     "reader": {
+      "answer": "undetermined",
+      "why": "a term names no concept in the universe",
+      "informed": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "K5",
+   "focus": "obligation against recommendation",
+   "questions": [
+    {
+     "id": "K5q1",
+     "expected": "yes",
+     "correct": {
+      "answer": "yes",
+      "informed": true
+     },
+     "reader": {
+      "answer": "yes",
+      "informed": true
+     }
+    },
+    {
+     "id": "K5q2",
+     "expected": "undetermined",
+     "correct": {
+      "answer": "undetermined",
+      "why": "not stated",
+      "informed": true
+     },
+     "reader": {
+      "answer": "undetermined",
+      "why": "not stated",
+      "informed": true
+     }
+    },
+    {
+     "id": "K5q3",
+     "expected": "undetermined",
+     "correct": {
+      "answer": "undetermined",
+      "why": "not stated",
+      "informed": true
+     },
+     "reader": {
+      "answer": "undetermined",
+      "why": "a term names no concept in the universe",
+      "informed": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "K6",
+   "focus": "procedural step and bearer",
+   "questions": [
+    {
+     "id": "K6q1",
+     "expected": "undetermined",
+     "correct": {
+      "answer": "undetermined",
+      "why": "not stated",
+      "informed": true
+     },
+     "reader": {
+      "answer": "undetermined",
+      "why": "a term names no concept in the universe",
+      "informed": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "K7",
+   "focus": "evidence promotion",
+   "questions": [],
+   "evidence_probe": {
+    "expected": false,
+    "correct": [
+     {
+      "satisfied": false,
+      "reason": "cited source not examined"
+     }
+    ],
+    "reader": [
+     {
+      "satisfied": false,
+      "reason": "cited source not examined"
+     }
+    ]
+   }
+  },
+  {
+   "id": "K8",
+   "focus": "declaration",
+   "questions": [],
+   "evidence_probe": {
+    "expected": false,
+    "correct": [
+     {
+      "satisfied": false,
+      "reason": "no attribution gives the required evidence"
+     }
+    ],
+    "reader": [
+     {
+      "satisfied": false,
+      "reason": "no attribution gives the required evidence"
+     }
+    ]
+   }
+  },
+  {
+   "id": "K9",
+   "focus": "context across paragraphs",
+   "questions": [
+    {
+     "id": "K9q1",
+     "expected": "yes",
+     "correct": {
+      "answer": "yes",
+      "informed": true
+     },
+     "reader": {
+      "answer": "yes",
+      "informed": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "K10",
+   "focus": "table values",
+   "questions": [
+    {
+     "id": "K10q1",
+     "expected": {
+      "number": 250,
+      "unit": "MPa"
+     },
+     "correct": {
+      "answer": {
+       "number": 250,
+       "unit": "MPa"
+      },
+      "informed": true
+     },
+     "reader": {
+      "answer": {
+       "number": 250.0,
+       "unit": "MPa"
+      },
+      "informed": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "K11",
+   "focus": "homonyms across holders",
+   "questions": [
+    {
+     "id": "K11q1",
+     "expected": "undetermined-or-qualified",
+     "correct": {
+      "answer": "undetermined",
+      "why": "indeterminate reference",
+      "informed": true,
+      "readings": [
+       "yes",
+       "undetermined"
+      ],
+      "if_identical": {
+       "answer": "yes",
+       "why": null
+      }
+     },
+     "reader": {
+      "answer": "undetermined",
+      "why": "indeterminate reference",
+      "informed": true,
+      "readings": [
+       "yes",
+       "undetermined"
+      ],
+      "if_identical": {
+       "answer": "yes",
+       "why": null
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "K12",
+   "focus": "alternative designations",
+   "questions": [
+    {
+     "id": "K12q1",
+     "expected": "decreases",
+     "correct": {
+      "answer": "decreases",
+      "informed": true
+     },
+     "reader": {
+      "answer": "decreases",
+      "informed": true
+     }
+    },
+    {
+     "id": "K12q2",
+     "expected": "undetermined",
+     "correct": {
+      "answer": "undetermined",
+      "why": "a term names no concept in the universe",
+      "informed": false
+     },
+     "reader": {
+      "answer": "undetermined",
+      "why": "a term names no concept in the universe",
+      "informed": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "K13",
+   "focus": "unstated condition",
+   "questions": [
+    {
+     "id": "K13q1",
+     "expected": "increases-with-caveat",
+     "correct": {
+      "answer": "increases",
+      "informed": true,
+      "conditional_on": [
+       {
+        "concept": "soil",
+        "values": [
+         "saturated"
+        ]
+       }
+      ]
+     },
+     "reader": {
+      "answer": "increases",
+      "informed": true,
+      "conditional_on": [
+       {
+        "concept": "soil",
+        "values": [
+         "saturated"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "K14",
+   "focus": "hypothesis",
+   "questions": [
+    {
+     "id": "K14q1",
+     "expected": "undetermined",
+     "correct": {
+      "answer": "undetermined",
+      "why": "no claim or chain of claims links them",
+      "informed": true
+     },
+     "reader": {
+      "answer": "undetermined",
+      "why": "a term names no concept in the universe",
+      "informed": false
+     }
+    },
+    {
+     "id": "K14q2",
+     "expected": "hypothesised",
+     "correct": {
+      "answer": "hypothesised",
+      "informed": true
+     },
+     "reader": {
+      "answer": "not stated",
+      "why": "a term names no concept in the universe",
+      "informed": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "K15",
+   "focus": "illustrative case",
+   "questions": [
+    {
+     "id": "K15q1",
+     "expected": "undetermined",
+     "correct": {
+      "answer": "undetermined",
+      "why": "no value stated",
+      "informed": true
+     },
+     "reader": {
+      "answer": "undetermined",
+      "why": "a term names no concept in the universe",
+      "informed": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "K16",
+   "focus": "contradiction across sources",
+   "questions": [
+    {
+     "id": "K16q1",
+     "expected": "undetermined",
+     "correct": {
+      "answer": "undetermined",
+      "why": "indeterminate reference",
+      "informed": true,
+      "readings": [
+       "increases",
+       "undetermined"
+      ],
+      "if_identical": {
+       "answer": "undetermined",
+       "why": "the sources conflict"
+      }
+     },
+     "reader": {
+      "answer": "undetermined",
+      "why": "indeterminate reference",
+      "informed": true,
+      "readings": [
+       "increases",
+       "undetermined"
+      ],
+      "if_identical": {
+       "answer": "undetermined",
+       "why": "the sources conflict"
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "question_format": {
+  "D-1 cases": {
+   "questions": 21,
+   "flagged": 2,
+   "rows": [
+    {
+     "id": "K5q1",
+     "issues": {
+      "object": [
+       "a value with a unit"
+      ]
+     }
+    },
+    {
+     "id": "K5q2",
+     "issues": {
+      "object": [
+       "a value with a unit"
+      ]
+     }
+    }
+   ]
+  },
+  "QS-reference.json": {
+   "questions": 60,
+   "flagged": 15,
+   "reasons": [
+    "a bound or comparison (below)",
+    "a number",
+    "a value with a unit"
+   ]
+  },
+  "QD-author.json": {
+   "questions": 30,
+   "flagged": 9,
+   "reasons": [
+    "a number",
+    "a value with a unit"
+   ]
+  }
+ }
+}
