@@ -288,7 +288,8 @@ the corrected items become faithful. Missed propositions are not counted.
 The first three lines are **closed-class** corrections, where rules have a record. The last two need open-class lexical
 and discourse knowledge.
 
-**Even perfect closed-class corrections leave precision at most 0.57 and faithful coverage at most 0.49.**
+**In this simulation, even perfect closed-class corrections leave precision at most 0.57 and faithful coverage at
+most 0.49.** This is a scenario for the correction classes examined here. It is not a general limit of rule readers.
 - No measurement yet shows what share of a ceiling real rule corrections reach.
 - Selective abstention moves errors to `uncertain` without making them right.
 

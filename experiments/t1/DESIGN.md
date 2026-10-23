@@ -333,3 +333,32 @@ change. Stopped at the stage-0 decision.
     is 0;
   - two W2 additions: the default force of a bare imperative, and list-frame predicates.
 - **Not authorised:** stage 1. It waits for the owner's decision.
+
+## 10. Stage 1 (Rules), 2026-10-23
+
+**The owner's decision:** option A, proceed narrowed. Only stage 1 is authorised. W3–W5 and the sealed test are not.
+
+**Delivered** (documents only; no code, no agents, no S0 change):
+- `annotation-guide.md`: amendments to the A-1 guide:
+  - the approved evidence rule in four dimensions;
+  - citation separated from attribution;
+  - deontic force and bearer;
+  - `unclear` elements.
+- `W2-RELATIONS.md`: the unstable pairs plus prohibition, the force of a bare imperative, and lists governed by a
+  heading. These are recommendations only.
+- `PROTOCOL.md`: the corrected scoring, and the comparison of A0 and A1 under the same conventions. It also fixes:
+  - the label mapping for spent references;
+  - what the hashed references allow to be measured;
+  - the narrowed W3 scope;
+  - the freeze list before stage 2.
+
+**Found while preparing it.** Only 216 of the 507 spent reference propositions, and only 36 of 143 norms, keep their
+subject and object readable. Mechanical scoring alone therefore measures the norm corrections poorly (`PROTOCOL.md`
+§4, §8).
+
+**Waiting for the owner:**
+- the W2 decisions;
+- the judging mode of stage 2;
+- the new critical type 7.
+
+Stage 2 is not authorised.

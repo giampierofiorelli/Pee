@@ -74,8 +74,11 @@ None of these modifies S0.
     **only stage 0 (Diagnosis)** is authorised.
   - Stage 0 uses no agents, no Soundbars content and no S0 change. Preferably it runs in a new session attached to
     Pee alone.
-  - **Stage 0 done** (`experiments/t1/W1-DIAGNOSIS.md`). Recommendation: proceed, narrowed. Stopped at the stage-0
-    decision. Stage 1 is not authorised.
+  - **Stage 0 done** (`experiments/t1/W1-DIAGNOSIS.md`). Recommendation: proceed, narrowed.
+  - **Stage 1 (Rules)** (owner, 2026-10-23: option A, stage 1 only; `experiments/t1/DESIGN.md` §10). **Done:**
+    `annotation-guide.md`, `W2-RELATIONS.md` and `PROTOCOL.md`, as documents only.
+    - Waiting for the owner: the W2 decisions, the stage-2 judging mode and critical type 7.
+    - W3–W5 and the sealed test are not authorised.
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
 - Every step names its owner authorisation, and fixes its criteria before any code, as before.
