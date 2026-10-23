@@ -211,3 +211,71 @@ reasoning (W5) is the limit, whatever the translation.
 - **Not a verdict on all readers.** A rule-based reader, even improved, may stay far from the reliability needed for
   admission. T-1 measures by how much, and whether reasoning or translation is the larger limit.
 - **Parked, not rejected.** The neural route (Phi-4-mini quality on 50 sentences) is not dropped.
+
+## 8. Revision 1 (2026-10-23): staged order, evidence in four dimensions, metrics that cannot reward over-abstention
+
+**Basis.** The owner relayed ChatGPT's review and asked for stages with go/no-go points, to save credits. Claude
+agrees with every point. This section supersedes §4.1 on the evidence rule, §4.3–4.4 on the metrics, and §6 on the
+order of decisions.
+
+### 8.1 Stages and gates
+
+| Stage | Work | Agents | Proceed only if |
+|---|---|---|---|
+| **0. Diagnosis** | W1 on spent material | 0 | The causes that general principles can fix cover at least half of A-1's errors; otherwise stop the rule-reader path |
+| **1. Rules** | The evidence rule (8.2) in the annotation guide; W2, the unstable relation pairs | 0 | The owner approves; ChatGPT may review |
+| **2. Development** | W3–W5, measured **mechanically** on spent material, as in C-1 F′ | 0 | Exact relation accuracy is up by at least 0.10, negation errors are not up, and the **right-element share** (8.3) is not down |
+| **3. Sealed test** | R2 and Q2 on Soundbars, then the frozen arms and blind judging | about 13 | — (this is the result) |
+
+**When R2 is sealed: an open decision for the owner.** The O-2 rule was to seal the reference before any code change.
+To avoid spending 7 annotation agents before stage 2 shows promise, Claude proposes a compromise:
+- **Before stage 2:** the exposure census and the hash split of the Soundbars sections are fixed. No agent is used,
+  and nobody reads the text.
+- **Only if stage 2 passes:** annotation and sealing, **before** the frozen reader ever runs on that material.
+- **What it costs.** No one develops while seeing that material. It still departs from the O-2 rule, and needs the
+  owner's explicit choice.
+
+### 8.2 Evidence: four dimensions, never one field
+
+This replaces the single `evidence_kind` choice of §4.1 for R2 and for scoring. It is the owner-relayed review's rule,
+made operational. It is a change to the annotation guide, not to the 27 relations or to S0. S0 already separates a
+content from its attribution, holder and standing (D10, D14, 5.8–5.9).
+
+| Dimension | Values | Question it answers |
+|---|---|---|
+| **Nature of the evidence** | `measurement`, `experiment` (controlled comparison), `professional_observation`, `analysis` (calculation, model, review of sources), `standard_text`, `declaration` (a party's statement about its own product), `none_stated` | What kind of support does the passage give? |
+| **Provenance and independence** | **Who produced it.** The source identifier, or `author`. **Independence:** `independent` (stated or verifiable), `interested` (manufacturer, seller or sponsor), `partial` (independent party with a stated tie), `unknown` | Who stands behind the evidence, and with what interest? |
+| **Status of the statement** | `observed_result`, `general_claim` (the author's synthesis), `hypothesis`, `illustrative_example` (a constructed or hypothetical case), `recommendation`, `requirement`, `open_question` | What kind of claim is this? |
+| **Extraction fidelity** | scored, never annotated: whether Pee's item states what the source states | Did Pee read it right? |
+
+**Rules:**
+- **Unknown is unknown.** Independence that is not stated is `unknown`, never assumed.
+- **Fidelity is separate from probative value.** A correctly extracted claim is not thereby true. Fidelity is scored
+  on its own, and the probative value never raises a claim's standing.
+- **Manufacturer declarations stay declarations.** A manufacturer's declaration is `declaration`, `interested`,
+  whatever measurement words it uses (`CLAUDE.md`, Evidence).
+- **Hypothetical cases stay hypothetical.** A constructed teaching case is `illustrative_example`, never
+  `observed_result`.
+
+### 8.3 Metrics: reward reading, not abstaining
+
+This replaces the faithful coverage of §4.3, which counted only the elements an arm chose to read. It could have
+favoured an arm that marks almost everything uncertain. Per reference proposition and per element:
+
+| Measure | Definition | Rewards |
+|---|---|---|
+| **Complete faithful coverage** | reference propositions whose **every** element is present and right ÷ reference propositions | full reading |
+| **Right-element share** | right elements ÷ **all** reference elements, so abstention earns nothing | reading more, correctly |
+| **Retained by selective abstention** | propositions kept with at least the measure, unit and bearer right, while another element is `uncertain` ÷ reference propositions | principle 3 doing its job |
+| **Uninterpreted share** | reference elements that are `uncertain` or `not read` ÷ all reference elements | reported, so that abstention is visible |
+| **Wrong rate** | wrong ÷ elements read | reading carefully |
+| **Critical errors** | O-2 types 1–6 | — |
+
+**Improvement shown** (replaces §4.4) only if A1, against A0, meets all of these:
+- **Critical errors.** Types 1, 3, 4 and 5 are not higher, and the total is lower.
+- **Wrong rate.** It is at least 25 % lower, relative.
+- **Right-element share.** It is **higher**. This guards against over-abstention: an arm that abstains more cannot
+  pass by making fewer errors alone.
+- **Complete faithful coverage.** It is not lower.
+- **Reasoning.** On Q2, more correct answers and no more unjustified ones.
+- **Abstention.** The uninterpreted share is reported beside every comparison.
