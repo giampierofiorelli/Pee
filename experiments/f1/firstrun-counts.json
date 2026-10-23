@@ -1,0 +1,477 @@
+{
+ "note": "First runs on freeze_1, unchanged. Counts only; the rows (values, texts) are private.",
+ "freeze": "6db167ed0760d1d08ec88e96bffad8ae5dad9089413f3721e65136303a7b3940",
+ "files": {
+  "e1-AP.json": "f9857c47696ca4f72f62ca410f9ecbf7770428c43e3672e8e56e860d009926bb",
+  "e1-DH.json": "fa0c5a8f46cc222e41948999f612a5396d607a0ce82a4d8276955d45500a8641",
+  "e4-fidelity-RFC.json": "60dd8a95ad058c0e30a6814a37862fc04c9f6212f5d3c630b06525cef801c13f",
+  "pages-K0.json": "370e7f46cb71a7bc557a20906361254126f7e1358e63c48cf25ad555493129b0",
+  "pages-K1.json": "b2b2d322f396221d0e55b2dcd2966e9e3be7b0ea4921d2e622d85d22357165ad",
+  "pages-KI2.json": "bc7fed7a1f56b4a46524bdcb50959c9f003f4b20d5dd88ead09aff3fb64b1eaa",
+  "q-K0.json": "ddab739b02fa0b7320d08110795d87f3d02d06e0e6898e641bfa6e52f5f84384",
+  "q-K1.json": "553250b241c8c184b7bf92db4650824ff96b8537a839ebed5521573fab11b874",
+  "q-KI2.json": "ecef6bce922ae51a6bbd470e9b6d0710b57e4cef40a0b598b58bdf8273b58d25",
+  "q-ORACLE.json": "5b711ca184ce217b1948ef2c65446f976a99884aad9670a70284bdf4bf8e72e5",
+  "qr-K0.json": "727255eeca5319c2a29faf97f266376aef470c6f77b1d3ea254b1118fc62d8da",
+  "qr-K1.json": "0da42974555b4e5a2fe659bd030761ae65672d0ec47b261c48745e0f8971f8b0"
+ },
+ "E1": {
+  "AP": {
+   "by_type": {
+    "kind": {
+     "reference_units": 8,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0,
+     "missed": 8
+    },
+    "formula": {
+     "reference_units": 12,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0,
+     "missed": 4,
+     "correct abstention": 8
+    },
+    "distinct": {
+     "reference_units": 79,
+     "produced": 9,
+     "read_units": 9,
+     "unmatched_produced": 0,
+     "missed": 70,
+     "correct": 9
+    },
+    "method": {
+     "reference_units": 38,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0,
+     "missed": 38
+    },
+    "reference": {
+     "reference_units": 72,
+     "produced": 72,
+     "read_units": 72,
+     "unmatched_produced": 0,
+     "correct": 55,
+     "partial": 17
+    },
+    "unresolved_citation": {
+     "reference_units": 0,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0
+    },
+    "label": {
+     "reference_units": 41,
+     "produced": 14,
+     "read_units": 14,
+     "unmatched_produced": 0,
+     "missed": 27,
+     "correct": 13,
+     "abstained": 1
+    }
+   },
+   "totals": {
+    "produced": 95,
+    "correct": 77,
+    "strict_precision": 0.811,
+    "reference_units": 250,
+    "acquired": 95,
+    "recall": 0.38,
+    "critical_errors": 0
+   },
+   "critical": []
+  },
+  "DH": {
+   "by_type": {
+    "kind": {
+     "reference_units": 8,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0,
+     "missed": 8
+    },
+    "formula": {
+     "reference_units": 3,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0,
+     "missed": 1,
+     "correct abstention": 2
+    },
+    "distinct": {
+     "reference_units": 21,
+     "produced": 1,
+     "read_units": 1,
+     "unmatched_produced": 0,
+     "correct": 1,
+     "missed": 20
+    },
+    "method": {
+     "reference_units": 7,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0,
+     "missed": 7
+    },
+    "reference": {
+     "reference_units": 4,
+     "produced": 0,
+     "read_units": 0,
+     "unmatched_produced": 0,
+     "missed": 4
+    },
+    "unresolved_citation": {
+     "reference_units": 26,
+     "produced": 26,
+     "read_units": 26,
+     "unmatched_produced": 0,
+     "correct": 26
+    },
+    "label": {
+     "reference_units": 16,
+     "produced": 13,
+     "read_units": 13,
+     "unmatched_produced": 8,
+     "missed": 11,
+     "correct": 3,
+     "abstained": 2
+    }
+   },
+   "totals": {
+    "produced": 14,
+    "correct": 4,
+    "strict_precision": 0.286,
+    "reference_units": 85,
+    "acquired": 32,
+    "recall": 0.376,
+    "critical_errors": 0
+   },
+   "critical": []
+  }
+ },
+ "Q": {
+  "ORACLE": {
+   "counts": {
+    "lost decision": 8,
+    "lost decision (uninformed)": 22,
+    "uninformed abstention": 20,
+    "unjustified decision": 2,
+    "justified abstention": 5,
+    "correct decision": 3
+   },
+   "knowledge": {
+    "oracle-AP.json": {
+     "records": 72,
+     "attributions": 0,
+     "kinds": 10,
+     "supports": 2,
+     "families": 1,
+     "dependencies": 6,
+     "formulas": 0,
+     "models": 1,
+     "distinct": 29,
+     "methods": 20,
+     "sources": 0,
+     "unresolved": 0,
+     "labels": 18,
+     "anchors": 0,
+     "abstained": 30
+    },
+    "oracle-DH.json": {
+     "records": 49,
+     "attributions": 0,
+     "kinds": 14,
+     "supports": 3,
+     "families": 0,
+     "dependencies": 8,
+     "formulas": 0,
+     "models": 0,
+     "distinct": 26,
+     "methods": 13,
+     "sources": 0,
+     "unresolved": 0,
+     "labels": 18,
+     "anchors": 0,
+     "abstained": 19,
+     "co_references": 2
+    }
+   }
+  },
+  "K0": {
+   "counts": {
+    "lost decision (uninformed)": 28,
+    "lost decision": 3,
+    "correct decision": 2,
+    "uninformed abstention": 27
+   },
+   "knowledge": {}
+  },
+  "K1": {
+   "counts": {
+    "correct decision": 4,
+    "lost decision": 4,
+    "lost decision (uninformed)": 25,
+    "uninformed abstention": 27
+   },
+   "knowledge": {
+    "PEE-CAT-AP-004": {
+     "records": 214,
+     "attributions": 200,
+     "kinds": 6,
+     "supports": 5,
+     "families": 1,
+     "dependencies": 0,
+     "formulas": 0,
+     "models": 2,
+     "distinct": 13,
+     "methods": 17,
+     "sources": 72,
+     "unresolved": 0,
+     "labels": 18,
+     "anchors": 0,
+     "abstained": 7
+    },
+    "PEE-CAT-DH-002": {
+     "records": 224,
+     "attributions": 171,
+     "kinds": 13,
+     "supports": 4,
+     "families": 0,
+     "dependencies": 3,
+     "formulas": 0,
+     "models": 0,
+     "distinct": 10,
+     "methods": 13,
+     "sources": 38,
+     "unresolved": 0,
+     "labels": 21,
+     "anchors": 0,
+     "abstained": 5,
+     "co_references": 1
+    }
+   }
+  },
+  "KI2": {
+   "counts": {
+    "correct decision": 4,
+    "lost decision": 4,
+    "lost decision (uninformed)": 25,
+    "uninformed abstention": 26,
+    "justified abstention": 1
+   },
+   "knowledge": {}
+  }
+ },
+ "QR": {
+  "K0": {
+   "counts": {
+    "lost decision (uninformed)": 15,
+    "unjustified decision": 1,
+    "uninformed abstention": 13,
+    "justified abstention": 1
+   }
+  },
+  "K1": {
+   "counts": {
+    "lost decision (uninformed)": 15,
+    "unjustified decision": 1,
+    "uninformed abstention": 13,
+    "justified abstention": 1
+   }
+  }
+ },
+ "pages": {
+  "K0": {
+   "air purifiers": {
+    "pages": 20,
+    "contents": 735,
+    "complete": 97,
+    "incomplete_reasons": {
+     "header words not placed in any slot": 457,
+     "no quantity kind named": 447,
+     "Q": 38,
+     "several settings for one value": 3,
+     "bearer not established": 297,
+     "several bearers named": 1,
+     "no unit": 4
+    }
+   },
+   "other categories": {
+    "pages": 7,
+    "contents": 2034,
+    "complete": 22,
+    "incomplete_reasons": {
+     "no quantity kind named": 1917,
+     "header words not placed in any slot": 1735,
+     "bearer not established": 1040,
+     "no unit": 13,
+     "Q": 9,
+     "range bounds out of order": 57,
+     "several bearers named": 294
+    }
+   },
+   "robot vacuums": {
+    "pages": 11,
+    "contents": 57,
+    "complete": 3,
+    "incomplete_reasons": {
+     "header words not placed in any slot": 54,
+     "no quantity kind named": 28,
+     "bearer not established": 20,
+     "several quantity kinds fit": 4
+    }
+   }
+  },
+  "K1": {
+   "air purifiers": {
+    "pages": 20,
+    "contents": 735,
+    "complete": 102,
+    "incomplete_reasons": {
+     "header words not placed in any slot": 430,
+     "several values of one condition": 2,
+     "no quantity kind named": 350,
+     "Q": 35,
+     "several settings for one value": 3,
+     "bearer not established": 297,
+     "several bearers named": 1,
+     "no unit": 4
+    }
+   },
+   "other categories": {
+    "pages": 7,
+    "contents": 2034,
+    "complete": 22,
+    "incomplete_reasons": {
+     "no quantity kind named": 1917,
+     "header words not placed in any slot": 1735,
+     "bearer not established": 1040,
+     "no unit": 13,
+     "Q": 9,
+     "range bounds out of order": 57,
+     "several bearers named": 294
+    }
+   },
+   "robot vacuums": {
+    "pages": 11,
+    "contents": 57,
+    "complete": 3,
+    "incomplete_reasons": {
+     "header words not placed in any slot": 54,
+     "no quantity kind named": 28,
+     "bearer not established": 20,
+     "several quantity kinds fit": 4
+    }
+   }
+  },
+  "KI2": {
+   "air purifiers": {
+    "pages": 20,
+    "contents": 735,
+    "complete": 138,
+    "incomplete_reasons": {
+     "header words not placed in any slot": 285,
+     "several values of one condition": 2,
+     "Q": 35,
+     "several settings for one value": 3,
+     "bearer not established": 297,
+     "no quantity kind named": 258,
+     "several bearers named": 1,
+     "no unit": 5
+    }
+   },
+   "other categories": {
+    "pages": 7,
+    "contents": 2034,
+    "complete": 22,
+    "incomplete_reasons": {
+     "no quantity kind named": 1783,
+     "header words not placed in any slot": 1735,
+     "bearer not established": 818,
+     "no unit": 50,
+     "Q": 9,
+     "range bounds out of order": 57,
+     "several bearers named": 72
+    }
+   },
+   "robot vacuums": {
+    "pages": 11,
+    "contents": 61,
+    "complete": 23,
+    "incomplete_reasons": {
+     "header words not placed in any slot": 29,
+     "no quantity kind named": 12,
+     "several bearers named": 4,
+     "bearer not established": 23,
+     "several quantity kinds fit": 4
+    }
+   }
+  }
+ },
+ "E4_fidelity": {
+  "by_type": {
+   "kind": {
+    "reference_units": 17,
+    "produced": 0,
+    "read_units": 16,
+    "unmatched_produced": 0,
+    "missed": 17
+   },
+   "formula": {
+    "reference_units": 2,
+    "produced": 0,
+    "read_units": 0,
+    "unmatched_produced": 0,
+    "missed": 2
+   },
+   "distinct": {
+    "reference_units": 9,
+    "produced": 1,
+    "read_units": 1,
+    "unmatched_produced": 0,
+    "correct": 1,
+    "missed": 8
+   },
+   "method": {
+    "reference_units": 25,
+    "produced": 0,
+    "read_units": 0,
+    "unmatched_produced": 0,
+    "missed": 25
+   },
+   "reference": {
+    "reference_units": 14,
+    "produced": 1,
+    "read_units": 1,
+    "unmatched_produced": 0,
+    "correct": 1,
+    "missed": 13
+   },
+   "unresolved_citation": {
+    "reference_units": 0,
+    "produced": 39,
+    "read_units": 39,
+    "unmatched_produced": 39
+   },
+   "label": {
+    "reference_units": 26,
+    "produced": 8,
+    "read_units": 8,
+    "unmatched_produced": 8,
+    "missed": 26
+   }
+  },
+  "totals": {
+   "produced": 10,
+   "correct": 2,
+   "strict_precision": 0.2,
+   "reference_units": 93,
+   "acquired": 2,
+   "recall": 0.022,
+   "critical_errors": 0
+  },
+  "critical": []
+ }
+}
