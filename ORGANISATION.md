@@ -117,6 +117,11 @@ options Claude offered; "adopted" means the owner gave a recommendation of secti
 | D9 | Branch name `claude/pee-operational` | Option chosen |
 | D10 | Claude writes these instructions | Option chosen ("Sì, scrivi le istruzioni") |
 | D11 | Organisation confirmed coherent after review; the unchanged import of about 131 files is authorised, with verifiable provenance and equivalence tests before any semantic integration; no change to Crawler; no automatic promotion of knowledge into the universe | Owner message after reviewing this document, once this section was corrected |
+| D12 | O-2 closed without its change cycle; the merge of the two rule-based prose readers, as built, does not work | Owner decision after the O-2 report (`experiments/o2/REPORT.md` §10) |
+| D13 | A-1's reader is the **provisional** prose reader, not the solution (precision 0.35 is insufficient) | Same |
+| D14 | All capabilities imported from Crawler are kept; O-2 says nothing about tables, specifications or web pages | Same |
+| D15 | The strategy of combining linguistic rules is **suspended**. The next investment is the quality of scientific interpretation: before adding rules, evaluate a more capable interpreter, possibly neural and local, connected to S0 | Same |
+| D16 | No permanent acquisition of knowledge until fidelity is reliable enough | Same |
 
 ### 7.2 Recommendations received in the conversation (Italian, verbatim)
 

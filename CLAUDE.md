@@ -58,8 +58,16 @@ None of these modifies S0.
   - Material: prose of package 09 speakers. The reference is sealed before any adapter code.
   - At most one change cycle.
   - No new capability, no persistence, no admission of knowledge.
-  - **First sealed run done** (`experiments/o2/REPORT.md` §4–9): A-1 best, the hybrid does not improve on it (C3 not
-    shown). The change cycle is not used; the next step awaits the owner's decision.
+  - **Closed** (owner, 2026-10-23; `ORGANISATION.md` D12–D16): A-1 best, the hybrid does not improve on it, and the
+    change cycle is not used.
+- **Standing decisions after O-2** (`ORGANISATION.md` D12–D16):
+  - A-1's reader is the provisional prose reader.
+  - Every Crawler import is kept.
+  - Combining linguistic rules is suspended.
+  - **No permanent acquisition of knowledge until fidelity is reliable enough.**
+  - The next step is to evaluate a more capable interpreter, possibly neural and local, connected to S0. That
+    evaluation needs its own owner authorisation, because it touches the dependency rule below (neural models
+    excluded) and Crawler's earlier suspension of Qwen.
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
 - Every step names its owner authorisation, and fixes its criteria before any code, as before.

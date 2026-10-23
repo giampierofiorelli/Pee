@@ -482,3 +482,35 @@ unfaithful ones.
 | Session scratch (outside Git, removed at session end) | annotations, references, judgements, adjudications, per-item scores, label key |
 | `pee-knowledge/private-eval/pee-o2/` | copies of the same, with strings of 6 or more words or over 60 characters replaced by SHA-256; `MANIFEST.json` holds the original and copy hashes; no passages, no document text |
 | `results-counts.json`, `seals.json`, `freeze-1.json`, `hybrid-choices.json` (this directory) | public counts, hashes and the frozen choices |
+
+## 10. Owner decision after the report (2026-10-23, verbatim)
+
+> Il risultato è deludente, ma chiarisce finalmente una questione importante: il merging dei lettori, così com’è stato
+> realizzato, non funziona.
+>
+> La mia decisione sarebbe:
+>
+> * Non utilizzare il ciclo di correzione O-2. Il risultato è sufficientemente chiaro.
+> * Mantenere A-1 come lettore provvisorio della prosa, non come soluzione definitiva: il 35% di precisione è ancora
+>   insufficiente.
+> * Conservare tutte le capacità importate da Crawler. Questo esperimento non dimostra che siano peggiori nella lettura
+>   di tabelle, specifiche o pagine Web.
+> * Cambiare approccio alla comprensione linguistica. Prima di aggiungere altre regole, valutare un interprete più
+>   capace, eventualmente neurale e locale, collegato a S0.
+>
+> Il dato più preoccupante non è che l’ibrido abbia fallito: è che anche il migliore dei tre lettori produce ancora 15
+> errori critici.
+>
+> Conclusione: non abbandonerei né Pee né Crawler. Ma sospenderei l’attuale strategia di combinazione delle regole
+> linguistiche. Il prossimo investimento dovrebbe riguardare la qualità dell’interpretazione scientifica, non un’altra
+> fusione meccanica dei risultati.
+>
+> E nessuna acquisizione permanente finché la fedeltà non sarà sufficientemente affidabile.
+
+**Consequence.** O-2 is **closed**. The change cycle is not used, and A-1's reader stays as the provisional prose
+reader.
+
+**Measured fact added for the next decision** (post hoc, sealed material already spent): A-1's precision is 0.35, and
+0.44 if evidence-kind errors are ignored. The element most often wrong in its unfaithful items is the **relation**
+(96 items). Next come evidence kind (70), subject (37), object or value (32) and attitude (28). The main loss is the
+interpretation of what a sentence asserts, not a labelling convention.
