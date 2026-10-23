@@ -13,6 +13,7 @@ T1 = pathlib.Path(__file__).resolve().parent
 sys.path[:0] = [str(T1.parent / "o2")]
 import o2  # noqa: E402
 from universe import rules  # noqa: E402
+from universe.store import thaw  # noqa: E402
 
 
 def extras(store, pid):
@@ -26,7 +27,7 @@ def extras(store, pid):
                                            if store.has(c)} - {None}) + sorted(b.get("cited_context_unresolved") or ())
         for k in ("norm_bearer", "statement_status", "states", "relation_candidates"):
             if b.get(k):
-                out[k] = b[k]
+                out[k] = thaw(b[k])  # stored items are frozen; the export is plain JSON
     return out
 
 

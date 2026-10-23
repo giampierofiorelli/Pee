@@ -397,3 +397,16 @@ only 7 of the 36 readable norms. The mechanical pre-filter of option B can there
 its role needs the owner's decision (`PROTOCOL.md` §10).
 
 Development is not authorised.
+
+## 13. Stage 2 (W3–W5, narrowed) and its final check (2026-10-23)
+
+- **A1 was frozen at `c85b4bf`** (`freeze-3.json`) before any Speakers score was produced.
+- **The final check without agents** (`STAGE2.md`):
+  - no mechanical critical type increased;
+  - the reasoning gate passed (correct answers 5 → 7, unjustified 1 → 1).
+- **Two matched-label wrong counts rose by one on development.** Both were inspected after the outcome was fixed and
+  read as convention or reading differences.
+- **The frozen §11.3 stops at any such increase,** so the three agents were not used.
+- **The owner decides** whether to authorise them (`STAGE2.md` §2).
+
+Stopped before stage 3.

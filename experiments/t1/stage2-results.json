@@ -1,0 +1,248 @@
+{
+ "schema": "pee.t1.stage2-result.v1",
+ "A0": "b7733df",
+ "A1": "c85b4bf (freeze-3.json)",
+ "export_fix_after_freeze": "export.py: frozen attribution values converted to plain JSON (thaw) at first use, before any result existed; grading unchanged",
+ "exports_sha256": {
+  "A1_sealed": "f9733986bc8ad0cc21b3280ad9ae22695b030187659ca1ad64f877b999a118fa",
+  "A1_dev": "9a0ea3c070fdb461fdb1bc41e315e60210aabb3b5394005aca84c434453ea13e"
+ },
+ "mechanical": {
+  "sealed": {
+   "right_element_share": {
+    "A0": 0.3117,
+    "A1": 0.299
+   },
+   "wrong_rate": {
+    "A0": 0.1246,
+    "A1": 0.0852
+   },
+   "complete_faithful_coverage": {
+    "A0": 0.023,
+    "A1": 0.1149
+   },
+   "uninterpreted_share": {
+    "A0": 0.6439,
+    "A1": 0.6731
+   },
+   "readable_matched": {
+    "A0": 35,
+    "A1": 30
+   },
+   "norms_matched": {
+    "A0": 4,
+    "A1": 4
+   },
+   "items_unscorable": {
+    "A0": 245,
+    "A1": 176
+   },
+   "critical_mechanical": {
+    "A0": {
+     "7": 1
+    },
+    "A1": {}
+   },
+   "new_capabilities": {
+    "A0": {
+     "specific_attribution": {
+      "unscored": 35
+     },
+     "norm_bearer": {
+      "unscored": 35
+     }
+    },
+    "A1": {
+     "specific_attribution": {
+      "unscored": 30
+     },
+     "norm_bearer": {
+      "unscored": 30
+     }
+    }
+   },
+   "matched_labels": {
+    "polarity": {
+     "A0": {
+      "right": 34,
+      "wrong": 1
+     },
+     "A1": {
+      "right": 30
+     }
+    },
+    "deontic_force": {
+     "A0": {
+      "unscored": 29,
+      "right": 4,
+      "wrong": 2
+     },
+     "A1": {
+      "unscored": 24,
+      "right": 6
+     }
+    },
+    "attitude": {
+     "A0": {
+      "right": 32,
+      "wrong": 3
+     },
+     "A1": {
+      "right": 29,
+      "wrong": 1
+     }
+    },
+    "source_link": {
+     "A0": {
+      "right": 14,
+      "missing": 21
+     },
+     "A1": {
+      "right": 30
+     }
+    }
+   }
+  },
+  "dev": {
+   "right_element_share": {
+    "A0": 0.2267,
+    "A1": 0.2037
+   },
+   "wrong_rate": {
+    "A0": 0.0885,
+    "A1": 0.0586
+   },
+   "complete_faithful_coverage": {
+    "A0": 0.031,
+    "A1": 0.124
+   },
+   "uninterpreted_share": {
+    "A0": 0.7509,
+    "A1": 0.7826
+   },
+   "readable_matched": {
+    "A0": 37,
+    "A1": 30
+   },
+   "norms_matched": {
+    "A0": 3,
+    "A1": 3
+   },
+   "items_unscorable": {
+    "A0": 240,
+    "A1": 187
+   },
+   "critical_mechanical": {
+    "A0": {},
+    "A1": {}
+   },
+   "new_capabilities": {
+    "A0": {
+     "specific_attribution": {
+      "unscored": 40
+     },
+     "norm_bearer": {
+      "unscored": 40
+     }
+    },
+    "A1": {
+     "specific_attribution": {
+      "unscored": 32
+     },
+     "norm_bearer": {
+      "unscored": 32
+     }
+    }
+   },
+   "matched_labels": {
+    "polarity": {
+     "A0": {
+      "right": 40
+     },
+     "A1": {
+      "right": 31,
+      "wrong": 1
+     }
+    },
+    "deontic_force": {
+     "A0": {
+      "unscored": 34,
+      "right": 5,
+      "wrong": 1
+     },
+     "A1": {
+      "unscored": 26,
+      "right": 5,
+      "wrong": 1
+     }
+    },
+    "attitude": {
+     "A0": {
+      "right": 38,
+      "wrong": 2
+     },
+     "A1": {
+      "right": 31,
+      "abstained": 1
+     }
+    },
+    "source_link": {
+     "A0": {
+      "right": 10,
+      "missing": 30
+     },
+     "A1": {
+      "right": 31,
+      "wrong": 1
+     }
+    }
+   }
+  }
+ },
+ "items": {
+  "sealed": {
+   "A0": 280,
+   "A1": 206
+  },
+  "dev": {
+   "A0": 280,
+   "A1": 219
+  }
+ },
+ "reasoning_QS_askable47": {
+  "A0": {
+   "correct decision": 5,
+   "lost decision": 6,
+   "lost decision (uninformed)": 26,
+   "justified abstention": 3,
+   "uninformed abstention": 6,
+   "unjustified decision": 1
+  },
+  "A1": {
+   "correct decision": 7,
+   "lost decision": 3,
+   "lost decision (uninformed)": 27,
+   "justified abstention": 3,
+   "uninformed abstention": 6,
+   "unjustified decision": 1
+  },
+  "changes": {
+   "Q04": "lost -> correct",
+   "Q53": "lost -> correct",
+   "Q16": "lost -> lost (uninformed)"
+  },
+  "unjustified_both": "Q30"
+ },
+ "screen": {
+  "critical_types": "no increase (sealed 1 -> 0, dev 0 -> 0)",
+  "matched_label_wrong_counts": {
+   "sealed": "none increases",
+   "dev": {
+    "polarity": "0 -> 1 (U0216)",
+    "source_link": "0 -> 1 (U0139)"
+   }
+  },
+  "reasoning_gate": "passed",
+  "outcome": "stop under PROTOCOL.md 11.3 as frozen: two matched-label wrong counts increase on development"
+ }
+}

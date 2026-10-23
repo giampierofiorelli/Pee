@@ -84,7 +84,10 @@ None of these modifies S0.
   - **Freeze step done** (owner, 2026-10-23; `experiments/t1/DESIGN.md` §12, `freeze-1.json`).
     - **Blocker:** the mechanical scorer fails its proxy check (0.72 < 0.85), so the option-B pre-filter cannot show
       gains. The decision is the owner's (`PROTOCOL.md` §10).
-    - W3–W5, agents and the sealed test are not authorised.
+  - **Stage 2 done** (owner: option A modified; `experiments/t1/STAGE2.md`). A1 is frozen at `c85b4bf`.
+    - **Final check:** no critical regression; reasoning 5 → 7 correct. Two development label counts rose by one.
+    - **Under the frozen `PROTOCOL.md` §11.3, the three agents were not used.** The owner decides.
+    - Stage 3 (Soundbars) is not authorised.
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
 - Every step names its owner authorisation, and fixes its criteria before any code, as before.
