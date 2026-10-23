@@ -101,5 +101,42 @@
    "universe/universe/store.py": "a9d7b6082b51d12fcec662d7a84ac14ca38dbfe758a68f6ab7cc8770f2a73aef"
   },
   "combined": "73c1e9ac178af86ac0a695db8c7762551b7402e8ec75dc02ba0c2b3d66645ee4"
+ },
+ "freeze_2": {
+  "note": "The one change cycle allowed by stop rule A4, after the sealed first run and its diagnosis (C1 concept names capped in characters; C2 ledger keeps unexplained words as a sorted set; C3 a reported claim takes the evidence class its reporter names). Runs on freeze 2 are after-change runs on spent material.",
+  "files": {
+   "a1/answer.py": "8ad321516162323cf36853c0fe078731bd3ad9ba9630a5ef5859acef782a59a6",
+   "a1/e2b_evidence.py": "8ad2c27f59d05f069a717daef492d9a2733520df07646d5eb567fea7290ca9c7",
+   "a1/fidelity.py": "f8ca1eb7d891e5467510549e09e676387a6cd56f7cc5e6b7f25b0e38f4ff6873",
+   "s1core/s1core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "s1core/s1core/examples.py": "0ddea9b7c5caa15e1f7ab3803265099665dc7a51dc86ccb91fee9095eb358196",
+   "s1core/s1core/expr.py": "f26ab00866581df47936ac2d8fe0190957571017890155de310bbdaf71e6d0e2",
+   "s1core/s1core/infer.py": "4d64991fa2a616d980ce088ce41e58243743516e7c9561def36ee2afc812b7b5",
+   "s1core/s1core/knowledge.py": "b6b6509c62a6632c28b1d25cc893b0c352a378628133398d89a8eb1c2d567caa",
+   "s1core/s1core/metrology.json": "f2130e1e7e143c808dd99977f1a698751281b4ecaed98964ff00e1bd731cad1a",
+   "s1core/s1core/units.py": "51d14fd6693c26181f8f9f0783663dcf5d6c5e43008f2b81531ce9a38675eded",
+   "universe/knowledge/general.json": "761f2b843dd1e83ad73037ca4d4e388eda2f23ee92b4c768eed2ccce83b9ffd2",
+   "universe/knowledge/language.json": "70d26ed2a6da12aec42898603f55b937f2dfc89ef749812bc3e860ca9ef292b3",
+   "universe/knowledge/legacy-i2-category.json": "1f929fbc1ea986b06da214d1b44f2d40ebd2536b0a761ba5946e1f38b7bca28c",
+   "universe/universe/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "universe/universe/acquisition.py": "941d25b4bd55163ee4ae83fd77e0d18e53801a676113cfb65d1d583906b12b5a",
+   "universe/universe/assimilate.py": "1d8dc45a5482200cd600c4244a00647d849814730e2d93a86d750576b9149292",
+   "universe/universe/contract.py": "63dd2d761486216524d636120face0191d4dc0be31ec2c92e1c160e60ad9b6dc",
+   "universe/universe/dependencies.py": "a647d2e37f2aaff82b53dcf1569a47860243c99c1e3f21bb8d3c2bfd1aa683df",
+   "universe/universe/knowledge_acquisition.py": "09061bac714442f53b427ffda5adf76a026b1e384c5223350fc3faea7f02401f",
+   "universe/universe/loader.py": "8c384c1c29d903e58f8b8b6c1336161a14a8246644b8fc024548aecf1e62d261",
+   "universe/universe/markdown.py": "c2d2435a4b86c8c8fb5cac9ab7238237db903ed0e940ef52098a3baef6982ff8",
+   "universe/universe/model.py": "3ff5073a67b781d7d5542603b24b6234b0c0c2c840231aad3d0b788d29250d1d",
+   "universe/universe/persist.py": "f5c48a636c552d8b549d31d342e4d3bb3acbc7ec87f96debd7b22d4cbed7b3fe",
+   "universe/universe/propositions.py": "1764a7f6ee1a1736dd177cae83d5989d646a32d95ec56fb3f1ccf85a69772c7b",
+   "universe/universe/recognition.py": "b40116b1aedbe2c4689412f544fbe9bbb099989170f912e05ee4b061f0fd7fe9",
+   "universe/universe/rules.py": "e23d0f4666c089869b524f973ae51d571c80450ec3faf411bd072164fb7774d5",
+   "universe/universe/standing.py": "7ca36ad954ca36464347274f579b4688ef53679930922f3dfa54fba3b838703d",
+   "universe/universe/store.py": "a9d7b6082b51d12fcec662d7a84ac14ca38dbfe758a68f6ab7cc8770f2a73aef"
+  },
+  "combined": "d2f4a81776b1f540fdd8a4b7dc1c3095e632a9cfef3e7493eb8589e5eae65eb2",
+  "changed_from_freeze_1": [
+   "universe/universe/propositions.py"
+  ]
  }
 }

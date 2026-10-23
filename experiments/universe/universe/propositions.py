@@ -147,6 +147,7 @@ def _find_relations(frame, text):
 
 
 MAX_WORDS = 8
+MAX_CHARS = 100
 _JOINERS = {"and", "or", "of", "to", "in", "on", "for", "by", "with", "as"}
 
 
@@ -168,6 +169,11 @@ def _concept_phrase(frame, s, side):
         ws = ws[:-1]
     # a concept is named by a short phrase, never by a passage: at most MAX_WORDS word tokens
     while len(re.findall(r"\w+", " ".join(ws))) > MAX_WORDS:
+        if side == "subject":
+            left.insert(0, ws.pop(0))
+        else:
+            left.append(ws.pop())
+    while len(" ".join(ws)) > MAX_CHARS and len(ws) > 1:  # C1 (A-1 change cycle): a short name, in characters too
         if side == "subject":
             left.insert(0, ws.pop(0))
         else:
@@ -461,6 +467,17 @@ def _evidence_kind(frame, attitude, sentence, cites):
     return "synthesis"
 
 
+def _reporter_evidence(frame, reporter):
+    """C3 (A-1 change cycle): a claim reported from a named source has that source's kind of evidence when the
+    reporter's own words name an evidence class (guidance, a standard, a regulation, a review)."""
+    if not reporter:
+        return None
+    words = set(_words(reporter))
+    hits = [cid for cid, terms in frame.lex.evidence_classes.items()
+            if any(set(t.lower().split()) <= words for t in terms)]
+    return hits[0] if len(hits) == 1 else None
+
+
 def _segments(doc):
     heads = {h["index"]: h for h in doc.get("headings", ())}
     for b in doc.get("blocks", ()):
@@ -529,7 +546,9 @@ def read_propositions(doc, lex):
                          "generality": "generic" if c["modality"] in ("actual", "typical") else "ceteris_paribus",
                          "conditions": [{"concept": x["text"], "value": x["marker"]}
                                         for x in _clean_conditions(frame, c.get("conditions", ())) if x.get("text")],
-                         "document_attitude": "reported" if c.get("reported_by") and att == "asserted" else att, "evidence_kind": _evidence_kind(frame, att, body, cites),
+                         "document_attitude": "reported" if c.get("reported_by") and att == "asserted" else att,
+                         "evidence_kind": _reporter_evidence(frame, c.get("reported_by")) or
+                         _evidence_kind(frame, att, body, cites),
                          "attributed_to": cites + ([c["reported_by"]] if c.get("reported_by") else []),
                          "depends_on": [], "explains": [], "qualifies": None,
                          "resolution": c.get("resolution"),
@@ -560,7 +579,8 @@ def read_propositions(doc, lex):
                 entry["status"] = "unresolved"
                 entry.setdefault("reasons", []).append("no relational expression recognised")
             elif len(left) > max(1, 0.25 * len(content)):
-                entry["status"], entry["unexplained"] = "partial", left
+                # C2 (A-1 change cycle): the unexplained words as a set, never in the document's order
+                entry["status"], entry["unexplained"] = "partial", sorted(set(left))
             else:
                 entry["status"] = "acquired"
             prev_ids += [u["id"] for u in produced]

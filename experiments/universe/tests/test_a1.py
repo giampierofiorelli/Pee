@@ -123,6 +123,28 @@ class Reader(unittest.TestCase):
         self.assertFalse(any("text" in e for e in led))
 
 
+class ChangeCycle(unittest.TestCase):
+    """C1-C3, added after the A-1 first run (REPORT section 6)."""
+
+    def test_concept_names_are_short_in_characters(self):
+        long = "Extraordinarilylongcompoundedterminology " * 4 + "reduces infiltration rate."
+        st, lex, doc, r = read("# T\n\n" + long)
+        self.assertTrue(r["units"])
+        self.assertTrue(all(len(u["subject"]) <= propositions.MAX_CHARS for u in r["units"]))
+
+    def test_ledger_never_keeps_word_order(self):
+        st, lex, doc, r = read()
+        for e in r["ledger"]:
+            if e.get("unexplained"):
+                self.assertEqual(e["unexplained"], sorted(set(e["unexplained"])))
+
+    def test_reported_guidance_has_guidance_evidence(self):
+        st, lex, doc, r = read("# T\n\nThe national guidance states that ventilation reduces condensation.")
+        u = [x for x in r["units"] if x["relation"] == "decreases"]
+        self.assertEqual(u[0]["document_attitude"], "reported")
+        self.assertEqual(u[0]["evidence_kind"], "E:guidance")
+
+
 class Representation(unittest.TestCase):
     def setUp(self):
         self.st = store()
