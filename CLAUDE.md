@@ -41,11 +41,15 @@ None of these modifies S0.
 
 ## Current authorisation
 
-- **O-0** (owner, 2026-10-23): the organisation and these instructions, on branch `claude/pee-operational`. No code
-  import yet.
-- **Next step:** import reading and understanding (`ORGANISATION.md` §5). It starts after the owner reviews O-0.
-  - It covers prose, tables, entities, context, and quantitative and qualitative extraction.
-  - For GLiNER2.5, only the portable TypeScript part is imported. No neural model.
+- **O-0** (owner, 2026-10-23): the organisation and these instructions, on branch `claude/pee-operational`.
+- **O-1** (owner, 2026-10-23, after reviewing O-0; `ORGANISATION.md` D11): import reading and understanding
+  (`ORGANISATION.md` §5) into `engine-ts/`.
+  - Import the full closure, about 131 files, **unchanged**, with a verifiable provenance manifest.
+  - Run the equivalence tests against Crawler `7d091ef` before any semantic integration.
+  - No change to Crawler.
+  - **No automatic promotion of knowledge into the universe.**
+  - For GLiNER2.5, only the portable TypeScript part. No neural model.
+  - Connecting to the universe (§4 steps 3–4) and trimming (step 5) need their own owner go-ahead.
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
 - Every step names its owner authorisation, and fixes its criteria before any code, as before.

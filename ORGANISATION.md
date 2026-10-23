@@ -3,10 +3,11 @@
 **Status.** Fixed by the owner on 2026-10-23, in a conversation with Claude. It sits beside `MISSION.md` and
 `ASSIMILATION.md`. It does not modify S0 (`spec/`), which stays the semantic authority.
 
-- **What it authorises.** These instructions, and the integration branch `claude/pee-operational`. It authorises no
-  code import yet: the first import (section 5) starts only after the owner has reviewed this document.
-- **Language.** Sections 1–6 are Claude's English record of the decisions. The owner's words follow verbatim in
-  Italian (section 7).
+- **What it authorises.** These instructions, the integration branch `claude/pee-operational`, and (owner,
+  2026-10-23, after review) the unchanged import of section 5 with its equivalence tests. Section 7.1 lists the
+  decisions and their confirmations.
+- **Language.** Sections 1–6 are Claude's English record of the decisions. Section 7 separates the decisions the
+  owner confirmed from the recommendations received in the conversation.
 
 ## 1. Repositories
 
@@ -95,9 +96,34 @@ measured advantage.
   needs no merge.
 - One Claude session per branch at a time. Parallel work goes on separate branches, with controlled integration.
 
-## 7. Owner's words (Italian, verbatim)
+## 7. Decisions and recommendations
 
-Initial direction:
+### 7.1 Decisions confirmed by the owner
+
+Each decision below was confirmed by the owner on 2026-10-23. "Option chosen" means the owner picked it from
+options Claude offered; "adopted" means the owner gave a recommendation of section 7.2 as their answer.
+
+| # | Decision | How it was confirmed |
+|---|---|---|
+| D1 | Pee is the only operational repository; Crawler stays intact and read-only; `pee-knowledge` stays the private archive | Owner direction (adopted R1) |
+| D2 | Integration branch from `claude/a1-scientific-assimilation`, not from `main` | Adopted R1 |
+| D3 | Selective integration: original TypeScript modules kept, connected to S0 by a verifiable interface; no preventive rewrite; no bulk conversion of the SQLite store | Adopted R2 |
+| D4 | Crawler intact at 100% (no archival commit) | Option chosen |
+| D5 | Pee is an independent scientific adviser; product advice is the first mandatory operational application | Adopted R3 |
+| D6 | First capability: reading and understanding; fidelity, attribution and comprehension checked before permanent acquisition | Adopted R4 |
+| D7 | GLiNER2.5: only the portable part | Option chosen |
+| D8 | Import the full closure unchanged; compilation and equivalence first; trimming later, in separate tested commits | Adopted R5 |
+| D9 | Branch name `claude/pee-operational` | Option chosen |
+| D10 | Claude writes these instructions | Option chosen ("Sì, scrivi le istruzioni") |
+| D11 | Organisation confirmed coherent after review; the unchanged import of about 131 files is authorised, with verifiable provenance and equivalence tests before any semantic integration; no change to Crawler; no automatic promotion of knowledge into the universe | Owner message after reviewing this document, once this section was corrected |
+
+### 7.2 Recommendations received in the conversation (Italian, verbatim)
+
+These texts reached Claude through the owner's messages. They are recommendations, not the owner's own words; they
+bind only as far as section 7.1 records a decision adopting them.
+
+
+**R1 — Initial direction:**
 
 > Procederei così:
 > Creare un nuovo ramo di integrazione in Pee, partendo da claude/a1-scientific-assimilation, non da main, per
@@ -119,7 +145,7 @@ Initial direction:
 > autorizzazione.
 > Non fare ancora merge o importazioni. Prima fissiamo definitivamente questa organizzazione.
 
-Code and languages:
+**R2 — Code and languages:**
 
 > Riscrivere progressivamente 58.000 righe di TypeScript rischia di ripetere proprio l'errore che vogliamo correggere.
 > La mia scelta sarebbe: Integrazione selettiva, mantenendo TypeScript e Python. Importare in Pee soltanto i moduli
@@ -130,28 +156,22 @@ Code and languages:
 > importerei automaticamente tutto Crawler, né convertirei subito l'intero database SQLite. È la soluzione che meglio
 > rispetta il merging originariamente concordato, senza ricominciare da zero.
 
-Crawler: "Intatto al 100%".
-
-Project definition:
+**R3 — Project definition:**
 
 > Consulente scientifico, prima opzione. Ma con una condizione fondamentale: la consulenza sui prodotti deve restare
 > la prima applicazione operativa obbligatoria, recuperando le capacità già sviluppate in Crawler. Non vogliamo
 > costruire soltanto un universo teorico.
 
-First capabilities:
+**R4 — First capabilities:**
 
 > Recuperare e integrare le capacità di lettura e comprensione di Crawler: prosa scientifica, tabelle, entità,
 > GLiNER2.5, contesto, estrazione quantitativa e qualitativa. Riutilizzare il codice esistente senza riscriverlo
 > inutilmente, collegandolo all'universo S0. Verificare fedeltà, attribuzione e comprensione prima di acquisire
 > conoscenza permanentemente.
 
-GLiNER2.5: "Solo parte portabile".
-
-Import closure:
+**R5 — Import closure:**
 
 > Scegli «Chiusura invariata», ma con una condizione. Importiamo i circa 131 file mantenendo il codice originale,
 > così da preservare le capacità di Crawler senza introdurre modifiche durante il trasferimento. Prima si verificano
 > compilazione e comportamento equivalente. Solo dopo si eliminano le dipendenze superflue, con modifiche separate e
 > test. L'obiettivo non è mantenere per sempre 32.000 righe, ma non perdere funzionalità durante l'integrazione.
-
-Branch: `claude/pee-operational`. Instructions: "Sì, scrivi le istruzioni".
