@@ -395,3 +395,20 @@ because of cost and dependencies.
 improvement.
 
 **Cost.** About 11 minutes of CPU. No agents.
+
+## 17. Post-hoc diagnostics after F′ (not preregistered; spent material; no agents)
+
+**1. Six coarse claim classes.** Norm, definition, cause, value, method and other, with the grouping fixed before the
+run (`coarse-diagnostic.json`).
+
+| Arm | Exact accuracy |
+|---|---|
+| A-1 | **0.47** |
+| B1 (bag of words) | 0.24 |
+| B2 (nomic embeddings) | 0.34 |
+
+Coarser labels do not let the cheap learners overtake A-1.
+
+**2. Agreement of the two blind annotators on the relation.** 177 of 226 paired propositions, **0.78** (exact,
+`other` collapsed). The task is learnable to about that level by a strong reader. A-1 reaches 0.34 and the cheap
+learners 0.15–0.19. The gap lies in the reader's competence, not in the reference.

@@ -1,0 +1,107 @@
+{
+ "schema": "pee.c1.stage-f-prime.v1",
+ "train_examples": 507,
+ "test_items": 500,
+ "labels": {
+  "other": 126,
+  "definition": 96,
+  "norm": 130,
+  "cause": 62,
+  "method": 41,
+  "value": 52
+ },
+ "results": {
+  "all": {
+   "B0": {
+    "n": 500,
+    "accuracy": 0.474,
+    "macro_f1": 0.4491
+   },
+   "B1": {
+    "n": 500,
+    "accuracy": 0.238,
+    "macro_f1": 0.1713
+   },
+   "B2": {
+    "n": 500,
+    "accuracy": 0.336,
+    "macro_f1": 0.2515
+   }
+  },
+  "dev": {
+   "B0": {
+    "n": 248,
+    "accuracy": 0.4234,
+    "macro_f1": 0.3908
+   },
+   "B1": {
+    "n": 248,
+    "accuracy": 0.254,
+    "macro_f1": 0.1827
+   },
+   "B2": {
+    "n": 248,
+    "accuracy": 0.2903,
+    "macro_f1": 0.2056
+   }
+  },
+  "sealed": {
+   "B0": {
+    "n": 252,
+    "accuracy": 0.5238,
+    "macro_f1": 0.4798
+   },
+   "B1": {
+    "n": 252,
+    "accuracy": 0.2222,
+    "macro_f1": 0.1554
+   },
+   "B2": {
+    "n": 252,
+    "accuracy": 0.381,
+    "macro_f1": 0.2966
+   }
+  },
+  "norms": {
+   "B0": {
+    "n": 0,
+    "accuracy": null,
+    "macro_f1": null
+   },
+   "B1": {
+    "n": 0,
+    "accuracy": null,
+    "macro_f1": null
+   },
+   "B2": {
+    "n": 0,
+    "accuracy": null,
+    "macro_f1": null
+   }
+  },
+  "a1_other": {
+   "B0": {
+    "n": 121,
+    "accuracy": 0.3636,
+    "macro_f1": 0.0889
+   },
+   "B1": {
+    "n": 121,
+    "accuracy": 0.2397,
+    "macro_f1": 0.1599
+   },
+   "B2": {
+    "n": 121,
+    "accuracy": 0.2397,
+    "macro_f1": 0.1746
+   }
+  }
+ },
+ "pass_rule": {
+  "best": "B2",
+  "gain_all": -0.138,
+  "gain_dev": -0.1331,
+  "gain_sealed": -0.1428,
+  "passed": false
+ }
+}
