@@ -1,0 +1,27 @@
+{
+  "schema": "pee220.registry.1",
+  "vocabulary": [
+    {
+      "categoryId": "football_footwear", "displayName": "Football boots / soccer cleats",
+      "aliases": ["football boots", "football shoes", "soccer cleats", "soccer boots", "football cleats", "footy boots"],
+      "essentialSlots": [{"id":"playing_surface", "question":"What kind of pitch will you play on: natural grass, artificial grass (AG), artificial turf (TF), soft ground, or indoor court?", "ambiguousTerms":["artificial grass","synthetic pitch","3g pitch"],
+        "values":[
+          {"id":"firm_ground", "aliases":["firm ground", "fg pitches", "fg boots"]},
+          {"id":"artificial_grass", "aliases":["ag pitches", "ag boots", "artificial grass ag", "ag studs"]},
+          {"id":"turf", "aliases":["turf tf", "tf pitches", "turf shoes", "astroturf"]},
+          {"id":"soft_ground", "aliases":["soft ground", "sg pitches", "sg studs"]},
+          {"id":"indoor", "aliases":["indoor court", "indoor football", "indoor soccer"]}
+        ]}]
+    },
+    {
+      "categoryId":"recycling_bins", "displayName":"Waste sorting / recycling bins",
+      "aliases":["recycling bin", "recycling bins", "waste sorting bin", "waste sorting bins", "sorting rubbish", "separating waste", "separate my waste"],
+      "essentialSlots":[{"id":"waste_streams", "question":"Which waste streams must be separated (for example paper, plastic, food waste, general waste), and what local collection rules apply?", "values":[
+        {"id":"paper_plastic", "aliases":["paper and plastic", "plastic and paper"]},
+        {"id":"paper_plastic_food", "aliases":["paper plastic and food", "paper and plastic and food", "food paper and plastic", "food plastic and paper"]},
+        {"id":"food_general", "aliases":["food and general waste", "food waste and general waste"]}
+      ]}]
+    }
+  ],
+  "sources":[], "policies":[]
+}

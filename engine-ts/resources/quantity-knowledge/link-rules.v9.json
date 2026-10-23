@@ -1,0 +1,2182 @@
+{
+ "schema": "pee.knowledge-rules.v1",
+ "version": "lk.9 (kr82.1)",
+ "statement": "lk.9 (S82, owner review of S81): a condition is shown only WHOLE: stating the axes of a condition the axes cover only in part (cond_partial) shows a component, never the condition; a documented difference of a component still makes two results not comparable as reported; the quantity knowledge's within-source comparability keeps its scope; with no taught requirement the comparable verdict says so instead of \"required conditions equal\". lk.8 (S81, counterexample-guided): lk.7 without its required-condition preference in the link program. Counterexample: an air-fryer empty-run energy reading that records the compartments in use would have been preferred as the cooking-task measurement, because the empty run requires no condition; recording a condition one procedure requires is not evidence against a procedure that simply does not require it (and the empty run fixes an empty load, which the quantity knowledge cannot type). Telling procedures apart stays with typed fixed conditions (rules L8-L10h). lk.7 (S81, owner brief 2026-10-19 \"make scientific knowledge operational\"). Taught conditions are reasoned about as CONDITION CONCEPTS, not only as quantity-knowledge axes: every requires_condition of a measurement must be shown by a result before the result is evidence for its outcome (lk.6 silently treated a requirement it could not type as met: an absence concluded over an incomplete record); two results compare only when every non-identity required condition is shown by both and equal (program comparable; the quantity-knowledge verdict is its first stage); the incompletely-translated-measurement cap applies to links made by type, not to identified links; a declared attribute the teaching marks not_sufficient_for an outcome bears on it as an indirect indicator only; a candidate measurement whose required conditions a value records, when its rivals' are not recorded, is preferred. R2 (owner S68, 2026-10-19). Program link: a value the newer reader typed is linked to a taught measurement by what both are (metric, kind, condition values), never by shared words; the most specific level wins; a candidate that would assume an unstated condition is not preferred; competition between candidates with the same consequences is immaterial (linked to each), otherwise the value stays ambiguous, with the condition axes that would decide; a value no taught measurement measures is reported as outside the teaching. Program evidence: graded evidential force (owner S68): direct, partial contribution, indirect indicator, force not verified, or relevant with its conditions not shown; an outcome is assessed by direct evidence, or by every contributing measurement the teaching lists (at least two), and otherwise only partly. Nothing here authorises a ranking: that also needs the user's need, the conditions of comparison and independent sources. Shadow only. lk.2 (owner S69): one observation, several analytical uses. A measurement of several measurand groups is an analytical set; a value describes at most one single measurement but may be a member of every compatible set; a member alone is only a component; the set's force applies to an aligned point (every group at the same required setting, compatible methods, not necessarily one run), and two or more points support a partial relationship; contributions that share an observation are not independent; one observation reported twice is one observation. lk.3 (owner review S70): an observation is identified by its provenance (source document), so equal numbers from two sources are two observations; an aligned point needs shown compatibility (one source's protocol, or a method stated by every source), and otherwise its compatibility is explicitly not shown; a direct relation through a measurement PEE cannot fully read is capped at partial. lk.4 (owner review S71): compatibility only from positive support (one identified test, or the same stated method, with every required condition stated); sharing a document or missing information is never compatibility. Observation identity only from an identified test; without it neither equivalence nor independence is assumed, and a set of contributions resting on unknown identities is not complete. A direct relation through an incompletely translated measurement has unresolved force, not partial. lk.5 (owner review S72): a protocol or a named test procedure supports compatibility (same_protocol) but is never the identity of an observation; identity needs an identified run. lk.6 (R3): among preferred candidates of one level, those whose fixed condition the value states are more specific and are chosen (most specific consistent hypothesis); otherwise every preferred candidate stays. A condition that partitions the candidates (two fix different values of it) and that the value does not state is the deciding question: the value stays ambiguous among them.",
+ "vocabulary": [
+  {
+   "name": "value",
+   "args": [
+    "V"
+   ],
+   "role": "input",
+   "meaning": "V is a value the newer reader found (a typed quantity)."
+  },
+  {
+   "name": "value_kind",
+   "args": [
+    "V",
+    "K"
+   ],
+   "role": "input",
+   "meaning": "Value V is of quantity kind K (or, when its kind is undecided, K is one of its candidate kinds)."
+  },
+  {
+   "name": "value_metric",
+   "args": [
+    "V",
+    "X"
+   ],
+   "role": "input",
+   "meaning": "Value V is a value of metric X (the quantity knowledge established it)."
+  },
+  {
+   "name": "value_condition",
+   "args": [
+    "V",
+    "A",
+    "X"
+   ],
+   "role": "input",
+   "meaning": "Value V is stated under condition value X of axis A."
+  },
+  {
+   "name": "value_missing",
+   "args": [
+    "V",
+    "A"
+   ],
+   "role": "input",
+   "meaning": "The quantity knowledge requires axis A for V's metric, and V does not state it."
+  },
+  {
+   "name": "value_product",
+   "args": [
+    "V",
+    "P"
+   ],
+   "role": "input",
+   "meaning": "Value V is attributed to product P."
+  },
+  {
+   "name": "measurement",
+   "args": [
+    "M"
+   ],
+   "role": "input",
+   "meaning": "M is a taught measurement of the category."
+  },
+  {
+   "name": "measures",
+   "args": [
+    "M",
+    "K",
+    "L"
+   ],
+   "role": "input",
+   "meaning": "Taught measurement M measures quantity kind K; L = head (named in the concept's name) or body (only mentioned in its statement)."
+  },
+  {
+   "name": "measures_metric",
+   "args": [
+    "M",
+    "X",
+    "L"
+   ],
+   "role": "input",
+   "meaning": "Taught measurement M measures metric X; L = head or body, as for measures."
+  },
+  {
+   "name": "fixes",
+   "args": [
+    "M",
+    "A",
+    "X"
+   ],
+   "role": "input",
+   "meaning": "The concept's name fixes condition value X of axis A (\"at sleep mode\": fan_setting = sleep)."
+  },
+  {
+   "name": "requires_axis",
+   "args": [
+    "M",
+    "A"
+   ],
+   "role": "input",
+   "meaning": "Measurement M needs axis A stated to be interpreted (from its name or its requires_condition relations)."
+  },
+  {
+   "name": "leads_to",
+   "args": [
+    "M",
+    "O",
+    "F"
+   ],
+   "role": "input",
+   "meaning": "A measured_by relation: M bears on outcome O with force F (direct, partial, unverified), per the source verification."
+  },
+  {
+   "name": "indirect_for",
+   "args": [
+    "M",
+    "O"
+   ],
+   "role": "input",
+   "meaning": "A not_sufficient_for relation: M is only an indirect indicator of outcome O."
+  },
+  {
+   "name": "names_metric",
+   "args": [
+    "M",
+    "L"
+   ],
+   "role": "derived",
+   "meaning": "M names some metric at level L."
+  },
+  {
+   "name": "metric_conflict",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "V is a value of a metric that M does not measure, although M names the metrics it measures."
+  },
+  {
+   "name": "head_match",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "V matches what M's name says it measures (metric, or kind without a conflicting metric)."
+  },
+  {
+   "name": "cand",
+   "args": [
+    "V",
+    "M",
+    "L"
+   ],
+   "role": "derived",
+   "meaning": "M is a candidate measurement for V at level L: metric (same metric, named), kind (same kind, named), mention (same metric, only mentioned)."
+  },
+  {
+   "name": "shows_fixed",
+   "args": [
+    "V",
+    "M",
+    "A"
+   ],
+   "role": "derived",
+   "meaning": "V states one of the condition values M fixes on axis A."
+  },
+  {
+   "name": "unshown",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "M fixes a condition value that V does not state (linking V to M would assume it)."
+  },
+  {
+   "name": "preferred",
+   "args": [
+    "V",
+    "M",
+    "L"
+   ],
+   "role": "derived",
+   "meaning": "M is a candidate for V at level L whose fixed conditions V states."
+  },
+  {
+   "name": "has_pref",
+   "args": [
+    "V",
+    "L"
+   ],
+   "role": "derived",
+   "meaning": "V has a preferred candidate at level L."
+  },
+  {
+   "name": "chosen",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "M is among the most specific preferred candidates for V."
+  },
+  {
+   "name": "any_pref",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "V has a preferred candidate at some level."
+  },
+  {
+   "name": "assumed",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "V has no preferred candidate, and M is a candidate that would assume an unstated condition."
+  },
+  {
+   "name": "rival",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "Another chosen candidate competes with M for V."
+  },
+  {
+   "name": "rival_assumed",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "Another assumed candidate competes with M for V."
+  },
+  {
+   "name": "linked",
+   "args": [
+    "V",
+    "M",
+    "S"
+   ],
+   "role": "derived",
+   "meaning": "V is linked to M; S = shown (every condition M fixes is stated) or condition_not_shown (the only candidate assumes one)."
+  },
+  {
+   "name": "differs",
+   "args": [
+    "M1",
+    "M2"
+   ],
+   "role": "derived",
+   "meaning": "M1 bears on an outcome, with a force, that M2 does not: linking to one or the other has different consequences."
+  },
+  {
+   "name": "consequential",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "V's competing candidates have different consequences."
+  },
+  {
+   "name": "linked_equivalent",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "V's competing candidates all have the same consequences; V is linked to each of them (the choice is immaterial for decisions)."
+  },
+  {
+   "name": "ambiguous",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "M is one of V's competing candidates with different consequences: V is not linked."
+  },
+  {
+   "name": "has_cand",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "V has a candidate measurement."
+  },
+  {
+   "name": "no_taught_measurement",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "No taught measurement of the category measures what V is: the teaching does not cover it (a knowledge gap, not an error)."
+  },
+  {
+   "name": "value_has_axis",
+   "args": [
+    "V",
+    "A"
+   ],
+   "role": "derived",
+   "meaning": "V states some value of axis A."
+  },
+  {
+   "name": "deciding_axis",
+   "args": [
+    "V",
+    "A"
+   ],
+   "role": "derived",
+   "meaning": "A candidate of the ambiguous V fixes axis A and V does not state A: stating it would decide."
+  },
+  {
+   "name": "link_to",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "input",
+   "meaning": "Given to evidence: V is linked to M (linked or linked_equivalent)."
+  },
+  {
+   "name": "assumes_condition",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "input",
+   "meaning": "Given to evidence: the link of V to M assumes a condition V does not state."
+  },
+  {
+   "name": "missing_axis",
+   "args": [
+    "V",
+    "M",
+    "A"
+   ],
+   "role": "derived",
+   "meaning": "M needs axis A, and V does not state it."
+  },
+  {
+   "name": "conditions_ok",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "Every axis M needs is stated by V, and the link assumes nothing."
+  },
+  {
+   "name": "evidence_force",
+   "args": [
+    "V",
+    "O",
+    "F",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "Through M, V bears on outcome O with force F: direct, partial, unverified, indirect, or conditions_not_shown (relevant, but cannot assess)."
+  },
+  {
+   "name": "bears",
+   "args": [
+    "P",
+    "O",
+    "V",
+    "F",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "Value V of product P bears on outcome O with force F through M."
+  },
+  {
+   "name": "has_direct",
+   "args": [
+    "P",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "Some value of P is direct evidence on O."
+  },
+  {
+   "name": "contributes",
+   "args": [
+    "P",
+    "O",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "A value of P measured by M contributes (partially) to assessing O."
+  },
+  {
+   "name": "has_contribution",
+   "args": [
+    "P",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "Some value of P contributes to O."
+  },
+  {
+   "name": "two_contributions",
+   "args": [
+    "P",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "Values of P from two different measurements contribute to O."
+  },
+  {
+   "name": "listed_contribution_missing",
+   "args": [
+    "P",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "The teaching lists a contributing measurement of O that no value of P supplies."
+  },
+  {
+   "name": "complete_set",
+   "args": [
+    "P",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "Values of P supply every contributing measurement the teaching lists for O, from at least two measurements."
+  },
+  {
+   "name": "has_indirect",
+   "args": [
+    "P",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "Some value of P is an indirect indicator of O."
+  },
+  {
+   "name": "outcome_assessment",
+   "args": [
+    "P",
+    "O",
+    "S"
+   ],
+   "role": "derived",
+   "meaning": "What the record allows about product P's outcome O: direct_evidence, all_listed_contributions, partial_contributions, indirect_only, force_not_verified or relevant_conditions_not_shown. Never a ranking by itself: authorisation also needs the user's need, the conditions of comparison and independent sources."
+  },
+  {
+   "name": "group_kind",
+   "args": [
+    "M",
+    "G",
+    "K"
+   ],
+   "role": "input",
+   "meaning": "Measurement M measures, as its measurand group G, quantity kind K (a set measures several groups: CADR, noise, power)."
+  },
+  {
+   "name": "group_metric",
+   "args": [
+    "M",
+    "G",
+    "X"
+   ],
+   "role": "input",
+   "meaning": "Measurand group G of M is metric X."
+  },
+  {
+   "name": "observation",
+   "args": [
+    "V",
+    "O"
+   ],
+   "role": "input",
+   "meaning": "Value V reports original observation O. O is established only when V's test is identified (a named test or the protocol statement that covers it, within its source): O = source, test, product, property, value and conditions. Without a test identity no observation fact is given: neither equivalence nor independence is invented."
+  },
+  {
+   "name": "analytical_set",
+   "args": [
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "M is an analytical set: it relates several measurand groups (a CADR/noise/power curve), it is not a single measurement."
+  },
+  {
+   "name": "in_set",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "V's measured property is one of the measurands of the set M."
+  },
+  {
+   "name": "unshown_set",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "Membership of V in set M would assume a condition value V does not state."
+  },
+  {
+   "name": "member",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "V is a member of (contributes to) the analytical set M; membership is not exclusive and is not evidence of the set's relationship."
+  },
+  {
+   "name": "member_group",
+   "args": [
+    "V",
+    "M",
+    "G"
+   ],
+   "role": "derived",
+   "meaning": "V is a member of set M as its measurand group G."
+  },
+  {
+   "name": "has_member",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "V is a member of some set."
+  },
+  {
+   "name": "member_only",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "V is a member of sets only: no single taught measurement describes it."
+  },
+  {
+   "name": "at",
+   "args": [
+    "P",
+    "M",
+    "G",
+    "A",
+    "X",
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "Value V of product P is set M's group G at value X of the axis A that M requires."
+  },
+  {
+   "name": "point_candidate",
+   "args": [
+    "P",
+    "M",
+    "A",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "Some member of set M for product P is stated at value X of axis A."
+  },
+  {
+   "name": "group_of",
+   "args": [
+    "M",
+    "G"
+   ],
+   "role": "derived",
+   "meaning": "G is a measurand group of M."
+  },
+  {
+   "name": "has_at",
+   "args": [
+    "P",
+    "M",
+    "G",
+    "A",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "P has a member of group G of M at X."
+  },
+  {
+   "name": "missing_group",
+   "args": [
+    "P",
+    "M",
+    "A",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "At X, a measurand group of M has no member for P."
+  },
+  {
+   "name": "condition_clash",
+   "args": [
+    "P",
+    "M",
+    "A",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "Two members of M for P at X state different values of a closed axis (values defined by the knowledge): documented incompatible observations."
+  },
+  {
+   "name": "aligned_point",
+   "args": [
+    "P",
+    "M",
+    "A",
+    "X",
+    "B"
+   ],
+   "role": "derived",
+   "meaning": "Every measurand group of M has a member for P at the same value X of the required axis A, every member states every axis M requires, no stated condition differs, and compatibility is positively supported: B = same_test (one identified run), same_protocol (one identified procedure: compatibility does not require one run) or stated_method (every member states the same method). Sharing a document is not enough; missing information is never compatibility."
+  },
+  {
+   "name": "relationship_at_points",
+   "args": [
+    "P",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "Set M's relationship for P is supported at two or more aligned points (a partial curve; not every setting)."
+  },
+  {
+   "name": "set_evidence",
+   "args": [
+    "P",
+    "O",
+    "F",
+    "M",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "Through an aligned point at X, set M bears on O for P with force F, bounded to that setting."
+  },
+  {
+   "name": "contrib_obs",
+   "args": [
+    "P",
+    "O",
+    "M",
+    "Ob"
+   ],
+   "role": "derived",
+   "meaning": "Observation Ob is part of M's partial contribution to O for P."
+  },
+  {
+   "name": "dependent",
+   "args": [
+    "P",
+    "O",
+    "M1",
+    "M2"
+   ],
+   "role": "derived",
+   "meaning": "M1's and M2's contributions to O for P share an observation: they are not independent."
+  },
+  {
+   "name": "repeated_report",
+   "args": [
+    "V1",
+    "V2"
+   ],
+   "role": "derived",
+   "meaning": "V1 and V2 report the same original observation."
+  },
+  {
+   "name": "value_source",
+   "args": [
+    "V",
+    "S"
+   ],
+   "role": "input",
+   "meaning": "Value V comes from source document S."
+  },
+  {
+   "name": "incomplete",
+   "args": [
+    "M"
+   ],
+   "role": "input",
+   "meaning": "The translation of M is incomplete: its name holds words the quantity knowledge cannot type (part of its procedure is unknown to PEE)."
+  },
+  {
+   "name": "compatibility_not_shown",
+   "args": [
+    "P",
+    "M",
+    "A",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "Every group of M has a member at X and nothing documents an incompatibility, but compatibility is not positively supported (no common test identity, no common stated method, or a required axis unstated): no relationship, no force."
+  },
+  {
+   "name": "unresolved_force",
+   "args": [
+    "V",
+    "O",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "The relation M -> O is direct, but M's translation is incomplete: whether V suffices is unknown. Its force is unresolved, neither direct nor shown partial."
+  },
+  {
+   "name": "closed_axis",
+   "args": [
+    "A"
+   ],
+   "role": "input",
+   "meaning": "Axis A has a closed list of values in the quantity knowledge: two different values are different by definition."
+  },
+  {
+   "name": "condition_unequal",
+   "args": [
+    "P",
+    "M",
+    "A",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "Two members of M for P at X state different free-text values of an axis (two method descriptions): neither shown equal nor shown different."
+  },
+  {
+   "name": "value_test",
+   "args": [
+    "V",
+    "T"
+   ],
+   "role": "input",
+   "meaning": "Value V comes from identified test run T (one execution of an experiment), within its source. A protocol or a named test procedure is not a run."
+  },
+  {
+   "name": "has_test",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "V's test is identified."
+  },
+  {
+   "name": "test_missing",
+   "args": [
+    "P",
+    "M",
+    "A",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "A member of M for P at X has no identified test."
+  },
+  {
+   "name": "test_differs",
+   "args": [
+    "P",
+    "M",
+    "A",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "Members of M for P at X come from different identified tests."
+  },
+  {
+   "name": "method_missing",
+   "args": [
+    "P",
+    "M",
+    "A",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "A member of M for P at X states no method."
+  },
+  {
+   "name": "axis_unstated",
+   "args": [
+    "P",
+    "M",
+    "A",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "A member of M for P at X does not state an axis M requires."
+  },
+  {
+   "name": "aligned_any",
+   "args": [
+    "P",
+    "M",
+    "A",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "Some positive basis aligns the point."
+  },
+  {
+   "name": "identity_unknown",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "V's observation identity cannot be established (no identified test)."
+  },
+  {
+   "name": "independence_not_established",
+   "args": [
+    "P",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "A contribution to O for P rests on a value whose observation identity is unknown: independence cannot be shown."
+  },
+  {
+   "name": "has_unresolved",
+   "args": [
+    "P",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "Some evidence on O for P has unresolved force."
+  },
+  {
+   "name": "operating_axis",
+   "args": [
+    "A"
+   ],
+   "role": "input",
+   "meaning": "Axis A is an operating condition (a setting, a programme): the axis along which a set's points are aligned."
+  },
+  {
+   "name": "value_protocol",
+   "args": [
+    "V",
+    "Q"
+   ],
+   "role": "input",
+   "meaning": "Value V was obtained with procedure Q (the protocol statement that covers it, or the named test procedure), within its source. A procedure is shared by many runs: it supports compatibility, never identity."
+  },
+  {
+   "name": "protocol_missing",
+   "args": [
+    "P",
+    "M",
+    "A",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "A member of M for P at X has no identified procedure."
+  },
+  {
+   "name": "protocol_differs",
+   "args": [
+    "P",
+    "M",
+    "A",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "Members of M for P at X were obtained with different identified procedures."
+  },
+  {
+   "name": "has_protocol",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "V's procedure is identified."
+  },
+  {
+   "name": "matched_at",
+   "args": [
+    "V",
+    "M",
+    "L"
+   ],
+   "role": "derived",
+   "meaning": "Preferred candidate M at level L fixes a condition value that V states (it explains more of what V states)."
+  },
+  {
+   "name": "has_matched_at",
+   "args": [
+    "V",
+    "L"
+   ],
+   "role": "derived",
+   "meaning": "Some preferred candidate of V at level L fixes a condition value V states."
+  },
+  {
+   "name": "best_pref",
+   "args": [
+    "V",
+    "M",
+    "L"
+   ],
+   "role": "derived",
+   "meaning": "M is among the most specific preferred candidates of V at level L: one whose fixed condition V states, or any when none does."
+  },
+  {
+   "name": "partition_axis",
+   "args": [
+    "V",
+    "A"
+   ],
+   "role": "derived",
+   "meaning": "Two candidates of V fix different values of axis A and V states none: A decides between them."
+  },
+  {
+   "name": "undecided",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "V's candidates are partitioned by an axis V does not state."
+  },
+  {
+   "name": "partition_member",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "M is a candidate of V that fixes a value of the partitioning axis."
+  },
+  {
+   "name": "contradicted",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "V states an axis that candidate M fixes to other values."
+  },
+  {
+   "name": "unread_qualifier",
+   "args": [
+    "M"
+   ],
+   "role": "input",
+   "meaning": "The measurand part of M's name (before by/at/per...) holds a word the quantity knowledge cannot type: a qualifier of what is measured that PEE cannot check."
+  },
+  {
+   "name": "requires_cond",
+   "args": [
+    "M",
+    "C"
+   ],
+   "role": "input",
+   "meaning": "The teaching requires condition concept C for results of measurement M (a requires_condition relation)."
+  },
+  {
+   "name": "identity_cond",
+   "args": [
+    "C"
+   ],
+   "role": "input",
+   "meaning": "Condition concept C binds a result to its exact product (model, variant): it is shown per result and never required to be equal across products."
+  },
+  {
+   "name": "cond_axis",
+   "args": [
+    "C",
+    "A"
+   ],
+   "role": "input",
+   "meaning": "Condition concept C names quantity-knowledge condition axis A: a result that states A shows C on that axis."
+  },
+  {
+   "name": "value_states",
+   "args": [
+    "V",
+    "C",
+    "W"
+   ],
+   "role": "input",
+   "meaning": "The record of V states condition concept C with description W (a reading or a structured record; free text compared only as stated)."
+  },
+  {
+   "name": "link_identified",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "input",
+   "meaning": "V is identified as a result of M by its record (a structured statement of the measurement), not inferred from its type."
+  },
+  {
+   "name": "declares",
+   "args": [
+    "V",
+    "A"
+   ],
+   "role": "input",
+   "meaning": "V is a declaration of attribute A (a manufacturer or retailer statement, not a measurement)."
+  },
+  {
+   "name": "attribute_indirect_for",
+   "args": [
+    "A",
+    "O"
+   ],
+   "role": "input",
+   "meaning": "The teaching marks declared attribute A as not sufficient for outcome O (an indirect indicator only)."
+  },
+  {
+   "name": "cond_shown",
+   "args": [
+    "V",
+    "C"
+   ],
+   "role": "derived",
+   "meaning": "The record of V shows condition concept C (it states C, or every axis C names)."
+  },
+  {
+   "name": "cond_axis_unstated",
+   "args": [
+    "V",
+    "C"
+   ],
+   "role": "derived",
+   "meaning": "V does not state one of the axes condition concept C names."
+  },
+  {
+   "name": "has_cond_axis",
+   "args": [
+    "C"
+   ],
+   "role": "derived",
+   "meaning": "Condition concept C names at least one condition axis."
+  },
+  {
+   "name": "cond_unshown",
+   "args": [
+    "V",
+    "M",
+    "C"
+   ],
+   "role": "derived",
+   "meaning": "Through M, V needs condition concept C and its record does not show it (closed over the record: not shown, never \"not met\")."
+  },
+  {
+   "name": "incomplete_link",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "The link of V to M rests on type alone while M is incompletely translated."
+  },
+  {
+   "name": "pair_measurement",
+   "args": [
+    "M"
+   ],
+   "role": "input",
+   "meaning": "Program comparable: both results a and b are results of measurement M."
+  },
+  {
+   "name": "qk_verdict",
+   "args": [
+    "X",
+    "R"
+   ],
+   "role": "input",
+   "meaning": "Program comparable: the quantity-knowledge comparison of a and b reached verdict X for reason R (stage 1)."
+  },
+  {
+   "name": "cond_same",
+   "args": [
+    "C"
+   ],
+   "role": "input",
+   "meaning": "Program comparable: a and b state condition concept C with the same description, or the same axis values."
+  },
+  {
+   "name": "cond_distinct",
+   "args": [
+    "C",
+    "R"
+   ],
+   "role": "input",
+   "meaning": "Program comparable: a and b state C with documented-different values (R: different quantities of one kind, or different named values of one axis)."
+  },
+  {
+   "name": "req",
+   "args": [
+    "C"
+   ],
+   "role": "derived",
+   "meaning": "Program comparable: C is a non-identity condition required for the pair's measurement."
+  },
+  {
+   "name": "both_shown",
+   "args": [
+    "C"
+   ],
+   "role": "derived",
+   "meaning": "Program comparable: a and b both show required condition C."
+  },
+  {
+   "name": "cond_differs",
+   "args": [
+    "C"
+   ],
+   "role": "derived",
+   "meaning": "Program comparable: a and b show required condition C with documented-different values."
+  },
+  {
+   "name": "cond_open",
+   "args": [
+    "C"
+   ],
+   "role": "derived",
+   "meaning": "Program comparable: a required condition C is not shown by both results."
+  },
+  {
+   "name": "cond_unclear",
+   "args": [
+    "C"
+   ],
+   "role": "derived",
+   "meaning": "Program comparable: both show C, with descriptions neither equal nor documented different."
+  },
+  {
+   "name": "kfinding",
+   "args": [
+    "S",
+    "X",
+    "R"
+   ],
+   "role": "derived",
+   "meaning": "Program comparable: a finding at stage S with verdict X for reason R."
+  },
+  {
+   "name": "kearlier",
+   "args": [
+    "S"
+   ],
+   "role": "derived",
+   "meaning": "Program comparable: a finding exists at a stage before S."
+  },
+  {
+   "name": "kverdict",
+   "args": [
+    "X",
+    "R"
+   ],
+   "role": "derived",
+   "meaning": "Program comparable: the verdict and its reason (the earliest stage with a finding decides)."
+  },
+  {
+   "name": "kcond",
+   "args": [
+    "C",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "Program comparable: the state X of required condition C (equal, differs, not_shown, unclear)."
+  },
+  {
+   "name": "cond_partial",
+   "args": [
+    "C"
+   ],
+   "role": "input",
+   "meaning": "The axes condition concept C names cover only part of it (its statement names further components): stating them shows a component, not C."
+  },
+  {
+   "name": "has_req",
+   "args": [],
+   "role": "derived",
+   "meaning": "Program comparable: the teaching requires at least one non-identity condition for the pair's measurement."
+  },
+  {
+   "name": "qk_within",
+   "args": [],
+   "role": "derived",
+   "meaning": "Program comparable: the quantity knowledge finds the pair comparable only within one presented test."
+  },
+  {
+   "name": "weakly_preferred",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "Candidate M is preferred by its fixed conditions, but V does not show a condition M requires: its support is no better than a candidate excluded for an unstated condition."
+  },
+  {
+   "name": "fixed_unknown",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "derived",
+   "meaning": "Candidate M fixes a condition V does not state (and V does not contradict it): M is neither shown nor excluded."
+  },
+  {
+   "name": "unsettled",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "The record does not tell V's candidates apart: one is excluded only for an undocumented condition while the other is no better supported."
+  },
+  {
+   "name": "requires_axis_via",
+   "args": [
+    "M",
+    "A",
+    "C"
+   ],
+   "role": "input",
+   "meaning": "Axis A of measurement M comes from the statement of its required condition C."
+  },
+  {
+   "name": "axis_via_shown",
+   "args": [
+    "V",
+    "M",
+    "A"
+   ],
+   "role": "derived",
+   "meaning": "The requirement that named axis A for M is shown by V as a condition concept."
+  }
+ ],
+ "programs": [
+  {
+   "id": "link",
+   "statement": "Typed link of values to taught measurements.",
+   "rules": [
+    {
+     "id": "L1",
+     "rule": "names_metric(M,L) :- measures_metric(M,_,L).",
+     "statement": "A measurement names a metric.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L2",
+     "rule": "metric_conflict(V,M) :- value_metric(V,X), names_metric(M,head), not measures_metric(M,X,head).",
+     "statement": "A value of one metric does not belong to a measurement whose name names other metrics only.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L3",
+     "rule": "head_match(V,M) :- value_metric(V,X), measures_metric(M,X,head).",
+     "statement": "Same metric, named by the measurement.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L4",
+     "rule": "head_match(V,M) :- value_kind(V,K), measures(M,K,head), not metric_conflict(V,M).",
+     "statement": "Same kind, named by the measurement, and no conflicting metric.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L5",
+     "rule": "cand(V,M,metric) :- value_metric(V,X), measures_metric(M,X,head), not analytical_set(M).",
+     "statement": "Candidate at the metric level. (single measurements only; sets take members, L31-L35)",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L6",
+     "rule": "cand(V,M,kind) :- value_kind(V,K), measures(M,K,head), not metric_conflict(V,M), not analytical_set(M).",
+     "statement": "Candidate at the kind level. (single measurements only; sets take members, L31-L35)",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L7",
+     "rule": "cand(V,M,mention) :- value_metric(V,X), measures_metric(M,X,body), not head_match(V,M), not analytical_set(M).",
+     "statement": "Candidate only because the measurement's statement mentions the value's metric (the weakest level). (single measurements only; sets take members, L31-L35)",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L8a",
+     "rule": "shows_fixed(V,M,A) :- fixes(M,A,X), value_condition(V,A,X).",
+     "statement": "V states one of the values M fixes on axis A.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L8",
+     "rule": "unshown(V,M) :- cand(V,M,_), fixes(M,A,_), not shows_fixed(V,M,A).",
+     "statement": "Linking would assume a condition the value does not state: M fixes axis A and V states none of the values M fixes on A (several fixed values on one axis are alternatives: \"dust and pollen CADR\").",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L9",
+     "rule": "preferred(V,M,L) :- cand(V,M,L), not unshown(V,M).",
+     "statement": "A candidate that assumes nothing.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L10",
+     "rule": "has_pref(V,L) :- preferred(V,_,L).",
+     "statement": "V has a preferred candidate at level L.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L10a",
+     "rule": "matched_at(V,M,L) :- preferred(V,M,L), fixes(M,A,X), value_condition(V,A,X), not unread_qualifier(M).",
+     "statement": "A candidate whose fixed condition the value states, and whose measurand PEE can type completely (a match on one condition does not identify a candidate whose measurand carries a qualifier PEE cannot check, such as a label or a plug-side measurement).",
+     "source": "R3 (owner S73): most specific consistent candidate"
+    },
+    {
+     "id": "L10b",
+     "rule": "has_matched_at(V,L) :- matched_at(V,_,L).",
+     "statement": "Some candidate at level L is matched by a stated condition.",
+     "source": "R3 (owner S73): most specific consistent candidate"
+    },
+    {
+     "id": "L10c",
+     "rule": "best_pref(V,M,L) :- matched_at(V,M,L).",
+     "statement": "Most specific: the stated condition matches the candidate's fixed condition.",
+     "source": "R3 (owner S73): most specific consistent candidate"
+    },
+    {
+     "id": "L10d",
+     "rule": "best_pref(V,M,L) :- preferred(V,M,L), not has_matched_at(V,L).",
+     "statement": "When no candidate at the level is matched by a stated condition, every preferred one stays.",
+     "source": "R3 (owner S73): most specific consistent candidate"
+    },
+    {
+     "id": "L10h",
+     "rule": "contradicted(V,M) :- cand(V,M,_), fixes(M,A,_), value_has_axis(V,A), not shows_fixed(V,M,A).",
+     "statement": "The value states axis A, and candidate M fixes A to other values: M is not what V measured.",
+     "source": "R3 dev review (p272 regressions): partition and specificity only among candidates consistent with the value and fully described"
+    },
+    {
+     "id": "L10e",
+     "rule": "partition_axis(V,A) :- cand(V,M1,_), cand(V,M2,_), M1 != M2, fixes(M1,A,X1), fixes(M2,A,X2), X1 != X2, not value_has_axis(V,A), not contradicted(V,M1), not contradicted(V,M2).",
+     "statement": "Candidates fixing different values of one axis the value does not state: the axis is the question that decides, and no candidate wins by elimination (a third candidate that fixes nothing is not thereby more likely).",
+     "source": "R3: a condition that partitions the candidates is the deciding question"
+    },
+    {
+     "id": "L10f",
+     "rule": "undecided(V) :- partition_axis(V,_).",
+     "statement": "V is undecided between the partitioned candidates.",
+     "source": "R3: a condition that partitions the candidates is the deciding question"
+    },
+    {
+     "id": "L10g",
+     "rule": "partition_member(V,M) :- partition_axis(V,A), cand(V,M,_), fixes(M,A,_), not contradicted(V,M).",
+     "statement": "The candidates the axis partitions.",
+     "source": "R3: a condition that partitions the candidates is the deciding question"
+    },
+    {
+     "id": "L11",
+     "rule": "chosen(V,M) :- best_pref(V,M,metric), not undecided(V), not unsettled(V).",
+     "statement": "The metric level is the most specific. lk.9: not when the record leaves the candidates unsettled.",
+     "source": "R3 (owner S73): most specific consistent candidate; owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "L12",
+     "rule": "chosen(V,M) :- best_pref(V,M,kind), not has_pref(V,metric), not undecided(V), not unsettled(V).",
+     "statement": "The kind level, when no metric-level candidate assumes nothing. lk.9: not when the record leaves the candidates unsettled.",
+     "source": "R3 (owner S73): most specific consistent candidate; owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "L13",
+     "rule": "chosen(V,M) :- best_pref(V,M,mention), not has_pref(V,metric), not has_pref(V,kind), not undecided(V), not unsettled(V).",
+     "statement": "A mention, only when nothing more specific exists. lk.9: not when the record leaves the candidates unsettled.",
+     "source": "R3 (owner S73): most specific consistent candidate; owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "L13a",
+     "rule": "chosen(V,M) :- undecided(V), partition_member(V,M).",
+     "statement": "An undecided value keeps the partitioned candidates as rivals (ambiguous, with the deciding axis).",
+     "source": "R3: a condition that partitions the candidates is the deciding question"
+    },
+    {
+     "id": "LC1",
+     "rule": "cond_shown(V,C) :- value_states(V,C,_).",
+     "statement": "A result shows a condition concept its record states.",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "LC2",
+     "rule": "cond_axis_unstated(V,C) :- cond_axis(C,A), value(V), not value_has_axis(V,A).",
+     "statement": "A result leaves an axis of the condition unstated.",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "LC3",
+     "rule": "has_cond_axis(C) :- cond_axis(C,_).",
+     "statement": "The condition is typed by at least one axis.",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "LC4",
+     "rule": "cond_shown(V,C) :- value(V), has_cond_axis(C), not cond_axis_unstated(V,C), not cond_partial(C).",
+     "statement": "A result that states the axes of a whole condition shows it.",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "LU1",
+     "rule": "weakly_preferred(V,M) :- preferred(V,M,_), requires_cond(M,C), not identity_cond(C), not cond_shown(V,C).",
+     "statement": "A preferred candidate whose own required conditions the record does not show is no better supported.",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "LU2",
+     "rule": "fixed_unknown(V,M) :- cand(V,M,_), unshown(V,M), not contradicted(V,M).",
+     "statement": "A candidate the record neither shows nor contradicts on a condition it fixes.",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "LU3",
+     "rule": "unsettled(V) :- weakly_preferred(V,M), fixed_unknown(V,M2), M != M2.",
+     "statement": "Not documented is not different: a candidate cannot win because its rival fixes a condition the record does not state, when its own required conditions are not shown either (an energy reading with no load stated is not shown to be a cooking task rather than an empty run).",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "L14",
+     "rule": "any_pref(V) :- preferred(V,_,_).",
+     "statement": "V has some preferred candidate.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L15",
+     "rule": "assumed(V,M) :- cand(V,M,_), unshown(V,M), not any_pref(V).",
+     "statement": "When every candidate assumes an unstated condition, they are kept as such.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L16",
+     "rule": "rival(V,M) :- chosen(V,M), chosen(V,M2), M != M2.",
+     "statement": "Two chosen candidates compete.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L17",
+     "rule": "linked(V,M,shown) :- chosen(V,M), not rival(V,M).",
+     "statement": "A single chosen candidate is the link.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L18",
+     "rule": "rival_assumed(V,M) :- assumed(V,M), assumed(V,M2), M != M2.",
+     "statement": "Two assumed candidates compete.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L19",
+     "rule": "linked(V,M,condition_not_shown) :- assumed(V,M), not rival_assumed(V,M).",
+     "statement": "A single candidate that assumes a condition is a link that cannot assess (the evidence program grades it so).",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L20",
+     "rule": "differs(M1,M2) :- leads_to(M1,O,F), measurement(M2), not leads_to(M2,O,F).",
+     "statement": "Two measurements differ in consequence when one bears on an outcome, with a force, that the other does not.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L21",
+     "rule": "consequential(V) :- chosen(V,M1), chosen(V,M2), differs(M1,M2).",
+     "statement": "The competition matters for decisions.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L22",
+     "rule": "consequential(V) :- assumed(V,M1), assumed(V,M2), differs(M1,M2).",
+     "statement": "The competition matters for decisions (assumed candidates).",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L23",
+     "rule": "linked_equivalent(V,M) :- chosen(V,M), rival(V,M), not consequential(V), not undecided(V).",
+     "statement": "Competing candidates with the same consequences: the choice is immaterial; V is linked to each. Not when an unstated axis partitions the candidates: equal consequences do not make values measured under different conditions comparable.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L24",
+     "rule": "linked_equivalent(V,M) :- assumed(V,M), rival_assumed(V,M), not consequential(V), not undecided(V).",
+     "statement": "As L23, for assumed candidates.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L25",
+     "rule": "ambiguous(V,M) :- chosen(V,M), consequential(V).",
+     "statement": "Competing candidates with different consequences: no link.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L26",
+     "rule": "ambiguous(V,M) :- assumed(V,M), consequential(V).",
+     "statement": "As L25, for assumed candidates.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L26a",
+     "rule": "ambiguous(V,M) :- undecided(V), partition_member(V,M).",
+     "statement": "An unstated axis that partitions the candidates leaves V ambiguous between them, whatever their consequences: the axis is the question to answer.",
+     "source": "R3 dev review (p272 regressions): partition and specificity only among candidates consistent with the value and fully described"
+    },
+    {
+     "id": "L26b",
+     "rule": "ambiguous(V,M) :- unsettled(V), cand(V,M,_), not contradicted(V,M).",
+     "statement": "An unsettled value stays ambiguous among the candidates its record does not contradict; the deciding conditions are reported.",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "L27",
+     "rule": "has_cand(V) :- cand(V,_,_).",
+     "statement": "V has a candidate.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L28",
+     "rule": "no_taught_measurement(V) :- value(V), not has_cand(V), not has_member(V).",
+     "statement": "Closed over the teaching view: no taught measurement measures what V is. The teaching does not cover it; the value is not wrong.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L29",
+     "rule": "value_has_axis(V,A) :- value_condition(V,A,_).",
+     "statement": "V states axis A.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L30",
+     "rule": "deciding_axis(V,A) :- ambiguous(V,M), fixes(M,A,_), not value_has_axis(V,A).",
+     "statement": "Stating axis A would tell the candidates apart.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "L31",
+     "rule": "analytical_set(M) :- group_kind(M,G1,_), group_kind(M,G2,_), G1 != G2.",
+     "statement": "A measurement of several measurand groups is an analytical set.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L32",
+     "rule": "in_set(V,M) :- analytical_set(M), value_metric(V,X), measures_metric(M,X,head).",
+     "statement": "Same metric as one of the set's measurands.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L33",
+     "rule": "in_set(V,M) :- analytical_set(M), value_kind(V,K), measures(M,K,head), not metric_conflict(V,M).",
+     "statement": "Same kind as one of the set's measurands.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L34",
+     "rule": "unshown_set(V,M) :- in_set(V,M), fixes(M,A,_), not shows_fixed(V,M,A).",
+     "statement": "Membership would assume an unstated condition.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L35",
+     "rule": "member(V,M) :- in_set(V,M), not unshown_set(V,M).",
+     "statement": "A member of every compatible set: one observation may serve several analyses.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L36",
+     "rule": "member_group(V,M,G) :- member(V,M), value_kind(V,K), group_kind(M,G,K).",
+     "statement": "The group the member fills.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L37",
+     "rule": "member_group(V,M,G) :- member(V,M), value_metric(V,X), group_metric(M,G,X).",
+     "statement": "The group the member fills (by metric).",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L38",
+     "rule": "has_member(V) :- member(V,_).",
+     "statement": "V is a member of some set.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L39",
+     "rule": "member_only(V) :- has_member(V), not has_cand(V).",
+     "statement": "Only sets cover V.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L40",
+     "rule": "repeated_report(V1,V2) :- observation(V1,O), observation(V2,O), V1 != V2.",
+     "statement": "One observation reported twice.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "L41",
+     "rule": "identity_unknown(V) :- value(V), not observation(V,_).",
+     "statement": "No identified test: identity unknown (not merged, not independent).",
+     "source": "owner review 2026-10-19 (S71); R2"
+    }
+   ]
+  },
+  {
+   "id": "evidence",
+   "statement": "Graded evidential force of linked values, and what it allows per product and outcome.",
+   "rules": [
+    {
+     "id": "E1",
+     "rule": "value_has_axis(V,A) :- value_condition(V,A,_).",
+     "statement": "V states axis A.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "EV1",
+     "rule": "axis_via_shown(V,M,A) :- link_to(V,M), requires_axis_via(M,A,C), cond_shown(V,C).",
+     "statement": "The requirement that named this axis is shown as a condition concept.",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "E2",
+     "rule": "missing_axis(V,M,A) :- link_to(V,M), requires_axis(M,A), not value_has_axis(V,A), not axis_via_shown(V,M,A).",
+     "statement": "A condition the measurement needs is not stated with the value. lk.9: an axis that comes from a required condition the record shows as a concept is not missing (one requirement, one check).",
+     "source": "owner S68 (2026-10-19); R2; owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "E2b",
+     "rule": "missing_axis(V,M,A) :- link_to(V,M), value_missing(V,A).",
+     "statement": "A condition the value's own metric requires is not stated.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "EC1",
+     "rule": "cond_shown(V,C) :- value_states(V,C,_).",
+     "statement": "A result shows a condition concept its record states.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "EC2",
+     "rule": "cond_axis_unstated(V,C) :- cond_axis(C,A), link_to(V,_), not value_has_axis(V,A).",
+     "statement": "A result leaves unstated an axis the condition names.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "EC3",
+     "rule": "has_cond_axis(C) :- cond_axis(C,_).",
+     "statement": "The condition is typed by at least one axis.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "EC4",
+     "rule": "cond_shown(V,C) :- link_to(V,_), has_cond_axis(C), not cond_axis_unstated(V,C), not cond_partial(C).",
+     "statement": "A result that states every axis a condition names shows it. lk.9: only when the axes cover the whole condition.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis; owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "EC5",
+     "rule": "cond_unshown(V,M,C) :- link_to(V,M), requires_cond(M,C), not cond_shown(V,C).",
+     "statement": "Through M, V needs C and its record does not show it.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "EC6",
+     "rule": "incomplete_link(V,M) :- link_to(V,M), incomplete(M), not link_identified(V,M).",
+     "statement": "The link rests on type alone while M is incompletely translated.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "E3",
+     "rule": "conditions_ok(V,M) :- link_to(V,M), not missing_axis(V,M,_), not assumes_condition(V,M), not cond_unshown(V,M,_).",
+     "statement": "Every needed condition is stated and nothing is assumed. lk.7: and every condition concept the teaching requires for M is shown (an untyped requirement is no longer treated as met).",
+     "source": "owner S68 (2026-10-19); R2; owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "E4",
+     "rule": "evidence_force(V,O,F,M) :- link_to(V,M), leads_to(M,O,F), conditions_ok(V,M), F != direct.",
+     "statement": "The value carries the relation's verified force (partial or unverified), bounded to its measurement and conditions.",
+     "source": "owner review 2026-10-19 (S70); R2"
+    },
+    {
+     "id": "E4a",
+     "rule": "evidence_force(V,O,direct,M) :- link_to(V,M), leads_to(M,O,direct), conditions_ok(V,M), not incomplete_link(V,M).",
+     "statement": "Direct force only when PEE can read the whole measurement (its translation is complete). lk.7: the incomplete-translation cap concerns links made by type; an identified link is not capped.",
+     "source": "owner review 2026-10-19 (S70); R2"
+    },
+    {
+     "id": "E4b",
+     "rule": "unresolved_force(V,O,M) :- link_to(V,M), leads_to(M,O,direct), conditions_ok(V,M), incomplete_link(V,M).",
+     "statement": "A direct relation through a measurement PEE cannot fully read: whether this value suffices is unknown.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E4c",
+     "rule": "evidence_force(V,O,unresolved,M) :- unresolved_force(V,O,M).",
+     "statement": "Unresolved force: neither direct nor shown partial (incomplete translation does not make a contribution partial).",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E5",
+     "rule": "evidence_force(V,O,conditions_not_shown,M) :- link_to(V,M), leads_to(M,O,_), not conditions_ok(V,M).",
+     "statement": "Relevant to the outcome, but without its conditions it cannot assess it.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E6",
+     "rule": "evidence_force(V,O,indirect,M) :- link_to(V,M), indirect_for(M,O).",
+     "statement": "The teaching says this measurement is only an indirect indicator of the outcome.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E7",
+     "rule": "bears(P,O,V,F,M) :- value_product(V,P), evidence_force(V,O,F,M).",
+     "statement": "Evidence about product P.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E8",
+     "rule": "has_direct(P,O) :- bears(P,O,_,direct,_).",
+     "statement": "P has direct evidence on O.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E9",
+     "rule": "outcome_assessment(P,O,direct_evidence) :- has_direct(P,O).",
+     "statement": "A direct measurement of the outcome, under its conditions.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E10",
+     "rule": "contributes(P,O,M) :- bears(P,O,_,partial,M).",
+     "statement": "A partial contribution, by measurement.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E11",
+     "rule": "has_contribution(P,O) :- contributes(P,O,_).",
+     "statement": "P has a contribution to O.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E12",
+     "rule": "two_contributions(P,O) :- contributes(P,O,M1), contributes(P,O,M2), M1 != M2, not dependent(P,O,M1,M2).",
+     "statement": "Contributions from two different measurements that share no observation (repeated use of one observation is not independent corroboration).",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "E13",
+     "rule": "listed_contribution_missing(P,O) :- contributes(P,O,_), leads_to(M,O,partial), not contributes(P,O,M).",
+     "statement": "Closed over the record: a contributing measurement the teaching lists is not supplied for P.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E14",
+     "rule": "complete_set(P,O) :- two_contributions(P,O), not listed_contribution_missing(P,O), not independence_not_established(P,O).",
+     "statement": "Every listed contributing measurement is supplied, from at least two measurements whose independence is established.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E15",
+     "rule": "outcome_assessment(P,O,all_listed_contributions) :- complete_set(P,O), not has_direct(P,O).",
+     "statement": "The set the teaching lists is present. It assesses O only as far as that list is complete, which the teaching does not prove; independence of sources is not checked here (one document).",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E16",
+     "rule": "outcome_assessment(P,O,partial_contributions) :- has_contribution(P,O), not has_direct(P,O), not complete_set(P,O).",
+     "statement": "Some contributions only: O is partly assessed.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E17",
+     "rule": "has_indirect(P,O) :- bears(P,O,_,indirect,_).",
+     "statement": "P has an indirect indicator of O.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E18",
+     "rule": "outcome_assessment(P,O,indirect_only) :- has_indirect(P,O), not has_direct(P,O), not has_contribution(P,O).",
+     "statement": "Only indirect indicators: never an assessment.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E19",
+     "rule": "outcome_assessment(P,O,force_not_verified) :- bears(P,O,_,unverified,_), not has_direct(P,O), not has_contribution(P,O).",
+     "statement": "The relation's force was never verified against its source.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E20",
+     "rule": "outcome_assessment(P,O,relevant_conditions_not_shown) :- bears(P,O,_,conditions_not_shown,_), not has_direct(P,O), not has_contribution(P,O).",
+     "statement": "Relevant values whose conditions are not stated.",
+     "source": "owner S68 (2026-10-19); R2"
+    },
+    {
+     "id": "E21",
+     "rule": "evidence_force(V,O,component_only,M) :- member(V,M), leads_to(M,O,_).",
+     "statement": "A member alone is a component of the set's analysis: it establishes neither the relationship nor the outcome.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "E22",
+     "rule": "at(P,M,G,A,X,V) :- member_group(V,M,G), value_product(V,P), requires_axis(M,A), operating_axis(A), value_condition(V,A,X).",
+     "statement": "Members placed by the operating setting the set requires (other required conditions must be stated, E28l, not aligned on).",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E23",
+     "rule": "point_candidate(P,M,A,X) :- at(P,M,_,A,X,_).",
+     "statement": "A setting where some member exists.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "E24",
+     "rule": "group_of(M,G) :- group_kind(M,G,_).",
+     "statement": "The set's groups.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "E25",
+     "rule": "has_at(P,M,G,A,X) :- at(P,M,G,A,X,_).",
+     "statement": "A group filled at X.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "E26",
+     "rule": "missing_group(P,M,A,X) :- point_candidate(P,M,A,X), group_of(M,G), not has_at(P,M,G,A,X).",
+     "statement": "Closed over the record: a group has no member at X.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "E27",
+     "rule": "condition_clash(P,M,A,X) :- at(P,M,_,A,X,V1), at(P,M,_,A,X,V2), value_condition(V1,B,Y1), value_condition(V2,B,Y2), Y1 != Y2, closed_axis(B).",
+     "statement": "Members stating different values of a closed axis (a different challenge pollutant) are documented incompatible.",
+     "source": "owner review 2026-10-19 (S70); R2"
+    },
+    {
+     "id": "E27a",
+     "rule": "condition_unequal(P,M,A,X) :- at(P,M,_,A,X,V1), at(P,M,_,A,X,V2), value_condition(V1,B,Y1), value_condition(V2,B,Y2), Y1 != Y2, not closed_axis(B).",
+     "statement": "Different free-text values (two method descriptions, a filter state) are not shown different, and not shown equal (unknown is not different, R1).",
+     "source": "owner review 2026-10-19 (S70); R2"
+    },
+    {
+     "id": "E28h",
+     "rule": "has_test(V) :- value_test(V,_).",
+     "statement": "V's test is identified.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E28i",
+     "rule": "test_missing(P,M,A,X) :- at(P,M,_,A,X,V), not has_test(V).",
+     "statement": "A member without an identified test.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E28j",
+     "rule": "test_differs(P,M,A,X) :- at(P,M,_,A,X,V1), at(P,M,_,A,X,V2), value_test(V1,T1), value_test(V2,T2), T1 != T2.",
+     "statement": "Members from different identified tests.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E28k",
+     "rule": "method_missing(P,M,A,X) :- at(P,M,_,A,X,V), not value_has_axis(V,method).",
+     "statement": "A member without a stated method.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E28l",
+     "rule": "axis_unstated(P,M,A,X) :- at(P,M,_,A,X,V), requires_axis(M,B), not value_has_axis(V,B).",
+     "statement": "A member that does not state an axis the set requires (relevant operating and test conditions).",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E28",
+     "rule": "aligned_point(P,M,A,X,same_test) :- point_candidate(P,M,A,X), not missing_group(P,M,A,X), not condition_clash(P,M,A,X), not condition_unequal(P,M,A,X), not axis_unstated(P,M,A,X), not test_missing(P,M,A,X), not test_differs(P,M,A,X).",
+     "statement": "Every group from one identified test at the same setting, every required condition stated and none differing: compatibility positively supported by the common test.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E28c",
+     "rule": "aligned_point(P,M,A,X,stated_method) :- point_candidate(P,M,A,X), not missing_group(P,M,A,X), not condition_clash(P,M,A,X), not condition_unequal(P,M,A,X), not axis_unstated(P,M,A,X), not method_missing(P,M,A,X).",
+     "statement": "Every member states the same method (a different one is condition_unequal) and every required condition: compatibility positively supported by the method, across sources or tests.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E28n",
+     "rule": "has_protocol(V) :- value_protocol(V,_).",
+     "statement": "V's procedure is identified.",
+     "source": "owner review 2026-10-19 (S72); R2 closure"
+    },
+    {
+     "id": "E28o",
+     "rule": "protocol_missing(P,M,A,X) :- at(P,M,_,A,X,V), not has_protocol(V).",
+     "statement": "A member without an identified procedure.",
+     "source": "owner review 2026-10-19 (S72); R2 closure"
+    },
+    {
+     "id": "E28p",
+     "rule": "protocol_differs(P,M,A,X) :- at(P,M,_,A,X,V1), at(P,M,_,A,X,V2), value_protocol(V1,Q1), value_protocol(V2,Q2), Q1 != Q2.",
+     "statement": "Members obtained with different procedures.",
+     "source": "owner review 2026-10-19 (S72); R2 closure"
+    },
+    {
+     "id": "E28q",
+     "rule": "aligned_point(P,M,A,X,same_protocol) :- point_candidate(P,M,A,X), not missing_group(P,M,A,X), not condition_clash(P,M,A,X), not condition_unequal(P,M,A,X), not axis_unstated(P,M,A,X), not protocol_missing(P,M,A,X), not protocol_differs(P,M,A,X).",
+     "statement": "One identified procedure, every required condition stated, none differing: compatibility positively supported (one run is not required, S69).",
+     "source": "owner review 2026-10-19 (S72); R2 closure"
+    },
+    {
+     "id": "E28m",
+     "rule": "aligned_any(P,M,A,X) :- aligned_point(P,M,A,X,_).",
+     "statement": "Aligned on some basis.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E28d",
+     "rule": "compatibility_not_shown(P,M,A,X) :- point_candidate(P,M,A,X), not missing_group(P,M,A,X), not condition_clash(P,M,A,X), not aligned_any(P,M,A,X).",
+     "statement": "Nothing documents an incompatibility, but nothing positively supports compatibility: explicit uncertainty, no relationship, no force (sharing a document is not a common protocol).",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E29",
+     "rule": "relationship_at_points(P,M) :- aligned_point(P,M,A,X1,_), aligned_point(P,M,A,X2,_), X1 != X2.",
+     "statement": "Two or more aligned points: a partial relationship across settings (not a complete curve).",
+     "source": "owner review 2026-10-19 (S70); R2"
+    },
+    {
+     "id": "E30",
+     "rule": "set_evidence(P,O,F,M,X) :- aligned_point(P,M,_,X,_), leads_to(M,O,F), F != direct.",
+     "statement": "The set's force applies to an aligned point only, bounded to its setting.",
+     "source": "owner review 2026-10-19 (S70); R2"
+    },
+    {
+     "id": "E30a",
+     "rule": "set_evidence(P,O,direct,M,X) :- aligned_point(P,M,_,X,_), leads_to(M,O,direct), not incomplete(M).",
+     "statement": "Direct force from an aligned point only when the set's translation is complete.",
+     "source": "owner review 2026-10-19 (S70); R2"
+    },
+    {
+     "id": "E30b",
+     "rule": "set_evidence(P,O,unresolved,M,X) :- aligned_point(P,M,_,X,_), leads_to(M,O,direct), incomplete(M).",
+     "statement": "Unresolved force when part of the set's procedure is unread.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E31",
+     "rule": "contrib_obs(P,O,M,Ob) :- bears(P,O,V,partial,M), observation(V,Ob).",
+     "statement": "Observations behind a single measurement's contribution.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "E32",
+     "rule": "contrib_obs(P,O,M,Ob) :- set_evidence(P,O,partial,M,X), at(P,M,_,_,X,V), observation(V,Ob).",
+     "statement": "Observations behind a set point's contribution.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "E33",
+     "rule": "dependent(P,O,M1,M2) :- contrib_obs(P,O,M1,Ob), contrib_obs(P,O,M2,Ob), M1 != M2.",
+     "statement": "Contributions sharing an observation are not independent (NIST: shared data are correlated).",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "E33a",
+     "rule": "independence_not_established(P,O) :- contributes(P,O,M), bears(P,O,V,partial,M), identity_unknown(V).",
+     "statement": "A contribution resting on a value of unknown identity cannot be shown independent of another.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E33b",
+     "rule": "independence_not_established(P,O) :- contributes(P,O,M), set_evidence(P,O,partial,M,X), at(P,M,_,_,X,V), identity_unknown(V).",
+     "statement": "As E33a, for a set point.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E8b",
+     "rule": "has_direct(P,O) :- set_evidence(P,O,direct,_,_).",
+     "statement": "Direct evidence from an aligned point of a set.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "E10b",
+     "rule": "contributes(P,O,M) :- set_evidence(P,O,partial,M,_).",
+     "statement": "A partial contribution from an aligned point of a set.",
+     "source": "owner S69 (2026-10-19); R2 multi-use clarification"
+    },
+    {
+     "id": "E34",
+     "rule": "has_unresolved(P,O) :- bears(P,O,_,unresolved,_).",
+     "statement": "Unresolved evidence.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E35",
+     "rule": "has_unresolved(P,O) :- set_evidence(P,O,unresolved,_,_).",
+     "statement": "Unresolved evidence from a set point.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "E36",
+     "rule": "outcome_assessment(P,O,force_unresolved) :- has_unresolved(P,O), not has_direct(P,O), not has_contribution(P,O).",
+     "statement": "Relevant evidence whose force PEE cannot yet determine: an explicit abstention, never an assessment.",
+     "source": "owner review 2026-10-19 (S71); R2"
+    },
+    {
+     "id": "EA1",
+     "rule": "evidence_force(V,O,indirect,A) :- declares(V,A), attribute_indirect_for(A,O).",
+     "statement": "A declared attribute the teaching marks not sufficient for an outcome is an indirect indicator of it only (never direct or partial evidence).",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    }
+   ]
+  },
+  {
+   "id": "comparable",
+   "statement": "Whether two products' results a and b of one taught measurement compare, given what the teaching requires. Stage 1 is the quantity-knowledge verdict (kinds, metrics, weightings, bases, stated axes); then every non-identity condition the teaching requires must be shown by both and equal. The earliest stage with a finding decides.",
+   "rules": [
+    {
+     "id": "K1",
+     "rule": "req(C) :- pair_measurement(M), requires_cond(M,C), not identity_cond(C).",
+     "statement": "Identity conditions bind each result to its product; every other required condition must match.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K2",
+     "rule": "cond_shown(V,C) :- value_states(V,C,_).",
+     "statement": "A result shows a condition its record states.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K3",
+     "rule": "cond_axis_unstated(V,C) :- cond_axis(C,A), value(V), not value_has_axis(V,A).",
+     "statement": "A result leaves an axis of the condition unstated.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K4",
+     "rule": "has_cond_axis(C) :- cond_axis(C,_).",
+     "statement": "The condition is typed by at least one axis.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K5",
+     "rule": "cond_shown(V,C) :- value(V), has_cond_axis(C), not cond_axis_unstated(V,C), not cond_partial(C).",
+     "statement": "A result that states every axis of the condition shows it. lk.9: only when the axes cover the whole condition.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis; owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "K5a",
+     "rule": "value_has_axis(V,A) :- value_condition(V,A,_).",
+     "statement": "A stated axis.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K6",
+     "rule": "both_shown(C) :- req(C), cond_shown(a,C), cond_shown(b,C).",
+     "statement": "Both results show the required condition.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K7",
+     "rule": "cond_differs(C) :- req(C), cond_distinct(C,_).",
+     "statement": "Both show it, with documented-different values. lk.9: a documented difference of a component (two stated axis values) is a documented difference of the condition, even when the condition is not shown whole.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis; owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "K8",
+     "rule": "cond_open(C) :- req(C), not both_shown(C).",
+     "statement": "A required condition is not shown by both (closed over the two records).",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K9",
+     "rule": "cond_unclear(C) :- both_shown(C), not cond_same(C), not cond_distinct(C,_).",
+     "statement": "Both show it, but the descriptions are neither the same nor documented different: equality is not shown.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K10",
+     "rule": "kcond(C,equal) :- both_shown(C), cond_same(C).",
+     "statement": "State: equal.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K11",
+     "rule": "kcond(C,differs) :- cond_differs(C).",
+     "statement": "State: differs.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K12",
+     "rule": "kcond(C,not_shown) :- cond_open(C).",
+     "statement": "State: not shown by both.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K13",
+     "rule": "kcond(C,unclear) :- cond_unclear(C).",
+     "statement": "State: equality not shown.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K14",
+     "rule": "kfinding(1,not_comparable,R) :- qk_verdict(not_comparable,R).",
+     "statement": "Stage 1: the quantity knowledge finds the two values themselves not comparable (kinds, metrics, weightings, bases, documented-different stated axes).",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K14b",
+     "rule": "kfinding(3,comparable_conditions_unestablished,R) :- qk_verdict(comparable_conditions_unestablished,R).",
+     "statement": "Stage 3: the quantity knowledge finds conditions of the values themselves unestablished.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K14c",
+     "rule": "kfinding(3,undetermined,R) :- qk_verdict(undetermined,R).",
+     "statement": "Stage 3: the quantity knowledge cannot determine the kinds or metrics.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K15",
+     "rule": "kfinding(2,not_comparable,required_condition_differs) :- cond_differs(_).",
+     "statement": "Stage 2: a condition the teaching requires differs.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K16",
+     "rule": "kfinding(3,comparable_conditions_unestablished,required_condition_not_shown) :- cond_open(_).",
+     "statement": "Stage 3: a required condition is not shown by both.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K17",
+     "rule": "kfinding(3,comparable_conditions_unestablished,required_condition_not_shown_equal) :- cond_unclear(_).",
+     "statement": "Stage 3: a required condition is described differently, without documented difference.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K18h",
+     "rule": "has_req :- req(_).",
+     "statement": "The teaching requires a condition for this measurement.",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "K18w",
+     "rule": "qk_within :- qk_verdict(comparable_within_source,_).",
+     "statement": "The quantity knowledge limits the comparison to one presented test.",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "K18",
+     "rule": "kfinding(4,comparable,required_conditions_equal) :- pair_measurement(_), has_req, not qk_within.",
+     "statement": "Stage 4: every required condition is shown equal (and the quantity knowledge finds nothing).",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "K18b",
+     "rule": "kfinding(4,comparable,no_taught_requirement) :- pair_measurement(_), not has_req, not qk_within.",
+     "statement": "Stage 4: the teaching requires no condition for this measurement (or does not know it): only the quantity knowledge's verdict stands, and the record says so.",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "K18c",
+     "rule": "kfinding(4,comparable_within_source,R) :- qk_verdict(comparable_within_source,R).",
+     "statement": "Stage 4: comparable only within the one presented test the quantity knowledge identified.",
+     "source": "owner review of S81 (S82, 2026-10-19): condition not documented is not condition different"
+    },
+    {
+     "id": "K19",
+     "rule": "kearlier(S) :- kfinding(S,_,_), kfinding(S2,_,_), S2 < S.",
+     "statement": "An earlier stage has a finding.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    },
+    {
+     "id": "K20",
+     "rule": "kverdict(X,R) :- kfinding(S,X,R), not kearlier(S).",
+     "statement": "The earliest stage with a finding decides.",
+     "source": "owner brief 2026-10-19 (S81: make scientific knowledge operational); evaluation/s81 battery diagnosis"
+    }
+   ]
+  }
+ ]
+}

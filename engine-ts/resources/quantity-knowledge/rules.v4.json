@@ -1,0 +1,1338 @@
+{
+ "schema": "pee.knowledge-rules.v1",
+ "version": "kr.4",
+ "statement": "kr.4 (S82): two values that name a condition differently, with nothing showing whether they are the same state, are comparable-conditions-unestablished, not not_comparable (kr.3 F10b gave the verdict of a documented difference to an unknown relation; its reason was already \"not shown equal\"). Declarative rules over typed facts: which statement of a document covers which value (scope), which kind a value is and how that is justified, and when two values compare. Negation reads the record, never the world: 'not stated' means the record does not state it. Every predicate has one meaning in every program; a predicate derived by one program may be an input of another. kr.2 (WD, 2026-10-18) adds program record: which values of one record (a table row, a sentence) are the conditions of its other values (principle P1, from the KV validation). kr.3 (R1, 2026-10-18): a difference of conditions is concluded only when it is documented or follows from definitions (two ranks of one ordinal series, highest vs lowest, two numbers in one unit); otherwise two stated values are 'not shown equal'. The verdict is unchanged (not comparable); the reason no longer claims more than the record shows. rules.v2.json is kept for reproduction.",
+ "vocabulary": [
+  {
+   "name": "value",
+   "args": [
+    "O"
+   ],
+   "role": "input",
+   "meaning": "O is a printed value being typed or compared."
+  },
+  {
+   "name": "candidate_kind",
+   "args": [
+    "O",
+    "K"
+   ],
+   "role": "input",
+   "meaning": "K is a quantity kind O can still be, after its unit and its own words."
+  },
+  {
+   "name": "local_kind",
+   "args": [
+    "O",
+    "K"
+   ],
+   "role": "input",
+   "meaning": "O's own unit and words leave exactly one kind, K."
+  },
+  {
+   "name": "unit_only_kind",
+   "args": [
+    "O",
+    "K"
+   ],
+   "role": "input",
+   "meaning": "O's unit can express only kind K."
+  },
+  {
+   "name": "unit_reference_kind",
+   "args": [
+    "O",
+    "K"
+   ],
+   "role": "input",
+   "meaning": "O's unit names a reference (re 1 pW) that only kind K has."
+  },
+  {
+   "name": "local_evidence",
+   "args": [
+    "O",
+    "K",
+    "T",
+    "F",
+    "X"
+   ],
+   "role": "input",
+   "meaning": "Word X, which the knowledge types as justification T for kind K, occurs in O's labels (F=labels) or its context (F=context)."
+  },
+  {
+   "name": "metric_named",
+   "args": [
+    "O",
+    "K",
+    "F",
+    "M"
+   ],
+   "role": "input",
+   "meaning": "O's labels (F=labels) or context (F=context) name metric M, whose kind is K."
+  },
+  {
+   "name": "evidence_class",
+   "args": [
+    "O",
+    "C"
+   ],
+   "role": "input",
+   "meaning": "The table reader classed O as evidence class C (publisher_measured, manufacturer_declared, unknown, ...)."
+  },
+  {
+   "name": "value_product",
+   "args": [
+    "O",
+    "P"
+   ],
+   "role": "input",
+   "meaning": "O is attributed to the product named P."
+  },
+  {
+   "name": "block_evidence",
+   "args": [
+    "B",
+    "K",
+    "T",
+    "X"
+   ],
+   "role": "input",
+   "meaning": "Document block B contains word X, which the knowledge types as justification T for kind K."
+  },
+  {
+   "name": "block_measurand",
+   "args": [
+    "B",
+    "K"
+   ],
+   "role": "input",
+   "meaning": "Block B names the measurand family of kind K (noise, sound, ...)."
+  },
+  {
+   "name": "block_restates",
+   "args": [
+    "B",
+    "O"
+   ],
+   "role": "input",
+   "meaning": "Block B prints O's value again (same number, same kind of unit)."
+  },
+  {
+   "name": "block_in_table",
+   "args": [
+    "B",
+    "O"
+   ],
+   "role": "input",
+   "meaning": "Block B is a cell (an info note, a footnote row) of the table O is printed in."
+  },
+  {
+   "name": "block_names_product",
+   "args": [
+    "B",
+    "P"
+   ],
+   "role": "input",
+   "meaning": "Block B names product P by its full name."
+  },
+  {
+   "name": "next_block",
+   "args": [
+    "B1",
+    "B2"
+   ],
+   "role": "input",
+   "meaning": "B2 is the next text block after B1 in the same section."
+  },
+  {
+   "name": "covers_class",
+   "args": [
+    "K",
+    "T",
+    "C"
+   ],
+   "role": "input",
+   "meaning": "The knowledge says a document-wide statement of justification T for kind K covers values of evidence class C."
+  },
+  {
+   "name": "justification_rank",
+   "args": [
+    "T",
+    "F",
+    "N"
+   ],
+   "role": "constant",
+   "meaning": "Strength N of justification T found at F (higher wins; at equal type the value's own words beat the document)."
+  },
+  {
+   "name": "method_block",
+   "args": [
+    "S"
+   ],
+   "role": "derived",
+   "meaning": "S states how values were obtained or under which scheme: it names an instrument, a scheme or a quantity."
+  },
+  {
+   "name": "statement_part",
+   "args": [
+    "S",
+    "B"
+   ],
+   "role": "derived",
+   "meaning": "Block B is part of the statement S (S itself and the two blocks that follow it in its section)."
+  },
+  {
+   "name": "statement_about",
+   "args": [
+    "S",
+    "K"
+   ],
+   "role": "derived",
+   "meaning": "Statement S is about the measurand family of kind K."
+  },
+  {
+   "name": "statement_says",
+   "args": [
+    "S",
+    "K",
+    "T",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "Statement S contains word X of justification T for kind K."
+  },
+  {
+   "name": "statement_restates",
+   "args": [
+    "S",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "Statement S prints O's value again."
+  },
+  {
+   "name": "statement_names_product",
+   "args": [
+    "S",
+    "P"
+   ],
+   "role": "derived",
+   "meaning": "Statement S names product P."
+  },
+  {
+   "name": "statement_covers",
+   "args": [
+    "S",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "Statement S applies to value O before its product scope is checked."
+  },
+  {
+   "name": "other_product_statement",
+   "args": [
+    "S",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "S names products but not the product of O, so it is not about O."
+  },
+  {
+   "name": "in_scope",
+   "args": [
+    "S",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "Statement S applies to value O."
+  },
+  {
+   "name": "supports",
+   "args": [
+    "O",
+    "K",
+    "T",
+    "S"
+   ],
+   "role": "derived",
+   "meaning": "Statement S supports kind K for O with justification T."
+  },
+  {
+   "name": "names_kind_elsewhere",
+   "args": [
+    "O",
+    "K"
+   ],
+   "role": "derived",
+   "meaning": "The document names kind K explicitly in a statement that does not restate O (a possible defeater)."
+  },
+  {
+   "name": "supported",
+   "args": [
+    "O",
+    "K"
+   ],
+   "role": "derived",
+   "meaning": "Some in-scope statement supports kind K for O."
+  },
+  {
+   "name": "document_conflict",
+   "args": [
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "The document's statements support or name more than one kind for O."
+  },
+  {
+   "name": "open_kind",
+   "args": [
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "O's own unit and words leave more than one kind."
+  },
+  {
+   "name": "kind_by_document",
+   "args": [
+    "O",
+    "K"
+   ],
+   "role": "derived",
+   "meaning": "The document settles O's kind as K (defeasibly, only where O's own words leave it open)."
+  },
+  {
+   "name": "kind_of",
+   "args": [
+    "O",
+    "K"
+   ],
+   "role": "derived",
+   "meaning": "O's kind is established as K."
+  },
+  {
+   "name": "justification_candidate0",
+   "args": [
+    "O",
+    "T",
+    "F",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "Evidence X at F justifies O's established kind with type T."
+  },
+  {
+   "name": "justified0",
+   "args": [
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "Some typed evidence justifies O's established kind."
+  },
+  {
+   "name": "justification_candidate",
+   "args": [
+    "O",
+    "T",
+    "F",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "A justification of O's kind (typed evidence, or the discriminating words when no typed evidence exists)."
+  },
+  {
+   "name": "justification_score",
+   "args": [
+    "O",
+    "T",
+    "F",
+    "X",
+    "N"
+   ],
+   "role": "derived",
+   "meaning": "A justification candidate with its strength."
+  },
+  {
+   "name": "outranked",
+   "args": [
+    "O",
+    "N"
+   ],
+   "role": "derived",
+   "meaning": "A stronger justification than strength N exists for O."
+  },
+  {
+   "name": "best_justification",
+   "args": [
+    "O",
+    "T",
+    "F",
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "The strongest justification of O's kind."
+  },
+  {
+   "name": "has_kind",
+   "args": [
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "O's kind is established."
+  },
+  {
+   "name": "kind_unjustified",
+   "args": [
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "Nothing establishes O's kind: its justification is insufficient."
+  },
+  {
+   "name": "context_statement",
+   "args": [
+    "S",
+    "F"
+   ],
+   "role": "input",
+   "meaning": "S is a text near the table that the reader offers as context for its values: F=frame (caption, heading: it frames every value of the table) or F=nearby (a paragraph before or beside the table)."
+  },
+  {
+   "name": "context_other_product",
+   "args": [
+    "S",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "Context S names products, but not the product of O."
+  },
+  {
+   "name": "context_applies",
+   "args": [
+    "S",
+    "O"
+   ],
+   "role": "derived",
+   "meaning": "Context S applies to value O: its metric names, condition cues and method names may be read for O."
+  },
+  {
+   "name": "metric_of",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "input",
+   "meaning": "Value V is established as metric M."
+  },
+  {
+   "name": "metric_label",
+   "args": [
+    "M",
+    "L"
+   ],
+   "role": "input",
+   "meaning": "L is the readable name of metric M."
+  },
+  {
+   "name": "not_equivalent",
+   "args": [
+    "M1",
+    "M2"
+   ],
+   "role": "input",
+   "meaning": "The knowledge says metrics M1 and M2 are not equivalent."
+  },
+  {
+   "name": "level_value",
+   "args": [
+    "V"
+   ],
+   "role": "input",
+   "meaning": "V is a level (dB-type) value."
+  },
+  {
+   "name": "weighting",
+   "args": [
+    "V",
+    "W"
+   ],
+   "role": "input",
+   "meaning": "V's frequency weighting is W (A, C, Z or unspecified)."
+  },
+  {
+   "name": "conventional_basis",
+   "args": [
+    "V"
+   ],
+   "role": "input",
+   "meaning": "V's unit has a conventional reporting basis (per 100 cycles, per year)."
+  },
+  {
+   "name": "unit_expression",
+   "args": [
+    "V",
+    "E"
+   ],
+   "role": "input",
+   "meaning": "V's unit expression is E."
+  },
+  {
+   "name": "required_condition",
+   "args": [
+    "V",
+    "X"
+   ],
+   "role": "input",
+   "meaning": "The knowledge requires condition axis X to compare V."
+  },
+  {
+   "name": "stated_condition",
+   "args": [
+    "V",
+    "X",
+    "W"
+   ],
+   "role": "input",
+   "meaning": "The record states condition X = W for V."
+  },
+  {
+   "name": "presented_test",
+   "args": [
+    "V",
+    "C"
+   ],
+   "role": "input",
+   "meaning": "V is printed in the test C its source presents (same table, same labels apart from the product)."
+  },
+  {
+   "name": "finding_stage_final",
+   "args": [],
+   "role": "constant",
+   "meaning": "The last stage of the comparability check is reached when nothing earlier is found."
+  },
+  {
+   "name": "shared_kind",
+   "args": [],
+   "role": "derived",
+   "meaning": "a and b can be the same kind."
+  },
+  {
+   "name": "same_kind",
+   "args": [],
+   "role": "derived",
+   "meaning": "a and b are established as the same kind."
+  },
+  {
+   "name": "has_metric",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "V is established as some metric."
+  },
+  {
+   "name": "some_level",
+   "args": [],
+   "role": "derived",
+   "meaning": "a or b is a level."
+  },
+  {
+   "name": "weighting_differs",
+   "args": [],
+   "role": "derived",
+   "meaning": "a and b have different weightings."
+  },
+  {
+   "name": "weighting_unspecified",
+   "args": [],
+   "role": "derived",
+   "meaning": "a or b has an unspecified weighting."
+  },
+  {
+   "name": "some_conventional",
+   "args": [],
+   "role": "derived",
+   "meaning": "a or b has a conventional reporting basis."
+  },
+  {
+   "name": "relevant_condition",
+   "args": [
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "Condition X matters for comparing a and b: required for either, or stated for either."
+  },
+  {
+   "name": "stated_both",
+   "args": [
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "The record states X for both a and b."
+  },
+  {
+   "name": "common_value",
+   "args": [
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "a and b share a stated value of X."
+  },
+  {
+   "name": "unestablished",
+   "args": [
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "X is relevant but not stated for both."
+  },
+  {
+   "name": "some_unestablished",
+   "args": [],
+   "role": "derived",
+   "meaning": "Some relevant condition is not stated for both."
+  },
+  {
+   "name": "one_presented_test",
+   "args": [
+    "C"
+   ],
+   "role": "derived",
+   "meaning": "a and b are printed in one test C their source presents, and their kind is justified."
+  },
+  {
+   "name": "finding",
+   "args": [
+    "S",
+    "V",
+    "R"
+   ],
+   "role": "derived",
+   "meaning": "At stage S of the comparability check, finding R leads to verdict V."
+  },
+  {
+   "name": "earlier_finding",
+   "args": [
+    "S"
+   ],
+   "role": "derived",
+   "meaning": "A finding at a stage before S exists."
+  },
+  {
+   "name": "verdict",
+   "args": [
+    "V",
+    "R"
+   ],
+   "role": "derived",
+   "meaning": "The comparability verdict V, for reason R."
+  },
+  {
+   "name": "rec_value",
+   "args": [
+    "V",
+    "R"
+   ],
+   "role": "input",
+   "meaning": "V is a printed value of record R (one table row with a record axis, one sentence, one key-value pair)."
+  },
+  {
+   "name": "rec_kind",
+   "args": [
+    "V",
+    "K"
+   ],
+   "role": "input",
+   "meaning": "V is established as a quantity of kind K."
+  },
+  {
+   "name": "rec_metric",
+   "args": [
+    "V",
+    "M"
+   ],
+   "role": "input",
+   "meaning": "V is named as metric M by its own words."
+  },
+  {
+   "name": "rec_point",
+   "args": [
+    "V"
+   ],
+   "role": "input",
+   "meaning": "V is a single value, not a range or a bound (a test condition is a set point; an operating range is a specification)."
+  },
+  {
+   "name": "metric_requires",
+   "args": [
+    "M",
+    "A"
+   ],
+   "role": "input",
+   "meaning": "The knowledge says metric M is comparable only with condition axis A stated."
+  },
+  {
+   "name": "axis_value_kind",
+   "args": [
+    "A",
+    "K"
+   ],
+   "role": "input",
+   "meaning": "Condition axis A takes values that are quantities of kind K."
+  },
+  {
+   "name": "rec_has_metric",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "V names a metric of its own."
+  },
+  {
+   "name": "rec_requires",
+   "args": [
+    "R",
+    "A"
+   ],
+   "role": "derived",
+   "meaning": "A value of record R needs condition axis A."
+  },
+  {
+   "name": "rec_condition_value",
+   "args": [
+    "V",
+    "A",
+    "R"
+   ],
+   "role": "derived",
+   "meaning": "V is the value of condition A for the results of record R."
+  },
+  {
+   "name": "rec_is_condition",
+   "args": [
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "V is a condition of its record, not a result."
+  },
+  {
+   "name": "rec_condition",
+   "args": [
+    "W",
+    "A",
+    "V"
+   ],
+   "role": "derived",
+   "meaning": "Result W of a record was obtained under condition A, whose value is V."
+  },
+  {
+   "name": "condition_rank",
+   "args": [
+    "V",
+    "X",
+    "S",
+    "N"
+   ],
+   "role": "input",
+   "meaning": "V's condition X is rank N of the ordinal series S (speed 3: series speed, rank 3)."
+  },
+  {
+   "name": "condition_number",
+   "args": [
+    "V",
+    "X",
+    "N",
+    "U"
+   ],
+   "role": "input",
+   "meaning": "V's condition X is the number N in unit U."
+  },
+  {
+   "name": "disjoint_values",
+   "args": [
+    "X",
+    "W1",
+    "W2"
+   ],
+   "role": "constant",
+   "meaning": "By definition, values W1 and W2 of axis X are different states (the highest and the lowest setting)."
+  },
+  {
+   "name": "documented_distinct",
+   "args": [
+    "X"
+   ],
+   "role": "derived",
+   "meaning": "The pair's values of condition X are different states, by the record or by definition."
+  },
+  {
+   "name": "named_value",
+   "args": [
+    "X",
+    "W"
+   ],
+   "role": "input",
+   "meaning": "W is a value the knowledge names for axis X (a closed list: pollutants, floor types, gamuts, methods)."
+  },
+  {
+   "name": "operating_axis",
+   "args": [
+    "X"
+   ],
+   "role": "input",
+   "meaning": "Axis X is an operating setting (fan setting, programme, signal mode): its names can refer to one state."
+  }
+ ],
+ "programs": [
+  {
+   "id": "kind",
+   "statement": "Which statements of a document apply to a value, what kind the value is, and how that is justified.",
+   "constants": [
+    "justification_rank(unit,unit,53).",
+    "justification_rank(explicit,unit,43).",
+    "justification_rank(explicit,labels,42).",
+    "justification_rank(explicit,context,41).",
+    "justification_rank(explicit,protocol,40).",
+    "justification_rank(standard,labels,32).",
+    "justification_rank(standard,context,31).",
+    "justification_rank(standard,protocol,30).",
+    "justification_rank(documented_method,labels,22).",
+    "justification_rank(documented_method,context,21).",
+    "justification_rank(documented_method,protocol,20).",
+    "justification_rank(contextual,labels,12).",
+    "justification_rank(contextual,context,11).",
+    "justification_rank(contextual,protocol,10)."
+   ],
+   "rules": [
+    {
+     "id": "S1",
+     "rule": "method_block(S) :- block_evidence(S,_,T,_), T != contextual.",
+     "statement": "A block naming an instrument, a declared scheme or a quantity states how values were obtained.",
+     "source": "K9"
+    },
+    {
+     "id": "S2",
+     "rule": "statement_part(S,S) :- method_block(S).",
+     "statement": "A method block is part of its own statement.",
+     "source": "K9"
+    },
+    {
+     "id": "S3",
+     "rule": "statement_part(S,B) :- method_block(S), next_block(S,B).",
+     "statement": "The block after a method sentence (its results) belongs to the statement.",
+     "source": "K9"
+    },
+    {
+     "id": "S4",
+     "rule": "statement_part(S,B) :- method_block(S), next_block(S,X), next_block(X,B).",
+     "statement": "So does the block after that, within the same section.",
+     "source": "K9"
+    },
+    {
+     "id": "S5",
+     "rule": "statement_about(S,K) :- statement_part(S,B), block_measurand(B,K).",
+     "statement": "A statement is about the measurand its parts name.",
+     "source": "K9"
+    },
+    {
+     "id": "S5b",
+     "rule": "statement_about(S,K) :- statement_says(S,K,documented_method,_).",
+     "statement": "An instrument the knowledge ties to a kind (a sound level meter) makes the statement about that kind's measurand.",
+     "source": "KR; IEC 61672-1"
+    },
+    {
+     "id": "S5c",
+     "rule": "statement_about(S,K) :- statement_says(S,K,explicit,_).",
+     "statement": "Naming the quantity itself makes the statement about it. A declared scheme (an energy label) also covers other quantities, so it still needs the measurand named.",
+     "source": "KR"
+    },
+    {
+     "id": "S6",
+     "rule": "statement_says(S,K,T,X) :- statement_part(S,B), block_evidence(B,K,T,X).",
+     "statement": "A statement says what its parts say.",
+     "source": "K9"
+    },
+    {
+     "id": "S7",
+     "rule": "statement_restates(S,O) :- statement_part(S,B), block_restates(B,O).",
+     "statement": "A statement restates a value one of its parts prints again.",
+     "source": "K9"
+    },
+    {
+     "id": "S8",
+     "rule": "statement_names_product(S,P) :- statement_part(S,B), block_names_product(B,P).",
+     "statement": "A statement names the products its parts name.",
+     "source": "KR"
+    },
+    {
+     "id": "C1",
+     "rule": "statement_covers(S,O) :- statement_restates(S,O).",
+     "statement": "A statement that prints the value again speaks about that value.",
+     "source": "K9"
+    },
+    {
+     "id": "C2",
+     "rule": "statement_covers(S,O) :- method_block(S), block_in_table(S,O).",
+     "statement": "A method note inside a table speaks about that table's values, whatever class its heading suggests.",
+     "source": "K9"
+    },
+    {
+     "id": "C3",
+     "rule": "statement_covers(S,O) :- statement_says(S,K,T,_), covers_class(K,T,C), evidence_class(O,C).",
+     "statement": "A document-wide statement covers the evidence classes the knowledge names for it (an instrument covers the publisher's readings, a label scheme covers declarations).",
+     "source": "K9"
+    },
+    {
+     "id": "C4",
+     "rule": "other_product_statement(S,O) :- statement_names_product(S,_), value_product(O,Q), not statement_names_product(S,Q).",
+     "statement": "A statement that names products, but not the product of a value, is not about that value.",
+     "source": "KR (owner review: a methodology does not necessarily cover every observation)"
+    },
+    {
+     "id": "C5",
+     "rule": "in_scope(S,O) :- statement_covers(S,O), not other_product_statement(S,O).",
+     "statement": "A statement applies to a value it covers, unless it is about other products.",
+     "source": "KR"
+    },
+    {
+     "id": "K1",
+     "rule": "supports(O,K,T,S) :- candidate_kind(O,K), in_scope(S,O), statement_about(S,K), statement_says(S,K,T,_), T != contextual, T != explicit.",
+     "statement": "An applicable statement about the measurand supports the kind its instrument or scheme establishes.",
+     "source": "K9; IEC 61672-1; EU 2019/2017"
+    },
+    {
+     "id": "K2",
+     "rule": "supports(O,K,explicit,S) :- candidate_kind(O,K), statement_restates(S,O), not other_product_statement(S,O), statement_about(S,K), statement_says(S,K,explicit,_).",
+     "statement": "A statement that prints the value again and names its quantity supports that quantity explicitly.",
+     "source": "K9"
+    },
+    {
+     "id": "K3",
+     "rule": "names_kind_elsewhere(O,K) :- candidate_kind(O,K), statement_about(S,K), statement_says(S,K,explicit,_), not statement_restates(S,O).",
+     "statement": "A quantity the document names elsewhere is a possible alternative for the value.",
+     "source": "K9"
+    },
+    {
+     "id": "K4",
+     "rule": "supported(O,K) :- supports(O,K,_,_).",
+     "statement": "A kind is supported when some applicable statement supports it.",
+     "source": "K9"
+    },
+    {
+     "id": "K5",
+     "rule": "document_conflict(O) :- supported(O,K1), supported(O,K2), K1 != K2.",
+     "statement": "Statements supporting two kinds conflict.",
+     "source": "K9"
+    },
+    {
+     "id": "K6",
+     "rule": "document_conflict(O) :- supported(O,K1), names_kind_elsewhere(O,K2), K1 != K2.",
+     "statement": "A supported kind conflicts with another kind the document names.",
+     "source": "K9"
+    },
+    {
+     "id": "K7",
+     "rule": "document_conflict(O) :- names_kind_elsewhere(O,K1), names_kind_elsewhere(O,K2), K1 != K2.",
+     "statement": "Naming two kinds is a conflict.",
+     "source": "K9"
+    },
+    {
+     "id": "K8",
+     "rule": "open_kind(O) :- candidate_kind(O,K1), candidate_kind(O,K2), K1 != K2.",
+     "statement": "A value whose own words leave two kinds is open.",
+     "source": "K9"
+    },
+    {
+     "id": "K9",
+     "rule": "kind_by_document(O,K) :- open_kind(O), supported(O,K), not document_conflict(O).",
+     "statement": "The document settles an open value's kind when its applicable statements agree (defeasible: the value's own words come first, a conflict withdraws it).",
+     "source": "K9; owner review S54"
+    },
+    {
+     "id": "K10",
+     "rule": "kind_of(O,K) :- local_kind(O,K).",
+     "statement": "The value's own unit and words settle its kind.",
+     "source": "GK"
+    },
+    {
+     "id": "K11",
+     "rule": "kind_of(O,K) :- kind_by_document(O,K).",
+     "statement": "Otherwise the document may settle it.",
+     "source": "K9"
+    },
+    {
+     "id": "J1",
+     "rule": "justification_candidate0(O,T,protocol,S) :- kind_of(O,K), supports(O,K,T,S).",
+     "statement": "An applicable statement supporting the established kind justifies it.",
+     "source": "K9"
+    },
+    {
+     "id": "J2",
+     "rule": "justification_candidate0(O,unit,unit,unit) :- kind_of(O,K), unit_only_kind(O,K).",
+     "statement": "A unit that expresses one kind justifies it.",
+     "source": "GK"
+    },
+    {
+     "id": "J3",
+     "rule": "justification_candidate0(O,explicit,unit,reference) :- kind_of(O,K), unit_reference_kind(O,K).",
+     "statement": "A unit reference (re 1 pW) names the kind explicitly.",
+     "source": "GK"
+    },
+    {
+     "id": "J4",
+     "rule": "justification_candidate0(O,T,F,X) :- local_kind(O,K), local_evidence(O,K,T,F,X).",
+     "statement": "Typed words of the value's labels or context justify the kind with their type, when they are what settled it (a kind the document settled is justified by the document).",
+     "source": "K9"
+    },
+    {
+     "id": "J5",
+     "rule": "justification_candidate0(O,explicit,labels,M) :- kind_of(O,K), metric_named(O,K,labels,M).",
+     "statement": "A metric the labels name states the kind explicitly.",
+     "source": "GK"
+    },
+    {
+     "id": "J6",
+     "rule": "justification_candidate0(O,contextual,context,M) :- kind_of(O,K), metric_named(O,K,context,M).",
+     "statement": "A metric named only in the context is a contextual justification.",
+     "source": "GK"
+    },
+    {
+     "id": "J7",
+     "rule": "justified0(O) :- justification_candidate0(O,_,_,_).",
+     "statement": "The kind has typed justification.",
+     "source": "K9"
+    },
+    {
+     "id": "J8",
+     "rule": "justification_candidate(O,T,F,X) :- justification_candidate0(O,T,F,X).",
+     "statement": "Typed justifications are candidates.",
+     "source": "K9"
+    },
+    {
+     "id": "J9",
+     "rule": "justification_candidate(O,contextual,context,discriminators) :- kind_of(O,_), not justified0(O).",
+     "statement": "Without typed justification, the discriminating words are a contextual justification.",
+     "source": "K9"
+    },
+    {
+     "id": "J10",
+     "rule": "justification_score(O,T,F,X,N) :- justification_candidate(O,T,F,X), justification_rank(T,F,N).",
+     "statement": "Each justification has a strength.",
+     "source": "K9"
+    },
+    {
+     "id": "J11",
+     "rule": "outranked(O,N) :- justification_score(O,_,_,_,N), justification_score(O,_,_,_,M), M > N.",
+     "statement": "A weaker justification is outranked.",
+     "source": "K9"
+    },
+    {
+     "id": "J12",
+     "rule": "best_justification(O,T,F,X) :- justification_score(O,T,F,X,N), not outranked(O,N).",
+     "statement": "The reported justification is the strongest.",
+     "source": "K9"
+    },
+    {
+     "id": "J13",
+     "rule": "has_kind(O) :- kind_of(O,_).",
+     "statement": "The kind is established.",
+     "source": "K9"
+    },
+    {
+     "id": "J14",
+     "rule": "kind_unjustified(O) :- value(O), not has_kind(O).",
+     "statement": "A value whose kind nothing establishes has insufficient justification; it stays ambiguous.",
+     "source": "K8"
+    }
+   ]
+  },
+  {
+   "id": "compare",
+   "statement": "Whether two values a and b compare, and why: the first stage with a finding decides.",
+   "constants": [
+    "finding_stage_final.",
+    "disjoint_values(fan_setting,top,lowest).",
+    "disjoint_values(fan_setting,lowest,top)."
+   ],
+   "rules": [
+    {
+     "id": "Q1",
+     "rule": "shared_kind :- candidate_kind(a,K), candidate_kind(b,K).",
+     "statement": "a and b can be the same kind.",
+     "source": "GK"
+    },
+    {
+     "id": "Q2",
+     "rule": "same_kind :- kind_of(a,K), kind_of(b,K).",
+     "statement": "a and b are established as the same kind.",
+     "source": "GK"
+    },
+    {
+     "id": "Q3",
+     "rule": "has_metric(V) :- metric_of(V,_).",
+     "statement": "V is established as a metric.",
+     "source": "GK"
+    },
+    {
+     "id": "Q4",
+     "rule": "some_level :- level_value(_).",
+     "statement": "A level is involved.",
+     "source": "GK"
+    },
+    {
+     "id": "Q5",
+     "rule": "weighting_differs :- weighting(a,W1), weighting(b,W2), W1 != W2.",
+     "statement": "The weightings differ.",
+     "source": "GK"
+    },
+    {
+     "id": "Q6",
+     "rule": "weighting_unspecified :- weighting(_,unspecified).",
+     "statement": "A weighting is unspecified.",
+     "source": "GK"
+    },
+    {
+     "id": "Q7",
+     "rule": "some_conventional :- conventional_basis(_).",
+     "statement": "A conventional reporting basis is involved.",
+     "source": "GK"
+    },
+    {
+     "id": "Q8",
+     "rule": "relevant_condition(X) :- required_condition(_,X).",
+     "statement": "A condition the knowledge requires for either value matters.",
+     "source": "GK"
+    },
+    {
+     "id": "Q9",
+     "rule": "relevant_condition(X) :- stated_condition(_,X,_).",
+     "statement": "A condition stated for either value matters.",
+     "source": "GK"
+    },
+    {
+     "id": "Q10",
+     "rule": "stated_both(X) :- stated_condition(a,X,_), stated_condition(b,X,_).",
+     "statement": "The record states the condition for both.",
+     "source": "GK"
+    },
+    {
+     "id": "Q11",
+     "rule": "common_value(X) :- stated_condition(a,X,W), stated_condition(b,X,W).",
+     "statement": "Both share a stated value.",
+     "source": "GK"
+    },
+    {
+     "id": "Q12",
+     "rule": "unestablished(X) :- relevant_condition(X), not stated_both(X).",
+     "statement": "A relevant condition the record does not state for both is unestablished (not absent).",
+     "source": "GK; owner review: not documented is not scientifically absent"
+    },
+    {
+     "id": "Q13",
+     "rule": "some_unestablished :- unestablished(_).",
+     "statement": "Some condition is unestablished.",
+     "source": "GK"
+    },
+    {
+     "id": "Q14",
+     "rule": "one_presented_test(C) :- presented_test(a,C), presented_test(b,C), value_product(a,P), value_product(b,Q), P != Q, not kind_unjustified(a), not kind_unjustified(b).",
+     "statement": "a and b are printed in one test their source presents, for different products. Two values of one product under the same labels are one test only when their records state the same conditions (P1: then the stated conditions decide, stage 7, before this one); with nothing stated, something the record does not show tells them apart (KV P2, now a consequence of P1).",
+     "source": "K10; KV P2; WD P1 (2026-10-18)"
+    },
+    {
+     "id": "Q15",
+     "rule": "documented_distinct(X) :- stated_condition(a,X,W1), stated_condition(b,X,W2), disjoint_values(X,W1,W2).",
+     "statement": "by definition different settings (highest vs lowest).",
+     "source": "kr.3 (R1)"
+    },
+    {
+     "id": "Q16",
+     "rule": "documented_distinct(X) :- condition_rank(a,X,S,N1), condition_rank(b,X,S,N2), N1 != N2.",
+     "statement": "two ranks of one ordinal series are different settings.",
+     "source": "kr.3 (R1)"
+    },
+    {
+     "id": "Q17",
+     "rule": "documented_distinct(X) :- condition_number(a,X,N1,U), condition_number(b,X,N2,U), N1 != N2.",
+     "statement": "two different numbers in one unit are different conditions.",
+     "source": "kr.3 (R1)"
+    },
+    {
+     "id": "Q18",
+     "rule": "documented_distinct(X) :- stated_condition(a,X,W1), stated_condition(b,X,W2), W1 != W2, named_value(X,W1), named_value(X,W2), not operating_axis(X).",
+     "statement": "two different named values of a closed list that is not an operating setting (dust vs smoke; two named methods) are different conditions by definition.",
+     "source": "kr.3 (R1)"
+    },
+    {
+     "id": "F1",
+     "rule": "finding(1,not_comparable,different_quantities) :- value(a), not shared_kind.",
+     "statement": "Values that cannot be the same quantity do not compare.",
+     "source": "GK",
+     "explain": "different quantities: {@candidate_kind(a,*)} vs {@candidate_kind(b,*)}"
+    },
+    {
+     "id": "F2",
+     "rule": "finding(2,undetermined,kind_not_established) :- shared_kind, not same_kind.",
+     "statement": "Which quantity is meant must be established on both sides.",
+     "source": "GK",
+     "explain": "which quantity is meant is not established ({@candidate_kind(a,*)} vs {@candidate_kind(b,*)})"
+    },
+    {
+     "id": "F3",
+     "rule": "finding(3,not_comparable,different_metrics) :- metric_of(a,M1), metric_of(b,M2), M1 != M2, not not_equivalent(M1,M2).",
+     "statement": "Different metrics do not compare.",
+     "source": "GK",
+     "explain": "different metrics: {M1} vs {M2}"
+    },
+    {
+     "id": "F4",
+     "rule": "finding(3,not_comparable,metrics_not_equivalent) :- metric_of(a,M1), metric_of(b,M2), not_equivalent(M1,M2).",
+     "statement": "Metrics the knowledge declares not equivalent do not compare.",
+     "source": "GK",
+     "explain": "different metrics: {M1} vs {M2} (the knowledge says they are not equivalent)"
+    },
+    {
+     "id": "F5",
+     "rule": "finding(4,undetermined,one_metric_only) :- has_metric(a), not has_metric(b).",
+     "statement": "A metric established on one side only leaves the comparison undetermined.",
+     "source": "GK",
+     "explain": "only one side is established as {@metric_label(*)}; the other is a {@kind_of(b,*)} of unstated definition"
+    },
+    {
+     "id": "F6",
+     "rule": "finding(4,undetermined,one_metric_only) :- has_metric(b), not has_metric(a).",
+     "statement": "A metric established on one side only leaves the comparison undetermined.",
+     "source": "GK",
+     "explain": "only one side is established as {@metric_label(*)}; the other is a {@kind_of(a,*)} of unstated definition"
+    },
+    {
+     "id": "F7",
+     "rule": "finding(5,undetermined,weighting_unestablished) :- some_level, weighting_differs, weighting_unspecified.",
+     "statement": "An unspecified weighting leaves a level comparison undetermined.",
+     "source": "GK",
+     "explain": "frequency weighting not established on both sides ({@weighting(a,*)} vs {@weighting(b,*)})"
+    },
+    {
+     "id": "F8",
+     "rule": "finding(5,not_comparable,different_weightings) :- some_level, weighting_differs, not weighting_unspecified.",
+     "statement": "Levels of different weightings do not compare.",
+     "source": "GK",
+     "explain": "different frequency weightings ({@weighting(a,*)} vs {@weighting(b,*)})"
+    },
+    {
+     "id": "F9",
+     "rule": "finding(6,not_comparable,different_bases) :- some_conventional, unit_expression(a,E1), unit_expression(b,E2), E1 != E2.",
+     "statement": "A conventional reporting basis is not converted.",
+     "source": "GK",
+     "explain": "different reporting bases ({E1} vs {E2}); a conventional basis is not converted"
+    },
+    {
+     "id": "F10",
+     "rule": "finding(7,not_comparable,different_condition) :- relevant_condition(X), stated_both(X), not common_value(X), documented_distinct(X).",
+     "statement": "the two values were obtained under conditions the record or the definitions show to be different.",
+     "source": "WD; kr.3 (R1) bounded to documented differences",
+     "explain": "different {X}: {@stated_condition(a,X,*)} vs {@stated_condition(b,X,*)}"
+    },
+    {
+     "id": "F10b",
+     "rule": "finding(7,comparable_conditions_unestablished,conditions_not_shown_equal) :- relevant_condition(X), stated_both(X), not common_value(X), not documented_distinct(X).",
+     "statement": "the two values state different names for a condition, and nothing shows that they are the same state or different states (sleep vs speed 1): comparability is not established (kr.4: not documented is not different).",
+     "source": "kr.3 (R1): unknown is not different; owner review of S81 (S82, 2026-10-19): condition not documented is not condition different",
+     "explain": "{X} named differently ({@stated_condition(a,X,*)} vs {@stated_condition(b,X,*)}); not shown to be the same state or different states"
+    },
+    {
+     "id": "F11",
+     "rule": "finding(8,comparable_within_source,one_presented_test) :- some_unestablished, one_presented_test(_).",
+     "statement": "Values of one test their source presents share the conditions it leaves unstated: they compare with each other, never with other sources or other tests.",
+     "source": "K10",
+     "explain": "same quantity in one test the source presents; not established: {@unestablished(*)}, so not comparable with other sources or other tests of this source"
+    },
+    {
+     "id": "F12",
+     "rule": "finding(9,comparable_conditions_unestablished,conditions_unestablished) :- some_unestablished.",
+     "statement": "Unestablished conditions leave the comparison open.",
+     "source": "GK",
+     "explain": "same quantity; not established on both sides: {@unestablished(*)}"
+    },
+    {
+     "id": "F13",
+     "rule": "finding(10,comparable,same_quantity_metric_conditions) :- finding_stage_final.",
+     "statement": "Otherwise the values compare.",
+     "source": "GK",
+     "explain": "same quantity, metric and conditions"
+    },
+    {
+     "id": "F14",
+     "rule": "earlier_finding(S) :- finding(S,_,_), finding(S2,_,_), S2 < S.",
+     "statement": "A finding at an earlier stage takes precedence.",
+     "source": "GK"
+    },
+    {
+     "id": "F15",
+     "rule": "verdict(V,R) :- finding(S,V,R), not earlier_finding(S).",
+     "statement": "The verdict is the earliest finding.",
+     "source": "GK"
+    }
+   ]
+  },
+  {
+   "id": "scope",
+   "statement": "Which texts near a table apply to a value: the frame always, a nearby paragraph unless it is about other products.",
+   "rules": [
+    {
+     "id": "X1",
+     "rule": "context_applies(S,O) :- context_statement(S,frame), value(O).",
+     "statement": "The table's caption and heading frame every value of the table.",
+     "source": "KR2"
+    },
+    {
+     "id": "X2",
+     "rule": "context_other_product(S,O) :- context_statement(S,nearby), block_names_product(S,_), value_product(O,Q), not block_names_product(S,Q).",
+     "statement": "A nearby paragraph that names products, but not the value's product, is not about that value.",
+     "source": "KR2 (owner review: a methodology does not necessarily cover every observation)"
+    },
+    {
+     "id": "X3",
+     "rule": "context_applies(S,O) :- context_statement(S,nearby), value(O), not context_other_product(S,O).",
+     "statement": "Otherwise a nearby paragraph applies to the table's values (when the value's product is not established, nothing in the record says the paragraph is about another product).",
+     "source": "KR2"
+    }
+   ]
+  },
+  {
+   "id": "record",
+   "statement": "P1: conditions belong to the test record, not to the metric. In one record, a single value with no metric of its own whose kind is what a condition axis takes, where a co-recorded result needs that axis, is a condition of the record; it applies to every result of the record, whatever its metric.",
+   "rules": [
+    {
+     "id": "P1a",
+     "rule": "rec_has_metric(V) :- rec_metric(V,_).",
+     "statement": "V names a metric of its own.",
+     "source": "WD P1"
+    },
+    {
+     "id": "P1b",
+     "rule": "rec_requires(R,A) :- rec_value(W,R), rec_metric(W,M), metric_requires(M,A).",
+     "statement": "a result of the record names a metric that needs condition axis A.",
+     "source": "WD P1"
+    },
+    {
+     "id": "P1c",
+     "rule": "rec_condition_value(V,A,R) :- rec_value(V,R), rec_point(V), rec_kind(V,K), axis_value_kind(A,K), rec_requires(R,A), not rec_has_metric(V).",
+     "statement": "a single value of the record, of a kind axis A takes, with no metric of its own, is the record's value of A.",
+     "source": "WD P1 (KV finding: rating-point grid)"
+    },
+    {
+     "id": "P1d",
+     "rule": "rec_is_condition(V) :- rec_condition_value(V,_,_).",
+     "statement": "V is a condition, not a result.",
+     "source": "WD P1"
+    },
+    {
+     "id": "P1e",
+     "rule": "rec_condition(W,A,V) :- rec_condition_value(V,A,R), rec_value(W,R), W != V, not rec_is_condition(W), rec_kind(W,KW), not axis_value_kind(A,KW).",
+     "statement": "every result of the record was obtained under the record's conditions, whatever its metric (wattage at a rating point too). A value of a kind the axis itself takes (another temperature) is not measured under it.",
+     "source": "WD P1"
+    }
+   ]
+  }
+ ]
+}

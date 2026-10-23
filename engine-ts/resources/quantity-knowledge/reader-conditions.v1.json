@@ -1,0 +1,23 @@
+{
+ "schema": "pee.reader-conditions.v1",
+ "version": "rc.1",
+ "statement": "S82 (owner review of S81, D27): the operational test-lead reader (Phase225/265) records the conditions of a result as its own codes (ConditionCode225), a second condition vocabulary beside the quantity-knowledge axes that the reasoning consults. This file declares, as data, which codes are values of which condition axis, and the two axes the category teaching names that the default pack lacks. The axes are added as a reversible overlay (as acquired axes are, R3), never to the default pack, so no other reader changes. Their value terms are the reader's own patterns (phase225 ALL_C, ONE_C, 'empty'), not new words. Codes that name no condition the teaching requires are listed as unmapped, with the reason.",
+ "source": {"id": "pee_reader_conditions", "title": "PEE: conditions the Phase225/265 test-lead reader records, as condition axes (S82)", "url": null, "use": "reader condition codes as typed conditions", "licence": "PEE-authored"},
+ "axes": [
+  {"id": "load", "values": {"empty": ["empty", "empty load", "no food", "run empty", "running empty"]}, "cues": ["load"], "labelled": true},
+  {"id": "compartments", "values": {"all": ["all compartments", "both drawers", "both baskets", "both pans", "both zones", "both compartments", "two drawers", "two baskets", "two zones"], "single": ["one drawer", "one basket", "one zone", "single drawer", "single basket", "single pan", "single zone", "a single basket", "a single drawer"]}, "cues": ["zones", "drawers", "racks", "baskets", "compartments"], "labelled": true}
+ ],
+ "codes": {
+  "load_empty": {"axis": "load", "value": "empty"},
+  "all_compartments": {"axis": "compartments", "value": "all"},
+  "single_compartment": {"axis": "compartments", "value": "single"}
+ },
+ "unmapped": {
+  "setpoint_c": "a setpoint temperature: no taught requirement names it (the empty-run statement mentions 'a set temperature' without requiring one)",
+  "duration_1h": "a fixed duration: no taught requirement names it",
+  "from_cold": "start state: no taught requirement names it",
+  "includes_preheat": "a boundary of the energy reading (the teaching's doneness condition says preheat is included); not a condition axis",
+  "power_meter": "the instrument, not a condition of the result",
+  "conditions_from_block": "where the reader found the condition (provenance), not a condition"
+ }
+}

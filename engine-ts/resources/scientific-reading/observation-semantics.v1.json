@@ -1,0 +1,1456 @@
+{
+ "schema": "pee.knowledge-rules.v1",
+ "version": "os.4",
+ "statement": "S100 (owner review of S99, 2026-10-20; verbatim in .claude/skills/pee-guided-learning/references/owner-review-s99-rule-governance-2026-10-20.md): the statement role, nature and provenance of an observation are decided once, by claims from typed evidence cues about that occurrence and its context, under the precedence policy of knowledge_rules.ts (constraint > explicit > inherited; narrowest scope; equal-level disagreement abstains; defaults are presumptions). Which extractor found the value is a presumption only. Cue readers in src/observation_semantics.ts emit the cues.",
+ "vocabulary": [
+  {
+   "name": "cue",
+   "args": [
+    "observation",
+    "kind",
+    "scope"
+   ],
+   "meaning": "a typed piece of evidence about an observation: its kind (a cue family read by a registered cue reader) and the scope it was read at",
+   "role": "input"
+  },
+  {
+   "name": "claim",
+   "args": [
+    "observation",
+    "field",
+    "value",
+    "tier",
+    "scope"
+   ],
+   "meaning": "what a piece of evidence supports for one field of the observation, with its authority (tier) and scope",
+   "role": "derived"
+  }
+ ],
+ "programs": [
+  {
+   "id": "observation_semantics",
+   "statement": "Statement role, nature and provenance of one observation from its evidence cues.",
+   "rules": [
+    {
+     "id": "OS01",
+     "rule": "claim(O,role,norm,explicit,value) :- cue(O,value_norm_reference,value).",
+     "statement": "the value modifies a norm noun (\"the 44 dB standard\", \"a limit of 70 dB\"): the number is the norm, not the product's value: role norm.",
+     "source": "JCGM 200:2012 (VIM) 2.10 measured quantity value vs 4.26 maximum permissible value"
+    },
+    {
+     "id": "OS02",
+     "rule": "claim(O,role,threshold,explicit,value) :- cue(O,value_threshold_reference,value).",
+     "statement": "the value modifies a reference mark compared against (\"breaches the 80-decibel mark\"): the number is the reference, not the product's value: role threshold.",
+     "source": "JCGM 200:2012 (VIM) 2.10 measured quantity value vs 4.26 maximum permissible value"
+    },
+    {
+     "id": "OS03",
+     "rule": "claim(O,role,result,explicit,clause) :- cue(O,measuring_verb,clause).",
+     "statement": "a measuring verb governs the value in its own clause (\"we measured 38 dB\"): role result.",
+     "source": "S86c clause role (phase225 observationRole86c)"
+    },
+    {
+     "id": "OS04",
+     "rule": "claim(O,nature,measured,explicit,clause) :- cue(O,measuring_verb,clause).",
+     "statement": "a measuring verb governs the value in its own clause (\"we measured 38 dB\"): nature measured.",
+     "source": "S86c clause role (phase225 observationRole86c)"
+    },
+    {
+     "id": "OS05",
+     "rule": "claim(O,provenance,publisher,explicit,clause) :- cue(O,measuring_verb,clause).",
+     "statement": "a measuring verb governs the value in its own clause (\"we measured 38 dB\"): provenance publisher.",
+     "source": "S86c clause role (phase225 observationRole86c)"
+    },
+    {
+     "id": "OS06",
+     "rule": "claim(O,role,result,explicit,clause) :- cue(O,first_person_test,clause).",
+     "statement": "a first-person test statement in the value's clause (\"in our test it reached 412 nits\"): role result.",
+     "source": "S91 positive role evidence (definition_interpreter.ts roleEvidence)"
+    },
+    {
+     "id": "OS07",
+     "rule": "claim(O,nature,measured,explicit,clause) :- cue(O,first_person_test,clause).",
+     "statement": "a first-person test statement in the value's clause (\"in our test it reached 412 nits\"): nature measured.",
+     "source": "S91 positive role evidence (definition_interpreter.ts roleEvidence)"
+    },
+    {
+     "id": "OS08",
+     "rule": "claim(O,provenance,publisher,explicit,clause) :- cue(O,first_person_test,clause).",
+     "statement": "a first-person test statement in the value's clause (\"in our test it reached 412 nits\"): provenance publisher.",
+     "source": "S91 positive role evidence (definition_interpreter.ts roleEvidence)"
+    },
+    {
+     "id": "OS09",
+     "rule": "claim(O,role,result,explicit,clause) :- cue(O,observation_verb,clause).",
+     "statement": "a verb reporting what the product did (\"it lasted 48 minutes\"): role result.",
+     "source": "S91 positive role evidence (definition_interpreter.ts roleEvidence)"
+    },
+    {
+     "id": "OS10",
+     "rule": "claim(O,nature,measured,explicit,clause) :- cue(O,observation_verb,clause).",
+     "statement": "a verb reporting what the product did (\"it lasted 48 minutes\"): nature measured.",
+     "source": "S91 positive role evidence (definition_interpreter.ts roleEvidence)"
+    },
+    {
+     "id": "OS11",
+     "rule": "claim(O,role,result,explicit,clause) :- cue(O,episodic,clause).",
+     "statement": "the value's clause reports an event (finite past tense, not passive): role result.",
+     "source": "S92 situation type (situationTypeOf)",
+     "lifecycle": {
+      "state": "retired",
+      "since": "2026-10-20",
+      "reason": "S100 development on spent S89-S99 material: the S92 situation type 'episodic' decided 15 statement roles, 8 correctly. An event reading of a verb is not evidence that a value was measured.",
+      "consumers": [
+       "src/scientific_reading98.ts (all quantity readers)"
+      ],
+      "evidence": [
+       "evaluation/s100/integrity-dev-s100-it0.json",
+       "evaluation/s100/integrity-dev-s100-it1.json",
+       "docs/plans/s100-rule-governance.md"
+      ]
+     }
+    },
+    {
+     "id": "OS12",
+     "rule": "claim(O,nature,measured,explicit,clause) :- cue(O,episodic,clause).",
+     "statement": "the value's clause reports an event (finite past tense, not passive): nature measured.",
+     "source": "S92 situation type (situationTypeOf)",
+     "lifecycle": {
+      "state": "retired",
+      "since": "2026-10-20",
+      "reason": "S100 development on spent S89-S99 material: the S92 situation type 'episodic' decided 15 statement roles, 8 correctly. An event reading of a verb is not evidence that a value was measured.",
+      "consumers": [
+       "src/scientific_reading98.ts (all quantity readers)"
+      ],
+      "evidence": [
+       "evaluation/s100/integrity-dev-s100-it0.json",
+       "evaluation/s100/integrity-dev-s100-it1.json",
+       "docs/plans/s100-rule-governance.md"
+      ]
+     }
+    },
+    {
+     "id": "OS13",
+     "rule": "claim(O,role,specification,explicit,clause) :- cue(O,attributive,clause).",
+     "statement": "the value modifies a noun as a stable attribute (\"a 3 L dust bag\"): role specification.",
+     "source": "S92 situation type (situationTypeOf)"
+    },
+    {
+     "id": "OS14",
+     "rule": "claim(O,nature,declared,explicit,clause) :- cue(O,attributive,clause).",
+     "statement": "the value modifies a noun as a stable attribute (\"a 3 L dust bag\"): nature declared.",
+     "source": "S92 situation type (situationTypeOf)"
+    },
+    {
+     "id": "OS15",
+     "rule": "claim(O,role,specification,explicit,clause) :- cue(O,declaration_verb,clause).",
+     "statement": "a verb attributing a capability or component (\"has\", \"features\", \"comes with\"): role specification.",
+     "source": "S91 positive role evidence (definition_interpreter.ts roleEvidence)"
+    },
+    {
+     "id": "OS16",
+     "rule": "claim(O,nature,declared,explicit,clause) :- cue(O,declaration_verb,clause).",
+     "statement": "a verb attributing a capability or component (\"has\", \"features\", \"comes with\"): nature declared.",
+     "source": "S91 positive role evidence (definition_interpreter.ts roleEvidence)"
+    },
+    {
+     "id": "OS17",
+     "rule": "claim(O,role,specification,explicit,clause) :- cue(O,maker_claim,clause).",
+     "statement": "the value is a maker's claim or rating (\"rated\", \"claims\", \"advertised\", \"according to the manufacturer\"): role specification.",
+     "source": "S86c clause role (phase225 observationRole86c)"
+    },
+    {
+     "id": "OS18",
+     "rule": "claim(O,nature,declared,explicit,clause) :- cue(O,maker_claim,clause).",
+     "statement": "the value is a maker's claim or rating (\"rated\", \"claims\", \"advertised\", \"according to the manufacturer\"): nature declared.",
+     "source": "S86c clause role (phase225 observationRole86c)"
+    },
+    {
+     "id": "OS19",
+     "rule": "claim(O,provenance,manufacturer,explicit,clause) :- cue(O,maker_claim,clause).",
+     "statement": "the value is a maker's claim or rating (\"rated\", \"claims\", \"advertised\", \"according to the manufacturer\"): provenance manufacturer.",
+     "source": "S86c clause role (phase225 observationRole86c)"
+    },
+    {
+     "id": "OS20",
+     "rule": "claim(O,role,specification,explicit,clause) :- cue(O,certified,clause).",
+     "statement": "a certification or rating body states the value (AHAM, ENERGY STAR): role specification.",
+     "source": "S86c clause role (phase225 observationRole86c)"
+    },
+    {
+     "id": "OS21",
+     "rule": "claim(O,nature,declared,explicit,clause) :- cue(O,certified,clause).",
+     "statement": "a certification or rating body states the value (AHAM, ENERGY STAR): nature declared.",
+     "source": "S86c clause role (phase225 observationRole86c)"
+    },
+    {
+     "id": "OS22",
+     "rule": "claim(O,provenance,third_party,explicit,clause) :- cue(O,certified,clause).",
+     "statement": "a certification or rating body states the value (AHAM, ENERGY STAR): provenance third_party.",
+     "source": "S86c clause role (phase225 observationRole86c)"
+    },
+    {
+     "id": "OS23",
+     "rule": "claim(O,role,condition,explicit,clause) :- cue(O,condition_setting,clause), not cue(O,own_property_stated,value).",
+     "statement": "the value is a setting or circumstance of the test (\"at 1 m\", \"on the 40 C programme\"): role condition.",
+     "source": "S86c clause role (phase225 observationRole86c)"
+    },
+    {
+     "id": "OS24",
+     "rule": "claim(O,nature,condition,explicit,clause) :- cue(O,condition_setting,clause), not cue(O,own_property_stated,value).",
+     "statement": "the value is a setting or circumstance of the test (\"at 1 m\", \"on the 40 C programme\"): nature condition.",
+     "source": "S86c clause role (phase225 observationRole86c)"
+    },
+    {
+     "id": "OS25",
+     "rule": "claim(O,role,result,explicit,clause) :- cue(O,calculation_output,clause).",
+     "statement": "the value is the output of a calculation or estimate (\"an estimated 30 kWh\", \"which works out at\"): role result.",
+     "source": "S93 nature and provenance (provenanceAndNature)"
+    },
+    {
+     "id": "OS26",
+     "rule": "claim(O,nature,calculated,explicit,clause) :- cue(O,calculation_output,clause).",
+     "statement": "the value is the output of a calculation or estimate (\"an estimated 30 kWh\", \"which works out at\"): nature calculated.",
+     "source": "S93 nature and provenance (provenanceAndNature)"
+    },
+    {
+     "id": "OS27",
+     "rule": "claim(O,role,target,explicit,clause) :- cue(O,target_cue,clause).",
+     "statement": "the value is what a test or a buyer aims at (\"ideally\", \"you want\"): role target.",
+     "source": "S99 statement roles (pd.7 statementRoles)"
+    },
+    {
+     "id": "OS28",
+     "rule": "claim(O,role,norm,explicit,clause) :- cue(O,norm_cue,clause).",
+     "statement": "a standard, regulation or guideline sets the value (\"the standard requires\", \"regulations limit\"): role norm.",
+     "source": "JCGM 200:2012 (VIM) 2.10 measured quantity value vs 4.26 maximum permissible value"
+    },
+    {
+     "id": "OS29",
+     "rule": "claim(O,role,threshold,explicit,clause) :- cue(O,generic_threshold,clause).",
+     "statement": "a bound in a generic or sufficiency claim (\"anything under 45 dB\", \"quiet enough\"): role threshold.",
+     "source": "S99 statement roles (pd.7 statementRoles)"
+    },
+    {
+     "id": "OS30",
+     "rule": "claim(O,role,result,explicit,cell) :- cue(O,cell_test_term,cell).",
+     "statement": "a test or measurement term in the cell: role result.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS31",
+     "rule": "claim(O,nature,measured,explicit,cell) :- cue(O,cell_test_term,cell).",
+     "statement": "a test or measurement term in the cell: nature measured.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS32",
+     "rule": "claim(O,provenance,publisher,explicit,cell) :- cue(O,cell_test_term,cell).",
+     "statement": "a test or measurement term in the cell: provenance publisher.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS33",
+     "rule": "claim(O,role,specification,explicit,cell) :- cue(O,cell_declaration_term,cell).",
+     "statement": "a declaration or specification term in the cell (\"claimed\", \"rated\", \"spec\"): role specification.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS34",
+     "rule": "claim(O,nature,declared,explicit,cell) :- cue(O,cell_declaration_term,cell).",
+     "statement": "a declaration or specification term in the cell (\"claimed\", \"rated\", \"spec\"): nature declared.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS35",
+     "rule": "claim(O,role,specification,explicit,cell) :- cue(O,cell_cert_term,cell).",
+     "statement": "a certification term in the cell: role specification.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS36",
+     "rule": "claim(O,nature,declared,explicit,cell) :- cue(O,cell_cert_term,cell).",
+     "statement": "a certification term in the cell: nature declared.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS37",
+     "rule": "claim(O,provenance,third_party,explicit,cell) :- cue(O,cell_cert_term,cell).",
+     "statement": "a certification term in the cell: provenance third_party.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS38",
+     "rule": "claim(O,role,result,explicit,cell) :- cue(O,cell_estimate_term,cell).",
+     "statement": "an estimate or calculation term in the cell: role result.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS39",
+     "rule": "claim(O,nature,calculated,explicit,cell) :- cue(O,cell_estimate_term,cell).",
+     "statement": "an estimate or calculation term in the cell: nature calculated.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS40",
+     "rule": "claim(O,role,result,explicit,header) :- cue(O,header_test_term,header).",
+     "statement": "a test or measurement term in the cell's row or column labels: role result.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS41",
+     "rule": "claim(O,nature,measured,explicit,header) :- cue(O,header_test_term,header).",
+     "statement": "a test or measurement term in the cell's row or column labels: nature measured.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS42",
+     "rule": "claim(O,provenance,publisher,explicit,header) :- cue(O,header_test_term,header).",
+     "statement": "a test or measurement term in the cell's row or column labels: provenance publisher.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS43",
+     "rule": "claim(O,role,specification,explicit,header) :- cue(O,header_declaration_term,header).",
+     "statement": "a declaration or specification term in the cell's row or column labels (\"claimed\", \"rated\", \"spec\"): role specification.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS44",
+     "rule": "claim(O,nature,declared,explicit,header) :- cue(O,header_declaration_term,header).",
+     "statement": "a declaration or specification term in the cell's row or column labels (\"claimed\", \"rated\", \"spec\"): nature declared.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS45",
+     "rule": "claim(O,role,specification,explicit,header) :- cue(O,header_cert_term,header).",
+     "statement": "a certification term in the cell's row or column labels: role specification.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS46",
+     "rule": "claim(O,nature,declared,explicit,header) :- cue(O,header_cert_term,header).",
+     "statement": "a certification term in the cell's row or column labels: nature declared.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS47",
+     "rule": "claim(O,provenance,third_party,explicit,header) :- cue(O,header_cert_term,header).",
+     "statement": "a certification term in the cell's row or column labels: provenance third_party.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS48",
+     "rule": "claim(O,role,result,explicit,header) :- cue(O,header_estimate_term,header).",
+     "statement": "an estimate or calculation term in the cell's row or column labels: role result.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS49",
+     "rule": "claim(O,nature,calculated,explicit,header) :- cue(O,header_estimate_term,header).",
+     "statement": "an estimate or calculation term in the cell's row or column labels: nature calculated.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS50",
+     "rule": "claim(O,role,condition,explicit,row) :- cue(O,record_condition,row), not cue(O,own_property_stated,value).",
+     "statement": "in its record the value is a condition another value requires (quantity-knowledge record rule P1): role condition.",
+     "source": "QK rules.v4 record program"
+    },
+    {
+     "id": "OS51",
+     "rule": "claim(O,nature,condition,explicit,row) :- cue(O,record_condition,row), not cue(O,own_property_stated,value).",
+     "statement": "in its record the value is a condition another value requires (quantity-knowledge record rule P1): nature condition.",
+     "source": "QK rules.v4 record program"
+    },
+    {
+     "id": "OS52",
+     "rule": "claim(O,role,result,inherited,sentence) :- cue(O,sentence_test_context,sentence).",
+     "statement": "a test statement elsewhere in the value's sentence (not in its clause): role result.",
+     "source": "S91 positive role evidence (definition_interpreter.ts roleEvidence)"
+    },
+    {
+     "id": "OS53",
+     "rule": "claim(O,nature,measured,inherited,sentence) :- cue(O,sentence_test_context,sentence).",
+     "statement": "a test statement elsewhere in the value's sentence (not in its clause): nature measured.",
+     "source": "S91 positive role evidence (definition_interpreter.ts roleEvidence)"
+    },
+    {
+     "id": "OS54",
+     "rule": "claim(O,provenance,publisher,inherited,sentence) :- cue(O,sentence_test_context,sentence).",
+     "statement": "a test statement elsewhere in the value's sentence (not in its clause): provenance publisher.",
+     "source": "S91 positive role evidence (definition_interpreter.ts roleEvidence)"
+    },
+    {
+     "id": "OS55",
+     "rule": "claim(O,role,specification,inherited,sentence) :- cue(O,sentence_declaration,sentence).",
+     "statement": "a declaration statement elsewhere in the value's sentence: role specification.",
+     "source": "S91 positive role evidence (definition_interpreter.ts roleEvidence)"
+    },
+    {
+     "id": "OS56",
+     "rule": "claim(O,nature,declared,inherited,sentence) :- cue(O,sentence_declaration,sentence).",
+     "statement": "a declaration statement elsewhere in the value's sentence: nature declared.",
+     "source": "S91 positive role evidence (definition_interpreter.ts roleEvidence)"
+    },
+    {
+     "id": "OS57",
+     "rule": "claim(O,role,result,inherited,table) :- cue(O,table_test_term,table).",
+     "statement": "a test or measurement term in the table's caption or heading: role result.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS58",
+     "rule": "claim(O,nature,measured,inherited,table) :- cue(O,table_test_term,table).",
+     "statement": "a test or measurement term in the table's caption or heading: nature measured.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS59",
+     "rule": "claim(O,provenance,publisher,inherited,table) :- cue(O,table_test_term,table).",
+     "statement": "a test or measurement term in the table's caption or heading: provenance publisher.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS60",
+     "rule": "claim(O,role,specification,inherited,table) :- cue(O,table_declaration_term,table).",
+     "statement": "a declaration or specification term in the table's caption or heading: role specification.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS61",
+     "rule": "claim(O,nature,declared,inherited,table) :- cue(O,table_declaration_term,table).",
+     "statement": "a declaration or specification term in the table's caption or heading: nature declared.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS62",
+     "rule": "claim(O,role,specification,inherited,table) :- cue(O,table_cert_term,table).",
+     "statement": "a certification term in the table's caption or heading: role specification.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS63",
+     "rule": "claim(O,nature,declared,inherited,table) :- cue(O,table_cert_term,table).",
+     "statement": "a certification term in the table's caption or heading: nature declared.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS64",
+     "rule": "claim(O,provenance,third_party,inherited,table) :- cue(O,table_cert_term,table).",
+     "statement": "a certification term in the table's caption or heading: provenance third_party.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS65",
+     "rule": "claim(O,role,result,inherited,table) :- cue(O,table_estimate_term,table).",
+     "statement": "an estimate or calculation term in the table's caption or heading: role result.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS66",
+     "rule": "claim(O,nature,calculated,inherited,table) :- cue(O,table_estimate_term,table).",
+     "statement": "an estimate or calculation term in the table's caption or heading: nature calculated.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS67",
+     "rule": "claim(O,role,result,inherited,section) :- cue(O,section_test_term,section).",
+     "statement": "a test or measurement term in a statement linked to the table or a section heading: role result.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS68",
+     "rule": "claim(O,nature,measured,inherited,section) :- cue(O,section_test_term,section).",
+     "statement": "a test or measurement term in a statement linked to the table or a section heading: nature measured.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS69",
+     "rule": "claim(O,provenance,publisher,inherited,section) :- cue(O,section_test_term,section).",
+     "statement": "a test or measurement term in a statement linked to the table or a section heading: provenance publisher.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS70",
+     "rule": "claim(O,role,specification,inherited,section) :- cue(O,section_declaration_term,section).",
+     "statement": "a declaration or specification term in a statement linked to the table or a section heading: role specification.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS71",
+     "rule": "claim(O,nature,declared,inherited,section) :- cue(O,section_declaration_term,section).",
+     "statement": "a declaration or specification term in a statement linked to the table or a section heading: nature declared.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS72",
+     "rule": "claim(O,role,specification,inherited,section) :- cue(O,section_cert_term,section).",
+     "statement": "a certification term in a statement linked to the table or a section heading: role specification.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS73",
+     "rule": "claim(O,nature,declared,inherited,section) :- cue(O,section_cert_term,section).",
+     "statement": "a certification term in a statement linked to the table or a section heading: nature declared.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS74",
+     "rule": "claim(O,provenance,third_party,inherited,section) :- cue(O,section_cert_term,section).",
+     "statement": "a certification term in a statement linked to the table or a section heading: provenance third_party.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS75",
+     "rule": "claim(O,role,result,inherited,section) :- cue(O,section_estimate_term,section).",
+     "statement": "an estimate or calculation term in a statement linked to the table or a section heading: role result.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS76",
+     "rule": "claim(O,nature,calculated,inherited,section) :- cue(O,section_estimate_term,section).",
+     "statement": "an estimate or calculation term in a statement linked to the table or a section heading: nature calculated.",
+     "source": "1G table evidence ladder (table_interpreter1g.ts classify)"
+    },
+    {
+     "id": "OS77",
+     "rule": "claim(O,role,result,inherited,document) :- cue(O,document_test_protocol,document).",
+     "statement": "the document states its own test protocol and the value is a result the protocol produces (Phase265 energy protocol, plan-guided term with document testing): role result.",
+     "source": "Phase265/Phase272"
+    },
+    {
+     "id": "OS78",
+     "rule": "claim(O,nature,measured,inherited,document) :- cue(O,document_test_protocol,document).",
+     "statement": "the document states its own test protocol and the value is a result the protocol produces (Phase265 energy protocol, plan-guided term with document testing): nature measured.",
+     "source": "Phase265/Phase272"
+    },
+    {
+     "id": "OS79",
+     "rule": "claim(O,provenance,publisher,inherited,document) :- cue(O,document_test_protocol,document).",
+     "statement": "the document states its own test protocol and the value is a result the protocol produces (Phase265 energy protocol, plan-guided term with document testing): provenance publisher.",
+     "source": "Phase265/Phase272"
+    },
+    {
+     "id": "OS80",
+     "rule": "claim(O,role,specification,inherited,source) :- cue(O,source_maker,source).",
+     "statement": "the whole document is a maker's or seller's page (source type): role specification.",
+     "source": "source registry"
+    },
+    {
+     "id": "OS81",
+     "rule": "claim(O,nature,declared,inherited,source) :- cue(O,source_maker,source).",
+     "statement": "the whole document is a maker's or seller's page (source type): nature declared.",
+     "source": "source registry"
+    },
+    {
+     "id": "OS82",
+     "rule": "claim(O,provenance,manufacturer,inherited,source) :- cue(O,source_maker,source).",
+     "statement": "the whole document is a maker's or seller's page (source type): provenance manufacturer.",
+     "source": "source registry"
+    },
+    {
+     "id": "OS83",
+     "rule": "claim(O,role,result,default,document) :- cue(O,page_tests_default,document).",
+     "statement": "the page reports tests somewhere (audit S77 A1-16 page default): a presumption, never a decision: role result.",
+     "source": "document_evidence A1-16"
+    },
+    {
+     "id": "OS84",
+     "rule": "claim(O,nature,measured,default,document) :- cue(O,page_tests_default,document).",
+     "statement": "the page reports tests somewhere (audit S77 A1-16 page default): a presumption, never a decision: nature measured.",
+     "source": "document_evidence A1-16"
+    },
+    {
+     "id": "OS85",
+     "rule": "claim(O,role,specification,default,value) :- cue(O,extractor_specification_row,value).",
+     "statement": "Phase245 found the value in a specification-like row: a presumption, never a decision: role specification.",
+     "source": "Phase245"
+    },
+    {
+     "id": "OS86",
+     "rule": "claim(O,nature,declared,default,value) :- cue(O,extractor_specification_row,value).",
+     "statement": "Phase245 found the value in a specification-like row: a presumption, never a decision: nature declared.",
+     "source": "Phase245"
+    },
+    {
+     "id": "OS87",
+     "rule": "claim(O,role,result,default,value) :- cue(O,extractor_test_lead,value).",
+     "statement": "Phase265 screened the value as a test lead: a presumption, never a decision: role result.",
+     "source": "Phase265"
+    },
+    {
+     "id": "OS88",
+     "rule": "claim(O,nature,measured,default,value) :- cue(O,extractor_test_lead,value).",
+     "statement": "Phase265 screened the value as a test lead: a presumption, never a decision: nature measured.",
+     "source": "Phase265"
+    }
+   ],
+   "decision": {
+    "predicate": "claim",
+    "scopes": [
+     "value",
+     "cell",
+     "clause",
+     "header",
+     "row",
+     "sentence",
+     "table",
+     "section",
+     "document",
+     "source"
+    ],
+    "fields": {
+     "role": [
+      "result",
+      "specification",
+      "threshold",
+      "norm",
+      "target",
+      "condition"
+     ],
+     "nature": [
+      "measured",
+      "declared",
+      "calculated",
+      "condition"
+     ],
+     "provenance": [
+      "publisher",
+      "manufacturer",
+      "third_party"
+     ]
+    },
+    "contested": [
+     {
+      "id": "R-VAL",
+      "field": "role",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS01"
+       ],
+       [
+        "OS02"
+       ]
+      ],
+      "why": "A value that modifies both a norm noun and a threshold noun ('the 44 dB limit of the standard') could be either reference: abstain."
+     },
+     {
+      "id": "R-CL-RS",
+      "field": "role",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS03",
+        "OS06",
+        "OS09",
+        "OS25"
+       ],
+       [
+        "OS13",
+        "OS15",
+        "OS17",
+        "OS20"
+       ]
+      ],
+      "why": "A measurement, observation or calculation and a maker's or certifier's statement in one clause ('measured at 62 dB against the claimed 60 dB'): the clause does not say which statement the value belongs to."
+     },
+     {
+      "id": "R-CL-RR",
+      "field": "role",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS03",
+        "OS06",
+        "OS09",
+        "OS25"
+       ],
+       [
+        "OS27",
+        "OS28",
+        "OS29"
+       ]
+      ],
+      "why": "A measuring verb and a target, norm or threshold word in one clause ('measured 62 dB, above the 60 dB limit'): the value may be the result or the reference."
+     },
+     {
+      "id": "R-CL-SR",
+      "field": "role",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS13",
+        "OS15",
+        "OS17",
+        "OS20"
+       ],
+       [
+        "OS27",
+        "OS28",
+        "OS29"
+       ]
+      ],
+      "why": "A declared figure stated against a target, norm or threshold ('rated 30 dB, below the 35 dB requirement'): the value may be the specification or the reference."
+     },
+     {
+      "id": "R-CL-REF1",
+      "field": "role",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS27"
+       ],
+       [
+        "OS28",
+        "OS29"
+       ]
+      ],
+      "why": "Target and norm or threshold words in one clause (a target set by a standard): which reference role the value has is not settled by the clause."
+     },
+     {
+      "id": "R-CL-REF2",
+      "field": "role",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS28"
+       ],
+       [
+        "OS29"
+       ]
+      ],
+      "why": "Norm and threshold words in one clause (a limit stated by a standard): which reference role the value has is not settled by the clause."
+     },
+     {
+      "id": "R-CL-COND",
+      "field": "role",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS23"
+       ],
+       [
+        "OS03",
+        "OS06",
+        "OS09",
+        "OS25",
+        "OS13",
+        "OS15",
+        "OS17",
+        "OS20",
+        "OS27",
+        "OS28",
+        "OS29"
+       ]
+      ],
+      "why": "A condition-setting cue ('at 1 m', 'on the highest setting') with another role cue in one clause: the value may be the setting or the value obtained or declared under it."
+     },
+     {
+      "id": "R-CELL",
+      "field": "role",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS30",
+        "OS38"
+       ],
+       [
+        "OS33",
+        "OS35"
+       ]
+      ],
+      "why": "A table cell whose own terms name a test or an estimate and a declaration or certification (a disputed 1G cell): undecided."
+     },
+     {
+      "id": "R-HEADER",
+      "field": "role",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS40",
+        "OS48"
+       ],
+       [
+        "OS43",
+        "OS45"
+       ]
+      ],
+      "why": "A column header that names a test or an estimate and a declaration or certification: undecided."
+     },
+     {
+      "id": "R-SENT",
+      "field": "role",
+      "tier": "inherited",
+      "between": [
+       [
+        "OS52"
+       ],
+       [
+        "OS55"
+       ]
+      ],
+      "why": "The value's sentence states a test elsewhere and a declaration elsewhere: the context does not settle the role."
+     },
+     {
+      "id": "R-TABLE",
+      "field": "role",
+      "tier": "inherited",
+      "between": [
+       [
+        "OS57",
+        "OS65"
+       ],
+       [
+        "OS60",
+        "OS62"
+       ]
+      ],
+      "why": "A caption, introduction or linked statement that names both tests or estimates and declarations ('specs and test results'): undecided."
+     },
+     {
+      "id": "R-SECTION",
+      "field": "role",
+      "tier": "inherited",
+      "between": [
+       [
+        "OS67",
+        "OS75"
+       ],
+       [
+        "OS70",
+        "OS72"
+       ]
+      ],
+      "why": "A section heading that announces both tests or estimates and specifications: undecided."
+     },
+     {
+      "id": "N-CL-MD",
+      "field": "nature",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS04",
+        "OS07",
+        "OS10"
+       ],
+       [
+        "OS14",
+        "OS16",
+        "OS18",
+        "OS21"
+       ]
+      ],
+      "why": "A measuring or observation verb and a declaration, maker's claim or certification in one clause: measured or declared is not settled."
+     },
+     {
+      "id": "N-CL-CALC",
+      "field": "nature",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS04",
+        "OS07",
+        "OS10",
+        "OS14",
+        "OS16",
+        "OS18",
+        "OS21"
+       ],
+       [
+        "OS26"
+       ]
+      ],
+      "why": "A calculation output and a measuring or declaring cue in one clause (a figure computed from a measurement or a declaration): undecided."
+     },
+     {
+      "id": "N-CL-COND",
+      "field": "nature",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS24"
+       ],
+       [
+        "OS04",
+        "OS07",
+        "OS10",
+        "OS14",
+        "OS16",
+        "OS18",
+        "OS21",
+        "OS26"
+       ]
+      ],
+      "why": "A condition-setting cue with a measuring, declaring or calculating cue in one clause: the value may be the condition or the measured, declared or calculated value."
+     },
+     {
+      "id": "N-CELL-MD",
+      "field": "nature",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS31"
+       ],
+       [
+        "OS34",
+        "OS36"
+       ]
+      ],
+      "why": "A cell naming a test and a declaration or certification: undecided."
+     },
+     {
+      "id": "N-CELL-CALC",
+      "field": "nature",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS31",
+        "OS34",
+        "OS36"
+       ],
+       [
+        "OS39"
+       ]
+      ],
+      "why": "A cell naming an estimate and a test or declaration: undecided."
+     },
+     {
+      "id": "N-HEADER-MD",
+      "field": "nature",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS41"
+       ],
+       [
+        "OS44",
+        "OS46"
+       ]
+      ],
+      "why": "A header naming a test and a declaration or certification: undecided."
+     },
+     {
+      "id": "N-HEADER-CALC",
+      "field": "nature",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS41",
+        "OS44",
+        "OS46"
+       ],
+       [
+        "OS49"
+       ]
+      ],
+      "why": "A header naming an estimate and a test or declaration: undecided."
+     },
+     {
+      "id": "N-SENT",
+      "field": "nature",
+      "tier": "inherited",
+      "between": [
+       [
+        "OS53"
+       ],
+       [
+        "OS56"
+       ]
+      ],
+      "why": "Test and declaration statements elsewhere in the value's sentence: undecided."
+     },
+     {
+      "id": "N-TABLE-MD",
+      "field": "nature",
+      "tier": "inherited",
+      "between": [
+       [
+        "OS58"
+       ],
+       [
+        "OS61",
+        "OS63"
+       ]
+      ],
+      "why": "Table context naming tests and declarations: undecided."
+     },
+     {
+      "id": "N-TABLE-CALC",
+      "field": "nature",
+      "tier": "inherited",
+      "between": [
+       [
+        "OS58",
+        "OS61",
+        "OS63"
+       ],
+       [
+        "OS66"
+       ]
+      ],
+      "why": "Table context naming estimates and tests or declarations: undecided."
+     },
+     {
+      "id": "N-SECTION-MD",
+      "field": "nature",
+      "tier": "inherited",
+      "between": [
+       [
+        "OS68"
+       ],
+       [
+        "OS71",
+        "OS73"
+       ]
+      ],
+      "why": "A section heading announcing tests and specifications: undecided."
+     },
+     {
+      "id": "N-SECTION-CALC",
+      "field": "nature",
+      "tier": "inherited",
+      "between": [
+       [
+        "OS68",
+        "OS71",
+        "OS73"
+       ],
+       [
+        "OS76"
+       ]
+      ],
+      "why": "A section heading announcing estimates and tests or specifications: undecided."
+     },
+     {
+      "id": "P-CL-PUB",
+      "field": "provenance",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS05",
+        "OS08"
+       ],
+       [
+        "OS19",
+        "OS22"
+       ]
+      ],
+      "why": "A first-person test and a maker's or certifier's statement about one value in one clause: who produced the value is not settled."
+     },
+     {
+      "id": "P-CL-MAKER",
+      "field": "provenance",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS19"
+       ],
+       [
+        "OS22"
+       ]
+      ],
+      "why": "A maker's claim and a certification in one clause (a maker citing a certified rating): manufacturer or third party is not settled."
+     },
+     {
+      "id": "P-CELL",
+      "field": "provenance",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS32"
+       ],
+       [
+        "OS37"
+       ]
+      ],
+      "why": "A cell naming the publisher's test and a certification: undecided."
+     },
+     {
+      "id": "P-HEADER",
+      "field": "provenance",
+      "tier": "explicit",
+      "between": [
+       [
+        "OS42"
+       ],
+       [
+        "OS47"
+       ]
+      ],
+      "why": "A header naming the publisher's test and a certification: undecided."
+     },
+     {
+      "id": "P-TABLE",
+      "field": "provenance",
+      "tier": "inherited",
+      "between": [
+       [
+        "OS59"
+       ],
+       [
+        "OS64"
+       ]
+      ],
+      "why": "Table context naming the publisher's tests and certifications: undecided."
+     },
+     {
+      "id": "P-SECTION",
+      "field": "provenance",
+      "tier": "inherited",
+      "between": [
+       [
+        "OS69"
+       ],
+       [
+        "OS74"
+       ]
+      ],
+      "why": "A section heading announcing the publisher's tests and certifications: undecided."
+     }
+    ],
+    "contestHistory": [
+     {
+      "date": "2026-10-20",
+      "change": "S103: the eight blanket contests (by field, tier, scopes and values) are replaced by 30 contests that name the competing rules; the static analysis (knowledge_rules analyseProgram) verified that all 129 named pairs can fire together (a witness each) and that no other pair can conflict.",
+      "previous": [
+       {
+        "field": "role",
+        "tier": "explicit",
+        "scopes": [
+         "value",
+         "cell",
+         "clause",
+         "header",
+         "row"
+        ],
+        "values": [
+         "result",
+         "specification",
+         "threshold",
+         "norm",
+         "target",
+         "condition"
+        ],
+        "why": "Different statements about one occurrence can disagree (a maker's claim and a measurement in one clause, a condition cue and a result verb): at equal authority and scope PEE abstains and reports the conflict."
+       },
+       {
+        "field": "nature",
+        "tier": "explicit",
+        "scopes": [
+         "value",
+         "cell",
+         "clause",
+         "header",
+         "row"
+        ],
+        "values": [
+         "measured",
+         "declared",
+         "calculated",
+         "condition"
+        ],
+        "why": "A measurement verb and a calculation or declaration cue in one clause leave the nature undecided."
+       },
+       {
+        "field": "provenance",
+        "tier": "explicit",
+        "scopes": [
+         "value",
+         "cell",
+         "clause",
+         "header",
+         "row"
+        ],
+        "values": [
+         "publisher",
+         "manufacturer",
+         "third_party"
+        ],
+        "why": "A first-person test and a maker's or certifier's statement about one value leave the provenance undecided."
+       },
+       {
+        "field": "role",
+        "tier": "inherited",
+        "scopes": [
+         "sentence",
+         "table",
+         "section",
+         "document",
+         "source"
+        ],
+        "values": [
+         "result",
+         "specification"
+        ],
+        "why": "Context of one scope can name both a test and a specification (a heading 'specs and test results'): undecided."
+       },
+       {
+        "field": "nature",
+        "tier": "inherited",
+        "scopes": [
+         "sentence",
+         "table",
+         "section",
+         "document",
+         "source"
+        ],
+        "values": [
+         "measured",
+         "declared",
+         "calculated"
+        ],
+        "why": "Context naming measurement and declaration or estimate at one scope leaves the nature undecided."
+       },
+       {
+        "field": "provenance",
+        "tier": "inherited",
+        "scopes": [
+         "sentence",
+         "table",
+         "section",
+         "document",
+         "source"
+        ],
+        "values": [
+         "publisher",
+         "manufacturer",
+         "third_party"
+        ],
+        "why": "Context naming the publisher's test and a maker's or certifier's statement at one scope leaves the provenance undecided."
+       },
+       {
+        "field": "role",
+        "tier": "default",
+        "scopes": [
+         "value",
+         "document"
+        ],
+        "values": [
+         "result",
+         "specification"
+        ],
+        "why": "Presumptions are only reported."
+       },
+       {
+        "field": "nature",
+        "tier": "default",
+        "scopes": [
+         "value",
+         "document"
+        ],
+        "values": [
+         "measured",
+         "declared"
+        ],
+        "why": "Presumptions are only reported."
+       }
+      ]
+     }
+    ]
+   },
+   "admission": {
+    "required": true,
+    "legacyUnreviewed": [
+     "OS01",
+     "OS02",
+     "OS03",
+     "OS04",
+     "OS05",
+     "OS06",
+     "OS07",
+     "OS08",
+     "OS09",
+     "OS10",
+     "OS13",
+     "OS14",
+     "OS15",
+     "OS16",
+     "OS17",
+     "OS18",
+     "OS19",
+     "OS20",
+     "OS21",
+     "OS22",
+     "OS23",
+     "OS24",
+     "OS25",
+     "OS26",
+     "OS27",
+     "OS28",
+     "OS29",
+     "OS30",
+     "OS31",
+     "OS32",
+     "OS33",
+     "OS34",
+     "OS35",
+     "OS36",
+     "OS37",
+     "OS38",
+     "OS39",
+     "OS40",
+     "OS41",
+     "OS42",
+     "OS43",
+     "OS44",
+     "OS45",
+     "OS46",
+     "OS47",
+     "OS48",
+     "OS49",
+     "OS50",
+     "OS51",
+     "OS52",
+     "OS53",
+     "OS54",
+     "OS55",
+     "OS56",
+     "OS57",
+     "OS58",
+     "OS59",
+     "OS60",
+     "OS61",
+     "OS62",
+     "OS63",
+     "OS64",
+     "OS65",
+     "OS66",
+     "OS67",
+     "OS68",
+     "OS69",
+     "OS70",
+     "OS71",
+     "OS72",
+     "OS73",
+     "OS74",
+     "OS75",
+     "OS76",
+     "OS77",
+     "OS78",
+     "OS79",
+     "OS80",
+     "OS81",
+     "OS82",
+     "OS83",
+     "OS84",
+     "OS85",
+     "OS86",
+     "OS87",
+     "OS88"
+    ],
+    "legacyReason": "Admitted in S100-S102, before the S103 admission process. Each will receive an admission record (meaning, scope, prerequisites, exceptions, counterexamples with tests, classification) when it is next changed or reviewed; this list may only shrink (tests/s103_rule_admission.test.ts)."
+   },
+   "domains": [
+    {
+     "predicate": "cue",
+     "arg": 1,
+     "values": [
+      "attributive",
+      "calculation_output",
+      "cell_cert_term",
+      "cell_declaration_term",
+      "cell_estimate_term",
+      "cell_test_term",
+      "certified",
+      "condition_setting",
+      "declaration_verb",
+      "document_test_protocol",
+      "extractor_specification_row",
+      "extractor_test_lead",
+      "first_person_test",
+      "generic_threshold",
+      "header_cert_term",
+      "header_declaration_term",
+      "header_estimate_term",
+      "header_test_term",
+      "maker_claim",
+      "measuring_verb",
+      "norm_cue",
+      "observation_verb",
+      "own_property_stated",
+      "page_tests_default",
+      "record_condition",
+      "section_cert_term",
+      "section_declaration_term",
+      "section_estimate_term",
+      "section_test_term",
+      "sentence_declaration",
+      "sentence_test_context",
+      "source_maker",
+      "table_cert_term",
+      "table_declaration_term",
+      "table_estimate_term",
+      "table_test_term",
+      "target_cue",
+      "value_norm_reference",
+      "value_threshold_reference"
+     ],
+     "abstains": {
+      "own_property_stated": "A blocking cue only: it withdraws a condition reading when the clause states the value's own property (OS23, OS24, OS50, OS51); it supports no role, nature or provenance by itself."
+     }
+    }
+   ]
+  }
+ ],
+ "cueKinds": [
+  "attributive",
+  "calculation_output",
+  "cell_cert_term",
+  "cell_declaration_term",
+  "cell_estimate_term",
+  "cell_test_term",
+  "certified",
+  "condition_setting",
+  "declaration_verb",
+  "document_test_protocol",
+  "extractor_specification_row",
+  "extractor_test_lead",
+  "first_person_test",
+  "generic_threshold",
+  "header_cert_term",
+  "header_declaration_term",
+  "header_estimate_term",
+  "header_test_term",
+  "maker_claim",
+  "measuring_verb",
+  "norm_cue",
+  "observation_verb",
+  "own_property_stated",
+  "page_tests_default",
+  "record_condition",
+  "section_cert_term",
+  "section_declaration_term",
+  "section_estimate_term",
+  "section_test_term",
+  "sentence_declaration",
+  "sentence_test_context",
+  "source_maker",
+  "table_cert_term",
+  "table_declaration_term",
+  "table_estimate_term",
+  "table_test_term",
+  "target_cue",
+  "value_norm_reference",
+  "value_threshold_reference"
+ ],
+ "history": [
+  {
+   "version": "os.1",
+   "note": "S100 first formulation (88 rules)."
+  },
+  {
+   "version": "os.2",
+   "note": "S100 development (spent S89-S99 material): the S92 situation type 'episodic' decided 15 roles, 8 correctly; an event reading of a verb is not evidence that a value was measured. Rules OS11 and OS12 removed. Page titles are no longer read as section headings, and a calculation cue needs a calculation operator (reader changes, same rules)."
+  },
+  {
+   "version": "os.3",
+   "note": "S102 (owner review of S100): rule lifecycle. OS11 and OS12 return to the file as retired rules with their reason and evidence instead of being deleted; retired rules are never executed. No change of decisions."
+  },
+  {
+   "version": "os.4",
+   "note": "S103 governance only: contests name the competing rules (30 contests, 129 verified pairs) instead of blanket value groups; admission policy (86 legacy rules listed); cue domain for gap analysis. No rule changed; every decision is identical to os.3 (tests/s103_rule_admission.test.ts)."
+  }
+ ]
+}

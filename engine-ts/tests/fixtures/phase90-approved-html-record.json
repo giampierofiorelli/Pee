@@ -1,0 +1,42 @@
+{
+  "kind": "reviewed_html_v1",
+  "recipe": {
+    "schema": "phase87_html_recipe_v1",
+    "status": "reviewed",
+    "source_host": "specs.testing.org",
+    "path_prefix": "/products/",
+    "category": "headphones",
+    "mappings": [
+      {
+        "field_key": "battery_hours",
+        "candidate_id": "8a6b82c7cd0ef90c39fd",
+        "label": "Battery life",
+        "kind": "table",
+        "unit": "h",
+        "field_review_id": "fixture_review"
+      }
+    ],
+    "registry_hash": "3922e1cb5040b979aabeaacf0f31fb0bcb3f1907481d4de9fb431658566e45b3",
+    "qualification": {
+      "distinct_models": 2,
+      "independent_label_receipts": [
+        "independent_assessor_a",
+        "independent_assessor_b"
+      ],
+      "reference_manifest_sha256": "51ed18e82b6d88da10707777492b7429eb17a8a15a0fe69f8ce3237cbf5457dd",
+      "suggestion_sha256": "91f04fdb4c66f0a15a0cd1e210dd35c735a797dee822633cc507fe4a36befa6a"
+    },
+    "recipe_sha256": "d0b049f119d4fceb148c9e1efc31ce69b567802ee9c7cf4e48bfbfd920d5785e",
+    "human_review": {
+      "reviewer": "human_operator_fixture",
+      "receipt": "fixture-approved-20261010"
+    }
+  },
+  "context": {
+    "battery_hours": {
+      "declared_by": "manufacturer"
+    }
+  },
+  "registryReviewReference": "fixture_review",
+  "registrySchemaVersion": 1
+}

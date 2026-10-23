@@ -1,0 +1,264 @@
+{
+ "schema": "pee.r3.translation-cues.v1",
+ "version": "kt-cues.1",
+ "statement": "R3 (owner S73): general English cues for reading scientific teaching documents into typed statements (Rosetta-style statement types with display templates). Relation cues, table header roles and status markers only; no category words. Patterns are matched on one clause, case-insensitive; named groups give the statement's slots. Written by Claude from the development sections only (evaluation/r3/section-split.json).",
+ "statementTypes": [
+  {
+   "type": "not_sufficient",
+   "meaning": "the subject does not establish the object (a proxy, a claim, a partial measurement)",
+   "display": "{subject} does not by itself establish {object}{conditions}.",
+   "patterns": [
+    "^(?<subject>.{3,160}?)\\s+(?:does|do|did|can|could|will|would)\\s*(?:not|n't)\\s+(?:by itself\\s+|alone\\s+|itself\\s+)?(?:establish|demonstrate|prove|guarantee|imply|mean|define|give|show|constitute|substitute for|replace|indicate|determine|ensure|predict|reflect|represent|equal|stand in for)\\s+(?<object>.{3,200})$",
+    "^(?<object>.{3,160}?)\\s+(?:cannot|can not|can't|should not|must not)\\s+be\\s+(?:inferred|established|judged|determined|assumed|deduced|read)\\s+(?:only\\s+|solely\\s+)?from\\s+(?<subject>.{3,200})$",
+    "^(?<subject>.{3,160}?)\\s+(?:is|are|was|were)\\s+not\\s+(?:necessarily\\s+|automatically\\s+)?(?:the same (?:measurement |thing |quantity )?as|equivalent to|interchangeable with|proof of|evidence of|a measure of|a guarantee of|a substitute for|a proxy for|sufficient for|enough for)\\s+(?<object>.{3,200})$",
+    "^(?<subject>.{3,160}?)\\s+alone\\s+(?:does not|do not|cannot|can not|is not|are not)\\s+(?<object>.{3,200})$",
+    "^(?<subject>.{3,160}?)\\s+(?:has|have)\\s+established\\s+(?<established>.{3,100}?),\\s+not\\s+(?<object>.{3,160})$"
+   ]
+  },
+  {
+   "type": "depends_on",
+   "meaning": "the object varies with or is affected by the subject (a causal or conditional dependence)",
+   "display": "{object} depends on {subject}{conditions}.",
+   "patterns": [
+    "^(?<object>.{3,160}?)\\s+(?:depends|depend|depending|is dependent|are dependent)\\s+(?:strongly\\s+|largely\\s+|mainly\\s+)?(?:up)?on\\s+(?<subject>.{3,220})$",
+    "^(?<object>.{3,160}?)\\s+(?:varies|vary|change|changes)\\s+with\\s+(?<subject>.{3,200})$",
+    "^(?<subject>.{3,160}?)\\s+(?:affects?|alters?|modif(?:y|ies)|influences?|determines?|controls?|governs?|changes?)\\s+(?<object>.{3,200})$",
+    "^(?<object>.{3,160}?)\\s+(?:is|are)\\s+(?:affected|altered|modified|influenced|determined|controlled|governed)\\s+by\\s+(?<subject>.{3,200})$"
+   ]
+  },
+  {
+   "type": "increases",
+   "meaning": "the subject raises the object",
+   "display": "{subject} increases {object}{conditions}.",
+   "patterns": [
+    "^(?<subject>.{3,160}?)\\s+(?:can\\s+|may\\s+|tends? to\\s+)?(?:increases?|raises?|improves?|lengthens?|accelerates?|boosts?)\\s+(?<object>.{3,200})$"
+   ]
+  },
+  {
+   "type": "decreases",
+   "meaning": "the subject lowers the object",
+   "display": "{subject} decreases {object}{conditions}.",
+   "patterns": [
+    "^(?<subject>.{3,160}?)\\s+(?:can\\s+|may\\s+|tends? to\\s+)?(?:reduces?|lowers?|decreases?|shortens?|impairs?|degrades?|limits?|slows?)\\s+(?<object>.{3,200})$"
+   ]
+  },
+  {
+   "type": "composed_of",
+   "meaning": "the subject is a compound procedure or quantity made of the parts named in the object",
+   "display": "{subject} is composed of {object}{conditions}.",
+   "patterns": [
+    "^(?<subject>.{3,160}?)\\s+(?:is|are)\\s+(?:calculated|computed|derived|built|made up|obtained|estimated|composed)\\s+(?:from|of|as)\\s+(?<object>.{3,220})$",
+    "^(?<subject>.{3,160}?)\\s+(?:is|are|=)\\s+(?:the\\s+)?sum of\\s+(?<object>.{3,220})$",
+    "^(?:calculates?|computes?|derives?)\\s+(?<subject>.{3,120}?)\\s+from\\s+(?<object>.{3,200})$",
+    "^(?<subject>[a-z][\\w /-]{2,60}?)\\s*=\\s*(?<object>.{3,200})$"
+   ]
+  },
+  {
+   "type": "requires",
+   "meaning": "interpreting or comparing the subject requires the object (a condition to state or keep)",
+   "display": "{subject} requires {object}{conditions}.",
+   "patterns": [
+    "^(?<subject>.{3,160}?)\\s+(?:requires?|needs?|must include|must state|must record|must report|must be measured (?:at|with|under)|must specify)\\s+(?<object>.{3,220})$",
+    "^(?:record|report|state|document|keep|specify)\\s+(?<object>.{3,220})$",
+    "^(?<subject>.{3,160}?)\\s+(?:is|are)\\s+(?:only\\s+)?(?:valid|comparable|meaningful|interpretable)\\s+only\\s+(?:when|if|for|at|with|under)\\s+(?<object>.{3,200})$",
+    "^(?<subject>.{3,160}?)\\s+(?:only|solely)\\s+(?:when|if)\\s+(?<object>.{3,200})$"
+   ]
+  },
+  {
+   "type": "not_comparable",
+   "meaning": "results of the subject are not comparable with the object (or with each other)",
+   "display": "{subject} is not directly comparable with {object}{conditions}.",
+   "patterns": [
+    "^(?<subject>.{3,160}?)\\s+(?:is|are|may be|might be|may|might)\\s*(?:not)\\s+(?:be\\s+)?(?:directly\\s+)?(?:comparable|interchangeable|poolable)(?:\\s+(?:with|to)\\s+(?<object>.{3,160}))?$",
+    "^(?<subject>.{3,160}?)\\s+(?:cannot|can not|must not|should not)\\s+be\\s+(?:pooled|compared|averaged|combined)(?:\\s+with\\s+(?<object>.{3,160}))?$"
+   ]
+  },
+  {
+   "type": "measured_by",
+   "meaning": "the subject is measured or assessed by the method or measurement in the object",
+   "display": "{subject} is measured by {object}{conditions}.",
+   "patterns": [
+    "^(?<subject>.{3,160}?)\\s+(?:is|are)\\s+(?:measured|assessed|tested|quantified|evaluated|determined)\\s+(?:by|with|using|via|through)\\s+(?<object>.{3,220})$",
+    "^(?:tests?|measures?|assesses?|checks?)\\s+(?<subject>.{3,160}?)\\s+(?:using|with|by|via|in)\\s+(?<object>.{3,200})$"
+   ]
+  },
+  {
+   "type": "method_step",
+   "meaning": "a step of an experimental or evaluation procedure (an instruction)",
+   "display": "Method step: {object}.",
+   "patterns": [
+    "^(?:test|tests|measure|measures|use|run|place|weigh|plot|integrate|compute|calculate|compare|repeat|log|check|verify|validate|condition|preheat|record|report|state|document|keep|specify|separate|bind|store|count|time|sample)\\s+(?<object>.{6,240})$"
+   ]
+  },
+  {
+   "type": "definition",
+   "meaning": "a term and what it means or names",
+   "display": "{subject}: {object}.",
+   "patterns": [
+    "^(?<subject>[^:|]{2,70}):\\s+(?<object>.{8,300})$",
+    "^(?<subject>.{3,80}?)\\s+(?:means|refers to|is defined as|denotes|stands for)\\s+(?<object>.{5,240})$"
+   ]
+  },
+  {
+   "type": "limitation",
+   "meaning": "a warning, prohibition or limit stated by the document",
+   "display": "Limitation: {subject} {object}.",
+   "patterns": [
+    "^(?:do not|don't|never|avoid|no)\\s+(?<object>.{6,240})$",
+    "^(?<subject>.{3,160}?)\\s+(?:cannot|can't|does not|do not|is not|are not|must not|should not|may not|might not|need not|is never|are never)\\s+(?<object>.{3,240})$"
+   ]
+  }
+ ],
+ "conditionCues": [
+  "at",
+  "under",
+  "with",
+  "for",
+  "during",
+  "after",
+  "in",
+  "when",
+  "while"
+ ],
+ "contrastCues": [
+  "versus",
+  "vs",
+  "vs.",
+  "rather than",
+  "compared with",
+  "as opposed to"
+ ],
+ "listSeparators": [
+  ",",
+  ";",
+  " and ",
+  " or ",
+  " plus ",
+  " + "
+ ],
+ "tableHeaderRoles": {
+  "subject": [
+   "dimension",
+   "property",
+   "attribute",
+   "component",
+   "quantity",
+   "factor",
+   "concept",
+   "claim",
+   "feature",
+   "measure",
+   "metric",
+   "parameter"
+  ],
+  "method": [
+   "measurement",
+   "method",
+   "operational measure",
+   "assessment",
+   "test",
+   "protocol",
+   "procedure",
+   "how measured",
+   "evidence-relevant"
+  ],
+  "limitation": [
+   "error",
+   "caveat",
+   "pitfall",
+   "missing",
+   "boundary",
+   "caution",
+   "trap",
+   "warning",
+   "limitation",
+   "not sufficient",
+   "not established",
+   "cannot",
+   "does not"
+  ],
+  "applicability": [
+   "transferable",
+   "applies",
+   "scope",
+   "applicability",
+   "design-specific",
+   "requires re-test",
+   "re-test"
+  ],
+  "outcome": [
+   "outcome",
+   "consumer",
+   "need",
+   "goal",
+   "benefit",
+   "proof that"
+  ]
+ },
+ "statusMarkers": [
+  {
+   "status": "proposed_method",
+   "cues": [
+    "proposed",
+    "proposed method",
+    "illustrative",
+    "candidate method"
+   ]
+  },
+  {
+   "status": "hypothesis",
+   "cues": [
+    "hypothesis",
+    "plausible",
+    "candidate mechanism",
+    "suitability hypothesis",
+    "unverified",
+    "not independently verified"
+   ]
+  },
+  {
+   "status": "general_principle",
+   "cues": [
+    "physical principle",
+    "technical principle",
+    "principle",
+    "physics"
+   ]
+  },
+  {
+   "status": "source_observation",
+   "cues": [
+    "source backed",
+    "source-backed",
+    "reported",
+    "publisher reports",
+    "found",
+    "observed"
+   ]
+  },
+  {
+   "status": "expert_judgement",
+   "cues": [
+    "expert",
+    "panel",
+    "chef",
+    "judgement",
+    "judgment",
+    "testimony"
+   ]
+  },
+  {
+   "status": "normative_rule",
+   "cues": [
+    "must",
+    "never",
+    "do not",
+    "should not",
+    "rule",
+    "guardrail",
+    "veto"
+   ]
+  }
+ ],
+ "referencePattern": "\\[((?:[A-Z]{1,3}\\d{1,3})(?:\\s*[,;]\\s*[A-Z]{1,3}\\d{1,3})*)\\]"
+}

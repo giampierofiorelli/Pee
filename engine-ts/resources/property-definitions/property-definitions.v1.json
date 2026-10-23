@@ -1,0 +1,3202 @@
+{
+ "schema": "pee.property-definitions.v1",
+ "version": "pd.10",
+ "statement": "Declarative definitions of observable properties (I-ADOPT: property + object of interest + constraints; VIM: measurand vs influence quantity; LOINC: basis/time aspect as identity). One definition is consumed by reading (plan), interpretation (contract slots), attribution (which property a value reports) and evaluation (which conditions decide comparability). Properties and condition dimensions are shared across product categories; a category profile only says which properties apply and which conditions DEFINE the measurand there. Quantity kinds, metrics and units come from the quantity-knowledge pack. Written in PEE's own words; no third-party text reproduced. Every entry carries a lifecycle state (candidate | supported | verified | decision_usable) and its sources. A condition may define the measurand only for one basis (onlyForBasis): the usage pattern defines a periodic figure, not a per-run one. Attribution: a unit kind alone attributes only when the category profile lists exactly one property admitting it (the profile licenses it); otherwise a definition term must support the choice. A definition may name its object nouns (I-ADOPT object of interest); a candidate surface term supports the property only when one of them is present. Outside the categories whose profile lists a property, the value's own words must name the property's object (object nouns); inside them the category supplies the object. A property may declare a plausible SI range (plausibleSi; s, m, Pa, Hz, m3/s, dB): a value outside it is not attributed (SHACL-style value constraint). Object nouns name the measured object (acoustic output, audio path, obstacle), never the product class. A property may subsume QK metrics (relatedMetrics): those are not competing concepts.",
+ "sources": [
+  {
+   "id": "vim",
+   "kind": "standard",
+   "title": "JCGM 200:2012 International vocabulary of metrology (measurand 2.3, influence quantity 2.52, compatibility 2.47)"
+  },
+  {
+   "id": "iadopt",
+   "kind": "standard",
+   "title": "I-ADOPT framework 1.1.0 (property, object of interest, constraint, statistical modifier)"
+  },
+  {
+   "id": "eu_2019_2017",
+   "kind": "regulation",
+   "title": "Regulation (EU) 2019/2017 dishwasher energy labelling, Annex I definitions (cycle, programme, eco programme energy per cycle)"
+  },
+  {
+   "id": "aham_ac1",
+   "kind": "standard",
+   "title": "ANSI/AHAM AC-1-2020 portable air cleaners (CADR by challenge, chamber conditions, valid range)"
+  },
+  {
+   "id": "iec_60704",
+   "kind": "standard",
+   "title": "IEC 60704 household appliance airborne acoustical noise (sound power, dB(A) re 1 pW)"
+  },
+  {
+   "id": "ap_pkg",
+   "kind": "owner_package",
+   "title": "Owner research package 04 air purifiers v1.2.0 (teaching, PEE paraphrase in the store)"
+  },
+  {
+   "id": "dw_pkg",
+   "kind": "owner_package",
+   "title": "Owner research package 06 household dishwashers v2.0.0 (teaching, PEE paraphrase in the store)"
+  },
+  {
+   "id": "s87",
+   "kind": "pee_evaluation",
+   "title": "S87b-S87e measurements and blind adjudication (structure of observations; linker conflicts from bundled concepts)"
+  },
+  {
+   "id": "rfc_pkg",
+   "kind": "owner_package",
+   "title": "PEE-CATEGORY-RESEARCH-05 robot floor cleaners v1.0.0, supplement 01 (physics, measurement design)"
+  },
+  {
+   "id": "sb_pkg",
+   "kind": "owner_package",
+   "title": "PEE-CATEGORY-RESEARCH-08 soundbars v1.0.0, supplement 01 (acoustics, signal engineering, test design)"
+  }
+ ],
+ "basisCues": {
+  "note": "Words that STATE the basis (LOINC time aspect) of an extensive value; a unit may state it too (QK kinds energy_per_event, periodic_*). runNamed: words that name a run, programme or task, which license a definition's default per_run basis as an inferred (indefinite null instantiation) slot. A 'per' followed within two words by a runNamed word (per completed task) states per_run.",
+  "per_run": [
+   "per cycle",
+   "per run",
+   "per wash",
+   "per programme",
+   "per program",
+   "per load",
+   "each cycle",
+   "a cycle",
+   "per use",
+   "per task",
+   "per session"
+  ],
+  "per_period": [
+   "per year",
+   "a year",
+   "annual",
+   "annually",
+   "per annum",
+   "per month",
+   "a month",
+   "per week",
+   "a week",
+   "per day",
+   "a day",
+   "daily",
+   "yearly"
+  ],
+  "per_hour": [
+   "per hour",
+   "an hour",
+   "hourly"
+  ],
+  "per_unit": [
+   "per kg",
+   "per portion",
+   "per litre",
+   "per place setting",
+   "per item",
+   "per serving"
+  ],
+  "runNamed": [
+   "cycle",
+   "run",
+   "programme",
+   "program",
+   "wash",
+   "task",
+   "load",
+   "session",
+   "batch"
+  ],
+  "state": "supported",
+  "sources": [
+   "iadopt",
+   "eu_2019_2017",
+   "s87"
+  ]
+ },
+ "nonQkUnitForms": {
+  "note": "Unit classes the quantity-knowledge pack does not hold (S88 gap, recorded): currency and currency per energy. A currency form followed by a period (GBP/yr, £ per year) is currency with a per_period basis.",
+  "currency": [
+   "£",
+   "€",
+   "$",
+   "p",
+   "pence",
+   "gbp",
+   "eur",
+   "usd",
+   "pounds",
+   "euros",
+   "dollars"
+  ],
+  "currency_per_energy": [
+   "p/kwh",
+   "£/kwh",
+   "€/kwh",
+   "$/kwh",
+   "pence per kwh",
+   "per kwh"
+  ],
+  "state": "supported",
+  "sources": [
+   "s87"
+  ]
+ },
+ "conditionDimensions": [
+  {
+   "id": "operating_setting",
+   "qkAxis": "fan_setting",
+   "structure": "operating_setting",
+   "label": "operating setting, mode or speed of the appliance (a drive level stated as a voltage is a setting)",
+   "values": {
+    "top": [
+     "top speed",
+     "highest speed",
+     "max speed",
+     "maximum",
+     "turbo",
+     "boost",
+     "high"
+    ],
+    "lowest": [
+     "lowest speed",
+     "low",
+     "speed 1",
+     "minimum"
+    ],
+    "sleep": [
+     "sleep",
+     "night mode",
+     "quiet mode"
+    ],
+    "standby": [
+     "standby",
+     "off mode"
+    ],
+    "auto": [
+     "auto",
+     "automatic"
+    ],
+    "eco": [
+     "eco mode",
+     "quiet mode setting",
+     "silent mode"
+    ],
+    "standard": [
+     "standard mode",
+     "normal mode",
+     "balanced mode"
+    ],
+    "game": [
+     "game mode",
+     "gaming mode"
+    ],
+    "movie": [
+     "movie mode",
+     "cinema mode"
+    ],
+    "music": [
+     "music mode"
+    ],
+    "dialogue": [
+     "dialogue mode",
+     "voice mode",
+     "speech mode",
+     "clear voice"
+    ]
+   },
+   "cues": [
+    "speed",
+    "mode",
+    "setting",
+    "level",
+    "fan"
+   ],
+   "state": "supported",
+   "sources": [
+    "ap_pkg",
+    "rfc_pkg",
+    "sb_pkg",
+    "vim"
+   ],
+   "valueKinds": [
+    "voltage"
+   ]
+  },
+  {
+   "id": "programme",
+   "qkAxis": "programme",
+   "structure": "operating_setting",
+   "label": "named programme or cycle run",
+   "values": {
+    "eco": [
+     "eco",
+     "eco 40-60",
+     "economy"
+    ],
+    "quick": [
+     "quick",
+     "express",
+     "rapid"
+    ],
+    "intensive": [
+     "intensive",
+     "heavy"
+    ],
+    "auto": [
+     "auto"
+    ],
+    "standard": [
+     "standard",
+     "normal",
+     "main"
+    ]
+   },
+   "cues": [
+    "programme",
+    "program",
+    "cycle",
+    "wash"
+   ],
+   "state": "supported",
+   "sources": [
+    "eu_2019_2017",
+    "dw_pkg"
+   ]
+  },
+  {
+   "id": "load",
+   "structure": "sample_or_challenge",
+   "label": "load or sample processed (amount, composition)",
+   "values": {
+    "full": [
+     "full load",
+     "rated capacity",
+     "fully loaded"
+    ],
+    "half": [
+     "half load",
+     "partial load"
+    ],
+    "empty": [
+     "empty",
+     "no load",
+     "unloaded"
+    ]
+   },
+   "cues": [
+    "load",
+    "place settings",
+    "loaded",
+    "portion",
+    "quantity",
+    "amount",
+    "portions"
+   ],
+   "state": "supported",
+   "sources": [
+    "eu_2019_2017",
+    "dw_pkg"
+   ]
+  },
+  {
+   "id": "challenge_pollutant",
+   "qkAxis": "challenge_pollutant",
+   "structure": "sample_or_challenge",
+   "label": "challenge aerosol or pollutant",
+   "values": {
+    "smoke": [
+     "smoke",
+     "incense",
+     "cigarette smoke"
+    ],
+    "dust": [
+     "dust"
+    ],
+    "pollen": [
+     "pollen"
+    ],
+    "pm2_5": [
+     "pm2.5"
+    ],
+    "pm1": [
+     "pm1"
+    ],
+    "voc": [
+     "voc",
+     "formaldehyde",
+     "odour",
+     "odor"
+    ]
+   },
+   "cues": [
+    "challenge",
+    "pollutant"
+   ],
+   "state": "supported",
+   "sources": [
+    "aham_ac1",
+    "ap_pkg"
+   ]
+  },
+  {
+   "id": "measurement_distance",
+   "qkAxis": "measurement_distance",
+   "structure": "quantity",
+   "label": "microphone or sensor distance",
+   "values": {},
+   "cues": [
+    "away",
+    "distance"
+   ],
+   "state": "supported",
+   "sources": [
+    "vim",
+    "iec_60704"
+   ],
+   "valueKinds": [
+    "length"
+   ]
+  },
+  {
+   "id": "acoustic_quantity",
+   "structure": "method_or_protocol",
+   "label": "sound power (declared, re 1 pW) versus sound pressure (measured at a position)",
+   "values": {
+    "sound_power": [
+     "sound power",
+     "re 1 pw",
+     "lwa",
+     "declared noise"
+    ],
+    "sound_pressure": [
+     "sound pressure",
+     "sound pressure level",
+     "spl"
+    ]
+   },
+   "cues": [
+    "noise",
+    "sound"
+   ],
+   "state": "supported",
+   "sources": [
+    "iec_60704",
+    "dw_pkg"
+   ]
+  },
+  {
+   "id": "filter_condition",
+   "structure": "procedure_state",
+   "label": "filter new, aged or loaded",
+   "values": {
+    "new": [
+     "new filter",
+     "fresh filter"
+    ],
+    "aged": [
+     "aged",
+     "loaded filter",
+     "used filter",
+     "after months"
+    ]
+   },
+   "cues": [
+    "filter"
+   ],
+   "state": "supported",
+   "sources": [
+    "ap_pkg"
+   ]
+  },
+  {
+   "id": "room_volume",
+   "structure": "quantity",
+   "label": "room or chamber size (volume or floor area)",
+   "values": {},
+   "cues": [
+    "room",
+    "chamber",
+    "cu ft",
+    "m3",
+    "sq ft",
+    "m2"
+   ],
+   "state": "supported",
+   "sources": [
+    "aham_ac1",
+    "ap_pkg"
+   ],
+   "valueKinds": [
+    "volume",
+    "area"
+   ]
+  },
+  {
+   "id": "end_point",
+   "structure": "procedure_state",
+   "label": "start and end state of a run (target concentration, dryness, doneness)",
+   "values": {},
+   "cues": [
+    "until",
+    "to zero",
+    "down to",
+    "from",
+    "baseline",
+    "reach",
+    "preheat",
+    "included"
+   ],
+   "state": "candidate",
+   "sources": [
+    "s87"
+   ]
+  },
+  {
+   "id": "soil_or_task",
+   "structure": "sample_or_challenge",
+   "label": "soil type or task processed (food, stain, dish)",
+   "values": {
+    "fine_dust": [
+     "fine dust",
+     "flour",
+     "talc"
+    ],
+    "sand": [
+     "sand"
+    ],
+    "hair": [
+     "hair",
+     "pet hair"
+    ],
+    "cereal": [
+     "cereal",
+     "rice",
+     "oats",
+     "crumbs"
+    ],
+    "stain": [
+     "coffee",
+     "chocolate",
+     "dried stain",
+     "mud",
+     "clay"
+    ]
+   },
+   "cues": [
+    "soil",
+    "stain",
+    "egg",
+    "baked",
+    "burnt",
+    "tea",
+    "starch",
+    "food"
+   ],
+   "state": "candidate",
+   "sources": [
+    "dw_pkg",
+    "rfc_pkg"
+   ]
+  },
+  {
+   "id": "material",
+   "structure": "sample_or_challenge",
+   "label": "material of the load (glass, plastic, ceramic, steel)",
+   "values": {
+    "plastic": [
+     "plastic",
+     "plastics",
+     "tupperware"
+    ],
+    "glass": [
+     "glass",
+     "glasses"
+    ],
+    "ceramic": [
+     "ceramic",
+     "plates",
+     "crockery"
+    ],
+    "steel": [
+     "steel",
+     "cutlery",
+     "pans"
+    ]
+   },
+   "cues": [],
+   "state": "supported",
+   "sources": [
+    "dw_pkg"
+   ]
+  },
+  {
+   "id": "tariff",
+   "structure": "quantity",
+   "label": "energy price used to compute a cost",
+   "values": {},
+   "cues": [
+    "tariff",
+    "per kwh",
+    "p/kwh",
+    "unit rate",
+    "price cap"
+   ],
+   "state": "supported",
+   "sources": [
+    "s87"
+   ],
+   "nonQkUnit": "currency_per_energy"
+  },
+  {
+   "id": "usage_pattern",
+   "structure": "comparison_or_basis",
+   "label": "assumed use behind a periodic figure (hours per day, cycles per week)",
+   "values": {},
+   "cues": [
+    "per day",
+    "a day",
+    "hours a day",
+    "per week",
+    "a week",
+    "times a week",
+    "a year",
+    "usage",
+    "x week",
+    "times per week"
+   ],
+   "state": "candidate",
+   "sources": [
+    "s87"
+   ]
+  },
+  {
+   "id": "method",
+   "qkAxis": "method",
+   "structure": "method_or_protocol",
+   "label": "named standard or publisher method and its edition",
+   "values": {},
+   "cues": [
+    "test",
+    "method",
+    "standard",
+    "protocol",
+    "derived",
+    "calculated",
+    "estimated from"
+   ],
+   "state": "supported",
+   "sources": [
+    "vim",
+    "aham_ac1",
+    "iec_60704",
+    "eu_2019_2017"
+   ]
+  },
+  {
+   "id": "instrument",
+   "structure": "instrument",
+   "label": "instrument used to obtain the value (meter, sensor, counter)",
+   "values": {
+    "power_meter": [
+     "power meter",
+     "energy meter",
+     "plug-in meter",
+     "watt meter",
+     "wattmeter",
+     "plug meter"
+    ],
+    "sound_meter": [
+     "sound meter",
+     "decibel meter",
+     "sound level meter",
+     "db meter"
+    ],
+    "particle_counter": [
+     "particle counter",
+     "air quality monitor",
+     "laser particle counter",
+     "pm2.5 monitor"
+    ],
+    "thermometer": [
+     "thermometer",
+     "probe thermometer",
+     "thermal camera"
+    ],
+    "timer": [
+     "stopwatch",
+     "timer"
+    ],
+    "lab_meter": [
+     "lab meter",
+     "laboratory meter"
+    ]
+   },
+   "cues": [
+    "meter",
+    "sensor",
+    "monitor",
+    "counter",
+    "measured with",
+    "instrument"
+   ],
+   "state": "supported",
+   "sources": [
+    "vim",
+    "s87"
+   ]
+  },
+  {
+   "id": "floor_type",
+   "qkAxis": "floor_type",
+   "structure": "sample_or_challenge",
+   "label": "floor surface the robot cleans (hard floor, carpet pile, crevices)",
+   "values": {
+    "hard_floor": [
+     "hard floor",
+     "hard floors",
+     "tile",
+     "tiles",
+     "laminate",
+     "hardwood",
+     "wood floor",
+     "vinyl"
+    ],
+    "carpet": [
+     "carpet",
+     "rug",
+     "low pile",
+     "medium pile",
+     "high pile",
+     "deep pile",
+     "low-pile",
+     "high-pile"
+    ],
+    "crevice": [
+     "crevice",
+     "crevices",
+     "grout",
+     "cracks"
+    ],
+    "edge": [
+     "edge",
+     "edges",
+     "corner",
+     "corners",
+     "along the wall"
+    ]
+   },
+   "cues": [
+    "floor",
+    "surface"
+   ],
+   "state": "supported",
+   "sources": [
+    "rfc_pkg"
+   ]
+  },
+  {
+   "id": "connection",
+   "structure": "operating_setting",
+   "label": "input connection or audio path (HDMI eARC/ARC, optical, Bluetooth, Wi-Fi)",
+   "values": {
+    "hdmi_earc": [
+     "earc",
+     "hdmi earc"
+    ],
+    "hdmi_arc": [
+     "hdmi arc",
+     "arc"
+    ],
+    "optical": [
+     "optical",
+     "toslink"
+    ],
+    "bluetooth": [
+     "bluetooth"
+    ],
+    "wifi": [
+     "wi-fi",
+     "wifi",
+     "airplay",
+     "chromecast"
+    ],
+    "hdmi": [
+     "hdmi input",
+     "hdmi passthrough"
+    ]
+   },
+   "cues": [
+    "connection",
+    "input",
+    "connected"
+   ],
+   "state": "supported",
+   "sources": [
+    "sb_pkg"
+   ]
+  },
+  {
+   "id": "room_correction",
+   "structure": "procedure_state",
+   "label": "room correction or calibration state of the speaker",
+   "values": {
+    "on": [
+     "room correction on",
+     "after calibration",
+     "calibrated",
+     "room eq on",
+     "with room correction"
+    ],
+    "off": [
+     "room correction off",
+     "without room correction",
+     "uncalibrated",
+     "before calibration"
+    ]
+   },
+   "cues": [
+    "room correction",
+    "calibration",
+    "room eq"
+   ],
+   "state": "supported",
+   "sources": [
+    "sb_pkg"
+   ]
+  },
+  {
+   "id": "response_tolerance",
+   "structure": "method_or_protocol",
+   "label": "tolerance or reference that defines a frequency limit (±3 dB, -6 dB)",
+   "values": {
+    "db3": [
+     "-3 db",
+     "±3 db",
+     "+/-3 db",
+     "3 db down"
+    ],
+    "db6": [
+     "-6 db",
+     "±6 db",
+     "6 db down"
+    ],
+    "db10": [
+     "-10 db",
+     "10 db down"
+    ]
+   },
+   "cues": [
+    "tolerance",
+    "down"
+   ],
+   "state": "supported",
+   "sources": [
+    "sb_pkg"
+   ]
+  },
+  {
+   "id": "listening_position",
+   "structure": "sample_or_challenge",
+   "label": "listening or measuring position relative to the speaker (on-axis, off-axis, seat)",
+   "values": {
+    "on_axis": [
+     "on-axis",
+     "on axis"
+    ],
+    "off_axis": [
+     "off-axis",
+     "off axis",
+     "side seat",
+     "sofa end"
+    ]
+   },
+   "cues": [
+    "axis",
+    "seat",
+    "position"
+   ],
+   "state": "candidate",
+   "sources": [
+    "sb_pkg"
+   ]
+  }
+ ],
+ "properties": [
+  {
+   "id": "energy_consumption",
+   "label": "energy consumption",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "energy",
+     "energy_per_event",
+     "periodic_energy_consumption"
+    ]
+   },
+   "object": "appliance or one run",
+   "basis": {
+    "default": "per_run",
+    "when": "the value is reported for a named run, programme or task",
+    "rule": "an extensive quantity reported for a named run is per that run (EU 2019/2017 Annex I: cycle = the complete process of the selected programme)"
+   },
+   "surface": [
+    [
+     "energy consumption",
+     "supported"
+    ],
+    [
+     "energy use",
+     "supported"
+    ],
+    [
+     "energy usage",
+     "supported"
+    ],
+    [
+     "used",
+     "candidate"
+    ],
+    [
+     "consumed",
+     "candidate"
+    ],
+    [
+     "kwh",
+     "supported"
+    ],
+    [
+     "electricity",
+     "candidate"
+    ],
+    [
+     "energy",
+     "supported"
+    ]
+   ],
+   "conditions": [
+    [
+     "programme",
+     "defining"
+    ],
+    [
+     "load",
+     "defining"
+    ],
+    [
+     "method",
+     "influencing"
+    ],
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "usage_pattern",
+     "defining",
+     {
+      "onlyForBasis": "per_period"
+     }
+    ],
+    [
+     "room_volume",
+     "influencing"
+    ],
+    [
+     "instrument",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "vim",
+    "eu_2019_2017",
+    "dw_pkg",
+    "ap_pkg"
+   ]
+  },
+  {
+   "id": "water_consumption",
+   "label": "water consumption",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "volume",
+     "volume_per_event",
+     "periodic_volume"
+    ]
+   },
+   "object": "one run",
+   "basis": {
+    "default": "per_run",
+    "when": "the value is reported for a named run, programme or task",
+    "rule": "an extensive quantity reported for a named run is per that run"
+   },
+   "surface": [
+    [
+     "water consumption",
+     "supported"
+    ],
+    [
+     "water use",
+     "supported"
+    ],
+    [
+     "water usage",
+     "supported"
+    ],
+    [
+     "litres of water",
+     "supported"
+    ],
+    [
+     "of water",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "programme",
+     "defining"
+    ],
+    [
+     "load",
+     "defining"
+    ],
+    [
+     "method",
+     "influencing"
+    ],
+    [
+     "instrument",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "eu_2019_2017",
+    "dw_pkg"
+   ],
+   "objectNouns": [
+    "water"
+   ]
+  },
+  {
+   "id": "run_duration",
+   "label": "duration of one run or task",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "duration"
+    ]
+   },
+   "object": "one run",
+   "basis": {
+    "default": "per_run",
+    "when": "always",
+    "rule": "a run duration is by definition the duration of one run, task or programme (I-ADOPT: the run is the object; LOINC time aspect = the event)"
+   },
+   "surface": [
+    [
+     "programme duration",
+     "supported"
+    ],
+    [
+     "cycle time",
+     "supported"
+    ],
+    [
+     "run time",
+     "supported"
+    ],
+    [
+     "runtime",
+     "supported"
+    ],
+    [
+     "took",
+     "candidate"
+    ],
+    [
+     "minutes to",
+     "candidate"
+    ],
+    [
+     "time to",
+     "supported"
+    ],
+    [
+     "clean-down",
+     "candidate"
+    ],
+    [
+     "duration",
+     "supported"
+    ],
+    [
+     "how long",
+     "candidate"
+    ],
+    [
+     "time",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "programme",
+     "defining"
+    ],
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "load",
+     "defining"
+    ],
+    [
+     "challenge_pollutant",
+     "defining"
+    ],
+    [
+     "room_volume",
+     "defining"
+    ],
+    [
+     "end_point",
+     "defining"
+    ],
+    [
+     "instrument",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "eu_2019_2017",
+    "dw_pkg",
+    "ap_pkg",
+    "s87"
+   ],
+   "plausibleSi": [
+    1,
+    172800
+   ]
+  },
+  {
+   "id": "electrical_power",
+   "label": "electrical power draw",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "power"
+    ]
+   },
+   "object": "appliance in a stated state",
+   "basis": null,
+   "surface": [
+    [
+     "power consumption",
+     "supported"
+    ],
+    [
+     "power draw",
+     "supported"
+    ],
+    [
+     "watts",
+     "supported"
+    ],
+    [
+     "wattage",
+     "supported"
+    ],
+    [
+     "drew",
+     "candidate"
+    ],
+    [
+     "standby power",
+     "supported"
+    ],
+    [
+     "power",
+     "supported"
+    ]
+   ],
+   "conditions": [
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "programme",
+     "defining"
+    ],
+    [
+     "method",
+     "influencing"
+    ],
+    [
+     "instrument",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "ap_pkg",
+    "dw_pkg"
+   ]
+  },
+  {
+   "id": "sound_level",
+   "label": "sound level",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "sound_pressure_level",
+     "sound_power_level"
+    ],
+    "relatedMetrics": [
+     "eu_label_noise_emission"
+    ]
+   },
+   "object": "appliance in a stated state",
+   "basis": null,
+   "surface": [
+    [
+     "noise level",
+     "supported"
+    ],
+    [
+     "sound level",
+     "supported"
+    ],
+    [
+     "decibels",
+     "supported"
+    ],
+    [
+     "db",
+     "supported"
+    ],
+    [
+     "noise",
+     "supported"
+    ],
+    [
+     "loud",
+     "candidate"
+    ],
+    [
+     "quiet",
+     "candidate"
+    ],
+    [
+     "max volume",
+     "supported"
+    ],
+    [
+     "loudness",
+     "supported"
+    ],
+    [
+     "spl",
+     "supported"
+    ],
+    [
+     "max spl",
+     "supported"
+    ]
+   ],
+   "conditions": [
+    [
+     "acoustic_quantity",
+     "defining"
+    ],
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "programme",
+     "defining"
+    ],
+    [
+     "measurement_distance",
+     "defining"
+    ],
+    [
+     "method",
+     "influencing"
+    ],
+    [
+     "instrument",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "ap_pkg",
+    "dw_pkg",
+    "iec_60704",
+    "rfc_pkg",
+    "sb_pkg"
+   ],
+   "plausibleSi": [
+    10,
+    130
+   ]
+  },
+  {
+   "id": "clean_air_delivery_rate",
+   "label": "clean air delivery rate",
+   "form": "quantity",
+   "quantity": {
+    "metric": "cadr",
+    "kinds": [
+     "volumetric_flow_rate"
+    ],
+    "relatedMetrics": [
+     "free_airflow"
+    ]
+   },
+   "object": "appliance",
+   "basis": null,
+   "surface": [
+    [
+     "cadr",
+     "supported"
+    ],
+    [
+     "clean air delivery rate",
+     "supported"
+    ]
+   ],
+   "conditions": [
+    [
+     "challenge_pollutant",
+     "defining"
+    ],
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "filter_condition",
+     "defining"
+    ],
+    [
+     "method",
+     "influencing"
+    ],
+    [
+     "room_volume",
+     "influencing"
+    ],
+    [
+     "instrument",
+     "influencing"
+    ]
+   ],
+   "methods": [
+    {
+     "id": "aham_ac1",
+     "fixes": {
+      "room_volume": "1008 cu ft chamber"
+     }
+    }
+   ],
+   "state": "supported",
+   "sources": [
+    "aham_ac1",
+    "ap_pkg"
+   ],
+   "objectNouns": [
+    "air",
+    "smoke",
+    "dust",
+    "pollen"
+   ],
+   "plausibleSi": [
+    0.001,
+    2
+   ]
+  },
+  {
+   "id": "pollutant_reduction",
+   "label": "pollutant reduction over a run",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "ratio",
+     "amount_fraction",
+     "mass_concentration"
+    ]
+   },
+   "object": "room air during one run",
+   "basis": {
+    "default": "per_run",
+    "when": "the reduction is reported for a run",
+    "rule": "a reduction reported for a run is per that run"
+   },
+   "surface": [
+    [
+     "reduction",
+     "candidate"
+    ],
+    [
+     "removed",
+     "candidate"
+    ],
+    [
+     "particles",
+     "candidate"
+    ],
+    [
+     "air quality",
+     "candidate"
+    ],
+    [
+     "pm2.5",
+     "supported"
+    ],
+    [
+     "pm1",
+     "supported"
+    ]
+   ],
+   "conditions": [
+    [
+     "challenge_pollutant",
+     "defining"
+    ],
+    [
+     "room_volume",
+     "defining"
+    ],
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "end_point",
+     "defining"
+    ],
+    [
+     "instrument",
+     "influencing"
+    ]
+   ],
+   "state": "candidate",
+   "sources": [
+    "ap_pkg",
+    "s87"
+   ],
+   "objectNouns": [
+    "air",
+    "particle",
+    "particles",
+    "pollutant",
+    "pollutants",
+    "smoke",
+    "pm2.5",
+    "pm1",
+    "pm10",
+    "dust",
+    "pollen",
+    "voc",
+    "vocs",
+    "allergen",
+    "allergens",
+    "odour",
+    "odor"
+   ]
+  },
+  {
+   "id": "running_cost",
+   "label": "running cost",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [],
+    "nonQkUnits": [
+     "currency"
+    ]
+   },
+   "object": "appliance use",
+   "basis": {
+    "default": "unknown",
+    "when": "only when a run or period is named",
+    "rule": "a cost has the basis of the run or period it is stated for; none is assumed"
+   },
+   "surface": [
+    [
+     "running cost",
+     "supported"
+    ],
+    [
+     "cost to run",
+     "supported"
+    ],
+    [
+     "costs",
+     "candidate"
+    ],
+    [
+     "per year",
+     "supported"
+    ],
+    [
+     "a year",
+     "supported"
+    ],
+    [
+     "cost",
+     "supported"
+    ],
+    [
+     "costs to run",
+     "supported"
+    ]
+   ],
+   "conditions": [
+    [
+     "tariff",
+     "defining"
+    ],
+    [
+     "usage_pattern",
+     "defining",
+     {
+      "onlyForBasis": "per_period"
+     }
+    ],
+    [
+     "programme",
+     "defining"
+    ],
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "instrument",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "s87",
+    "dw_pkg",
+    "ap_pkg"
+   ]
+  },
+  {
+   "id": "capacity",
+   "label": "capacity",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "volume",
+     "mass"
+    ],
+    "countNouns": [
+     "place settings",
+     "place setting"
+    ],
+    "relatedMetrics": [
+     "tank_capacity"
+    ]
+   },
+   "object": "appliance or its container",
+   "basis": null,
+   "surface": [
+    [
+     "capacity",
+     "supported"
+    ],
+    [
+     "place settings",
+     "supported"
+    ],
+    [
+     "litres",
+     "candidate"
+    ],
+    [
+     "tank",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "method",
+     "influencing"
+    ],
+    [
+     "instrument",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "dw_pkg",
+    "ap_pkg"
+   ]
+  },
+  {
+   "id": "cleaning_performance",
+   "label": "cleaning result",
+   "form": "judgement",
+   "judgement": {
+    "aspect": [
+     "clean",
+     "cleaning",
+     "stains",
+     "residue",
+     "soil",
+     "spotless",
+     "grime",
+     "food left"
+    ],
+    "higherIsBetter": true
+   },
+   "object": "load after a run",
+   "basis": {
+    "default": "per_run",
+    "when": "always",
+    "rule": "a cleaning result is the outcome of one run"
+   },
+   "surface": [
+    [
+     "cleaning",
+     "supported"
+    ],
+    [
+     "clean",
+     "supported"
+    ],
+    [
+     "stains",
+     "supported"
+    ],
+    [
+     "residue",
+     "supported"
+    ]
+   ],
+   "conditions": [
+    [
+     "programme",
+     "defining"
+    ],
+    [
+     "soil_or_task",
+     "defining"
+    ],
+    [
+     "load",
+     "influencing"
+    ]
+   ],
+   "outcomes": [
+    "cleaning_soil_removal"
+   ],
+   "state": "supported",
+   "sources": [
+    "dw_pkg"
+   ]
+  },
+  {
+   "id": "drying_performance",
+   "label": "drying result",
+   "form": "judgement",
+   "judgement": {
+    "aspect": [
+     "dry",
+     "drying",
+     "wet",
+     "water droplets",
+     "damp"
+    ],
+    "higherIsBetter": true
+   },
+   "object": "load after a run",
+   "basis": {
+    "default": "per_run",
+    "when": "always",
+    "rule": "a drying result is the outcome of one run"
+   },
+   "surface": [
+    [
+     "drying",
+     "supported"
+    ],
+    [
+     "dry",
+     "supported"
+    ],
+    [
+     "wet",
+     "supported"
+    ]
+   ],
+   "conditions": [
+    [
+     "programme",
+     "defining"
+    ],
+    [
+     "material",
+     "defining"
+    ]
+   ],
+   "outcomes": [
+    "drying_by_material"
+   ],
+   "state": "supported",
+   "sources": [
+    "dw_pkg"
+   ]
+  },
+  {
+   "id": "noise_experience",
+   "label": "perceived noise",
+   "form": "judgement",
+   "judgement": {
+    "aspect": [
+     "quiet",
+     "noisy",
+     "loud",
+     "whisper",
+     "hum",
+     "rattle",
+     "beep"
+    ],
+    "higherIsBetter": false
+   },
+   "object": "appliance in use",
+   "basis": null,
+   "surface": [
+    [
+     "quiet",
+     "supported"
+    ],
+    [
+     "noisy",
+     "supported"
+    ],
+    [
+     "loud",
+     "supported"
+    ]
+   ],
+   "conditions": [
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "programme",
+     "defining"
+    ]
+   ],
+   "outcomes": [
+    "quiet_night_operation",
+    "noise_and_acoustic_events"
+   ],
+   "state": "supported",
+   "sources": [
+    "ap_pkg",
+    "dw_pkg"
+   ]
+  },
+  {
+   "id": "air_cleaning_effectiveness",
+   "label": "air cleaning effectiveness",
+   "form": "judgement",
+   "judgement": {
+    "aspect": [
+     "cleaned the air",
+     "air quality",
+     "smoke",
+     "particles",
+     "pm2.5",
+     "cleared",
+     "purif"
+    ],
+    "higherIsBetter": true
+   },
+   "object": "room air",
+   "basis": null,
+   "surface": [
+    [
+     "air quality",
+     "supported"
+    ],
+    [
+     "cleaned",
+     "candidate"
+    ],
+    [
+     "cleared",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "room_volume",
+     "defining"
+    ],
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "challenge_pollutant",
+     "defining"
+    ]
+   ],
+   "outcomes": [
+    "fine_particle_reduction",
+    "allergen_particle_reduction"
+   ],
+   "state": "candidate",
+   "sources": [
+    "ap_pkg"
+   ]
+  },
+  {
+   "id": "suction_pressure",
+   "label": "suction pressure",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "pressure"
+    ],
+    "metric": "robot_suction_pressure"
+   },
+   "object": "fan and intake of the robot",
+   "basis": null,
+   "surface": [
+    [
+     "suction",
+     "supported"
+    ],
+    [
+     "suction power",
+     "supported"
+    ],
+    [
+     "pa",
+     "supported"
+    ],
+    [
+     "kpa",
+     "supported"
+    ],
+    [
+     "pascals",
+     "supported"
+    ]
+   ],
+   "conditions": [
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "method",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "rfc_pkg"
+   ],
+   "objectNouns": [
+    "suction",
+    "vacuum",
+    "robot",
+    "fan"
+   ],
+   "plausibleSi": [
+    100,
+    50000
+   ]
+  },
+  {
+   "id": "debris_pickup",
+   "label": "debris pickup (share of soil recovered)",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "ratio"
+    ],
+    "metric": "robot_debris_pickup"
+   },
+   "object": "soil laid on a floor",
+   "objectNouns": [
+    "debris",
+    "dust",
+    "hair",
+    "sand",
+    "crumbs",
+    "dirt",
+    "cereal",
+    "rice",
+    "soil",
+    "flour"
+   ],
+   "basis": {
+    "default": "per_run",
+    "when": "always",
+    "rule": "pickup is the share recovered in one cleaning run or pass (package 05 §3: per soil type, per pass)"
+   },
+   "surface": [
+    [
+     "pickup",
+     "supported"
+    ],
+    [
+     "picked up",
+     "supported"
+    ],
+    [
+     "debris",
+     "supported"
+    ],
+    [
+     "collected",
+     "candidate"
+    ],
+    [
+     "removed",
+     "candidate"
+    ],
+    [
+     "recovered",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "floor_type",
+     "defining"
+    ],
+    [
+     "soil_or_task",
+     "defining"
+    ],
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "method",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "rfc_pkg"
+   ]
+  },
+  {
+   "id": "coverage",
+   "label": "coverage (share of eligible floor area traversed)",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "ratio"
+    ]
+   },
+   "object": "eligible floor area of a room",
+   "objectNouns": [
+    "area",
+    "floor",
+    "room",
+    "map"
+   ],
+   "basis": {
+    "default": "per_run",
+    "when": "always",
+    "rule": "coverage is the share traversed in one mission (package 05 §2)"
+   },
+   "surface": [
+    [
+     "coverage",
+     "supported"
+    ],
+    [
+     "covered",
+     "supported"
+    ],
+    [
+     "area covered",
+     "supported"
+    ],
+    [
+     "missed",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "method",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "rfc_pkg"
+   ]
+  },
+  {
+   "id": "battery_runtime",
+   "label": "battery runtime on one charge",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "duration"
+    ]
+   },
+   "object": "battery charge of a cordless device",
+   "basis": {
+    "default": "per_unit",
+    "when": "always",
+    "rule": "a runtime is per full charge (package 05 §2: mission duration under a mode)"
+   },
+   "surface": [
+    [
+     "battery life",
+     "supported"
+    ],
+    [
+     "on a charge",
+     "supported"
+    ],
+    [
+     "per charge",
+     "supported"
+    ],
+    [
+     "on a single charge",
+     "supported"
+    ],
+    [
+     "battery",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "floor_type",
+     "influencing"
+    ],
+    [
+     "method",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "rfc_pkg"
+   ],
+   "objectNouns": [
+    "battery",
+    "charge",
+    "cordless"
+   ],
+   "plausibleSi": [
+    60,
+    172800
+   ]
+  },
+  {
+   "id": "battery_capacity",
+   "label": "battery capacity",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "electric_charge",
+     "energy"
+    ]
+   },
+   "object": "battery",
+   "basis": null,
+   "surface": [
+    [
+     "battery capacity",
+     "supported"
+    ],
+    [
+     "battery",
+     "supported"
+    ],
+    [
+     "mah",
+     "supported"
+    ]
+   ],
+   "conditions": [
+    [
+     "method",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "rfc_pkg"
+   ]
+  },
+  {
+   "id": "obstacle_height",
+   "label": "climbable obstacle or threshold height",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "length"
+    ]
+   },
+   "object": "obstacle, threshold or rug edge",
+   "objectNouns": [
+    "obstacle",
+    "threshold",
+    "step",
+    "sill",
+    "rug",
+    "edge",
+    "bump",
+    "cable",
+    "climb"
+   ],
+   "basis": null,
+   "surface": [
+    [
+     "climb",
+     "supported"
+    ],
+    [
+     "climbs",
+     "supported"
+    ],
+    [
+     "obstacle",
+     "supported"
+    ],
+    [
+     "threshold",
+     "supported"
+    ],
+    [
+     "clearance",
+     "candidate"
+    ],
+    [
+     "height",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "method",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "rfc_pkg"
+   ],
+   "plausibleSi": [
+    0,
+    0.2
+   ]
+  },
+  {
+   "id": "cleaned_area",
+   "label": "area cleaned (per charge or per run)",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "area"
+    ]
+   },
+   "object": "floor",
+   "basis": {
+    "default": "per_run",
+    "when": "always",
+    "rule": "an area cleaned is per mission or per charge"
+   },
+   "surface": [
+    [
+     "cleaned",
+     "supported"
+    ],
+    [
+     "cleans up to",
+     "supported"
+    ],
+    [
+     "coverage area",
+     "supported"
+    ],
+    [
+     "area",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "method",
+     "influencing"
+    ]
+   ],
+   "state": "candidate",
+   "sources": [
+    "rfc_pkg"
+   ]
+  },
+  {
+   "id": "frequency_response",
+   "label": "frequency response limit (low or high frequency extension)",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "frequency"
+    ]
+   },
+   "object": "acoustic output of the speaker system",
+   "basis": null,
+   "surface": [
+    [
+     "frequency response",
+     "supported"
+    ],
+    [
+     "low-frequency extension",
+     "supported"
+    ],
+    [
+     "bass extension",
+     "supported"
+    ],
+    [
+     "extends down to",
+     "supported"
+    ],
+    [
+     "low-bass",
+     "candidate"
+    ],
+    [
+     "bass",
+     "candidate"
+    ],
+    [
+     "hz",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "response_tolerance",
+     "defining"
+    ],
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "room_correction",
+     "defining"
+    ],
+    [
+     "listening_position",
+     "influencing"
+    ],
+    [
+     "measurement_distance",
+     "influencing"
+    ],
+    [
+     "method",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "sb_pkg"
+   ],
+   "objectNouns": [
+    "bass",
+    "treble",
+    "response",
+    "acoustic output",
+    "sound output",
+    "low end",
+    "highs",
+    "lows",
+    "mids",
+    "subwoofer"
+   ],
+   "plausibleSi": [
+    5,
+    40000
+   ]
+  },
+  {
+   "id": "audio_latency",
+   "label": "audio latency or audio-video offset",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "duration"
+    ]
+   },
+   "object": "audio path from input to sound",
+   "basis": null,
+   "surface": [
+    [
+     "latency",
+     "supported"
+    ],
+    [
+     "lag",
+     "supported"
+    ],
+    [
+     "lip sync",
+     "supported"
+    ],
+    [
+     "lip-sync",
+     "supported"
+    ],
+    [
+     "delay",
+     "supported"
+    ],
+    [
+     "a/v sync",
+     "supported"
+    ]
+   ],
+   "conditions": [
+    [
+     "connection",
+     "defining"
+    ],
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "method",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "sb_pkg"
+   ],
+   "objectNouns": [
+    "audio",
+    "sound",
+    "lip",
+    "lip-sync",
+    "bluetooth audio",
+    "dialogue"
+   ],
+   "plausibleSi": [
+    0,
+    2
+   ]
+  },
+  {
+   "id": "amplifier_power",
+   "label": "amplifier output power rating",
+   "form": "quantity",
+   "quantity": {
+    "kinds": [
+     "power"
+    ]
+   },
+   "object": "amplifier channels (a rating, not sound produced)",
+   "basis": null,
+   "surface": [
+    [
+     "output power",
+     "supported"
+    ],
+    [
+     "amplifier",
+     "supported"
+    ],
+    [
+     "rms",
+     "supported"
+    ],
+    [
+     "total power",
+     "supported"
+    ],
+    [
+     "peak power",
+     "supported"
+    ],
+    [
+     "watts of power",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "method",
+     "defining"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "sb_pkg"
+   ]
+  },
+  {
+   "id": "dialogue_clarity",
+   "label": "dialogue clarity",
+   "form": "judgement",
+   "judgement": {
+    "aspect": [
+     "dialogue",
+     "voices",
+     "speech",
+     "vocals",
+     "intelligib",
+     "clarity"
+    ],
+    "higherIsBetter": true
+   },
+   "object": "speech in programme sound",
+   "basis": null,
+   "surface": [
+    [
+     "dialogue",
+     "supported"
+    ],
+    [
+     "voices",
+     "supported"
+    ],
+    [
+     "speech",
+     "supported"
+    ],
+    [
+     "clarity",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "listening_position",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "sb_pkg"
+   ]
+  },
+  {
+   "id": "bass_quality",
+   "label": "bass quality",
+   "form": "judgement",
+   "judgement": {
+    "aspect": [
+     "bass",
+     "low end",
+     "boomy",
+     "rumble",
+     "thump",
+     "subwoofer"
+    ],
+    "higherIsBetter": true
+   },
+   "object": "low-frequency output",
+   "basis": null,
+   "surface": [
+    [
+     "bass",
+     "supported"
+    ],
+    [
+     "low end",
+     "supported"
+    ],
+    [
+     "subwoofer",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "room_correction",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "sb_pkg"
+   ]
+  },
+  {
+   "id": "spatial_immersion",
+   "label": "spatial immersion (surround and height effects)",
+   "form": "judgement",
+   "judgement": {
+    "aspect": [
+     "atmos",
+     "surround",
+     "height",
+     "immersive",
+     "spatial",
+     "soundstage",
+     "envelop"
+    ],
+    "higherIsBetter": true
+   },
+   "object": "spatial sound in the listening room",
+   "basis": null,
+   "surface": [
+    [
+     "surround",
+     "supported"
+    ],
+    [
+     "atmos",
+     "supported"
+    ],
+    [
+     "immersive",
+     "supported"
+    ],
+    [
+     "soundstage",
+     "supported"
+    ],
+    [
+     "height",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "operating_setting",
+     "defining"
+    ],
+    [
+     "listening_position",
+     "defining"
+    ],
+    [
+     "connection",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "sb_pkg"
+   ]
+  },
+  {
+   "id": "navigation_performance",
+   "label": "navigation and obstacle avoidance",
+   "form": "judgement",
+   "judgement": {
+    "aspect": [
+     "obstacle",
+     "avoid",
+     "navigation",
+     "mapping",
+     "stuck",
+     "bump",
+     "collid",
+     "cables",
+     "socks"
+    ],
+    "higherIsBetter": true
+   },
+   "object": "robot moving through a home",
+   "basis": null,
+   "surface": [
+    [
+     "navigation",
+     "supported"
+    ],
+    [
+     "obstacle",
+     "supported"
+    ],
+    [
+     "avoidance",
+     "supported"
+    ],
+    [
+     "mapping",
+     "supported"
+    ],
+    [
+     "stuck",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "floor_type",
+     "influencing"
+    ],
+    [
+     "method",
+     "influencing"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "rfc_pkg"
+   ]
+  },
+  {
+   "id": "mopping_performance",
+   "label": "mopping result",
+   "form": "judgement",
+   "judgement": {
+    "aspect": [
+     "mop",
+     "mopping",
+     "stain",
+     "streak",
+     "smear",
+     "wet"
+    ],
+    "higherIsBetter": true
+   },
+   "object": "hard floor after wet cleaning",
+   "basis": {
+    "default": "per_run",
+    "when": "always",
+    "rule": "a mopping result is the outcome of one run (package 05 §4)"
+   },
+   "surface": [
+    [
+     "mopping",
+     "supported"
+    ],
+    [
+     "mop",
+     "supported"
+    ],
+    [
+     "stains",
+     "candidate"
+    ],
+    [
+     "streaks",
+     "candidate"
+    ]
+   ],
+   "conditions": [
+    [
+     "floor_type",
+     "defining"
+    ],
+    [
+     "soil_or_task",
+     "defining"
+    ],
+    [
+     "operating_setting",
+     "defining"
+    ]
+   ],
+   "state": "supported",
+   "sources": [
+    "rfc_pkg"
+   ]
+  }
+ ],
+ "profiles": [
+  {
+   "category": "air_purifiers",
+   "properties": [
+    "clean_air_delivery_rate",
+    "electrical_power",
+    "sound_level",
+    "run_duration",
+    "pollutant_reduction",
+    "running_cost",
+    "energy_consumption",
+    "noise_experience",
+    "air_cleaning_effectiveness",
+    "capacity"
+   ],
+   "relevance": {
+    "run_duration": {
+     "room_volume": "defining",
+     "challenge_pollutant": "defining",
+     "programme": "irrelevant"
+    },
+    "electrical_power": {
+     "programme": "irrelevant"
+    },
+    "sound_level": {
+     "programme": "irrelevant"
+    },
+    "running_cost": {
+     "programme": "irrelevant"
+    },
+    "energy_consumption": {
+     "programme": "irrelevant"
+    },
+    "noise_experience": {
+     "programme": "irrelevant"
+    }
+   },
+   "state": "supported",
+   "sources": [
+    "ap_pkg"
+   ]
+  },
+  {
+   "category": "dishwashers",
+   "properties": [
+    "energy_consumption",
+    "water_consumption",
+    "run_duration",
+    "sound_level",
+    "electrical_power",
+    "running_cost",
+    "capacity",
+    "cleaning_performance",
+    "drying_performance",
+    "noise_experience"
+   ],
+   "relevance": {
+    "run_duration": {
+     "room_volume": "irrelevant",
+     "challenge_pollutant": "irrelevant"
+    },
+    "energy_consumption": {
+     "operating_setting": "irrelevant"
+    },
+    "electrical_power": {
+     "operating_setting": "irrelevant"
+    },
+    "sound_level": {
+     "operating_setting": "irrelevant"
+    },
+    "running_cost": {
+     "operating_setting": "irrelevant"
+    }
+   },
+   "state": "supported",
+   "sources": [
+    "dw_pkg",
+    "eu_2019_2017"
+   ]
+  },
+  {
+   "category": "robot_floor_cleaners",
+   "properties": [
+    "suction_pressure",
+    "debris_pickup",
+    "coverage",
+    "battery_runtime",
+    "battery_capacity",
+    "obstacle_height",
+    "cleaned_area",
+    "capacity",
+    "sound_level",
+    "energy_consumption",
+    "run_duration",
+    "electrical_power",
+    "navigation_performance",
+    "mopping_performance",
+    "cleaning_performance",
+    "noise_experience"
+   ],
+   "relevance": {
+    "run_duration": {
+     "challenge_pollutant": "irrelevant",
+     "room_volume": "irrelevant",
+     "programme": "irrelevant",
+     "load": "irrelevant"
+    },
+    "sound_level": {
+     "programme": "irrelevant"
+    },
+    "energy_consumption": {
+     "programme": "irrelevant",
+     "load": "irrelevant",
+     "room_volume": "irrelevant"
+    },
+    "electrical_power": {
+     "programme": "irrelevant"
+    },
+    "cleaning_performance": {
+     "programme": "irrelevant"
+    }
+   },
+   "state": "supported",
+   "sources": [
+    "rfc_pkg"
+   ]
+  },
+  {
+   "category": "soundbars",
+   "properties": [
+    "sound_level",
+    "frequency_response",
+    "audio_latency",
+    "electrical_power",
+    "amplifier_power",
+    "energy_consumption",
+    "dialogue_clarity",
+    "bass_quality",
+    "spatial_immersion"
+   ],
+   "relevance": {
+    "sound_level": {
+     "programme": "irrelevant"
+    },
+    "electrical_power": {
+     "programme": "irrelevant"
+    },
+    "energy_consumption": {
+     "programme": "irrelevant",
+     "load": "irrelevant",
+     "room_volume": "irrelevant"
+    }
+   },
+   "state": "supported",
+   "sources": [
+    "sb_pkg"
+   ]
+  }
+ ],
+ "history": [
+  {
+   "version": "pd.1",
+   "note": "air purifiers and dishwashers (development); S88 fix1"
+  },
+  {
+   "version": "pd.2",
+   "note": "S88 E4: robot floor cleaners and soundbars authored from owner packages 05 and 08 (supplement 01 only) BEFORE any document of these categories was read in S88; hash-sealed in evaluation/s88/e4-definitions-freeze.json"
+  },
+  {
+   "version": "pd.3",
+   "note": "S89 (owner review of S88): known objects (I-ADOPT object of interest: a value naming another concept's object is not this property's) and plausible SI ranges (SHACL-style value constraints); profile licence removed by default"
+  },
+  {
+   "version": "pd.4",
+   "note": "S90 (owner review of S89): document sections as knowledge (which headings announce specifications, the publisher's own tests, comparisons or quoted sources); the evidence role of a value is inherited from its structure first"
+  },
+  {
+   "version": "pd.5",
+   "note": "S91 (owner review of S90): measurement cues as data (observation verbs); the evidence role comes from positive evidence for each class, never from a default"
+  },
+  {
+   "version": "pd.6",
+   "note": "S98 (owner decision 2026-10-20): known objects may state the QK metrics whose object of interest they are (I-ADOPT object stated, never inferred from a name). 'display' is the object of the five display metrics (peak luminance, refresh rate, input lag, colour gamut coverage, colour error), which are display metrics by their QK definition. The S89 note 'not the object of any defined property' becomes a derived condition: a known object owned by a loaded definition is that definition's object, not another concept's."
+  },
+  {
+   "version": "pd.7",
+   "note": "S99 (owner review of S98, 2026-10-20): statementRoles (norm and target cues of a value's clause) so that a value a standard or a test target states is never read as the product's result; bounds come from the shared quantity-knowledge bound words."
+  },
+  {
+   "version": "pd.8",
+   "note": "S100 (owner review of S99, rule governance): reference nouns for the value-scope reference relation; threshold and norm cue lists no longer duplicate the quantity knowledge's bound words or name judgements (rule audit findings F2, F3). Statement roles are decided by the observation_semantics rules, not by cue order."
+  },
+  {
+   "version": "pd.9",
+   "note": "S100 development (spent S89-S99 material): 'performance', 'battery life' and 'noise' name aspects, not tests; as section words they announced a publisher test over declared values (12 of 26 section-decided roles wrong). They no longer count as test headings."
+  },
+  {
+   "version": "pd.10",
+   "note": "S102 (rule-ownership audit, lost-attribution census): 'spec', 'data sheet', 'datasheet', 'technical data' and 'technical details' announce a specification section (headings such as 'Spec:', 'Product spec:' and 'Data sheet <product>' were not recognised, so 19 declared values abstained). General section vocabulary, no page rule. 'when measuring' and 'while measuring' report the publisher's measurement (evidenceCues.measurement)."
+  }
+ ],
+ "knownObjects": {
+  "note": "Objects that are not the object of any defined property but recur next to numbers. A value whose own words name one of them, and none of the candidate property's object nouns, is not attributed to that property (it may belong to an undefined concept, which stays unknown). S98: an object may state the QK metrics it is the object of (metrics); a definition of such a metric then owns the object, and the block applies only to the definitions that do not.",
+  "objects": [
+   {
+    "id": "video_signal",
+    "nouns": [
+     "hdmi",
+     "4k",
+     "8k",
+     "fps",
+     "refresh",
+     "passthrough",
+     "pass-through",
+     "vrr",
+     "video",
+     "frame rate",
+     "resolution",
+     "hdr"
+    ],
+    "sources": [
+     "sb_pkg"
+    ]
+   },
+   {
+    "id": "product_body",
+    "nouns": [
+     "tall",
+     "wide",
+     "deep",
+     "dimensions",
+     "measures",
+     "weighs",
+     "weight",
+     "footprint",
+     "height of the robot",
+     "profile"
+    ],
+    "sources": [
+     "iadopt"
+    ]
+   },
+   {
+    "id": "commerce",
+    "nouns": [
+     "price",
+     "discount",
+     "off",
+     "deal",
+     "save",
+     "savings",
+     "sale",
+     "warranty",
+     "guarantee",
+     "subscription"
+    ],
+    "sources": [
+     "s87"
+    ]
+   },
+   {
+    "id": "time_span",
+    "nouns": [
+     "years",
+     "months",
+     "ago",
+     "since",
+     "launched",
+     "released",
+     "experience"
+    ],
+    "sources": [
+     "s87"
+    ]
+   },
+   {
+    "id": "display",
+    "nouns": [
+     "screen",
+     "tv",
+     "television",
+     "display",
+     "panel"
+    ],
+    "sources": [
+     "s87"
+    ],
+    "metrics": [
+     "peak_luminance",
+     "display_refresh_rate",
+     "input_lag",
+     "colour_gamut_coverage",
+     "display_colour_error"
+    ]
+   }
+  ],
+  "state": "candidate",
+  "sources": [
+   "iadopt",
+   "s87"
+  ]
+ },
+ "documentSections": {
+  "note": "Words in a section heading that announce what the section's values are. A value in a specification section is a declaration unless its own sentence states a measurement; a value in a test section is the publisher's own result unless its sentence states otherwise. Document structure, not property knowledge; kept as data so a correction propagates.",
+  "specification": [
+   "specification",
+   "specifications",
+   "specs",
+   "spec sheet",
+   "key specs",
+   "tech specs",
+   "technical specifications",
+   "key features",
+   "features",
+   "at a glance",
+   "in the box",
+   "what's in the box",
+   "product details",
+   "details",
+   "price and availability",
+   "price & availability",
+   "spec",
+   "data sheet",
+   "datasheet",
+   "technical data",
+   "technical details"
+  ],
+  "test": [
+   "test",
+   "tests",
+   "tested",
+   "testing",
+   "results",
+   "benchmark",
+   "benchmarks",
+   "measurements",
+   "measured",
+   "how i tested",
+   "how we tested",
+   "how we test",
+   "test bench",
+   "lab",
+   "in use",
+   "real-world",
+   "vacuuming tests",
+   "mopping tests"
+  ],
+  "comparison": [
+   "compare",
+   "compares",
+   "comparison",
+   "versus",
+   "vs",
+   "alternatives",
+   "how does it compare",
+   "should you buy",
+   "competition"
+  ],
+  "state": "candidate",
+  "sources": [
+   "s87",
+   "iadopt"
+  ]
+ },
+ "evidenceCues": {
+  "note": "Provenance cues in the value's own clause. A clause that attributes a capability or component to the product (has, equipped with, boasts, rated) without a measuring verb describes a specification (a declaration); measuring verbs are the S86c classifier's. Only applied when the sentence classifier found no other role. Measurement cues: verbs that report what the product did in use (lasted, completed, maxed); combined with the instrument dimension and the document's own testing they are positive evidence of an original measurement.",
+  "declaration": [
+   "has",
+   "have",
+   "with a",
+   "equipped with",
+   "comes with",
+   "boasts",
+   "packs",
+   "features",
+   "featuring",
+   "offers",
+   "houses",
+   "housing",
+   "includes",
+   "rated",
+   "rated at",
+   "claimed",
+   "claims",
+   "promises",
+   "advertised",
+   "quoted at",
+   "up to",
+   "official",
+   "officially",
+   "according to",
+   "produces",
+   "delivers",
+   "adds",
+   "sports",
+   "gets",
+   "provides",
+   "is rated",
+   "rated for",
+   "spec",
+   "specs",
+   "stated",
+   "listed"
+  ],
+  "state": "candidate",
+  "sources": [
+   "s87",
+   "iadopt"
+  ],
+  "measurement": [
+   "maxed",
+   "maxed out",
+   "peaked",
+   "lasted",
+   "completed",
+   "finished",
+   "took",
+   "ran for",
+   "managed",
+   "reached",
+   "dropped",
+   "recorded",
+   "measured",
+   "registered",
+   "hit",
+   "clocked",
+   "cleaned",
+   "covered",
+   "mapped",
+   "averaged",
+   "topped out",
+   "came in at",
+   "logged",
+   "metered",
+   "when measuring",
+   "while measuring"
+  ]
+ },
+ "statementRoles": {
+  "note": "S99 (owner review 2026-10-20, verbatim in owner-review-s98-semantic-integrity-2026-10-20.md): the role of the statement a value sits in, decided before the value is attributed to a product. A measured quantity value (VIM 2.10) is not a specification limit or a maximum permissible value (VIM 4.26): a value a standard, regulation or guideline sets (norm) and a value a test or a buyer aims at (target) are never the product's result. Cues are matched in the value's own clause only. A bound ('under 45 dB', 'at least 30 cm') comes from the quantity knowledge's bound words (shared with request requirements). Words that state a recommendation about the product itself ('recommended room size') are deliberately absent: they describe the product, not a norm. pd.7 rev (S99 dev it2): norm cues are phrases that name an external rule ('the standard', 'requirements', 'a guideline'), never when a mode, setting or level word follows ('standard mode'); a bounded value with positive evidence of a result or specification is a bounded result or specification of the product, and a threshold is a bound in a generic or sufficiency claim ('anything under 45 dB', 'quiet enough'). pd.8 (S100 rule audit): a value that modifies a reference noun ('the 44 dB standard', 'the 80-decibel mark') is that reference (referenceNouns: norm or threshold), read at value scope; 'or less/or more' are bound words of the quantity knowledge, not threshold cues, and 'is considered'/'counts as' state a judgement, not a norm.",
+  "norm": [
+   "standard",
+   "an industry standard",
+   "industry standard",
+   "standards",
+   "requirement",
+   "requirements",
+   "required by",
+   "regulation",
+   "regulations",
+   "regulatory limit",
+   "guideline",
+   "guidelines",
+   "legal limit",
+   "limit set by",
+   "limits set by",
+   "rule of thumb",
+   "criteria",
+   "to qualify",
+   "certification requires",
+   "recommended by"
+  ],
+  "target": [
+   "target",
+   "targets",
+   "aim for",
+   "aims for",
+   "aiming for",
+   "aimed for",
+   "goal",
+   "objective",
+   "ideally",
+   "should be",
+   "should stay",
+   "should not exceed",
+   "needs to be",
+   "need to be",
+   "look for",
+   "we wanted",
+   "set out to"
+  ],
+  "state": "candidate",
+  "sources": [
+   "vim",
+   "s87"
+  ],
+  "notNormAfter": [
+   "mode",
+   "modes",
+   "setting",
+   "settings",
+   "speed",
+   "speeds",
+   "program",
+   "programme",
+   "cycle",
+   "level",
+   "version",
+   "edition",
+   "model",
+   "models",
+   "fit",
+   "size",
+   "sizes",
+   "package",
+   "option",
+   "feature",
+   "features",
+   "equipment",
+   "accessory",
+   "accessories",
+   "filter",
+   "plan",
+   "warranty",
+   "obstacle",
+   "obstacles"
+  ],
+  "threshold": [
+   "anything",
+   "everything",
+   "any model",
+   "any unit",
+   "all models",
+   "most models",
+   "enough"
+  ],
+  "referenceNouns": {
+   "norm": [
+    "standard",
+    "standards",
+    "requirement",
+    "requirements",
+    "regulation",
+    "regulations",
+    "guideline",
+    "guidelines",
+    "limit",
+    "limits",
+    "legal limit",
+    "cap"
+   ],
+   "threshold": [
+    "mark",
+    "threshold",
+    "barrier",
+    "ceiling",
+    "benchmark",
+    "line",
+    "cutoff",
+    "cut-off"
+   ]
+  }
+ }
+}

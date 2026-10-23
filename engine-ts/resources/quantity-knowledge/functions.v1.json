@@ -1,0 +1,1211 @@
+{
+ "schema": "pee.product-functions.v1",
+ "version": "pf.2",
+ "statement": "FC (2026-10-18): reading vocabulary for what a product can do (functions), with what (components) and in which state (operating modes and settings), kept apart from metrics, results and qualitative observations. PEE's reading vocabulary (source 'pee'), never product facts. A function's presence is categorical (available / not available / not verified) and never evidence of how well it works; the evidence that would show effectiveness is named per function. pf.2 (2026-10-18, after the first run): a mode with a purpose realises a function (laundry mode realises laundry drying), and a statement about how a component or a mode behaves is evidence about the function it enables or realises.",
+ "sources": [
+  {
+   "id": "pee",
+   "title": "PEE reading vocabulary",
+   "use": "terms and cues"
+  },
+  {
+   "id": "jcgm_vim",
+   "title": "JCGM 200:2012 International vocabulary of metrology (VIM), 3rd edition",
+   "url": "https://www.bipm.org/en/committees/jc/jcgm/publications",
+   "use": "measurand (2.3), influence quantity (2.52), rated operating condition (4.9), reference operating condition (4.11): a setting under which a value is obtained is part of the measurement's specification, not of the metric"
+  },
+  {
+   "id": "w3c_sosa_ssn",
+   "title": "W3C/OGC Semantic Sensor Network Ontology (SOSA/SSN)",
+   "url": "https://www.w3.org/TR/vocab-ssn/",
+   "use": "Observation (made by a Procedure, has a Result, observes a Property of a FeatureOfInterest) is distinct from Actuation (an Actuator acts on a Property): a mode is an actuation state, a result an observation"
+  },
+  {
+   "id": "schema_org",
+   "title": "Schema.org PropertyValue, QualitativeValue, QuantitativeValue, valueReference",
+   "url": "https://schema.org/PropertyValue",
+   "use": "categorical (qualitative, enumerated) values are distinct from quantitative values with units; valueReference carries the context of a value"
+  },
+  {
+   "id": "energystar_air_cleaner",
+   "title": "ENERGY STAR Room Air Cleaners specification and test method",
+   "url": "https://www.energystar.gov/products/room_air_cleaners",
+   "use": "purifiers are evaluated by CADR, power and efficiency under defined methods; a feature's presence is not part of the performance evaluation"
+  }
+ ],
+ "classes": [
+  {
+   "id": "function",
+   "statement": "something the product can do; presence is categorical (available, not_available, not_verified) and comes with who states it",
+   "source": "pee"
+  },
+  {
+   "id": "component",
+   "statement": "a physical part that may enable a function or serve a property; its presence does not establish the function or its effectiveness",
+   "source": "w3c_sosa_ssn"
+  },
+  {
+   "id": "mode",
+   "statement": "a selectable operating state or setting (an actuation state): nominal (sleep, turbo), ordinal (speed 1 of 4, lowest), a numeric setting (60 °C) or a programme (Eco); two mode names are the same state only when a document states it for that product",
+   "source": "w3c_sosa_ssn"
+  },
+  {
+   "id": "test_condition",
+   "statement": "a condition under which a value was obtained: an operating mode, a test material, the environment or the procedure",
+   "source": "jcgm_vim"
+  },
+  {
+   "id": "metric",
+   "statement": "a measurable quantity defined by a method (CADR, A-weighted sound level at a distance); held in the quantity knowledge",
+   "source": "jcgm_vim"
+  },
+  {
+   "id": "result",
+   "statement": "a value of a metric for a product under stated conditions, with its evidence class",
+   "source": "w3c_sosa_ssn"
+  },
+  {
+   "id": "observation",
+   "statement": "an expert qualitative statement (structured qualitative evidence); a function's availability is not an observation",
+   "source": "pee"
+  }
+ ],
+ "functions": [
+  {
+   "id": "auto_mode",
+   "label": "automatic control from a sensor",
+   "terms": [
+    "auto mode",
+    "auto-mode",
+    "automatic mode",
+    "auto setting",
+    "auto function",
+    "smart mode",
+    "adjusts the fan speed automatically",
+    "adjusts its fan speed automatically"
+   ],
+   "sensorBased": true,
+   "effectiveness": [
+    {
+     "what": "response_time",
+     "cues": [
+      "kick in",
+      "kicked in",
+      "kicks in",
+      "react",
+      "reacted",
+      "reacts",
+      "respond",
+      "responded",
+      "responds",
+      "responsive",
+      "quick to",
+      "slow to",
+      "ramped up",
+      "ramps up"
+     ]
+    },
+    {
+     "what": "air_quality_reached",
+     "cues": [
+      "back to",
+      "returned to",
+      "brought",
+      "cleared",
+      "reached",
+      "levels",
+      "pm2.5",
+      "pm1"
+     ]
+    },
+    {
+     "what": "oscillation",
+     "cues": [
+      "oscillat",
+      "fluctuat",
+      "up and down",
+      "constantly",
+      "hunting",
+      "kept changing",
+      "jumps"
+     ]
+    },
+    {
+     "what": "energy",
+     "metricKinds": [
+      "power",
+      "energy"
+     ]
+    }
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "air_quality_indicator",
+   "label": "air-quality indicator or display",
+   "terms": [
+    "air quality indicator",
+    "air-quality indicator",
+    "air quality display",
+    "air quality light",
+    "air quality reading",
+    "air quality readings",
+    "pm2.5 display",
+    "pm2.5 reading",
+    "pm2.5 readout",
+    "air quality ring",
+    "colour-coded light",
+    "color-coded light"
+   ],
+   "sensorBased": true,
+   "effectiveness": [
+    {
+     "what": "accuracy",
+     "cues": [
+      "accurate",
+      "inaccurate",
+      "accuracy",
+      "matched",
+      "agreed",
+      "reference monitor",
+      "lags"
+     ]
+    }
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "filter_change_indicator",
+   "label": "filter-change indicator",
+   "terms": [
+    "filter change indicator",
+    "filter replacement indicator",
+    "filter life indicator",
+    "filter reminder",
+    "filter indicator",
+    "filter alert",
+    "replace filter light",
+    "filter change light"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "timer",
+   "label": "timer",
+   "terms": [
+    "timer",
+    "shut-off timer",
+    "off timer",
+    "countdown timer",
+    "sleep timer"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "delay_start",
+   "label": "delay start",
+   "terms": [
+    "delay start",
+    "delayed start",
+    "delay-start",
+    "delay end",
+    "start delay",
+    "delay timer"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "app_control",
+   "label": "app or Wi-Fi control",
+   "terms": [
+    "app control",
+    "smartphone app",
+    "companion app",
+    "mobile app",
+    "app support",
+    "smart app",
+    "wi-fi",
+    "wifi",
+    "app"
+   ],
+   "sensorBased": false,
+   "effectiveness": [
+    {
+     "what": "reliability",
+     "cues": [
+      "reliable",
+      "unreliable",
+      "drops",
+      "dropped",
+      "disconnect",
+      "glitch",
+      "buggy",
+      "laggy",
+      "lost connection"
+     ]
+    }
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "voice_control",
+   "label": "voice-assistant control",
+   "terms": [
+    "alexa",
+    "google assistant",
+    "voice control",
+    "voice assistant",
+    "siri",
+    "google home"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "child_lock",
+   "label": "child or control lock",
+   "terms": [
+    "child lock",
+    "child-lock",
+    "control lock",
+    "button lock",
+    "lock function",
+    "child safety lock",
+    "panel lock",
+    "childproof lock"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "display_off",
+   "label": "display or lights off or dimming",
+   "terms": [
+    "light off",
+    "lights off",
+    "display off",
+    "turn off the lights",
+    "turn off the display",
+    "dim the display",
+    "dimmable display",
+    "display dimming",
+    "auto-dimming",
+    "dimmer",
+    "light-off"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "tank_full_shutoff",
+   "label": "automatic shut-off when the tank is full",
+   "terms": [
+    "auto shut-off",
+    "automatic shut-off",
+    "auto-shutoff",
+    "auto shutoff",
+    "tank full indicator",
+    "full tank indicator",
+    "full-tank alert",
+    "tank-full",
+    "bucket full",
+    "tank full light"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "continuous_drainage",
+   "label": "continuous drainage",
+   "terms": [
+    "continuous drainage",
+    "continuous drain",
+    "continuous draining",
+    "drain hose",
+    "gravity drain",
+    "hose outlet",
+    "continuous drainage option"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "humidity_control",
+   "label": "target-humidity control (humidistat)",
+   "terms": [
+    "humidistat",
+    "target humidity",
+    "humidity target",
+    "set the humidity",
+    "set humidity",
+    "desired humidity",
+    "target humidity level"
+   ],
+   "sensorBased": true,
+   "effectiveness": [
+    {
+     "what": "humidity_reached",
+     "cues": [
+      "held",
+      "maintained",
+      "kept",
+      "reached",
+      "overshoot",
+      "accurate",
+      "inaccurate"
+     ]
+    }
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "humidity_display",
+   "label": "humidity display",
+   "terms": [
+    "humidity display",
+    "humidity reading",
+    "humidity readout",
+    "displays the humidity",
+    "shows the humidity",
+    "humidity level display"
+   ],
+   "sensorBased": true,
+   "effectiveness": [
+    {
+     "what": "accuracy",
+     "cues": [
+      "accurate",
+      "inaccurate",
+      "accuracy",
+      "matched",
+      "hygrometer"
+     ]
+    }
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "auto_restart",
+   "label": "automatic restart after power loss",
+   "terms": [
+    "auto restart",
+    "auto-restart",
+    "automatic restart",
+    "memory function"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "defrost",
+   "label": "automatic defrost",
+   "terms": [
+    "auto defrost",
+    "automatic defrost",
+    "defrost function",
+    "defrost"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "self_cleaning",
+   "label": "self-cleaning",
+   "terms": [
+    "self-cleaning",
+    "self cleaning",
+    "self-clean",
+    "auto-clean",
+    "auto clean"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "auto_dose",
+   "label": "automatic detergent dosing",
+   "terms": [
+    "auto dose",
+    "auto-dose",
+    "autodose",
+    "automatic dosing",
+    "auto dosing"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "sensor_drying",
+   "label": "sensor-controlled drying",
+   "terms": [
+    "sensor dry",
+    "sensor drying",
+    "sensor-dry",
+    "moisture sensing",
+    "auto dry",
+    "automatic drying",
+    "auto-dry",
+    "sensor-controlled"
+   ],
+   "sensorBased": true,
+   "effectiveness": [
+    {
+     "what": "dryness_reached",
+     "cues": [
+      "damp",
+      "bone dry",
+      "over-dried",
+      "overdried",
+      "still wet",
+      "dry",
+      "residual moisture"
+     ]
+    }
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "anti_crease",
+   "label": "anti-crease",
+   "terms": [
+    "anti-crease",
+    "anti crease",
+    "wrinkle guard",
+    "crease guard",
+    "anti-wrinkle"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "steam",
+   "label": "steam",
+   "terms": [
+    "steam function",
+    "steam refresh",
+    "steam cycle",
+    "steam setting"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "keep_warm",
+   "label": "keep warm",
+   "terms": [
+    "keep warm",
+    "keep-warm",
+    "warming function"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "shake_reminder",
+   "label": "shake reminder",
+   "terms": [
+    "shake reminder",
+    "shake alert",
+    "shake notification",
+    "shake prompt"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "zone_sync",
+   "label": "synchronised finish of two zones",
+   "terms": [
+    "sync function",
+    "sync finish",
+    "sync button",
+    "match cook",
+    "match function",
+    "synchronised finish",
+    "synchronized finish",
+    "sync"
+   ],
+   "sensorBased": false,
+   "effectiveness": [
+    {
+     "what": "finish_together",
+     "cues": [
+      "at the same time",
+      "simultaneously",
+      "together",
+      "without a hitch"
+     ]
+    }
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "remote_control",
+   "label": "remote control",
+   "terms": [
+    "remote control",
+    "remote controls"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "oscillation",
+   "label": "oscillation (moving air direction)",
+   "terms": [
+    "oscillation",
+    "oscillating",
+    "oscillates",
+    "oscillate"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "schedule",
+   "label": "scheduling",
+   "terms": [
+    "schedule",
+    "schedules",
+    "scheduling"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "leak_protection",
+   "label": "leak protection",
+   "terms": [
+    "aquastop",
+    "aqua stop",
+    "leak protection",
+    "anti-flood",
+    "flood protection",
+    "aquasafe"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "energy_monitoring",
+   "label": "energy monitoring",
+   "terms": [
+    "energy monitoring",
+    "energy monitor",
+    "energy usage tracking",
+    "tracks energy"
+   ],
+   "sensorBased": false,
+   "effectiveness": [],
+   "source": "pee"
+  },
+  {
+   "id": "laundry_drying",
+   "label": "laundry drying",
+   "terms": [
+    "laundry drying function",
+    "laundry function",
+    "clothes drying function"
+   ],
+   "sensorBased": false,
+   "effectiveness": [
+    {
+     "what": "drying_time",
+     "cues": [
+      "dried",
+      "dry",
+      "drying",
+      "hours",
+      "overnight",
+      "damp"
+     ]
+    }
+   ],
+   "source": "pee"
+  }
+ ],
+ "components": [
+  {
+   "id": "particle_sensor",
+   "label": "particle (PM) sensor",
+   "terms": [
+    "pm2.5 sensor",
+    "pm 2.5 sensor",
+    "particle sensor",
+    "particulate sensor",
+    "laser sensor",
+    "laser particle sensor",
+    "dust sensor",
+    "air quality sensor",
+    "optical sensor",
+    "pm sensor",
+    "particle counter"
+   ],
+   "class": "sensor",
+   "enables": [
+    "auto_mode",
+    "air_quality_indicator"
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "gas_sensor",
+   "label": "gas or VOC sensor",
+   "terms": [
+    "voc sensor",
+    "gas sensor",
+    "odour sensor",
+    "odor sensor",
+    "smell sensor",
+    "tvoc sensor",
+    "formaldehyde sensor"
+   ],
+   "class": "sensor",
+   "enables": [
+    "auto_mode",
+    "air_quality_indicator"
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "humidity_sensor",
+   "label": "humidity sensor",
+   "terms": [
+    "humidity sensor",
+    "humidity sensors",
+    "hygrometer"
+   ],
+   "class": "sensor",
+   "enables": [
+    "humidity_control",
+    "humidity_display"
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "moisture_sensor",
+   "label": "moisture sensor (laundry)",
+   "terms": [
+    "moisture sensor",
+    "moisture sensors",
+    "dryness sensor",
+    "dryness sensors"
+   ],
+   "class": "sensor",
+   "enables": [
+    "sensor_drying"
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "light_sensor",
+   "label": "ambient light sensor",
+   "terms": [
+    "light sensor",
+    "ambient light sensor",
+    "brightness sensor"
+   ],
+   "class": "sensor",
+   "enables": [
+    "display_off"
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "sensor_unspecified",
+   "label": "a sensor the document does not specify",
+   "terms": [
+    "sensor",
+    "sensors"
+   ],
+   "class": "sensor",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "hepa_filter",
+   "label": "HEPA filter",
+   "terms": [
+    "hepa filter",
+    "hepa filters",
+    "true hepa",
+    "h13 hepa",
+    "h13 filter",
+    "hepa h13",
+    "hepa-13",
+    "medical-grade hepa",
+    "hepa"
+   ],
+   "class": "filter",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "carbon_filter",
+   "label": "activated-carbon filter",
+   "terms": [
+    "carbon filter",
+    "carbon filters",
+    "activated carbon",
+    "charcoal filter",
+    "carbon pre-filter",
+    "carbon layer",
+    "activated charcoal"
+   ],
+   "class": "filter",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "pre_filter",
+   "label": "pre-filter",
+   "terms": [
+    "pre-filter",
+    "prefilter",
+    "pre filter",
+    "washable pre-filter"
+   ],
+   "class": "filter",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "lint_filter",
+   "label": "lint filter",
+   "terms": [
+    "lint filter",
+    "fluff filter",
+    "lint filters",
+    "fluff filters"
+   ],
+   "class": "filter",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "ioniser",
+   "label": "ioniser",
+   "terms": [
+    "ioniser",
+    "ionizer",
+    "ionisation",
+    "ionization",
+    "plasmawave",
+    "negative ions",
+    "ion generator"
+   ],
+   "class": "emitter",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "uv_lamp",
+   "label": "UV lamp",
+   "terms": [
+    "uv lamp",
+    "uv-c",
+    "uv light",
+    "uv-c light",
+    "uvc"
+   ],
+   "class": "emitter",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "compressor",
+   "label": "compressor",
+   "terms": [
+    "compressor"
+   ],
+   "class": "mechanism",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "desiccant",
+   "label": "desiccant rotor",
+   "terms": [
+    "desiccant",
+    "desiccant rotor",
+    "desiccant wheel"
+   ],
+   "class": "mechanism",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "heat_pump",
+   "label": "heat pump",
+   "terms": [
+    "heat pump"
+   ],
+   "class": "mechanism",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "condenser",
+   "label": "condenser",
+   "terms": [
+    "condenser",
+    "condenser unit"
+   ],
+   "class": "mechanism",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "water_tank",
+   "label": "water tank",
+   "terms": [
+    "water tank",
+    "water reservoir",
+    "collection tank",
+    "bucket",
+    "water container"
+   ],
+   "class": "reservoir",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "brushless_motor",
+   "label": "brushless or inverter motor",
+   "terms": [
+    "brushless motor",
+    "inverter motor",
+    "dc motor",
+    "bldc motor",
+    "brushless dc motor"
+   ],
+   "class": "mechanism",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "heating_element",
+   "label": "heating element",
+   "terms": [
+    "heating element",
+    "heating elements"
+   ],
+   "class": "mechanism",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "viewing_window",
+   "label": "viewing window",
+   "terms": [
+    "viewing window",
+    "see-through window",
+    "window to check",
+    "glass window"
+   ],
+   "class": "mechanism",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "cutlery_drawer",
+   "label": "cutlery drawer or third rack",
+   "terms": [
+    "cutlery drawer",
+    "third rack",
+    "cutlery tray",
+    "cutlery basket"
+   ],
+   "class": "mechanism",
+   "enables": [],
+   "source": "pee"
+  },
+  {
+   "id": "spray_arm",
+   "label": "spray arm",
+   "terms": [
+    "spray arm",
+    "spray arms"
+   ],
+   "class": "mechanism",
+   "enables": [],
+   "source": "pee"
+  }
+ ],
+ "modes": {
+  "statement": "Mode names are read from the operating-condition axes of the quantity knowledge (fan_setting, programme, signal_mode); this section adds each value's scale. 'lowest' and 'top' are positions of an ordinal series; 'sleep' and 'standby' are named states. Speed 1, sleep and lowest are three different states unless a document states otherwise for that product.",
+  "valueScale": {
+   "fan_setting": {
+    "top": {
+     "scale": "ordinal",
+     "extreme": "highest"
+    },
+    "lowest": {
+     "scale": "ordinal",
+     "extreme": "lowest"
+    },
+    "sleep": {
+     "scale": "nominal"
+    },
+    "standby": {
+     "scale": "nominal"
+    }
+   },
+   "programme": {
+    "eco": {
+     "scale": "programme"
+    }
+   }
+  },
+  "nominalTerms": [
+   [
+    "laundry drying mode",
+    "laundry"
+   ],
+   [
+    "laundry setting",
+    "laundry"
+   ],
+   [
+    "turbo mode",
+    "turbo"
+   ],
+   [
+    "boost mode",
+    "boost"
+   ],
+   [
+    "quiet mode",
+    "quiet"
+   ],
+   [
+    "silent mode",
+    "silent"
+   ],
+   [
+    "pet mode",
+    "pet"
+   ],
+   [
+    "laundry mode",
+    "laundry"
+   ],
+   [
+    "eco mode",
+    "eco"
+   ],
+   [
+    "night mode",
+    "sleep"
+   ],
+   [
+    "sleep mode",
+    "sleep"
+   ],
+   [
+    "standby mode",
+    "standby"
+   ],
+   [
+    "manual mode",
+    "manual"
+   ],
+   [
+    "max mode",
+    "max"
+   ]
+  ],
+  "ordinalWords": [
+   "speed",
+   "fan speed",
+   "fan level",
+   "level",
+   "power level",
+   "setting",
+   "fan setting"
+  ],
+  "ordinalSeriesWords": [
+   "low",
+   "medium",
+   "high"
+  ],
+  "programmeWords": [
+   "programme",
+   "programmes",
+   "program",
+   "programs",
+   "cycle",
+   "cycles",
+   "preset",
+   "presets"
+  ],
+  "source": "pee",
+  "realises": {
+   "auto": "auto_mode",
+   "auto mode": "auto_mode",
+   "laundry": "laundry_drying"
+  }
+ },
+ "presence": {
+  "negators": [
+   "no",
+   "not",
+   "without",
+   "lacks",
+   "lack",
+   "lacking",
+   "doesn't",
+   "does not",
+   "don't",
+   "do not",
+   "isn't",
+   "aren't",
+   "is not",
+   "are not",
+   "absence",
+   "missing",
+   "omits",
+   "omission",
+   "nor",
+   "neither",
+   "can't",
+   "cannot",
+   "won't",
+   "unavailable"
+  ],
+  "availableValues": [
+   "yes",
+   "y",
+   "✓",
+   "✔",
+   "included",
+   "true",
+   "available",
+   "standard"
+  ],
+  "absentValues": [
+   "no",
+   "n",
+   "✗",
+   "✘",
+   "x",
+   "not included",
+   "false",
+   "none",
+   "n/a",
+   "-",
+   "–"
+  ],
+  "observedCues": [
+   "i used",
+   "i tried",
+   "i tested",
+   "we tested",
+   "we used",
+   "we tried",
+   "in testing",
+   "in my testing",
+   "during testing",
+   "in our tests",
+   "when i",
+   "when we",
+   "i found",
+   "we found",
+   "i set",
+   "we set",
+   "i left",
+   "i ran",
+   "we ran",
+   "i noticed",
+   "we noticed"
+  ],
+  "makerCues": [
+   "according to",
+   "claims",
+   "the brand says",
+   "the manufacturer",
+   "is said to",
+   "advertised",
+   "promises",
+   "says it"
+  ],
+  "reportedCues": [
+   "users report",
+   "owners report",
+   "reportedly",
+   "customers say",
+   "reviewers say"
+  ],
+  "genericCues": [
+   "look for",
+   "you should",
+   "make sure",
+   "consider",
+   "if you want",
+   "you'll want",
+   "choose",
+   "most air purifiers",
+   "many air purifiers",
+   "some models",
+   "many models",
+   "most models"
+  ],
+  "source": "pee"
+ },
+ "performanceCues": {
+  "general": [
+   "worked",
+   "works",
+   "work well",
+   "working",
+   "failed",
+   "fails",
+   "struggled",
+   "struggles",
+   "effective",
+   "ineffective",
+   "useful",
+   "handy",
+   "pointless",
+   "gimmick",
+   "without a hitch",
+   "flawlessly",
+   "well",
+   "poorly",
+   "reliable",
+   "unreliable",
+   "accurate",
+   "inaccurate",
+   "quick",
+   "slow",
+   "quickly",
+   "slowly",
+   "impressive",
+   "disappointing"
+  ],
+  "source": "pee"
+ }
+}

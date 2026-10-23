@@ -1,0 +1,121 @@
+{
+ "schema": "pee.entity-acquisition.v1",
+ "version": "ea.1",
+ "statement": "S96: general English header words that give each column of a teaching table its role, so a table row becomes a typed entity record. No category words. A row is a measurable property only when its cells carry a unit, quantity kind or metric that the quantity knowledge types; otherwise it is another entity class or is left out. Words in cells are never used to invent an object of interest, a kind or a relation that the row does not state.",
+ "subjectHeaders": {
+  "property": [
+   "technical object",
+   "quantity",
+   "property",
+   "metric",
+   "attribute",
+   "measurand",
+   "parameter",
+   "dimension",
+   "term"
+  ],
+  "feature": [
+   "feature",
+   "readout",
+   "capability",
+   "technology",
+   "component",
+   "function"
+  ],
+  "method": [
+   "method",
+   "protocol",
+   "standard",
+   "programme",
+   "test id"
+  ],
+  "instrument": [
+   "instrument"
+  ]
+ },
+ "roleHeaders": {
+  "definition": [
+   "meaning",
+   "definition",
+   "what makes",
+   "intended function",
+   "physical function",
+   "what it can establish",
+   "legitimate content",
+   "what was verified",
+   "established scope",
+   "verified scope",
+   "what it really covers",
+   "operational meaning",
+   "type"
+  ],
+  "unitsAndConditions": [
+   "unit",
+   "units",
+   "state",
+   "error to record",
+   "reporting requirement",
+   "controls",
+   "conditions"
+  ],
+  "method": [
+   "measurement",
+   "test",
+   "how measured",
+   "how to validate",
+   "metrics to request"
+  ],
+  "notEstablished": [
+   "trap",
+   "misinterpretation",
+   "error to prevent",
+   "does not",
+   "not establish",
+   "cannot",
+   "not admissible",
+   "avoid",
+   "prohibited",
+   "not a winner",
+   "invalid shortcut",
+   "false inference",
+   "non-equivalent",
+   "what it does not"
+  ]
+ },
+ "notes": "ea.1 written from the header census of the owner packages (S96 audit) before any evaluation; functionWords added in S96 dev it2 (a term made only of function words is not a name)",
+ "functionWords": [
+  "each",
+  "all",
+  "any",
+  "both",
+  "either",
+  "every",
+  "other",
+  "others",
+  "per",
+  "total",
+  "some",
+  "none",
+  "such",
+  "same",
+  "more",
+  "less",
+  "most",
+  "least",
+  "with",
+  "without",
+  "from",
+  "into",
+  "than",
+  "then",
+  "this",
+  "that",
+  "these",
+  "those",
+  "what",
+  "when",
+  "where",
+  "which",
+  "while"
+ ]
+}

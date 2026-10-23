@@ -1,0 +1,18 @@
+{
+ "schema": "pee.statement-type-reliability.v1",
+ "version": "str.1",
+ "measuredOn": "held-out sections of the owner packages (air fryers, coffee machines, air purifiers), translator after audit S78 fixes (evaluation/r3/fidelity-heldout-s78a-tuned.json); TUNED: those sections were examined before; same-model blind judges, not independent validation",
+ "rule": "reliable_type: n >= 15 and distorted+unjustified <= 5%; unreliable_type: n >= 15 and above 5%; unmeasured_type otherwise",
+ "types": {
+  "limitation": {"n": 180, "faithful": 0.78, "bad": 0.01, "class": "reliable_type"},
+  "method_step": {"n": 34, "faithful": 0.85, "bad": 0.03, "class": "reliable_type"},
+  "is_not": {"n": 31, "faithful": 1.0, "bad": 0.0, "class": "reliable_type"},
+  "not_sufficient": {"n": 19, "faithful": 0.95, "bad": 0.05, "class": "reliable_type"},
+  "measured_by": {"n": 17, "faithful": 1.0, "bad": 0.0, "class": "reliable_type"},
+  "depends_on": {"n": 16, "faithful": 0.62, "bad": 0.0, "class": "reliable_type"},
+  "definition": {"n": 143, "faithful": 0.64, "bad": 0.19, "class": "unreliable_type"},
+  "bears_on_outcome": {"n": 51, "faithful": 0.59, "bad": 0.20, "class": "unreliable_type"},
+  "requires": {"n": 39, "faithful": 0.62, "bad": 0.08, "class": "unreliable_type"},
+  "quantitative_finding": {"n": 29, "faithful": 0.62, "bad": 0.17, "class": "unreliable_type"}
+ }
+}

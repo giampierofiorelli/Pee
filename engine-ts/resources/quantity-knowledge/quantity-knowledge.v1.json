@@ -1,0 +1,1807 @@
+{
+ "schema": "pee.quantity-knowledge.v1",
+ "version": "qk.1",
+ "statement": "Typed scientific knowledge about quantities: what a quantity is (kind, dimension), how it is expressed (units and their properties), which quantities are defined by a method (metrics) and which conditions make results comparable. General physics and metrology, never product facts. Written in PEE's own words; facts only, no third-party text reproduced.",
+ "dimensionBasis": [
+  "L",
+  "M",
+  "T",
+  "I",
+  "Th",
+  "N",
+  "J"
+ ],
+ "dimensionNote": "SI base quantities (length, mass, time, electric current, thermodynamic temperature, amount of substance, luminous intensity). Plane and solid angle are dimensionless, so luminance (cd/m2) and illuminance (lx) share a dimension and are told apart by their units and kinds, never by dimension alone.",
+ "sources": [
+  {
+   "id": "si",
+   "title": "BIPM, The International System of Units (SI Brochure), 9th edition, 2019",
+   "url": "https://www.bipm.org/en/publications/si-brochure",
+   "use": "base dimensions, coherent units, prefixes, non-SI units accepted for use (minute, hour, day, litre)",
+   "licence": "facts only; no text reproduced"
+  },
+  {
+   "id": "nist_sp811",
+   "title": "NIST Special Publication 811 (2008), Guide for the Use of the SI, Appendix B conversion factors",
+   "url": "https://physics.nist.gov/Pubs/SP811/appenB8.html",
+   "use": "conversion factors of US customary units; foot = 0.3048 m and pound = 0.45359237 kg exactly (1959 international yard and pound)",
+   "licence": "US government work; facts only"
+  },
+  {
+   "id": "iso_80000_8",
+   "title": "ISO 80000-8 Acoustics (quantities and units); ISO 1683 reference values",
+   "url": "https://www.iso.org/standard/64978.html",
+   "use": "sound pressure level is referenced to 20 µPa and sound power level to 1 pW; a level is a logarithmic quantity, not convertible by a factor",
+   "licence": "cited as a reference only; standard text not consulted or reproduced"
+  },
+  {
+   "id": "iec_61672_1",
+   "title": "IEC 61672-1 Electroacoustics - Sound level meters - Specifications (frequency weightings A, C, Z)",
+   "url": "https://webstore.iec.ch/publication/5708",
+   "use": "an A-weighted level and an unweighted or differently weighted level of the same sound are different values",
+   "licence": "cited as a reference only"
+  },
+  {
+   "id": "eu_2019_2017",
+   "title": "Commission Delegated Regulation (EU) 2019/2017, energy labelling of household dishwashers (Annex II noise classes; EPREL product information sheets)",
+   "url": "https://eur-lex.europa.eu/eli/reg_del/2019/2017/oj",
+   "use": "the declared airborne acoustical noise emission is an A-weighted sound power level, dB(A) re 1 pW, in the eco programme",
+   "licence": "EU legal act; reuse permitted with acknowledgement (Commission Decision 2011/833/EU); facts only"
+  },
+  {
+   "id": "eu_2023_2534",
+   "title": "Commission Delegated Regulation (EU) 2023/2534, energy labelling of household tumble dryers (Annex II section 2)",
+   "url": "https://eur-lex.europa.eu/eli/reg_del/2023/2534/oj",
+   "use": "acoustic airborne noise emission is the weighted average sound power level LWA in dB(A), eco programme at full load",
+   "licence": "EU legal act; reuse permitted with acknowledgement (Commission Decision 2011/833/EU); facts only"
+  },
+  {
+   "id": "epa_energy_star_rac",
+   "title": "US EPA ENERGY STAR Room Air Cleaners specification (CADR under ANSI/AHAM AC-1)",
+   "url": "https://www.energystar.gov/ia/products/appliances/room_airclean/RoomAirCleanersfullcrit.pdf",
+   "use": "CADR is the chamber particle decay rate with the unit on, minus the natural decay with it off, times the chamber volume; one value per challenge (smoke, dust, pollen)",
+   "licence": "US government work; facts only"
+  },
+  {
+   "id": "aham_ac1",
+   "title": "ANSI/AHAM AC-1-2020 Method for Measuring Performance of Portable Household Electric Room Air Cleaners",
+   "url": "https://law.resource.org/pub/us/cfr/ibr/inc/ansi/aham.ac-1.2020.pdf",
+   "use": "CADR is a whole-device rating per challenge particle (smoke 0.09-1.0 µm, dust 0.5-3 µm, pollen 5-11 µm), reported in cubic feet per minute",
+   "licence": "cited as a reference only"
+  },
+  {
+   "id": "qudt",
+   "title": "QUDT quantity kinds and units vocabularies",
+   "url": "https://qudt.org/",
+   "use": "cross-reference identifiers only (qudt field); no QUDT content copied",
+   "licence": "CC BY 4.0, attribution to QUDT.org"
+  },
+  {
+   "id": "ucum_not_used",
+   "title": "UCUM, Unified Code for Units of Measure (Regenstrief Institute)",
+   "url": "https://ucum.org/",
+   "use": "considered and NOT incorporated: its licence forbids modified content and derivative works, so no UCUM codes or table entries are copied here",
+   "licence": "not used"
+  },
+  {
+   "id": "pee",
+   "title": "PEE editorial definition",
+   "url": null,
+   "use": "a PEE-authored convention, stated as such (for example which words name a quantity in everyday English)",
+   "licence": "PEE"
+  }
+ ],
+ "kinds": [
+  {
+   "id": "length",
+   "dim": {
+    "L": 1
+   },
+   "terms": [
+    "length",
+    "width",
+    "height",
+    "depth",
+    "distance",
+    "dimensions",
+    "size"
+   ],
+   "qudt": "quantitykind:Length",
+   "source": "si"
+  },
+  {
+   "id": "area",
+   "dim": {
+    "L": 2
+   },
+   "terms": [
+    "area",
+    "room size",
+    "coverage",
+    "floor area"
+   ],
+   "qudt": "quantitykind:Area",
+   "source": "si"
+  },
+  {
+   "id": "volume",
+   "dim": {
+    "L": 3
+   },
+   "terms": [
+    "volume",
+    "capacity",
+    "tank",
+    "litres",
+    "water tank",
+    "litre",
+    "liter"
+   ],
+   "qudt": "quantitykind:Volume",
+   "source": "si",
+   "form": {
+    "excludesClass": "reference_event"
+   },
+   "discriminators": [
+    "litres",
+    "liters"
+   ]
+  },
+  {
+   "id": "mass",
+   "dim": {
+    "M": 1
+   },
+   "terms": [
+    "weight",
+    "mass",
+    "weighs",
+    "load"
+   ],
+   "comparatives": {
+    "max": [
+     "lighter than"
+    ],
+    "min": [
+     "heavier than"
+    ]
+   },
+   "qudt": "quantitykind:Mass",
+   "source": "si"
+  },
+  {
+   "id": "duration",
+   "dim": {
+    "T": 1
+   },
+   "terms": [
+    "time",
+    "duration",
+    "runtime",
+    "battery life",
+    "cycle time",
+    "lasts",
+    "lag",
+    "latency",
+    "delay",
+    "response time"
+   ],
+   "comparatives": {
+    "max": [
+     "faster than",
+     "quicker than"
+    ],
+    "min": [
+     "longer than",
+     "lasts longer than"
+    ]
+   },
+   "qudt": "quantitykind:Time",
+   "source": "si"
+  },
+  {
+   "id": "temperature",
+   "dim": {
+    "Th": 1
+   },
+   "terms": [
+    "temperature",
+    "heat",
+    "hot"
+   ],
+   "affine": true,
+   "note": "Celsius and Fahrenheit are offset scales: a temperature converts with an offset, a temperature difference without one.",
+   "qudt": "quantitykind:Temperature",
+   "source": "si"
+  },
+  {
+   "id": "energy",
+   "dim": {
+    "L": 2,
+    "M": 1,
+    "T": -2
+   },
+   "terms": [
+    "energy",
+    "energy use",
+    "energy used",
+    "energy consumption",
+    "consumption",
+    "electricity"
+   ],
+   "qudt": "quantitykind:Energy",
+   "source": "si",
+   "form": {
+    "excludesClass": "reference_event"
+   },
+   "discriminators": [
+    "kwh",
+    "energy use",
+    "energy used",
+    "energy consumption"
+   ]
+  },
+  {
+   "id": "energy_per_event",
+   "dim": {
+    "L": 2,
+    "M": 1,
+    "T": -2
+   },
+   "form": {
+    "requiresClass": "reference_event"
+   },
+   "terms": [
+    "energy per cycle",
+    "per cycle",
+    "energy consumption"
+   ],
+   "note": "Energy per counted operation (kWh per cycle, kWh/100 cycles): compared only on the same basis and programme.",
+   "source": "pee"
+  },
+  {
+   "id": "volume_per_event",
+   "dim": {
+    "L": 3
+   },
+   "form": {
+    "requiresClass": "reference_event"
+   },
+   "terms": [
+    "water per cycle",
+    "water consumption",
+    "per cycle"
+   ],
+   "note": "Volume per counted operation (litres per cycle).",
+   "source": "pee"
+  },
+  {
+   "id": "periodic_energy_consumption",
+   "dim": {
+    "L": 2,
+    "M": 1,
+    "T": -3
+   },
+   "form": {
+    "requiresClass": "reference_period"
+   },
+   "terms": [
+    "annual energy consumption",
+    "energy consumption",
+    "per year",
+    "per annum"
+   ],
+   "note": "Energy stated per reference period (kWh/annum, kWh/year). Dimensionally a power, but a different quantity from rated or average power: a declared kWh/annum may rest on a conventional number of cycles, so it never converts to watts or to another period.",
+   "source": "pee"
+  },
+  {
+   "id": "power",
+   "dim": {
+    "L": 2,
+    "M": 1,
+    "T": -3
+   },
+   "form": {
+    "excludesClass": "reference_period"
+   },
+   "terms": [
+    "power",
+    "wattage",
+    "rated power",
+    "power draw",
+    "watts"
+   ],
+   "comparatives": {
+    "min": [
+     "more powerful than"
+    ]
+   },
+   "qudt": "quantitykind:Power",
+   "source": "si",
+   "discriminators": [
+    "watts",
+    "metered watts",
+    "power draw"
+   ]
+  },
+  {
+   "id": "electric_charge",
+   "dim": {
+    "T": 1,
+    "I": 1
+   },
+   "terms": [
+    "battery capacity",
+    "battery",
+    "charge"
+   ],
+   "qudt": "quantitykind:ElectricCharge",
+   "source": "si"
+  },
+  {
+   "id": "voltage",
+   "dim": {
+    "L": 2,
+    "M": 1,
+    "T": -3,
+    "I": -1
+   },
+   "terms": [
+    "voltage"
+   ],
+   "qudt": "quantitykind:Voltage",
+   "source": "si"
+  },
+  {
+   "id": "pressure",
+   "dim": {
+    "L": -1,
+    "M": 1,
+    "T": -2
+   },
+   "terms": [
+    "pressure",
+    "pump pressure",
+    "suction"
+   ],
+   "qudt": "quantitykind:Pressure",
+   "source": "si"
+  },
+  {
+   "id": "frequency",
+   "dim": {
+    "T": -1
+   },
+   "unitOnly": true,
+   "terms": [
+    "frequency",
+    "refresh rate",
+    "refresh"
+   ],
+   "qudt": "quantitykind:Frequency",
+   "source": "si"
+  },
+  {
+   "id": "rotational_speed",
+   "dim": {
+    "T": -1
+   },
+   "unitOnly": true,
+   "terms": [
+    "spin speed",
+    "rotation speed",
+    "rotational speed",
+    "spin"
+   ],
+   "qudt": "quantitykind:RotationalVelocity",
+   "source": "si"
+  },
+  {
+   "id": "air_change_rate",
+   "dim": {
+    "T": -1
+   },
+   "unitOnly": true,
+   "terms": [
+    "air changes per hour",
+    "air changes",
+    "ach"
+   ],
+   "note": "How many times per hour a volume of air equal to the room volume passes through the cleaner: a rate, not a flow.",
+   "source": "pee",
+   "discriminators": [
+    "air changes",
+    "air changes per hour",
+    "ach"
+   ]
+  },
+  {
+   "id": "volumetric_flow_rate",
+   "dim": {
+    "L": 3,
+    "T": -1
+   },
+   "form": {
+    "excludesClass": "reference_period"
+   },
+   "terms": [
+    "flow",
+    "flow rate",
+    "airflow",
+    "air flow"
+   ],
+   "qudt": "quantitykind:VolumeFlowRate",
+   "source": "si"
+  },
+  {
+   "id": "periodic_volume",
+   "dim": {
+    "L": 3,
+    "T": -1
+   },
+   "form": {
+    "requiresClass": "reference_period"
+   },
+   "terms": [
+    "water consumption",
+    "extraction",
+    "per day"
+   ],
+   "note": "Volume per reference period (litres per day of a dehumidifier, litres per year); like periodic energy, compared only on the same basis and conditions.",
+   "source": "pee"
+  },
+  {
+   "id": "luminance",
+   "dim": {
+    "J": 1,
+    "L": -2
+   },
+   "unitOnly": true,
+   "terms": [
+    "brightness",
+    "luminance",
+    "peak brightness"
+   ],
+   "comparatives": {
+    "min": [
+     "brighter than"
+    ],
+    "max": [
+     "dimmer than"
+    ]
+   },
+   "qudt": "quantitykind:Luminance",
+   "source": "si",
+   "expressions": [
+    "cd/m^2"
+   ],
+   "discriminators": [
+    "luminance",
+    "nits",
+    "cd/m2"
+   ]
+  },
+  {
+   "id": "illuminance",
+   "dim": {
+    "J": 1,
+    "L": -2
+   },
+   "unitOnly": true,
+   "terms": [
+    "illuminance",
+    "light level",
+    "ambient light"
+   ],
+   "qudt": "quantitykind:Illuminance",
+   "source": "si"
+  },
+  {
+   "id": "mass_concentration",
+   "dim": {
+    "M": 1,
+    "L": -3
+   },
+   "terms": [
+    "concentration",
+    "pm2.5",
+    "pm10",
+    "pm1",
+    "particles"
+   ],
+   "qudt": "quantitykind:MassConcentration",
+   "source": "si"
+  },
+  {
+   "id": "amount_fraction",
+   "dim": {},
+   "unitOnly": true,
+   "terms": [
+    "ppm",
+    "co2",
+    "voc"
+   ],
+   "source": "si"
+  },
+  {
+   "id": "ratio",
+   "dim": {},
+   "unitOnly": true,
+   "terms": [
+    "percentage",
+    "efficiency",
+    "humidity",
+    "reduction"
+   ],
+   "source": "si"
+  },
+  {
+   "id": "sound_pressure_level",
+   "level": true,
+   "dim": {},
+   "terms": [
+    "noise",
+    "noise level",
+    "sound level",
+    "loudness",
+    "decibels",
+    "loud",
+    "quiet",
+    "sound"
+   ],
+   "discriminators": [
+    "sound pressure",
+    "sound pressure level",
+    "spl",
+    "sound level meter",
+    "decibel meter",
+    "db meter",
+    "measured from",
+    "away",
+    "at a distance"
+   ],
+   "requires": [
+    "measurement_distance"
+   ],
+   "comparatives": {
+    "max": [
+     "quieter than",
+     "less noisy than",
+     "no louder than",
+     "not louder than",
+     "no noisier than"
+    ],
+    "min": [
+     "louder than"
+    ]
+   },
+   "reference": "20 µPa",
+   "note": "Depends on the distance and the room: without the measurement distance two sound pressure levels are not comparable.",
+   "qudt": "quantitykind:SoundPressureLevel",
+   "source": "iso_80000_8",
+   "plain": "the noise level measured at some distance from the appliance (sound pressure level, which depends on the distance and the room)"
+  },
+  {
+   "id": "sound_power_level",
+   "level": true,
+   "dim": {},
+   "terms": [
+    "noise",
+    "noise level",
+    "sound level",
+    "noise emissions",
+    "decibels",
+    "loud",
+    "quiet",
+    "sound"
+   ],
+   "discriminators": [
+    "sound power",
+    "sound power level",
+    "lwa",
+    "re 1 pw",
+    "energy label",
+    "noise class",
+    "acoustical noise emission",
+    "acoustic airborne noise",
+    "airborne acoustical noise",
+    "airborne noise"
+   ],
+   "requires": [],
+   "comparatives": {
+    "max": [
+     "quieter than",
+     "less noisy than",
+     "no louder than",
+     "not louder than",
+     "no noisier than"
+    ],
+    "min": [
+     "louder than"
+    ]
+   },
+   "reference": "1 pW",
+   "note": "A property of the source, independent of distance; what EU energy labels declare. Never comparable with a sound pressure level measured at a distance.",
+   "qudt": "quantitykind:SoundPowerLevel",
+   "source": "iso_80000_8",
+   "plain": "the noise emission the maker declares, as on EU energy labels (sound power level, independent of distance)"
+  },
+  {
+   "id": "signal_to_noise_ratio",
+   "level": true,
+   "dim": {},
+   "terms": [
+    "snr"
+   ],
+   "discriminators": [
+    "signal-to-noise",
+    "signal to noise",
+    "snr"
+   ],
+   "requires": [],
+   "comparatives": {},
+   "reference": null,
+   "qudt": "quantitykind:SignalToNoiseRatio",
+   "source": "si",
+   "plain": "a signal-to-noise ratio"
+  }
+ ],
+ "conditionAxes": [
+  {
+   "id": "measurement_distance",
+   "valueKind": "length",
+   "cues": [
+    "away",
+    "from",
+    "at a distance of",
+    "distance"
+   ],
+   "source": "iso_80000_8"
+  },
+  {
+   "id": "challenge_pollutant",
+   "values": {
+    "smoke": [
+     "smoke",
+     "tobacco smoke",
+     "cigarette smoke"
+    ],
+    "dust": [
+     "dust"
+    ],
+    "pollen": [
+     "pollen"
+    ],
+    "pm2_5": [
+     "pm2.5",
+     "pm 2.5"
+    ],
+    "pm1": [
+     "pm1",
+     "pm 1",
+     "pm1.0"
+    ],
+    "pm10": [
+     "pm10"
+    ]
+   },
+   "source": "aham_ac1"
+  },
+  {
+   "id": "fan_setting",
+   "values": {
+    "top": [
+     "top speed",
+     "max speed",
+     "maximum speed",
+     "full speed",
+     "highest speed",
+     "turbo",
+     "full power"
+    ],
+    "lowest": [
+     "lowest speed",
+     "low speed",
+     "speed 1",
+     "sleep mode",
+     "sleep",
+     "night mode"
+    ]
+   },
+   "freeText": [
+    "speed",
+    "mode",
+    "setting",
+    "sub-"
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "air_changes_per_hour",
+   "valueKind": "air_change_rate",
+   "source": "pee"
+  },
+  {
+   "id": "programme",
+   "values": {
+    "eco": [
+     "eco",
+     "eco programme",
+     "eco 40-60",
+     "eco mode"
+    ]
+   },
+   "freeText": [
+    "programme",
+    "program",
+    "cycle"
+   ],
+   "source": "pee"
+  },
+  {
+   "id": "window_size",
+   "valueKind": "ratio",
+   "cues": [
+    "window"
+   ],
+   "source": "pee"
+  }
+ ],
+ "metrics": [
+  {
+   "id": "cadr",
+   "label": "clean air delivery rate",
+   "kind": "volumetric_flow_rate",
+   "terms": [
+    "cadr",
+    "clean air delivery rate",
+    "clean-air delivery rate",
+    "cadrs"
+   ],
+   "definedBy": [
+    {
+     "method": "ANSI/AHAM AC-1",
+     "source": "aham_ac1"
+    },
+    {
+     "method": "ENERGY STAR room air cleaner test (AHAM AC-1)",
+     "source": "epa_energy_star_rac"
+    }
+   ],
+   "requires": [
+    "challenge_pollutant",
+    "fan_setting"
+   ],
+   "notEquivalentTo": [
+    "free_airflow"
+   ],
+   "note": "A whole-device rate of particle removal for one challenge; free fan airflow, filter class and room-size claims do not establish it.",
+   "source": "epa_energy_star_rac"
+  },
+  {
+   "id": "free_airflow",
+   "label": "fan airflow",
+   "kind": "volumetric_flow_rate",
+   "terms": [
+    "airflow",
+    "air flow",
+    "air volume",
+    "fan airflow",
+    "max airflow",
+    "air throughput"
+   ],
+   "requires": [
+    "fan_setting"
+   ],
+   "notEquivalentTo": [
+    "cadr"
+   ],
+   "note": "The air the fan moves, not the clean air delivered: it can be far higher than CADR.",
+   "source": "epa_energy_star_rac"
+  },
+  {
+   "id": "room_coverage",
+   "label": "recommended room size",
+   "kind": "area",
+   "terms": [
+    "room size",
+    "room coverage",
+    "coverage",
+    "max room size",
+    "suitable for rooms"
+   ],
+   "requires": [
+    "air_changes_per_hour"
+   ],
+   "derivedFrom": [
+    "cadr"
+   ],
+   "note": "Derived from CADR under an assumed number of air changes per hour and ceiling height; different assumptions give different sizes.",
+   "source": "aham_ac1"
+  },
+  {
+   "id": "eu_label_noise_emission",
+   "label": "declared A-weighted sound power level (EU energy label)",
+   "kind": "sound_power_level",
+   "terms": [
+    "energy label",
+    "noise class",
+    "airborne acoustical noise emissions",
+    "acoustic airborne noise emission"
+   ],
+   "definedBy": [
+    {
+     "method": "EU energy label, dishwashers (EN 60704-2-3)",
+     "source": "eu_2019_2017"
+    },
+    {
+     "method": "EU energy label, tumble dryers",
+     "source": "eu_2023_2534"
+    }
+   ],
+   "requires": [],
+   "note": "Declared by the supplier in the eco programme; a tester's sound-meter reading is a sound pressure level and does not confirm or contradict it directly.",
+   "source": "eu_2019_2017"
+  },
+  {
+   "id": "display_refresh_rate",
+   "label": "refresh rate",
+   "kind": "frequency",
+   "terms": [
+    "refresh rate",
+    "refresh"
+   ],
+   "requires": [],
+   "source": "pee"
+  },
+  {
+   "id": "peak_luminance",
+   "label": "peak luminance",
+   "kind": "luminance",
+   "terms": [
+    "peak brightness",
+    "peak luminance",
+    "hdr brightness"
+   ],
+   "requires": [
+    "window_size"
+   ],
+   "note": "Depends on the measured window size and duration.",
+   "source": "pee"
+  }
+ ],
+ "units": [
+  {
+   "id": "m",
+   "forms": [
+    "m",
+    "metre",
+    "metres",
+    "meter",
+    "meters"
+   ],
+   "dim": {
+    "L": 1
+   },
+   "factor": 1,
+   "cs": true,
+   "source": "si"
+  },
+  {
+   "id": "km",
+   "forms": [
+    "km",
+    "kilometre",
+    "kilometres",
+    "kilometer",
+    "kilometers"
+   ],
+   "dim": {
+    "L": 1
+   },
+   "factor": 1000,
+   "source": "si"
+  },
+  {
+   "id": "cm",
+   "forms": [
+    "cm",
+    "centimetre",
+    "centimetres",
+    "centimeter",
+    "centimeters"
+   ],
+   "dim": {
+    "L": 1
+   },
+   "factor": 0.01,
+   "source": "si"
+  },
+  {
+   "id": "mm",
+   "forms": [
+    "mm",
+    "millimetre",
+    "millimetres",
+    "millimeter",
+    "millimeters"
+   ],
+   "dim": {
+    "L": 1
+   },
+   "factor": 0.001,
+   "source": "si"
+  },
+  {
+   "id": "in",
+   "forms": [
+    "in",
+    "in.",
+    "inch",
+    "inches",
+    "\""
+   ],
+   "dim": {
+    "L": 1
+   },
+   "factor": 0.0254,
+   "standalone": false,
+   "source": "nist_sp811"
+  },
+  {
+   "id": "ft",
+   "forms": [
+    "ft",
+    "ft.",
+    "foot",
+    "feet"
+   ],
+   "dim": {
+    "L": 1
+   },
+   "factor": 0.3048,
+   "source": "nist_sp811"
+  },
+  {
+   "id": "yd",
+   "forms": [
+    "yd",
+    "yard",
+    "yards"
+   ],
+   "dim": {
+    "L": 1
+   },
+   "factor": 0.9144,
+   "source": "nist_sp811"
+  },
+  {
+   "id": "L",
+   "forms": [
+    "l",
+    "L",
+    "litre",
+    "litres",
+    "liter",
+    "liters",
+    "ltr",
+    "ltrs"
+   ],
+   "dim": {
+    "L": 3
+   },
+   "factor": 0.001,
+   "source": "si"
+  },
+  {
+   "id": "mL",
+   "forms": [
+    "ml",
+    "mL",
+    "millilitre",
+    "millilitres",
+    "milliliter",
+    "milliliters"
+   ],
+   "dim": {
+    "L": 3
+   },
+   "factor": 1e-06,
+   "source": "si"
+  },
+  {
+   "id": "gal_us",
+   "forms": [
+    "gal",
+    "gallon",
+    "gallons"
+   ],
+   "dim": {
+    "L": 3
+   },
+   "factor": 0.003785411784,
+   "note": "US liquid gallon; a UK gallon is 4.54609 L: a page that does not say which is ambiguous",
+   "source": "nist_sp811"
+  },
+  {
+   "id": "pt_us",
+   "forms": [
+    "pint",
+    "pints",
+    "pt"
+   ],
+   "dim": {
+    "L": 3
+   },
+   "factor": 0.000473176473,
+   "note": "US liquid pint (US dehumidifier capacities); a UK pint is 0.56826125 L",
+   "source": "nist_sp811"
+  },
+  {
+   "id": "qt_us",
+   "forms": [
+    "qt",
+    "quart",
+    "quarts"
+   ],
+   "dim": {
+    "L": 3
+   },
+   "factor": 0.000946352946,
+   "source": "nist_sp811"
+  },
+  {
+   "id": "kg",
+   "forms": [
+    "kg",
+    "kilogram",
+    "kilograms",
+    "kilo",
+    "kilos"
+   ],
+   "dim": {
+    "M": 1
+   },
+   "factor": 1,
+   "source": "si"
+  },
+  {
+   "id": "g",
+   "forms": [
+    "g",
+    "gram",
+    "grams"
+   ],
+   "dim": {
+    "M": 1
+   },
+   "factor": 0.001,
+   "standalone": false,
+   "source": "si"
+  },
+  {
+   "id": "mg",
+   "forms": [
+    "mg",
+    "milligram",
+    "milligrams"
+   ],
+   "dim": {
+    "M": 1
+   },
+   "factor": 1e-06,
+   "source": "si"
+  },
+  {
+   "id": "ug",
+   "forms": [
+    "µg",
+    "μg",
+    "ug",
+    "microgram",
+    "micrograms"
+   ],
+   "dim": {
+    "M": 1
+   },
+   "factor": 1e-09,
+   "source": "si"
+  },
+  {
+   "id": "lb",
+   "forms": [
+    "lb",
+    "lbs",
+    "pound",
+    "pounds"
+   ],
+   "dim": {
+    "M": 1
+   },
+   "factor": 0.45359237,
+   "source": "nist_sp811"
+  },
+  {
+   "id": "oz",
+   "forms": [
+    "oz",
+    "ounce",
+    "ounces"
+   ],
+   "dim": {
+    "M": 1
+   },
+   "factor": 0.028349523125,
+   "source": "nist_sp811"
+  },
+  {
+   "id": "s",
+   "forms": [
+    "s",
+    "sec",
+    "secs",
+    "second",
+    "seconds"
+   ],
+   "dim": {
+    "T": 1
+   },
+   "factor": 1,
+   "standalone": false,
+   "source": "si"
+  },
+  {
+   "id": "ms",
+   "forms": [
+    "ms",
+    "millisecond",
+    "milliseconds"
+   ],
+   "dim": {
+    "T": 1
+   },
+   "factor": 0.001,
+   "source": "si"
+  },
+  {
+   "id": "min",
+   "forms": [
+    "min",
+    "mins",
+    "minute",
+    "minutes"
+   ],
+   "dim": {
+    "T": 1
+   },
+   "factor": 60,
+   "source": "si"
+  },
+  {
+   "id": "h",
+   "forms": [
+    "h",
+    "hr",
+    "hrs",
+    "hour",
+    "hours"
+   ],
+   "dim": {
+    "T": 1
+   },
+   "factor": 3600,
+   "standalone": false,
+   "source": "si"
+  },
+  {
+   "id": "day",
+   "forms": [
+    "day",
+    "days",
+    "d"
+   ],
+   "dim": {
+    "T": 1
+   },
+   "factor": 86400,
+   "standalone": false,
+   "class": "reference_period",
+   "conventional": true,
+   "source": "si"
+  },
+  {
+   "id": "week",
+   "forms": [
+    "week",
+    "weeks",
+    "wk"
+   ],
+   "dim": {
+    "T": 1
+   },
+   "factor": 604800,
+   "class": "reference_period",
+   "conventional": true,
+   "source": "si"
+  },
+  {
+   "id": "month",
+   "forms": [
+    "month",
+    "months",
+    "mo"
+   ],
+   "dim": {
+    "T": 1
+   },
+   "factor": 2629800,
+   "class": "reference_period",
+   "conventional": true,
+   "source": "pee"
+  },
+  {
+   "id": "year",
+   "forms": [
+    "year",
+    "years",
+    "yr",
+    "annum"
+   ],
+   "dim": {
+    "T": 1
+   },
+   "factor": 31557600,
+   "class": "reference_period",
+   "conventional": true,
+   "note": "per year / per annum is a reporting basis that may be conventional (a stated number of cycles)",
+   "source": "pee"
+  },
+  {
+   "id": "K",
+   "forms": [
+    "kelvin",
+    "kelvins"
+   ],
+   "dim": {
+    "Th": 1
+   },
+   "factor": 1,
+   "source": "si",
+   "note": "the symbol K alone is not read: \"4K\" is a display resolution"
+  },
+  {
+   "id": "degC",
+   "forms": [
+    "°C",
+    "° C",
+    "ºC",
+    "degC",
+    "degrees Celsius",
+    "degrees C",
+    "℃"
+   ],
+   "dim": {
+    "Th": 1
+   },
+   "factor": 1,
+   "offset": 273.15,
+   "source": "si"
+  },
+  {
+   "id": "degF",
+   "forms": [
+    "°F",
+    "° F",
+    "ºF",
+    "degF",
+    "degrees Fahrenheit",
+    "degrees F",
+    "℉"
+   ],
+   "dim": {
+    "Th": 1
+   },
+   "factor": 0.5555555555555556,
+   "offset": 255.3722222222222,
+   "source": "nist_sp811"
+  },
+  {
+   "id": "J",
+   "forms": [
+    "J",
+    "joule",
+    "joules"
+   ],
+   "dim": {
+    "L": 2,
+    "M": 1,
+    "T": -2
+   },
+   "factor": 1,
+   "cs": true,
+   "source": "si"
+  },
+  {
+   "id": "Wh",
+   "forms": [
+    "Wh",
+    "watt-hour",
+    "watt-hours",
+    "watt hour",
+    "watt hours"
+   ],
+   "dim": {
+    "L": 2,
+    "M": 1,
+    "T": -2
+   },
+   "factor": 3600,
+   "source": "si"
+  },
+  {
+   "id": "kWh",
+   "forms": [
+    "kWh",
+    "kilowatt-hour",
+    "kilowatt-hours",
+    "kilowatt hour",
+    "kilowatt hours"
+   ],
+   "dim": {
+    "L": 2,
+    "M": 1,
+    "T": -2
+   },
+   "factor": 3600000,
+   "source": "si"
+  },
+  {
+   "id": "W",
+   "forms": [
+    "W",
+    "w",
+    "watt",
+    "watts"
+   ],
+   "dim": {
+    "L": 2,
+    "M": 1,
+    "T": -3
+   },
+   "factor": 1,
+   "source": "si"
+  },
+  {
+   "id": "kW",
+   "forms": [
+    "kW",
+    "kilowatt",
+    "kilowatts"
+   ],
+   "dim": {
+    "L": 2,
+    "M": 1,
+    "T": -3
+   },
+   "factor": 1000,
+   "source": "si"
+  },
+  {
+   "id": "mAh",
+   "forms": [
+    "mAh",
+    "milliamp-hour",
+    "milliamp hours"
+   ],
+   "dim": {
+    "T": 1,
+    "I": 1
+   },
+   "factor": 3.6,
+   "source": "si"
+  },
+  {
+   "id": "Ah",
+   "forms": [
+    "Ah",
+    "amp-hour",
+    "amp-hours"
+   ],
+   "dim": {
+    "T": 1,
+    "I": 1
+   },
+   "factor": 3600,
+   "cs": true,
+   "source": "si"
+  },
+  {
+   "id": "V",
+   "forms": [
+    "V",
+    "volt",
+    "volts"
+   ],
+   "dim": {
+    "L": 2,
+    "M": 1,
+    "T": -3,
+    "I": -1
+   },
+   "factor": 1,
+   "cs": true,
+   "source": "si"
+  },
+  {
+   "id": "Pa",
+   "forms": [
+    "Pa",
+    "pascal",
+    "pascals"
+   ],
+   "dim": {
+    "L": -1,
+    "M": 1,
+    "T": -2
+   },
+   "factor": 1,
+   "cs": true,
+   "source": "si"
+  },
+  {
+   "id": "kPa",
+   "forms": [
+    "kPa",
+    "kilopascal",
+    "kilopascals"
+   ],
+   "dim": {
+    "L": -1,
+    "M": 1,
+    "T": -2
+   },
+   "factor": 1000,
+   "source": "si"
+  },
+  {
+   "id": "bar",
+   "forms": [
+    "bar",
+    "bars"
+   ],
+   "dim": {
+    "L": -1,
+    "M": 1,
+    "T": -2
+   },
+   "factor": 100000,
+   "source": "si"
+  },
+  {
+   "id": "Hz",
+   "forms": [
+    "Hz",
+    "hertz"
+   ],
+   "dim": {
+    "T": -1
+   },
+   "factor": 1,
+   "kindHint": "frequency",
+   "source": "si"
+  },
+  {
+   "id": "kHz",
+   "forms": [
+    "kHz",
+    "kilohertz"
+   ],
+   "dim": {
+    "T": -1
+   },
+   "factor": 1000,
+   "kindHint": "frequency",
+   "source": "si"
+  },
+  {
+   "id": "rpm",
+   "forms": [
+    "rpm",
+    "r/min",
+    "revolutions per minute"
+   ],
+   "dim": {
+    "T": -1
+   },
+   "factor": 0.016666666666666666,
+   "kindHint": "rotational_speed",
+   "source": "si"
+  },
+  {
+   "id": "ach",
+   "forms": [
+    "ACH",
+    "air changes per hour",
+    "air changes an hour"
+   ],
+   "dim": {
+    "T": -1
+   },
+   "factor": 0.0002777777777777778,
+   "kindHint": "air_change_rate",
+   "source": "pee"
+  },
+  {
+   "id": "cfm",
+   "forms": [
+    "cfm",
+    "cubic feet per minute",
+    "cu ft/min",
+    "ft³/min",
+    "ft3/min"
+   ],
+   "dim": {
+    "L": 3,
+    "T": -1
+   },
+   "factor": 0.0004719474432,
+   "source": "nist_sp811"
+  },
+  {
+   "id": "cd",
+   "forms": [
+    "cd",
+    "candela"
+   ],
+   "dim": {
+    "J": 1
+   },
+   "factor": 1,
+   "cs": true,
+   "source": "si"
+  },
+  {
+   "id": "nit",
+   "forms": [
+    "nit",
+    "nits"
+   ],
+   "dim": {
+    "J": 1,
+    "L": -2
+   },
+   "factor": 1,
+   "kindHint": "luminance",
+   "note": "nit is a name for cd/m2",
+   "source": "si"
+  },
+  {
+   "id": "lx",
+   "forms": [
+    "lux",
+    "lx"
+   ],
+   "dim": {
+    "J": 1,
+    "L": -2
+   },
+   "factor": 1,
+   "kindHint": "illuminance",
+   "source": "si"
+  },
+  {
+   "id": "ppm",
+   "forms": [
+    "ppm"
+   ],
+   "dim": {},
+   "factor": 1e-06,
+   "kindHint": "amount_fraction",
+   "source": "si"
+  },
+  {
+   "id": "pct",
+   "forms": [
+    "%",
+    "percent",
+    "per cent"
+   ],
+   "dim": {},
+   "factor": 0.01,
+   "kindHint": "ratio",
+   "source": "si"
+  },
+  {
+   "id": "cycle",
+   "forms": [
+    "cycle",
+    "cycles",
+    "wash",
+    "washes",
+    "load",
+    "loads",
+    "use",
+    "uses"
+   ],
+   "dim": {},
+   "factor": 1,
+   "class": "reference_event",
+   "conventional": true,
+   "standalone": false,
+   "denominatorOnly": true,
+   "note": "a counted operation: per cycle or per 100 cycles is a reporting basis, compared only on the same basis",
+   "source": "pee"
+  }
+ ],
+ "levelUnits": [
+  {
+   "id": "dB",
+   "forms": [
+    "dB",
+    "decibel",
+    "decibels"
+   ],
+   "weighting": "unspecified",
+   "reference": null,
+   "kinds": [
+    "sound_pressure_level",
+    "sound_power_level",
+    "signal_to_noise_ratio"
+   ],
+   "source": "iso_80000_8"
+  },
+  {
+   "id": "dBA",
+   "forms": [
+    "dBA",
+    "dB(A)",
+    "dB (A)",
+    "A-weighted decibels"
+   ],
+   "weighting": "A",
+   "reference": null,
+   "kinds": [
+    "sound_pressure_level",
+    "sound_power_level"
+   ],
+   "source": "iec_61672_1"
+  },
+  {
+   "id": "dBC",
+   "forms": [
+    "dBC",
+    "dB(C)",
+    "dB (C)"
+   ],
+   "weighting": "C",
+   "reference": null,
+   "kinds": [
+    "sound_pressure_level",
+    "sound_power_level"
+   ],
+   "source": "iec_61672_1"
+  },
+  {
+   "id": "dBA_re_1pW",
+   "forms": [
+    "dB(A) re 1 pW",
+    "dBA re 1 pW",
+    "dB(A) re 1pW",
+    "dB (A) re 1 pW"
+   ],
+   "weighting": "A",
+   "reference": "1 pW",
+   "kinds": [
+    "sound_power_level"
+   ],
+   "source": "eu_2019_2017"
+  },
+  {
+   "id": "dB_re_20uPa",
+   "forms": [
+    "dB re 20 µPa",
+    "dB re 20 μPa",
+    "dB SPL"
+   ],
+   "weighting": "unspecified",
+   "reference": "20 µPa",
+   "kinds": [
+    "sound_pressure_level"
+   ],
+   "source": "iso_80000_8"
+  }
+ ],
+ "language": {
+  "en": {
+   "min": [
+    "at least",
+    "minimum of",
+    "minimum",
+    "min.",
+    "no less than",
+    "not less than",
+    "more than",
+    "over",
+    "above",
+    "greater than",
+    "upwards of"
+   ],
+   "minAfter": [
+    "or more",
+    "or higher",
+    "or above",
+    "minimum",
+    "at least",
+    "+"
+   ],
+   "max": [
+    "at most",
+    "maximum of",
+    "maximum",
+    "max.",
+    "no more than",
+    "not more than",
+    "less than",
+    "under",
+    "below",
+    "up to",
+    "no greater than",
+    "within"
+   ],
+   "maxAfter": [
+    "or less",
+    "or lower",
+    "or below",
+    "maximum",
+    "max",
+    "at most"
+   ],
+   "perWords": [
+    "per"
+   ],
+   "exponentWords": {
+    "square": 2,
+    "sq": 2,
+    "sq.": 2,
+    "cubic": 3,
+    "cu": 3,
+    "cu.": 3
+   },
+   "increaseComparatives": [
+    "more",
+    "greater",
+    "higher",
+    "bigger",
+    "larger",
+    "wider",
+    "taller",
+    "deeper",
+    "heavier",
+    "longer",
+    "louder",
+    "noisier",
+    "brighter",
+    "hotter",
+    "faster",
+    "stronger",
+    "thicker"
+   ],
+   "decreaseComparatives": [
+    "less",
+    "fewer",
+    "lower",
+    "smaller",
+    "narrower",
+    "shorter",
+    "lighter",
+    "quieter",
+    "dimmer",
+    "cooler",
+    "slower",
+    "thinner",
+    "weaker"
+   ],
+   "comparativeNote": "'X-er than N' bounds the quantity from below when X-er is an increase and from above when it is a decrease; 'no/not X-er than N' reverses it. This is English, not physics, and is stated per word."
+  }
+ }
+}
