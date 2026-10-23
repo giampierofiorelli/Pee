@@ -87,6 +87,9 @@ def applicable(content, inquiry, store=None):
     for k in sorted(b.get("unspecified") or {}):
         if k != "method" and k in sit:
             return False, f"{content.id}: its measurand leaves {k} unspecified; the situation states it"
+    required = inquiry.body.get("requires_evidence")  # A-1: an evidence requirement of the question
+    if required and store is not None and not satisfies_evidence(store, content, required):
+        return False, f"{content.id}: its sources do not provide the required evidence ({required})"
     wanted = inquiry.body.get("methods")
     if wanted and not set(wanted) <= set(b.get("methods") or ()):
         return False, f"{content.id}: not measured by the method the question names"
@@ -412,3 +415,294 @@ def select(store, inquiry, entities, kind, prefer, end=None):
         if ok:
             return x, sorted(set(grounds)), f"{x} has the {prefer} {kind} of {len(entities)} under the same conditions"
     return None, [], f"no entity has the {prefer} {kind} on the available comparisons"
+
+
+# --- A-1: services over proposition contents (S0 5.5, 5.6, 5.7, 5.9; qualitative influence: Forbus, "Qualitative
+# process theory", 1984) ---------------------------------------------------------------------------------------------
+# Relation concepts are found by their structural role and sign (knowledge), never by identifier. A proposition
+# licenses a conclusion only through an attribution whose holder asserts or reports it; a proposal, hypothesis or open
+# question never does, and a claim the document states as not established supports an abstention.
+
+LICENSING = ("asserted", "reported")
+
+
+def relation_meta(store):
+    return {r.id: {"role": r.body.get("structural_role"), "sign": r.body.get("sign"),
+                   "designations": list(r.body.get("designations") or ())} for r in store.of("relation_concept")}
+
+
+def relation_for(store, designation):
+    """The relation concept a relation name designates, with the polarity it implies ("does_not_establish")."""
+    neg = False
+    d = designation
+    if d.startswith("other"):
+        d = "other"
+    if d.startswith("does_not_"):
+        d, neg = d[len("does_not_"):], True
+        d = {"establish": "establishes", "measure": "measures", "apply_to": "applies_to"}.get(d, d)
+    for rid, m in relation_meta(store).items():
+        if d in m["designations"]:
+            return rid, neg
+    return None, neg
+
+
+def attributions(store, pid):
+    return [a for a in store.of("content", form="attribution", content=pid) if current(store, a.id)]
+
+
+def attitudes(store, pid):
+    return {a.body.get("attitude") for a in attributions(store, pid)}
+
+
+def evidence_classes(store, pid):
+    return {e for a in attributions(store, pid) for e in a.body.get("evidence_classes") or ()}
+
+
+def propositions(store):
+    return [p for p in store.of("content", form="proposition") if current(store, p.id)]
+
+
+def _cond_terms(store, conds):
+    out = {}
+    for c in conds or ():
+        cid = c.get("concept")
+        out.setdefault(cid, set()).add(" ".join(str(c.get("value") or "").lower().split()))
+    return out
+
+
+def conditions_fit(store, prop, query):
+    """(fits, caveat): a claim stated under conditions applies when the query's conditions do not contradict them.
+    ``query`` maps concept ids to sets of value words. A condition the query does not state is a caveat."""
+    pc = _cond_terms(store, prop.body.get("conditions"))
+    caveats = []
+    for cid, vals in pc.items():
+        if cid in query:
+            q = query[cid]
+            if not any(a == b or a in b or b in a for a in vals for b in q):
+                return False, f"{prop.id}: holds under {sorted(vals)} of {cid}; the question states {sorted(q)}"
+        else:
+            caveats.append(cid)
+    return True, caveats
+
+
+def _licensed(store, p):
+    return bool(attitudes(store, p.id) & set(LICENSING)) and p.body.get("content_kind") != "unknown"
+
+
+def _edges(store, query_conds):
+    """Signed influence edges between concepts from licensed propositions: (from, to, sign, pid, modality)."""
+    meta = relation_meta(store)
+    out = []
+    for p in propositions(store):
+        m = meta.get(p.body.get("relation")) or {}
+        if m.get("role") not in ("effect", "influence") or p.body.get("polarity") != "affirmed":
+            continue
+        if not _licensed(store, p) or not p.body.get("object"):
+            continue
+        ok, _ = conditions_fit(store, p, query_conds)
+        if not ok:
+            continue
+        s, o = p.body["subject"], p.body["object"]
+        if m["role"] == "influence":  # "Y depends on X": X makes a difference to Y
+            s, o = o, s
+        out.append((s, o, m.get("sign") or 0, p.id, p.body.get("modality")))
+    return out
+
+
+def influence(store, causes, effects, query_conds=None, max_len=3):
+    """The effect of the cause concepts on the effect concepts: increases, decreases, affects, no effect, or
+    undetermined, with grounds. Direct claims first; then chains of signed influences (a chain is unsigned when any
+    link is). A licensed negated claim of an effect answers "no effect"; a claim the document states as not established
+    answers "undetermined"."""
+    query_conds = query_conds or {}
+    causes, effects = set(causes), set(effects)
+    meta = relation_meta(store)
+    neg, unknown = [], []
+    for p in propositions(store):
+        b = p.body
+        if b.get("subject") in causes and b.get("object") in effects and \
+                (meta.get(b.get("relation")) or {}).get("role") == "effect":
+            if b.get("content_kind") == "unknown":
+                unknown.append(p.id)
+            elif b.get("polarity") == "negated" and _licensed(store, p) and conditions_fit(store, p, query_conds)[0] \
+                    and (meta[b["relation"]].get("sign") in (0, None) or b.get("relation") in ()):
+                neg.append(p.id)
+    edges = _edges(store, query_conds)
+    direct = [e for e in edges if e[0] in causes and e[1] in effects]
+    if direct:
+        signs = {e[2] for e in direct}
+        grounds = [e[3] for e in direct]
+        if neg:
+            return {"answer": "undetermined", "why": "the claims conflict", "grounds": grounds + neg}
+        if 1 in signs and -1 in signs:
+            return {"answer": "undetermined", "why": "claims of opposite direction", "grounds": grounds}
+        ans = "increases" if signs == {1} else "decreases" if signs == {-1} else (
+            "increases" if 1 in signs else "decreases" if -1 in signs else "affects")
+        return {"answer": ans, "inference": "direct", "grounds": grounds}
+    if neg:
+        return {"answer": "no effect", "inference": "direct", "grounds": neg}
+    if unknown:
+        return {"answer": "undetermined", "why": "the document states it is not established", "grounds": unknown}
+    # chains
+    frontier = [(c, 1, [], ()) for c in causes]
+    seen = set(causes)
+    for _ in range(max_len):
+        nxt = []
+        for node, sign, path, used in frontier:
+            for s, o, sg, pid, mod in edges:
+                if s != node or o in seen:
+                    continue
+                ns = sign * sg
+                if o in effects:
+                    ans = "increases" if ns > 0 else "decreases" if ns < 0 else "affects"
+                    return {"answer": ans, "inference": "chain", "grounds": path + [pid]}
+                nxt.append((o, ns, path + [pid], used))
+                seen.add(o)
+        frontier = nxt
+    return {"answer": "undetermined", "why": "no claim or chain of claims links them", "grounds": []}
+
+
+def _matching(store, subjects, relation, objects, query_conds=None, verb=None):
+    rid = relation
+    out = []
+    for p in propositions(store):
+        b = p.body
+        if b.get("relation") != rid or b.get("subject") not in subjects:
+            continue
+        if verb and _stem(b.get("verb")) != _stem(verb):
+            continue
+        if objects is not None and b.get("object") not in objects:
+            continue
+        if query_conds is not None and not conditions_fit(store, p, query_conds)[0]:
+            continue
+        out.append(p)
+    return out
+
+
+def _stem(v):
+    import re as _re
+    return _re.sub(r"(?:es|s|ed|ing)$", "", (v or "").lower().strip().replace("_", " ").split(" ")[0])
+
+
+def _verb(designation):
+    return designation.split(":", 1)[1].strip() if designation.startswith("other") and ":" in designation else None
+
+
+def holds(store, subjects, designation, objects, query_conds=None):
+    """Whether the universe licenses the claim: yes, no (it licenses the contrary) or undetermined."""
+    rid, neg = relation_for(store, designation)
+    if rid is None:
+        return {"answer": "undetermined", "why": f"no relation concept designated {designation}", "grounds": []}
+    meta = relation_meta(store)[rid]
+    want = "negated" if neg else "affirmed"
+    ps = _matching(store, set(subjects), rid, set(objects) if objects is not None else None, query_conds or {},
+                   verb=_verb(designation))
+    lic = [p for p in ps if _licensed(store, p)]
+    unknown = [p.id for p in ps if p.body.get("content_kind") == "unknown"]
+    same = [p.id for p in lic if p.body.get("polarity") == want]
+    other = [p.id for p in lic if p.body.get("polarity") != want]
+    if same and not other:
+        return {"answer": "yes", "inference": "direct", "grounds": same}
+    if other and not same:
+        return {"answer": "no", "inference": "direct", "grounds": other}
+    if same and other:
+        return {"answer": "undetermined", "why": "the claims conflict", "grounds": same + other}
+    if unknown:
+        return {"answer": "undetermined", "why": "the document states it is not established", "grounds": unknown}
+    if meta["role"] == "effect" and objects is not None:
+        r = influence(store, subjects, objects, query_conds)
+        want_sign = meta.get("sign")
+        got = {"increases": 1, "decreases": -1, "affects": 0, "no effect": None}.get(r["answer"], "u")
+        if r["answer"] == "no effect":
+            return {"answer": "no" if not neg else "yes", "inference": r.get("inference"), "grounds": r["grounds"]}
+        if got != "u" and (want_sign in (0, None) or got == want_sign):
+            return {"answer": "no" if neg else "yes", "inference": r.get("inference"), "grounds": r["grounds"]}
+    if meta["role"] == "subsumption" and objects is not None:  # is_a is transitive
+        frontier, seen = set(subjects), set(subjects)
+        for _ in range(3):
+            nxt = set()
+            for p in propositions(store):
+                b = p.body
+                if b.get("relation") == rid and b.get("subject") in frontier and b.get("polarity") == "affirmed" \
+                        and _licensed(store, p) and b.get("object") not in seen:
+                    if b["object"] in objects:
+                        return {"answer": "no" if neg else "yes", "inference": "chain", "grounds": [p.id]}
+                    nxt.add(b["object"])
+            seen |= nxt
+            frontier = nxt
+    return {"answer": "undetermined", "why": "not stated", "grounds": []}
+
+
+def statements_about(store, subjects, designation, objects):
+    """Propositions matching a claim, ignoring polarity and licence (for status and evidence questions)."""
+    rid, neg = relation_for(store, designation)
+    if rid is None:
+        return [], neg
+    return _matching(store, set(subjects), rid, set(objects) if objects is not None else None,
+                     verb=_verb(designation)), neg
+
+
+def consistent(store, subjects, designation, objects, polarity, query_conds=None):
+    """A claim against the universe: consistent, conflicts or not covered (S0 6.5 coherence)."""
+    h = holds(store, subjects, designation, objects, query_conds)
+    if h["answer"] == "undetermined":
+        return {"answer": "not covered", "why": h.get("why"), "grounds": h["grounds"]}
+    agree = (h["answer"] == "yes") == (polarity == "affirmed")
+    return {"answer": "consistent" if agree else "conflicts", "inference": h.get("inference"), "grounds": h["grounds"]}
+
+
+def value(store, subjects, query_conds=None):
+    """The value the universe licenses for a quantity concept (a has_value proposition)."""
+    rid, _ = relation_for(store, "has_value")
+    ps = [p for p in _matching(store, set(subjects), rid, None, query_conds or {}) if _licensed(store, p)
+          and p.body.get("value")]
+    vals = {json_key(p.body["value"]) for p in ps}
+    if len(vals) == 1:
+        return {"answer": thaw(ps[0].body["value"]), "inference": "direct", "grounds": [p.id for p in ps]}
+    if len(vals) > 1:
+        return {"answer": "undetermined", "why": "several values are stated", "grounds": [p.id for p in ps]}
+    return {"answer": "undetermined", "why": "no value stated", "grounds": []}
+
+
+def json_key(v):
+    import json
+    return json.dumps(thaw(v), sort_keys=True)
+
+
+def evidence_of(store, content):
+    """The evidence classes the universe's attributions give a content or the record it interprets."""
+    out = set()
+    for a in store.of("content", form="attribution"):
+        b = a.body
+        if b.get("content") == content.id or (content.body.get("interprets") and b.get("reports") ==
+                                               content.body.get("interprets")):
+            out |= set(b.get("evidence_classes") or ())
+            if b.get("evidence"):
+                out.add(b["evidence"])
+    return out
+
+
+def satisfies_evidence(store, content, required):
+    """Whether a content has the evidence an inquiry requires: a class that knowledge marks as independent test
+    evidence, when the requirement is a measurement. The requirement and the classes are matched through the
+    evidence-class concepts and their terms, never by name in code."""
+    classes = {c.id: c.body for c in store.of("concept") if c.body.get("category") == "evidence class"}
+
+    def cls(x):
+        if x in classes:
+            return x
+        words = set(str(x).lower().replace("_", " ").split())
+        hits = [i for i, b in classes.items() if words & {t.lower() for t in b.get("terms", ())}]
+        return hits[0] if len(hits) == 1 else None
+
+    want = cls(required)
+    if want is None:
+        return False
+    need_independent = classes[want].get("independent_test_evidence")
+    for e in evidence_of(store, content):
+        c = cls(e)
+        if c is None:
+            continue
+        if c == want or (need_independent and classes[c].get("independent_test_evidence")):
+            return True
+    return False

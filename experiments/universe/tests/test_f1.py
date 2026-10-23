@@ -266,7 +266,7 @@ class Architecture(unittest.TestCase):
         vocab = {t for i in items if i.get("category") != "evidence class"
                  for t in list(i.get("terms", [])) + list(i.get("named", [])) if len(t) >= 4}
         vocab |= {"pump", "pond", "nozzle", "basin", "humid", "purif", "cadr", "aham", "energy star", "dehumid"}
-        for f in ("knowledge_acquisition.py", "markdown.py"):
+        for f in ("knowledge_acquisition.py", "markdown.py", "propositions.py", "persist.py", "assimilate.py"):
             tree = ast.parse((HERE / "universe" / f).read_text())
             docs = {id(n.body[0].value) for n in ast.walk(tree) if isinstance(n, (ast.Module, ast.FunctionDef,
                                                                                  ast.ClassDef))

@@ -527,9 +527,14 @@ class _Ctx:
         rid = f"R:{_h(self.url, rec.get('locator'), rec.get('text'))}"
         if rid not in self.records:
             if not self.store.has(rid):
-                self.store.acquire(Item(rid, "record", {"form": "document statement", "text": rec.get("text"),
-                                                        "locator": rec.get("locator"),
-                                                        "heading_path": rec.get("section"), "document": self.url},
+                # A-1: the record keeps the statement's identity (locator, length, SHA-256), never its text
+                text = rec.get("text") or ""
+                self.store.acquire(Item(rid, "record", {"form": "document statement",
+                                                        "text_sha256": hashlib.sha256(text.encode()).hexdigest(),
+                                                        "chars": len(text), "locator": rec.get("locator"),
+                                                        "heading_path_sha256": hashlib.sha256(json.dumps(
+                                                            rec.get("section") or []).encode()).hexdigest(),
+                                                        "document": self.url},
                                         self.src))
             aid = _propose(self.store, {"form": "attribution", "holder": self.holder, "reports": rid}, [rid],
                            "the document reports this statement (attribution, not adoption)")
@@ -933,17 +938,204 @@ def represent(store, units_in, url, holder, lex=None):
                 "form": "attribution", "holder": holder, "reports": prem[0], "cites": cites, "unresolved": unresolved,
                 "labels": list(u.get("labels", ())), "evidence_classes": classes, "cited_sources_examined": False},
                 prem + cites, "the document reports this statement, citing these sources (attribution, not adoption)"))
+    _represent_propositions(ctx, [u for u in units_in if u["type"] == "proposition"])
     return ctx.summary
 
 
-def acquire_knowledge(store, doc, lex):
-    """Read and represent the knowledge a document states (called by ``acquisition.acquire_document``)."""
+# --- A-1: propositions ---------------------------------------------------------------------------------------------
+
+def _term(s):
+    return " ".join(re.sub(r"[^\w%°/\-'’.]+", " ", (s or "").lower()).split()).strip(" .")
+
+
+def _concept_index(store, lex):
+    """Every term the universe already holds for a concept or kind: term -> item ids."""
+    idx = {}
+    for kid, kb in lex.kinds.items():
+        # a kind's symbols are anchors too ("RH" for relative humidity), read without case
+        for t in list(kb.get("terms", ())) + [kb.get("label") or ""] + [x for x in kb.get("symbols", ())
+                                                                         if len(x) >= 2 and x.isalpha()]:
+            if t:
+                idx.setdefault(_term(t), set()).add(kid)
+    for c in store.of("concept"):
+        b = c.body
+        if b.get("category") in ("evidence class", "lexical frame"):
+            continue
+        for t in list(b.get("terms") or ()) + [b.get("label") or ""]:
+            if t and len(t) <= 120:
+                idx.setdefault(_term(t), set()).add(c.id)
+    return idx
+
+
+def concept_for(ctx, phrase):
+    """The concept a phrase names (S0 D2): an existing kind or concept with this term (the base, or this holder's
+    earlier documents); otherwise a new concept of this holder with a lexical anchor, linked to the concept its head
+    names when one is known (Op2 restriction). Never a merge across holders: one holder's term names one concept."""
+    t = _term(phrase)
+    if not t:
+        return None
+    idx = ctx.cindex
+    hits = sorted(x for x in idx.get(t, ()) if not x.startswith("C:") or ctx.store.get(x).body.get("holder")
+                  in (None, ctx.holder))
+    if len(hits) == 1:
+        return hits[0]
+    cid = f"C:{_h(ctx.holder, t)}"
+    if not ctx.store.has(cid):
+        words = t.split()
+        head = None
+        for k in range(1, min(4, len(words))):
+            tail = " ".join(words[k:])
+            cand = sorted(idx.get(tail, ()))
+            if len(cand) == 1:
+                head = cand[0]
+                break
+        ctx.store.acquire(Item(cid, "concept", {"label": t, "terms": [t], "category": "document concept",
+                                                "holder": ctx.holder, "first_document": ctx.url,
+                                                "head": head, "modifiers": words[:len(words) - len(tail.split())]
+                                                if head else []}, ctx.src),
+                          "a concept the document names (lexical anchor; the holder's term)")
+        idx.setdefault(t, set()).add(cid)
+        ctx.summary.setdefault("concepts", []).append(cid)
+    return cid
+
+
+def _relation_ids(store):
+    out = {}
+    for r in store.of("relation_concept"):
+        for d in r.body.get("designations") or ():
+            out[d] = r.id
+    return out
+
+
+def _evidence_ids(kind, lex):
+    if not kind or kind in ("none_stated",):
+        return []
+    for part in kind.split("_or_"):
+        e = _evidence_class(part.replace("_", " "), lex)
+        if e:
+            return [e]
+    return []
+
+
+def _represent_propositions(ctx, props):
+    """A-1: one ``proposition`` content per claim, its attribution, and the explanation and qualification links
+    between claims (S0 D10, 5.6, 4.6). A claim another record already stated gains an attribution, not a duplicate."""
+    if not props:
+        return
+    from .acquisition import Lexicon
+    store = ctx.store
+    lex = Lexicon(store)  # the kinds and concepts this document has just defined are known too
+    ctx.cindex = _concept_index(store, lex)
+    rel = _relation_ids(store)
+    ids = {}
+    for u in props:
+        verb = None
+        if (u.get("relation") or "").startswith("other"):
+            verb = _term(u["relation"].split(":", 1)[-1].replace("_", " ")) or None
+        r = rel.get("other" if verb is not None or (u.get("relation") or "") == "other" else u.get("relation"))
+        s, o = concept_for(ctx, u.get("subject")), concept_for(ctx, u.get("object")) if u.get("object") else None
+        if r is None or s is None:
+            ctx.summary["abstained"].append({"unit": "proposition", "id": u.get("id"),
+                                             "why": "relation not in the universe" if r is None else "no subject"})
+            continue
+        conds = sorted(({"concept": concept_for(ctx, c.get("concept")), "value": _term(c.get("value"))}
+                        for c in u.get("conditions") or () if c.get("concept")),
+                       key=lambda c: (c["concept"] or "", c["value"]))
+        body = {"form": "proposition", "content_kind": u.get("content_kind"), "relation": r, "subject": s,
+                "object": o, "value": u.get("value"), "polarity": u.get("polarity") or "affirmed",
+                "modality": u.get("modality") or "actual", "generality": u.get("generality") or "generic",
+                "conditions": conds}
+        if verb:
+            body["verb"] = verb
+        pid = f"P:{_h(body)}"
+        prem = ctx.record(u.get("record")) if u.get("record") else []
+        if store.has(pid):
+            ctx.summary.setdefault("restated", []).append(pid)
+        else:
+            ir = Item(f"IR:{SERVICE}:{_h('proposition', pid)}", "inference_record",
+                      {"service": SERVICE, "inquiry": None, "summary": "a claim the document states, as read",
+                       "premises": sorted(prem)}, PROGRAM)
+            store.propose(ir, f"{SERVICE} inference")
+            store.propose(Item(pid, "content", body, PROGRAM), "a proposition the document states")
+            grounds = [ir.id] + sorted(prem)
+            store.propose(Item(f"ST:{pid}", "standing", {"of": pid, "attitude": "proposed", "holder": "program",
+                                                         "grounds": grounds, "label": standing.label(store, grounds)},
+                               dict(PROGRAM, source="contract")), "standing of a proposal")
+            ctx.summary.setdefault("propositions", []).append(pid)
+        ids[u.get("id")] = pid
+        cites, texts = [], []
+        for a in u.get("attributed_to") or ():
+            a = str(a).strip()
+            for x in re.findall(r"[A-Za-z]{1,4}\d{1,4}", a) if re.fullmatch(r"[A-Za-z]{1,4}\d{1,4}(?:\s*,\s*[A-Za-z]{1,4}\d{1,4})*", a) else []:
+                cites.append(x)
+            if not re.fullmatch(r"[A-Za-z]{1,4}\d{1,4}(?:\s*,\s*[A-Za-z]{1,4}\d{1,4})*", a):
+                texts.append(a)
+        att = {"form": "attribution", "holder": ctx.holder, "reports": prem[0] if prem else None, "content": pid,
+               "attitude": u.get("document_attitude") or "asserted",
+               "evidence_classes": _evidence_ids(u.get("evidence_kind"), lex),
+               "cites": sorted({ctx.cites[c] for c in cites if c in ctx.cites}),
+               "unresolved": sorted({c for c in cites if c not in ctx.cites}),
+               "attributed_to": [concept_for(ctx, x) for x in texts], "cited_sources_examined": False,
+               "resolution": u.get("resolution"), "document": ctx.url}
+        ctx.summary.setdefault("proposition_attributions", []).append(_propose(store, att, [pid] + prem + att["cites"],
+                                                    "the document states this claim, with this attitude and support "
+                                                    "(attribution, not adoption)"))
+    for u in props:
+        pid = ids.get(u.get("id"))
+        if not pid:
+            continue
+        for e in u.get("explains") or ():
+            if ids.get(e):
+                ctx.summary.setdefault("explanations", []).append(_propose(store, {
+                    "form": "explanation", "explanans": pid, "explanandum": ids[e], "document": ctx.url},
+                    [pid, ids[e]], "the document offers this claim as explaining that one (S0 5.6)"))
+        q = u.get("qualifies")
+        if q and ids.get(q):
+            ctx.summary.setdefault("qualifications", []).append(_propose(store, {
+                "form": "qualification", "qualifier": pid, "qualified": ids[q], "document": ctx.url},
+                [pid, ids[q]], "the document limits, corrects or excepts that claim with this one"))
+        for d in u.get("depends_on") or ():
+            if ids.get(d):
+                ctx.summary.setdefault("context_links", []).append(_propose(store, {
+                    "form": "reading_context", "content": pid, "needs": ids[d], "document": ctx.url},
+                    [pid, ids[d]], "this claim was read with that one as its context"))
+
+
+def acquire_knowledge(store, doc, lex, propositions=False):
+    """Read and represent the knowledge a document states. ``acquisition.acquire_document`` (Route B pages) calls it
+    without proposition reading, as in F-1; the assimilation of owner-supplied documents (Route A, ``assimilate``)
+    calls it with ``propositions=True`` (A-1), which adds the propositions of the prose and the coverage ledger."""
+    from .propositions import read_propositions
     us = read_units(doc, lex)
+    pr = read_propositions(doc, lex) if propositions else {"units": [], "ledger": []}
+    us = us + pr["units"]
     if not any(u["type"] != "usage" for u in us):
-        return {"units": 0}
+        return {"units": 0, "ledger": pr["ledger"]}
     s = represent(store, us, doc["url"], doc.get("holder") or doc["url"], lex)
     s["units"] = len(us)
+    s["ledger"] = pr["ledger"]
+    if propositions:
+        _record_ledger(store, doc, pr["ledger"], s)
     return s
+
+
+def _record_ledger(store, doc, ledger, summary):
+    """A-1: the coverage ledger, kept as audit metadata of the document (no text: locators, hashes, statuses,
+    reasons, the unexplained words, and the proposition contents each sentence produced)."""
+    from collections import Counter
+    rid = f"LEDGER:{_h(doc['url'], doc.get('sha256'))}"
+    if store.has(rid):
+        return rid
+    counts = Counter(e["status"] for e in ledger)
+    store.acquire(Item(rid, "record", {"form": "assimilation ledger", "document": doc["url"],
+                                       "document_sha256": doc.get("sha256"), "sentences": len(ledger),
+                                       "counts": dict(counts), "entries": [
+                                           {k: e.get(k) for k in ("locator", "sha256", "status", "reasons",
+                                                                  "unexplained", "words")} for e in ledger]},
+                       {"source": doc["url"], "holder": doc.get("holder") or doc["url"], "basis": "document statement"}),
+                  "accounting of the document's sentences (A-1)")
+    summary["ledger_record"] = rid
+    return rid
 
 
 __all__ = ["read_units", "represent", "acquire_knowledge", "resolve_units", "StoreError"]

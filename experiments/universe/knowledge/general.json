@@ -519,7 +519,10 @@
    "kind": "relation_concept",
    "label": "is a part of",
    "transfers": [],
-   "structural_role": "parthood"
+   "structural_role": "parthood",
+   "designations": [
+    "part_of"
+   ]
   },
   {
    "id": "R:instance_of",
@@ -536,7 +539,10 @@
    "kind": "relation_concept",
    "label": "the value of the subject quantity depends on the object quantity or condition (an influence quantity, JCGM 200:2012 2.52; a defining condition of the measurand, 2.3)",
    "transfers": [],
-   "structural_role": "influence"
+   "structural_role": "influence",
+   "designations": [
+    "depends_on"
+   ]
   },
   {
    "id": "R:distinct",
@@ -544,7 +550,10 @@
    "label": "the two designated quantities or notions are not the same and are not interchangeable",
    "transfers": [],
    "structural_role": "non_identity",
-   "symmetric": true
+   "symmetric": true,
+   "designations": [
+    "differs_from"
+   ]
   },
   {
    "id": "E:physical_relation",
@@ -769,6 +778,273 @@
    ],
    "basis": "hypothesis",
    "independent_test_evidence": false
+  },
+  {
+   "id": "R:increases",
+   "kind": "relation_concept",
+   "label": "an intervention raising the subject would raise the object (positive type-level causal or influence content, S0 5.5)",
+   "transfers": [],
+   "structural_role": "effect",
+   "designations": [
+    "increases"
+   ],
+   "sign": 1
+  },
+  {
+   "id": "R:decreases",
+   "kind": "relation_concept",
+   "label": "an intervention raising the subject would lower the object (negative type-level causal or influence content, S0 5.5)",
+   "transfers": [],
+   "structural_role": "effect",
+   "designations": [
+    "decreases"
+   ],
+   "sign": -1
+  },
+  {
+   "id": "R:affects",
+   "kind": "relation_concept",
+   "label": "the subject makes a difference to the object, direction not stated (S0 5.5)",
+   "transfers": [],
+   "structural_role": "effect",
+   "designations": [
+    "affects",
+    "determines"
+   ],
+   "sign": 0
+  },
+  {
+   "id": "R:causes",
+   "kind": "relation_concept",
+   "label": "the subject produces or brings about the object (S0 5.5)",
+   "transfers": [],
+   "structural_role": "effect",
+   "designations": [
+    "causes"
+   ],
+   "sign": 1
+  },
+  {
+   "id": "R:prevents",
+   "kind": "relation_concept",
+   "label": "the subject stops or removes the object (S0 5.5)",
+   "transfers": [],
+   "structural_role": "effect",
+   "designations": [
+    "prevents"
+   ],
+   "sign": -1
+  },
+  {
+   "id": "R:enables",
+   "kind": "relation_concept",
+   "label": "the subject makes the object possible (S0 5.5, a necessary condition)",
+   "transfers": [],
+   "structural_role": "effect",
+   "designations": [
+    "enables"
+   ],
+   "sign": 1
+  },
+  {
+   "id": "R:correlates_with",
+   "kind": "relation_concept",
+   "label": "the two co-vary in a population; no causal claim (S0 5.5 association)",
+   "transfers": [],
+   "structural_role": "association",
+   "designations": [
+    "correlates_with"
+   ],
+   "symmetric": true
+  },
+  {
+   "id": "R:is_a",
+   "kind": "relation_concept",
+   "label": "the subject is a kind or case of the object (subsumption, S0 3.8)",
+   "transfers": [],
+   "structural_role": "subsumption",
+   "designations": [
+    "is_a"
+   ]
+  },
+  {
+   "id": "R:has_property",
+   "kind": "relation_concept",
+   "label": "the subject bears the object as a property or feature (S0 3.8)",
+   "transfers": [],
+   "structural_role": "property",
+   "designations": [
+    "has_property"
+   ]
+  },
+  {
+   "id": "R:defined_as",
+   "kind": "relation_concept",
+   "label": "the subject term is defined by the object (S0 D2, definitional dependence)",
+   "transfers": [],
+   "structural_role": "definition",
+   "designations": [
+    "defined_as"
+   ]
+  },
+  {
+   "id": "R:measures",
+   "kind": "relation_concept",
+   "label": "the subject (a method, instrument, test or quantity) measures or indicates the value of the object (S0 D16)",
+   "transfers": [],
+   "structural_role": "measurement",
+   "designations": [
+    "measures"
+   ]
+  },
+  {
+   "id": "R:establishes",
+   "kind": "relation_concept",
+   "label": "the subject (a result, test, standard or rating) establishes the object (relational-epistemic content, S0 5.8)",
+   "transfers": [],
+   "structural_role": "establishment",
+   "designations": [
+    "establishes"
+   ]
+  },
+  {
+   "id": "R:requires",
+   "kind": "relation_concept",
+   "label": "the subject requires the object (a necessary condition or a methodological requirement, S0 4.6, D18)",
+   "transfers": [],
+   "structural_role": "requirement",
+   "designations": [
+    "requires"
+   ]
+  },
+  {
+   "id": "R:recommends",
+   "kind": "relation_concept",
+   "label": "the holder recommends, requires or forbids an action (a norm, S0 D18); the subject is the action",
+   "transfers": [],
+   "structural_role": "recommendation",
+   "designations": [
+    "recommends"
+   ]
+  },
+  {
+   "id": "R:indicates",
+   "kind": "relation_concept",
+   "label": "the subject is a sign or proxy of the object (S0 5.8 directness)",
+   "transfers": [],
+   "structural_role": "indication",
+   "designations": [
+    "indicates"
+   ]
+  },
+  {
+   "id": "R:applies_to",
+   "kind": "relation_concept",
+   "label": "the subject's domain of application covers the object (scope content, S0 D10, 6.4)",
+   "transfers": [],
+   "structural_role": "scope",
+   "designations": [
+    "applies_to"
+   ]
+  },
+  {
+   "id": "R:exceeds",
+   "kind": "relation_concept",
+   "label": "the subject is greater than the object in a stated respect (comparison, S0 4.7)",
+   "transfers": [],
+   "structural_role": "comparison",
+   "designations": [
+    "exceeds"
+   ],
+   "sign": 1
+  },
+  {
+   "id": "R:less_than",
+   "kind": "relation_concept",
+   "label": "the subject is less than the object in a stated respect (comparison, S0 4.7)",
+   "transfers": [],
+   "structural_role": "comparison",
+   "designations": [
+    "less_than"
+   ],
+   "sign": -1
+  },
+  {
+   "id": "R:equals",
+   "kind": "relation_concept",
+   "label": "the subject and the object are the same in a stated respect, or the same thing (identity, S0 3.6.3)",
+   "transfers": [],
+   "structural_role": "equality",
+   "designations": [
+    "equals"
+   ]
+  },
+  {
+   "id": "R:has_value",
+   "kind": "relation_concept",
+   "label": "the subject quantity takes the stated value (quantitative content, S0 4.7)",
+   "transfers": [],
+   "structural_role": "value",
+   "designations": [
+    "has_value"
+   ]
+  },
+  {
+   "id": "R:occurs",
+   "kind": "relation_concept",
+   "label": "the subject occurs, exists or is observed (existence content)",
+   "transfers": [],
+   "structural_role": "occurrence",
+   "designations": [
+    "occurs"
+   ]
+  },
+  {
+   "id": "R:explains",
+   "kind": "relation_concept",
+   "label": "the explanans explains the explanandum (relational-epistemic content, S0 5.6)",
+   "transfers": [],
+   "structural_role": "explanation",
+   "designations": [
+    "explains"
+   ]
+  },
+  {
+   "id": "E:synthesis",
+   "kind": "concept",
+   "label": "a scientific explanation or synthesis prepared by the document's author (teaching material; not independent test evidence)",
+   "category": "evidence class",
+   "terms": [
+    "synthesis",
+    "teaching synthesis",
+    "explanation",
+    "author synthesis"
+   ],
+   "independent_test_evidence": false
+  },
+  {
+   "id": "E:expert_judgement",
+   "kind": "concept",
+   "label": "an expert's qualitative judgement",
+   "category": "evidence class",
+   "terms": [
+    "expert judgement",
+    "expert judgment",
+    "judgement",
+    "judgment",
+    "assessment"
+   ],
+   "independent_test_evidence": false
+  },
+  {
+   "id": "R:other",
+   "kind": "relation_concept",
+   "label": "a relation the document expresses with a verb the universe does not yet know (the verb is kept as a qualifier of the claim; no rule draws inferences from it)",
+   "transfers": [],
+   "structural_role": "unspecified",
+   "designations": [
+    "other"
+   ]
   }
  ]
 }

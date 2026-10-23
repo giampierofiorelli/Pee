@@ -73,3 +73,79 @@ def adopt_reading(store, inquiry_id, co_reference, holder, reason):
                            {"source": reason, "holder": holder, "basis": "assumption"}, {"situation": inquiry_id}),
                       "identity reading adopted for an inquiry")
     return rid
+
+
+def _stem_words(t):
+    out = []
+    for w in t.split():
+        if len(w) > 4 and w.endswith("ies"):
+            w = w[:-3] + "y"
+        elif len(w) > 3 and w.endswith("s") and not w.endswith(("ss", "us", "is")):
+            w = w[:-1]
+        out.append(w)
+    return " ".join(out)
+
+
+_INDEX = {}
+
+
+def _index(store):
+    """Normalised terms of every concept and kind, cached per store state."""
+    key = (id(store), store.seq)
+    if key in _INDEX:
+        return _INDEX[key]
+    from .knowledge_acquisition import _term
+    lang = store.get("L:en").body if store.has("L:en") else {}
+    stop = set((lang.get("propositions") or {}).get("determiners") or ()) | set(lang.get("stopwords") or ())
+    rows = []
+    for c in list(store.of("concept")) + list(store.of("quantity_kind")):
+        b = c.body
+        if b.get("category") in ("evidence class", "lexical frame"):
+            continue
+        for x in list(b.get("terms") or ()) + [b.get("label") or ""] + [y for y in b.get("symbols") or ()
+                                                                         if len(y) >= 2 and y.isalpha()]:
+            if not x or len(x) > 120:
+                continue
+            words = [w for w in _term(x).split() if w not in stop]
+            if words:
+                rows.append((c.id, " ".join(words), _stem_words(" ".join(words))))
+    _INDEX.clear()
+    _INDEX[key] = (rows, stop)
+    return _INDEX[key]
+
+
+def designate(store, term, approximate=True, threshold=0.6):
+    """The concepts and kinds a term names (S0 3.6.5: lexical recognition, the weakest evidence). In order:
+    exact normalised match; the same words up to plural endings; then, when ``approximate``, the concepts whose
+    content words overlap the term's (Jaccard >= ``threshold``) and share its head (last content word). Returns a set
+    of item ids; ``designate_with_basis`` also says which kind of match was used."""
+    return designate_with_basis(store, term, approximate, threshold)[0]
+
+
+def designate_with_basis(store, term, approximate=True, threshold=0.6):
+    from .knowledge_acquisition import _term
+    rows, stop = _index(store)
+    words = [w for w in _term(term).split() if w not in stop]
+    if not words:
+        return set(), None
+    t = " ".join(words)
+    st = _stem_words(t)
+    exact = {i for i, n, _ in rows if n == t}
+    if exact:
+        return exact, "exact"
+    loose = {i for i, _, sn in rows if sn == st}
+    if loose or not approximate:
+        return loose, "plural" if loose else None
+    q = set(st.split())
+    head = st.split()[-1]
+    best, ids = 0.0, set()
+    for i, _, sn in rows:
+        c = set(sn.split())
+        if head not in c or sn.split()[-1] != head and head not in sn.split()[-2:]:
+            continue
+        j = len(q & c) / len(q | c)
+        if j > best + 1e-9:
+            best, ids = j, {i}
+        elif abs(j - best) < 1e-9:
+            ids.add(i)
+    return (ids, f"approximate ({best:.2f})") if best >= threshold else (set(), None)
