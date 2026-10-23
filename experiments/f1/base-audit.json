@@ -1,0 +1,82 @@
+{
+ "files": {
+  "general.json": {
+   "items": 49,
+   "provenance_complete": true,
+   "by_role": {
+    "quantity_kind": 24,
+    "concept: condition": 2,
+    "concept: method": 1,
+    "model": 1,
+    "concept: part kind": 4,
+    "relation_concept": 2,
+    "concept: evidence class": 15
+   }
+  },
+  "legacy-i2-category.json": {
+   "items": 33,
+   "provenance_complete": true,
+   "by_role": {
+    "quantity_kind": 12,
+    "concept: condition": 2,
+    "concept: condition value": 6,
+    "concept: part kind": 5,
+    "concept: artefact kind": 7,
+    "method": 1
+   }
+  }
+ },
+ "duplicates": [],
+ "shared_terms": [
+  {
+   "term": "capacity",
+   "items": [
+    "Q:electric_charge",
+    "Q:storage_capacity",
+    "Q:volume"
+   ]
+  },
+  {
+   "term": "electricity consumption",
+   "items": [
+    "Q:electric_power",
+    "Q:energy"
+   ]
+  },
+  {
+   "term": "energy consumption",
+   "items": [
+    "Q:electric_power",
+    "Q:energy"
+   ]
+  }
+ ],
+ "unit_surface_collisions": [],
+ "models_without_validity": [],
+ "metrology": {
+  "units": 87,
+  "provenance": {
+   "source": "SI Brochure 9th ed. (BIPM 2019) for SI units and prefixes; international yard and pound agreement (1959) for ft, in, lb, oz; IEC 80000-13 for data units; IEC 61672-1 for frequency weightings A and C; NIST SP 811 (2008) for the US liquid pint (473.176473 mL) and the degree Fahrenheit",
+   "holder": "developer",
+   "basis": "definition"
+  }
+ },
+ "language_keys": [
+  "axis_words",
+  "bound_markers",
+  "comparison_markers",
+  "editorial_words",
+  "extent_words",
+  "list_separators",
+  "method_markers",
+  "negative_scope_headers",
+  "non_identity_markers",
+  "number_conventions",
+  "predication_words",
+  "range_end_words",
+  "range_separators",
+  "row_types",
+  "separators",
+  "stopwords"
+ ]
+}

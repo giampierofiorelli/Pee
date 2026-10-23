@@ -1,0 +1,432 @@
+{
+ "about": "I-2 category items, moved here unchanged by F-1 (2026-10-23). They were entered by the developer for I-2 (quantity kinds, conditions, part and artefact kinds and a test standard specific to product categories), not acquired from any document. Loaded only with load_general_knowledge(store, legacy=True), the default, so that I-1 and I-2 behave as before. F-1 experiments load the transversal base without them; for the taught categories they are superseded by what the acquisition service proposes from the owner's research packages.",
+ "provenance": {
+  "source": "developer-entered category knowledge for I-2 (not acquired; F-1 legacy file)",
+  "holder": "developer",
+  "basis": "definition"
+ },
+ "items": [
+  {
+   "id": "Q:clean_air_delivery_rate",
+   "kind": "quantity_kind",
+   "label": "clean air delivery rate: rate of particle-free air delivered, defined per test material (ANSI/AHAM AC-1)",
+   "dims": {
+    "L": 3,
+    "T": -1
+   },
+   "terms": [
+    "clean air delivery rate",
+    "cadr"
+   ],
+   "determinable": "bearer",
+   "defining_conditions": [
+    "C:test_material"
+   ]
+  },
+  {
+   "id": "Q:coverage_area",
+   "kind": "quantity_kind",
+   "label": "room area the bearer serves, defined at an air change rate",
+   "dims": {
+    "L": 2
+   },
+   "terms": [
+    "coverage",
+    "room coverage",
+    "coverage area",
+    "room size",
+    "recommended room size",
+    "room area"
+   ],
+   "determinable": "bearer",
+   "defining_conditions": [
+    "C:air_change_rate"
+   ]
+  },
+  {
+   "id": "Q:suction_pressure",
+   "kind": "quantity_kind",
+   "label": "suction pressure produced by the bearer",
+   "dims": {
+    "L": -1,
+    "M": 1,
+    "T": -2
+   },
+   "terms": [
+    "suction",
+    "suction power",
+    "suction pressure"
+   ],
+   "determinable": "bearer"
+  },
+  {
+   "id": "Q:refresh_rate",
+   "kind": "quantity_kind",
+   "label": "display refresh rate",
+   "dims": {
+    "T": -1
+   },
+   "terms": [
+    "refresh rate"
+   ],
+   "determinable": "bearer"
+  },
+  {
+   "id": "Q:frequency_response",
+   "kind": "quantity_kind",
+   "label": "reproduced frequency band: a span whose limits are two quantities",
+   "dims": {
+    "T": -1
+   },
+   "terms": [
+    "frequency response",
+    "frequency range"
+   ],
+   "determinable": "bearer",
+   "span": {
+    "lower": "Q:lower_frequency_limit",
+    "upper": "Q:upper_frequency_limit"
+   }
+  },
+  {
+   "id": "Q:lower_frequency_limit",
+   "kind": "quantity_kind",
+   "label": "lower limit of the reproduced frequency band",
+   "dims": {
+    "T": -1
+   },
+   "terms": [
+    "low frequency extension",
+    "lower frequency limit",
+    "bass extension"
+   ],
+   "determinable": "bearer"
+  },
+  {
+   "id": "Q:upper_frequency_limit",
+   "kind": "quantity_kind",
+   "label": "upper limit of the reproduced frequency band",
+   "dims": {
+    "T": -1
+   },
+   "terms": [
+    "upper frequency limit",
+    "high frequency extension"
+   ],
+   "determinable": "bearer"
+  },
+  {
+   "id": "Q:storage_capacity",
+   "kind": "quantity_kind",
+   "label": "data storage capacity of the bearer",
+   "dims": {
+    "B": 1
+   },
+   "terms": [
+    "storage",
+    "capacity",
+    "storage capacity"
+   ],
+   "determinable": "bearer"
+  },
+  {
+   "id": "Q:write_endurance",
+   "kind": "quantity_kind",
+   "label": "amount of data writable over the bearer's rated life",
+   "dims": {
+    "B": 1
+   },
+   "terms": [
+    "endurance",
+    "write endurance",
+    "terabytes written",
+    "tbw"
+   ],
+   "determinable": "bearer"
+  },
+  {
+   "id": "Q:sequential_read_rate",
+   "kind": "quantity_kind",
+   "label": "sequential read transfer rate",
+   "dims": {
+    "B": 1,
+    "T": -1
+   },
+   "terms": [
+    "sequential read",
+    "seq read",
+    "read speed",
+    "sequential read speed"
+   ],
+   "determinable": "bearer"
+  },
+  {
+   "id": "Q:sequential_write_rate",
+   "kind": "quantity_kind",
+   "label": "sequential write transfer rate",
+   "dims": {
+    "B": 1,
+    "T": -1
+   },
+   "terms": [
+    "sequential write",
+    "seq write",
+    "write speed",
+    "sequential write speed"
+   ],
+   "determinable": "bearer"
+  },
+  {
+   "id": "Q:surface_temperature",
+   "kind": "quantity_kind",
+   "label": "surface temperature of the bearer",
+   "dims": {
+    "K": 1
+   },
+   "terms": [
+    "surface temperature",
+    "surface temp",
+    "case temperature"
+   ],
+   "determinable": "bearer",
+   "scale": "interval"
+  },
+  {
+   "id": "C:test_material",
+   "kind": "concept",
+   "label": "test material or particle class the measurement is defined for (a defining condition of the measurand)",
+   "category": "condition",
+   "value_type": "named"
+  },
+  {
+   "id": "V:smoke",
+   "kind": "concept",
+   "label": "tobacco smoke particles",
+   "category": "condition value",
+   "of": "C:test_material",
+   "terms": [
+    "smoke",
+    "tobacco smoke",
+    "cigarette smoke"
+   ]
+  },
+  {
+   "id": "V:dust",
+   "kind": "concept",
+   "label": "dust particles",
+   "category": "condition value",
+   "of": "C:test_material",
+   "terms": [
+    "dust"
+   ]
+  },
+  {
+   "id": "V:pollen",
+   "kind": "concept",
+   "label": "pollen particles",
+   "category": "condition value",
+   "of": "C:test_material",
+   "terms": [
+    "pollen"
+   ]
+  },
+  {
+   "id": "V:pm1",
+   "kind": "concept",
+   "label": "particulate matter up to 1 micrometre",
+   "category": "condition value",
+   "of": "C:test_material",
+   "terms": [
+    "pm1",
+    "pm 1",
+    "pm1 0",
+    "pm 1 0"
+   ]
+  },
+  {
+   "id": "V:pm2_5",
+   "kind": "concept",
+   "label": "particulate matter up to 2.5 micrometres",
+   "category": "condition value",
+   "of": "C:test_material",
+   "terms": [
+    "pm2 5",
+    "pm 2 5",
+    "pm2"
+   ]
+  },
+  {
+   "id": "V:pm10",
+   "kind": "concept",
+   "label": "particulate matter up to 10 micrometres",
+   "category": "condition value",
+   "of": "C:test_material",
+   "terms": [
+    "pm10",
+    "pm 10"
+   ]
+  },
+  {
+   "id": "C:air_change_rate",
+   "kind": "concept",
+   "label": "air changes per hour of the served room (a defining condition of coverage)",
+   "category": "condition",
+   "value_type": "quantity",
+   "quantity_dims": {
+    "T": -1
+   },
+   "markers": [
+    "air change",
+    "ach"
+   ]
+  },
+  {
+   "id": "P:dust_bin",
+   "kind": "concept",
+   "label": "dust bin",
+   "category": "part kind",
+   "terms": [
+    "dust bin",
+    "dustbin",
+    "dust box",
+    "bin"
+   ],
+   "characteristic_kinds": [
+    "Q:volume"
+   ]
+  },
+  {
+   "id": "P:clean_water_tank",
+   "kind": "concept",
+   "label": "clean water tank",
+   "category": "part kind",
+   "terms": [
+    "water tank",
+    "clean water tank",
+    "fresh water tank",
+    "freshwater tank",
+    "tank"
+   ],
+   "characteristic_kinds": [
+    "Q:volume"
+   ]
+  },
+  {
+   "id": "P:waste_water_tank",
+   "kind": "concept",
+   "label": "waste water tank",
+   "category": "part kind",
+   "terms": [
+    "waste water tank",
+    "wastewater tank",
+    "dirty water tank"
+   ],
+   "characteristic_kinds": [
+    "Q:volume"
+   ]
+  },
+  {
+   "id": "P:base_station",
+   "kind": "concept",
+   "label": "base or docking station",
+   "category": "part kind",
+   "terms": [
+    "station",
+    "base station",
+    "docking station",
+    "dock",
+    "auto empty station"
+   ]
+  },
+  {
+   "id": "P:mop",
+   "kind": "concept",
+   "label": "mop",
+   "category": "part kind",
+   "terms": [
+    "mop",
+    "mop pad"
+   ]
+  },
+  {
+   "id": "K:air_purifier",
+   "kind": "concept",
+   "label": "air purifier",
+   "category": "artefact kind",
+   "terms": [
+    "air purifier",
+    "purifier"
+   ]
+  },
+  {
+   "id": "K:robot_vacuum",
+   "kind": "concept",
+   "label": "robot vacuum cleaner",
+   "category": "artefact kind",
+   "terms": [
+    "robot vacuum",
+    "robot"
+   ]
+  },
+  {
+   "id": "K:soundbar",
+   "kind": "concept",
+   "label": "soundbar",
+   "category": "artefact kind",
+   "terms": [
+    "soundbar"
+   ]
+  },
+  {
+   "id": "K:dishwasher",
+   "kind": "concept",
+   "label": "dishwasher",
+   "category": "artefact kind",
+   "terms": [
+    "dishwasher"
+   ]
+  },
+  {
+   "id": "K:laptop",
+   "kind": "concept",
+   "label": "laptop computer",
+   "category": "artefact kind",
+   "terms": [
+    "laptop",
+    "notebook"
+   ]
+  },
+  {
+   "id": "K:monitor",
+   "kind": "concept",
+   "label": "computer monitor",
+   "category": "artefact kind",
+   "terms": [
+    "monitor"
+   ]
+  },
+  {
+   "id": "K:solid_state_drive",
+   "kind": "concept",
+   "label": "solid-state drive",
+   "category": "artefact kind",
+   "terms": [
+    "ssd",
+    "solid state drive"
+   ]
+  },
+  {
+   "id": "MT:aham-ac-1",
+   "kind": "method",
+   "label": "ANSI/AHAM AC-1, method for measuring performance of portable household electric room air cleaners",
+   "category": "test standard",
+   "authority": "Association of Home Appliance Manufacturers (AHAM)",
+   "terms": [
+    "aham",
+    "aham ac 1",
+    "ansi aham ac 1",
+    "ac 1"
+   ]
+  }
+ ]
+}

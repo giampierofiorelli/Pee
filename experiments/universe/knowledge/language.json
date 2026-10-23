@@ -1,5 +1,5 @@
 {
- "about": "English lexical knowledge for reading table structure: function words, list and range separators, and number-writing conventions. Names no domain.",
+ "about": "English lexical knowledge for reading table structure: function words, list and range separators, and number-writing conventions. Names no domain. F-1: words that say what the rows of a table define (a quantity, a method), the headers of a negative-scope column, and non-identity markers, for reading research documents.",
  "stopwords": [
   "the",
   "a",
@@ -150,5 +150,37 @@
   "have",
   "had",
   "does"
+ ],
+ "row_types": {
+  "quantity_definition": [
+   "quantity",
+   "term",
+   "symbol",
+   "metric",
+   "parameter",
+   "variable"
+  ],
+  "method": [
+   "protocol",
+   "standard",
+   "method",
+   "test method",
+   "source/version",
+   "programme",
+   "program",
+   "certification"
+  ]
+ },
+ "negative_scope_headers": [
+  "does not establish",
+  "cannot establish",
+  "what it cannot establish",
+  "what it does not establish",
+  "does not cover",
+  "not covered"
+ ],
+ "non_identity_markers": [
+  "!=",
+  "≠"
  ]
 }

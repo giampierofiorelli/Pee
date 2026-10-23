@@ -261,8 +261,12 @@ class Architecture(unittest.TestCase):
         """Literals of acquisition, standing and the rule functions I-1 added (docstrings excluded) name no term of the
         universe's knowledge: every word acquisition reads with comes from knowledge items."""
         import json
-        gen = json.loads((HERE / "knowledge" / "general.json").read_text())
-        vocab = {t for i in gen["items"] for t in list(i.get("terms", [])) + list(i.get("named", [])) if len(t) >= 4}
+        items = [i for f in ("general.json", "legacy-i2-category.json")
+                 for i in json.loads((HERE / "knowledge" / f).read_text())["items"]]
+        # F-1: evidence classes are the vocabulary of S0 5.9 itself (bases, attitudes, "inference"), which the
+        # contract and standing code necessarily name; they are not a domain's vocabulary
+        vocab = {t for i in items if i.get("category") != "evidence class"
+                 for t in list(i.get("terms", [])) + list(i.get("named", [])) if len(t) >= 4}
         i1_rules = {"applicable", "_interval", "_tolerance", "_reference_ok", "_verdict", "usable", "_decide_over",
                     "classify", "compare"}
 

@@ -128,22 +128,26 @@ I1_KINDS = (("method", "I-1: a method or procedure of measurement or testing (S0
             ("ambiguity", "I-1: one ambiguous reading with its alternative candidate contents (S0 3.6.4)"))
 
 
-def load_general_knowledge(store):
+def load_general_knowledge(store, legacy=True):
     """Register the I-1 kinds (recorded registry events) and acquire the general knowledge items: quantity kinds with
-    dimensions and lexical anchors, condition and method concepts, models, and the English lexical frame."""
+    dimensions and lexical anchors, condition and method concepts, evidence classes, models, and the English lexical
+    frame. ``legacy`` also loads the category items the developer entered by hand for I-2 (F-1 moved them to their own
+    file); F-1 experiments load the transversal base alone."""
     from s1core import units
     for name, reason in I1_KINDS:
         if name not in store._kinds:
             store.register_kind(name, reason)
-    gen = json.loads((KNOWLEDGE / "general.json").read_text())
-    for it in gen["items"]:
-        if store.has(it["id"]):
-            continue
-        body = {k: v for k, v in it.items() if k not in ("id", "kind")}
-        if it["kind"] == "quantity_kind":
-            body["dims"] = list(units.dim(**it["dims"]))
-            body.setdefault("intensive", False)
-        store.acquire(Item(it["id"], it["kind"], body, gen["provenance"]), validate=_validate)
+    files = ["general.json"] + (["legacy-i2-category.json"] if legacy else [])
+    for fname in files:
+        gen = json.loads((KNOWLEDGE / fname).read_text())
+        for it in gen["items"]:
+            if store.has(it["id"]):
+                continue
+            body = {k: v for k, v in it.items() if k not in ("id", "kind")}
+            if it["kind"] == "quantity_kind":
+                body["dims"] = list(units.dim(**it["dims"]))
+                body.setdefault("intensive", False)
+            store.acquire(Item(it["id"], it["kind"], body, gen["provenance"]), validate=_validate)
     lang = json.loads((KNOWLEDGE / "language.json").read_text())
     if not store.has("L:en"):
         store.acquire(Item("L:en", "concept", dict(lang, category="lexical frame"),

@@ -1,7 +1,7 @@
 {
- "about": "The single metrology of the universe (S0 4.7; S1 plan 3.1: metrology is a frame held as knowledge). Every service reads it through s1core.units. I-1 moved the earlier unit table out of code without changing any of its values, and added units, two base dimensions (electric current A, data bit) and luminous intensity (cd), and level scales with their reference. 'surfaces' are lexical anchors of each unit (D4, lexical). Matching rule for surfaces: a surface of four or more letters matches in any letter case; a shorter symbol matches only as written (m and M, B and b, s and S differ).",
+ "about": "The single metrology of the universe (S0 4.7; S1 plan 3.1: metrology is a frame held as knowledge). Every service reads it through s1core.units. I-1 moved the earlier unit table out of code without changing any of its values, and added units, two base dimensions (electric current A, data bit) and luminous intensity (cd), and level scales with their reference. 'surfaces' are lexical anchors of each unit (D4, lexical). Matching rule for surfaces: a surface of four or more letters matches in any letter case; a shorter symbol matches only as written (m and M, B and b, s and S differ). F-1 added general units (degree Fahrenheit, US liquid pint, cubic metre and foot, volume and mass flow per day, second and hour, litre per kilowatt-hour, cubic foot per minute per watt, kilowatt-hour per year, ppm, ppb, mass concentration, humidity ratio) and two surfaces of the per-hour unit; no existing value changed.",
  "provenance": {
-  "source": "SI Brochure 9th ed. (BIPM 2019) for SI units and prefixes; international yard and pound agreement (1959) for ft, in, lb, oz; IEC 80000-13 for data units; IEC 61672-1 for frequency weightings A and C",
+  "source": "SI Brochure 9th ed. (BIPM 2019) for SI units and prefixes; international yard and pound agreement (1959) for ft, in, lb, oz; IEC 80000-13 for data units; IEC 61672-1 for frequency weightings A and C; NIST SP 811 (2008) for the US liquid pint (473.176473 mL) and the degree Fahrenheit",
   "holder": "developer",
   "basis": "definition"
  },
@@ -391,7 +391,9 @@
     "per hour",
     "air changes per hour",
     "air change per hour",
-    "ACH"
+    "ACH",
+    "h⁻¹",
+    "h-1"
    ]
   },
   "1/a": {
@@ -977,6 +979,239 @@
    "surfaces": [
     "dBC",
     "dB(C)"
+   ]
+  },
+  "degF": {
+   "factor": 0.5555555555555556,
+   "offset": 255.3722222222222,
+   "dims": {
+    "K": 1
+   },
+   "scale": "interval",
+   "surfaces": [
+    "°F",
+    "degF",
+    "℉",
+    "fahrenheit",
+    "degrees fahrenheit"
+   ]
+  },
+  "m3": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "L": 3
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "m3",
+    "m³",
+    "cubic metre",
+    "cubic metres",
+    "cubic meter",
+    "cubic meters"
+   ]
+  },
+  "ft3": {
+   "factor": 0.028316846592,
+   "offset": 0.0,
+   "dims": {
+    "L": 3
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "ft3",
+    "ft³",
+    "cu ft",
+    "cubic foot",
+    "cubic feet"
+   ]
+  },
+  "pt": {
+   "factor": 0.000473176473,
+   "offset": 0.0,
+   "dims": {
+    "L": 3
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "pint",
+    "pints",
+    "US pint",
+    "US pints"
+   ]
+  },
+  "L/s": {
+   "factor": 0.001,
+   "offset": 0.0,
+   "dims": {
+    "L": 3,
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "L/s",
+    "l/s",
+    "litres per second",
+    "liters per second"
+   ]
+  },
+  "L/d": {
+   "factor": 1.1574074074074074e-08,
+   "offset": 0.0,
+   "dims": {
+    "L": 3,
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "L/day",
+    "L/d",
+    "L/24h",
+    "L/24 h",
+    "l/day",
+    "litres per day",
+    "liters per day",
+    "litres/day",
+    "liters/day",
+    "L per day"
+   ]
+  },
+  "pt/d": {
+   "factor": 5.476579548611112e-09,
+   "offset": 0.0,
+   "dims": {
+    "L": 3,
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "pints/day",
+    "pint/day",
+    "pints per day",
+    "pints/24h",
+    "pints/24 h",
+    "pt/day"
+   ]
+  },
+  "kg/h": {
+   "factor": 0.0002777777777777778,
+   "offset": 0.0,
+   "dims": {
+    "M": 1,
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "kg/h",
+    "kg/hr",
+    "kilograms per hour"
+   ]
+  },
+  "L/kWh": {
+   "factor": 2.7777777777777777e-10,
+   "offset": 0.0,
+   "dims": {
+    "L": 1,
+    "M": -1,
+    "T": 2
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "L/kWh",
+    "l/kWh",
+    "litres per kWh",
+    "liters per kWh",
+    "L per kWh",
+    "litres/kWh",
+    "liters/kWh"
+   ]
+  },
+  "cfm/W": {
+   "factor": 0.0004719474432,
+   "offset": 0.0,
+   "dims": {
+    "L": 1,
+    "M": -1,
+    "T": 2
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "cfm/W",
+    "CFM/W",
+    "cfm per watt"
+   ]
+  },
+  "kWh/a": {
+   "factor": 0.11407711613050422,
+   "offset": 0.0,
+   "dims": {
+    "L": 2,
+    "M": 1,
+    "T": -3
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "kWh/year",
+    "kWh/yr",
+    "kWh per year",
+    "kWh/a"
+   ]
+  },
+  "ppm": {
+   "factor": 1e-06,
+   "offset": 0.0,
+   "dims": {},
+   "scale": "ratio",
+   "surfaces": [
+    "ppm"
+   ]
+  },
+  "ppb": {
+   "factor": 1e-09,
+   "offset": 0.0,
+   "dims": {},
+   "scale": "ratio",
+   "surfaces": [
+    "ppb"
+   ]
+  },
+  "kg/kg": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {},
+   "scale": "ratio",
+   "surfaces": [
+    "kg/kg"
+   ]
+  },
+  "g/m3": {
+   "factor": 0.001,
+   "offset": 0.0,
+   "dims": {
+    "L": -3,
+    "M": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "g/m³",
+    "g/m3"
+   ]
+  },
+  "ug/m3": {
+   "factor": 1e-09,
+   "offset": 0.0,
+   "dims": {
+    "L": -3,
+    "M": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "µg/m³",
+    "µg/m3",
+    "μg/m³",
+    "μg/m3",
+    "ug/m3"
    ]
   }
  }
