@@ -11,5 +11,31 @@
   "blind_answers": "7b4456e2718d17035d6cfa56e10b168b73b63e01855eda085de3463cdf369d7d",
   "items": 30,
   "agreement": "30/30"
+ },
+ "E1": {
+  "note": "Adjudicated reference of the held-out sections (two blind annotators + adjudicator; Claude agents, not independent validation). Sealed before any acquisition run on held-out text.",
+  "heldout_text": {
+   "AP": "82a086ff86b83ea9bccbd98cb598e596487717434f67c1074724c9f7a270c665",
+   "DH": "e7b6794d4137f29097ffbd45a2bd0231df3af79b282d6e8e5616b738ddf49a6e"
+  },
+  "reference": {
+   "AP": "63ef4432a64698546f3faa0231094e8f8d1ff39d2df9a19887b5fb71da2be841",
+   "DH": "bea76deb97e23e77afe89d6df59aaa6bbc569f4f6114fa92d5ac2b750061fdbf"
+  },
+  "annotations": {
+   "A-AP": "77305a67c0c1203b55baf1ca51efbc00ee237d361138c80a53a1504bee0ec464",
+   "A-DH": "6c4761e67f27858437d066981e4c618002cdce54bfa0ffee8c01195fa737851b",
+   "B-AP": "09f3c5cda3a7d5980451edee39c3f4ac3f89c4bd7e47d55c81fe879830ba23e3",
+   "B-DH": "93001240f061edba22e845c184e429604eed9871bef94ae2f829932331b3410a"
+  }
+ },
+ "E4_fidelity": {
+  "reference": "0748594f15784f1ca3f14eb4e0588937ce3fdf41dc8bc630b770dcf96eaa67ad",
+  "note": "one blind annotator; exploratory"
+ },
+ "E2_oracle": {
+  "AP": "937ae1bda9580b587b1861111ad4530ebe0dbc5a3bc0554e95b0503f7ee80b30",
+  "DH": "0b97409ed2f8ea316ad06531a32e19f58bd2be2e67fe25551152e991319f226b",
+  "note": "oracle knowledge annotated by an agent that saw Q with its answers; it is the complete-and-correct-knowledge input of E2, not a reference"
  }
 }
