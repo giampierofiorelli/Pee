@@ -25,6 +25,7 @@ computational architecture.
 ## Layout
 
 - `MISSION.md` — the owner's mission for this project (original Italian text and an English translation).
+- `ASSIMILATION.md` — permanent architectural requirement: documents teach, the universe remembers (owner, 2026-10-23).
 - `CLAUDE.md` — working rules for the Claude Code sessions that work in this repository.
 - `spec/` — the S0 foundational specification (start at `spec/README.md`).
 - `reviews/` — critical reviews of S0 versions.

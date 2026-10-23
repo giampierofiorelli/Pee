@@ -2,6 +2,10 @@
 
 Read `MISSION.md` first. It is the only brief for this project.
 
+`ASSIMILATION.md` is a **permanent architectural requirement** (owner, 2026-10-23): owner-supplied documents are
+temporary teaching input; the lasting result is scientific knowledge in the semantic universe, usable without the
+document. It sits beside `MISSION.md`, does not replace it and does not modify S0.
+
 ## Current authorisation
 
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
@@ -30,6 +34,13 @@ Read `MISSION.md` first. It is the only brief for this project.
   the consolidated transversal base, guided acquisition of the air-purifier and dehumidifier packages (robot package
   for evaluation only); criteria fixed before code in `experiments/f1/REPORT.md` sections 0–3. Crawler read-only; no
   S0 change, no MS2, no migration; X1, X2, V1, I-1 and I-2 unchanged. Closed on stop rules F4 and F6. Stop after F-1.
+- **A-1** (owner, 2026-10-23): first increment of `ASSIMILATION.md`, on branch `claude/a1-scientific-assimilation`
+  from F-1: proposition-level translation of prose, coverage accounting, private persistence of the universe, the
+  temporary-document lifecycle and the evidence requirement; criteria fixed before code in `experiments/a1/REPORT.md`
+  sections 0–3. Read-only sources: the authorised F-1 packages and, in addition, only
+  `PEE-DEHUMIDIFIERS-CONSOLIDATED-RESEARCH-2026-10-15.md` inside `PEE-THREE-SCIENTIFIC-RESEARCH-PACKAGES.zip` (no
+  other THREE file). Crawler read-only; no S0 change, no migration; X1, X2, V1, I-1, I-2 and F-1 unchanged. Stop after
+  A-1.
 - Use the skill `.claude/skills/pee-scientific-learning/` for all S1 work.
 
 ## Independence
