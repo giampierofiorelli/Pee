@@ -27,6 +27,16 @@ Each such change carries `preservation/records/<id>.json` in the same commit. `p
 --staged` (or `--base <ref>` before a push) must pass; in Claude Code sessions on Pee a hook in `.claude/settings.json`
 blocks a failing `git commit`. The check verifies structure only; fairness of the comparison needs human review.
 
+**Owner condition (2026-10-23).** No further reader correction (D-2.1 included) and no T-1 work until the operational
+recovery of Crawler's capabilities is demonstrated. This means:
+- verify, area by area, what Crawler did better: tables, structure, quantitative and qualitative extraction,
+  context, entities and test methods;
+- bring those capabilities into the active pipeline, keeping the better parts of Pee. O-2 showed Crawler's prose
+  reader to be worse than A-1 on the material examined, so this is not a wholesale restoration;
+- universe knowledge may help interpretation, but never replaces what a reader failed to understand.
+
+This recovery step itself needs its own owner authorisation, with criteria fixed before any code.
+
 ## Organisation (owner, 2026-10-23)
 
 - **Pee is the only operational repository.** It is an independent scientific adviser built on the S0 universe.

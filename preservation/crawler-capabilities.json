@@ -63,7 +63,7 @@
    "engine_ts": ["src/knowledge_translation.ts", "src/document_evidence.ts", "src/phase134_atomic_context_evidence.ts", "src/phase156_review_document_engine.ts", "src/scientific_reading98.ts", "src/definition_interpreter.ts", "src/scientific_entities.ts"],
    "pee_use": "O-2 only (arm T, through experiments/o2/bridge.mjs)",
    "demonstrated": [
-    {"source": "experiments/o2/REPORT.md (sealed run)", "what": "speakers compendium prose: faithful precision T 0.141, A-1 0.350, hybrid 0.231; faithful statements T 6, A-1 15", "kind": "prose only. Says nothing about tables or specifications"}
+    {"source": "experiments/o2/REPORT.md (sealed run)", "what": "speakers compendium prose, 238 sealed reference propositions (§5.1): faithful items T 13 of 92, A-1 98 of 280, hybrid 66 of 286; precision (F2) T 0.141, A-1 0.350, hybrid 0.231; faithful coverage (F3) T 0.038, A-1 0.298, hybrid 0.189; critical errors (F1) T 6, A-1 15, hybrid 23 (negation: T 0, A-1 8). Crawler made fewer critical errors but far fewer faithful items", "kind": "prose only. Says nothing about tables or specifications. Correction 2026-10-23 (owner): an earlier version gave the critical-error counts (6, 15) as faithful statements"}
    ]
   },
   {
