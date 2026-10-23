@@ -1,0 +1,112 @@
+{
+  "experiment": "PEE GLiNER2.5 Small provisional neural pilot",
+  "model_id": "fastino/gliner2.5-small-v1",
+  "model_architecture": "boundary",
+  "gliner2_version": "2.1.0",
+  "python_version": "3.13.16",
+  "case_status": "constructed_diagnostic_not_independent_benchmark",
+  "model_integration_status": "standalone_colab_not_connected_to_PEE",
+  "cases": {
+    "constructed_fridge": {
+      "input": "Our review tests the Maytag MRT311FFFE refrigerator. The GE GTS22KGNRWW is mentioned only as a competitor. We measured cooling noise at 44.9 dBA on the Maytag; the manufacturer's energy claim was not independently verified in this passage.",
+      "entities": {
+        "product_model": [
+          {
+            "text": "MRT311FFFE",
+            "confidence": 0.9139253497123718,
+            "start": 28,
+            "end": 38
+          },
+          {
+            "text": "GTS22KGNRWW",
+            "confidence": 0.7990700006484985,
+            "start": 60,
+            "end": 71
+          }
+        ],
+        "brand": [
+          {
+            "text": "Maytag",
+            "confidence": 0.9693088531494141,
+            "start": 21,
+            "end": 27
+          },
+          {
+            "text": "GE",
+            "confidence": 0.9525284767150879,
+            "start": 57,
+            "end": 59
+          },
+          {
+            "text": "Maytag",
+            "confidence": 0.5685482621192932,
+            "start": 152,
+            "end": 158
+          }
+        ],
+        "product_feature": [
+          {
+            "text": "cooling noise",
+            "confidence": 0.9882665276527405,
+            "start": 119,
+            "end": 132
+          }
+        ],
+        "measured_value": [
+          {
+            "text": "44.9 dBA",
+            "confidence": 0.9984068274497986,
+            "start": 136,
+            "end": 144
+          }
+        ]
+      },
+      "seconds_inference": 0.838,
+      "offset_errors": []
+    },
+    "constructed_coffee": {
+      "input": "We tested the De'Longhi Dedica Duo and compared it with the Breville Bambino. We did not test the Bambino in this article. The Dedica Duo heats up quickly, but its steam wand feels awkward to use.",
+      "entities": {
+        "product_model": [
+          {
+            "text": "De'Longhi Dedica Duo",
+            "confidence": 0.7380064725875854,
+            "start": 14,
+            "end": 34
+          },
+          {
+            "text": "Breville Bambino",
+            "confidence": 0.6341668367385864,
+            "start": 60,
+            "end": 76
+          }
+        ],
+        "brand": [
+          {
+            "text": "Breville",
+            "confidence": 0.9226780533790588,
+            "start": 60,
+            "end": 68
+          },
+          {
+            "text": "De'Longhi",
+            "confidence": 0.7850920557975769,
+            "start": 14,
+            "end": 23
+          }
+        ],
+        "product_feature": [
+          {
+            "text": "steam wand",
+            "confidence": 0.9917770624160767,
+            "start": 164,
+            "end": 174
+          }
+        ],
+        "measured_value": []
+      },
+      "seconds_inference": 0.43,
+      "offset_errors": []
+    }
+  }
+}

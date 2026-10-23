@@ -12,7 +12,7 @@ directly. Confidential data, unpublishable scientific material and private evalu
 |---|---|---|
 | S0 | Foundational specification of the semantic universe | **Complete and frozen** (versions 2.0 `b9bda7d` and 2.1 `cdcab48`) |
 | S1 | Computational representation | MS1 slice and bounded experiments X1, X2, V1, I-1, I-2, F-1 and A-1 (closed; see `CLAUDE.md`) |
-| O-0 | Organisation: Pee becomes the operational repository; Crawler is integrated selectively | **Fixed 2026-10-23** (`ORGANISATION.md`); first code import awaits owner review |
+| O-0 | Organisation: Pee becomes the operational repository; Crawler is integrated selectively | **Fixed 2026-10-23** (`ORGANISATION.md`); O-1 import of Crawler's reading modules done (`engine-ts/`) |
 
 Pee is an independent scientific adviser built on the S0 universe; product advice is its first operational
 application (`ORGANISATION.md`). The earlier engine stays, intact and read-only, in `giampierofiorelli/Crawler`;
@@ -32,3 +32,4 @@ computational architecture.
 - `spec/` — the S0 foundational specification (start at `spec/README.md`).
 - `reviews/` — critical reviews of S0 versions and later architecture reviews.
 - `experiments/` — S1 code and bounded experiments, each with its report.
+- `engine-ts/` — Crawler's reading and understanding modules, imported unchanged with provenance (O-1).

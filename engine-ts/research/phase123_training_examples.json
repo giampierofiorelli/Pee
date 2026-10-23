@@ -1,0 +1,755 @@
+{
+  "description": "125 manually constructed multilingual training inputs, never independent evidence",
+  "samples": [
+    {
+      "id": "TR-AUT-001",
+      "text": "Cerco un robot che non abbia bisogno di me",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-002",
+      "text": "Quale aspirapolvere robot lavora più autonomamente",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-003",
+      "text": "Non ho tempo di stare dietro al robot durante la pulizia",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-004",
+      "text": "Mi interessa ridurre gli interventi manuali",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-005",
+      "text": "Quale apparecchio richiede meno operazioni da parte mia",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-006",
+      "text": "Robot che si gestisce da solo tra una pulizia e l altra",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-007",
+      "text": "Voglio fare meno manutenzione possibile",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-008",
+      "text": "Robots with minimum supervision",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-009",
+      "text": "Which cleaning robot needs less babysitting",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-010",
+      "text": "I want to spend as little time as possible maintaining a robot vacuum",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-011",
+      "text": "Most hands-off robotic floor cleaner",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-012",
+      "text": "Which mop robot gets stuck the least often",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-013",
+      "text": "Show me models that finish jobs without help",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-014",
+      "text": "I want a robot vacuum that works unattended",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-015",
+      "text": "Compare human intervention frequency for these robots",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-016",
+      "text": "Which floor cleaning machine requires the least manual effort",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-017",
+      "text": "Cerco un robot da lasciare lavorare senza controllarlo",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-018",
+      "text": "I robot che si bloccano meno spesso",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-019",
+      "text": "Tra questi quali devo pulire a mano meno spesso",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-020",
+      "text": "Robot autonomo per non dover sempre pulire la spazzola",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-021",
+      "text": "Quanto lavoro manuale mi risparmiano i robot",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-022",
+      "text": "Robot con minor carico di manutenzione",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-023",
+      "text": "Who has the lowest intervention rate among robot mops",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-024",
+      "text": "How often must I rescue these robot vacuums",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-AUT-025",
+      "text": "Robots which keep going without intervention",
+      "label": "autonomy",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-001",
+      "text": "Qual è il miglior robot aspirapolvere in assoluto",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-002",
+      "text": "Quale robot lava i pavimenti meglio di tutti",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-003",
+      "text": "Top performing floor cleaning robot",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-004",
+      "text": "I want the best robot cleaner regardless of cost",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-005",
+      "text": "Confronta i robot con risultati di pulizia più elevati",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-006",
+      "text": "Voglio il modello che aspira meglio",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-007",
+      "text": "Find the highest performing robot mop",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-008",
+      "text": "Quale modello ottiene i migliori risultati nei test",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-009",
+      "text": "Robot aspirapolvere migliore per pulizia",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-010",
+      "text": "Best overall robot vacuum and mop",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-011",
+      "text": "Quale robot ha le prestazioni migliori",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-012",
+      "text": "I care about cleaning performance above price",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-013",
+      "text": "Rank floor robots by cleaning effectiveness",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-014",
+      "text": "Tra i modelli disponibili chi pulisce meglio",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-015",
+      "text": "Il migliore robot in commercio senza guardare il prezzo",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-016",
+      "text": "La qualità della pulizia viene prima della spesa",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-017",
+      "text": "Show me top tested robot cleaners",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-018",
+      "text": "Quale lavapavimenti robotico è il più efficace",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-019",
+      "text": "Find the top-rated robotic vacuum performance",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-020",
+      "text": "Robot con miglior risultato finale sulle macchie",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-021",
+      "text": "Quale aspiratore robotico aspira più sporco",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-022",
+      "text": "I want the most capable robot cleaner",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-023",
+      "text": "Rank the best cleaning robots overall",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-024",
+      "text": "Quale robot offre la migliore pulizia complessiva",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-PER-025",
+      "text": "Top machines for cleaning hard floors",
+      "label": "performance",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-001",
+      "text": "Quale robot conviene acquistare per quello che offre",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-002",
+      "text": "Il migliore robot per rapporto qualità prezzo",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-003",
+      "text": "Best bang for the buck robot vacuum",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-004",
+      "text": "Which floor cleaning robot offers the most value",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-005",
+      "text": "Il robot con il miglior compromesso tra costo e prestazioni",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-006",
+      "text": "Most cost effective robot mop",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-007",
+      "text": "Quale robot vale realmente il suo prezzo",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-008",
+      "text": "I want a good robot cleaner without overspending",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-009",
+      "text": "Consigliami il robot che offre di più spendendo meno",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-010",
+      "text": "Highest quality at a reasonable price robot vacuum",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-011",
+      "text": "Is the more expensive robot worth it",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-012",
+      "text": "Un robot economico ma efficace che non sia scadente",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-013",
+      "text": "Show good deals considering real performance",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-014",
+      "text": "Quale modello ha le migliori prestazioni in rapporto al costo",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-015",
+      "text": "Price performance leader among mopping robots",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-016",
+      "text": "Robot aspirapolvere consigliati per convenienza",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-017",
+      "text": "Migliore acquisto in termini di valore del robot",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-018",
+      "text": "Best affordable effective robot cleaner",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-019",
+      "text": "I care about value more than flagship features",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-020",
+      "text": "Quale robot offre il miglior acquisto",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-021",
+      "text": "Convenienza dei robot aspirapolvere",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-022",
+      "text": "Mi interessa pagare il giusto per un buon robot",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-023",
+      "text": "Which cleaner gives me most for my money",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-024",
+      "text": "Good value robot mop with useful features",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-VAL-025",
+      "text": "Non voglio pagare funzioni che non servono",
+      "label": "value",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-001",
+      "text": "Esistono robot che salgono gli scalini",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-002",
+      "text": "Cerco robot per lavare usando il vapore",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-003",
+      "text": "Show me a robot vacuum that crosses a high step",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-004",
+      "text": "Which robotic cleaners have hot steam on the floor",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-005",
+      "text": "Trova dispositivi robotici con braccio per prendere oggetti",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-006",
+      "text": "Can a robot mop climb stairs",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-007",
+      "text": "Robot per pulire solo le fughe delle piastrelle",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-008",
+      "text": "Do they make a robot that picks up socks",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-009",
+      "text": "Vorrei un robot che pulisca sotto mobili molto bassi",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-010",
+      "text": "Find robots that handle a threshold without lifting",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-011",
+      "text": "Cerco un robot che può asciugare il pavimento",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-012",
+      "text": "Robots capable of cleaning corners with extendable arms",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-013",
+      "text": "Quali robot evitano automaticamente le scale",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-014",
+      "text": "Looking for models with a removable vacuum unit",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-015",
+      "text": "Un robot per lavare il bordo del battiscopa",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-016",
+      "text": "Can any vacuum robot clean stair treads",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-017",
+      "text": "Mostrami robot con serbatoio a riempimento automatico",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-018",
+      "text": "Find autonomous floor cleaners with UV lamps",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-019",
+      "text": "Quali lavapavimenti robot hanno una spazzola laterale estensibile",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-020",
+      "text": "Looking for robot vacuums that can carry things",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-021",
+      "text": "Quale robot usa acqua bollente per lavare",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-022",
+      "text": "Find mop robots with onboard steam generation",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-023",
+      "text": "Un robot che riconosce la moquette e solleva i panni",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-024",
+      "text": "Robot per pulire i gradini da solo",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-CAP-025",
+      "text": "Are there robot cleaners with a wet roller",
+      "label": "capability",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-001",
+      "text": "Perché il robot aspirapolvere si ferma",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-002",
+      "text": "Come resettare il mio robot",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-003",
+      "text": "What time is it now",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-004",
+      "text": "Explain the difference between robots and androids",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-005",
+      "text": "Come funziona una pompa di calore",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-006",
+      "text": "Best dishwasher models",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-007",
+      "text": "I need help with my phone screen",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-008",
+      "text": "Che cosa significa navigazione LiDAR",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-009",
+      "text": "Puoi scrivere una poesia sui robot",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-010",
+      "text": "Why did my robot break",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-011",
+      "text": "Where can I recycle the battery",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-012",
+      "text": "Come cambiare la batteria dell aspirapolvere",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-013",
+      "text": "Which vacuum cleaner brands are publicly traded",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-014",
+      "text": "Tell me the history of robotics",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-015",
+      "text": "Help me repair my water heater",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-016",
+      "text": "Come costruire un motore elettrico",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-017",
+      "text": "Mostrami le istruzioni per cambiare il filtro",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-018",
+      "text": "How do robot vacuum sensors work",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-019",
+      "text": "Cerco una ricetta per la pasta",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-020",
+      "text": "Consigliami una macchina da cucire",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-021",
+      "text": "What is the weather tomorrow",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-022",
+      "text": "Quali robot industriali vengono usati nelle fabbriche",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-023",
+      "text": "Come collegare il robot alla rete WiFi",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-024",
+      "text": "How to install the app for my vacuum",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    },
+    {
+      "id": "TR-OTH-025",
+      "text": "Che differenza c è tra i vari tipi di aspirapolvere",
+      "label": "other",
+      "provenance": "author_constructed_not_independently_labeled"
+    }
+  ]
+}

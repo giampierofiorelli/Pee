@@ -6,12 +6,17 @@
   "commit": "7d091ef9f242daf395461cbd9a3319768dea8ea1",
   "root": "engine/product-evidence-engine-v5.67-phase243/"
  },
- "rule": "Each listed file is byte-identical to git show <commit>:<root><path>. Files not listed are Pee-authored: README.md, PROVENANCE.json, package.json, package-lock.json, pee-tools/.",
+ "rule": "Each listed file is byte-identical to git show <commit>:<root><path>. Files not listed are Pee-authored: README.md, PROVENANCE.json, package.json, package-lock.json, pee-tools/, results/, .gitignore.",
  "files": [
   {
    "path": "docs/phase220/phase220-category-vocabulary.json",
    "sha256": "55ce9b4d89d37535cd6deef08be44dc2afaf69d4dc8eb14d3e4a07e8efb38962",
    "bytes": 1876
+  },
+  {
+   "path": "document_intake/phase228_extract.py",
+   "sha256": "6b7997d95b31631158799b4d0898da77882b8661a3d01f9a2ddcc588da15587e",
+   "bytes": 78862
   },
   {
    "path": "evaluation/phase228/SYNTHETIC-ambiguous-products.pdf",
@@ -377,6 +382,21 @@
    "path": "evaluation/phase240/SYNTHETIC-program-slots.pdf",
    "sha256": "77b85d4f225d02fa5f52d0e31241547c1749700516c2e5d575762b48bba55d8d",
    "bytes": 1410
+  },
+  {
+   "path": "research/phase123_training_examples.json",
+   "sha256": "8a95f0a5884af40e0807902904a153d7bc5795c54b45aed188fb948d4e03dc43",
+   "bytes": 24374
+  },
+  {
+   "path": "research/phase124_editorial_passages.json",
+   "sha256": "4b8174f156dbf940093a492b309a5b7e912051c6216932910d5c13cd1861657b",
+   "bytes": 1494
+  },
+  {
+   "path": "research/phase159/GLINER25-COLAB-CONSTRUCTED-PILOT.json",
+   "sha256": "6211b9883828c5de8e5153e98a5829aa3fa60c9053be33ab45853fef42138056",
+   "bytes": 3191
   },
   {
    "path": "resources/knowledge-translation/denotation-cues.v1.json",

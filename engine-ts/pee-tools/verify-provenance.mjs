@@ -19,7 +19,7 @@ for (const f of m.files) {
 function walk(d) {
   for (const n of readdirSync(path.join(root, d))) {
     const rel = d ? d + '/' + n : n;
-    if (!d && (n === 'node_modules' || n === 'dist' || n === 'pee-tools')) continue;
+    if (!d && (n === 'node_modules' || n === 'dist' || n === 'pee-tools' || n === 'results')) continue;
     if (statSync(path.join(root, rel)).isDirectory()) walk(rel);
     else if (!listed.has(rel) && !(PEE.has(rel))) errors.push('unlisted ' + rel);
   }

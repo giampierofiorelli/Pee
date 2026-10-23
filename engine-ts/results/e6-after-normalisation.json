@@ -1,0 +1,1255 @@
+{
+ "note": "E6 with the elapsed-time normalisation; two runs per build.",
+ "different": {
+  "ref1_pee1": 0,
+  "ref2_pee2": 0,
+  "ref1_ref2": 0,
+  "pee1_pee2": 0
+ },
+ "reference_run1": {
+  "fixtures": 11,
+  "rows": 88,
+  "errors": 0,
+  "rows_detail": [
+   {
+    "fixture": "figure",
+    "entry": "extractSpecifications245",
+    "sha256": "45f7ecabbf0e4b2e285d4dcf07333694234ece59ca49a3276ccd192f49fe2de2",
+    "bytes": 936,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "acquireTables1F",
+    "sha256": "2a70c33ab2d7cf994e7e99cdeab8243f49f2163e682108f924a053cafd1cd268",
+    "bytes": 4230,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "documentModel1G",
+    "sha256": "8173f5802183f56541dd9ae9b2e7bbe37b9f769b0abb1d24def961e1be0762b1",
+    "bytes": 1396,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "918a4b1e6f17ffce6343d9f54aa19f3a101d01527f077951bacb40628fd04b60",
+    "bytes": 2716,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "6334b19f9fcfc807e0df807dd9ce6504401398b585c72698626f0e92436f8a49",
+    "bytes": 111202,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "qualitativeObservations269",
+    "sha256": "8670542875f0e25223e459718610017e467863b515f92a8e79c4c92bd23fb368",
+    "bytes": 42,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "extractSpecifications245",
+    "sha256": "6485dca799b385b8cc9ec18bd9ebd99802fec292a0802964a00de4c37d638c8b",
+    "bytes": 569,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "acquireTables1F",
+    "sha256": "2ad16086ecf74edd3acea756460dce08f4bd045862c106b895681da670e8521a",
+    "bytes": 3117,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "documentModel1G",
+    "sha256": "445bc9ff1d0904bee72de5c3fedab3fd6aed5768627d375ca0fd91deb580a2e4",
+    "bytes": 273,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "6767b81b1b05f87ae9ab650263a22c2f84f671344edf54eff4e95cc7613d5cfe",
+    "bytes": 1607,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "76dc101beda585de9b4fdce49adcded1caf196c3d3f23aca20e5d5d8ca3e8c8d",
+    "bytes": 109634,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "qualitativeObservations269",
+    "sha256": "596a3805ae9c8bbeea438931602b86a2927a755b29381229efe5112b5d797d62",
+    "bytes": 41,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "extractSpecifications245",
+    "sha256": "39d8da47d552a8111fdf1bf0a5884991a16bafeb31f90cb1d941f9d1815feb33",
+    "bytes": 941,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "acquireTables1F",
+    "sha256": "648b53255f469f9e69aa3de41d3cd22589140351f84e654e270489b529291313",
+    "bytes": 3604,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "documentModel1G",
+    "sha256": "bffdbcd4ece7a1298e4c6da171730054eeb6e740f62d52ba439c13bb1f7873b9",
+    "bytes": 411,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "3d13e29b5e61b604372faf4315fef975ab9b141ac6e90ee49183e4b42ab363e5",
+    "bytes": 1360,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "16e59d69512e49ad1abc3cff7544af767deb98b7c42aa04ec03d8ebe947ddfce",
+    "bytes": 109836,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "qualitativeObservations269",
+    "sha256": "79413a73c05ddda7d0682383f6d8d3ecff8d2fc1960d28d555669cf4c383dc7c",
+    "bytes": 41,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "extractSpecifications245",
+    "sha256": "e223393bdbb756465259026357d641da77dd4dfff9f3dae8ac382727ca3cdbf8",
+    "bytes": 36501,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "acquireTables1F",
+    "sha256": "ad70b12a5d3ab0fe8895d727107a9bcc67bf0c421b9fb0f44b2601d22fc98e2a",
+    "bytes": 94652,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "documentModel1G",
+    "sha256": "82cfab423e08f5bb8cb03ec935e7e73db8924c2b2896493a9a6ce1d5da321808",
+    "bytes": 13422,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "74f0f10d127659a551013cccc9c6911dad00b805d564b3e845cf259c80d7e8f0",
+    "bytes": 56214,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "2caaaf4f3f53b3bce89426e65ba3cf7f93cdf7252f46287ab3831fbe903e3963",
+    "bytes": 918322,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "qualitativeObservations269",
+    "sha256": "4b21b7d07d145a6774a8ddc2314aafd6a7927cf67079ed8b39d1d2eed1527495",
+    "bytes": 43,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "extractSpecifications245",
+    "sha256": "b878976dd08d73b5c74276d89c1bd820a72a7f32cbf76f32f2335f75ad6da012",
+    "bytes": 1444,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "acquireTables1F",
+    "sha256": "be9048e909f21db9f5432bfef86eda97eb9de1868fdaa4543eee1e99872fa8c2",
+    "bytes": 6173,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "documentModel1G",
+    "sha256": "eb08307175758b5f149f5951b4c4b6f67bb02217eae673ab7f75b5f0ea7654c4",
+    "bytes": 592,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "7b17bd1bf864a056be691669d3bf02b5db3b967b4bfb9e6150c7a27ccbc7be0a",
+    "bytes": 2811,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "d8461a8615d50ea824f650a88244f0bbc35e1a16f787c8322277537ec64d828f",
+    "bytes": 134315,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "qualitativeObservations269",
+    "sha256": "275613802b5301a4596d8cb89c3973cc636d38f1ae65ac88c2515eaa0fd587f8",
+    "bytes": 41,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "extractSpecifications245",
+    "sha256": "10fd7f7439623404880712127f5ec31a5023fad6fc55b043965962fb623512cf",
+    "bytes": 3795,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "acquireTables1F",
+    "sha256": "8d035fd46e223955dae38c1aea79a94ea763309b0db98218e65387a806fa0569",
+    "bytes": 8943,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "documentModel1G",
+    "sha256": "445bc9ff1d0904bee72de5c3fedab3fd6aed5768627d375ca0fd91deb580a2e4",
+    "bytes": 273,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "848f88e3cf7f22eaeb7171abab9958f1b247250c241fc420e4b302389b683be4",
+    "bytes": 4238,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "121632e834ad1e387e3240d73fdd10d44b1b2b3bb19ee7a967a910adcf1199c6",
+    "bytes": 118345,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "qualitativeObservations269",
+    "sha256": "ba096e542210a5383b422c86bb466ef969b45da3acad693e5cbf86fe9429d1dd",
+    "bytes": 42,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "extractSpecifications245",
+    "sha256": "8ae7a6f0b7cfc1ef78f9c75ac8b004c52402b55971ae62710bf8e60cce80a9d1",
+    "bytes": 999,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "acquireTables1F",
+    "sha256": "91a6e82e5b645cab0c63a410e2ff7d8e29cc043bfda307c6cfdca31df0e687b3",
+    "bytes": 5061,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "documentModel1G",
+    "sha256": "1a7ec636f655e4a2a4f07433bc99759b27e59050ad4cf5ef2fe930cea4128530",
+    "bytes": 432,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "8bef1168cc7da2230efd5fe11a14dd9f47a0654f93ca2aaf8848e8f1a9f04b04",
+    "bytes": 1886,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "3fd7a40803cff5c9da0b7e7439ec230360f6705ff01870d324a653d41fb56006",
+    "bytes": 112501,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "qualitativeObservations269",
+    "sha256": "fe8db647fd88a0ae464cc218e9fc2e8e950c124d5c089cbcb4d366e9f87016bf",
+    "bytes": 41,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "extractSpecifications245",
+    "sha256": "7c008bea779a6f0590987628d8b091a27017ad0b0d3a8ce77dbcf3369032b362",
+    "bytes": 605,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "acquireTables1F",
+    "sha256": "1558e3b10f1d1ca7fc30c6d988a1dcb9c1654c07388b2ee51eb0606f420b2edf",
+    "bytes": 6079,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "documentModel1G",
+    "sha256": "a87d98711918b25d05f4f34319f32b3822565e72d148cdcea756de0a53b1c8e2",
+    "bytes": 593,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "ee9f4efd0a82f2a621b53fdbee34b97699fd796e3866b2e78185400d7899cdac",
+    "bytes": 3443,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "97f96927f6cd46a5b7025fec60ec740d6992b47128b0902978c56524e626b122",
+    "bytes": 155476,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "qualitativeObservations269",
+    "sha256": "0c8d41018e9a92b4e82840ca7bafb05dc7eec311f741b906dd12c74e968fa0eb",
+    "bytes": 42,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "extractSpecifications245",
+    "sha256": "ffad7e5b49e5f0e98743e383ef60122050964eff63cb4e558b8361a8b32093a5",
+    "bytes": 569,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "acquireTables1F",
+    "sha256": "921faa6c8d02a3c2193a5fb9ce1864c8cc46fe96e8bfcf04eeb87422bab18ce8",
+    "bytes": 2915,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "documentModel1G",
+    "sha256": "445bc9ff1d0904bee72de5c3fedab3fd6aed5768627d375ca0fd91deb580a2e4",
+    "bytes": 273,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "3d276abd0c2bad798c27528dd11de8fbe5239901275211272ec8037b8eb7ec6c",
+    "bytes": 1452,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "76dc101beda585de9b4fdce49adcded1caf196c3d3f23aca20e5d5d8ca3e8c8d",
+    "bytes": 109634,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "qualitativeObservations269",
+    "sha256": "596a3805ae9c8bbeea438931602b86a2927a755b29381229efe5112b5d797d62",
+    "bytes": 41,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "extractSpecifications245",
+    "sha256": "22357ac189a641efb07c5169c47fcaf89336d1c5e35f23db8e79708417dcdfc7",
+    "bytes": 1003,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "acquireTables1F",
+    "sha256": "0d7b55bf205b904d7c3a56d08beeca86b9e082dd0db22b13a649b7b6ba7e72ad",
+    "bytes": 5221,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "documentModel1G",
+    "sha256": "445bc9ff1d0904bee72de5c3fedab3fd6aed5768627d375ca0fd91deb580a2e4",
+    "bytes": 273,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "ee245d9aeb6751b2f63a30893a124762ac16cbdf0c5b901c85af8ebd71119c2e",
+    "bytes": 2424,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "fc7dbbd1664a4ff1a5abb179a258a29f3d2ba1c17159fd9338cb2c29c3ba5af7",
+    "bytes": 110929,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "qualitativeObservations269",
+    "sha256": "ae4f67c317ef07b9a924882e825c39344323debce839881fd51a75f41e79a66d",
+    "bytes": 41,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "extractSpecifications245",
+    "sha256": "266ae93f33fb9b5c37fc5fc04e0aaf60a80ca75d78bc383a1d5dca116b94aa54",
+    "bytes": 589,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "acquireTables1F",
+    "sha256": "4ee3179ccca1948f5d61f44b29aa532e6f0e95269fbd769fcc43df68d88f7e29",
+    "bytes": 57795,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "documentModel1G",
+    "sha256": "445bc9ff1d0904bee72de5c3fedab3fd6aed5768627d375ca0fd91deb580a2e4",
+    "bytes": 273,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "4b8bc954acb7d3ea26d53f8b10adf5efa90f3b87e1e8a711c0866c8fa2fb07e6",
+    "bytes": 35917,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "76dc101beda585de9b4fdce49adcded1caf196c3d3f23aca20e5d5d8ca3e8c8d",
+    "bytes": 109634,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "qualitativeObservations269",
+    "sha256": "a08134fe78b628227cb990d9da79fbba93df87dcc2992fa569075f8b43a5a69b",
+    "bytes": 43,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   }
+  ]
+ },
+ "pee_run1": {
+  "fixtures": 11,
+  "rows": 88,
+  "errors": 0,
+  "rows_detail": [
+   {
+    "fixture": "figure",
+    "entry": "extractSpecifications245",
+    "sha256": "45f7ecabbf0e4b2e285d4dcf07333694234ece59ca49a3276ccd192f49fe2de2",
+    "bytes": 936,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "acquireTables1F",
+    "sha256": "2a70c33ab2d7cf994e7e99cdeab8243f49f2163e682108f924a053cafd1cd268",
+    "bytes": 4230,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "documentModel1G",
+    "sha256": "8173f5802183f56541dd9ae9b2e7bbe37b9f769b0abb1d24def961e1be0762b1",
+    "bytes": 1396,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "918a4b1e6f17ffce6343d9f54aa19f3a101d01527f077951bacb40628fd04b60",
+    "bytes": 2716,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "6334b19f9fcfc807e0df807dd9ce6504401398b585c72698626f0e92436f8a49",
+    "bytes": 111202,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "qualitativeObservations269",
+    "sha256": "8670542875f0e25223e459718610017e467863b515f92a8e79c4c92bd23fb368",
+    "bytes": 42,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "figure",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "extractSpecifications245",
+    "sha256": "6485dca799b385b8cc9ec18bd9ebd99802fec292a0802964a00de4c37d638c8b",
+    "bytes": 569,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "acquireTables1F",
+    "sha256": "2ad16086ecf74edd3acea756460dce08f4bd045862c106b895681da670e8521a",
+    "bytes": 3117,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "documentModel1G",
+    "sha256": "445bc9ff1d0904bee72de5c3fedab3fd6aed5768627d375ca0fd91deb580a2e4",
+    "bytes": 273,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "6767b81b1b05f87ae9ab650263a22c2f84f671344edf54eff4e95cc7613d5cfe",
+    "bytes": 1607,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "76dc101beda585de9b4fdce49adcded1caf196c3d3f23aca20e5d5d8ca3e8c8d",
+    "bytes": 109634,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "qualitativeObservations269",
+    "sha256": "596a3805ae9c8bbeea438931602b86a2927a755b29381229efe5112b5d797d62",
+    "bytes": 41,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "foster",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "extractSpecifications245",
+    "sha256": "39d8da47d552a8111fdf1bf0a5884991a16bafeb31f90cb1d941f9d1815feb33",
+    "bytes": 941,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "acquireTables1F",
+    "sha256": "648b53255f469f9e69aa3de41d3cd22589140351f84e654e270489b529291313",
+    "bytes": 3604,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "documentModel1G",
+    "sha256": "bffdbcd4ece7a1298e4c6da171730054eeb6e740f62d52ba439c13bb1f7873b9",
+    "bytes": 411,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "3d13e29b5e61b604372faf4315fef975ab9b141ac6e90ee49183e4b42ab363e5",
+    "bytes": 1360,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "16e59d69512e49ad1abc3cff7544af767deb98b7c42aa04ec03d8ebe947ddfce",
+    "bytes": 109836,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "qualitativeObservations269",
+    "sha256": "79413a73c05ddda7d0682383f6d8d3ecff8d2fc1960d28d555669cf4c383dc7c",
+    "bytes": 41,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "implied",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "extractSpecifications245",
+    "sha256": "e223393bdbb756465259026357d641da77dd4dfff9f3dae8ac382727ca3cdbf8",
+    "bytes": 36501,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "acquireTables1F",
+    "sha256": "ad70b12a5d3ab0fe8895d727107a9bcc67bf0c421b9fb0f44b2601d22fc98e2a",
+    "bytes": 94652,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "documentModel1G",
+    "sha256": "82cfab423e08f5bb8cb03ec935e7e73db8924c2b2896493a9a6ce1d5da321808",
+    "bytes": 13422,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "74f0f10d127659a551013cccc9c6911dad00b805d564b3e845cf259c80d7e8f0",
+    "bytes": 56214,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "2caaaf4f3f53b3bce89426e65ba3cf7f93cdf7252f46287ab3831fbe903e3963",
+    "bytes": 918322,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "qualitativeObservations269",
+    "sha256": "4b21b7d07d145a6774a8ddc2314aafd6a7927cf67079ed8b39d1d2eed1527495",
+    "bytes": 43,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "many",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "extractSpecifications245",
+    "sha256": "b878976dd08d73b5c74276d89c1bd820a72a7f32cbf76f32f2335f75ad6da012",
+    "bytes": 1444,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "acquireTables1F",
+    "sha256": "be9048e909f21db9f5432bfef86eda97eb9de1868fdaa4543eee1e99872fa8c2",
+    "bytes": 6173,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "documentModel1G",
+    "sha256": "eb08307175758b5f149f5951b4c4b6f67bb02217eae673ab7f75b5f0ea7654c4",
+    "bytes": 592,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "7b17bd1bf864a056be691669d3bf02b5db3b967b4bfb9e6150c7a27ccbc7be0a",
+    "bytes": 2811,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "d8461a8615d50ea824f650a88244f0bbc35e1a16f787c8322277537ec64d828f",
+    "bytes": 134315,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "qualitativeObservations269",
+    "sha256": "275613802b5301a4596d8cb89c3973cc636d38f1ae65ac88c2515eaa0fd587f8",
+    "bytes": 41,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "markers",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "extractSpecifications245",
+    "sha256": "10fd7f7439623404880712127f5ec31a5023fad6fc55b043965962fb623512cf",
+    "bytes": 3795,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "acquireTables1F",
+    "sha256": "8d035fd46e223955dae38c1aea79a94ea763309b0db98218e65387a806fa0569",
+    "bytes": 8943,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "documentModel1G",
+    "sha256": "445bc9ff1d0904bee72de5c3fedab3fd6aed5768627d375ca0fd91deb580a2e4",
+    "bytes": 273,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "848f88e3cf7f22eaeb7171abab9958f1b247250c241fc420e4b302389b683be4",
+    "bytes": 4238,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "121632e834ad1e387e3240d73fdd10d44b1b2b3bb19ee7a967a910adcf1199c6",
+    "bytes": 118345,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "qualitativeObservations269",
+    "sha256": "ba096e542210a5383b422c86bb466ef969b45da3acad693e5cbf86fe9429d1dd",
+    "bytes": 42,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "merged",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "extractSpecifications245",
+    "sha256": "8ae7a6f0b7cfc1ef78f9c75ac8b004c52402b55971ae62710bf8e60cce80a9d1",
+    "bytes": 999,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "acquireTables1F",
+    "sha256": "91a6e82e5b645cab0c63a410e2ff7d8e29cc043bfda307c6cfdca31df0e687b3",
+    "bytes": 5061,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "documentModel1G",
+    "sha256": "1a7ec636f655e4a2a4f07433bc99759b27e59050ad4cf5ef2fe930cea4128530",
+    "bytes": 432,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "8bef1168cc7da2230efd5fe11a14dd9f47a0654f93ca2aaf8848e8f1a9f04b04",
+    "bytes": 1886,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "3fd7a40803cff5c9da0b7e7439ec230360f6705ff01870d324a653d41fb56006",
+    "bytes": 112501,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "qualitativeObservations269",
+    "sha256": "fe8db647fd88a0ae464cc218e9fc2e8e950c124d5c089cbcb4d366e9f87016bf",
+    "bytes": 41,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "nested",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "extractSpecifications245",
+    "sha256": "7c008bea779a6f0590987628d8b091a27017ad0b0d3a8ce77dbcf3369032b362",
+    "bytes": 605,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "acquireTables1F",
+    "sha256": "1558e3b10f1d1ca7fc30c6d988a1dcb9c1654c07388b2ee51eb0606f420b2edf",
+    "bytes": 6079,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "documentModel1G",
+    "sha256": "a87d98711918b25d05f4f34319f32b3822565e72d148cdcea756de0a53b1c8e2",
+    "bytes": 593,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "ee9f4efd0a82f2a621b53fdbee34b97699fd796e3866b2e78185400d7899cdac",
+    "bytes": 3443,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "97f96927f6cd46a5b7025fec60ec740d6992b47128b0902978c56524e626b122",
+    "bytes": 155476,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "qualitativeObservations269",
+    "sha256": "0c8d41018e9a92b4e82840ca7bafb05dc7eec311f741b906dd12c74e968fa0eb",
+    "bytes": 42,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "nfkc",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "extractSpecifications245",
+    "sha256": "ffad7e5b49e5f0e98743e383ef60122050964eff63cb4e558b8361a8b32093a5",
+    "bytes": 569,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "acquireTables1F",
+    "sha256": "921faa6c8d02a3c2193a5fb9ce1864c8cc46fe96e8bfcf04eeb87422bab18ce8",
+    "bytes": 2915,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "documentModel1G",
+    "sha256": "445bc9ff1d0904bee72de5c3fedab3fd6aed5768627d375ca0fd91deb580a2e4",
+    "bytes": 273,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "3d276abd0c2bad798c27528dd11de8fbe5239901275211272ec8037b8eb7ec6c",
+    "bytes": 1452,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "76dc101beda585de9b4fdce49adcded1caf196c3d3f23aca20e5d5d8ca3e8c8d",
+    "bytes": 109634,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "qualitativeObservations269",
+    "sha256": "596a3805ae9c8bbeea438931602b86a2927a755b29381229efe5112b5d797d62",
+    "bytes": 41,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "raw_table",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "extractSpecifications245",
+    "sha256": "22357ac189a641efb07c5169c47fcaf89336d1c5e35f23db8e79708417dcdfc7",
+    "bytes": 1003,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "acquireTables1F",
+    "sha256": "0d7b55bf205b904d7c3a56d08beeca86b9e082dd0db22b13a649b7b6ba7e72ad",
+    "bytes": 5221,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "documentModel1G",
+    "sha256": "445bc9ff1d0904bee72de5c3fedab3fd6aed5768627d375ca0fd91deb580a2e4",
+    "bytes": 273,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "ee245d9aeb6751b2f63a30893a124762ac16cbdf0c5b901c85af8ebd71119c2e",
+    "bytes": 2424,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "fc7dbbd1664a4ff1a5abb179a258a29f3d2ba1c17159fd9338cb2c29c3ba5af7",
+    "bytes": 110929,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "qualitativeObservations269",
+    "sha256": "ae4f67c317ef07b9a924882e825c39344323debce839881fd51a75f41e79a66d",
+    "bytes": 41,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "references",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "extractSpecifications245",
+    "sha256": "266ae93f33fb9b5c37fc5fc04e0aaf60a80ca75d78bc383a1d5dca116b94aa54",
+    "bytes": 589,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "acquireTables1F",
+    "sha256": "4ee3179ccca1948f5d61f44b29aa532e6f0e95269fbd769fcc43df68d88f7e29",
+    "bytes": 57795,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "documentModel1G",
+    "sha256": "445bc9ff1d0904bee72de5c3fedab3fd6aed5768627d375ca0fd91deb580a2e4",
+    "bytes": 273,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "readDocumentSemantics1D2",
+    "sha256": "4b8bc954acb7d3ea26d53f8b10adf5efa90f3b87e1e8a711c0866c8fa2fb07e6",
+    "bytes": 35917,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "readDocumentEvidence_readProductFacts",
+    "sha256": "76dc101beda585de9b4fdce49adcded1caf196c3d3f23aca20e5d5d8ca3e8c8d",
+    "bytes": 109634,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "qualitativeObservations269",
+    "sha256": "a08134fe78b628227cb990d9da79fbba93df87dcc2992fa569075f8b43a5a69b",
+    "bytes": 43,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "comparativeResults270",
+    "sha256": "ad1ba6851c9fbee082f0c33c352e412af7692d201a6f2257e7ba2987955f6371",
+    "bytes": 35,
+    "error": null
+   },
+   {
+    "fixture": "wide",
+    "entry": "documentMentions272",
+    "sha256": "79f889f1b8ec725e8664679b972e031a687ac0b0ef9c489f183be0a8b83e39d4",
+    "bytes": 9,
+    "error": null
+   }
+  ]
+ }
+}

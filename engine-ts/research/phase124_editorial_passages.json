@@ -1,0 +1,8 @@
+{
+  "origin": "Short project-authored editorial notes of first-hand publication observations already reviewed in Phase118. NOT original article bytes, not automatically authenticated, not new independent testing.",
+  "passages": [
+    {"passageId":"rover_ifa_notes","sourceUrl":"https://www.tomsguide.com/home/home-appliances/i-just-watched-a-robot-vacuum-actually-climb-stairs-it-took-3-minutes-but-those-steps-were-sparkling-after","sourceIdentity":"tomsguide_ifa_2026","rightsReviewed":true,"text":"The Roborock Saros Rover was observed at IFA 2026 negotiating a staircase and cleaning stair treads. This was an exhibition demonstration, not a multi-week household reliability test."},
+    {"passageId":"marswalker_editorial_notes","sourceUrl":"https://www.eufy.com/uk/blogs/robovac/stair-climbing-robot-vacuum","sourceIdentity":"eufy_official_2026","rightsReviewed":true,"text":"eufy MarsWalker is a tracked carrier that can transport a compatible cleaning robot upstairs; it does not vacuum individual stair treads. This manufacturer description is not an independent household test."},
+    {"passageId":"saros20_review_notes","sourceUrl":"https://vacuumwars.com/roborock-saros-20-review/","sourceIdentity":"vacuumwars_saros20_2026","rightsReviewed":true,"text":"The independent original review of Roborock Saros 20 reports traversing a single threshold of 57 millimetres after repositioning. This does not show it can climb a domestic staircase or reliably clear every threshold."}
+  ]
+}
