@@ -1,0 +1,128 @@
+{
+ "schema": "pee.c1.stage-f-prime.v1",
+ "train_examples": 507,
+ "test_items": 500,
+ "labels": {
+  "other": 98,
+  "is_a": 26,
+  "occurs": 28,
+  "requires": 88,
+  "defined_as": 41,
+  "applies_to": 18,
+  "enables": 12,
+  "establishes": 25,
+  "differs_from": 7,
+  "measures": 7,
+  "part_of": 2,
+  "correlates_with": 4,
+  "affects": 18,
+  "exceeds": 6,
+  "equals": 26,
+  "depends_on": 13,
+  "recommends": 42,
+  "causes": 6,
+  "increases": 2,
+  "decreases": 2,
+  "indicates": 9,
+  "has_value": 12,
+  "has_property": 9,
+  "determines": 3,
+  "prevents": 1,
+  "explains": 1,
+  "less_than": 1
+ },
+ "results": {
+  "all": {
+   "B0": {
+    "n": 500,
+    "accuracy": 0.34,
+    "macro_f1": 0.2714
+   },
+   "B1": {
+    "n": 500,
+    "accuracy": 0.152,
+    "macro_f1": 0.072
+   },
+   "B2": {
+    "n": 500,
+    "accuracy": 0.194,
+    "macro_f1": 0.0485
+   }
+  },
+  "dev": {
+   "B0": {
+    "n": 248,
+    "accuracy": 0.2903,
+    "macro_f1": 0.2758
+   },
+   "B1": {
+    "n": 248,
+    "accuracy": 0.129,
+    "macro_f1": 0.0806
+   },
+   "B2": {
+    "n": 248,
+    "accuracy": 0.1532,
+    "macro_f1": 0.0333
+   }
+  },
+  "sealed": {
+   "B0": {
+    "n": 252,
+    "accuracy": 0.3889,
+    "macro_f1": 0.241
+   },
+   "B1": {
+    "n": 252,
+    "accuracy": 0.1746,
+    "macro_f1": 0.0755
+   },
+   "B2": {
+    "n": 252,
+    "accuracy": 0.2341,
+    "macro_f1": 0.0808
+   }
+  },
+  "norms": {
+   "B0": {
+    "n": 153,
+    "accuracy": 0.3529,
+    "macro_f1": 0.4615
+   },
+   "B1": {
+    "n": 153,
+    "accuracy": 0.1634,
+    "macro_f1": 0.2615
+   },
+   "B2": {
+    "n": 153,
+    "accuracy": 0.3268,
+    "macro_f1": 0.369
+   }
+  },
+  "a1_other": {
+   "B0": {
+    "n": 120,
+    "accuracy": 0.2583,
+    "macro_f1": 0.0196
+   },
+   "B1": {
+    "n": 120,
+    "accuracy": 0.125,
+    "macro_f1": 0.0395
+   },
+   "B2": {
+    "n": 120,
+    "accuracy": 0.15,
+    "macro_f1": 0.0219
+   }
+  }
+ },
+ "pass_rule": {
+  "best": "B2",
+  "gain_all": -0.146,
+  "gain_dev": -0.1371,
+  "gain_sealed": -0.1548,
+  "passed": false
+ }
+}

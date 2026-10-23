@@ -368,3 +368,30 @@ Otherwise stop.
 - **Mechanical scoring.** Exact label matching is stricter than the judges were. It is applied equally to every arm.
 - **Scope.** Only the relation is predicted. Polarity, attitude and the rest stay A-1's.
 - **What a pass cannot show.** A pass would not show that knowledge may be admitted.
+
+## 16. Stage F′ result (2026-10-23): stopped; the pass rule is not met
+
+**Results** (`stage-f-prime.json`). Exact relation accuracy on A-1's 500 matched items, five folds grouped by
+section, 507 training examples in 27 relation classes:
+
+| Items | B0 (A-1) | B1 (bag of words) | B2 (nomic embeddings) |
+|---|---|---|---|
+| All (500) | **0.34** | 0.15 | 0.19 |
+| Development-derived (248) | **0.29** | 0.13 | 0.15 |
+| Sealed-derived (252) | **0.39** | 0.17 | 0.23 |
+| Norms (153) | **0.35** | 0.16 | 0.33 |
+| Where A-1 said `other` (120) | 0.26 | 0.13 | 0.15 |
+
+- **Both classifiers are worse than A-1's rules.** The best, B2, loses 0.15. Its macro-F1 is 0.05, close to always
+  predicting a frequent class.
+- **Measured cause.** There are about 19 examples per class, and the largest class, `other` (98 of 507), is
+  heterogeneous by definition. With this data, the learners cannot separate the relations.
+
+**What this does not show.** It does not show that a trained model cannot read relations. The literature's gains come
+from fine-tuning on thousands of examples, or from contrastive tuning (full SetFit). C-1 used a frozen encoder,
+because of cost and dependencies.
+
+**What it does show.** With the annotations we have, around 500, a learned relation classifier is not a cheap
+improvement.
+
+**Cost.** About 11 minutes of CPU. No agents.
