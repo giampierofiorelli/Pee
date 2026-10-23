@@ -321,3 +321,15 @@ stay non-independent (8.2).
 - **Not used:** agents and the Soundbars content.
 - **Unchanged:** S0.
 - **Where:** preferably in a new Claude Code session attached to Pee alone.
+
+## 9. Stage 0 result (2026-10-23)
+
+Done, in `W1-DIAGNOSIS.md` (codes and counts in `w1-diagnosis.json`). No agents, no Soundbars content, no code or S0
+change. Stopped at the stage-0 decision.
+- **Recommendation:** proceed, narrowed. W3 only on the closed-class causes (negation, deontic force, proposal scope,
+  citation block, segmentation, a part-of-speech guard, conditional clauses). The other causes go to W4.
+- **Found for stage 1:**
+  - two scoring blind spots: `requires` held as `recommends` is graded right, and attribution recall on cited claims
+    is 0;
+  - two W2 additions: the default force of a bare imperative, and list-frame predicates.
+- **Not authorised:** stage 1. It waits for the owner's decision.

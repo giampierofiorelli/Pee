@@ -1,0 +1,1850 @@
+{
+ "category_of_mechanism": {
+  "ATTR-block": "attribution",
+  "ATTR-false": "attribution",
+  "COND-absorb": "conditions",
+  "COND-marker": "conditions",
+  "EPI-evconv": "reference-convention",
+  "EPI-example": "epistemic",
+  "EPI-other": "epistemic",
+  "EPI-prop-over": "epistemic",
+  "EPI-prop-under": "epistemic",
+  "EPI-source": "epistemic",
+  "EPI-trigger": "epistemic",
+  "ID-anaphor": "identification",
+  "ID-bearer": "identification",
+  "ID-coord": "identification",
+  "ID-ellipsis": "linguistic",
+  "ID-span": "identification",
+  "MOD-deontic": "relation",
+  "MOD-hedge-added": "epistemic",
+  "MOD-hedge-lost": "epistemic",
+  "MOD-other": "epistemic",
+  "NEG-cond": "negation",
+  "NEG-contrast": "negation",
+  "NEG-coord": "negation",
+  "NEG-det": "negation",
+  "NEG-double": "negation",
+  "NEG-exist": "negation",
+  "NEG-parity": "negation",
+  "NEG-scope": "negation",
+  "NEG-without": "negation",
+  "QUANT": "quantity",
+  "REL-direction": "linguistic",
+  "REL-frame": "relation",
+  "REL-nominal": "linguistic",
+  "REL-normlex": "relation",
+  "REL-normsense": "relation",
+  "REL-noun": "linguistic",
+  "REL-out": "relation",
+  "REL-passive": "linguistic",
+  "REL-sense": "relation",
+  "REL-verb": "relation",
+  "SEG-code": "linguistic",
+  "SEG-label": "linguistic",
+  "SEG-markup": "linguistic",
+  "SEG-meta": "linguistic",
+  "SEG-notation": "linguistic",
+  "SEG-split": "linguistic"
+ },
+ "counts": {
+  "dev": {
+   "conseq": {
+    "evidence_answer_wrong": 19,
+    "modality_not_used_by_rules": 15,
+    "overgeneralises": 3,
+    "promotes": 12,
+    "provenance_lost": 98,
+    "reverses_answer": 3,
+    "status_wrong": 7,
+    "unlicensed": 3,
+    "unreachable": 97
+   },
+   "crit": {
+    "1|NEG-det": 2,
+    "1|NEG-double": 1,
+    "1|NEG-parity": 3,
+    "1|NEG-scope": 2,
+    "1|NEG-without": 1,
+    "3|EPI-prop-under": 19,
+    "5|ATTR-false": 1,
+    "6|ID-coord": 2,
+    "6|SEG-notation": 1
+   },
+   "el_mech": {
+    "ATTR-block|attribution": 97,
+    "ATTR-false|attribution": 1,
+    "EPI-other|evidence_kind": 2,
+    "EPI-prop-over|attitude": 4,
+    "EPI-prop-over|evidence_kind": 2,
+    "EPI-prop-under|attitude": 19,
+    "EPI-prop-under|evidence_kind": 19,
+    "EPI-source|attitude": 13,
+    "EPI-source|evidence_kind": 15,
+    "EPI-trigger|attitude": 10,
+    "MOD-hedge-added|modality_generality": 13,
+    "MOD-hedge-lost|modality_generality": 22,
+    "MOD-other|modality_generality": 3,
+    "REL-normlex|relation": 2,
+    "REL-normsense|relation": 16,
+    "REL-noun|relation": 7,
+    "REL-out|relation": 13,
+    "REL-sense|relation": 33,
+    "REL-verb|relation": 7,
+    "UNCODED-conditions|conditions": 20,
+    "UNCODED-object_or_value|object_or_value": 12,
+    "UNCODED-polarity|polarity": 9,
+    "UNCODED-subject|subject": 45
+   },
+   "items_mech": {
+    "ATTR-block": 97,
+    "ATTR-false": 1,
+    "EPI-other": 2,
+    "EPI-prop-over": 4,
+    "EPI-prop-under": 19,
+    "EPI-source": 22,
+    "EPI-trigger": 10,
+    "MOD-hedge-added": 13,
+    "MOD-hedge-lost": 22,
+    "MOD-other": 3,
+    "REL-normlex": 2,
+    "REL-normsense": 16,
+    "REL-noun": 7,
+    "REL-out": 13,
+    "REL-sense": 33,
+    "REL-verb": 7,
+    "UNCODED-conditions": 20,
+    "UNCODED-object_or_value": 12,
+    "UNCODED-polarity": 9,
+    "UNCODED-subject": 45
+   }
+  },
+  "missed": {
+   "COND-absorb": 1,
+   "COND-marker": 2,
+   "ID-anaphor": 1,
+   "ID-coord": 8,
+   "ID-ellipsis": 5,
+   "ID-span": 1,
+   "NEG-without": 1,
+   "QUANT": 1,
+   "REL-frame": 12,
+   "REL-normlex": 7,
+   "REL-noun": 1,
+   "REL-passive": 5,
+   "REL-verb": 4,
+   "SEG-markup": 1,
+   "SEG-notation": 6
+  },
+  "sealed": {
+   "conseq": {
+    "evidence_answer_wrong": 41,
+    "modality_not_used_by_rules": 10,
+    "overgeneralises": 3,
+    "provenance_lost": 67,
+    "reverses_answer": 4,
+    "status_wrong": 5,
+    "unlicensed": 13,
+    "unreachable": 112
+   },
+   "crit": {
+    "1|NEG-cond": 1,
+    "1|NEG-contrast": 1,
+    "1|NEG-coord": 1,
+    "1|NEG-det": 1,
+    "1|NEG-double": 2,
+    "1|NEG-scope": 1,
+    "1|SEG-code": 1,
+    "2|REL-direction": 2,
+    "2|REL-frame": 1,
+    "5|ATTR-false": 1,
+    "6|ID-coord": 2,
+    "6|REL-frame": 1
+   },
+   "el_mech": {
+    "ATTR-block|attribution": 65,
+    "ATTR-false|attribution": 2,
+    "COND-absorb|conditions": 1,
+    "COND-absorb|object_or_value": 4,
+    "COND-absorb|relation": 8,
+    "COND-absorb|subject": 7,
+    "COND-marker|conditions": 5,
+    "COND-marker|object_or_value": 3,
+    "COND-marker|relation": 2,
+    "EPI-evconv|evidence_kind": 31,
+    "EPI-prop-over|attitude": 18,
+    "EPI-prop-over|evidence_kind": 18,
+    "EPI-prop-under|evidence_kind": 2,
+    "EPI-source|attitude": 6,
+    "EPI-source|evidence_kind": 19,
+    "EPI-trigger|attitude": 4,
+    "ID-anaphor|relation": 1,
+    "ID-anaphor|subject": 3,
+    "ID-bearer|relation": 1,
+    "ID-bearer|subject": 5,
+    "ID-coord|object_or_value": 3,
+    "ID-coord|subject": 2,
+    "ID-ellipsis|conditions": 1,
+    "ID-ellipsis|object_or_value": 2,
+    "ID-ellipsis|relation": 4,
+    "ID-ellipsis|subject": 4,
+    "ID-span|object_or_value": 4,
+    "ID-span|relation": 3,
+    "ID-span|subject": 7,
+    "MOD-deontic|modality_generality": 15,
+    "MOD-hedge-added|modality_generality": 2,
+    "MOD-hedge-lost|modality_generality": 7,
+    "MOD-other|modality_generality": 3,
+    "NEG-cond|conditions": 1,
+    "NEG-contrast|polarity": 1,
+    "NEG-coord|polarity": 1,
+    "NEG-det|polarity": 1,
+    "NEG-double|polarity": 2,
+    "NEG-exist|object_or_value": 1,
+    "NEG-exist|relation": 1,
+    "NEG-exist|subject": 1,
+    "NEG-scope|polarity": 1,
+    "REL-direction|object_or_value": 1,
+    "REL-direction|relation": 2,
+    "REL-direction|subject": 1,
+    "REL-frame|object_or_value": 13,
+    "REL-frame|relation": 28,
+    "REL-frame|subject": 1,
+    "REL-nominal|relation": 1,
+    "REL-nominal|subject": 1,
+    "REL-normlex|relation": 8,
+    "REL-normsense|relation": 3,
+    "REL-noun|conditions": 1,
+    "REL-noun|object_or_value": 5,
+    "REL-noun|relation": 25,
+    "REL-noun|subject": 6,
+    "REL-sense|object_or_value": 1,
+    "REL-sense|relation": 4,
+    "REL-verb|relation": 2,
+    "SEG-code|conditions": 1,
+    "SEG-code|object_or_value": 1,
+    "SEG-code|relation": 1,
+    "SEG-code|subject": 1,
+    "SEG-notation|object_or_value": 2,
+    "SEG-notation|relation": 2,
+    "SEG-notation|subject": 2,
+    "SEG-split|subject": 1
+   },
+   "items_mech": {
+    "ATTR-block": 65,
+    "ATTR-false": 2,
+    "COND-absorb": 8,
+    "COND-marker": 8,
+    "EPI-evconv": 31,
+    "EPI-prop-over": 18,
+    "EPI-prop-under": 2,
+    "EPI-source": 19,
+    "EPI-trigger": 4,
+    "ID-anaphor": 3,
+    "ID-bearer": 5,
+    "ID-coord": 5,
+    "ID-ellipsis": 4,
+    "ID-span": 8,
+    "MOD-deontic": 15,
+    "MOD-hedge-added": 2,
+    "MOD-hedge-lost": 7,
+    "MOD-other": 3,
+    "NEG-cond": 1,
+    "NEG-contrast": 1,
+    "NEG-coord": 1,
+    "NEG-det": 1,
+    "NEG-double": 2,
+    "NEG-exist": 1,
+    "NEG-scope": 1,
+    "REL-direction": 2,
+    "REL-frame": 28,
+    "REL-nominal": 1,
+    "REL-normlex": 8,
+    "REL-normsense": 3,
+    "REL-noun": 25,
+    "REL-sense": 5,
+    "REL-verb": 2,
+    "SEG-code": 1,
+    "SEG-notation": 2,
+    "SEG-split": 1
+   }
+  },
+  "spurious": {
+   "EPI-example": 6,
+   "ID-span": 1,
+   "SEG-label": 1,
+   "SEG-meta": 9
+  }
+ },
+ "dev": {
+  "critical_codes": {
+   "U0016|type1": "NEG-det",
+   "U0019|type6": "ID-coord",
+   "U0023|type1": "NEG-det",
+   "U0051|type1": "NEG-scope",
+   "U0079|type1": "NEG-without",
+   "U0090|type6": "SEG-notation",
+   "U0091|type5": "ATTR-false",
+   "U0095|type1": "NEG-scope",
+   "U0103|type6": "ID-coord",
+   "U0115|type1": "NEG-parity",
+   "U0194|type1": "NEG-parity",
+   "U0209|type1": "NEG-double",
+   "U0213|type1": "NEG-parity",
+   "U0255|type3": "EPI-prop-under",
+   "U0256|type3": "EPI-prop-under",
+   "U0257|type3": "EPI-prop-under",
+   "U0258|type3": "EPI-prop-under",
+   "U0260|type3": "EPI-prop-under",
+   "U0261|type3": "EPI-prop-under",
+   "U0262|type3": "EPI-prop-under",
+   "U0263|type3": "EPI-prop-under",
+   "U0264|type3": "EPI-prop-under",
+   "U0268|type3": "EPI-prop-under",
+   "U0269|type3": "EPI-prop-under",
+   "U0271|type3": "EPI-prop-under",
+   "U0272|type3": "EPI-prop-under",
+   "U0273|type3": "EPI-prop-under",
+   "U0274|type3": "EPI-prop-under",
+   "U0275|type3": "EPI-prop-under",
+   "U0276|type3": "EPI-prop-under",
+   "U0277|type3": "EPI-prop-under",
+   "U0278|type3": "EPI-prop-under"
+  },
+  "unfaithful_item_codes": {
+   "U0016": {
+    "polarity": "UNCODED-polarity",
+    "subject": "UNCODED-subject"
+   },
+   "U0017": {
+    "modality_generality": "MOD-hedge-added"
+   },
+   "U0019": {
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions",
+    "relation": "REL-sense",
+    "subject": "UNCODED-subject"
+   },
+   "U0021": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source",
+    "relation": "REL-sense"
+   },
+   "U0023": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source",
+    "polarity": "UNCODED-polarity",
+    "subject": "UNCODED-subject"
+   },
+   "U0024": {
+    "attitude": "EPI-trigger",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source",
+    "subject": "UNCODED-subject"
+   },
+   "U0032": {
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0033": {
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0034": {
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0035": {
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0036": {
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0038": {
+    "attribution": "ATTR-block",
+    "object_or_value": "UNCODED-object_or_value",
+    "relation": "REL-sense",
+    "subject": "UNCODED-subject"
+   },
+   "U0039": {
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0040": {
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0043": {
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions",
+    "evidence_kind": "EPI-source",
+    "object_or_value": "UNCODED-object_or_value"
+   },
+   "U0044": {
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions",
+    "evidence_kind": "EPI-source",
+    "object_or_value": "UNCODED-object_or_value"
+   },
+   "U0045": {
+    "attribution": "ATTR-block",
+    "object_or_value": "UNCODED-object_or_value",
+    "relation": "REL-out"
+   },
+   "U0046": {
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions"
+   },
+   "U0048": {
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions"
+   },
+   "U0051": {
+    "attribution": "ATTR-block",
+    "polarity": "UNCODED-polarity",
+    "relation": "REL-sense"
+   },
+   "U0053": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0055": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0060": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0061": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0064": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0065": {
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions",
+    "relation": "REL-normlex"
+   },
+   "U0066": {
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions",
+    "relation": "REL-noun"
+   },
+   "U0068": {
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions",
+    "relation": "REL-normlex"
+   },
+   "U0070": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0071": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0072": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0073": {
+    "attribution": "ATTR-block",
+    "relation": "REL-sense",
+    "subject": "UNCODED-subject"
+   },
+   "U0076": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0077": {
+    "object_or_value": "UNCODED-object_or_value",
+    "subject": "UNCODED-subject"
+   },
+   "U0079": {
+    "modality_generality": "MOD-hedge-added",
+    "polarity": "UNCODED-polarity"
+   },
+   "U0080": {
+    "modality_generality": "MOD-hedge-added"
+   },
+   "U0089": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0090": {
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions",
+    "object_or_value": "UNCODED-object_or_value",
+    "subject": "UNCODED-subject"
+   },
+   "U0091": {
+    "attitude": "EPI-trigger",
+    "attribution": "ATTR-false"
+   },
+   "U0095": {
+    "attribution": "ATTR-block",
+    "object_or_value": "UNCODED-object_or_value",
+    "polarity": "UNCODED-polarity"
+   },
+   "U0097": {
+    "attribution": "ATTR-block",
+    "relation": "REL-sense",
+    "subject": "UNCODED-subject"
+   },
+   "U0099": {
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions",
+    "object_or_value": "UNCODED-object_or_value",
+    "relation": "REL-sense",
+    "subject": "UNCODED-subject"
+   },
+   "U0102": {
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0103": {
+    "attribution": "ATTR-block",
+    "object_or_value": "UNCODED-object_or_value",
+    "relation": "REL-sense"
+   },
+   "U0104": {
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions",
+    "modality_generality": "MOD-other",
+    "relation": "REL-sense"
+   },
+   "U0108": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost",
+    "relation": "REL-verb",
+    "subject": "UNCODED-subject"
+   },
+   "U0109": {
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions",
+    "relation": "REL-sense",
+    "subject": "UNCODED-subject"
+   },
+   "U0110": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost",
+    "relation": "REL-verb",
+    "subject": "UNCODED-subject"
+   },
+   "U0111": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost",
+    "relation": "REL-verb",
+    "subject": "UNCODED-subject"
+   },
+   "U0112": {
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions",
+    "relation": "REL-sense",
+    "subject": "UNCODED-subject"
+   },
+   "U0113": {
+    "attribution": "ATTR-block",
+    "relation": "REL-normsense",
+    "subject": "UNCODED-subject"
+   },
+   "U0114": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost",
+    "relation": "REL-verb",
+    "subject": "UNCODED-subject"
+   },
+   "U0115": {
+    "attribution": "ATTR-block",
+    "polarity": "UNCODED-polarity",
+    "relation": "REL-sense"
+   },
+   "U0116": {
+    "attribution": "ATTR-block",
+    "relation": "REL-normsense",
+    "subject": "UNCODED-subject"
+   },
+   "U0119": {
+    "attitude": "EPI-trigger",
+    "attribution": "ATTR-block",
+    "subject": "UNCODED-subject"
+   },
+   "U0120": {
+    "attitude": "EPI-trigger",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source",
+    "subject": "UNCODED-subject"
+   },
+   "U0122": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0131": {
+    "attribution": "ATTR-block",
+    "relation": "REL-verb",
+    "subject": "UNCODED-subject"
+   },
+   "U0151": {
+    "relation": "REL-sense",
+    "subject": "UNCODED-subject"
+   },
+   "U0152": {
+    "relation": "REL-sense",
+    "subject": "UNCODED-subject"
+   },
+   "U0153": {
+    "relation": "REL-sense",
+    "subject": "UNCODED-subject"
+   },
+   "U0154": {
+    "relation": "REL-sense",
+    "subject": "UNCODED-subject"
+   },
+   "U0155": {
+    "relation": "REL-sense",
+    "subject": "UNCODED-subject"
+   },
+   "U0156": {
+    "attitude": "EPI-prop-over",
+    "evidence_kind": "EPI-prop-over"
+   },
+   "U0158": {
+    "attitude": "EPI-prop-over",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-prop-over",
+    "modality_generality": "MOD-hedge-added",
+    "subject": "UNCODED-subject"
+   },
+   "U0159": {
+    "attitude": "EPI-prop-over",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-other"
+   },
+   "U0160": {
+    "attitude": "EPI-prop-over",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-other"
+   },
+   "U0162": {
+    "attribution": "ATTR-block",
+    "relation": "REL-normsense"
+   },
+   "U0163": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-other",
+    "relation": "REL-out"
+   },
+   "U0164": {
+    "attribution": "ATTR-block",
+    "relation": "REL-normsense",
+    "subject": "UNCODED-subject"
+   },
+   "U0165": {
+    "attribution": "ATTR-block",
+    "relation": "REL-normsense",
+    "subject": "UNCODED-subject"
+   },
+   "U0166": {
+    "attribution": "ATTR-block",
+    "relation": "REL-normsense",
+    "subject": "UNCODED-subject"
+   },
+   "U0167": {
+    "attribution": "ATTR-block",
+    "relation": "REL-normsense",
+    "subject": "UNCODED-subject"
+   },
+   "U0169": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost",
+    "relation": "REL-out"
+   },
+   "U0170": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost",
+    "relation": "REL-out"
+   },
+   "U0171": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost",
+    "relation": "REL-out"
+   },
+   "U0172": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost",
+    "relation": "REL-out"
+   },
+   "U0173": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost",
+    "relation": "REL-out",
+    "subject": "UNCODED-subject"
+   },
+   "U0174": {
+    "attribution": "ATTR-block",
+    "relation": "REL-normsense",
+    "subject": "UNCODED-subject"
+   },
+   "U0175": {
+    "attribution": "ATTR-block",
+    "relation": "REL-normsense",
+    "subject": "UNCODED-subject"
+   },
+   "U0176": {
+    "attribution": "ATTR-block",
+    "relation": "REL-normsense",
+    "subject": "UNCODED-subject"
+   },
+   "U0177": {
+    "attribution": "ATTR-block",
+    "object_or_value": "UNCODED-object_or_value",
+    "relation": "REL-normsense",
+    "subject": "UNCODED-subject"
+   },
+   "U0178": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost",
+    "relation": "REL-out",
+    "subject": "UNCODED-subject"
+   },
+   "U0182": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-other",
+    "relation": "REL-verb"
+   },
+   "U0193": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-added",
+    "subject": "UNCODED-subject"
+   },
+   "U0194": {
+    "attribution": "ATTR-block",
+    "object_or_value": "UNCODED-object_or_value",
+    "polarity": "UNCODED-polarity"
+   },
+   "U0196": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-added",
+    "subject": "UNCODED-subject"
+   },
+   "U0197": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-added",
+    "subject": "UNCODED-subject"
+   },
+   "U0198": {
+    "conditions": "UNCODED-conditions",
+    "relation": "REL-out",
+    "subject": "UNCODED-subject"
+   },
+   "U0199": {
+    "conditions": "UNCODED-conditions",
+    "relation": "REL-normsense"
+   },
+   "U0200": {
+    "conditions": "UNCODED-conditions",
+    "relation": "REL-normsense"
+   },
+   "U0201": {
+    "conditions": "UNCODED-conditions",
+    "relation": "REL-normsense"
+   },
+   "U0209": {
+    "polarity": "UNCODED-polarity"
+   },
+   "U0211": {
+    "conditions": "UNCODED-conditions",
+    "modality_generality": "MOD-hedge-lost",
+    "relation": "REL-verb"
+   },
+   "U0213": {
+    "conditions": "UNCODED-conditions",
+    "polarity": "UNCODED-polarity"
+   },
+   "U0215": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0219": {
+    "attitude": "EPI-trigger",
+    "attribution": "ATTR-block"
+   },
+   "U0221": {
+    "attitude": "EPI-trigger",
+    "attribution": "ATTR-block"
+   },
+   "U0222": {
+    "attitude": "EPI-trigger",
+    "attribution": "ATTR-block"
+   },
+   "U0223": {
+    "attitude": "EPI-trigger",
+    "attribution": "ATTR-block"
+   },
+   "U0224": {
+    "attitude": "EPI-trigger",
+    "attribution": "ATTR-block"
+   },
+   "U0225": {
+    "attitude": "EPI-trigger",
+    "attribution": "ATTR-block",
+    "conditions": "UNCODED-conditions",
+    "relation": "REL-sense"
+   },
+   "U0228": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source",
+    "modality_generality": "MOD-hedge-added",
+    "relation": "REL-out"
+   },
+   "U0229": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source",
+    "modality_generality": "MOD-hedge-added",
+    "relation": "REL-out"
+   },
+   "U0230": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "object_or_value": "UNCODED-object_or_value"
+   },
+   "U0231": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source",
+    "modality_generality": "MOD-hedge-added",
+    "relation": "REL-out"
+   },
+   "U0232": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0233": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0234": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0235": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0236": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source",
+    "modality_generality": "MOD-hedge-added",
+    "relation": "REL-out"
+   },
+   "U0237": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0238": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0239": {
+    "attribution": "ATTR-block",
+    "subject": "UNCODED-subject"
+   },
+   "U0240": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source",
+    "subject": "UNCODED-subject"
+   },
+   "U0241": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0242": {
+    "modality_generality": "MOD-hedge-lost",
+    "relation": "REL-normsense",
+    "subject": "UNCODED-subject"
+   },
+   "U0244": {
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0246": {
+    "subject": "UNCODED-subject"
+   },
+   "U0253": {
+    "relation": "REL-sense"
+   },
+   "U0255": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under"
+   },
+   "U0256": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under",
+    "relation": "REL-noun"
+   },
+   "U0257": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under"
+   },
+   "U0258": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under"
+   },
+   "U0260": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under",
+    "relation": "REL-normsense"
+   },
+   "U0261": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under"
+   },
+   "U0262": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under"
+   },
+   "U0263": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under"
+   },
+   "U0264": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under"
+   },
+   "U0265": {
+    "modality_generality": "MOD-hedge-added"
+   },
+   "U0267": {
+    "modality_generality": "MOD-hedge-added"
+   },
+   "U0268": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under",
+    "relation": "REL-noun"
+   },
+   "U0269": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under"
+   },
+   "U0271": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under"
+   },
+   "U0272": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under",
+    "relation": "REL-noun"
+   },
+   "U0273": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under"
+   },
+   "U0274": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under"
+   },
+   "U0275": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under",
+    "relation": "REL-noun"
+   },
+   "U0276": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under",
+    "relation": "REL-noun"
+   },
+   "U0277": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under",
+    "relation": "REL-noun"
+   },
+   "U0278": {
+    "attitude": "EPI-prop-under",
+    "evidence_kind": "EPI-prop-under"
+   }
+  }
+ },
+ "inputs": {
+  "a1_reader_propositions_py_sha256": "1764a7f6ee1a1736dd177cae83d5989d646a32d95ec56fb3f1ccf85a69772c7b",
+  "manifest_original_A_dev_sha256": "78e725723ae5aac357f28514ae8ea9503ea2a342a0afa664f2e0fdc7f1a76413",
+  "manifest_original_A_sealed_sha256": "49a35939bf3b73867a620a4b3013a2d64b479ea75ac071c16c980b37d6fcf3a2",
+  "o2_py_sha256": "1f07ded4c8190de87ed56846dd0e60d933b0a067fd69cc9b5c6353c29c3b1f7d",
+  "package_zip_sha256": "2f3c9336fa8ece41b6becd35a5af968b887740447eac0a5992f0b30b89e21642",
+  "pee_knowledge_commit": "95dd0ff3434fdfce92ac492e484b6bf7ff96bb0b",
+  "private_copies_used_sha256": {
+   "annotations/D-ann.json": "b168dedb4376450d8a9d429e420762900af99563c00f83f0682b8bdd2b9d0241",
+   "annotations/R.json": "52db7c2c6873c8edbc6f6393ba1f3b3520cf887d7f834ec3bee2df070874cf7c",
+   "dev/judge-list-K.json": "61fbac6a38f438087a115a17e838a425b5074c64225cb61cd2d0d831e85bf67c",
+   "passages/meta.json": "2eb01b356d321e6d04b7ca48b1b094efb3a44683a709a2ca7796233b0522dc7b",
+   "sealed/final-Y.json": "0158a51b6d743e7274034735e03b9a5aa87d73fe028fe3f0cff001e1a91ef75f",
+   "sealed/label-key.json": "6dd9207c0816aeb8a5add39a952d6882cde8c46723948c03463329c94c85f6d1"
+  },
+  "regenerated_A_dev_sha256": "78e725723ae5aac357f28514ae8ea9503ea2a342a0afa664f2e0fdc7f1a76413",
+  "regenerated_A_sealed_sha256": "49a35939bf3b73867a620a4b3013a2d64b479ea75ac071c16c980b37d6fcf3a2"
+ },
+ "note": "T-1 stage 0 (W1). Codes by Claude, single coder; mechanical rules for attribution, evidence kind, attitude, modality and most relation errors; manual codes for subject, object, conditions, polarity, spurious items, missed propositions and critical errors. No document text. Dev subject, object, conditions and polarity are not coded ('UNCODED-*'), except through the critical list.",
+ "noun_as_verb_words": [
+  "acoustics-and-test-protocols",
+  "associations",
+  "claims",
+  "disagreements",
+  "economics",
+  "environments",
+  "examples",
+  "experiences",
+  "families",
+  "figures",
+  "headphones",
+  "improvements",
+  "laboratories",
+  "loudspeakers",
+  "maps",
+  "materials",
+  "mixers",
+  "numbers",
+  "physics",
+  "products",
+  "reflections",
+  "restrictions",
+  "rigs",
+  "safely",
+  "samples",
+  "setups",
+  "situations",
+  "still",
+  "studies",
+  "summaries",
+  "wishes"
+ ],
+ "schema": "pee.t1.w1-diagnosis.v1",
+ "sealed": {
+  "critical_codes": {
+   "U0004|type6": "ID-coord",
+   "U0077|type2": "REL-frame",
+   "U0078|type1": "NEG-cond",
+   "U0085|type6": "REL-frame",
+   "U0122|type2": "REL-direction",
+   "U0131|type2": "REL-direction",
+   "U0155|type1": "NEG-double",
+   "U0159|type1": "NEG-contrast",
+   "U0160|type1": "NEG-coord",
+   "U0173|type6": "ID-coord",
+   "U0174|type5": "ATTR-false",
+   "U0203|type1": "NEG-det",
+   "U0250|type1": "NEG-scope",
+   "U0271|type1": "SEG-code",
+   "U0276|type1": "NEG-double"
+  },
+  "missed_codes": {
+   "B001": "ID-coord",
+   "B015": "ID-ellipsis",
+   "B019": "ID-coord",
+   "B020": "SEG-markup",
+   "B021": "ID-coord",
+   "B024": "ID-coord",
+   "B034": "REL-normlex",
+   "B035": "REL-frame",
+   "B038": "ID-ellipsis",
+   "B039": "REL-frame",
+   "B042": "REL-frame",
+   "B044": "ID-ellipsis",
+   "B045": "REL-frame",
+   "B048": "REL-frame",
+   "B058": "ID-coord",
+   "B059": "REL-passive",
+   "B060": "REL-frame",
+   "B064": "ID-span",
+   "B070": "SEG-notation",
+   "B071": "REL-passive",
+   "B073": "REL-frame",
+   "B076": "REL-frame",
+   "B078": "REL-frame",
+   "B079": "REL-frame",
+   "B092": "REL-frame",
+   "B094": "COND-marker",
+   "B095": "COND-marker",
+   "B098": "ID-ellipsis",
+   "B103": "REL-normlex",
+   "B111": "QUANT",
+   "B112": "ID-anaphor",
+   "B113": "SEG-notation",
+   "B114": "SEG-notation",
+   "B115": "SEG-notation",
+   "B117": "REL-verb",
+   "B126": "REL-verb",
+   "B150": "REL-passive",
+   "B155": "ID-coord",
+   "B159": "REL-normlex",
+   "B166": "REL-normlex",
+   "B168": "REL-verb",
+   "B172": "COND-absorb",
+   "B173": "SEG-notation",
+   "B179": "REL-passive",
+   "B183": "ID-coord",
+   "B190": "NEG-without",
+   "B195": "REL-verb",
+   "B197": "REL-passive",
+   "B200": "REL-noun",
+   "B203": "SEG-notation",
+   "B204": "REL-normlex",
+   "B210": "REL-normlex",
+   "B213": "ID-coord",
+   "B223": "ID-ellipsis",
+   "B225": "REL-normlex",
+   "B247": "REL-frame"
+  },
+  "spurious_codes": {
+   "U0002": "SEG-meta",
+   "U0005": "SEG-meta",
+   "U0006": "SEG-meta",
+   "U0007": "SEG-meta",
+   "U0008": "SEG-meta",
+   "U0009": "SEG-meta",
+   "U0010": "SEG-meta",
+   "U0018": "SEG-meta",
+   "U0061": "EPI-example",
+   "U0109": "SEG-meta",
+   "U0154": "EPI-example",
+   "U0156": "EPI-example",
+   "U0157": "EPI-example",
+   "U0161": "EPI-example",
+   "U0170": "SEG-label",
+   "U0171": "EPI-example",
+   "U0181": "ID-span"
+  },
+  "unfaithful_item_codes": {
+   "U0001": {
+    "evidence_kind": "EPI-evconv"
+   },
+   "U0003": {
+    "evidence_kind": "EPI-evconv",
+    "modality_generality": "MOD-deontic",
+    "relation": "REL-noun"
+   },
+   "U0004": {
+    "object_or_value": "ID-coord"
+   },
+   "U0012": {
+    "evidence_kind": "EPI-evconv",
+    "modality_generality": "MOD-deontic",
+    "object_or_value": "REL-noun",
+    "relation": "REL-noun",
+    "subject": "REL-noun"
+   },
+   "U0014": {
+    "evidence_kind": "EPI-evconv",
+    "subject": "ID-bearer"
+   },
+   "U0017": {
+    "evidence_kind": "EPI-evconv"
+   },
+   "U0019": {
+    "evidence_kind": "EPI-evconv",
+    "object_or_value": "NEG-exist",
+    "relation": "NEG-exist",
+    "subject": "NEG-exist"
+   },
+   "U0022": {
+    "evidence_kind": "EPI-evconv"
+   },
+   "U0023": {
+    "attribution": "ATTR-block",
+    "subject": "ID-coord"
+   },
+   "U0024": {
+    "attribution": "ATTR-block",
+    "subject": "ID-coord"
+   },
+   "U0026": {
+    "attribution": "ATTR-block",
+    "object_or_value": "COND-marker"
+   },
+   "U0029": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0033": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0034": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0035": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0036": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0037": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0038": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0039": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0040": {
+    "conditions": "REL-noun",
+    "object_or_value": "REL-noun",
+    "relation": "REL-noun",
+    "subject": "REL-noun"
+   },
+   "U0041": {
+    "object_or_value": "REL-frame",
+    "relation": "REL-frame"
+   },
+   "U0042": {
+    "object_or_value": "REL-frame",
+    "relation": "REL-frame"
+   },
+   "U0043": {
+    "object_or_value": "REL-frame",
+    "relation": "REL-frame"
+   },
+   "U0044": {
+    "object_or_value": "REL-frame",
+    "relation": "REL-frame"
+   },
+   "U0045": {
+    "object_or_value": "REL-frame",
+    "relation": "REL-frame"
+   },
+   "U0048": {
+    "object_or_value": "REL-noun",
+    "relation": "REL-noun"
+   },
+   "U0049": {
+    "conditions": "ID-ellipsis",
+    "object_or_value": "ID-ellipsis",
+    "relation": "ID-ellipsis",
+    "subject": "ID-ellipsis"
+   },
+   "U0050": {
+    "modality_generality": "MOD-deontic",
+    "relation": "ID-ellipsis",
+    "subject": "ID-ellipsis"
+   },
+   "U0051": {
+    "relation": "REL-noun"
+   },
+   "U0053": {
+    "relation": "REL-noun"
+   },
+   "U0054": {
+    "object_or_value": "REL-noun",
+    "relation": "REL-noun"
+   },
+   "U0055": {
+    "relation": "REL-noun",
+    "subject": "REL-noun"
+   },
+   "U0056": {
+    "evidence_kind": "EPI-evconv",
+    "subject": "ID-bearer"
+   },
+   "U0057": {
+    "relation": "REL-noun",
+    "subject": "REL-noun"
+   },
+   "U0059": {
+    "conditions": "COND-marker",
+    "evidence_kind": "EPI-evconv"
+   },
+   "U0060": {
+    "attribution": "ATTR-block",
+    "subject": "ID-anaphor"
+   },
+   "U0062": {
+    "attribution": "ATTR-block",
+    "object_or_value": "SEG-notation",
+    "relation": "SEG-notation",
+    "subject": "SEG-notation"
+   },
+   "U0064": {
+    "attitude": "EPI-prop-over",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-prop-over"
+   },
+   "U0065": {
+    "attitude": "EPI-prop-over",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-prop-over",
+    "subject": "ID-span"
+   },
+   "U0066": {
+    "attitude": "EPI-prop-over",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-prop-over"
+   },
+   "U0067": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-other",
+    "subject": "ID-bearer"
+   },
+   "U0070": {
+    "attitude": "EPI-prop-over",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-prop-over",
+    "object_or_value": "ID-span",
+    "subject": "ID-span"
+   },
+   "U0075": {
+    "object_or_value": "SEG-notation",
+    "relation": "SEG-notation",
+    "subject": "SEG-notation"
+   },
+   "U0076": {
+    "evidence_kind": "EPI-evconv",
+    "object_or_value": "REL-frame",
+    "relation": "REL-frame"
+   },
+   "U0077": {
+    "evidence_kind": "EPI-evconv",
+    "object_or_value": "REL-frame",
+    "relation": "REL-frame"
+   },
+   "U0078": {
+    "conditions": "NEG-cond"
+   },
+   "U0080": {
+    "object_or_value": "REL-frame",
+    "relation": "REL-frame"
+   },
+   "U0081": {
+    "object_or_value": "REL-frame",
+    "relation": "REL-frame"
+   },
+   "U0082": {
+    "object_or_value": "REL-frame",
+    "relation": "REL-frame"
+   },
+   "U0083": {
+    "object_or_value": "REL-frame",
+    "relation": "REL-frame"
+   },
+   "U0084": {
+    "object_or_value": "REL-frame",
+    "relation": "REL-frame"
+   },
+   "U0085": {
+    "object_or_value": "REL-frame",
+    "relation": "REL-frame",
+    "subject": "REL-frame"
+   },
+   "U0086": {
+    "evidence_kind": "EPI-evconv",
+    "modality_generality": "MOD-deontic",
+    "relation": "REL-normlex"
+   },
+   "U0087": {
+    "relation": "REL-frame"
+   },
+   "U0088": {
+    "relation": "REL-frame"
+   },
+   "U0089": {
+    "relation": "REL-frame"
+   },
+   "U0090": {
+    "relation": "REL-frame"
+   },
+   "U0091": {
+    "relation": "REL-frame"
+   },
+   "U0092": {
+    "relation": "REL-frame"
+   },
+   "U0093": {
+    "relation": "REL-frame"
+   },
+   "U0094": {
+    "relation": "REL-frame"
+   },
+   "U0095": {
+    "conditions": "COND-marker",
+    "relation": "REL-frame"
+   },
+   "U0096": {
+    "relation": "REL-frame"
+   },
+   "U0097": {
+    "relation": "REL-frame"
+   },
+   "U0098": {
+    "relation": "REL-frame"
+   },
+   "U0099": {
+    "conditions": "COND-marker",
+    "relation": "REL-frame"
+   },
+   "U0100": {
+    "relation": "REL-frame"
+   },
+   "U0102": {
+    "relation": "REL-frame"
+   },
+   "U0103": {
+    "object_or_value": "ID-ellipsis",
+    "relation": "ID-ellipsis",
+    "subject": "ID-ellipsis"
+   },
+   "U0108": {
+    "relation": "ID-ellipsis",
+    "subject": "ID-ellipsis"
+   },
+   "U0118": {
+    "attribution": "ATTR-block",
+    "relation": "REL-noun"
+   },
+   "U0119": {
+    "attribution": "ATTR-block",
+    "relation": "REL-noun"
+   },
+   "U0122": {
+    "attribution": "ATTR-block",
+    "relation": "REL-direction"
+   },
+   "U0126": {
+    "attribution": "ATTR-block",
+    "relation": "REL-noun"
+   },
+   "U0128": {
+    "attitude": "EPI-trigger",
+    "attribution": "ATTR-false",
+    "modality_generality": "MOD-other",
+    "relation": "ID-span",
+    "subject": "ID-span"
+   },
+   "U0131": {
+    "attribution": "ATTR-block",
+    "object_or_value": "REL-direction",
+    "relation": "REL-direction",
+    "subject": "REL-direction"
+   },
+   "U0134": {
+    "attribution": "ATTR-block",
+    "relation": "REL-noun"
+   },
+   "U0135": {
+    "attribution": "ATTR-block",
+    "object_or_value": "COND-marker",
+    "relation": "COND-marker"
+   },
+   "U0136": {
+    "attribution": "ATTR-block",
+    "object_or_value": "COND-marker",
+    "relation": "COND-marker"
+   },
+   "U0137": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-deontic"
+   },
+   "U0138": {
+    "attribution": "ATTR-block",
+    "relation": "REL-noun"
+   },
+   "U0143": {
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0146": {
+    "attitude": "EPI-prop-over",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-prop-over",
+    "modality_generality": "MOD-deontic"
+   },
+   "U0147": {
+    "attitude": "EPI-prop-over",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-prop-over"
+   },
+   "U0148": {
+    "attitude": "EPI-prop-over",
+    "evidence_kind": "EPI-prop-over",
+    "subject": "ID-bearer"
+   },
+   "U0149": {
+    "attitude": "EPI-prop-over",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-prop-over",
+    "modality_generality": "MOD-deontic"
+   },
+   "U0151": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0153": {
+    "attribution": "ATTR-block",
+    "subject": "ID-anaphor"
+   },
+   "U0155": {
+    "attribution": "ATTR-block",
+    "polarity": "NEG-double"
+   },
+   "U0158": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost",
+    "object_or_value": "ID-span",
+    "relation": "ID-span",
+    "subject": "ID-span"
+   },
+   "U0159": {
+    "attribution": "ATTR-block",
+    "polarity": "NEG-contrast",
+    "relation": "REL-sense"
+   },
+   "U0160": {
+    "attribution": "ATTR-block",
+    "polarity": "NEG-coord"
+   },
+   "U0162": {
+    "attribution": "ATTR-block",
+    "relation": "COND-absorb",
+    "subject": "COND-absorb"
+   },
+   "U0164": {
+    "attribution": "ATTR-block",
+    "object_or_value": "REL-sense",
+    "relation": "REL-normsense"
+   },
+   "U0168": {
+    "attribution": "ATTR-block",
+    "relation": "REL-noun"
+   },
+   "U0169": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source",
+    "relation": "REL-noun",
+    "subject": "REL-noun"
+   },
+   "U0173": {
+    "evidence_kind": "EPI-evconv",
+    "object_or_value": "ID-coord"
+   },
+   "U0174": {
+    "attitude": "EPI-trigger",
+    "attribution": "ATTR-false"
+   },
+   "U0175": {
+    "evidence_kind": "EPI-evconv"
+   },
+   "U0176": {
+    "evidence_kind": "EPI-evconv",
+    "object_or_value": "ID-coord"
+   },
+   "U0178": {
+    "evidence_kind": "EPI-evconv",
+    "relation": "REL-noun"
+   },
+   "U0179": {
+    "evidence_kind": "EPI-evconv"
+   },
+   "U0182": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-hedge-lost",
+    "relation": "REL-verb"
+   },
+   "U0184": {
+    "attribution": "ATTR-block",
+    "relation": "REL-normsense"
+   },
+   "U0188": {
+    "evidence_kind": "EPI-evconv"
+   },
+   "U0189": {
+    "evidence_kind": "EPI-evconv",
+    "relation": "COND-absorb",
+    "subject": "COND-absorb"
+   },
+   "U0191": {
+    "evidence_kind": "EPI-evconv"
+   },
+   "U0192": {
+    "object_or_value": "COND-absorb",
+    "relation": "COND-absorb"
+   },
+   "U0193": {
+    "object_or_value": "REL-noun",
+    "relation": "REL-noun"
+   },
+   "U0195": {
+    "modality_generality": "MOD-hedge-added"
+   },
+   "U0196": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0197": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0198": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0199": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0200": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-deontic",
+    "relation": "REL-normlex"
+   },
+   "U0201": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0202": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source",
+    "relation": "REL-sense"
+   },
+   "U0203": {
+    "attribution": "ATTR-block",
+    "object_or_value": "COND-absorb",
+    "polarity": "NEG-det",
+    "relation": "COND-absorb",
+    "subject": "COND-absorb"
+   },
+   "U0204": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0205": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0206": {
+    "attribution": "ATTR-block",
+    "relation": "COND-absorb",
+    "subject": "COND-absorb"
+   },
+   "U0207": {
+    "evidence_kind": "EPI-evconv"
+   },
+   "U0212": {
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0214": {
+    "attribution": "ATTR-block",
+    "conditions": "COND-marker",
+    "evidence_kind": "EPI-source"
+   },
+   "U0215": {
+    "attribution": "ATTR-block",
+    "modality_generality": "MOD-deontic",
+    "relation": "ID-anaphor",
+    "subject": "ID-anaphor"
+   },
+   "U0216": {
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0222": {
+    "attribution": "ATTR-block",
+    "relation": "REL-sense"
+   },
+   "U0226": {
+    "modality_generality": "MOD-hedge-lost"
+   },
+   "U0227": {
+    "relation": "REL-noun"
+   },
+   "U0229": {
+    "relation": "REL-noun"
+   },
+   "U0232": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source"
+   },
+   "U0233": {
+    "attribution": "ATTR-block",
+    "relation": "REL-nominal",
+    "subject": "REL-nominal"
+   },
+   "U0234": {
+    "attitude": "EPI-source",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-source",
+    "relation": "REL-verb",
+    "subject": "SEG-split"
+   },
+   "U0243": {
+    "attribution": "ATTR-block",
+    "relation": "REL-noun"
+   },
+   "U0244": {
+    "conditions": "COND-marker",
+    "object_or_value": "ID-span",
+    "relation": "ID-bearer",
+    "subject": "ID-bearer"
+   },
+   "U0247": {
+    "attitude": "EPI-prop-over",
+    "evidence_kind": "EPI-prop-over",
+    "modality_generality": "MOD-hedge-added"
+   },
+   "U0250": {
+    "polarity": "NEG-scope"
+   },
+   "U0251": {
+    "conditions": "COND-absorb",
+    "object_or_value": "COND-absorb",
+    "relation": "COND-absorb",
+    "subject": "COND-absorb"
+   },
+   "U0252": {
+    "attitude": "EPI-trigger",
+    "evidence_kind": "EPI-prop-under",
+    "relation": "REL-noun"
+   },
+   "U0253": {
+    "relation": "REL-noun",
+    "subject": "REL-noun"
+   },
+   "U0254": {
+    "attitude": "EPI-trigger",
+    "evidence_kind": "EPI-prop-under",
+    "relation": "REL-noun"
+   },
+   "U0255": {
+    "attitude": "EPI-prop-over",
+    "evidence_kind": "EPI-prop-over"
+   },
+   "U0256": {
+    "attitude": "EPI-prop-over",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-prop-over"
+   },
+   "U0257": {
+    "attitude": "EPI-prop-over",
+    "attribution": "ATTR-block",
+    "evidence_kind": "EPI-prop-over"
+   },
+   "U0258": {
+    "subject": "ID-span"
+   },
+   "U0259": {
+    "object_or_value": "COND-absorb",
+    "relation": "COND-absorb",
+    "subject": "COND-absorb"
+   },
+   "U0260": {
+    "evidence_kind": "EPI-evconv",
+    "modality_generality": "MOD-deontic",
+    "relation": "REL-normlex"
+   },
+   "U0261": {
+    "evidence_kind": "EPI-evconv",
+    "modality_generality": "MOD-deontic",
+    "relation": "REL-normlex"
+   },
+   "U0263": {
+    "evidence_kind": "EPI-evconv",
+    "modality_generality": "MOD-deontic",
+    "relation": "REL-normlex"
+   },
+   "U0264": {
+    "evidence_kind": "EPI-evconv",
+    "modality_generality": "MOD-deontic",
+    "relation": "REL-normlex"
+   },
+   "U0265": {
+    "evidence_kind": "EPI-evconv",
+    "modality_generality": "MOD-deontic",
+    "relation": "REL-normlex"
+   },
+   "U0266": {
+    "relation": "REL-noun"
+   },
+   "U0267": {
+    "evidence_kind": "EPI-evconv",
+    "modality_generality": "MOD-deontic",
+    "relation": "REL-normlex"
+   },
+   "U0268": {
+    "subject": "ID-span"
+   },
+   "U0270": {
+    "evidence_kind": "EPI-evconv",
+    "relation": "REL-normsense"
+   },
+   "U0271": {
+    "conditions": "SEG-code",
+    "object_or_value": "SEG-code",
+    "relation": "SEG-code",
+    "subject": "SEG-code"
+   },
+   "U0272": {
+    "attitude": "EPI-prop-over",
+    "evidence_kind": "EPI-prop-over"
+   },
+   "U0273": {
+    "attitude": "EPI-prop-over",
+    "evidence_kind": "EPI-prop-over"
+   },
+   "U0274": {
+    "attitude": "EPI-prop-over",
+    "evidence_kind": "EPI-prop-over"
+   },
+   "U0275": {
+    "attitude": "EPI-prop-over",
+    "evidence_kind": "EPI-prop-over",
+    "relation": "COND-absorb",
+    "subject": "COND-absorb"
+   },
+   "U0276": {
+    "attitude": "EPI-prop-over",
+    "evidence_kind": "EPI-prop-over",
+    "polarity": "NEG-double"
+   },
+   "U0277": {
+    "attitude": "EPI-prop-over",
+    "evidence_kind": "EPI-prop-over",
+    "modality_generality": "MOD-other",
+    "object_or_value": "ID-span",
+    "relation": "ID-span",
+    "subject": "ID-span"
+   },
+   "U0278": {
+    "evidence_kind": "EPI-evconv"
+   },
+   "U0279": {
+    "evidence_kind": "EPI-evconv"
+   },
+   "U0280": {
+    "evidence_kind": "EPI-evconv"
+   }
+  }
+ }
+}
