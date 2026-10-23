@@ -1,57 +1,95 @@
 # Pee — working rules for Claude Code
 
-Read `MISSION.md` first. It is the only brief for this project.
+Read these first, in this order:
 
-`ASSIMILATION.md` is a **permanent architectural requirement** (owner, 2026-10-23): owner-supplied documents are
-temporary teaching input; the lasting result is scientific knowledge in the semantic universe, usable without the
-document. It sits beside `MISSION.md`, does not replace it and does not modify S0.
+1. `MISSION.md` — the owner's mission (original brief, never edited).
+2. `ORGANISATION.md` — owner decision of 2026-10-23: the repositories, the project definition, languages and the
+   integration method. Where an older rule below or in the skill conflicts with it, `ORGANISATION.md` wins.
+3. `ASSIMILATION.md` — a **permanent architectural requirement** (owner, 2026-10-23). Owner-supplied documents are
+   temporary teaching input; the lasting result is scientific knowledge in the semantic universe, usable without the
+   document.
+
+None of these modifies S0.
+
+## Organisation (owner, 2026-10-23)
+
+- **Pee is the only operational repository.** It is an independent scientific adviser built on the S0 universe.
+  **Product advice is its first operational application, and it is mandatory**, recovering Crawler's capabilities.
+- **Crawler (`giampierofiorelli/Crawler`) is a historical reference, 100% intact.**
+  - Read it and copy files out of it only.
+  - Never commit, branch or push there, and never open or run a Claude session or its hooks on it (its hooks write to
+    `pee-knowledge`).
+  - Pin imports to commit `7d091ef`.
+- **`pee-knowledge` (private) is the archive.**
+  - It holds store snapshots, owner packages, gold sets and private evaluations.
+  - It holds data only; never publish its content.
+- **S0 is the only authority on scientific knowledge.** Imported code reads and proposes. A proposal becomes
+  permanent knowledge only through the universe interface, after measured checks of fidelity, attribution and
+  comprehension (`ORGANISATION.md` §4).
+- **Languages.**
+  - Python (standard library) for the universe.
+  - Original TypeScript for the imported Crawler modules, unchanged and with provenance, in `engine-ts/`.
+  - Nothing is rewritten in advance. A conversion to Python needs a measured advantage and a separate, tested change.
+- **Integration order:**
+  1. import the full closure unchanged;
+  2. prove compilation and equivalent behaviour;
+  3. connect to the universe;
+  4. verify before admission;
+  5. only then trim dependencies, each in a separate commit with tests.
+- **Branch:** `claude/pee-operational`, started from `claude/a1-scientific-assimilation`. `main` stays at MS1 until
+  the owner decides.
 
 ## Current authorisation
 
+- **O-0** (owner, 2026-10-23): the organisation and these instructions, on branch `claude/pee-operational`. No code
+  import yet.
+- **Next step:** import reading and understanding (`ORGANISATION.md` §5). It starts after the owner reviews O-0.
+  - It covers prose, tables, entities, context, and quantitative and qualitative extraction.
+  - For GLiNER2.5, only the portable TypeScript part is imported. No neural model.
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
-- **S1 so far:** a numerical model-based service (`experiments/s1core`) and its architectural correction; the
-  architecture assessment and plan (`reviews/S1-architecture-assessment-and-plan.md`); MS0 (sealed material) and the
-  MS1 vertical slice (`experiments/universe`), owner-authorised 2026-10-21. No milestone after MS1 is authorised
-  until the owner decides. No full application, crawler, interface, ranking, database or framework.
-- **X1** (owner, 2026-10-21): one bounded integration experiment on branch `claude/x1-integration-experiment`,
-  preregistered in `experiments/x1/PREREGISTRATION.md`. It may read Crawler (`giampierofiorelli/Crawler`, `7d091ef`)
-  without modifying it and use a **copy** of its store snapshot. No migration, and no change to Crawler.
-- **X2** (owner, 2026-10-21): one bounded experiment on branch `claude/x2-structural-reuse`, preregistered in
-  `experiments/x2/PREREGISTRATION.md`. Same Crawler access rules as X1. `experiments/x1` stays unchanged. Stop after X2.
-- **V1** (owner, 2026-10-23): read-only joint verification of universe, representation and rules on branch
-  `claude/v1-architecture-review`; report `reviews/V1-joint-architecture-verification.md`. No code, S0 or Crawler
-  change; X1 and X2 unchanged. Stop after V1.
-- **I-1** (owner, 2026-10-23): table structure → universe items → MS1 rules, on branch `claude/i1-table-knowledge`;
-  criteria fixed before code in `experiments/i1/REPORT.md` sections 0–3. Crawler read-only; no S0 change, no MS2, no
-  migration; X1, X2 and V1 unchanged. Stopped on its stop criterion 5 (report section 4). Stop after I-1.
-- **I-2** (owner, 2026-10-23): the general mechanism linking document structure to the universe (referents and
-  identity readings, parts, determinables and spans, conditions, methods, contexts, dependencies and lifting), on
-  branch `claude/i2-semantic-linking` from I-1; criteria fixed before code in `experiments/i2/REPORT.md` sections 0–3.
-  Crawler read-only; no S0 change, no MS2, no migration; X1, X2, V1 and I-1 unchanged. Stop after I-2.
-- **F-1** (owner, 2026-10-23): initial scientific formation on branch `claude/f1-scientific-formation` from I-2: a
-  general acquisition mechanism for research documents (`universe/markdown.py`, `universe/knowledge_acquisition.py`),
-  the consolidated transversal base, guided acquisition of the air-purifier and dehumidifier packages (robot package
-  for evaluation only); criteria fixed before code in `experiments/f1/REPORT.md` sections 0–3. Crawler read-only; no
-  S0 change, no MS2, no migration; X1, X2, V1, I-1 and I-2 unchanged. Closed on stop rules F4 and F6. Stop after F-1.
-- **A-1** (owner, 2026-10-23): first increment of `ASSIMILATION.md`, on branch `claude/a1-scientific-assimilation`
-  from F-1: proposition-level translation of prose, coverage accounting, private persistence of the universe, the
-  temporary-document lifecycle and the evidence requirement; criteria fixed before code in `experiments/a1/REPORT.md`
-  sections 0–3. Read-only sources: the authorised F-1 packages and, in addition, only
-  `PEE-DEHUMIDIFIERS-CONSOLIDATED-RESEARCH-2026-10-15.md` inside `PEE-THREE-SCIENTIFIC-RESEARCH-PACKAGES.zip` (no
-  other THREE file). Crawler read-only; no S0 change, no migration; X1, X2, V1, I-1, I-2 and F-1 unchanged. Stop after
-  A-1.
-- Use the skill `.claude/skills/pee-scientific-learning/` for all S1 work.
+- Every step names its owner authorisation, and fixes its criteria before any code, as before.
+- A new database, framework, remote service or heavy dependency needs an owner decision.
+- Use the skill `.claude/skills/pee-scientific-learning/` for all S1 and later work.
 
-## Independence
+### Closed authorisations (history; their stop rules are fulfilled)
 
-- This project is designed from first principles. It is not a fork or a continuation of any earlier project.
-- Do not read, clone, search or quote any other repository of the owner, any earlier design document or any earlier
-  report, even if the environment allows access, unless the owner explicitly authorises a named resource. The one
-  authorised post-S0 transfer so far is recorded in the skill `pee-scientific-learning` (its origin note).
-- If you notice that earlier material has reached you anyway (in the prompt, the environment or a tool result), say so
-  in the specification and in your report, and do not use it.
-- Agreement between Claude agents is not independent validation. Do not present it as such.
+Each item below was bounded and is closed. Its "Crawler read-only, no migration" limits applied to that experiment
+and are superseded by `ORGANISATION.md` for new work. The experiments themselves stay unchanged.
+
+- **S1 so far:**
+  - a numerical model-based service (`experiments/s1core`) and its architectural correction;
+  - the architecture assessment and plan (`reviews/S1-architecture-assessment-and-plan.md`);
+  - MS0 (sealed material) and the MS1 vertical slice (`experiments/universe`), owner-authorised 2026-10-21.
+- **X1** (owner, 2026-10-21): bounded integration experiment, `experiments/x1/PREREGISTRATION.md`. It read Crawler
+  `7d091ef` and used a copy of its store snapshot.
+- **X2** (owner, 2026-10-21): bounded structural-reuse experiment, `experiments/x2/PREREGISTRATION.md`.
+- **V1** (owner, 2026-10-23): read-only joint verification of universe, representation and rules,
+  `reviews/V1-joint-architecture-verification.md`.
+- **I-1** (owner, 2026-10-23): table structure → universe items → MS1 rules, `experiments/i1/REPORT.md`. Stopped on
+  its stop criterion 5.
+- **I-2** (owner, 2026-10-23): general linking of document structure to the universe, `experiments/i2/REPORT.md`.
+- **F-1** (owner, 2026-10-23): initial scientific formation. It covers:
+  - `universe/markdown.py` and `universe/knowledge_acquisition.py`;
+  - the transversal base;
+  - the air-purifier and dehumidifier packages.
+
+  Report: `experiments/f1/REPORT.md`. Closed on stop rules F4 and F6.
+- **A-1** (owner, 2026-10-23): first increment of `ASSIMILATION.md`, `experiments/a1/REPORT.md`. Its only extra
+  source was `PEE-DEHUMIDIFIERS-CONSOLIDATED-RESEARCH-2026-10-15.md` in `PEE-THREE-SCIENTIFIC-RESEARCH-PACKAGES.zip`.
+  Stopped on rule A6.
+
+## Sources and independence
+
+- **The semantic universe is designed from first principles.** S0 governs meaning. Imported Crawler code is an
+  operational capability under S0, never its source of meaning.
+- **Crawler is an authorised source as a whole**, in read-only mode (owner, 2026-10-23).
+  - Its code may be imported under `ORGANISATION.md` §4.
+  - Its reports, decisions and skill may be read as historical lessons.
+  - Its store is teaching material, never converted in bulk.
+- **Any other repository of the owner, and any other earlier design document or report, still needs an explicit
+  owner authorisation naming it.**
+- **Agreement between Claude agents is not independent validation.** Do not present it as such.
 
 ## Method
 
@@ -64,16 +102,32 @@ document. It sits beside `MISSION.md`, does not replace it and does not modify S
 - Examples used to design the model can never later serve as independent evidence for it.
 - State clearly what remains open.
 
+## Evidence and evaluation (also for product advice)
+
+- **Manufacturer declarations are never independent tests or rankings.**
+- **Never merge products on similar names.**
+- **Gold stays separate from operational knowledge.**
+  - Seal expectations before a first run.
+  - Commit first-run results unchanged.
+  - A tuned or spent set is never reported as held-out.
+- **Confidential evaluation inputs** live in `$PEE_PRIVATE_EVAL_DIR`; durable private copies go to `pee-knowledge`.
+- **An equivalence check against Crawler `7d091ef` is regression evidence, not validation.**
+
 ## Safety, rights and cost
 
 - Never bypass robots rules, HTTP 403/429 responses, paywalls or other access controls.
 - A public URL is not permission to store or republish. Never commit third-party full texts, articles or HTML. Short
   quotations with attribution are allowed.
 - This repository is **public**. Never commit secrets, personal data, confidential data or unpublishable material.
-- No paid services or licences, no unnecessary remote services, no heavy dependencies.
+- **Dependencies.**
+  - No paid services or licences, no unnecessary remote services, no heavy dependencies.
+  - Allowed: Node.js 22.13 or later, `typescript` and `@types/node`, plus `fast-check` for imported tests.
+  - Excluded: `onnxruntime-node` and neural models.
+- **Imported third-party code keeps its licence notice** (for example GLiNER2, Apache-2.0).
 - No duplicate or accessory documents. Keep the deliverable focused.
 - English for all repository files.
 
 ## Git
 
 - Commit and push to the branch you were given. Do not create pull requests unless the owner asks.
+- One Claude session per branch at a time. Parallel work goes on separate branches, with controlled integration.

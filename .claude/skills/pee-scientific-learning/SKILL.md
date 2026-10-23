@@ -12,6 +12,10 @@ kept and adapted. Its phases, storage design, module names, roadmap, hooks, code
 product-buying restrictions were deliberately left out. S0 (`spec/`) remains the semantic authority; this skill
 never overrides it.
 
+**Update (owner, 2026-10-23).** `ORGANISATION.md` supersedes the exclusions above for new work. Crawler's code may now
+be imported unchanged, with provenance, and connected to the universe. Product advice is the first operational
+application. Its storage design and roadmap are still not adopted. The method in this skill applies unchanged.
+
 **What this is.** A method. It is not proof that any capability exists, not a roadmap and not an authorisation:
 the owner's current brief decides what may be built.
 

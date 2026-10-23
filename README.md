@@ -10,12 +10,13 @@ directly. Confidential data, unpublishable scientific material and private evalu
 
 | Stage | Content | Status |
 |---|---|---|
-| S0 | Foundational specification of the semantic universe (in English) | **Version 2.0 (2026-10-21) submitted for owner approval. Version 1.0 (commit `d82f95f`) was reviewed and not approved.** |
-| S1 | Computational representation | Not authorised |
-| S2 | Full knowledge cycle (acquisition, interpretation, evaluation, revision, use) | Not authorised |
-| S3 | Verification plan | Not authorised |
+| S0 | Foundational specification of the semantic universe | **Complete and frozen** (versions 2.0 `b9bda7d` and 2.1 `cdcab48`) |
+| S1 | Computational representation | MS1 slice and bounded experiments X1, X2, V1, I-1, I-2, F-1 and A-1 (closed; see `CLAUDE.md`) |
+| O-0 | Organisation: Pee becomes the operational repository; Crawler is integrated selectively | **Fixed 2026-10-23** (`ORGANISATION.md`); first code import awaits owner review |
 
-The S0 specification will be presented to the owner for approval before any S1 work starts.
+Pee is an independent scientific adviser built on the S0 universe; product advice is its first operational
+application (`ORGANISATION.md`). The earlier engine stays, intact and read-only, in `giampierofiorelli/Crawler`;
+private data stay in the private repository `pee-knowledge`.
 
 ## Guiding principle
 
@@ -25,7 +26,9 @@ computational architecture.
 ## Layout
 
 - `MISSION.md` — the owner's mission for this project (original Italian text and an English translation).
+- `ORGANISATION.md` — repositories, project definition, languages and integration method (owner, 2026-10-23).
 - `ASSIMILATION.md` — permanent architectural requirement: documents teach, the universe remembers (owner, 2026-10-23).
 - `CLAUDE.md` — working rules for the Claude Code sessions that work in this repository.
 - `spec/` — the S0 foundational specification (start at `spec/README.md`).
-- `reviews/` — critical reviews of S0 versions.
+- `reviews/` — critical reviews of S0 versions and later architecture reviews.
+- `experiments/` — S1 code and bounded experiments, each with its report.
