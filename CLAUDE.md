@@ -58,6 +58,8 @@ None of these modifies S0.
   - Material: prose of package 09 speakers. The reference is sealed before any adapter code.
   - At most one change cycle.
   - No new capability, no persistence, no admission of knowledge.
+  - **First sealed run done** (`experiments/o2/REPORT.md` §4–9): A-1 best, the hybrid does not improve on it (C3 not
+    shown). The change cycle is not used; the next step awaits the owner's decision.
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
 - Every step names its owner authorisation, and fixes its criteria before any code, as before.

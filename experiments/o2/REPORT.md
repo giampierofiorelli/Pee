@@ -305,3 +305,180 @@ where exactly one of the two has faithful coverage. It is reported with its p-va
   - The first run stays committed unchanged.
 - **O4.** A critical error is reported as a defect, never as a success, whichever arm makes it.
 - **O5.** A working copy cannot be removed, or the original's hash changes: stop and report.
+
+## 4. Outcome
+
+**The merge did not produce an improvement.** On the sealed passage, and measured on scientific fidelity:
+- A-1 (A) is the best of the three readings.
+- Crawler's reader connected to S0 (T) is the weakest.
+- The hybrid (H) is worse than A on every decisive measure.
+
+C3 is not shown. C2 fails for both T and H. The connection itself works (C1), nothing durable was written (C4), and
+nothing regressed (C5, C6). This is the first sealed run on freeze 1, unchanged. The one permitted change cycle (O3)
+was **not** used, because the owner asked for the final report before any decision.
+
+| | Criterion | Result | Met |
+|---|---|---|---|
+| C1 | T's statements become universe items with no S0 change; every statement accounted for | 670 statements → 674 units: 607 represented, 67 abstained (no subject), 0 refused by the self-check | yes |
+| C2 | T better than A-1 | No: F1 6 vs 15, but F2 0.14 vs 0.35 and F3 0.04 vs 0.30 | no |
+| C2 | H better than A-1 | No: F1 23 vs 15, F2 0.23 vs 0.35, F3 0.19 vs 0.30, polarity 0.93 vs 0.98 | no |
+| C3 | The merge improves on both A and T | Better than T, worse than A on F1, F2, F3 and polarity | **no** |
+| C4 | Nothing durable; copies removed; original unchanged; no text public | No snapshot; working copies and passages removed; zip hash unchanged (`2f3c9336…`) | yes |
+| C5 | No regressions | universe, s1core, X1, X2, O-2 tests and the engine-ts provenance check (E1, E2) all pass | yes |
+| C6 | No category vocabulary in the adapter or the hybrid | test passes | yes |
+
+## 4.1 Additions made before the sealed run, at the owner's request
+
+After the reference was sealed, the owner raised three concerns: the weak agreement between annotators (22 of 250
+propositions identical in every field), the loss of Markdown citations in Crawler, and the gap between "represented"
+and "understood". Two measures were added in response, both **before** any sealed output was produced or opened.
+
+**1. Field-level agreement of the two annotators** (226 propositions both annotated; labels only, no text read):
+
+| Field | Agreement |
+|---|---|
+| Attitude | 1.00 |
+| Polarity | 0.95 |
+| Conditions (count) | 0.94 |
+| Attribution | 0.90 |
+| Modality | 0.88 |
+| Content kind | 0.82 |
+| Evidence kind | **0.54** |
+
+- **The 22-of-250 figure.** It counted propositions identical in every field, wording of subject and object included.
+- **The weak field is evidence kind.** 97 of its 103 disagreements are the same convention: an author's own claim
+  read as `synthesis` by one annotator and as `none_stated` by the other.
+
+**2. A second, independent arbitration of the 103 evidence-kind disagreements.**
+- The second adjudicator did not see the first one's choices, and wrote an explicit rule before deciding any case.
+- It agreed with the first adjudicator on 67 cases. The remaining 36 (15% of the 238 scientific propositions) are
+  **contested**.
+- In scoring, both labels count for those 36, and evidence-kind accuracy is also reported without them. Sealed in
+  `seals.json` (`f9c05d7`).
+
+**3. Adjudication conventions** (`adjudication-conventions.md`, `7fe05c5`).
+- **Why.** The six judges disagreed on four conventions: evidence kind, generic "limitation" items, attribution and
+  modality.
+- **When fixed.** After the judgements and **before the arm labels were revealed**.
+- **How applied.** The three adjudicators applied them to every disputed grade.
+
+## 5. Results (sealed passage: 238 scientific reference propositions)
+
+### 5.1 Decisive measures
+
+| | A (A-1) | T (Crawler) | H (hybrid) |
+|---|---|---|---|
+| Items produced | 280 | 92 | 286 |
+| Faithful / unfaithful / spurious | 98 / 165 / 17 | 13 / 73 / 6 | 66 / 201 / 19 |
+| **F2 precision** | **0.350** | 0.141 | 0.231 |
+| **F3 faithful coverage** | **0.298** (71) | 0.038 (9) | 0.189 (45) |
+| **F1 critical errors** | 15 | **6** | 23 |
+| of which type 1 (negation) | 8 | 0 | 14 |
+| type 2 (direction) | 3 | 4 | 5 |
+| type 3 (promotion), type 4 (measurement) | 0, 0 | 0, 0 | 0, 0 |
+| type 5 (attribution) | 1 | 0 | 1 |
+| type 6 (merge) | 3 | 2 | 3 |
+| F5 recall (not decisive) | 0.765 | 0.319 | 0.794 |
+
+**F3 sign tests.** These count the reference propositions faithfully covered by exactly one of the two arms:
+
+| Comparison | Only the first | Only the second | p |
+|---|---|---|---|
+| H against A | 2 (H) | 28 (A) | ≈ 1e-6 |
+| H against T | 37 (H) | 1 (T) | < 1e-6 |
+| T against A | 2 (T) | 64 (A) | < 1e-6 |
+
+### 5.2 Key elements (F4): right ÷ (right + wrong); missing shown separately
+
+| Element | A | T | H |
+|---|---|---|---|
+| Attribution | 0.985 (130 missing of 263) | 1.000 (51 missing of 86) | 0.993 (128 missing of 267) |
+| Polarity | **0.977** | 1.000 (25 missing: "limitation" items) | 0.933 |
+| Conditions | 0.977 | 0.988 | 0.992 |
+| Attitude | 0.894 | 0.826 | 0.891 |
+| Evidence kind | 0.734 | 0.506 | 0.749 |
+| Evidence kind, uncontested only | 0.727 | 0.526 | 0.730 |
+
+- **Attribution.** When an attribution is present it is almost always right in every arm. About half of the cited
+  sources are **missing** in every arm. T also loses all of them on this document: its reader drops the brackets of
+  Markdown-link citations (`[R05](url)`), section 6.
+- **Polarity.** T's polarity looks perfect because the 25 cases it gets wrong are held as a generic "limitation"
+  relation, graded "missing" by convention 2. In H, the polarity taken from T on aligned items brought 14 negation
+  errors, against A's 8.
+- **Attitude.** No arm promoted a proposal, hypothesis or question (type 3: 0), and none held a synthesis as an
+  original measurement (type 4: 0).
+
+### 5.3 Why the hybrid failed (post-hoc diagnosis; no change made)
+
+**1. The development evidence did not transfer.**
+
+| Precision | Development | Sealed |
+|---|---|---|
+| A | 0.38 | 0.35 |
+| T | 0.56 | 0.14 |
+
+The choices of H were made on development (section 2.3). On development, T's unaligned statements had precision 0.66,
+higher than A's, so the rule admitted them, and T's structure, polarity, modality and conditions won the per-group
+comparison. On the sealed passage, T's precision fell to 0.14 while A's stayed stable.
+
+Measured differences between the two measurements:
+- **Judges.** Development was graded by a single judge per arm, without the adjudication conventions. The sealed
+  passage used two judges and an adjudicator per arm, under the conventions.
+- **Evidence kind.** The strict convention costs T most.
+
+A choice rule decided by one unadjudicated judge on 84 prose lines was too weak a basis for the merge.
+
+**2. Admitting unaligned T statements diluted precision.** H holds most of A's faithful items, but adds T's mostly
+unfaithful ones.
+
+**3. Taking polarity from T on aligned items added negation errors.** H has 14 type-1 errors against A's 8.
+
+## 6. Findings about Crawler's reader on this document
+
+- **Citations lost.** `knowledge_translation`'s text cleaning (`clean`) turns `[R05](https://…)` into `R05`, so its
+  reference pattern `[R##]` never matches. On this document 0 of 670 statements carry a source. This is a reader
+  defect, not an adapter defect, and `engine-ts/` was not changed.
+- **Negation in "limitation".** Its `limitation` statements carry a restriction, such as "is not always", without a
+  negative polarity. Mapped as specified (§2.2), they are read as affirmed claims with a generic relation.
+- **Low coverage of prose.** 444 of 1,110 clauses are unrecognised. On the sealed prose lines, T has 92 items
+  against A's 280.
+- **"Represented" is not "understood".** 607 of 674 units were represented in the universe. On the sealed lines, only
+  13 of T's 92 items were faithful.
+
+## 7. Limits
+
+1. **Not independent.** Every annotator, judge and adjudicator is a Claude agent. Agreement between them is not
+   independent validation.
+2. **Sample size.** The sample is small: 113 prose lines and 238 propositions, against 212 lines in A-1.
+3. **Evidence kind.** It remains uncertain in the reference (36 contested propositions). The guide's distinction
+   between `synthesis` and `none_stated` is ambiguous, and needs an owner rule before the next sealed set.
+4. **Judge agreement.** It is low on full item grades: 267, 151 and 66 items disputed in H, A and T. The adjudicators
+   also read convention 4 (modality) differently: narrowly for T's list, broadly for A's. This may move F2 by a few
+   points, but not the order of the arms.
+5. **Hybrid choices.** They were made on a single, unadjudicated development judgement, the main cause of H's failure
+   (section 5.3).
+6. **Spent material.** The sealed passage is now spent and cannot serve as held-out material again.
+
+## 8. What would be needed next (not authorised; for the owner's decision)
+
+1. **No merge of the readers as specified.** On this evidence, A-1's reader should stay the main prose reader. Crawler's
+   translator adds no faithful knowledge that A lacks: only 2 reference propositions are covered by T and not by A.
+2. **The one permitted change cycle, if the owner wants it.** It would be a narrower hybrid that keeps A whole and
+   takes from T only what T reads that A does not. It would be labelled "after change", and is spent by
+   construction.
+3. **A larger lesson for every future comparison.** Development choices must be made with the same judging protocol
+   as the sealed test: two judges plus an adjudicator, under the conventions.
+4. **What deserves attention instead.** These are A's own losses, not the merge:
+   - the missing attributions (about half);
+   - the evidence-kind rule;
+   - the negation errors (type 1: 8).
+5. **Crawler's citation defect.** It would be fixed only by changing imported code, a separate step that needs owner
+   authorisation (`ORGANISATION.md` §4, step 5).
+
+## 9. Private material
+
+| Location | Content |
+|---|---|
+| Session scratch (outside Git, removed at session end) | annotations, references, judgements, adjudications, per-item scores, label key |
+| `pee-knowledge/private-eval/pee-o2/` | copies of the same, with strings of 6 or more words or over 60 characters replaced by SHA-256; `MANIFEST.json` holds the original and copy hashes; no passages, no document text |
+| `results-counts.json`, `seals.json`, `freeze-1.json`, `hybrid-choices.json` (this directory) | public counts, hashes and the frozen choices |

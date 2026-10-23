@@ -1,0 +1,245 @@
+{
+ "schema": "pee.o2.results.v1",
+ "note": "First sealed run (freeze 1), unchanged. Counts only; per-item rows are private (pee-knowledge/private-eval/pee-o2/, text hashed).",
+ "label_key": {
+  "list-X": "H",
+  "list-Y": "A",
+  "list-Z": "T"
+ },
+ "arms": {
+  "H": {
+   "produced": 286,
+   "verdicts": {
+    "faithful": 66,
+    "unfaithful": 201,
+    "spurious": 19
+   },
+   "F2_precision": 0.2308,
+   "F3_faithful_coverage": 0.1891,
+   "F5_recall": 0.7941,
+   "reference": {
+    "complete": 10,
+    "partial": 179,
+    "missed": 49
+   },
+   "F1_critical": {
+    "1": 14,
+    "2": 5,
+    "5": 1,
+    "6": 3
+   },
+   "F1_total": 23,
+   "reference_scientific": 238,
+   "F4": {
+    "attribution": {
+     "right": 138,
+     "wrong": 1,
+     "missing": 128,
+     "accuracy": 0.9928
+    },
+    "polarity": {
+     "right": 224,
+     "wrong": 16,
+     "missing": 27,
+     "accuracy": 0.9333
+    },
+    "conditions": {
+     "right": 255,
+     "wrong": 2,
+     "missing": 10,
+     "accuracy": 0.9922
+    },
+    "attitude_evidence": {
+     "right": 438,
+     "wrong": 96,
+     "missing": 0,
+     "accuracy": 0.8202
+    },
+    "attitude": {
+     "right": 238,
+     "wrong": 29,
+     "missing": 0,
+     "accuracy": 0.8914
+    },
+    "evidence_kind": {
+     "right": 200,
+     "wrong": 67,
+     "missing": 0,
+     "accuracy": 0.7491
+    },
+    "evidence_kind_uncontested": {
+     "right": 168,
+     "wrong": 62,
+     "missing": 0,
+     "accuracy": 0.7304
+    }
+   },
+   "faithful_covered_count": 45
+  },
+  "A": {
+   "produced": 280,
+   "verdicts": {
+    "faithful": 98,
+    "unfaithful": 165,
+    "spurious": 17
+   },
+   "F2_precision": 0.35,
+   "F3_faithful_coverage": 0.2983,
+   "F5_recall": 0.7647,
+   "reference": {
+    "complete": 22,
+    "partial": 160,
+    "missed": 56
+   },
+   "F1_critical": {
+    "1": 8,
+    "2": 3,
+    "5": 1,
+    "6": 3
+   },
+   "F1_total": 15,
+   "reference_scientific": 238,
+   "F4": {
+    "attribution": {
+     "right": 131,
+     "wrong": 2,
+     "missing": 130,
+     "accuracy": 0.985
+    },
+    "polarity": {
+     "right": 257,
+     "wrong": 6,
+     "missing": 0,
+     "accuracy": 0.9772
+    },
+    "conditions": {
+     "right": 249,
+     "wrong": 6,
+     "missing": 8,
+     "accuracy": 0.9765
+    },
+    "attitude_evidence": {
+     "right": 428,
+     "wrong": 98,
+     "missing": 0,
+     "accuracy": 0.8137
+    },
+    "attitude": {
+     "right": 235,
+     "wrong": 28,
+     "missing": 0,
+     "accuracy": 0.8935
+    },
+    "evidence_kind": {
+     "right": 193,
+     "wrong": 70,
+     "missing": 0,
+     "accuracy": 0.7338
+    },
+    "evidence_kind_uncontested": {
+     "right": 162,
+     "wrong": 61,
+     "missing": 0,
+     "accuracy": 0.7265
+    }
+   },
+   "faithful_covered_count": 71
+  },
+  "T": {
+   "produced": 92,
+   "verdicts": {
+    "faithful": 13,
+    "unfaithful": 73,
+    "spurious": 6
+   },
+   "F2_precision": 0.1413,
+   "F3_faithful_coverage": 0.0378,
+   "F5_recall": 0.3193,
+   "reference": {
+    "complete": 4,
+    "partial": 72,
+    "missed": 162
+   },
+   "F1_critical": {
+    "2": 4,
+    "6": 2
+   },
+   "F1_total": 6,
+   "reference_scientific": 238,
+   "F4": {
+    "attribution": {
+     "right": 35,
+     "wrong": 0,
+     "missing": 51,
+     "accuracy": 1.0
+    },
+    "polarity": {
+     "right": 61,
+     "wrong": 0,
+     "missing": 25,
+     "accuracy": 1.0
+    },
+    "conditions": {
+     "right": 83,
+     "wrong": 1,
+     "missing": 2,
+     "accuracy": 0.9881
+    },
+    "attitude_evidence": {
+     "right": 114,
+     "wrong": 57,
+     "missing": 1,
+     "accuracy": 0.6667
+    },
+    "attitude": {
+     "right": 71,
+     "wrong": 15,
+     "missing": 0,
+     "accuracy": 0.8256
+    },
+    "evidence_kind": {
+     "right": 43,
+     "wrong": 42,
+     "missing": 1,
+     "accuracy": 0.5059
+    },
+    "evidence_kind_uncontested": {
+     "right": 41,
+     "wrong": 37,
+     "missing": 1,
+     "accuracy": 0.5256
+    }
+   },
+   "faithful_covered_count": 9
+  }
+ },
+ "sign_tests_F3": {
+  "H_vs_A": {
+   "h_only": 2,
+   "a_only": 28,
+   "p": 1e-06
+  },
+  "H_vs_T": {
+   "h_only": 37,
+   "t_only": 1,
+   "p": "<1e-6"
+  },
+  "T_vs_A": {
+   "t_only": 2,
+   "a_only": 64,
+   "p": "<1e-6"
+  }
+ },
+ "judging": {
+  "merge_disputed_u": {
+   "X(H)": 267,
+   "Y(A)": 151,
+   "Z(T)": 66
+  },
+  "single_listed_critical": {
+   "X(H)": 33,
+   "Y(A)": 11,
+   "Z(T)": 1
+  }
+ }
+}
