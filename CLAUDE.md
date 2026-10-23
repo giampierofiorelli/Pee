@@ -11,6 +11,22 @@ Read these first, in this order:
 
 None of these modifies S0.
 
+## Capability preservation (owner, 2026-10-23, definitive)
+
+**Mandatory.** Before changing any reader, parser, extractor or assimilation path, load the skill
+`.claude/skills/pee-scientific-learning/` and follow its §0:
+- identify the matching Crawler capabilities in `engine-ts/` (register: `preservation/crawler-capabilities.json`);
+- separate imported code from capability actually used;
+- quote what was demonstrated, never comparing figures from different evaluations;
+- compare old, new and selective integration on the same inputs;
+- reuse the TypeScript through verified interfaces before any rewrite;
+- keep the order structure → interpretation → fidelity check → representation in S0/MS1;
+- stop and report if preservation cannot be verified. New tests passing is never enough.
+
+Each such change carries `preservation/records/<id>.json` in the same commit. `python3 preservation/check.py
+--staged` (or `--base <ref>` before a push) must pass; in Claude Code sessions on Pee a hook in `.claude/settings.json`
+blocks a failing `git commit`. The check verifies structure only; fairness of the comparison needs human review.
+
 ## Organisation (owner, 2026-10-23)
 
 - **Pee is the only operational repository.** It is an independent scientific adviser built on the S0 universe.
@@ -101,6 +117,17 @@ None of these modifies S0.
     validator (EL2).
   - Open: designation in the reader; identity across sources; examining cited sources.
   - The final check found one regression (the assimilation lifecycle audit); its correction is a separate commit.
+  - **Owner decisions after D-2:**
+    - the post-check correction `77fb09f` is accepted, and stays declared post hoc;
+    - concepts of different sources are never merged automatically; an explicit, justified and verifiable identity
+      link may come later;
+    - F11 is approved for new T-1 questions, as a preventive check, without rewriting historical questions; numbers
+      inside genuine technical identifiers are not errors;
+    - designation is a priority, after a consolidation step.
+  - **D-2.1** (consolidation of semantic safety: `_value_fits`, `_according_to`, consumers of `conditional_on`,
+    `recognition.readings`, the examined-source fields) was described by the owner on 2026-10-23, together with the
+    preservation discipline above, which came first. **Not started.** It needs the owner's go-ahead, and its reader
+    changes fall under the preservation rule.
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
 - Every step names its owner authorisation, and fixes its criteria before any code, as before.

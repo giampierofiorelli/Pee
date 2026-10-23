@@ -1,6 +1,6 @@
 ---
 name: pee-scientific-learning
-description: Working discipline for building PEE's scientific semantic universe into a cumulative, general scientific-learning system. Use when planning, implementing, testing or reporting any S1 or later work on representation, acquisition, inference, transfer, revision or evaluation of scientific knowledge, and when deciding whether a result counts as learning, generalisation or validation.
+description: Working discipline for building PEE's scientific semantic universe into a cumulative, general scientific-learning system. MANDATORY before changing any reader, parser, extractor or assimilation path of Pee (markdown, acquisition, propositions, knowledge_acquisition, assimilate, recognition, persist, language or metrology knowledge, or a new reading module) - its section 0 requires a capability-preservation record against the Crawler code in engine-ts/. Use also when planning, implementing, testing or reporting any S1 or later work on representation, acquisition, inference, transfer, revision or evaluation of scientific knowledge, and when deciding whether a result counts as learning, generalisation or validation.
 ---
 
 # PEE scientific learning
@@ -18,6 +18,58 @@ application. Its storage design and roadmap are still not adopted. The method in
 
 **What this is.** A method. It is not proof that any capability exists, not a roadmap and not an authorisation:
 the owner's current brief decides what may be built.
+
+## 0. Capability preservation (mandatory; owner decision of 2026-10-23, definitive)
+
+**Why.** Crawler's reading code was imported unchanged into `engine-ts/` (O-1), yet later work (A-1, D-1, D-2) built
+and corrected new Python readers without first showing that the imported capabilities were used or preserved. D-2
+wrote a Markdown table reader while the 1F/1G table readers sat unused; 1F/1G read HTML, and whether they or 1G's
+interpretation could serve the owner's Markdown tables (for example through a Markdown-to-HTML step) was never examined. This section stops that from recurring. It
+is not experimental and not optional.
+
+**Before changing any reader, parser, extractor or assimilation path, in this order:**
+1. **Identify** the matching capabilities already in `engine-ts/` (tables 1F/1G, document structure, context,
+   entities, quantitative and qualitative extraction, evidence and observations). Start from the register
+   `preservation/crawler-capabilities.json`; read the modules themselves, by function, not by name.
+2. **Distinguish** code that is merely imported from capability actually used on an operational path. Today the
+   assimilation route uses **no** `engine-ts` module; the page route used 1F/1G structure only in experiment adapters
+   (I-1, I-2); the prose translator only in O-2 (register, `operational_routes`).
+3. **Document what was demonstrated**, on which data, with which metric, quoting the report. Never compare
+   percentages from different evaluations: O-2's prose precision (Crawler 0.14, A-1 0.35) says nothing about tables
+   or specifications; X1/X2 measured a decision layer over extracted records, not reading; E4–E6 are regression
+   evidence of a faithful copy, not validation.
+4. **Compare** the old path, the new path and a selective integration **on the same inputs**: fidelity, coverage,
+   errors, conditions, attribution and knowledge conserved.
+5. **Reuse first.** Call the working TypeScript through verified interfaces (adapters like
+   `experiments/i1/crawler_structure.mjs`, `experiments/o2/bridge.mjs`). Do not rewrite it in Python, and do not
+   replace it with a narrower reader, without a demonstrated advantage **and** preservation of the old capabilities.
+6. **Keep the architectural order:** original structure → reading and scientific interpretation → fidelity check →
+   representation and integration in S0/MS1. Universe knowledge may assist interpretation; it never compensates, by
+   invention, for what was lost upstream.
+7. **If preservation cannot be verified, stop the replacement** and report the blocker. Passing new tests is never
+   sufficient evidence.
+
+**The record.** Every such change carries `preservation/records/<id>.json` in the same commit (schema
+`pee.preservation.v1`): `id`, `authorisation`, `changed_paths`; one entry in `areas` per register area of each changed
+path (`overlap` none/partial/full, `engine_ts_considered`, `used_operationally_before`, `demonstrated_before`,
+`preserved`); `comparison` (`status` done/not_needed/blocked, `inputs`, `arms` old/new/selective, `metrics`,
+`results` as repository paths or `private:<path>@<sha256>`, `summary`); `decision` (reuse_engine_ts,
+integrate_selectively, extend_without_overlap, replace_with_demonstrated_advantage, blocked); `advantage` for a
+replacement; `justification`.
+
+**The check.** `python3 preservation/check.py --staged` (before a commit) or `--base <ref>` (before a push);
+`preservation/test_check.py` tests it. In Claude Code sessions on Pee, `.claude/settings.json` runs it as a
+PreToolUse hook that **blocks** a `git commit` that fails.
+- **Enforced automatically:** a gated path changed without a record naming it; a record that misses an area,
+  names no or non-existent `engine-ts` modules, lacks the three arms, inputs, metrics or results files when an
+  overlap exists, offers only test files as a comparison, or changes the reader under a `blocked` decision; any
+  change to an imported `engine-ts` file (PROVENANCE.json).
+- **Human review only** (the check prints it): whether the inputs really are the same, the metrics comparable and
+  relevant, old results not reinterpreted across capabilities, the decision justified, the order kept. A record that
+  passes the check is well-formed, not proven.
+- **Limits.** The hook acts only in Claude Code sessions whose project is Pee; a commit made elsewhere is caught only
+  by running `--base` before pushing, which is procedural. New gated paths are added to the register by the same
+  rule.
 
 ## 1. The mission in one paragraph
 
@@ -74,7 +126,7 @@ never filled by default.
 
 **3.7 Engineering lessons that transfer.**
 - Measure the cause before relaxing a rule.
-- Look for existing capability by function, not by expected names.
+- Look for existing capability by function, not by expected names, in Pee **and** in `engine-ts/` (section 0).
 - Validate a new contract on real material; synthetic fixtures hide unrepresentable cases.
 - A gate derives what it permits from its own validated records, never from a caller's label.
 - Trace one complete path end to end before adding components.
