@@ -14,7 +14,9 @@ BASES = ("published reference", "measurement record", "manufacturer statement", 
          "assumption", "illustrative", "derived",
          # X1: a statement retained from a document whose author role is not yet established (S0 6.1, RQ6), and a
          # buyer's stated requirement (a conative item, S0 7.4; never an epistemic ground, plan I5)
-         "document statement", "stated requirement")
+         "document statement", "stated requirement",
+         # I-2: a holder's correction that retracts an earlier item (S0 5.9 attitude "retracted", 6.3 revision)
+         "correction")
 
 
 class StoreError(ValueError):

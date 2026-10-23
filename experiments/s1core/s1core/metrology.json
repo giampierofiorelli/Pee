@@ -388,7 +388,10 @@
    "surfaces": [
     "1/h",
     "/h",
-    "per hour"
+    "per hour",
+    "air changes per hour",
+    "air change per hour",
+    "ACH"
    ]
   },
   "1/a": {

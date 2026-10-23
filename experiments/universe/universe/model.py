@@ -10,6 +10,7 @@ from s1core import infer as s1infer
 from s1core import knowledge as K
 from s1core import units
 
+from .dependencies import current, situation_conditions
 from .store import thaw
 
 _BASIS = {"derived": "hypothesis"}
@@ -96,8 +97,10 @@ def project(store, inquiry):
         if b.get("bearer") not in entities or b.get("form") not in ("quantity", "attribute"):
             continue
         if b.get("incomplete") or b.get("alternative_of") or (b.get("form") == "quantity" and (
-                b.get("lo") is None or b.get("hi") is None or b.get("extent"))):
-            continue  # an incomplete, ambiguous, open or extent-end content is not a model input
+                b.get("lo") is None or b.get("hi") is None or b.get("extent") or b.get("interval") == "variation")):
+            continue  # an incomplete, ambiguous, open, extent-end or variation content is not a model input
+        if not current(store, c.id):
+            continue  # a retracted item, or one resting on a retracted ground, is not used
         sit = c.situating.get("situation")
         if sit not in (None, inquiry.id):
             continue
@@ -109,7 +112,7 @@ def project(store, inquiry):
         else:
             items.append(_attr(c))
     kb = K.KB(items)
-    sit = K.Situation(inquiry.id, thaw(inquiry.body["roles"]), _conds(inquiry.body.get("conditions")),
+    sit = K.Situation(inquiry.id, thaw(inquiry.body["roles"]), situation_conditions(store, inquiry),
                       tuple(givens), tuple(assumptions), tuple(inquiry.body.get("scope_assumptions", ())))
     return kb, sit
 

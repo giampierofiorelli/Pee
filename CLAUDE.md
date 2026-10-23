@@ -21,6 +21,10 @@ Read `MISSION.md` first. It is the only brief for this project.
 - **I-1** (owner, 2026-10-23): table structure → universe items → MS1 rules, on branch `claude/i1-table-knowledge`;
   criteria fixed before code in `experiments/i1/REPORT.md` sections 0–3. Crawler read-only; no S0 change, no MS2, no
   migration; X1, X2 and V1 unchanged. Stopped on its stop criterion 5 (report section 4). Stop after I-1.
+- **I-2** (owner, 2026-10-23): the general mechanism linking document structure to the universe (referents and
+  identity readings, parts, determinables and spans, conditions, methods, contexts, dependencies and lifting), on
+  branch `claude/i2-semantic-linking` from I-1; criteria fixed before code in `experiments/i2/REPORT.md` sections 0–3.
+  Crawler read-only; no S0 change, no MS2, no migration; X1, X2, V1 and I-1 unchanged. Stop after I-2.
 - Use the skill `.claude/skills/pee-scientific-learning/` for all S1 work.
 
 ## Independence

@@ -82,9 +82,9 @@ class Acquisition(unittest.TestCase):
         got = {(st.get(c.body["bearer"]).body["label"], c.body["kind"], c.body["lo"], c.body["unit"],
                 tuple(sorted((k, str(v)) for k, v in c.body["conditions"].items()))) for c in complete(st, summ)}
         self.assertIn(("alpha one", "Q:sound_level", 40.0, "dBA",
-                       ((D, "(1.0, 1.0, 'm')"), (S, "setting 2"))), got)
-        self.assertIn(("alpha one", "Q:electric_power", 5.0, "W", ((S, "setting 1"),)), got)
-        self.assertIn(("beta two x 7", "Q:electric_power", 35.0, "W", ((S, "top speed"),)), got)
+                       ((D, "(1.0, 1.0, 'm')"), (S, "V:setting:setting 2"))), got)
+        self.assertIn(("alpha one", "Q:electric_power", 5.0, "W", ((S, "V:setting:setting 1"),)), got)
+        self.assertIn(("beta two x 7", "Q:electric_power", 35.0, "W", ((S, "V:setting:top speed"),)), got)
 
     def test_records_attributed_and_contents_interpret_them(self):
         st, summ = store_with(doc([SETTINGS]))
@@ -174,8 +174,9 @@ class Acquisition(unittest.TestCase):
 
     def test_list_paired_with_named_settings(self):
         st, summ = store_with(doc([[cell(0, 0, "Noise level (low – high):"), cell(0, 1, "40 – 60 dBA")]], names=PRODUCT_NAME))
-        got = {(c.body["lo"], c.body["conditions"][S]) for c in complete(st, summ)}
-        self.assertEqual(got, {(40.0, "low"), (60.0, "high")})
+        # I-2: "(low – high)" names the two ends of the range, not two settings: one variation content
+        (c,) = complete(st, summ)
+        self.assertEqual((c.body["lo"], c.body["hi"], c.body["interval"], dict(c.body["conditions"])), (40.0, 60.0, "variation", {}))
 
     def test_method_section_is_a_ground(self):
         d = doc([SETTINGS], headings=[{"index": 0, "level": 2, "text": "How we test"}],
@@ -192,7 +193,7 @@ class Rules(unittest.TestCase):
         self.a, self.b = ent(self.st, "alpha one"), ent(self.st, "beta two x 7")
 
     def test_limit_needs_the_stated_condition(self):
-        r = ask(self.st, "q1", {"x": self.a}, {"role": "x"}, {S: "setting 2", D: [1, 1, "m"]},
+        r = ask(self.st, "q1", {"x": self.a}, {"role": "x"}, {S: "V:setting:setting 2", D: [1, 1, "m"]},
                 {"kind": "Q:sound_level", "op": "<=", "bound": 45, "unit": "dB"})
         self.assertEqual(r.verdict, "applies")
         r = ask(self.st, "q2", {"x": self.a}, {"role": "x"}, {},
@@ -200,21 +201,21 @@ class Rules(unittest.TestCase):
         self.assertEqual(r.verdict, "undetermined")  # a value stated under conditions is not the unconditioned value
 
     def test_level_reference_must_fit(self):
-        r = ask(self.st, "q3", {"x": self.a}, {"role": "x"}, {S: "setting 2", D: [1, 1, "m"]},
+        r = ask(self.st, "q3", {"x": self.a}, {"role": "x"}, {S: "V:setting:setting 2", D: [1, 1, "m"]},
                 {"kind": "Q:sound_level", "op": "<=", "bound": 45, "unit": "dBC"})
         self.assertEqual(r.verdict, "undetermined")
 
     def test_comparison_only_under_the_same_conditions(self):
         r = ask(self.st, "q4", {"x": self.a, "y": self.b}, {"role": "x", "compare": ["x", "y"],
-                                                            "kind": "Q:electric_power"}, {S: "top speed"})
+                                                            "kind": "Q:electric_power"}, {S: "V:setting:top speed"})
         self.assertEqual(r.value, "less")
         r = ask(self.st, "q5", {"x": self.a, "y": self.b}, {"role": "x", "compare": ["x", "y"],
-                                                            "kind": "Q:electric_power"}, {S: "setting 1"})
+                                                            "kind": "Q:electric_power"}, {S: "V:setting:setting 1"})
         self.assertIsNone(r.value)
 
     def test_derived_quantity_from_acquired_content_and_requirement_is_not_a_ground(self):
         # the model binds its variables to the role "bearer" (MS1 models name their roles)
-        r = ask(self.st, "q6", {"bearer": self.b}, {"role": "bearer"}, {S: "top speed"},
+        r = ask(self.st, "q6", {"bearer": self.b}, {"role": "bearer"}, {S: "V:setting:top speed"},
                 {"kind": "Q:energy", "op": "<=", "bound": 300, "unit": "Wh"},
                 givens=[("bearer", "Q:duration", 8, 8, "h")])
         self.assertEqual((r.verdict, r.services), ("applies", ["rules", "model"]))
@@ -224,10 +225,11 @@ class Rules(unittest.TestCase):
     def test_alternative_readings_must_agree(self):
         st, _ = store_with(doc([[cell(0, 0, "Battery capacity:"), cell(0, 1, "5.200 mAh")]], names=PRODUCT_NAME))
         x = ent(st, "alpha one")
-        r = ask(st, "q7", {"x": x}, {"role": "x"}, {}, {"kind": "Q:electric_charge", "op": ">=", "bound": 5000, "unit": "mAh"})
+        # I-2: the header names a part, so the capacity is the battery's; the question designates the part
+        r = ask(st, "q7", {"x": x}, {"role": "x", "part": "P:battery"}, {}, {"kind": "Q:electric_charge", "op": ">=", "bound": 5000, "unit": "mAh"})
         self.assertEqual(r.verdict, "undetermined")
         self.assertTrue(any("depends on the reading" in s for s in r.reasons))
-        r = ask(st, "q8", {"x": x}, {"role": "x"}, {}, {"kind": "Q:electric_charge", "op": ">=", "bound": 1, "unit": "mAh"})
+        r = ask(st, "q8", {"x": x}, {"role": "x", "part": "P:battery"}, {}, {"kind": "Q:electric_charge", "op": ">=", "bound": 1, "unit": "mAh"})
         self.assertEqual(r.verdict, "applies")  # every reading meets this bound
 
     def test_extent_end_must_match(self):

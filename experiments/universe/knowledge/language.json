@@ -98,5 +98,57 @@
   "2024",
   "2025",
   "2026"
+ ],
+ "method_markers": [
+  "measured",
+  "recorded",
+  "tested",
+  "measured with",
+  "recorded with",
+  "tested with",
+  "according to"
+ ],
+ "separators": [
+  "/",
+  "+",
+  "|",
+  "&",
+  "·"
+ ],
+ "comparison_markers": [
+  "vs",
+  "versus",
+  "compared to",
+  "compared with"
+ ],
+ "range_end_words": {
+  "lower": [
+   "low"
+  ],
+  "upper": [
+   "high"
+  ]
+ },
+ "axis_words": [
+  "spec",
+  "specs",
+  "specification",
+  "specifications",
+  "feature",
+  "features",
+  "value",
+  "values",
+  "detail",
+  "details"
+ ],
+ "predication_words": [
+  "is",
+  "are",
+  "was",
+  "were",
+  "has",
+  "have",
+  "had",
+  "does"
  ]
 }

@@ -16,6 +16,7 @@ re-implementing it (plan I11, I15).
 from s1core import units
 from s1core.infer import _match
 
+from .dependencies import current, situation_conditions
 from .store import thaw
 
 BOUND_OPS = ("<", "<=", ">", ">=")
@@ -71,23 +72,31 @@ def passes(store, holds_of, chain):
 
 
 class _Sit:
-    def __init__(self, inquiry):
-        self.conditions = {k: tuple(v) if isinstance(v, (list, tuple)) else v
-                           for k, v in thaw(inquiry.body.get("conditions", {})).items()}
+    def __init__(self, inquiry, store=None):
+        self.conditions = situation_conditions(store, inquiry)
 
 
-def applicable(content, inquiry):
+def applicable(content, inquiry, store=None):
     """Scope of a content against the inquiry's situation: (bool, reason)."""
     b = content.body
     if b.get("incomplete"):
         return False, f"{content.id}: incomplete ({'; '.join(b['incomplete'])})"
+    if store is not None and not current(store, content.id):
+        return False, f"{content.id}: no longer current (a ground was retracted)"
+    sit = situation_conditions(store, inquiry)
+    for k in sorted(b.get("unspecified") or {}):
+        if k != "method" and k in sit:
+            return False, f"{content.id}: its measurand leaves {k} unspecified; the situation states it"
+    wanted = inquiry.body.get("methods")
+    if wanted and not set(wanted) <= set(b.get("methods") or ()):
+        return False, f"{content.id}: not measured by the method the question names"
     if b.get("scope") == "invariant":
         return True, ""
     if b.get("scope") == "unknown":
         ok = content.id in inquiry.body.get("scope_assumptions", ())
         return ok, "" if ok else f"{content.id}: conditions of validity unknown"
     conds = {k: tuple(v) if isinstance(v, (list, tuple)) else v for k, v in thaw(b.get("conditions", {})).items()}
-    missing, mismatch = _match(conds, _Sit(inquiry))
+    missing, mismatch = _match(conds, _Sit(inquiry, store))
     if missing or mismatch:
         return False, f"{content.id}: " + "; ".join([f"situation does not state {m}" for m in missing] + mismatch)
     return True, ""
@@ -98,15 +107,41 @@ def _key(c):
     return ("quantity", b["kind"]) if b.get("form") == "quantity" else ("attribute", b["name"])
 
 
-def _local(store, inquiry, entity, key):
-    """Contents borne directly by the entity: general ones, and those situated in this inquiry."""
+def identity_readings(store, inquiry, entity):
+    """Referents the inquiry reads as the same thing as ``entity``: {referent: [reading item ids]}. A reading is an
+    item the inquiry adopts (an assumption) that accepts one co-reference proposal (S0 D3, 3.6.4). Without a reading,
+    referents of different documents are never the same thing."""
+    out = {entity: []}
+    reads = []
+    for rid in inquiry.body.get("identity_readings", ()):
+        if store.has(rid) and current(store, rid):
+            co = store.get(store.get(rid).body["co_reference"])
+            reads.append((rid, list(co.body["relata"])))
+    changed = True
+    while changed:
+        changed = False
+        for rid, (a, b) in reads:
+            for x, y in ((a, b), (b, a)):
+                if x in out and y not in out:
+                    out[y] = out[x] + [rid]
+                    changed = True
+    return out
+
+
+def _local(store, inquiry, entity, key, readings=None):
+    """Contents borne by the entity (or by a referent the inquiry reads as the same thing): general ones, and those
+    situated in this inquiry. ``readings`` collects the identity readings a returned content rests on."""
+    bearers = identity_readings(store, inquiry, entity)
     out = []
     for c in store.of("content"):
-        if c.body.get("bearer") != entity or c.body.get("form") not in ("quantity", "attribute") or _key(c) != key:
+        if c.body.get("bearer") not in bearers or c.body.get("form") not in ("quantity", "attribute") or _key(c) != key:
             continue
         sit = c.situating.get("situation")
         if sit in (None, inquiry.id):
             out.append(c)
+            if readings is not None:
+                for r in bearers[c.body["bearer"]]:
+                    readings.setdefault(c.id, []).append(r)
     return out
 
 
@@ -126,7 +161,7 @@ def inherited(store, inquiry, entity, key):
                 continue
             by_depth.setdefault(len(route), []).append((c, route))
     for depth in sorted(by_depth):
-        ok = [(c, r) for c, r in by_depth[depth] if applicable(c, inquiry)[0]]
+        ok = [(c, r) for c, r in by_depth[depth] if applicable(c, inquiry, store)[0]]
         if ok:
             return ok, barred, True
     if by_depth:
@@ -152,14 +187,14 @@ def supply(store, inquiry, entity, keys):
 def attribute(store, inquiry, entity, name):
     """Value of a categorical attribute of the entity under the inquiry's situation, with grounds, or None."""
     key = ("attribute", name)
-    local = [c for c in _local(store, inquiry, entity, key) if applicable(c, inquiry)[0]]
+    local = [c for c in _local(store, inquiry, entity, key) if applicable(c, inquiry, store)[0]]
     if local:
         return local[0].body["value"], [local[0].id], []
     chosen, barred, ok = inherited(store, inquiry, entity, key)
     if ok and len({c.body["value"] for c, _ in chosen}) == 1:
         c, route = chosen[0]
         return c.body["value"], [c.id, *route], barred
-    return None, [], barred + [applicable(c, inquiry)[1] for c, _ in chosen]
+    return None, [], barred + [applicable(c, inquiry, store)[1] for c, _ in chosen]
 
 
 def single_valued(store, name):
@@ -210,12 +245,12 @@ def _verdict(iv, op, b):
     return "applies" if holds else "does not apply" if fails else "undetermined"
 
 
-def usable(store, inquiry, entity, kind, end=None, unit=None):
+def usable(store, inquiry, entity, kind, end=None, unit=None, readings=None):
     """Applicable contents of the entity's quantity of this kind, for the asked extent end (None: the value itself),
-    whose scale reference fits. Returns (contents, notes)."""
+    whose scale reference fits. Returns (contents, notes); ``readings`` collects identity readings used."""
     vals, notes = [], []
-    for c in _local(store, inquiry, entity, ("quantity", kind)):
-        ok, why = applicable(c, inquiry)
+    for c in _local(store, inquiry, entity, ("quantity", kind), readings):
+        ok, why = applicable(c, inquiry, store)
         if not ok:
             notes.append(why)
             continue
@@ -262,7 +297,11 @@ def classify(store, inquiry, entity, class_id):
     d = defs[0].body
     if d["op"] not in BOUND_OPS:
         return "undetermined", [defs[0].id], None, f"unsupported operator {d['op']}"
-    vals, notes = usable(store, inquiry, entity, d["kind"], d.get("end"), d["unit"])
+    reused = lifted(store, inquiry, "classification", **{"class": class_id, "bearer": entity})
+    if reused is not None:
+        return reused.body["verdict"], [defs[0].id, reused.id], None, f"reused the lifted conclusion {reused.id} (S0 4.3)"
+    readings = {}
+    vals, notes = usable(store, inquiry, entity, d["kind"], d.get("end"), d["unit"], readings)
     if not vals:
         return "undetermined", [defs[0].id], d["kind"], "; ".join([f"no applicable {d['kind']} of {entity} yet"] + notes)
     b = units.to_si(d["bound"], d["bound"], d["unit"])[0]
@@ -270,32 +309,106 @@ def classify(store, inquiry, entity, class_id):
     note = f"{d['kind']} of {entity} against {d['op']} {b:.4g} (SI) over {len(vals)} content(s)"
     if why:
         note += "; " + "; ".join(why)
+    if readings:
+        note += "; under the identity reading(s) " + ", ".join(sorted({r for rs in readings.values() for r in rs}))
     if verdict == "does not apply":
         note += " (restricted negation within the definition's domain, S0 N3)"
-    return verdict, [defs[0].id] + [c.id for c in vals], None, note
+    rgrounds = sorted({r for c in vals for r in readings.get(c.id, ())})
+    return verdict, [defs[0].id] + [c.id for c in vals] + rgrounds, None, note
 
 
 def compare(store, inquiry, entities, kind, end=None):
     """Compare one quantity of two entities under the inquiry's situation. Comparable only if the applicable contents
     of both state the same conditions (S0 4.6, 5.8 relevance). Returns (relation or None, grounds, note); relation is
     'less', 'greater' or 'equal' for the first entity against the second."""
-    a, na = usable(store, inquiry, entities[0], kind, end)
-    b, nb = usable(store, inquiry, entities[1], kind, end)
+    inverse = {"less": "greater", "greater": "less", "equal": "equal"}
+    for order, flip in ((list(entities), False), (list(entities)[::-1], True)):
+        reused = lifted(store, inquiry, "comparison", kind=kind, bearers=order)
+        if reused is not None:
+            rel = inverse[reused.body["relation"]] if flip else reused.body["relation"]
+            return rel, [reused.id], f"reused the lifted conclusion {reused.id} (S0 4.3)"
+    readings = {}
+    a, na = usable(store, inquiry, entities[0], kind, end, None, readings)
+    b, nb = usable(store, inquiry, entities[1], kind, end, None, readings)
     if not a or not b:
         return None, [], "; ".join(["a quantity is missing for one entity"] + na + nb)
-    conds = {tuple(sorted((k, str(v)) for k, v in thaw(c.body.get("conditions") or {}).items())) for c in a + b}
+    # the same measurand: equal conditions, the same methods, and the same unspecified conditions within one
+    # measuring series (an unstated condition is the same only within one table of one document)
+    conds = {(tuple(sorted((k, str(v)) for k, v in thaw(c.body.get("conditions") or {}).items())),
+              tuple(sorted(c.body.get("methods") or ())),
+              tuple(sorted((k, v) for k, v in thaw(c.body.get("unspecified") or {}).items()))) for c in a + b}
     if len(conds) != 1:
-        return None, [], "the contents state different conditions; not comparable"
+        return None, [], "the contents differ in conditions, method or measuring series; not comparable"
     if any(c.body.get("alternative_of") for c in a + b):
         return None, [], "a reading is ambiguous"
     ia = (min(_interval(c)[0] for c in a), max(_interval(c)[1] for c in a))
     ib = (min(_interval(c)[0] for c in b), max(_interval(c)[1] for c in b))
+    variation = any(c.body.get("interval") == "variation" for c in a + b)
     if ia[1] < ib[0]:
         rel = "less"
     elif ib[1] < ia[0]:
         rel = "greater"
-    elif ia[0] == ia[1] == ib[0] == ib[1]:
+    elif ia[0] == ia[1] == ib[0] == ib[1] and not variation:
         rel = "equal"
     else:
         return None, [], "intervals overlap"
-    return rel, [c.id for c in a + b], f"{kind}: {entities[0]} {rel} than {entities[1]} under the same conditions"
+    rgrounds = sorted({r for c in a + b for r in readings.get(c.id, ())})
+    return rel, [c.id for c in a + b] + rgrounds, f"{kind}: {entities[0]} {rel} than {entities[1]} under the same conditions"
+
+
+def lifted(store, inquiry, form, **match):
+    """A current lifted conclusion of ``form`` that holds in this inquiry's situation: the same conditions (assumed
+    quantities included), the same method requirement, and only identity readings the inquiry adopts (S0 4.3)."""
+    sit = {k: list(v) if isinstance(v, tuple) else v for k, v in situation_conditions(store, inquiry).items()}
+    mine = {store.get(r).body["co_reference"] for r in inquiry.body.get("identity_readings", ()) if store.has(r)}
+    for c in store.of("content", form=form, lifted=True):
+        b = thaw(c.body)
+        if any(b.get(k) != v for k, v in match.items()):
+            continue
+        if b.get("conditions", {}) != sit or sorted(b.get("methods") or []) != sorted(inquiry.body.get("methods") or []):
+            continue
+        if not set(b.get("under_co_references") or []) <= mine:
+            continue
+        if current(store, c.id):
+            return c
+    return None
+
+
+def part(store, inquiry, entity, part_kind):
+    """The part of kind ``part_kind`` of the entity (or of a referent the inquiry reads as the same thing), through
+    current ``part_of`` relation contents (S0 3.8). Returns (part referent or None, grounds, note)."""
+    bearers = identity_readings(store, inquiry, entity)
+    parthood = {r.id for r in store.of("relation_concept") if r.body.get("structural_role") == "parthood"}
+    found = []
+    for c in _relations(store):
+        b = c.body
+        if b["relation"] not in parthood or b["object"] not in bearers or not current(store, c.id):
+            continue
+        if store.has(b["subject"]) and store.get(b["subject"]).body.get("part_kind") == part_kind:
+            found.append((b["subject"], [c.id] + bearers[b["object"]]))
+    subjects = sorted({s for s, _ in found})
+    if len(subjects) != 1:
+        return None, [], f"{len(subjects)} parts of kind {part_kind} of {entity}"
+    grounds = sorted({g for s, gs in found for g in gs})
+    return subjects[0], grounds, f"{subjects[0]} is the {part_kind} of {entity}"
+
+
+def select(store, inquiry, entities, kind, prefer, end=None):
+    """Which entity has the lowest (or highest) quantity of ``kind`` under the inquiry's situation: the one that
+    compares strictly better than every other (an order inference over pairwise comparisons, S0 5.7). Pairwise
+    comparisons are taken from current lifted conclusions when they exist, so earlier inquiries are reused rather
+    than recomputed. Returns (entity or None, grounds, note)."""
+    better = {"lower": "less", "higher": "greater"}[prefer]
+    for x in entities:
+        grounds, ok = [], True
+        for y in entities:
+            if y == x:
+                continue
+            rel, g, _ = compare(store, inquiry, [x, y], kind, end)
+            if rel != better:
+                ok = False
+                break
+            grounds += g
+        if ok:
+            return x, sorted(set(grounds)), f"{x} has the {prefer} {kind} of {len(entities)} under the same conditions"
+    return None, [], f"no entity has the {prefer} {kind} on the available comparisons"
