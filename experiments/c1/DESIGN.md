@@ -303,3 +303,68 @@ relation `other`, the very error C-1 targets.
 
 **Not done.** Stage F, the verifier and any prompt change were not run, as the stop rule requires. The decision is
 the owner's (section 0).
+
+## 15. Revision 3 (2026-10-23): a learned relation classifier, fixed before code
+
+**Basis.** The owner's message: "Fai quello che ritieni, ma deve essere supportato da quello che hanno fatto altri
+sviluppatori; deve essere una cosa fattibile soltanto con sviluppato da te eventualmente, ci facciamo aiutare
+ChatGPT per revisionare e a volte posso mettere del mio".
+- **Development.** Claude is the sole developer.
+- **Review.** ChatGPT reviews outside the repository, through the owner, and the owner may contribute.
+
+**Why a learned classifier.** Stage P showed that a general small model, used zero-shot on CPU, is slow and reads
+every relation as `other`. Published work points to task adaptation instead (section 12 and the comparable projects
+of section 13):
+- small models trained on the task beat zero-shot models;
+- negation modules trained on annotated corpora beat rules.
+
+The best-known approach for few labels is **SetFit** (Tunstall et al., "Efficient Few-Shot Learning Without Prompts",
+2022): sentence embeddings from a small model, plus a light classifier trained on them.
+
+**What changes, and what does not.**
+- **Unchanged.** A-1 still segments the sentences and finds subject and object.
+- **Replaced.** The classifier only chooses the **relation type** of each A-1 proposition. This targets the measured
+  cause: about 60 of the 96 relation errors are fallbacks to `other`.
+- **The single model.** It is now `nomic-ai/nomic-embed-text-v1.5`:
+  - the official GGUF, Q8_0, 146 MB, SHA-256 `3e24342164b3…`, Apache-2.0;
+  - run by the llama-cpp-python already built;
+  - it replaces Phi-4-mini, whose weights are removed.
+- **Classifiers.** Multinomial logistic regression in standard-library Python. No other library.
+
+**Arms (relation label only).**
+
+| Arm | Relation of each A-1 proposition |
+|---|---|
+| **B0** | A-1's own relation (baseline) |
+| **B1** | A bag-of-words logistic regression, standard library only: words of the sentence, the subject, the object and the words between them. This non-neural supervised baseline shows whether the embedding model is needed at all |
+| **B2** | nomic embeddings (prefix `classification:`) of "sentence ‖ subject ‖ object", with logistic regression |
+
+**Data** (spent; no new material is opened).
+- **Training examples.** The adjudicated speakers references D (269) and R (238 scientific). Each example is the
+  proposition's block text with its subject and object. Its label is the reference relation, with `other: verb`
+  collapsed to `other`.
+- **Test items.** A-1's items that the O-2 judgements matched to a reference proposition:
+  - the sealed run's adjudicated judgement for R;
+  - the single development judgement for D.
+
+**Stage F′: agent-free feasibility.**
+- **Folds.** Five folds grouped by **section**, so that no section is in training and test at once.
+- **Training.** Each fold trains B1 and B2 on the gold propositions of the other sections.
+- **Testing.** It predicts the relation of A-1's matched items in its own sections.
+- **Scoring.** Mechanical: exact relation label against the matched reference proposition, with `other` collapsed.
+  B0 is scored the same way.
+- **Reporting.** Accuracy and macro-F1, overall, per split (D-derived, R-derived) and per relation class (norms:
+  `requires`, `recommends`).
+
+**Pass rule** (to justify spending agents on a sealed Soundbars test). The pass rule is met only if:
+- the better of B1 and B2 beats B0 by **at least 0.10** in exact relation accuracy on A-1's matched items;
+- the gain holds in **both** splits.
+
+Otherwise stop.
+
+**Limits stated in advance.**
+- **Spent material.** All of it is spent, so this is feasibility, never validation.
+- **Labels.** The labels are Claude agents' annotations.
+- **Mechanical scoring.** Exact label matching is stricter than the judges were. It is applied equally to every arm.
+- **Scope.** Only the relation is predicted. Polarity, attitude and the rest stay A-1's.
+- **What a pass cannot show.** A pass would not show that knowledge may be admitted.
