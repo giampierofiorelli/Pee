@@ -486,7 +486,19 @@ def conditions_fit(store, prop, query):
 
 
 def _licensed(store, p):
-    return bool(attitudes(store, p.id) & set(LICENSING)) and p.body.get("content_kind") != "unknown"
+    """A proposition licenses conclusions when the author asserts or reports it. T-1 (W4): not when an element it
+    depends on is indeterminate or uncertain (S0 3.6), nor when it states an illustrative case."""
+    if not (attitudes(store, p.id) & set(LICENSING)) or p.body.get("content_kind") == "unknown":
+        return False
+    if p.body.get("indeterminate"):
+        return False
+    for a in attributions(store, p.id):
+        b = a.body
+        if b.get("statement_status") == "illustrative_example":
+            return False
+        if any((b.get("states") or {}).get(k) for k in ("relation", "polarity", "attitude", "subject", "object")):
+            return False
+    return True
 
 
 def _edges(store, query_conds):

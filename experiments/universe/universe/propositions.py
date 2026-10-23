@@ -69,6 +69,15 @@ class Frame:
         self.att = {k: [_norm(x) for x in v] for k, v in (P.get("attitude") or {}).items()}
         self.imper = {x.lower() for x in P.get("norm_imperatives", ())}
         self.report_verbs = {x.lower() for x in P.get("measurement_report_verbs", ())}
+        # T-1 (W3): deontic force, fronted conditions, illustrative cases, additive "not only"
+        d = P.get("deontic") or {}
+        self.obligation = [_norm(x) for x in d.get("obligation", ())]
+        self.recommendation = [_norm(x) for x in d.get("recommendation", ())]
+        self.prohibition = sorted((x.lower() for x in d.get("prohibition", ())), key=len, reverse=True)
+        self.negative_verbs = {x.lower() for x in d.get("negative_verbs", ())}
+        self.fronted = sorted((x.lower() for x in P.get("fronted_condition_markers", ())), key=len, reverse=True)
+        self.illustrative = [_norm(x) for x in P.get("illustrative_words", ())]
+        self.additive_not = [x.lower() for x in P.get("additive_not", ())]
         self.lex = lex
         bm = lex.lang.get("bound_markers") or {}
         self.value_lead = {"of", "is", "are", "was", "were", "=", ":", "equals", "reached", "reaches", "about",
@@ -93,7 +102,7 @@ def sentences(text):
     t = ABBREV.sub(lambda m: m.group(0).replace(".", "§"), text)
     t = re.sub(r"(\d)\.(\d)", r"\1§\2", t)
     out = []
-    for part in re.split(r"(?<=[.!?;])\s+(?=[\[(\"“‘A-Z0-9*])", t):
+    for part in re.split(r"(?<=[.!?;])\s+(?=[\[(\"“‘'`A-Z0-9*])", t):  # T-1: also before a quote or code
         pieces = ENUM.split(part)
         for p in pieces[0::2]:  # ENUM.split keeps the enumerator labels at odd positions
             p = p.replace("§", ".").strip(" ;")
@@ -113,11 +122,13 @@ def _words(s):
 # --- one clause ------------------------------------------------------------------------------------------------------
 
 def _negations(text):
-    """The clause without its negation markers, and how many there were."""
+    """The clause without its negation markers, and how many there were. T-1: "not only" / "not just" are additive,
+    not negations; a negative determiner ("no X", "there is no X") negates wherever it stands in the clause."""
     t, n = " " + text + " ", 0
+    t = re.sub(r"\bnot\s+(only|just)\b", r"\1", t, flags=re.I)
     for pat, rep in ((re.compile(r"\bneed\s+not\b|\bneedn[’']t\b", re.I), " "), (_AUX_NEG, r"\1"), (re.compile(r"\bcannot\b", re.I), "can"),
                      (re.compile(r"\b(\w+)n[’']t\b", re.I), r"\1"),
-                     (re.compile(r"\b(?:never|neither|nor|not)\b", re.I), " "), (re.compile(r"^\s*no\b", re.I), " ")):
+                     (re.compile(r"\b(?:never|neither|nor|not)\b", re.I), " "), (re.compile(r"\bno\b(?=\s+[A-Za-z])", re.I), " ")):
         t, k = pat.subn(rep, t)
         n += k
     return " ".join(t.split()), n
@@ -137,6 +148,9 @@ def _find_relations(frame, text):
             i, j = m.start(), m.end()
             if any(used[i:j]):
                 continue
+            prev = t[:i].split()[-1:] if t[:i].strip() else []
+            if prev and prev[0].strip(",;:") in frame.det and " " not in p.strip():
+                continue  # T-1: "the change", "an estimate": a single relational word after a determiner is a noun
             for k in range(i, j):
                 used[k] = True
             found.append((i, j, name, p))
@@ -234,14 +248,70 @@ def _verb_fallback(frame, t):
     words = [(m.start(), m.end(), m.group(0)) for m in re.finditer(r"[a-z][a-z\-]+", t)]
     for k, (i, j, w) in enumerate(words):
         if w in aux and k + 1 < len(words) and k > 0:
-            i2, j2, v = words[k + 1]
+            m = k + 1
+            while m + 1 < len(words) and words[m][2].endswith("ly"):  # "cannot safely drive": the verb is "drive"
+                m += 1
+            i2, j2, v = words[m]
             if v not in nv and len(v) > 2:
                 return (i, j2, "other", v)
-    for k, (i, j, w) in enumerate(words[1:9], start=1):
-        if len(w) > 3 and w.endswith("s") and not w.endswith(("ss", "us", "is", "ous")) and w not in nv \
-                and k + 1 < len(words):
-            return (i, j, "other", w)
+    # T-1 (W3, part-of-speech guard): a word ending in "-s" is not taken as a verb. In a verbless (telegraphic) item it
+    # is usually a plural noun, and inventing a relation there misreads the whole item. The clause stays unread.
     return None
+
+
+FREQUENCY_LEAD = re.compile(r"^\s*(?:always|only|first|then|also|next|finally)\s+", re.I)
+
+
+def _starts_imperative(frame, text):
+    """An imperative clause: a directive verb of the lexical frame first, after any leading adverb ("Always …",
+    "Then …"), or a prohibition marker. A verb outside the frame is not recognised: the clause stays unread."""
+    t = FREQUENCY_LEAD.sub("", text.strip()).lower()
+    w = t.split()
+    if not w:
+        return False
+    return w[0].strip(",:") in frame.imper or any(text.strip().lower().startswith(x + " ") for x in frame.prohibition)
+
+
+def _force(frame, raw, procedural):
+    """W2 D6: the force of an imperative from its context. Returns (relation, states, candidates, bearer)."""
+    t = _norm(raw)
+    first = raw.strip().lower().split()[0] if raw.strip() else ""
+    if any(x in t for x in frame.obligation):
+        return "requires", {}, None, "procedure" if procedural else None
+    if first in ("consider", "prefer") or any(x in t for x in frame.recommendation):
+        return "recommends", {}, None, "procedure" if procedural else "user"
+    if procedural:  # a step is obligatory only when the procedure prescribes it as necessary (W2 D6)
+        return "uncertain", {"relation": "uncertain"}, ["requires", "recommends"], "procedure"
+    return "recommends", {}, None, "user"
+
+
+def _imperative(frame, raw, clean, ctx):
+    """One imperative: a prohibition (W2 D5: the controlled form `other: prohibits`, never a negated relation) or a
+    norm whose force comes from context (D6). A negative verb ("avoid", "refuse") is the operator, counted once."""
+    low = raw.strip().lower()
+    neg = next((x for x in frame.prohibition if low.startswith(x + " ")), None)
+    action = raw.strip()[len(neg):] if neg else FREQUENCY_LEAD.sub("", raw.strip())
+    action = re.sub(r"^\s*(?:do|does|please)\s+", "", action, flags=re.I)
+    action, conds = _split_conditions(frame, action)
+    phrase, left = _concept_phrase(frame, action, "object")
+    procedural = bool(ctx.get("procedural"))
+    if neg:
+        rel, states, cands, bearer = "other:prohibits", {}, None, "procedure" if procedural else "user"
+    else:
+        rel, states, cands, bearer = _force(frame, raw, procedural)
+    subject, obj = phrase, None
+    if bearer == "procedure" and rel in ("requires", "uncertain") and ctx.get("heading"):
+        subject, obj = ctx["heading"], phrase  # the procedure requires the step (W2 D6: bearer `procedure`)
+    c = {"relation": rel, "subject": subject, "object": obj, "polarity": "affirmed", "modality": _modality(frame, raw),
+         "conditions": conds, "left": left, "content_kind": "norm", "spans": [action], "imperative": True,
+         "norm_bearer": bearer}
+    if states:
+        c["states"], c["relation_candidates"] = states, cands
+    return c
+
+
+DEONTIC_DECL = re.compile(r"^(.{2,90}?)\s+(must not|should not|may not|must|should|need to|needs to|has to|have to|"
+                          r"is required to|are required to)\s+(?:be\s+)?(.+)$", re.I)
 
 
 def read_clause(frame, clause, ctx):
@@ -250,6 +320,25 @@ def read_clause(frame, clause, ctx):
     m = LABEL.match(raw)
     if m and len(m.group(1).split()) <= 6:
         raw = raw[m.end():]
+    # T-1: a fronted subordinate clause ("If X, …", "For Y, …") is a condition of the main clause; its own words,
+    # negations included, stay in the condition and never act on the main clause
+    if frame.fronted:
+        fm = re.match(r"^\s*(" + "|".join(re.escape(x) for x in frame.fronted) + r")\s+(.{2,160}?),\s+(.+)$", raw,
+                      re.I)
+        if fm and WORD.search(fm.group(3)):
+            main = read_clause(frame, fm.group(3), ctx)
+            for c in main:
+                if not c.get("unresolved"):
+                    c["conditions"] = [{"marker": fm.group(1).lower(), "text": fm.group(2).strip()}] + list(
+                        c.get("conditions") or [])
+                    c.setdefault("spans", []).append(fm.group(2))
+            return main
+    # T-1: coordinated imperatives each carry their own polarity ("Explain X, collect Y, do not invent Z")
+    if _starts_imperative(frame, raw):
+        alt = "|".join(re.escape(x) for x in sorted(frame.imper | set(frame.prohibition), key=len, reverse=True))
+        parts = re.split(r",\s+(?:and\s+)?(?=(?:" + alt + r")\b)", raw, flags=re.I)
+        if len(parts) > 1 and all(_starts_imperative(frame, x) for x in parts):
+            return [c for x in parts for c in read_clause(frame, x, ctx)]
     # contrast: "X is A, not B" / "X does A rather than B": the same relation, the other polarity, for B
     m = re.search(r",\s*(?:but\s+)?not\s+|\s+rather than\s+|\s+instead of\s+", raw, re.I)
     if m and m.start() > 0:
@@ -257,7 +346,7 @@ def read_clause(frame, clause, ctx):
         obj, left = _concept_phrase(frame, _split_conditions(frame, raw[m.end():])[0], "object")
         extra = []
         for c in main:
-            if c.get("unresolved") or not obj or c.get("relation") == "recommends":
+            if c.get("unresolved") or not obj or c.get("content_kind") == "norm":
                 continue
             d = dict(c, object=obj, polarity="affirmed" if c["polarity"] == "negated" else "negated",
                      left=left, spans=[raw[m.end():]], contrast=True)
@@ -267,6 +356,10 @@ def read_clause(frame, clause, ctx):
     m = re.match(r"^(.{2,60}?)\s+(" + "|".join(sorted((re.escape(x.strip()) for x in frame.att.get("reported", ())
                                                         if x.strip() and len(x.split()) <= 2), key=len, reverse=True))
                  + r")\s+(?:that\s+)?(.+)$", raw, re.I) if frame.att.get("reported") else None
+    _prep = r"(?:in|at|on|by|during|from|with|under|for|over|across)\b"
+    if m and ((m.group(2).lower().endswith("ed") and re.match(r"^" + _prep, m.group(3), re.I)) or
+              re.match(r"^\w+ed\s+" + _prep, m.group(3), re.I)):
+        m = None  # T-1: "reports observed in one clinic": a participle in a reduced relative, not a reporting frame
     if m and _find_relations(frame, _negations(m.group(3))[0])[1]:
         claims = read_clause(frame, m.group(3), ctx)
         for c in claims:
@@ -279,14 +372,38 @@ def read_clause(frame, clause, ctx):
     words = clean.lower().split()
     first = words[0].strip(",:") if words else ""
     # an imperative sentence states a norm; the action is the subject (S0 D18)
-    if first in frame.imper or re.match(r"^\s*(?:do not|don't|never|avoid)\b", raw, re.I):
-        action, conds = _split_conditions(frame, clean)
-        action = re.sub(r"^\s*(?:do|does|please)\s+", "", action, flags=re.I)  # "do not X": the action is X
-        phrase, left = _concept_phrase(frame, action, "object")
-        neg = bool(re.match(r"^\s*(?:do not|don't|never|avoid|refuse)\b", raw, re.I))
-        return [{"relation": "recommends", "subject": phrase, "object": None,
-                 "polarity": "negated" if neg else "affirmed", "modality": "necessary", "conditions": conds,
-                 "left": left, "content_kind": "norm", "spans": [action]}]
+    if _starts_imperative(frame, raw):
+        return [_imperative(frame, raw, clean, ctx)]
+    # T-1: a deontic modal in a declarative clause states a norm on its subject (W2 D4-D5)
+    dm = DEONTIC_DECL.match(raw.strip())
+    if dm and not re.search(r"\b(?:can|could)\b", dm.group(1), re.I):
+        subj, _ = _concept_phrase(frame, dm.group(1), "subject")
+        core, conds = _split_conditions(frame, dm.group(3))
+        obj, left = _concept_phrase(frame, core, "object")
+        mod = dm.group(2).lower()
+        rel = "other:prohibits" if mod.endswith("not") else "recommends" if mod == "should" else "requires"
+        sw = subj.lower().split()
+        resolution = None
+        if not subj or (sw[0] in frame.ana and len(sw) <= 2):
+            src = ctx.get("previous") or ctx.get("heading")
+            if not src:
+                return [{"unresolved": "subject not found (an anaphor without a referent)"}]
+            resolution = {"anaphor": subj or "(none)", "resolved_to": src,
+                          "how": "previous claim" if ctx.get("previous") else "heading"}
+            subj = src
+        if subj and obj:
+            return [{"relation": rel, "subject": subj, "object": obj, "polarity": "affirmed",
+                     "modality": _modality(frame, raw), "conditions": conds, "left": left, "content_kind": "norm",
+                     "spans": [dm.group(1), core], "resolution": resolution, "phrase": dm.group(2)}]
+    # T-1: "there is (no) X": the existence of X, with the clause's polarity
+    em = re.match(r"^\s*there\s+(?:is|are|was|were|exists?)\s+(.+)$", clean, re.I)
+    if em:
+        core, conds = _split_conditions(frame, em.group(1))
+        x, left = _concept_phrase(frame, core, "subject")
+        if x:
+            return [{"relation": "occurs", "subject": x, "object": None,
+                     "polarity": "negated" if nneg % 2 else "affirmed", "modality": _modality(frame, raw),
+                     "conditions": conds, "left": left, "content_kind": "existence", "spans": [core]}]
     # change verbs: "Y rises as X falls"
     ch = "|".join(re.escape(x.strip()) for x in frame.up + frame.down)
     m = re.search(rf"^(.*?)\b({ch})\s+(?:as|when|while)\s+(.*?)\b({ch})\b(.*)$", clean, re.I) if ch else None
@@ -358,7 +475,8 @@ def read_clause(frame, clause, ctx):
         pol = polarity
         if re.match(r"^\s*(?:but|rather)\b", o, re.I):  # "not A, but B": B has the other polarity
             o = re.sub(r"^\s*(?:but|rather)\s+", "", o, flags=re.I)
-            pol = "affirmed" if polarity == "negated" else "negated"
+            if nneg:  # T-1: "but" flips polarity only after a negation; alone it is a contrast, not a negation
+                pol = "affirmed" if polarity == "negated" else "negated"
         obj, oleft = _concept_phrase(frame, o, "object")
         s, ob = (obj, subject) if swap else (subject, obj)
         claims.append({"relation": name if name != "other" else f"other:{ph}", "subject": s, "object": ob or None,
@@ -481,9 +599,10 @@ def _reporter_evidence(frame, reporter):
 def _segments(doc):
     heads = {h["index"]: h for h in doc.get("headings", ())}
     for b in doc.get("blocks", ()):
-        if b.get("kind") != "math":
+        if b.get("kind") not in ("math", "code"):  # T-1: code is notation, not prose
+            kind = "ordered item" if b.get("ordered") else b.get("kind")
             yield (b.get("locator") or f"block {b['index']}", [heads[i]["text"] for i in b.get("sectionPath", ())
-                                                               if i in heads], b["text"], b.get("kind"))
+                                                               if i in heads], b["text"], kind)
     for t in doc.get("tables", ()):
         rows = {}
         for c in t["cells"]:
@@ -508,14 +627,23 @@ def read_propositions(doc, lex):
         # a block that opens with a proposal label ("PROPOSED evaluation …:") is a proposal throughout
         if frame.has(frame.att.get("proposed", ()), " ".join(text.split()[:3])):
             heading_text += " proposed"
+        # T-1 (W3): a proposal marker governs the procedural content under it, not every declarative sentence
+        block_proposed = bool(frame.has(frame.att.get("proposed", ()), heading_text))
+        label = LABEL.match(text)
+        illustrative = bool(frame.has(frame.illustrative, (hp[-1] if hp else "") + " " +
+                                      (label.group(1) if label else "")))
+        procedural = block_proposed or kind == "ordered item"
+        block_units, block_cites = [], []
         prev, prev_ids = None, []
         for si, sent in enumerate(sentences(text)):
             body, cites = _strip_cites(sent)
             if not WORD.search(body):
+                block_cites += cites  # T-1: a citation block closing the paragraph cites for its claims
                 continue
             entry = {"locator": f"{locator} sentence {si + 1}", "sha256": _sha(body), "words": len(_words(body)),
                      "kind": kind}
             att = _attitude(frame, heading_text, body)
+            own_att = _attitude(frame, "", body)
             unknown = any(x in _norm(body) for x in frame.att.get("unknown", ()))
             link_back = frame.has(frame.back, body[:40])
             link_qual = frame.has(frame.qual, body[:30])
@@ -527,17 +655,30 @@ def read_propositions(doc, lex):
                     clauses = [body[:k - 1], body[k - 1 + len(fwd):]]
             produced, explained = [], set()
             for ci, cl in enumerate(clauses):
-                ctx = {"previous": prev, "heading": hsub if kind in ("list item", "table cell") or ci == 0 else None}
+                ctx = {"previous": prev, "procedural": procedural,
+                       "heading": hsub if kind in ("list item", "ordered item", "table cell") or ci == 0 else None}
                 for c in read_clause(frame, cl, ctx) + read_values(frame, cl):
                     if c.get("unresolved"):
                         entry.setdefault("reasons", []).append(c["unresolved"])
                         continue
                     if not c.get("subject") or (c["relation"] not in ("occurs", "recommends", "has_value")
-                                                and not c.get("object")):
+                                                and not c.get("imperative") and not c.get("object")):
                         entry.setdefault("reasons", []).append("a side of the relation not found")
                         continue
                     n += 1
                     uid = f"U{n:05d}"
+                    # T-1 (W3): attitude per proposition. Under a proposal marker only procedural content (norms) is
+                    # proposed; a declarative keeps its own attitude. An imperative step of an unmarked procedure is
+                    # neither proposed nor asserted: its attitude is uncertain (W4), never asserted.
+                    if block_proposed and c["content_kind"] != "norm":
+                        c_att = own_att
+                    elif c.get("imperative") and kind == "ordered item" and not block_proposed and att == "asserted":
+                        c_att = "uncertain"
+                        c.setdefault("states", {})["attitude"] = "uncertain"
+                    else:
+                        c_att = att
+                    reported = c.get("reported_by") and c_att == "asserted"
+                    ev_kind = _reporter_evidence(frame, c.get("reported_by")) or _evidence_kind(frame, c_att, body, cites)
                     u = {"type": "proposition", "id": uid,
                          "content_kind": "unknown" if unknown and c["content_kind"] != "norm" else c["content_kind"],
                          "relation": c["relation"], "subject": c["subject"], "object": c.get("object"),
@@ -546,13 +687,24 @@ def read_propositions(doc, lex):
                          "generality": "generic" if c["modality"] in ("actual", "typical") else "ceteris_paribus",
                          "conditions": [{"concept": x["text"], "value": x["marker"]}
                                         for x in _clean_conditions(frame, c.get("conditions", ())) if x.get("text")],
-                         "document_attitude": "reported" if c.get("reported_by") and att == "asserted" else att,
-                         "evidence_kind": _reporter_evidence(frame, c.get("reported_by")) or
-                         _evidence_kind(frame, att, body, cites),
-                         "attributed_to": cites + ([c["reported_by"]] if c.get("reported_by") else []),
+                         "document_attitude": "reported" if reported else c_att,
+                         "evidence_kind": ev_kind,
+                         # T-1: citing is not attributing. A cited identifier is a bibliographic link; the claim is
+                         # the source's only when a reporter is named or a measured result is reported from it
+                         "attributed_to": (cites if ev_kind == "original_measurement" else []) +
+                         ([c["reported_by"]] if c.get("reported_by") else []),
+                         "cited_sources": list(cites),
                          "depends_on": [], "explains": [], "qualifies": None,
                          "resolution": c.get("resolution"),
                          "record": {"text": body, "locator": entry["locator"], "section": list(hp)}}
+                    for k in ("norm_bearer", "states", "relation_candidates"):
+                        if c.get(k):
+                            u[k] = c[k]
+                    if illustrative:
+                        u["statement_status"] = "illustrative_example"
+                    if u["relation"] == "uncertain":
+                        u["relation"] = "other"
+                    block_units.append(u)
                     if c.get("resolution") and prev_ids:
                         u["depends_on"] = [prev_ids[-1]]
                     if ci == 1 and fwd and len(clauses) == 2 and produced:
@@ -585,6 +737,8 @@ def read_propositions(doc, lex):
                 entry["status"] = "acquired"
             prev_ids += [u["id"] for u in produced]
             ledger.append(entry)
+        for u in block_units:  # the closing citation block of the paragraph: cited context of each claim
+            u["cited_sources"] = sorted(set(u.get("cited_sources") or ()) | set(block_cites))
     return {"units": units, "ledger": ledger}
 
 

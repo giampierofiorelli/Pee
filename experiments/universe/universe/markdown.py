@@ -61,11 +61,12 @@ def read(text, url, holder=None):
     def heading_path():
         return [headings[i]["text"] for _, i in path]
 
-    def block(raw, start, end, kind):
+    def block(raw, start, end, kind, **extra):
         t, codes, links, cites = _inline(raw)
         if t:
-            blocks.append({"index": len(blocks), "sectionPath": section(), "text": t, "kind": kind, "codes": codes,
-                           "links": links, "cites": cites, "locator": f"lines {start + 1}-{end + 1}"})
+            blocks.append(dict({"index": len(blocks), "sectionPath": section(), "text": t, "kind": kind,
+                                "codes": codes, "links": links, "cites": cites,
+                                "locator": f"lines {start + 1}-{end + 1}"}, **extra))
 
     i, n = 0, len(lines)
     para, pstart = [], 0
@@ -110,6 +111,17 @@ def read(text, url, holder=None):
             tables.append({"index": len(tables), "locator": f"lines {start + 1}-{i}", "caption": None,
                            "sectionPath": section(), "headingPath": heading_path(), "cells": cells})
             continue
+        if line.strip().startswith("```"):  # T-1: a fenced block is code (notation), never prose
+            flush(i - 1)
+            start = i
+            buf = []
+            i += 1
+            while i < n and not lines[i].strip().startswith("```"):
+                buf.append(lines[i])
+                i += 1
+            block(" ".join(x.strip() for x in buf) or "code", start, min(i, n - 1), "code")
+            i += 1
+            continue
         if line.strip().startswith("\\["):
             flush(i - 1)
             start = i
@@ -129,7 +141,8 @@ def read(text, url, holder=None):
         stripped = re.sub(r"^\s*>\s?", "", line)
         if LIST.match(stripped):
             flush(i - 1)
-            block(LIST.sub("", stripped, count=1), i, i, "list item")
+            block(LIST.sub("", stripped, count=1), i, i, "list item",
+                  ordered=bool(re.match(r"^\s*\d+[.)]\s", stripped)))
             i += 1
             continue
         if not para:

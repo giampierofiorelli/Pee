@@ -941,7 +941,6 @@
    "when",
    "whenever",
    "unless",
-   "while",
    "during",
    "under",
    "below",
@@ -1072,6 +1071,8 @@
    ", but ",
    ", while ",
    ", whereas ",
+   " whereas ",
+   " while ",
    ", so ",
    ", yet ",
    ", although ",
@@ -1146,6 +1147,16 @@
     "noted"
    ]
   },
+  "deontic": {
+   "about": "T-1 (W2 D4-D6): closed-class markers of deontic force. Modality never changes the force; these words do.",
+   "obligation": ["must", "required", "is required to", "are required to", "mandatory", "need to", "needs to", "has to", "have to", "always", "only"],
+   "recommendation": ["should", "consider", "prefer", "ideally", "if useful", "is recommended", "are recommended", "recommended"],
+   "prohibition": ["do not", "don't", "never", "avoid", "refuse", "must not", "should not", "may not", "prohibit", "prohibited", "forbid", "forbidden"],
+   "negative_verbs": ["avoid", "refuse", "prohibit", "forbid"]
+  },
+  "fronted_condition_markers": ["if", "when", "whenever", "unless", "once", "only if", "provided that", "even if", "where", "for"],
+  "illustrative_words": ["example", "examples", "worked example", "case", "cases", "scenario", "scenarios", "illustration", "illustrative", "hypothetical"],
+  "additive_not": ["not only", "not just"],
   "norm_imperatives": [
    "accept",
    "adjust",

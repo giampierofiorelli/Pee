@@ -1,0 +1,38 @@
+{
+ "schema": "pee.t1.freeze.v1",
+ "freeze": 3,
+ "note": "A1 frozen after W3-W5 development, before the final check. Development used constructed fixtures (universe/tests/test_t1.py) and, for W5 only, A-1's development questions QD. No Speakers score and no QS answer of A1 was looked at before this freeze.",
+ "A0_commit": "b7733df",
+ "A1_files": {
+  "universe/universe/propositions.py": "b2f9a8b1c4dccc2feba84fdc31871e32f497b55054bac378fb615cabc554a99f",
+  "universe/universe/knowledge_acquisition.py": "ed04f73ef749da49f2c70df53349fbca5925ea84bd880f82d27ec0815cc34e55",
+  "universe/universe/rules.py": "ba94aa80c1dc7ac42cbdec037f00d63c2bef7f82a23134dad5a259e1132c7d8a",
+  "universe/universe/recognition.py": "dab3a7d824217a7b1373cd80c3bd4fe0b1b562a5e118a901188028922555e9e4",
+  "universe/universe/markdown.py": "96515378c44b41a71e3bbc20cbe48eb369e59d4d2848809defa1b442ba1489f0",
+  "universe/knowledge/language.json": "5318ca9e9a29237e12c809c32bbd5bc6302cc8a785589a317dbdecdc7afd2751",
+  "universe/tests/test_t1.py": "1b060aeb72ca56750e7a8527b5886d1703a062bd7c247acf50442501a717f2f0",
+  "universe/tests/test_a1.py": "9be3a821bd0c0983760cb070c5d12758589160035790838ee0f79d9364843f5a",
+  "t1/score.py": "7a641abca3e16c0f89a9d7124618829a40fea5732c99bf2e4c46bca9e6af60e9",
+  "t1/export.py": "abb9c347f95f91fb4f1172c1518b960b2916959feb2a82c3721dd5eab7d3d3a9",
+  "a1/answer.py": "8ad321516162323cf36853c0fe078731bd3ad9ba9630a5ef5859acef782a59a6",
+  "o2/o2.py": "1f07ded4c8190de87ed56846dd0e60d933b0a067fd69cc9b5c6353c29c3b1f7d"
+ },
+ "development_record": {
+  "QD_A0": {
+   "correct decision": 2,
+   "lost decision": 1,
+   "lost decision (uninformed)": 19,
+   "uninformed abstention": 7,
+   "justified abstention": 1
+  },
+  "QD_A1": {
+   "correct decision": 3,
+   "lost decision (uninformed)": 19,
+   "uninformed abstention": 7,
+   "justified abstention": 1
+  },
+  "QD_change": "Q01 lost -> correct (from W3: a claim now read; its terms were already recognised exactly). The W5 variants change no QD answer."
+ },
+ "test_suites": "universe 135 OK (incl. 23 T-1), s1core OK, x1 OK, x2 OK, o2 OK, t1 score 14 OK",
+ "test_changed": "universe/tests/test_a1.py: the prohibition assertion follows W2 D5 (other: prohibits, affirmed) instead of A-1's negated recommendation"
+}

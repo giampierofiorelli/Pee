@@ -1047,6 +1047,11 @@ def _represent_propositions(ctx, props):
                 "conditions": conds}
         if verb:
             body["verb"] = verb
+        if (u.get("states") or {}).get("relation") == "uncertain":
+            # T-1 (W4, S0 M6): the relation is a placeholder linked to its candidates as indeterminate, with what
+            # would resolve it; nothing that depends on it is licensed (rules._licensed)
+            body["indeterminate"] = {"element": "relation", "candidates": list(u.get("relation_candidates") or ()),
+                                     "resolve_by": "an explicit statement of the force or of the relation"}
         pid = f"P:{_h(body)}"
         prem = ctx.record(u.get("record")) if u.get("record") else []
         if store.has(pid):
@@ -1077,6 +1082,12 @@ def _represent_propositions(ctx, props):
                "unresolved": sorted({c for c in cites if c not in ctx.cites}),
                "attributed_to": [concept_for(ctx, x) for x in texts], "cited_sources_examined": False,
                "resolution": u.get("resolution"), "document": ctx.url}
+        if "cited_sources" in u:  # T-1: citing is not attributing (annotation guide §2)
+            att["cited_context"] = sorted({ctx.cites[c] for c in u["cited_sources"] if c in ctx.cites})
+            att["cited_context_unresolved"] = sorted({c for c in u["cited_sources"] if c not in ctx.cites})
+        for k in ("norm_bearer", "states", "relation_candidates", "statement_status"):
+            if u.get(k):
+                att[k] = u[k]
         ctx.summary.setdefault("proposition_attributions", []).append(_propose(store, att, [pid] + prem + att["cites"],
                                                     "the document states this claim, with this attitude and support "
                                                     "(attribution, not adoption)"))

@@ -15,6 +15,7 @@ The service reads entity items only. It never reads documents and never decides 
 """
 import hashlib
 import json
+import re
 
 from .standing import label
 from .store import Item
@@ -122,6 +123,18 @@ def designate(store, term, approximate=True, threshold=0.6):
     return designate_with_basis(store, term, approximate, threshold)[0]
 
 
+def _variants(text):
+    """T-1 (W5): spellings of one term that keep its identity: hyphens and slashes as spaces ("water-vapour",
+    "water vapour"), and "X of Y" as "Y X" ("rate of infiltration", "infiltration rate"). A narrower or broader
+    term is never a variant: it names another concept (S0 3.6)."""
+    t = re.sub(r"[-/]", " ", text)
+    out = {" ".join(t.split())}
+    m = re.match(r"^(.+?) of (.+)$", t)
+    if m and len(m.group(1).split()) <= 3 and len(m.group(2).split()) <= 3:
+        out.add(" ".join((m.group(2) + " " + m.group(1)).split()))
+    return out
+
+
 def designate_with_basis(store, term, approximate=True, threshold=0.6):
     from .knowledge_acquisition import _term
     rows, stop = _index(store)
@@ -134,8 +147,17 @@ def designate_with_basis(store, term, approximate=True, threshold=0.6):
     if exact:
         return exact, "exact"
     loose = {i for i, _, sn in rows if sn == st}
-    if loose or not approximate:
-        return loose, "plural" if loose else None
+    if loose:
+        return loose, "plural"
+    # T-1 (W5): identity-preserving variants of the term and of the held designations
+    def content(v):  # the variant's content words, as the index holds them
+        return _stem_words(" ".join(w for w in v.split() if w not in stop))
+    var = {content(v) for v in _variants(_term(term))}
+    same = {i for i, n, sn in rows if {content(v) for v in _variants(n)} & var}
+    if same:
+        return same, "variant"
+    if not approximate:
+        return set(), None
     q = set(st.split())
     head = st.split()[-1]
     best, ids = 0.0, set()

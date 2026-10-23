@@ -104,7 +104,10 @@ class Reader(unittest.TestCase):
     def test_proposal_and_prohibition(self):
         norms = [x for x in self.u if x["content_kind"] == "norm"]
         self.assertTrue(norms and all(x["document_attitude"] == "proposed" for x in norms))
-        self.assertTrue(any(x["polarity"] == "negated" and "irrigate" in x["subject"].lower() for x in norms))
+        # T-1 (W2 D5): a prohibition is the controlled form `other: prohibits`, affirmed, never a negated norm
+        self.assertTrue(any(x["relation"] == "other:prohibits" and x["polarity"] == "affirmed"
+                            and "irrigate" in x["subject"].lower() for x in norms))
+        self.assertFalse(any(x["polarity"] == "negated" and x["relation"] == "recommends" for x in norms))
 
     def test_unknown_is_kept_as_unknown(self):
         self.assertTrue(any(x["content_kind"] == "unknown" for x in self.u))
