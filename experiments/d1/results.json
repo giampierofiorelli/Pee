@@ -107,7 +107,7 @@
   {
    "case": "Speakers 135",
    "first_loss": "S3",
-   "effect": "reporter with an adverb ('explicitly says') not recognised; cited context is paragraph-level, so the specific source of each claim (R03, R11, R12) is lost",
+   "effect": "a reporter followed by an adverb ('<publisher> explicitly says') is not recognised; cited context is paragraph-level, so the specific source of each claim (R03, R11, R12) is lost",
    "class": "reader limit; limit of the citation-block principle"
   },
   {
@@ -125,13 +125,13 @@
   {
    "case": "Speakers 541",
    "first_loss": "S3",
-   "effect": "coordinated predicates merged into the subject ('ipx7 tests … and does not establish'); standard as source not recognised",
+   "effect": "coordinated predicates merged into the subject (form 'X tests A and does not establish B'); standard as source not recognised",
    "class": "reader limit"
   },
   {
    "case": "Speakers 549",
    "first_loss": "S3, then S6",
-   "effect": "the date condition ('from 18 February 2027') is lost; even if kept, time is not modelled and SD1 would drop it",
+   "effect": "the date condition (form 'from <date>') is lost; even if kept, time is not modelled and SD1 would drop it",
    "class": "reader limit; system limit (temporal applicability)"
   },
   {
@@ -143,13 +143,13 @@
   {
    "case": "Dehumidifiers Q37",
    "first_loss": "S3, visible at S5",
-   "effect": "value and comparative merged into the concept ('less adult wheezing or 0.64 …'); the question term names nothing",
+   "effect": "value and comparative merged into the concept (form 'less <outcome> or <ratio> …'); the question term names nothing",
    "class": "reader limit"
   },
   {
    "case": "Dehumidifiers Q49",
    "first_loss": "evaluation format",
-   "effect": "the question names a qualified quantity ('indoor RH below 60%') as one term; even a correct universe holds no such concept",
+   "effect": "the question names a qualified quantity (form '<quantity> below <bound>') as one term; even a correct universe holds no such concept",
    "class": "evaluation limit EL2"
   }
  ]

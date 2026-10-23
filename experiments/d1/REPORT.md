@@ -144,7 +144,7 @@ and are labelled as such. The authentic cases used the frozen A1 export and one 
 
 | Limit | Authentic | Constructed |
 |---|---|---|
-| A source type is not recognised (a standard, guidance, or "X explicitly says") | Speakers 135, 541; Q30 | — |
+| A source type is not recognised (a standard, guidance, or "<publisher> explicitly says") | Speakers 135, 541; Q30 | — |
 | A value, bound or comparative is merged into a concept | Q37 | K2 (duplicate `has_property`) |
 | Coordinated predicates are merged into the subject | Speakers 541 | — |
 | A temporal condition ("from …") is lost | Speakers 549 | — |
@@ -159,7 +159,7 @@ and are labelled as such. The authentic cases used the frozen A1 export and one 
 | # | Limit |
 |---|---|
 | EL1 | The mechanical scorer is not valid (proxy 0.72). Reference text is hashed (`PROTOCOL.md` §4) |
-| EL2 | The question format can name a qualified quantity or a compound as one term ("indoor RH below 60 %", "odds ratio for adult wheezing"). Even a correct universe holds no such concept. Part of A-1's oracle loss (6 of 45) is the format, not reasoning |
+| EL2 | The question format can name a qualified quantity or a compound as one term (forms "<quantity> below <bound>", "<statistic> for <outcome>"). Even a correct universe holds no such concept. Part of A-1's oracle loss (6 of 45) is the format, not reasoning |
 | EL3 | O-2 and T-1 scored prose only. The tabular losses (SD7) are invisible to every result so far |
 | EL4 | Every measure is fidelity to the document. None measures verification. SD4 shows the system itself does not keep the two apart |
 | EL5 | Rule outputs were never checked against correct knowledge before D-1. The T-1 reasoning gate (§9.2) mixes reader errors with SD1–SD3 |
