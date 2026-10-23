@@ -62,6 +62,13 @@ class Lexicon:
             for s in ss:
                 surf.append((s, u))
         self.surfaces = sorted(surf, key=lambda x: -len(x[0]))
+        folded = {}
+        for s, u in surf:
+            folded.setdefault(s.lower(), set()).add(u)
+        # surfaces of two or more characters whose case-folded form names one unit only: in text rendered in capitals
+        # ("18.5 KG") they are read case-insensitively; a folded form naming several units ("MW": mW or MW) and a
+        # one-letter symbol ("G" is not "g") are never read from capitals
+        self.fold_unique = {f for f, us in folded.items() if len(us) == 1}
 
     def unit_at(self, text, i):
         """Longest unit surface starting at text[i] (one optional space before). Returns (unit, end) or None."""
@@ -69,6 +76,9 @@ class Lexicon:
         for s, u in self.surfaces:
             seg = text[j:j + len(s)]
             ok = seg.lower() == s.lower() if sum(ch.isalpha() for ch in s) >= 4 else seg == s
+            if (not ok and len(s) >= 2 and seg.lower() == s.lower() and s.lower() in self.fold_unique
+                    and not re.search(r"[a-z]", text)):
+                ok = True  # the text is written in capitals throughout
             if not ok:
                 continue
             end = j + len(s)
@@ -135,30 +145,44 @@ def parse_values(text, lex):
             if any(before.endswith(m) for m in L["bound_markers"][kind]):
                 bound = kind
                 break
-        vals.append({"start": n["start"], "end": end, "form": form, "numbers": [g["readings"] for g in group],
-                     "unit": u[0] if u else None, "bound": bound})
+        per = [lex.unit_at(text, g["end"]) for g in group]
+        per_unit = [p[0] if p else None for p in per]
+        unit = u[0] if u else None
+        # a number followed by a word that is not a read unit ("20 KHz") has a unit nobody read: the group's unit is
+        # then unknown, never borrowed from another number
+        unread = any(pu is None and re.match(r" ?[^\W\d_]", text[g["end"]:]) for g, pu in zip(group, per_unit))
+        if unit and len(group) > 1 and unread:
+            unit = None
+        numbers = [g["readings"] for g in group]
+        if unit and any(x and x != unit for x in per_unit):  # e.g. "30 Hz - 20 kHz": convert each to the last unit
+            conv = []
+            for rd, pu in zip(numbers, per_unit):
+                if pu and pu != unit and units.same_dims(units.dims_of(pu), units.dims_of(unit)):
+                    rd = [units.from_si(*units.to_si(x, x, pu), unit)[0] for x in rd]
+                conv.append(rd)
+            numbers = conv
+        vals.append({"start": n["start"], "end": end, "form": form, "numbers": numbers, "unit": unit, "bound": bound})
         i = k + 1
     return vals
 
 
 def is_value_cell(text, lex):
-    """A cell states values when nothing but values, their inner labels ("Label: value") and bound or approximation
-    markers is written in it. A header that mentions a quantity ("level at 3 ft") or a name with digits is not a
-    value cell."""
-    if not cell_segments(text, lex):
-        return False
-    markers = {w for ws in lex.lang["bound_markers"].values() for w in ws}
+    """A cell states values when one of its lines does: a line whose first value comes first (after a bound or
+    approximation marker or a list bullet) or right after a "Label:". A header that mentions a quantity inside words
+    ("level at 3 ft") or a name with digits ("model 7") is not a value cell."""
+    markers = sorted({w for ws in lex.lang["bound_markers"].values() for w in ws}, key=len, reverse=True)
     for line in [x.strip() for x in (text or "").splitlines() if x.strip()]:
-        rest, pos = "", 0
-        for v in parse_values(line, lex):
-            rest += line[pos:v["start"]] + " "
-            pos = v["end"]
-        rest += line[pos:]
-        rest = re.sub(r"[^:\n]*:", " ", rest) if ":" in rest else rest  # inner labels end with a colon
-        words = [w for w in re.findall(r"[a-z]+", rest.lower()) if w not in lex.stop]
-        if any(w not in markers and not any(w in m.split() for m in markers) for w in words):
-            return False
-    return True
+        vs = parse_values(line, lex)
+        if not vs:
+            continue
+        prefix = line[:vs[0]["start"]].strip(" -–—•*").lower()
+        for m in markers:
+            if prefix.endswith(m):
+                prefix = prefix[:-len(m)].strip(" -–—•*")
+                break
+        if prefix == "" or prefix.endswith(":"):
+            return bool(vs[0]["unit"]) or re.fullmatch(r"[\s\d.,%+\-–~≈<>≤≥]+", line) is not None or prefix.endswith(":")
+    return False
 
 
 def cell_segments(text, lex):
@@ -169,8 +193,10 @@ def cell_segments(text, lex):
         if not vs:
             continue
         pos = 0
-        for v in vs:
-            label = line[pos:v["start"]].strip(" :–-")
+        for i, v in enumerate(vs):
+            label = line[pos:v["start"]].strip(" :–-•")
+            if len(vs) == 1:
+                v = dict(v, trail=line[v["end"]:].strip(" ()–-•,;."))  # words after a lone value qualify it
             out.append((label, line, v))
             pos = v["end"]
     return out
@@ -191,6 +217,13 @@ def _norm(s):
     return " ".join(_stem(w) for w in re.sub(r"[^\w%/°²³]+", " ", (s or "").lower()).split())
 
 
+def _name_key(s):
+    """Identity key of a name: case-folded words only. No plural stemming ("DW2450WS" is not "DW2450W") and a "+"
+    attached to a word is kept ("Mod+" is not "Mod"); names are never merged on similar spellings."""
+    s = re.sub(r"[^\w%/°²³+]+", " ", (s or "").lower())
+    return " ".join(re.sub(r"(?<!\w)\+", " ", s).split())
+
+
 def _dims_ok(kind_body, unit):
     if unit is None:
         return True
@@ -203,14 +236,15 @@ def _dims_ok(kind_body, unit):
 def place(segment, lex, names, unit):
     """Slots named by one header segment. Returns a dict: kinds, settings, quantity conditions, entities, units,
     unplaced words. Everything is identified through universe items; unexplained words are returned, not dropped."""
-    out = {"kinds": [], "settings": [], "qconds": {}, "entities": [], "units": [], "extent": [], "unplaced": []}
+    out = {"kinds": [], "settings": [], "qconds": {}, "entities": [], "units": [], "extent": [], "unplaced": [],
+           "values": []}
     text = " " + _norm(segment) + " "
     raw = segment or ""
 
     # an entity named by the document (structured names): the whole segment, or the segment without a parenthesis
     core = re.sub(r"\([^)]*\)", " ", raw).strip()
     for cand in (raw.strip(), core):
-        key = _norm(cand)
+        key = _name_key(cand)
         if key and key in names:
             out["entities"].append(names[key])
             inner = re.findall(r"\(([^)]*)\)", raw) if cand == core else []
@@ -224,6 +258,7 @@ def place(segment, lex, names, unit):
             return out
 
     # quantity conditions: a value whose dimension is a condition concept's, next to one of its markers
+    explained = set()
     for cid, c in lex.qconds.items():
         for v in parse_values(raw, lex):
             if v["unit"] and units.same_dims(units.dims_of(v["unit"]), units.dim(**c["quantity_dims"])):
@@ -231,10 +266,19 @@ def place(segment, lex, names, unit):
                 if any(f" {m} " in f" {around} " for m in c["markers"]):
                     n = v["numbers"][0][0]
                     out["qconds"][cid] = [n, n, v["unit"]]
+                    explained.add(v["start"])
                     span = _norm(raw[v["start"]:v["end"]])
                     text = text.replace(" " + span + " ", " ")
                     for m in c["markers"]:
                         text = text.replace(f" {m} ", " ")
+    # any other value with a unit in a header (a variant such as "500GB", an unexplained condition) is not absorbed:
+    # it stays unplaced, so the content cannot become complete for a thing the header does not name
+    for v in parse_values(raw, lex):
+        if v["unit"] and v["start"] not in explained:
+            span = _norm(raw[v["start"]:v["end"]])
+            text = text.replace(" " + span + " ", " ")
+            out["unplaced"].append(span.replace(" ", ""))
+            out["values"].append(span)
     # settings: a numbered setting word with its number, a sequence of named settings, or one named setting
     for w in lex.setting_numbered:
         for m in re.finditer(rf" ({re.escape(w)}) (\d+|[ivx]+) ", text):
@@ -278,7 +322,7 @@ def place(segment, lex, names, unit):
         out["kinds"] = sorted({k for k, _ in cands})
         for _, tt in cands:
             text = text.replace(tt, " ")
-    out["unplaced"] = [w for w in text.split() if w not in lex.stop and not w.isdigit()]
+    out["unplaced"] += [w for w in text.split() if w not in lex.stop and not w.isdigit()]
     return out
 
 
@@ -309,17 +353,29 @@ def acquire_document(store, doc):
     # entities named by the document's structure (title segment, headings, links, structured data)
     names = {}
     for n in doc["names"]:
-        key = _norm(n["text"])
+        key = _name_key(n["text"])
         if len(key) >= 2 and len(key.split()) <= 8 and any(ch.isdigit() or ch.isupper() for ch in n["text"]):
             names.setdefault(key, f"E:{_h(key)}")
     for t in doc["tables"]:
         for c in t["cells"]:
             for ln in c.get("links", ()):
-                key = _norm(ln)
+                key = _name_key(ln)
                 if len(key) >= 2 and len(key.split()) <= 8 and any(ch.isdigit() or ch.isupper() for ch in ln):
                     names.setdefault(key, f"E:{_h(key)}")
-    subjects = {_norm(n["text"]) for n in doc["names"] if n["source"] in ("json-ld-product", "microdata", "title_segment")}
-    subject = names.get(next(iter(subjects))) if len(subjects) == 1 else None
+    # the document's subject: the structured-data product name if there is exactly one, else a unique title segment
+    # (a title segment is only a candidate: it becomes the subject when a table header of the same document names it,
+    # so that an article title is never taken for a thing)
+    subject = None
+    headers = {_name_key(re.sub(r"\([^)]*\)", " ", c["text"])) for t in doc["tables"] for c in t["cells"]}
+    for sources, needs_header in ((("json-ld-product",), False), (("title_segment",), True)):
+        cands = {_name_key(n["text"]) for n in doc["names"] if n["source"] in sources}
+        if needs_header:
+            cands = {k for k in cands if k in headers}
+        if len(cands) == 1:
+            key = next(iter(cands))
+            names.setdefault(key, f"E:{_h(key)}")
+            subject = names[key]
+            break
 
     def entity(eid):
         if not store.has(eid):
@@ -352,10 +408,19 @@ def acquire_document(store, doc):
         # header rows: the leading rows with no value cell, unless their first cell is a "Label:" key (a body row of
         # a key-value table); header columns: the cells left of each row's first value
         nrows = max((r0 for r0, _ in cells), default=-1) + 1
+        flagged = any(c.get("header") for c in t["cells"])
         header_rows = []
         for r0 in range(nrows):
             row = [cells[k] for k in sorted(cells) if k[0] == r0]
-            if any(isval[(r0, x["col"])] for x in row) or (row and row[0]["text"].strip().endswith(":")):
+            if flagged:
+                # the source marks header cells: a leading row heads the columns when every non-empty cell of it is
+                # marked, even if it holds a value ("500GB" names a variant); a body row whose values were not read
+                # is not a header
+                if not row or not all(x.get("header") for x in row if x["text"].strip()):
+                    break
+                for x in row:
+                    isval[(r0, x["col"])] = False
+            elif any(isval[(r0, x["col"])] for x in row) or (row and row[0]["text"].strip().endswith(":")):
                 break
             header_rows.append(r0)
         first_row = {c0: (max(header_rows) + 1 if header_rows else 0) for _, c0 in cells}
@@ -364,6 +429,13 @@ def acquire_document(store, doc):
             if v0:
                 first_col[r0] = min(first_col.get(r0, c0), c0)
         tmethods = [m for i, m in methods.items() if i in (t.get("sectionPath") or [])]
+        # things the table names: a cell whose text, a line of it, or a link is a structured name
+        table_names = set()
+        for c in t["cells"]:
+            for x in [c["text"]] + c["text"].splitlines() + list(c.get("links", ())):
+                k = _name_key(re.sub(r"\([^)]*\)", " ", x))
+                if k in names:
+                    table_names.add(names[k])
         for (r, c), cell in sorted(cells.items()):
             if not isval[(r, c)]:
                 continue
@@ -390,14 +462,39 @@ def acquire_document(store, doc):
                                        "source_type_operator_asserted": doc.get("sourceTypeOperatorAsserted")},
                                [rid], "the source reports this record (attribution, not adoption)")
                 _interpret(store, lex, rid, rec, v, label, colpath, rowpath, names, subject, entity, aid, tmethods,
-                           summary)
+                           summary, table_names)
     return summary
 
 
-def _interpret(store, lex, rid, rec, v, label, colpath, rowpath, names, subject, entity, aid, tmethods, summary):
+def _interpret(store, lex, rid, rec, v, label, colpath, rowpath, names, subject, entity, aid, tmethods, summary,
+               others_named=frozenset()):
     unit = v["unit"]
-    segs = [s for s in colpath + rowpath + ([label] if label else []) if s]
+    segs = [s for s in colpath + rowpath + ([label] if label else []) + ([v["trail"]] if v.get("trail") else []) if s]
     placed = [place(s, lex, names, unit) for s in segs]
+    # a header that fills no slot, has the shape of a name, and heads values whose other axis names a quantity kind,
+    # names their bearer (one axis bears the things, the other the quantity); if both axes carry such names, the
+    # bearer stays undecided
+    edit = {_norm(w) for w in lex.lang.get("editorial_words", ())}
+    edit_keys = {_name_key(w) for w in lex.lang.get("editorial_words", ())}
+
+    def name_shaped(seg, p):
+        words = [w for w in _norm(seg).split() if w not in edit]
+        mixed = any(re.search(r"[a-z]", w) and re.search(r"\d", w) for w in words)
+        return (not p["kinds"] and not p["settings"] and not p["qconds"] and not p["entities"] and not p["values"]
+                and words
+                and any(ch.isupper() or ch.isdigit() for ch in seg) and len(words) <= 8
+                and (len(words) >= 2 or mixed))
+    col_n = [(s, p) for s, p in zip(colpath, placed[:len(colpath)]) if name_shaped(s, p)]
+    row_n = [(s, p) for s, p in zip(rowpath, placed[len(colpath):len(colpath) + len(rowpath)]) if name_shaped(s, p)]
+    col_k = any(p["kinds"] for p in placed[:len(colpath)])
+    row_k = any(p["kinds"] for p in placed[len(colpath):len(colpath) + len(rowpath)])
+    for axis, other_has_kind in ((col_n, row_k), (row_n, col_k)):
+        if len(axis) == 1 and other_has_kind and not (col_n and row_n):
+            seg, p = axis[0]
+            key = " ".join(w for w in _name_key(seg).split() if w not in edit_keys)
+            names.setdefault(key, f"E:{_h(key)}")
+            p["entities"].append(names[key])
+            p["unplaced"], p["extent"], p["units"] = [], [], []  # the whole header is a name ("Soundbar Max")
     if unit is None:
         hu = sorted({u for p in placed for u in p["units"]})
         unit = hu[0] if len(hu) == 1 else None
@@ -420,9 +517,14 @@ def _interpret(store, lex, rid, rec, v, label, colpath, rowpath, names, subject,
         incomplete.append("several bearers named")
     if len(extents) > 1:
         incomplete.append("both ends of an extent named")
-    bearer = ents[0] if len(ents) == 1 else subject
+    # the subject is a default bearer only in a table that names no other thing (a comparison table's rows are
+    # never the subject's by default)
+    default = subject if not (others_named - {subject}) else None
+    bearer = ents[0] if len(ents) == 1 else default
     if bearer is None:
         incomplete.append("bearer not established")
+    if v["form"] == "range" and any(a[0] > b[0] for a, b in [v["numbers"][:2]] if len(v["numbers"]) == 2):
+        incomplete.append("range bounds out of order")
     if unit is not None and units.SCALE.get(unit) != "level" and any(lex.kinds[k].get("scale") == "level" for k in kinds):
         incomplete.append("level kind without a level unit")
     if bearer:

@@ -63,6 +63,9 @@ def ask(st, qid, roles, q, conditions=None, definition=None, givens=()):
     return contract.inquire(st, f"I:{qid}")
 
 
+PRODUCT_NAME = (("Alpha One", "json-ld-product"),)  # structured product data names the subject
+
+
 # a table with settings in the column headers and a measuring distance in the row label, and one with products named
 # by links in rows and a setting in a column header
 SETTINGS = [cell(0, 0, ""), cell(0, 1, "SETTING 1"), cell(0, 2, "SETTING 2"),
@@ -103,16 +106,74 @@ class Acquisition(unittest.TestCase):
         st, summ = store_with(doc([[cell(0, 0, "MODEL"), cell(0, 1, "POWER IN WATTS"),
                                     cell(1, 0, "Gamma Q-9"), cell(1, 1, "50 W")]]))
         (c,) = [st.get(x) for x in summ["contents"]]
-        self.assertIn("incomplete", c.body)  # the row names something the document does not name: not the subject
+        # the row header names the bearer (the other axis names the quantity): the value is never the subject's
+        self.assertNotIn("incomplete", c.body)
+        self.assertEqual(st.get(c.body["bearer"]).body["label"], "gamma q 9")
+
+    def test_names_on_both_axes_leave_the_bearer_undecided(self):
+        st, summ = store_with(doc([[cell(0, 0, ""), cell(0, 1, "Scene One"), cell(1, 0, "Gamma Q-9"),
+                                    cell(1, 1, "50 W")]]))
+        (c,) = [st.get(x) for x in summ["contents"]]
+        self.assertIn("incomplete", c.body)
 
     def test_thousands_notation_gives_alternatives(self):
-        st, summ = store_with(doc([[cell(0, 0, "Battery capacity:"), cell(0, 1, "5.200 mAh")]]))
+        st, summ = store_with(doc([[cell(0, 0, "Battery capacity:"), cell(0, 1, "5.200 mAh")]], names=PRODUCT_NAME))
         cs = complete(st, summ)
         self.assertEqual(sorted(c.body["lo"] for c in cs), [5.2, 5200.0])
         self.assertEqual(len({c.body["alternative_of"] for c in cs}), 1)
 
+    def test_title_alone_does_not_name_the_subject_of_a_key_value_table(self):
+        # an article title is not corroborated as the subject unless a table header names it
+        st, summ = store_with(doc([[cell(0, 0, "Battery capacity:"), cell(0, 1, "5200 mAh")]]))
+        (c,) = [st.get(x) for x in summ["contents"]]
+        self.assertIn("incomplete", c.body)
+
+    def test_comparison_table_rows_are_never_the_subject_by_default(self):
+        # rows name other things (one per row, right of a rank cell): the subject is not their default bearer
+        rows = [cell(0, 0, "Rank"), cell(0, 1, "Model"), cell(0, 2, "Weight"),
+                cell(1, 0, "1."), cell(1, 1, "Alpha One", ["Alpha One"]), cell(1, 2, "1.1 kg"),
+                cell(2, 0, "2."), cell(2, 1, "Beta Two X-7", ["Beta Two X-7"]), cell(2, 2, "1.4 kg")]
+        for c in rows[:3]:
+            c["header"] = True
+        st, summ = store_with(doc([rows], names=PRODUCT_NAME))
+        self.assertEqual(complete(st, summ), [])
+
+    def test_an_unread_unit_word_is_never_replaced_by_another_numbers_unit(self):
+        st, summ = store_with(doc([[cell(0, 0, "Frequency:"), cell(0, 1, "38Hz – 20 QHz")]], names=PRODUCT_NAME))
+        self.assertEqual(complete(st, summ), [])  # never 38 Hz to 20 Hz
+
+    def test_range_with_bounds_out_of_order_is_incomplete(self):
+        st, summ = store_with(doc([[cell(0, 0, "Power:"), cell(0, 1, "60 – 40 W")]], names=PRODUCT_NAME))
+        (c,) = [st.get(x) for x in summ["contents"]]
+        self.assertIn("range bounds out of order", c.body["incomplete"])
+
+    def test_names_keep_their_identity(self):
+        # no plural stemming of model codes, and "+" is part of a name
+        k = acquisition._name_key
+        self.assertEqual(k("Cove DW2450WS"), "cove dw2450ws")
+        self.assertNotEqual(k("Oransi Mod+"), k("Oransi Mod"))
+        self.assertEqual(k("Heated rinse + fan"), "heated rinse fan")
+
+    def test_header_flags_decide_header_rows(self):
+        # an unread body row under an empty flagged header row is not a column header
+        t = [cell(0, 0, ""), cell(0, 1, ""), cell(1, 0, "Size"), cell(1, 1, "1 x 2 x 3 in"),
+             cell(2, 0, "Weight"), cell(2, 1, "5 kg")]
+        t[0]["header"] = t[1]["header"] = True
+        st, summ = store_with(doc([t], names=PRODUCT_NAME))
+        (c,) = [st.get(x) for x in summ["contents"] if st.get(st.get(x).body["interprets"]).body["row"] == 2]
+        self.assertEqual(list(st.get(c.body["interprets"]).body["column_headers"]), [])
+        self.assertNotIn("incomplete", c.body)
+
+    def test_a_value_in_a_header_is_never_absorbed(self):
+        # a variant column ("500GB") must not let the value become the subject's
+        t = [cell(0, 0, "Product"), cell(0, 1, "500GB"), cell(1, 0, "Power"), cell(1, 1, "5 W")]
+        t[0]["header"] = t[1]["header"] = True
+        st, summ = store_with(doc([t], names=PRODUCT_NAME))
+        (c,) = [st.get(x) for x in summ["contents"]]
+        self.assertIn("incomplete", c.body)
+
     def test_list_paired_with_named_settings(self):
-        st, summ = store_with(doc([[cell(0, 0, "Noise level (low – high):"), cell(0, 1, "40 – 60 dBA")]]))
+        st, summ = store_with(doc([[cell(0, 0, "Noise level (low – high):"), cell(0, 1, "40 – 60 dBA")]], names=PRODUCT_NAME))
         got = {(c.body["lo"], c.body["conditions"][S]) for c in complete(st, summ)}
         self.assertEqual(got, {(40.0, "low"), (60.0, "high")})
 
@@ -161,7 +222,7 @@ class Rules(unittest.TestCase):
         self.assertNotIn("stated requirement", contract.premise_bases(self.st, r.grounds))
 
     def test_alternative_readings_must_agree(self):
-        st, _ = store_with(doc([[cell(0, 0, "Battery capacity:"), cell(0, 1, "5.200 mAh")]]))
+        st, _ = store_with(doc([[cell(0, 0, "Battery capacity:"), cell(0, 1, "5.200 mAh")]], names=PRODUCT_NAME))
         x = ent(st, "alpha one")
         r = ask(st, "q7", {"x": x}, {"role": "x"}, {}, {"kind": "Q:electric_charge", "op": ">=", "bound": 5000, "unit": "mAh"})
         self.assertEqual(r.verdict, "undetermined")
@@ -170,7 +231,7 @@ class Rules(unittest.TestCase):
         self.assertEqual(r.verdict, "applies")  # every reading meets this bound
 
     def test_extent_end_must_match(self):
-        st, _ = store_with(doc([[cell(0, 0, "Maximum power:"), cell(0, 1, "50 W")]]))
+        st, _ = store_with(doc([[cell(0, 0, "Maximum power:"), cell(0, 1, "50 W")]], names=PRODUCT_NAME))
         x = ent(st, "alpha one")
         r = ask(st, "q9", {"x": x}, {"role": "x"}, {}, {"kind": "Q:electric_power", "op": "<=", "bound": 60, "unit": "W"})
         self.assertEqual(r.verdict, "undetermined")

@@ -18,6 +18,9 @@ Read `MISSION.md` first. It is the only brief for this project.
 - **V1** (owner, 2026-10-23): read-only joint verification of universe, representation and rules on branch
   `claude/v1-architecture-review`; report `reviews/V1-joint-architecture-verification.md`. No code, S0 or Crawler
   change; X1 and X2 unchanged. Stop after V1.
+- **I-1** (owner, 2026-10-23): table structure → universe items → MS1 rules, on branch `claude/i1-table-knowledge`;
+  criteria fixed before code in `experiments/i1/REPORT.md` sections 0–3. Crawler read-only; no S0 change, no MS2, no
+  migration; X1, X2 and V1 unchanged. Stopped on its stop criterion 5 (report section 4). Stop after I-1.
 - Use the skill `.claude/skills/pee-scientific-learning/` for all S1 work.
 
 ## Independence
