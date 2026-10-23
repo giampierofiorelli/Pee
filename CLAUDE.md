@@ -15,6 +15,9 @@ Read `MISSION.md` first. It is the only brief for this project.
   without modifying it and use a **copy** of its store snapshot. No migration, and no change to Crawler.
 - **X2** (owner, 2026-10-21): one bounded experiment on branch `claude/x2-structural-reuse`, preregistered in
   `experiments/x2/PREREGISTRATION.md`. Same Crawler access rules as X1. `experiments/x1` stays unchanged. Stop after X2.
+- **V1** (owner, 2026-10-23): read-only joint verification of universe, representation and rules on branch
+  `claude/v1-architecture-review`; report `reviews/V1-joint-architecture-verification.md`. No code, S0 or Crawler
+  change; X1 and X2 unchanged. Stop after V1.
 - Use the skill `.claude/skills/pee-scientific-learning/` for all S1 work.
 
 ## Independence
