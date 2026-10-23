@@ -1,0 +1,22 @@
+{
+ "schema": "pee.c1.stage-v.v1",
+ "date": "2026-10-23",
+ "note": "Stage V: verification from primary sources (Hugging Face model cards and API, PyPI, the llama-cpp-python wheel index); nothing installed. Licence and parameter counts from the model cards' metadata.",
+ "candidates": {
+  "microsoft/Phi-4-mini-instruct": {"licence": "mit", "params": 3836021760, "gated": false, "published_scores": "BigBench Hard 0-shot CoT 70.4 (highest of the similar-size models in its card); GSM8K 88.6; vendor-reported"},
+  "HuggingFaceTB/SmolLM3-3B": {"licence": "apache-2.0", "params": 3075098624, "gated": false, "published_scores": "IFEval 76.7 (no-think), vendor-reported"},
+  "ibm-granite/granite-3.3-2b-instruct": {"licence": "apache-2.0", "params": 2533539840, "gated": false},
+  "ibm-granite/granite-3.3-8b-instruct": {"licence": "apache-2.0", "params": 8170864640, "gated": false, "note": "8 B is slow on 4 CPUs"},
+  "allenai/OLMo-2-1124-7B-Instruct": {"licence": "apache-2.0", "params": 7298617344, "gated": false, "note": "7 B is slow on 4 CPUs"},
+  "fastino/gliner2-large-v1": {"licence": "apache-2.0", "params": 486444053, "note": "schema extractor with custom relation types; no relation benchmark found; not chosen: it does not read claim types"}
+ },
+ "chosen": {
+  "model": "microsoft/Phi-4-mini-instruct",
+  "why": "permissive licence (MIT); 3.8 B fits 4 CPUs at 4-bit (~2.5 GB file, ~4 GB memory expected); the strongest published reasoning score among similar-size candidates (relation reading needs comprehension). Alternative if it fails: SmolLM3-3B.",
+  "weights": {"repository": "unsloth/Phi-4-mini-instruct-GGUF", "file": "Phi-4-mini-instruct-Q4_K_M.gguf", "bytes": 2491874272, "sha256_prefix": "88c002299140", "note": "third-party GGUF conversion of the MIT weights; no official Microsoft GGUF exists (the microsoft/...-gguf repository is not public)"},
+  "runtime": {"package": "llama-cpp-python", "version": "0.3.19", "licence": "MIT", "wheel": "prebuilt CPU wheel cp313 linux_x86_64 from the project's own index (abetlen.github.io)"}
+ },
+ "constraints_checked": {"licence_permissive": true, "memory_under_8GB_at_4bit": true, "offline_after_download": true, "constrained_json_output": "llama.cpp grammars / JSON schema", "paid_service": false},
+ "environment": {"cpus": 4, "memory_gb": 15, "gpu": false, "github_release_pages": "403 through the proxy (not bypassed); not needed"},
+ "outcome": "pass"
+}
