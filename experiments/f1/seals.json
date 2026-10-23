@@ -1,0 +1,15 @@
+{
+ "note": "Sealed before any F-1 acquisition code existed (Q, QR) or before any run (annotations). Files are private; only hashes are public.",
+ "Q": {
+  "reference": "2271d21b223cd8065f95c82ad6f7ada78f47ca87888733e43e27272064a52ed8",
+  "blind_answers": "e1e8a535ef909807240f1516d8c3613e7bfc72092644f8ac09c89224a9e795b8",
+  "items": 60,
+  "agreement": "60/60 author vs blind answerer (Claude agents; not independent validation)"
+ },
+ "QR": {
+  "reference": "01823285a96270e4e8dbaffc6aba41aa505b30efbb2ff50672b7ec4cf40d358c",
+  "blind_answers": "7b4456e2718d17035d6cfa56e10b168b73b63e01855eda085de3463cdf369d7d",
+  "items": 30,
+  "agreement": "30/30"
+ }
+}
