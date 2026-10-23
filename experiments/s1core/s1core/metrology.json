@@ -1,0 +1,980 @@
+{
+ "about": "The single metrology of the universe (S0 4.7; S1 plan 3.1: metrology is a frame held as knowledge). Every service reads it through s1core.units. I-1 moved the earlier unit table out of code without changing any of its values, and added units, two base dimensions (electric current A, data bit) and luminous intensity (cd), and level scales with their reference. 'surfaces' are lexical anchors of each unit (D4, lexical). Matching rule for surfaces: a surface of four or more letters matches in any letter case; a shorter symbol matches only as written (m and M, B and b, s and S differ).",
+ "provenance": {
+  "source": "SI Brochure 9th ed. (BIPM 2019) for SI units and prefixes; international yard and pound agreement (1959) for ft, in, lb, oz; IEC 80000-13 for data units; IEC 61672-1 for frequency weightings A and C",
+  "holder": "developer",
+  "basis": "definition"
+ },
+ "base": [
+  "m",
+  "kg",
+  "s",
+  "K",
+  "mol",
+  "A",
+  "bit",
+  "cd"
+ ],
+ "dimension_symbols": {
+  "L": "m",
+  "M": "kg",
+  "T": "s",
+  "K": "K",
+  "N": "mol",
+  "I": "A",
+  "B": "bit",
+  "J": "cd"
+ },
+ "units": {
+  "1": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {},
+   "scale": "absolute",
+   "surfaces": []
+  },
+  "m": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "L": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "m",
+    "metre",
+    "metres",
+    "meter",
+    "meters"
+   ]
+  },
+  "cm": {
+   "factor": 0.01,
+   "offset": 0.0,
+   "dims": {
+    "L": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "cm",
+    "centimetre",
+    "centimetres",
+    "centimeter",
+    "centimeters"
+   ]
+  },
+  "mm": {
+   "factor": 0.001,
+   "offset": 0.0,
+   "dims": {
+    "L": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "mm",
+    "millimetre",
+    "millimetres",
+    "millimeter",
+    "millimeters"
+   ]
+  },
+  "um": {
+   "factor": 1e-06,
+   "offset": 0.0,
+   "dims": {
+    "L": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "um",
+    "µm",
+    "micron",
+    "microns",
+    "micrometre",
+    "micrometer"
+   ]
+  },
+  "km": {
+   "factor": 1000.0,
+   "offset": 0.0,
+   "dims": {
+    "L": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "km",
+    "kilometre",
+    "kilometres",
+    "kilometer",
+    "kilometers"
+   ]
+  },
+  "s": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "T": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "s",
+    "sec",
+    "secs",
+    "second",
+    "seconds"
+   ]
+  },
+  "min": {
+   "factor": 60.0,
+   "offset": 0.0,
+   "dims": {
+    "T": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "min",
+    "mins",
+    "minute",
+    "minutes"
+   ]
+  },
+  "h": {
+   "factor": 3600.0,
+   "offset": 0.0,
+   "dims": {
+    "T": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "h",
+    "hr",
+    "hrs",
+    "hour",
+    "hours"
+   ]
+  },
+  "d": {
+   "factor": 86400.0,
+   "offset": 0.0,
+   "dims": {
+    "T": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "day",
+    "days"
+   ]
+  },
+  "a": {
+   "factor": 31557600.0,
+   "offset": 0.0,
+   "dims": {
+    "T": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "year",
+    "years",
+    "yr",
+    "yrs"
+   ]
+  },
+  "kg": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "M": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "kg",
+    "kilogram",
+    "kilograms",
+    "kilo",
+    "kilos"
+   ]
+  },
+  "g": {
+   "factor": 0.001,
+   "offset": 0.0,
+   "dims": {
+    "M": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "g",
+    "gram",
+    "grams"
+   ]
+  },
+  "mg": {
+   "factor": 1e-06,
+   "offset": 0.0,
+   "dims": {
+    "M": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "mg",
+    "milligram",
+    "milligrams"
+   ]
+  },
+  "K": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "K": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "K",
+    "kelvin"
+   ]
+  },
+  "degC": {
+   "factor": 1.0,
+   "offset": 273.15,
+   "dims": {
+    "K": 1.0
+   },
+   "scale": "interval",
+   "surfaces": [
+    "°C",
+    "degC",
+    "℃",
+    "celsius",
+    "degrees celsius"
+   ]
+  },
+  "Pa": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "L": -1.0,
+    "M": 1.0,
+    "T": -2.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "Pa",
+    "pascal",
+    "pascals"
+   ]
+  },
+  "kPa": {
+   "factor": 1000.0,
+   "offset": 0.0,
+   "dims": {
+    "L": -1.0,
+    "M": 1.0,
+    "T": -2.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "kPa"
+   ]
+  },
+  "Pa s": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "L": -1.0,
+    "M": 1.0,
+    "T": -1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "Pa s",
+    "Pa·s"
+   ]
+  },
+  "mPa s": {
+   "factor": 0.001,
+   "offset": 0.0,
+   "dims": {
+    "L": -1.0,
+    "M": 1.0,
+    "T": -1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "mPa s",
+    "mPa·s"
+   ]
+  },
+  "kg/m3": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "L": -3.0,
+    "M": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "kg/m3",
+    "kg/m³"
+   ]
+  },
+  "g/cm3": {
+   "factor": 1000.0,
+   "offset": 0.0,
+   "dims": {
+    "L": -3.0,
+    "M": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "g/cm3",
+    "g/cm³"
+   ]
+  },
+  "m/s": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "L": 1.0,
+    "T": -1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "m/s"
+   ]
+  },
+  "mm/s": {
+   "factor": 0.001,
+   "offset": 0.0,
+   "dims": {
+    "L": 1.0,
+    "T": -1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "mm/s"
+   ]
+  },
+  "m/s2": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "L": 1.0,
+    "T": -2.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "m/s2",
+    "m/s²"
+   ]
+  },
+  "1/s": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "T": -1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "1/s",
+    "/s"
+   ]
+  },
+  "1/h": {
+   "factor": 0.0002777777777777778,
+   "offset": 0.0,
+   "dims": {
+    "T": -1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "1/h",
+    "/h",
+    "per hour"
+   ]
+  },
+  "1/a": {
+   "factor": 3.168808781402895e-08,
+   "offset": 0.0,
+   "dims": {
+    "T": -1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "1/a",
+    "per year"
+   ]
+  },
+  "mol/L": {
+   "factor": 1000.0,
+   "offset": 0.0,
+   "dims": {
+    "L": -3.0,
+    "N": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "mol/L",
+    "mol/l"
+   ]
+  },
+  "mg/L": {
+   "factor": 0.001,
+   "offset": 0.0,
+   "dims": {
+    "L": -3.0,
+    "M": 1.0
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "mg/L"
+   ]
+  },
+  "month": {
+   "factor": 2629800.0,
+   "offset": 0.0,
+   "dims": {
+    "T": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "month",
+    "months",
+    "mo"
+   ]
+  },
+  "ms": {
+   "factor": 0.001,
+   "offset": 0.0,
+   "dims": {
+    "T": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "ms",
+    "millisecond",
+    "milliseconds"
+   ]
+  },
+  "W": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "L": 2,
+    "M": 1,
+    "T": -3
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "W",
+    "watt",
+    "watts"
+   ]
+  },
+  "kW": {
+   "factor": 1000.0,
+   "offset": 0.0,
+   "dims": {
+    "L": 2,
+    "M": 1,
+    "T": -3
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "kW",
+    "kilowatt",
+    "kilowatts"
+   ]
+  },
+  "mW": {
+   "factor": 0.001,
+   "offset": 0.0,
+   "dims": {
+    "L": 2,
+    "M": 1,
+    "T": -3
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "mW"
+   ]
+  },
+  "J": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "L": 2,
+    "M": 1,
+    "T": -2
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "J",
+    "joule",
+    "joules"
+   ]
+  },
+  "Wh": {
+   "factor": 3600.0,
+   "offset": 0.0,
+   "dims": {
+    "L": 2,
+    "M": 1,
+    "T": -2
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "Wh",
+    "watt-hour",
+    "watt-hours",
+    "watt hours"
+   ]
+  },
+  "kWh": {
+   "factor": 3600000.0,
+   "offset": 0.0,
+   "dims": {
+    "L": 2,
+    "M": 1,
+    "T": -2
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "kWh",
+    "kilowatt-hour",
+    "kilowatt-hours"
+   ]
+  },
+  "V": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "L": 2,
+    "M": 1,
+    "T": -3,
+    "I": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "V",
+    "volt",
+    "volts"
+   ]
+  },
+  "A": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "I": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "A",
+    "amp",
+    "amps",
+    "ampere",
+    "amperes"
+   ]
+  },
+  "mA": {
+   "factor": 0.001,
+   "offset": 0.0,
+   "dims": {
+    "I": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "mA"
+   ]
+  },
+  "mAh": {
+   "factor": 3.6,
+   "offset": 0.0,
+   "dims": {
+    "I": 1,
+    "T": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "mAh"
+   ]
+  },
+  "Ah": {
+   "factor": 3600.0,
+   "offset": 0.0,
+   "dims": {
+    "I": 1,
+    "T": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "Ah"
+   ]
+  },
+  "Hz": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "Hz",
+    "hertz"
+   ]
+  },
+  "kHz": {
+   "factor": 1000.0,
+   "offset": 0.0,
+   "dims": {
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "kHz"
+   ]
+  },
+  "rpm": {
+   "factor": 0.016666666666666666,
+   "offset": 0.0,
+   "dims": {
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "rpm",
+    "RPM",
+    "r/min"
+   ]
+  },
+  "in": {
+   "factor": 0.0254,
+   "offset": 0.0,
+   "dims": {
+    "L": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "in",
+    "inch",
+    "inches"
+   ]
+  },
+  "ft": {
+   "factor": 0.3048,
+   "offset": 0.0,
+   "dims": {
+    "L": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "ft",
+    "foot",
+    "feet"
+   ]
+  },
+  "lb": {
+   "factor": 0.45359237,
+   "offset": 0.0,
+   "dims": {
+    "M": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "lb",
+    "lbs",
+    "pound",
+    "pounds"
+   ]
+  },
+  "oz": {
+   "factor": 0.028349523125,
+   "offset": 0.0,
+   "dims": {
+    "M": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "oz",
+    "ounce",
+    "ounces"
+   ]
+  },
+  "m2": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "L": 2
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "m2",
+    "m²",
+    "sq m",
+    "square metres",
+    "square meters"
+   ]
+  },
+  "sq ft": {
+   "factor": 0.09290304,
+   "offset": 0.0,
+   "dims": {
+    "L": 2
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "sq ft",
+    "sq. ft.",
+    "sq. ft",
+    "sqft",
+    "ft2",
+    "ft²",
+    "square feet"
+   ]
+  },
+  "L": {
+   "factor": 0.001,
+   "offset": 0.0,
+   "dims": {
+    "L": 3
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "L",
+    "l",
+    "litre",
+    "litres",
+    "liter",
+    "liters"
+   ]
+  },
+  "mL": {
+   "factor": 1e-06,
+   "offset": 0.0,
+   "dims": {
+    "L": 3
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "mL",
+    "ml",
+    "millilitre",
+    "millilitres",
+    "milliliter",
+    "milliliters"
+   ]
+  },
+  "m3/h": {
+   "factor": 0.0002777777777777778,
+   "offset": 0.0,
+   "dims": {
+    "L": 3,
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "m3/h",
+    "m³/h",
+    "cubic metres per hour"
+   ]
+  },
+  "cfm": {
+   "factor": 0.0004719474432,
+   "offset": 0.0,
+   "dims": {
+    "L": 3,
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "cfm",
+    "CFM",
+    "cubic feet per minute"
+   ]
+  },
+  "bit": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "B": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "bit",
+    "bits"
+   ]
+  },
+  "B": {
+   "factor": 8.0,
+   "offset": 0.0,
+   "dims": {
+    "B": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "B",
+    "byte",
+    "bytes"
+   ]
+  },
+  "kB": {
+   "factor": 8000.0,
+   "offset": 0.0,
+   "dims": {
+    "B": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "kB",
+    "KB"
+   ]
+  },
+  "MB": {
+   "factor": 8000000.0,
+   "offset": 0.0,
+   "dims": {
+    "B": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "MB"
+   ]
+  },
+  "GB": {
+   "factor": 8000000000.0,
+   "offset": 0.0,
+   "dims": {
+    "B": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "GB"
+   ]
+  },
+  "TB": {
+   "factor": 8000000000000.0,
+   "offset": 0.0,
+   "dims": {
+    "B": 1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "TB"
+   ]
+  },
+  "MB/s": {
+   "factor": 8000000.0,
+   "offset": 0.0,
+   "dims": {
+    "B": 1,
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "MB/s",
+    "MBps"
+   ]
+  },
+  "GB/s": {
+   "factor": 8000000000.0,
+   "offset": 0.0,
+   "dims": {
+    "B": 1,
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "GB/s",
+    "GBps"
+   ]
+  },
+  "Mbit/s": {
+   "factor": 1000000.0,
+   "offset": 0.0,
+   "dims": {
+    "B": 1,
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "Mbps",
+    "Mbit/s",
+    "Mb/s"
+   ]
+  },
+  "Gbit/s": {
+   "factor": 1000000000.0,
+   "offset": 0.0,
+   "dims": {
+    "B": 1,
+    "T": -1
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "Gbps",
+    "Gbit/s",
+    "Gb/s"
+   ]
+  },
+  "cd/m2": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {
+    "J": 1,
+    "L": -2
+   },
+   "scale": "ratio",
+   "surfaces": [
+    "cd/m2",
+    "cd/m²",
+    "nit",
+    "nits"
+   ]
+  },
+  "%": {
+   "factor": 0.01,
+   "offset": 0.0,
+   "dims": {},
+   "scale": "ratio",
+   "surfaces": [
+    "%",
+    "percent",
+    "per cent"
+   ]
+  },
+  "dB": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {},
+   "scale": "level",
+   "reference": null,
+   "surfaces": [
+    "dB",
+    "decibel",
+    "decibels"
+   ]
+  },
+  "dBA": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {},
+   "scale": "level",
+   "reference": "A-weighted",
+   "surfaces": [
+    "dBA",
+    "dB(A)",
+    "dB A",
+    "dBa"
+   ]
+  },
+  "dBC": {
+   "factor": 1.0,
+   "offset": 0.0,
+   "dims": {},
+   "scale": "level",
+   "reference": "C-weighted",
+   "surfaces": [
+    "dBC",
+    "dB(C)"
+   ]
+  }
+ }
+}

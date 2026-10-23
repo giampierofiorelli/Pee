@@ -1,0 +1,454 @@
+{
+ "about": "General universe knowledge loaded as store items: quantity kinds with dimensions, scale and lexical anchors (D2, D4), condition concepts and a method concept. Domain-free. Terms are lexical anchors only (the weakest anchor, never sufficient for identity, D4); which kind a term names is decided by the value's unit dimension. A term names a kind only for its exact meaning: generic kinds keep only generic terms, and a header whose words are not all explained leaves the content incomplete.",
+ "provenance": {
+  "source": "general metrology and scientific usage (JCGM 200:2012; SI Brochure 2019; S0 4.6, 4.7)",
+  "holder": "developer",
+  "basis": "definition"
+ },
+ "items": [
+  {
+   "id": "Q:duration",
+   "kind": "quantity_kind",
+   "label": "duration (process not stated)",
+   "dims": {
+    "T": 1
+   },
+   "terms": [
+    "time",
+    "duration"
+   ]
+  },
+  {
+   "id": "Q:warranty_period",
+   "kind": "quantity_kind",
+   "label": "warranty period",
+   "dims": {
+    "T": 1
+   },
+   "terms": [
+    "warranty",
+    "guarantee",
+    "warranty period",
+    "manufacturer's warranty",
+    "manufacturer warranty"
+   ]
+  },
+  {
+   "id": "Q:service_life",
+   "kind": "quantity_kind",
+   "label": "service life of the bearer",
+   "dims": {
+    "T": 1
+   },
+   "terms": [
+    "service life",
+    "lifespan",
+    "life span",
+    "life expectancy",
+    "lifetime"
+   ]
+  },
+  {
+   "id": "Q:operating_time_per_charge",
+   "kind": "quantity_kind",
+   "label": "operating time on one battery charge",
+   "dims": {
+    "T": 1
+   },
+   "terms": [
+    "battery life",
+    "runtime",
+    "run time",
+    "operating time",
+    "playtime",
+    "play time"
+   ]
+  },
+  {
+   "id": "Q:mass",
+   "kind": "quantity_kind",
+   "label": "mass",
+   "dims": {
+    "M": 1
+   },
+   "terms": [
+    "weight",
+    "mass"
+   ]
+  },
+  {
+   "id": "Q:length",
+   "kind": "quantity_kind",
+   "label": "length (axis not stated)",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "length"
+   ]
+  },
+  {
+   "id": "Q:width",
+   "kind": "quantity_kind",
+   "label": "width",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "width",
+    "wide"
+   ],
+   "axis": "width"
+  },
+  {
+   "id": "Q:height",
+   "kind": "quantity_kind",
+   "label": "height",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "height",
+    "tall",
+    "high"
+   ],
+   "axis": "height"
+  },
+  {
+   "id": "Q:depth",
+   "kind": "quantity_kind",
+   "label": "depth",
+   "dims": {
+    "L": 1
+   },
+   "terms": [
+    "depth",
+    "deep"
+   ],
+   "axis": "depth"
+  },
+  {
+   "id": "Q:area",
+   "kind": "quantity_kind",
+   "label": "area",
+   "dims": {
+    "L": 2
+   },
+   "terms": [
+    "area",
+    "coverage",
+    "room size"
+   ]
+  },
+  {
+   "id": "Q:volume",
+   "kind": "quantity_kind",
+   "label": "volume",
+   "dims": {
+    "L": 3
+   },
+   "terms": [
+    "volume",
+    "capacity",
+    "tank capacity"
+   ]
+  },
+  {
+   "id": "Q:volume_flow_rate",
+   "kind": "quantity_kind",
+   "label": "volumetric flow rate",
+   "dims": {
+    "L": 3,
+    "T": -1
+   },
+   "terms": [
+    "flow",
+    "flow rate",
+    "airflow",
+    "air flow",
+    "clean air delivery rate",
+    "cadr"
+   ]
+  },
+  {
+   "id": "Q:frequency",
+   "kind": "quantity_kind",
+   "label": "frequency",
+   "dims": {
+    "T": -1
+   },
+   "terms": [
+    "frequency",
+    "refresh rate"
+   ]
+  },
+  {
+   "id": "Q:electric_power",
+   "kind": "quantity_kind",
+   "label": "electric power drawn or delivered",
+   "dims": {
+    "L": 2,
+    "M": 1,
+    "T": -3
+   },
+   "terms": [
+    "power",
+    "power consumption",
+    "energy consumption",
+    "electricity consumption",
+    "power draw",
+    "wattage",
+    "power usage"
+   ]
+  },
+  {
+   "id": "Q:energy",
+   "kind": "quantity_kind",
+   "label": "energy",
+   "dims": {
+    "L": 2,
+    "M": 1,
+    "T": -2
+   },
+   "terms": [
+    "energy",
+    "energy consumption",
+    "energy use",
+    "electricity consumption",
+    "stored energy"
+   ]
+  },
+  {
+   "id": "Q:electric_charge",
+   "kind": "quantity_kind",
+   "label": "electric charge",
+   "dims": {
+    "I": 1,
+    "T": 1
+   },
+   "terms": [
+    "capacity",
+    "battery capacity",
+    "charge"
+   ]
+  },
+  {
+   "id": "Q:voltage",
+   "kind": "quantity_kind",
+   "label": "voltage",
+   "dims": {
+    "L": 2,
+    "M": 1,
+    "T": -3,
+    "I": -1
+   },
+   "terms": [
+    "voltage"
+   ]
+  },
+  {
+   "id": "Q:sound_level",
+   "kind": "quantity_kind",
+   "label": "sound level (emitted)",
+   "dims": {},
+   "terms": [
+    "noise",
+    "noise level",
+    "sound level",
+    "sound pressure level",
+    "loudness",
+    "decibel level"
+   ],
+   "scale": "level"
+  },
+  {
+   "id": "Q:luminance",
+   "kind": "quantity_kind",
+   "label": "luminance",
+   "dims": {
+    "J": 1,
+    "L": -2
+   },
+   "terms": [
+    "brightness",
+    "luminance",
+    "peak brightness"
+   ]
+  },
+  {
+   "id": "Q:data_amount",
+   "kind": "quantity_kind",
+   "label": "amount of data",
+   "dims": {
+    "B": 1
+   },
+   "terms": [
+    "storage",
+    "capacity",
+    "memory",
+    "endurance",
+    "terabytes written"
+   ]
+  },
+  {
+   "id": "Q:data_rate",
+   "kind": "quantity_kind",
+   "label": "data transfer rate",
+   "dims": {
+    "B": 1,
+    "T": -1
+   },
+   "terms": [
+    "speed",
+    "read speed",
+    "write speed",
+    "transfer rate",
+    "throughput",
+    "bandwidth"
+   ]
+  },
+  {
+   "id": "Q:temperature",
+   "kind": "quantity_kind",
+   "label": "temperature",
+   "dims": {
+    "K": 1
+   },
+   "terms": [
+    "temperature"
+   ],
+   "scale": "interval"
+  },
+  {
+   "id": "Q:pressure",
+   "kind": "quantity_kind",
+   "label": "pressure",
+   "dims": {
+    "L": -1,
+    "M": 1,
+    "T": -2
+   },
+   "terms": [
+    "pressure",
+    "suction",
+    "suction power"
+   ]
+  },
+  {
+   "id": "Q:ratio",
+   "kind": "quantity_kind",
+   "label": "proportion",
+   "dims": {},
+   "terms": [
+    "percentage",
+    "share",
+    "proportion"
+   ]
+  },
+  {
+   "id": "C:operating_setting",
+   "kind": "concept",
+   "label": "operating setting of the bearer (a condition of manifestation, S0 4.6(3))",
+   "category": "condition",
+   "value_type": "setting",
+   "numbered": [
+    "speed",
+    "fan speed",
+    "setting",
+    "mode",
+    "level",
+    "power level",
+    "stage"
+   ],
+   "named": [
+    "standby",
+    "turbo",
+    "boost",
+    "eco",
+    "sleep",
+    "auto",
+    "quiet",
+    "silent",
+    "night",
+    "low",
+    "medium",
+    "high",
+    "top speed",
+    "full speed",
+    "maximum speed",
+    "lowest speed",
+    "highest speed",
+    "max speed",
+    "min speed",
+    "idle"
+   ]
+  },
+  {
+   "id": "C:distance_to_source",
+   "kind": "concept",
+   "label": "distance between the measuring point and the source (a measurement condition)",
+   "category": "condition",
+   "value_type": "quantity",
+   "quantity_dims": {
+    "L": 1
+   },
+   "markers": [
+    "away",
+    "from",
+    "distance",
+    "at a distance of"
+   ]
+  },
+  {
+   "id": "C:method",
+   "kind": "concept",
+   "label": "a method or procedure of measurement or testing (D16)",
+   "category": "method",
+   "terms": [
+    "how we test",
+    "how we tested",
+    "how we measure",
+    "how we measured",
+    "how i test",
+    "how i tested",
+    "methodology",
+    "test methodology",
+    "testing methodology",
+    "test procedure",
+    "testing procedure",
+    "testing process",
+    "measurement method",
+    "measurement methodology",
+    "test setup",
+    "test conditions"
+   ]
+  },
+  {
+   "id": "M:energy-power-duration",
+   "kind": "model",
+   "name": "energy delivered or used at constant power over a duration: E = P t",
+   "variables": {
+    "E": [
+     "bearer",
+     "Q:energy"
+    ],
+    "P": [
+     "bearer",
+     "Q:electric_power"
+    ],
+    "t": [
+     "bearer",
+     "Q:duration"
+    ]
+   },
+   "forms": {
+    "E": "P*t",
+    "P": "E/t",
+    "t": "E/P"
+   },
+   "requirements": [],
+   "conditions": [],
+   "generality": "definition"
+  }
+ ]
+}

@@ -1,35 +1,38 @@
 """Units and dimensions (S0 4.7, Op5, C2).
 
-A unit is data: a factor and an offset to the coherent SI unit, and a dimension vector over the base dimensions
-length, mass, time, temperature and amount of substance. The offset is used only to convert absolute values
-(degrees Celsius). Unknown units have no dimension and are refused at acquisition.
+The metrology is knowledge, not code: every unit is read from ``metrology.json`` (the universe's single metrology,
+I-1). A unit is a factor and an offset to the coherent SI unit, a dimension vector over the base dimensions, a scale
+type and, for level scales, a reference. The offset is used only to convert absolute values (degrees Celsius).
+Unknown units have no dimension and are refused at acquisition.
+
+Dimension vectors written before I-1 have five entries (length, mass, time, temperature, amount of substance); they
+are read with zeros for the dimensions added later.
 """
+import json
+import pathlib
 
-BASE = ("m", "kg", "s", "K", "mol")
+_DOC = json.loads((pathlib.Path(__file__).resolve().parent / "metrology.json").read_text())
+BASE = tuple(_DOC["base"])
+_SYMBOLS = ("L", "M", "T", "K", "N", "I", "B", "J")[:len(BASE)]
 
 
-def dim(L=0, M=0, T=0, K=0, N=0):
-    return (float(L), float(M), float(T), float(K), float(N))
+def dim(L=0, M=0, T=0, K=0, N=0, I=0, B=0, J=0):  # noqa: E741 (I is the conventional symbol of electric current)
+    vals = dict(L=L, M=M, T=T, K=K, N=N, I=I, B=B, J=J)
+    return tuple(float(vals[s]) for s in _SYMBOLS)
+
+
+def pad(d):
+    """A dimension vector of any earlier length, completed with zeros."""
+    d = tuple(float(x) for x in d)
+    return d + (0.0,) * (len(BASE) - len(d))
 
 
 NONE = dim()
 
-UNITS = {
-    "1": (1.0, 0.0, NONE),
-    "m": (1.0, 0.0, dim(L=1)), "cm": (1e-2, 0.0, dim(L=1)), "mm": (1e-3, 0.0, dim(L=1)),
-    "um": (1e-6, 0.0, dim(L=1)), "km": (1e3, 0.0, dim(L=1)),
-    "s": (1.0, 0.0, dim(T=1)), "min": (60.0, 0.0, dim(T=1)), "h": (3600.0, 0.0, dim(T=1)),
-    "d": (86400.0, 0.0, dim(T=1)), "a": (365.25 * 86400.0, 0.0, dim(T=1)),
-    "kg": (1.0, 0.0, dim(M=1)), "g": (1e-3, 0.0, dim(M=1)), "mg": (1e-6, 0.0, dim(M=1)),
-    "K": (1.0, 0.0, dim(K=1)), "degC": (1.0, 273.15, dim(K=1)),
-    "Pa": (1.0, 0.0, dim(L=-1, M=1, T=-2)), "kPa": (1e3, 0.0, dim(L=-1, M=1, T=-2)),
-    "Pa s": (1.0, 0.0, dim(L=-1, M=1, T=-1)), "mPa s": (1e-3, 0.0, dim(L=-1, M=1, T=-1)),
-    "kg/m3": (1.0, 0.0, dim(L=-3, M=1)), "g/cm3": (1e3, 0.0, dim(L=-3, M=1)),
-    "m/s": (1.0, 0.0, dim(L=1, T=-1)), "mm/s": (1e-3, 0.0, dim(L=1, T=-1)),
-    "m/s2": (1.0, 0.0, dim(L=1, T=-2)),
-    "1/s": (1.0, 0.0, dim(T=-1)), "1/h": (1 / 3600.0, 0.0, dim(T=-1)), "1/a": (1 / (365.25 * 86400.0), 0.0, dim(T=-1)),
-    "mol/L": (1e3, 0.0, dim(L=-3, N=1)), "mg/L": (1e-3, 0.0, dim(L=-3, M=1)),
-}
+UNITS = {u: (float(v["factor"]), float(v["offset"]), dim(**v["dims"])) for u, v in _DOC["units"].items()}
+SCALE = {u: v.get("scale", "ratio") for u, v in _DOC["units"].items()}
+REFERENCE = {u: v.get("reference") for u, v in _DOC["units"].items()}
+SURFACES = {u: tuple(v.get("surfaces", ())) for u, v in _DOC["units"].items()}
 
 
 def known(unit):
@@ -51,9 +54,10 @@ def from_si(lo, hi, unit):
 
 
 def same_dims(a, b, tol=1e-9):
+    a, b = pad(a), pad(b)
     return all(abs(x - y) <= tol for x, y in zip(a, b))
 
 
 def si_label(d):
-    parts = [f"{b}^{e:g}" if e != 1 else b for b, e in zip(BASE, d) if e]
+    parts = [f"{b}^{e:g}" if e != 1 else b for b, e in zip(BASE, pad(d)) if e]
     return " ".join(parts) or "1"

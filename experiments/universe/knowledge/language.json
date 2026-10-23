@@ -1,0 +1,92 @@
+{
+ "about": "English lexical knowledge for reading table structure: function words, list and range separators, and number-writing conventions. Names no domain.",
+ "stopwords": [
+  "the",
+  "a",
+  "an",
+  "of",
+  "for",
+  "and",
+  "or",
+  "in",
+  "at",
+  "to",
+  "on",
+  "with",
+  "by",
+  "per",
+  "our",
+  "its",
+  "it",
+  "is",
+  "from",
+  "as"
+ ],
+ "range_separators": [
+  "–",
+  "—",
+  "-",
+  "to"
+ ],
+ "list_separators": [
+  ",",
+  "/",
+  ";",
+  "&",
+  "and"
+ ],
+ "bound_markers": {
+  "upper": [
+   "up to",
+   "max.",
+   "max",
+   "maximum",
+   "less than",
+   "under",
+   "below",
+   "<",
+   "≤"
+  ],
+  "lower": [
+   "at least",
+   "min.",
+   "min",
+   "minimum",
+   "more than",
+   "over",
+   "above",
+   ">",
+   "≥"
+  ],
+  "approximate": [
+   "about",
+   "approx.",
+   "approx",
+   "approximately",
+   "around",
+   "circa",
+   "~",
+   "≈"
+  ]
+ },
+ "number_conventions": {
+  "en": {
+   "thousands": ",",
+   "decimal": ".",
+   "ambiguous": "a dot followed by exactly three digits and no other separator may be a thousands separator written by a writer of another convention"
+  }
+ },
+ "extent_words": {
+  "upper": [
+   "maximum",
+   "max",
+   "highest",
+   "peak"
+  ],
+  "lower": [
+   "minimum",
+   "min",
+   "lowest"
+  ]
+ }
+}

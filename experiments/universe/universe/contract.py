@@ -16,11 +16,10 @@ import json
 from dataclasses import dataclass, field
 
 from . import model, rules
+from .standing import _RANK, label, premise_bases  # noqa: F401 (re-exported)
 from .store import Item, thaw
 
 PROGRAM = {"holder": "program", "basis": "derived"}
-_RANK = ["definition", "published reference", "measurement record", "manufacturer statement", "document statement",
-         "assumption", "hypothesis", "illustrative"]  # later = weaker
 
 
 @dataclass
@@ -44,35 +43,6 @@ class Answer:
 
 def _digest(*parts):
     return hashlib.sha256(json.dumps(parts, sort_keys=True, default=str).encode()).hexdigest()[:16]
-
-
-def premise_bases(store, grounds, seen=None):
-    """Bases of every non-derived premise reachable from ``grounds`` through standings and inference records."""
-    seen = set() if seen is None else seen
-    out = []
-    for g in grounds:
-        if g in seen or not store.has(g):
-            continue
-        seen.add(g)
-        it = store.get(g)
-        if it.kind == "inference_record":
-            out += premise_bases(store, it.body["premises"], seen)
-        elif it.provenance["basis"] == "derived":
-            st = f"ST:{g}"
-            if store.has(st):
-                out += premise_bases(store, store.get(st).body["grounds"], seen)
-        else:
-            out.append(it.provenance["basis"])
-    return out
-
-
-def label(store, grounds):
-    bases = premise_bases(store, grounds)
-    if not bases:
-        return "no recorded premises"
-    weakest = max(bases, key=_RANK.index)
-    return {"illustrative": "illustrative only", "hypothesis": "hypothetical", "assumption": "conditional on assumptions",
-            "definition": "derived from definitions"}.get(weakest, "derived from attributed, unverified sources")
 
 
 def _record(store, service, inquiry, summary, premises):
@@ -137,7 +107,7 @@ def inquire(store, inquiry_id):
             ans.question_status = "defective"
             _record(store, "rules", inquiry, "question has a violated presupposition (S0 7.2)",
                     [g for *_, gs in res for g in gs])
-    if "kind" in q:
+    if "kind" in q and "compare" not in q:
         _quantity(store, inquiry, role, q["kind"], ans)
     elif "class" in q:
         verdict, grounds, need, note = rules.classify(store, inquiry, entity, q["class"])
@@ -149,6 +119,18 @@ def inquire(store, inquiry_id):
         if verdict != "undetermined":
             body = {"form": "classification", "class": q["class"], "bearer": entity, "verdict": verdict}
             ans.proposals.append(_propose(store, "rules", inquiry, body, grounds, f"classification: {note}"))
+        ans.grounds = grounds
+    elif "compare" in q:
+        roles = q["compare"]
+        ents = [inquiry.body["roles"][x] for x in roles]
+        rel, grounds, note = rules.compare(store, inquiry, ents, q["kind"], q.get("end"))
+        _use(ans, "rules")
+        ans.reasons.append(note)
+        if rel is not None:
+            ans.value = rel
+            body = {"form": "comparison", "kind": q["kind"], "bearers": ents, "relation": rel,
+                    "conditions": thaw(inquiry.body.get("conditions") or {})}
+            ans.proposals.append(_propose(store, "rules", inquiry, body, grounds, f"comparison: {note}"))
         ans.grounds = grounds
     elif "attribute" in q:
         value, grounds, notes = rules.attribute(store, inquiry, entity, q["attribute"])

@@ -24,7 +24,7 @@ def _conds(d):
 
 
 def _kind(i):
-    return K.QuantityKind(i.id, tuple(float(x) for x in i.body["dims"]), bool(i.body["intensive"]),
+    return K.QuantityKind(i.id, units.pad(i.body["dims"]), bool(i.body["intensive"]),
                           source=i.provenance["source"])
 
 
@@ -95,6 +95,9 @@ def project(store, inquiry):
         b = c.body
         if b.get("bearer") not in entities or b.get("form") not in ("quantity", "attribute"):
             continue
+        if b.get("incomplete") or b.get("alternative_of") or (b.get("form") == "quantity" and (
+                b.get("lo") is None or b.get("hi") is None or b.get("extent"))):
+            continue  # an incomplete, ambiguous, open or extent-end content is not a model input
         sit = c.situating.get("situation")
         if sit not in (None, inquiry.id):
             continue

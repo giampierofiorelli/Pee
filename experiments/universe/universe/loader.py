@@ -4,6 +4,7 @@ Every item enters by ``Store.acquire`` with its provenance (attribution before a
 become entities, relation contents, situated given contents and an Inquiry with its Question.
 """
 import json
+import pathlib
 
 from . import model
 from .store import Item
@@ -118,3 +119,32 @@ def import_s1core(store, kb, situations, queries):
                 prov(a, "assumption"), {"situation": iid}))
         out[(sid, role, kind)] = iid
     return out
+
+
+# --- general universe knowledge (I-1) ------------------------------------------------------------------------------
+
+KNOWLEDGE = pathlib.Path(__file__).resolve().parent.parent / "knowledge"
+I1_KINDS = (("method", "I-1: a method or procedure of measurement or testing (S0 D16)"),
+            ("ambiguity", "I-1: one ambiguous reading with its alternative candidate contents (S0 3.6.4)"))
+
+
+def load_general_knowledge(store):
+    """Register the I-1 kinds (recorded registry events) and acquire the general knowledge items: quantity kinds with
+    dimensions and lexical anchors, condition and method concepts, models, and the English lexical frame."""
+    from s1core import units
+    for name, reason in I1_KINDS:
+        if name not in store._kinds:
+            store.register_kind(name, reason)
+    gen = json.loads((KNOWLEDGE / "general.json").read_text())
+    for it in gen["items"]:
+        if store.has(it["id"]):
+            continue
+        body = {k: v for k, v in it.items() if k not in ("id", "kind")}
+        if it["kind"] == "quantity_kind":
+            body["dims"] = list(units.dim(**it["dims"]))
+            body.setdefault("intensive", False)
+        store.acquire(Item(it["id"], it["kind"], body, gen["provenance"]), validate=_validate)
+    lang = json.loads((KNOWLEDGE / "language.json").read_text())
+    if not store.has("L:en"):
+        store.acquire(Item("L:en", "concept", dict(lang, category="lexical frame"),
+                           {"source": "English usage", "holder": "developer", "basis": "definition"}))

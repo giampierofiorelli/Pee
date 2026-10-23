@@ -79,6 +79,8 @@ class _Sit:
 def applicable(content, inquiry):
     """Scope of a content against the inquiry's situation: (bool, reason)."""
     b = content.body
+    if b.get("incomplete"):
+        return False, f"{content.id}: incomplete ({'; '.join(b['incomplete'])})"
     if b.get("scope") == "invariant":
         return True, ""
     if b.get("scope") == "unknown":
@@ -178,6 +180,80 @@ def presuppositions(store, inquiry, entity, required):
     return out
 
 
+def _interval(c):
+    """A content's interval in coherent SI units; an open bound is infinite."""
+    b = c.body
+    lo = b["lo"] if b.get("lo") is not None else b["hi"]
+    hi = b["hi"] if b.get("hi") is not None else b["lo"]
+    lo_si, hi_si = units.to_si(lo, hi, b["unit"])
+    return (-float("inf") if b.get("lo") is None else lo_si), (float("inf") if b.get("hi") is None else hi_si)
+
+
+def _tolerance(store):
+    """Relative width an approximate value may have (lexical-metrological knowledge of the universe)."""
+    lang = store.get("L:en").body if store.has("L:en") else {}
+    return float(lang.get("approximate_relative", 0.05))
+
+
+def _reference_ok(content_unit, wanted_unit):
+    """Level scales compare only under the same reference; an unspecified wanted reference accepts any."""
+    if units.SCALE.get(content_unit) != "level" and units.SCALE.get(wanted_unit) != "level":
+        return True
+    want = units.REFERENCE.get(wanted_unit)
+    return want is None or want == units.REFERENCE.get(content_unit)
+
+
+def _verdict(iv, op, b):
+    lo, hi = iv
+    holds = {"<": hi < b, "<=": hi <= b, ">": lo > b, ">=": lo >= b}[op]
+    fails = {"<": lo >= b, "<=": lo > b, ">": hi <= b, ">=": hi < b}[op]
+    return "applies" if holds else "does not apply" if fails else "undetermined"
+
+
+def usable(store, inquiry, entity, kind, end=None, unit=None):
+    """Applicable contents of the entity's quantity of this kind, for the asked extent end (None: the value itself),
+    whose scale reference fits. Returns (contents, notes)."""
+    vals, notes = [], []
+    for c in _local(store, inquiry, entity, ("quantity", kind)):
+        ok, why = applicable(c, inquiry)
+        if not ok:
+            notes.append(why)
+            continue
+        if c.body.get("extent") != end:
+            notes.append(f"{c.id}: states the {c.body.get('extent') or 'value'}, not the {end or 'value'}")
+            continue
+        if unit is not None and not _reference_ok(c.body["unit"], unit):
+            notes.append(f"{c.id}: scale reference differs ({c.body['unit']} against {unit})")
+            continue
+        vals.append(c)
+    return vals, notes
+
+
+def _decide_over(store, vals, op, b):
+    """One verdict over applicable contents. Alternatives of one ambiguous reading must agree (S0 3.6.4); approximate
+    values must decide beyond their tolerance; different contents that disagree leave the question undetermined."""
+    tol = _tolerance(store)
+    groups = {}
+    for c in vals:
+        groups.setdefault(c.body.get("alternative_of") or c.id, []).append(c)
+    verdicts, notes = [], []
+    for g, cs in groups.items():
+        vs = set()
+        for c in cs:
+            lo, hi = _interval(c)
+            if c.body.get("approximate"):
+                lo, hi = lo - tol * abs(lo), hi + tol * abs(hi)
+            vs.add(_verdict((lo, hi), op, b))
+        if len(vs) > 1:
+            notes.append(f"{g}: the verdict depends on the reading ({', '.join(sorted(vs))})")
+            verdicts.append("undetermined")
+        else:
+            verdicts.append(vs.pop())
+    if len(set(verdicts)) == 1:
+        return verdicts[0], notes
+    return "undetermined", notes + ["applicable contents disagree"]
+
+
 def classify(store, inquiry, entity, class_id):
     """Apply a class definition with a quantitative bound. Returns (verdict, grounds, need kind or None, note)."""
     defs = [c for c in store.of("content") if c.body.get("form") == "class_definition" and c.body["class"] == class_id]
@@ -186,19 +262,40 @@ def classify(store, inquiry, entity, class_id):
     d = defs[0].body
     if d["op"] not in BOUND_OPS:
         return "undetermined", [defs[0].id], None, f"unsupported operator {d['op']}"
-    vals = [c for c in _local(store, inquiry, entity, ("quantity", d["kind"])) if applicable(c, inquiry)[0]]
+    vals, notes = usable(store, inquiry, entity, d["kind"], d.get("end"), d["unit"])
     if not vals:
-        return "undetermined", [defs[0].id], d["kind"], f"no {d['kind']} of {entity} yet"
-    if len(vals) > 1:
-        lo = min(units.to_si(c.body["lo"], c.body["hi"], c.body["unit"])[0] for c in vals)
-        hi = max(units.to_si(c.body["lo"], c.body["hi"], c.body["unit"])[1] for c in vals)
-    else:
-        lo, hi = units.to_si(vals[0].body["lo"], vals[0].body["hi"], vals[0].body["unit"])
+        return "undetermined", [defs[0].id], d["kind"], "; ".join([f"no applicable {d['kind']} of {entity} yet"] + notes)
     b = units.to_si(d["bound"], d["bound"], d["unit"])[0]
-    holds = {"<": hi < b, "<=": hi <= b, ">": lo > b, ">=": lo >= b}[d["op"]]
-    fails = {"<": lo >= b, "<=": lo > b, ">": hi <= b, ">=": hi < b}[d["op"]]
-    verdict = "applies" if holds else "does not apply" if fails else "undetermined"
-    note = f"{d['kind']} in [{lo:.4g}, {hi:.4g}] against {d['op']} {b:.4g}"
+    verdict, why = _decide_over(store, vals, d["op"], b)
+    note = f"{d['kind']} of {entity} against {d['op']} {b:.4g} (SI) over {len(vals)} content(s)"
+    if why:
+        note += "; " + "; ".join(why)
     if verdict == "does not apply":
         note += " (restricted negation within the definition's domain, S0 N3)"
     return verdict, [defs[0].id] + [c.id for c in vals], None, note
+
+
+def compare(store, inquiry, entities, kind, end=None):
+    """Compare one quantity of two entities under the inquiry's situation. Comparable only if the applicable contents
+    of both state the same conditions (S0 4.6, 5.8 relevance). Returns (relation or None, grounds, note); relation is
+    'less', 'greater' or 'equal' for the first entity against the second."""
+    a, na = usable(store, inquiry, entities[0], kind, end)
+    b, nb = usable(store, inquiry, entities[1], kind, end)
+    if not a or not b:
+        return None, [], "; ".join(["a quantity is missing for one entity"] + na + nb)
+    conds = {tuple(sorted((k, str(v)) for k, v in thaw(c.body.get("conditions") or {}).items())) for c in a + b}
+    if len(conds) != 1:
+        return None, [], "the contents state different conditions; not comparable"
+    if any(c.body.get("alternative_of") for c in a + b):
+        return None, [], "a reading is ambiguous"
+    ia = (min(_interval(c)[0] for c in a), max(_interval(c)[1] for c in a))
+    ib = (min(_interval(c)[0] for c in b), max(_interval(c)[1] for c in b))
+    if ia[1] < ib[0]:
+        rel = "less"
+    elif ib[1] < ia[0]:
+        rel = "greater"
+    elif ia[0] == ia[1] == ib[0] == ib[1]:
+        rel = "equal"
+    else:
+        return None, [], "intervals overlap"
+    return rel, [c.id for c in a + b], f"{kind}: {entities[0]} {rel} than {entities[1]} under the same conditions"
