@@ -412,3 +412,40 @@ Coarser labels do not let the cheap learners overtake A-1.
 **2. Agreement of the two blind annotators on the relation.** 177 of 226 paired propositions, **0.78** (exact,
 `other` collapsed). The task is learnable to about that level by a strong reader. A-1 reaches 0.34 and the cheap
 learners 0.15–0.19. The gap lies in the reader's competence, not in the reference.
+
+## 18. Corrections to Claude's conclusions (owner's review, 2026-10-23) and the agreement measured properly
+
+The owner corrected four conclusions of sections 16–17. Claude accepts them.
+
+1. **Raw agreement is not reliability.** The 0.78 raw agreement does not by itself make the 507 annotations a reliable
+   reference. Measured now, on 226 paired propositions:
+   - **Overall.** Cohen's κ = **0.76** (observed 0.78, chance 0.11). This is substantial overall, but agreement varies
+     by class.
+
+     | Relation | Positive agreement |
+     |---|---|
+     | `defined_as` | 0.90 |
+     | `requires` | 0.85 |
+     | `recommends` | 0.74 |
+     | `other` | 0.60 |
+     | `is_a` | 0.38 |
+     | `applies_to` | 0.38 |
+     | `indicates` | **0.00** (0 of 11) |
+
+   - **The most frequent disagreements:**
+
+     | Pair | Cases |
+     |---|---|
+     | `indicates` against `is_a` | 7 |
+     | `recommends` against `requires` | 4 |
+     | `applies_to` against `establishes` | 3 |
+
+   - **Not independent.** Both annotators are Claude agents, so this agreement is not independent.
+2. **"Too few examples" was a hypothesis, not a measurement.** The definitions of the 27 relations (several pairs are
+   not reliably distinguishable even by the annotators), the embeddings and the representation of the propositions
+   are equally possible causes.
+3. **Phi-4-mini has not been evaluated on quality.** 25 `other` predictions out of 25 do not justify a five-hour run,
+   nor do they rule the model out.
+4. **The goal is a better reader, not better labels.** Pee must recognise claims, conditions, negations, comparisons,
+   experimental results and attributions, and link them to their evidence. A classifier can improve on labels without
+   becoming a better scientific reader.
