@@ -1,0 +1,153 @@
+{
+ "schema": "pee.t1.freeze.v1",
+ "freeze": 2,
+ "note": "Evaluation interface frozen before any reader change (PROTOCOL.md \u00a711). freeze-1.json is unchanged.",
+ "files": {
+  "score.py": "7a641abca3e16c0f89a9d7124618829a40fea5732c99bf2e4c46bca9e6af60e9",
+  "export.py": "abb9c347f95f91fb4f1172c1518b960b2916959feb2a82c3721dd5eab7d3d3a9",
+  "tests/test_score.py": "d2df4c1b39c16bef237c2ec35b2ceca68dfdf22b9fcbc0d82763b2f7dc4a4b5a",
+  "PROTOCOL.md": "1022245b9f390d42c8eb2cf587711d6476092c5c0eb26f773b783cad1abcfe43"
+ },
+ "reader_A0": {
+  "propositions.py": "1764a7f6ee1a1736dd177cae83d5989d646a32d95ec56fb3f1ccf85a69772c7b",
+  "knowledge_acquisition.py": "09061bac714442f53b427ffda5adf76a026b1e384c5223350fc3faea7f02401f",
+  "rules.py": "e23d0f4666c089869b524f973ae51d571c80450ec3faf411bd072164fb7774d5",
+  "recognition.py": "b40116b1aedbe2c4689412f544fbe9bbb099989170f912e05ee4b061f0fd7fe9",
+  "language.json": "70d26ed2a6da12aec42898603f55b937f2dfc89ef749812bc3e860ca9ef292b3"
+ },
+ "A0_mechanical_v2": {
+  "sealed": {
+   "elements": {
+    "right": 288,
+    "wrong": 41,
+    "missing": 23,
+    "abstained": 0,
+    "unscored": 33,
+    "absent": 572
+   },
+   "elements_by_name": {
+    "subject": {
+     "right": 35
+    },
+    "relation": {
+     "wrong": 21,
+     "right": 14
+    },
+    "object_or_value": {
+     "right": 35
+    },
+    "polarity": {
+     "right": 34,
+     "wrong": 1
+    },
+    "modality": {
+     "right": 29,
+     "wrong": 6
+    },
+    "conditions": {
+     "right": 31,
+     "wrong": 2,
+     "missing": 2
+    },
+    "attitude": {
+     "right": 32,
+     "wrong": 3
+    },
+    "evidence_nature": {
+     "right": 29,
+     "wrong": 4,
+     "unscored": 2
+    },
+    "statement_status": {
+     "right": 31,
+     "wrong": 2,
+     "unscored": 2
+    },
+    "source_link": {
+     "right": 14,
+     "missing": 21
+    },
+    "deontic_force": {
+     "unscored": 29,
+     "right": 4,
+     "wrong": 2
+    }
+   },
+   "right_element_share": 0.3117,
+   "wrong_rate": 0.1246,
+   "complete_faithful_coverage": 0.023,
+   "uninterpreted_share": 0.6439,
+   "critical_mechanical": {
+    "7": 1
+   },
+   "readable_matched": 35,
+   "norms_matched": 4,
+   "items_unscorable": 245
+  },
+  "dev": {
+   "elements": {
+    "right": 314,
+    "wrong": 31,
+    "missing": 28,
+    "abstained": 0,
+    "unscored": 34,
+    "absent": 1012
+   },
+   "elements_by_name": {
+    "subject": {
+     "right": 40
+    },
+    "relation": {
+     "right": 24,
+     "wrong": 16
+    },
+    "object_or_value": {
+     "right": 40
+    },
+    "polarity": {
+     "right": 40
+    },
+    "modality": {
+     "wrong": 6,
+     "right": 34
+    },
+    "conditions": {
+     "right": 36,
+     "wrong": 3,
+     "missing": 1
+    },
+    "attitude": {
+     "right": 38,
+     "wrong": 2
+    },
+    "evidence_nature": {
+     "right": 36,
+     "wrong": 3,
+     "unscored": 1
+    },
+    "statement_status": {
+     "right": 37,
+     "wrong": 2,
+     "unscored": 1
+    },
+    "source_link": {
+     "right": 10,
+     "missing": 30
+    },
+    "deontic_force": {
+     "unscored": 34,
+     "right": 5,
+     "wrong": 1
+    }
+   },
+   "right_element_share": 0.2267,
+   "wrong_rate": 0.0885,
+   "complete_faithful_coverage": 0.031,
+   "uninterpreted_share": 0.7509,
+   "critical_mechanical": {},
+   "readable_matched": 37,
+   "norms_matched": 3,
+   "items_unscorable": 240
+  }
+ }
+}

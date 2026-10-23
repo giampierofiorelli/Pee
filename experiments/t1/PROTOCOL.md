@@ -425,3 +425,65 @@ ways forward:
 - **B. Recalibrate the matcher.** Fit it on the development judgement and validate it on the sealed adjudicated one.
   The sealed adjudication has already been seen in this step, so the validation would be weak. Not recommended.
 - **C. Do not develop.** Keep A0, and re-examine the more capable reader.
+
+## 11. Revision 1 of the frozen protocol (owner, 2026-10-23: option A, modified)
+
+**The owner's decision.**
+- Option A, modified. The failed proxy check (0.72 against 0.85) stays recorded.
+- The threshold is not lowered. The matcher is not recalibrated on results already seen.
+- Authorised, in this order:
+  1. the evaluation interface;
+  2. the narrowed W3–W5;
+  3. one final check without agents, on spent development material and A-1's questions;
+  4. only if no verifiable critical regression appears and the reasoning check holds, at most three agents (two
+     blind judges and one adjudicator), on the same spent Speakers material.
+- No Soundbars content, no sealed T-1 stage. Stop before stage 3 whatever the result.
+
+**Unchanged by this revision:**
+- `freeze-1.json` and every recorded result;
+- the identity and selection of the Soundbars material;
+- the scientific definitions, the W2 decisions, the thresholds and the Jaccard parameter.
+
+### 11.1 The evaluation interface (score.py revision 2, export.py)
+
+- **One record for every item and every reference proposition** (`score.normalize`).
+  - It reads the T-1 fields when present: `cited_sources`, `attributed_to` as a specific attribution,
+    `evidence_nature`, `statement_status`, `deontic_force`, `norm_bearer` and element `states`.
+  - Otherwise it maps the old fields by §3.
+- **The old schema** (A0, and the spent references) has its cited identifiers in `attributed_to`. There they count as
+  `cited_sources`, and **specific attribution is unscored**.
+- **Selective abstention.** An element in state `uncertain` or `not_read` is graded `abstained`: never right, never
+  wrong. It counts in the uninterpreted share. A deontic force derived from an abstained relation is abstained too.
+- **Unscored and unscorable are never right.**
+  - An element that cannot be compared is `unscored`.
+  - An item the program cannot match is `unscorable`.
+- **New capabilities are counted apart** and never enter the shared right-element share: specific attribution
+  (scored only on a reference that annotates it) and the norm bearer.
+- **`export.py`** writes O-2's export from universe items (`o2.py` unchanged), plus the T-1 fields read from the
+  universe. On A0 its rows are **identical** to O-2's export (280 of 280, sealed).
+
+### 11.2 Verification on spent material (done before any reader change)
+
+| Check | Result |
+|---|---|
+| A0 sealed, revision 1 against revision 2 | identical: right 288, wrong 41, missing 23, absent 572; share 0.312 |
+| A0 development | **one defect found and fixed.** The development reference writes its sources as a string ("R01, R03"), which revision 1 read character by character. The corrected share is 0.227 (was 0.226) |
+| `tests/test_score.py` | 14 constructed cases (old and new fields, string sources, abstention, `requires` against `recommends` with modality `necessary`, prohibition against negated `requires`, native evidence fields, bearer kept apart, unmatched items). They also found that a force derived from an uncertain relation must be abstained, now fixed |
+| `export.py` on A0 | rows identical to O-2's export |
+
+### 11.3 The role of the mechanical check (replaces §4.1 step 2)
+
+- **A filter for observable regressions.** It is not a demonstration that there are none.
+- **The agreement of 38 of 38** holds only for the matches the program recognises. Every other item stays
+  **unscored**.
+- **What the filter checks on the readable subset:**
+  - no mechanically detected critical type increases;
+  - the matched labels (polarity, deontic force, attitude, source link) do not get worse in their wrong counts;
+  - the reasoning gate of §9.2 holds.
+- **If any of these fails,** stage 2 stops with no agents and no further attempt.
+- **If none fails, the agents judge.**
+  - **What:** A0 and A1 under random labels, on the O-2 sealed Speakers passage (spent), against the passage itself
+    and the reference R. This includes the propositions the program cannot match.
+  - **What they separate:** errors, abstentions, coverage and real improvements.
+  - **Their verdict decides** whether the improvement thresholds of `DESIGN.md` §8.3 are met.
+- **An inconclusive mechanical result is never evidence of success.**
