@@ -1,0 +1,74 @@
+{
+ "schema": "pee.preservation.v1",
+ "id": "r1",
+ "authorisation": "owner, 2026-10-23: first operational recovery of Crawler's capabilities (tables and quantitative extraction)",
+ "changed_paths": [],
+ "areas": [
+  {
+   "id": "table-structure",
+   "overlap": "full",
+   "engine_ts_considered": [
+    "src/table_acquisition1f.ts",
+    "src/table_interpreter1g.ts",
+    "src/phase245_table_grid.ts",
+    "src/phase245_html_dom.ts"
+   ],
+   "used_operationally_before": "no: experiment adapters only (I-1, I-2)",
+   "demonstrated_before": "E6 equivalence on Crawler fixtures; V1 'reliable structure' on 11 spent HTML pages",
+   "preserved": "R-1 P0: through the Markdown-to-HTML adapter, 1F reads all 42 tables (2,078 cells) of three owner documents identically to markdown.py; no link occurs in their cells, so link preservation is untested on authentic material"
+  },
+  {
+   "id": "table-interpretation",
+   "overlap": "partial",
+   "engine_ts_considered": [
+    "src/table_interpreter1g.ts",
+    "src/table_interpreter1g_knowledge.ts",
+    "src/table_interpreter1g_lessons.ts"
+   ],
+   "used_operationally_before": "no",
+   "demonstrated_before": "V1: 10 of 108 HTML statements reached only by 1G (product review tables)",
+   "preserved": "R-1 sealed run on Markdown scientific tables: 1G reads every table as record axes, assigns no property, adds evidence classes not supported by the text; 34 of 56 values found, 0 fully correct, 9 critical errors, 4 spurious"
+  },
+  {
+   "id": "value-extraction",
+   "overlap": "partial",
+   "engine_ts_considered": [
+    "src/table_interpreter1g.ts",
+    "src/phase245_value_normalizer.ts"
+   ],
+   "used_operationally_before": "no",
+   "demonstrated_before": "X1/X2 measured the decision layer, not value reading",
+   "preserved": "R-1: on the sealed tables Pee's parser read every value 1G read with a unit (S: 38 values from Pee's parser, 0 from 1G only)"
+  }
+ ],
+ "comparison": {
+  "status": "done",
+  "inputs": "10 sealed Markdown tables of the owner documents AP, DH, THREE-DH (spent), split by a mechanical rule; reference of 56 quantitative statements written by Claude before any arm ran",
+  "arms": [
+   "old",
+   "new",
+   "selective"
+  ],
+  "metrics": [
+   "structure (P0)",
+   "found",
+   "unit",
+   "property",
+   "entity",
+   "conditions",
+   "essential conditions",
+   "fully correct",
+   "critical errors",
+   "spurious",
+   "answers after integration in S0/MS1"
+  ],
+  "results": [
+   "experiments/r1/p0-firstrun.json",
+   "experiments/r1/sealed-firstrun-counts.json",
+   "private:pee-knowledge/private-eval/pee-r1/sealed/sealed-scores.json@0ca452a09577bbc1b0d721d32d8601f6fe8ca5072a516ce611e8fe8bcf862516"
+  ],
+  "summary": "old (O, Crawler 1G): 34 found, 0 fully correct, 9 critical; new (N, Pee): 6 found, 5 fully correct, 0 critical; selective (S): 38 found, 13 fully correct, 5 critical including a new type (wrong unit), 3 wrong answers after integration. Pre-registered rule D2/D5 fail and a stop condition is met."
+ },
+ "decision": "blocked",
+ "justification": "The pre-registered decision rule fails (D2, D5) and a stop condition is met, so S does not enter the operational path and no gated path changes. The ablation shows that S's gains over N come from Pee's own value parser applied to every cell, not from Crawler's code: no Crawler capability is shown to be recovered on this material. The tables where V1 found 1G's advantage (HTML product review tables) were not available in this session."
+}

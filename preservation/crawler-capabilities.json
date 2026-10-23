@@ -1,7 +1,7 @@
 {
  "schema": "pee.crawler-capabilities.v1",
  "about": "Register of the reading capabilities imported from Crawler 7d091ef into engine-ts/ (O-1), what Pee actually uses, and what was demonstrated, where and with which metric. Owner decision 2026-10-23 (definitive): a Pee reader, parser, extractor or assimilation path may not duplicate or replace one of these capabilities without a preservation record (preservation/records/) that compares the old path, the new path and a selective integration on the same inputs. Evidence below is quoted from Pee reports only; Crawler's own historical metrics were never re-measured in Pee and are not listed. Figures from different evaluations are never comparable with each other.",
- "status_as_of": "2026-10-23, commit 77fb09f",
+ "status_as_of": "2026-10-23, after R-1",
  "operational_routes": {
   "A (owner documents, assimilation)": "markdown.py -> propositions.py + knowledge_acquisition.py -> represent. Uses no engine-ts module.",
   "B (pages, acquisition)": "acquisition.py reads a structure file. In I-1/I-2 that file came from engine-ts structural readers (1F, 1G document model) through experiments/i1/crawler_structure.mjs; their interpretations were not exported. No permanent interface exists."
@@ -10,103 +10,272 @@
   {
    "id": "table-structure",
    "capability": "Table grid with cell coordinates, spans and header cells; heading tree, section paths, structured names (HTML)",
-   "engine_ts": ["src/table_acquisition1f.ts", "src/table_interpreter1g.ts (documentModel1G)", "src/phase245_table_grid.ts", "src/phase245_html_dom.ts"],
-   "pee_use": "experiment adapters only (I-1, I-2: structure exported, interpretation discarded)",
+   "engine_ts": [
+    "src/table_acquisition1f.ts",
+    "src/table_interpreter1g.ts (documentModel1G)",
+    "src/phase245_table_grid.ts",
+    "src/phase245_html_dom.ts"
+   ],
+   "pee_use": "experiment adapters (I-1, I-2); R-1 interface experiments/r1/crawler_tables.py + engine-ts/pee-tools/tables-bridge.mjs, not on the operational path (R-1 decision: blocked)",
    "demonstrated": [
-    {"source": "engine-ts/README.md §4.2 (E6)", "what": "equivalence with Crawler on 11 Crawler fixtures x 8 entry points, 88/88 identical", "kind": "regression evidence, not validation"},
-    {"source": "reviews/V1-joint-architecture-verification.md §3.5", "what": "'reliable structure' on 11 spent authentic pages", "kind": "Claude-annotated qualitative judgement"}
+    {
+     "source": "engine-ts/README.md §4.2 (E6)",
+     "what": "equivalence with Crawler on 11 Crawler fixtures x 8 entry points, 88/88 identical",
+     "kind": "regression evidence, not validation"
+    },
+    {
+     "source": "reviews/V1-joint-architecture-verification.md §3.5",
+     "what": "'reliable structure' on 11 spent authentic pages",
+     "kind": "Claude-annotated qualitative judgement"
+    },
+    {
+     "source": "experiments/r1/REPORT.md, p0-firstrun.json",
+     "what": "Markdown-to-HTML adapter + 1F on 42 owner-document tables: 2,078 cells identical to markdown.py's reading (rows, columns, headers, text, heading paths); no links present",
+     "kind": "structure preservation, R-1 P0"
+    }
    ]
   },
   {
    "id": "table-interpretation",
    "capability": "Whole-table interpretation: roles of headers (product, property, condition), evidence classes, conditions, table relations (verified relative differences, statistic rows), lessons",
-   "engine_ts": ["src/table_interpreter1g.ts", "src/table_interpreter1g_knowledge.ts", "src/table_interpreter1g_lessons.ts", "src/table_ledger1e.ts", "src/table_lessons1e.ts"],
+   "engine_ts": [
+    "src/table_interpreter1g.ts",
+    "src/table_interpreter1g_knowledge.ts",
+    "src/table_interpreter1g_lessons.ts",
+    "src/table_ledger1e.ts",
+    "src/table_lessons1e.ts"
+   ],
    "pee_use": "none (quarantined by design after V1)",
    "demonstrated": [
-    {"source": "reviews/V1-joint-architecture-verification.md §3.1", "what": "10 of 108 traced statements are extracted only by 1G; on one review 1G finds 2,056 values (Phase245: 539), 0 reach Pee", "kind": "Claude-annotated trace on spent pages"},
-    {"source": "reviews/V1-joint-architecture-verification.md §3.5", "what": "roles: good on one publisher, mixed on another, wrong on benchmark charts; 749 table derivations on one review", "kind": "qualitative"},
-    {"source": "experiments/i2/REPORT.md", "what": "Pee's own placement of 1F structure: 15 of 61 V1 table statements complete and correct", "kind": "Pee path, not 1G; development material"},
-    {"source": "experiments/d2/REPORT.md §7.1", "what": "Pee's Markdown table reader (D-2): 5 of 513 rows of three owner packages acquired as single values; 63 not assimilated", "kind": "Pee path, coverage count only. Never compared with 1G: a preservation gap"}
+    {
+     "source": "reviews/V1-joint-architecture-verification.md §3.1",
+     "what": "10 of 108 traced statements are extracted only by 1G; on one review 1G finds 2,056 values (Phase245: 539), 0 reach Pee",
+     "kind": "Claude-annotated trace on spent pages"
+    },
+    {
+     "source": "reviews/V1-joint-architecture-verification.md §3.5",
+     "what": "roles: good on one publisher, mixed on another, wrong on benchmark charts; 749 table derivations on one review",
+     "kind": "qualitative"
+    },
+    {
+     "source": "experiments/i2/REPORT.md",
+     "what": "Pee's own placement of 1F structure: 15 of 61 V1 table statements complete and correct",
+     "kind": "Pee path, not 1G; development material"
+    },
+    {
+     "source": "experiments/d2/REPORT.md §7.1",
+     "what": "Pee's Markdown table reader (D-2): 5 of 513 rows of three owner packages acquired as single values; 63 not assimilated",
+     "kind": "Pee path, coverage count only. Never compared with 1G: a preservation gap"
+    },
+    {
+     "source": "experiments/r1/REPORT.md, sealed-firstrun-counts.json",
+     "what": "10 sealed Markdown scientific tables, 56 reference values: 1G found 34, fully correct 0, critical errors 9, spurious 4; no property assigned (record axes)",
+     "kind": "Claude-written reference on spent material; not independent. Says nothing about HTML product tables"
+    }
    ]
   },
   {
    "id": "value-extraction",
    "capability": "Label-value specification extraction and value normalisation (numbers, ranges, bounds, units)",
-   "engine_ts": ["src/phase245_spec_extraction.ts", "src/phase245_value_normalizer.ts"],
+   "engine_ts": [
+    "src/phase245_spec_extraction.ts",
+    "src/phase245_value_normalizer.ts"
+   ],
    "pee_use": "X2 read Crawler's stored records and its segmentation (reuse verdict: neutral); not in an operational route",
    "demonstrated": [
-    {"source": "experiments/x1/REPORT.md §1", "what": "limit checks on records Crawler had already extracted: Crawler 14 justified / 2 unjustified, Pee 18 / 1, of 75", "kind": "measures the decision layer over extracted records, not reading"},
-    {"source": "experiments/x2/REPORT.md §3", "what": "79 limit checks: Crawler 7 justified / 0 unjustified; reuse of segmentation changed no answer", "kind": "decision layer"}
+    {
+     "source": "experiments/x1/REPORT.md §1",
+     "what": "limit checks on records Crawler had already extracted: Crawler 14 justified / 2 unjustified, Pee 18 / 1, of 75",
+     "kind": "measures the decision layer over extracted records, not reading"
+    },
+    {
+     "source": "experiments/x2/REPORT.md §3",
+     "what": "79 limit checks: Crawler 7 justified / 0 unjustified; reuse of segmentation changed no answer",
+     "kind": "decision layer"
+    },
+    {
+     "source": "experiments/r1/REPORT.md",
+     "what": "same sealed tables: every value with a unit that 1G read was also read by Pee's parser (0 values from 1G only)",
+     "kind": "post hoc ablation"
+    }
    ]
   },
   {
    "id": "quantitative-knowledge",
    "capability": "Test measurements, comparative results, quantity knowledge, knowledge rules and links, product facts, extraction plans, compound conditions",
-   "engine_ts": ["src/phase265_test_measurements.ts", "src/phase270_comparative_results.ts", "src/quantity_knowledge.ts", "src/knowledge_rules.ts", "src/knowledge_link.ts", "src/product_facts.ts", "src/phase241_unified_product_facts.ts", "src/phase272_extraction_plan.ts", "src/property_definitions.ts", "src/quantity_pack_file.ts", "src/phase145_unit_context_bridge.ts", "src/phase146_compound_conditions.ts"],
+   "engine_ts": [
+    "src/phase265_test_measurements.ts",
+    "src/phase270_comparative_results.ts",
+    "src/quantity_knowledge.ts",
+    "src/knowledge_rules.ts",
+    "src/knowledge_link.ts",
+    "src/product_facts.ts",
+    "src/phase241_unified_product_facts.ts",
+    "src/phase272_extraction_plan.ts",
+    "src/property_definitions.ts",
+    "src/quantity_pack_file.ts",
+    "src/phase145_unit_context_bridge.ts",
+    "src/phase146_compound_conditions.ts"
+   ],
    "pee_use": "none",
    "demonstrated": [
-    {"source": "engine-ts/README.md §4.2 (E5, E6)", "what": "imported tests and outputs equivalent to Crawler", "kind": "regression evidence only; no Pee measurement of reading quality"}
+    {
+     "source": "engine-ts/README.md §4.2 (E5, E6)",
+     "what": "imported tests and outputs equivalent to Crawler",
+     "kind": "regression evidence only; no Pee measurement of reading quality"
+    }
    ]
   },
   {
    "id": "qualitative-observations",
    "capability": "Qualitative observations, review semantics, observation semantics and reconstruction",
-   "engine_ts": ["src/phase269_qualitative_observations.ts", "src/phase252_review_semantics.ts", "src/observation_semantics.ts", "src/observation_reconstruction.ts", "src/observation_model.ts", "src/phase96_qualitative_review_evidence.ts"],
+   "engine_ts": [
+    "src/phase269_qualitative_observations.ts",
+    "src/phase252_review_semantics.ts",
+    "src/observation_semantics.ts",
+    "src/observation_reconstruction.ts",
+    "src/observation_model.ts",
+    "src/phase96_qualitative_review_evidence.ts"
+   ],
    "pee_use": "none",
    "demonstrated": [
-    {"source": "engine-ts/README.md §4.2", "what": "equivalence only", "kind": "regression evidence"}
+    {
+     "source": "engine-ts/README.md §4.2",
+     "what": "equivalence only",
+     "kind": "regression evidence"
+    }
    ]
   },
   {
    "id": "prose-translation",
    "capability": "Scientific prose to statements: knowledge translation, document evidence, atomic context evidence, review document engine, scientific reading, definitions",
-   "engine_ts": ["src/knowledge_translation.ts", "src/document_evidence.ts", "src/phase134_atomic_context_evidence.ts", "src/phase156_review_document_engine.ts", "src/scientific_reading98.ts", "src/definition_interpreter.ts", "src/scientific_entities.ts"],
+   "engine_ts": [
+    "src/knowledge_translation.ts",
+    "src/document_evidence.ts",
+    "src/phase134_atomic_context_evidence.ts",
+    "src/phase156_review_document_engine.ts",
+    "src/scientific_reading98.ts",
+    "src/definition_interpreter.ts",
+    "src/scientific_entities.ts"
+   ],
    "pee_use": "O-2 only (arm T, through experiments/o2/bridge.mjs)",
    "demonstrated": [
-    {"source": "experiments/o2/REPORT.md (sealed run)", "what": "speakers compendium prose, 238 sealed reference propositions (§5.1): faithful items T 13 of 92, A-1 98 of 280, hybrid 66 of 286; precision (F2) T 0.141, A-1 0.350, hybrid 0.231; faithful coverage (F3) T 0.038, A-1 0.298, hybrid 0.189; critical errors (F1) T 6, A-1 15, hybrid 23 (negation: T 0, A-1 8). Crawler made fewer critical errors but far fewer faithful items", "kind": "prose only. Says nothing about tables or specifications. Correction 2026-10-23 (owner): an earlier version gave the critical-error counts (6, 15) as faithful statements"}
+    {
+     "source": "experiments/o2/REPORT.md (sealed run)",
+     "what": "speakers compendium prose, 238 sealed reference propositions (§5.1): faithful items T 13 of 92, A-1 98 of 280, hybrid 66 of 286; precision (F2) T 0.141, A-1 0.350, hybrid 0.231; faithful coverage (F3) T 0.038, A-1 0.298, hybrid 0.189; critical errors (F1) T 6, A-1 15, hybrid 23 (negation: T 0, A-1 8). Crawler made fewer critical errors but far fewer faithful items",
+     "kind": "prose only. Says nothing about tables or specifications. Correction 2026-10-23 (owner): an earlier version gave the critical-error counts (6, 15) as faithful statements"
+    }
    ]
   },
   {
    "id": "entities-and-context",
    "capability": "Entity inventory, document semantics, context graph, discourse and reference hypotheses, claim attachment",
-   "engine_ts": ["src/experience_entity_inventory.ts", "src/phase153_entity_inventory.ts", "src/document_semantics.ts", "src/phase154_context_graph.ts", "src/phase148_document_reference_hypotheses.ts", "src/phase149_bidirectional_discourse_candidates.ts", "src/phase151_type_aware_discourse_recovery.ts", "src/phase147_local_claim_attachment.ts"],
+   "engine_ts": [
+    "src/experience_entity_inventory.ts",
+    "src/phase153_entity_inventory.ts",
+    "src/document_semantics.ts",
+    "src/phase154_context_graph.ts",
+    "src/phase148_document_reference_hypotheses.ts",
+    "src/phase149_bidirectional_discourse_candidates.ts",
+    "src/phase151_type_aware_discourse_recovery.ts",
+    "src/phase147_local_claim_attachment.ts"
+   ],
    "pee_use": "none",
    "demonstrated": [
-    {"source": "engine-ts/README.md §4.2", "what": "equivalence only", "kind": "regression evidence"}
+    {
+     "source": "engine-ts/README.md §4.2",
+     "what": "equivalence only",
+     "kind": "regression evidence"
+    }
    ]
   },
   {
    "id": "document-intake",
    "capability": "PDF and DOCX reading",
-   "engine_ts": ["document_intake/phase228_extract.py", "src/phase228_document_observer.ts"],
+   "engine_ts": [
+    "document_intake/phase228_extract.py",
+    "src/phase228_document_observer.ts"
+   ],
    "pee_use": "none",
    "demonstrated": [
-    {"source": "engine-ts/README.md §4.1", "what": "imported for the tests; equivalence only", "kind": "regression evidence"}
+    {
+     "source": "engine-ts/README.md §4.1",
+     "what": "imported for the tests; equivalence only",
+     "kind": "regression evidence"
+    }
    ]
   },
   {
    "id": "retention",
    "capability": "Retention policy of what may be stored",
-   "engine_ts": ["src/phase249_retention_policy.ts"],
+   "engine_ts": [
+    "src/phase249_retention_policy.ts"
+   ],
    "pee_use": "none",
    "demonstrated": [
-    {"source": "engine-ts/README.md §4.2", "what": "equivalence only", "kind": "regression evidence"}
+    {
+     "source": "engine-ts/README.md §4.2",
+     "what": "equivalence only",
+     "kind": "regression evidence"
+    }
    ]
   }
  ],
  "gated_paths": {
-  "experiments/universe/universe/markdown.py": ["table-structure", "document-intake"],
-  "experiments/universe/universe/acquisition.py": ["table-structure", "table-interpretation", "value-extraction", "quantitative-knowledge", "entities-and-context"],
-  "experiments/universe/universe/propositions.py": ["table-interpretation", "value-extraction", "quantitative-knowledge", "qualitative-observations", "prose-translation", "entities-and-context"],
-  "experiments/universe/universe/knowledge_acquisition.py": ["table-interpretation", "quantitative-knowledge", "prose-translation"],
-  "experiments/universe/universe/assimilate.py": ["retention", "document-intake"],
-  "experiments/universe/universe/recognition.py": ["entities-and-context"],
-  "experiments/universe/universe/persist.py": ["retention"],
-  "experiments/universe/knowledge/language.json": ["value-extraction", "prose-translation", "qualitative-observations"],
-  "experiments/s1core/s1core/metrology.json": ["value-extraction"]
+  "experiments/universe/universe/markdown.py": [
+   "table-structure",
+   "document-intake"
+  ],
+  "experiments/universe/universe/acquisition.py": [
+   "table-structure",
+   "table-interpretation",
+   "value-extraction",
+   "quantitative-knowledge",
+   "entities-and-context"
+  ],
+  "experiments/universe/universe/propositions.py": [
+   "table-interpretation",
+   "value-extraction",
+   "quantitative-knowledge",
+   "qualitative-observations",
+   "prose-translation",
+   "entities-and-context"
+  ],
+  "experiments/universe/universe/knowledge_acquisition.py": [
+   "table-interpretation",
+   "quantitative-knowledge",
+   "prose-translation"
+  ],
+  "experiments/universe/universe/assimilate.py": [
+   "retention",
+   "document-intake"
+  ],
+  "experiments/universe/universe/recognition.py": [
+   "entities-and-context"
+  ],
+  "experiments/universe/universe/persist.py": [
+   "retention"
+  ],
+  "experiments/universe/knowledge/language.json": [
+   "value-extraction",
+   "prose-translation",
+   "qualitative-observations"
+  ],
+  "experiments/s1core/s1core/metrology.json": [
+   "value-extraction"
+  ]
  },
  "gated_new_files": {
   "about": "A new file in these directories is a new reader or reading component: it must address every area listed.",
-  "experiments/universe/universe/": ["table-structure", "table-interpretation", "value-extraction", "quantitative-knowledge", "qualitative-observations", "prose-translation", "entities-and-context", "document-intake"]
+  "experiments/universe/universe/": [
+   "table-structure",
+   "table-interpretation",
+   "value-extraction",
+   "quantitative-knowledge",
+   "qualitative-observations",
+   "prose-translation",
+   "entities-and-context",
+   "document-intake"
+  ]
  }
 }

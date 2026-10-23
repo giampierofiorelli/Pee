@@ -37,6 +37,15 @@ recovery of Crawler's capabilities is demonstrated. This means:
 
 This recovery step itself needs its own owner authorisation, with criteria fixed before any code.
 
+- **R-1** (owner, 2026-10-23; `experiments/r1/PROTOCOL.md`, `REPORT.md`): first recovery attempt, tables and
+  quantitative extraction. **Done; integration blocked by its pre-registered rule.**
+  - A verified bridge and Markdown→HTML interface exist (`engine-ts/pee-tools/tables-bridge.mjs`,
+    `experiments/r1/crawler_tables.py`). 1F reads all 42 owner-document tables identically to `markdown.py`.
+  - On 10 sealed Markdown scientific tables, 1G is worse than Pee (0 fully correct, 9 critical errors). The selective
+    arm's gains came entirely from Pee's own parser. No Crawler capability is shown recovered on this material.
+  - 1G's demonstrated domain (HTML product-review tables, V1) could not be tested: no authentic HTML in the session.
+  - The operational path is unchanged. The owner decides the next step.
+
 ## Organisation (owner, 2026-10-23)
 
 - **Pee is the only operational repository.** It is an independent scientific adviser built on the S0 universe.

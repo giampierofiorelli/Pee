@@ -10,7 +10,8 @@ import common  # noqa: F401  (sets sys.path)
 import arms
 import common
 import score
-from universe import acquisition, crawler_tables, knowledge_acquisition as ka, loader, recognition
+import crawler_tables
+from universe import acquisition, knowledge_acquisition as ka, loader, recognition
 from universe.store import Store
 
 

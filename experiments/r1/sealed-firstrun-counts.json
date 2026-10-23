@@ -1,0 +1,111 @@
+{
+ "schema": "pee.r1.sealed-firstrun-counts.v1",
+ "run": "the one sealed run, at the S freeze 7dc4f77; first run, unchanged",
+ "arms": {
+  "O": {
+   "items": 56,
+   "readings": 38,
+   "found": 34,
+   "represented": 1,
+   "unit_right": 32,
+   "unit_missing": 3,
+   "property_structured": 0,
+   "property_preserved": 0,
+   "entity_structured": 6,
+   "entity_preserved": 6,
+   "conditions_preserved": "4 of 27",
+   "essential_conditions_ok": 30,
+   "fully_correct": 0,
+   "critical_errors": 9,
+   "critical_by_type": {
+    "essential condition dropped": 4,
+    "declaration presented as measurement": 1,
+    "wrong entity": 4
+   },
+   "lost": 22,
+   "spurious": 4
+  },
+  "N": {
+   "items": 56,
+   "readings": 6,
+   "found": 6,
+   "represented": 6,
+   "unit_right": 6,
+   "unit_missing": 0,
+   "property_structured": 6,
+   "property_preserved": 6,
+   "entity_structured": 5,
+   "entity_preserved": 5,
+   "conditions_preserved": "1 of 6",
+   "essential_conditions_ok": 6,
+   "fully_correct": 5,
+   "critical_errors": 0,
+   "critical_by_type": {},
+   "lost": 50,
+   "spurious": 0
+  },
+  "S": {
+   "items": 56,
+   "readings": 38,
+   "found": 38,
+   "represented": 38,
+   "unit_right": 37,
+   "unit_missing": 0,
+   "property_structured": 19,
+   "property_preserved": 21,
+   "entity_structured": 19,
+   "entity_preserved": 26,
+   "conditions_preserved": "15 of 29",
+   "essential_conditions_ok": 36,
+   "fully_correct": 13,
+   "critical_errors": 5,
+   "critical_by_type": {
+    "essential condition dropped": 2,
+    "wrong unit": 1,
+    "wrong entity": 2
+   },
+   "lost": 18,
+   "spurious": 0
+  }
+ },
+ "M7_after_integration": {
+  "O": {
+   "correct": 0,
+   "wrong": 0,
+   "uninformed": 35,
+   "abstained": 21
+  },
+  "N": {
+   "correct": 0,
+   "wrong": 0,
+   "uninformed": 35,
+   "abstained": 21
+  },
+  "S": {
+   "correct": 4,
+   "wrong": 3,
+   "uninformed": 24,
+   "abstained": 25
+  }
+ },
+ "decision": {
+  "D1 P0 passes": true,
+  "D2 S critical <= N and <= O": "5 vs N 0, O 9: FAILS",
+  "D3 S fully correct > N": "13 vs 5: holds",
+  "D4 nothing N gets fully correct is lost in S": "0 lost: holds",
+  "D5 M7 S correct >= N and S wrong <= N": "correct 4 vs 0, wrong 3 vs 0: FAILS",
+  "stop condition: S critical error of a type neither N nor O makes": "wrong unit (S 1; N 0; O 0): MET",
+  "outcome": "S does not enter the operational path"
+ },
+ "ablation_post_hoc": {
+  "S_values_by_origin": {
+   "pee value parser": 38,
+   "1G only": 0
+  },
+  "meaning": "every value S kept on the sealed tables was read by Pee's own parser; 1G added none, 1F added structure identical to markdown.py's"
+ },
+ "private_rows": {
+  "path": "private:pee-knowledge/private-eval/pee-r1/sealed/sealed-scores.json",
+  "sha256": "0ca452a09577bbc1b0d721d32d8601f6fe8ca5072a516ce611e8fe8bcf862516"
+ }
+}

@@ -5,7 +5,7 @@ import re
 import sys
 
 import common
-from universe import crawler_tables
+import crawler_tables
 
 
 def norm(s):

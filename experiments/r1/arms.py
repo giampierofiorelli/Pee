@@ -6,7 +6,8 @@ S: crawler_tables.table_units (1F structure, 1G and Pee values reconciled, Pee's
 """
 import re
 
-from universe import crawler_tables, propositions
+import crawler_tables
+from universe import propositions
 
 VALUE_KINDS = ("quantity", "number", "range", "bound", "rating", "currency")
 
