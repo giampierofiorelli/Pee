@@ -52,6 +52,12 @@ None of these modifies S0.
   - Connecting to the universe (§4 steps 3–4) and trimming (step 5) need their own owner go-ahead.
   - **Done** (`engine-ts/README.md` §4). E1–E4 and E6 pass. E5 is not met on 4 of 103 test files, each caused by a
     file deliberately not imported. Stopped here.
+- **O-2** (owner, 2026-10-23; `experiments/o2/REPORT.md` §0): connect Crawler's prose reader
+  (`knowledge_translation`, unchanged in `engine-ts/`) to S0 through an adapter. Compare three readings on scientific
+  fidelity: A-1 (A), Crawler (T) and a hybrid (H) defined before the test.
+  - Material: prose of package 09 speakers. The reference is sealed before any adapter code.
+  - At most one change cycle.
+  - No new capability, no persistence, no admission of knowledge.
 - **S0 is complete and frozen** (`spec/`, versions 2.0 `b9bda7d` and 2.1 `cdcab48`, with their reviews and
   evaluations under `reviews/`). Do not modify it.
 - Every step names its owner authorisation, and fixes its criteria before any code, as before.
