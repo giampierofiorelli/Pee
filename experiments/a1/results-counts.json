@@ -1,0 +1,199 @@
+{
+ "note": "A-1 results after the sealed first run: counts and hashes only; rows, renders, judgements and answers stay private (/a1, copy in pee-knowledge private-eval/pee-a1/ with text hashed).",
+ "A_fidelity_firstrun": {
+  "judges": "two blind Claude agents (J1, J2) + one Claude adjudicator (J3); not independent validation",
+  "agreement": {
+   "u_items_same_verdict_and_match": "285/297",
+   "r_items_same_verdict": "305/325"
+  },
+  "produced": 297,
+  "u": {
+   "unfaithful": 184,
+   "faithful": 48,
+   "spurious": 65
+  },
+  "reference": 325,
+  "r": {
+   "partial": 174,
+   "missed": 136,
+   "complete": 15
+  },
+  "precision": 0.162,
+  "recall": 0.582,
+  "complete_share": 0.046,
+  "spurious_share": 0.219,
+  "critical_total": 79,
+  "critical_by_type": {
+   "1": 8,
+   "3": 39,
+   "5": 13,
+   "6": 19
+  },
+  "critical_type_names": {
+   "1": "polarity flipped",
+   "2": "direction or sign inverted",
+   "3": "proposal, hypothesis or open question held as asserted",
+   "4": "synthesis or guidance held as original measurement",
+   "5": "wrong or invented attribution",
+   "6": "two concepts merged"
+  },
+  "per_range": {
+   "B": {
+    "u": {
+     "unfaithful": 54,
+     "faithful": 6,
+     "spurious": 10
+    },
+    "r": {
+     "partial": 49,
+     "missed": 33,
+     "complete": 1
+    },
+    "critical": 20
+   },
+   "C": {
+    "u": {
+     "unfaithful": 27,
+     "faithful": 12,
+     "spurious": 13
+    },
+    "r": {
+     "missed": 18,
+     "partial": 31,
+     "complete": 2
+    },
+    "critical": 12
+   },
+   "D": {
+    "u": {
+     "spurious": 27,
+     "unfaithful": 66,
+     "faithful": 16
+    },
+    "r": {
+     "partial": 66,
+     "missed": 65,
+     "complete": 4
+    },
+    "critical": 30
+   },
+   "E": {
+    "u": {
+     "spurious": 15,
+     "faithful": 14,
+     "unfaithful": 37
+    },
+    "r": {
+     "missed": 20,
+     "complete": 8,
+     "partial": 28
+    },
+    "critical": 17
+   }
+  }
+ },
+ "ledger_calibration_firstrun": {
+  "sentences_with_entry": "every segmented sentence (audit) for AP 1571, DH 1311, THREE 1231",
+  "reference_propositions_on_lines_without_entry": 5,
+  "reference_on_acquired_lines": 259,
+  "of_which_missed": 85,
+  "missed_share_among_acquired": 0.328,
+  "reference_on_partial_lines": 37,
+  "of_which_missed_partial": 22,
+  "reference_on_unresolved_lines": 24,
+  "of_which_missed_unresolved": 24
+ },
+ "B_integration_firstrun": {
+  "THREE_propositions": 1431,
+  "merged_with_F1_dehumidifier_file": 1115,
+  "of_which_from_identical_sentences": 1113,
+  "from_different_sentences": 2,
+  "wrong_merges_in_those_2": 0,
+  "concepts_in_THREE_propositions": {
+   "base_knowledge": 9,
+   "created_by_documents": 2013
+  }
+ },
+ "F_independence_diagnostic": {
+  "label": "diagnostic on the first-run evaluation copy (saved without the word-run check), NOT the persisted universe: the retention guard refused to persist K+ (stop rule A6)",
+  "snapshot_sha256": "4e2069564a73f5edbf0a6115bb73d99c7fadeab4b4381052199e594db4da5c86",
+  "pid": 2496,
+  "counts": {
+   "lost decision (uninformed)": 32,
+   "lost decision": 7,
+   "justified abstention": 3,
+   "uninformed abstention": 11,
+   "correct decision": 5,
+   "unjustified decision": 1
+  },
+  "rows": 59,
+  "identical_to_inprocess": 59,
+  "document_opens_attempted_and_refused": 4,
+  "files_opened_besides_code": [
+   "snapshot",
+   "manifest",
+   "questions",
+   "output"
+  ],
+  "correct_decisions_by_rule_service": {
+   "influence": 2,
+   "evidence attitude": 1,
+   "holds (affirmed and negated by contrast)": 2
+  },
+  "inference_used": "direct for all five (no chain on sealed questions)"
+ },
+ "afterchange": {
+  "label": "after change (C1-C3, freeze_2); spent",
+  "K": {
+   "lifecycle": "refused by the retention guard: 1 copied word run in the AP ledger",
+   "qs": {
+    "lost decision (uninformed)": 45,
+    "uninformed abstention": 13,
+    "justified abstention": 1
+   }
+  },
+  "Kplus": {
+   "lifecycle": "refused by the retention guard: 1 copied word run in the AP ledger",
+   "qs_identical_to_first_run": true
+  },
+  "cause": "one ledger 'unexplained' token is an 83-character hyphenated URL slug of a cited source in the air-purifier package; split on hyphens it is a 12-word run of the document"
+ },
+ "working_copies": {
+  "removed": 4,
+  "bytes": 610826,
+  "sha256_equal_to_original_members": true,
+  "originals_unchanged": true,
+  "record": "$PRIVATE/a1/custody-removal.json"
+ },
+ "evidence_requirement_regression_E2b": {
+  "F1": "16/33 correct, 2 unjustified",
+  "A1": {
+   "correct decision": 16,
+   "lost decision": 17,
+   "justified abstention": 27,
+   "unjustified decision": 0
+  },
+  "Q-AP-24": "justified abstention",
+  "Q-DH-27": "justified abstention"
+ },
+ "suites": {
+  "universe": "112 OK",
+  "s1core": "47 OK",
+  "x1": "18 OK (1 skipped)",
+  "x2": "25 OK (1 skipped)"
+ },
+ "private_files": {
+  "judge/adjudication.json": "831e19f38a9afef82feb423ace8d7e8814eb28383e7f1b795b4990f3fd5edfed",
+  "judge/scores-A.json": "31a2ad322e816c5d34aab610f745d69146d225460697c3647a0e38e8849a5e6e",
+  "fdiag/qs-Kplus-fresh.json": "774fd062e5c84a8871b39fbae7fd597a23959141e5173467ea8379a24219432d",
+  "custody-removal.json": "0268c6054c7916e0d5ec75fcd8eb5e6c72bc848e5a87315942bb62d371b55ea1",
+  "judge/B-J1.json": "e5b50450597393bb8145f1bbaea2da6f8adfd11ef4b0d93ce2e07cd54d6ab08d",
+  "judge/B-J2.json": "2194efad6c1aeec06bfc49251d50d7c9d971195a83dc423a92a186d97b7a797e",
+  "judge/C-J1.json": "0736d7eb3752de2313cc10b8a05e3530a9f76e3555b47a79df058b0c372eecdf",
+  "judge/C-J2.json": "5a5a7084d9c198f1ec44aa7490e5ec7f43cec6c1476114a8b30e31826fd21983",
+  "judge/D-J1.json": "198c3fc61a40f3c26995bc012fb4eebf132f50a6082292cb9ed1da092ae5eff2",
+  "judge/D-J2.json": "c29bebda1318405f8319c699e3569f61abaa6b72a06c41ee4ff4783406ad0aa0",
+  "judge/E-J1.json": "14d5a2f51643d1374785ce444c0acbdca8faa3bdc9ee2f650a4aa9ed2636c63f",
+  "judge/E-J2.json": "2eba2ab30cb2dbdb88a8f3cf09986d631c5c6ad2b06f92685c1dc67306c94dfd"
+ }
+}

@@ -312,3 +312,218 @@ measurement" by being read.
 - **A5.** Any critical error in A or unjustified decision in C, D or F is reported as a defect, never as a success.
 - **A6.** The retention guard fails: no durable copy is written; stop and report.
 - **A7.** An audit fails: the working copy is not removed, and the failure is reported.
+
+## 4. Outcome
+
+**A-1 stopped on stop rule A6.** The retention guard refused to persist K and K+, both at the first run (freeze 1) and
+after the one permitted change cycle (freeze 2). No durable universe was written, and `pee-knowledge/pee-universe/` was
+not created. The owner's mandatory test, a new process answering from the persisted universe only, could therefore not
+be run as specified. It was run as a **diagnostic on an evaluation copy** (section 5.6). The complete, faithful and
+persistent cycle is **not demonstrated**.
+
+| | Criterion | Threshold | Result | Met |
+|---|---|---|---|---|
+| A1-a | A critical errors | 0 | **79** (39 promotions, 19 merges, 13 attributions, 8 polarity) | no |
+| A1-b | A precision | ≥ 0.80 | **0.162** (48 / 297) | no |
+| A1-c | A recall | ≥ 0.50 | **0.582** ((15 + 174) / 325) | yes |
+| A1-d | A complete share | ≥ 0.25 expected | **0.046** (15 / 325) | no |
+| A1-e | Ledger entries; missed share among "acquired" | 100 %; ≤ 0.20 | 100 % of segmented sentences (5 reference propositions on unsegmented lines); **0.328** | no |
+| A1-f | B wrong merges | 0 | **0** (1,115 merges; 1,113 from identical sentences) | yes, trivially |
+| A1-g | C on ORACLE: unjustified; correct ÷ determinate | 0; ≥ 0.80 | 0; **6 / 45 = 0.13** | no |
+| A1-h | D: K+ against K; unjustified K+ | K+ > K | K 0, K+ 5; **1 unjustified** (Q30) | yes, with one defect |
+| A1-i | F: identical; ≥ 3 inference types; copy removed; originals unchanged; guard passed | 100 %; ≥ 3; yes; yes; yes | on the evaluation copy: 59 / 59; 3 rule services; yes; yes; **guard failed** | no (diagnostic only) |
+| A1-j | Regressions | none | none (section 5.8) | yes |
+| A1-k | No category vocabulary in code | pass | pass | yes |
+
+## 5. Results
+
+All measures use Claude agents (annotators, question author, blind answerer, judges, adjudicators). Agreement between
+them is **not independent validation**. The sealed lines 713–924 are now spent.
+
+### 5.1 First run and change cycle
+
+- **First run (freeze 1).** It is committed unchanged in `firstrun-counts.json` (`08581c7`). The guard refused K and
+  K+ for two reasons:
+  - a 245-character concept name from the air-purifier package;
+  - a ledger that kept unexplained words in document order.
+
+  The questions were answered in process, and the fidelity export was rendered from an evaluation copy saved without
+  the word-run check.
+- **One change cycle (freeze 2, `5554346`).**
+  - C1: concept names are capped in characters.
+  - C2: a ledger keeps unexplained words as a sorted set.
+  - C3: a named reporter's evidence class is set (for example, guidance).
+
+  After the change, the in-process answers are identical to the first run. The guard still refused, for one reason:
+  an "unexplained" token in the air-purifier ledger is an 83-character hyphenated URL slug of a cited source. Split on
+  hyphens, it is a 12-word run of the document. The guard is right to flag it: the slug reproduces a cited article's
+  title. The fix is small (drop URL tokens from the ledger, or hash them), but A4 allows no second cycle.
+
+### 5.2 A — translation fidelity (lines 713–924, first run)
+
+- **Judges.** J1 and J2 judged blind. They agreed on 285 of 297 produced items and 305 of 325 reference items. J3
+  adjudicated every disagreement and every critical error only one judge listed (23 kept, 18 dropped). Its
+  consistency rules are recorded with the adjudication.
+- **Produced items (297):**
+  - 48 faithful;
+  - 184 unfaithful;
+  - 65 spurious (bibliographic lines, register entries, garbled fragments).
+- **Reference propositions (325):**
+  - 15 complete;
+  - 174 partial;
+  - 136 missed.
+- **Where the losses are.**
+  1. **Attitude and evidence kind.** These are the main source of unfaithful items. In Addendum B, every item is held
+     as *proposed* because the block is labelled as proposed, including propositions the reference gives as asserted
+     synthesis, standards or expert judgement. Elsewhere, proposed procedures, pass criteria and elicitation
+     questions are held as *asserted* or *reported*. Of these, 39 are critical **promotions** (type 3): the error the
+     owner named.
+  2. **Attribution (13, type 5).** Register lines that list sources were read as claims attributed to those sources.
+  3. **Merged concepts (19, type 6).** A long phrase absorbs a second proposition into a subject or a condition.
+  4. **Polarity (8, type 1).** Most come from a double negation: a prohibition with a negating verb ("avoid", "refuse")
+     plus a negated relation, which reverses the norm.
+- **Manufacturer declaration against independent measurement.** On the sealed passage, the universe never holds a
+  synthesis or guidance as an original measurement (type 4: 0). However, the evidence kind is right on only a minority
+  of items. It is mostly "synthesis", by default, for the package author.
+
+### 5.3 Ledger calibration
+
+- **Coverage.** Every segmented sentence of the three documents has an entry:
+
+  | Document | Sentences | Acquired | Partial | Unresolved |
+  |---|---|---|---|---|
+  | AP | 1,571 | 832 | 257 | 482 |
+  | DH | 1,311 | 571 | 228 | 512 |
+  | THREE | 1,231 | 626 | 212 | 393 |
+
+  Five reference propositions sit on lines that the segmenter does not treat as sentences.
+- **Calibration.** Of the 259 reference propositions on lines the ledger marks "acquired", 85 (0.33) were judged
+  missed. The ledger therefore over-states acquisition. It counts a sentence as acquired when at least one relation
+  was read, even if the sentence holds several propositions. "Unresolved" is reliable: 24 of 24 reference propositions
+  on unresolved lines were missed.
+
+### 5.4 B — integration
+
+- **Merges.** 1,115 of the 1,431 THREE propositions merged with F-1's dehumidifier file as attributions to existing
+  contents. 1,113 of them come from byte-identical sentences (184 of 276 paragraphs are identical). The two from
+  different sentences are correct: the same claim, once with and once without an amendment note.
+- **Wrong merges: 0.** This measure is weak, because it is dominated by identical text.
+- **Concept linking.** Of the 2,022 concepts the THREE propositions use, 9 are base-knowledge kinds. The rest are
+  document concepts keyed by holder and term. Translation into the universe stays largely **lexical**: it creates
+  document concepts instead of linking to existing kinds.
+
+### 5.5 C and D — reasoning (QS: 59 live questions, 45 determinate)
+
+| Arm | Correct | Unjustified | Lost | Lost (uninformed) | Justified abstention | Uninformed abstention |
+|---|---|---|---|---|---|---|
+| ORACLE (fresh process) | 6 | 0 | 6 | 33 | 4 | 10 |
+| K | 0 | 0 | 0 | 45 | 1 | 13 |
+| K+ | 5 | 1 (Q30) | 7 | 32 | 3 | 11 |
+
+- **The dominant loss is term recognition, even for the oracle.** A question term written by another Claude agent
+  resolves to no concept in 33 of the oracle's 39 losses. Complete and correct propositions do not help when the
+  question names the concept differently.
+- **Assimilation added knowledge the rules used.** K+ answers five questions that K cannot.
+- **Q30 is a defect.** The question asked for the evidence kind of a passage that the reference gives as guidance;
+  K+ answered "synthesis".
+
+### 5.6 F — document independence (diagnostic, not the persisted universe)
+
+The run used a new process (`independence.py`) on a copy of the first-run evaluation snapshot. A Python audit hook
+refused any file outside the code, the base knowledge, the snapshot, the questions and the output.
+
+- **Isolation.** The process tried to open:
+  - the three working copies;
+  - the owner's THREE zip.
+
+  All four opens were refused and logged.
+- **Answers.** All 59 answers are identical to those of the assimilating process.
+- **Correct decisions from the snapshot alone.** Three different rule services:
+  - influence (Q19, Q59);
+  - evidence attitude (Q29);
+  - holds, affirmed (Q31) and negated by contrast (Q32).
+
+  All five are **direct** lookups. On the sealed questions no chain inference produced a correct decision. Chains
+  work only on the T1 fixture (`tests/test_a1.py`).
+- **Status.** This shows that the structured items alone answer without the document. It does **not** satisfy A1-i,
+  because that universe failed the retention check and is not persisted.
+
+### 5.7 Document lifecycle
+
+- **Copies removed.** The four temporary copies were removed after their sentence audits passed: three lifecycle
+  copies and the initial THREE extraction, 610,826 bytes in all. Their SHA-256 equals the hash of the corresponding
+  original member; the record is private (`$PRIVATE/a1/custody-removal.json`).
+- **Originals unchanged.** The owner's originals are unchanged, and the THREE zip still matches its seal
+  (`25ace2c0…`).
+- **Material kept.** These stay under the retention policy in section 1.4:
+  - the sealed passages used by annotators;
+  - F-1's working copies (needed until a persisted universe holds what they taught).
+- **No custody record.** Because persistence was refused, no "document custody" record exists in a universe.
+
+### 5.8 Preservation and the evidence requirement
+
+- **Suites.** universe 112 OK, s1core 47 OK, X1 18 OK, X2 25 OK. The vocabulary tests cover the new modules.
+- **Route B.** The I-2 vertical increment passes 5 of 5, and the X2 regression rows are identical (1,421 records).
+  Route B pages are unchanged because proposition reading runs only for Route A documents. This was measured at
+  freeze 1; freeze 2 changed only `propositions.py`, which Route B never calls.
+- **Evidence requirement.** F-1's E2b gold set (spent, regression only) was rerun with the question's evidence
+  requirement in the inquiry. Q-AP-24 and Q-DH-27, the two unjustified decisions where a declaration answered an
+  "independently measured" question, are now justified abstentions. The rerun gives 16 correct (as in F-1),
+  17 lost, 27 justified abstentions and 0 unjustified.
+- **Untouched.** X1, X2, V1, I-1, I-2, F-1, S0 and Crawler are unchanged.
+
+## 6. Implemented capabilities, by maturity (proposed → implemented → tested T1 → measured on sealed material)
+
+| Capability | Kind | Maturity |
+|---|---|---|
+| Proposition reading of prose: causal, classification, value with interval, norms, contrast, conditions, modality, negation, anaphora, attitude, reported evidence | inference (reading) | measured: recall 0.58, precision 0.16, 79 critical errors |
+| Proposition representation in S0/MS1: content and attribution, integration by identical body, Op2 restriction | vocabulary | measured: 0 wrong merges (weak test); lexical concepts |
+| Coverage ledger per sentence: acquired, partial or unresolved, with reasons and no text | vocabulary | measured: complete, but over-states "acquired" (0.33 missed) |
+| Private persistence (event log + manifest, reload equality) with retention guard | infrastructure | tested T1; on real material it **refused correctly** (a URL slug); nothing persisted |
+| Temporary document lifecycle (copy → audit → save → reload → remove → custody) | infrastructure | tested T1; on real material it stopped at save |
+| Rule services over propositions: influence with signed chains, holds, consistent, value, evidence | inference | tested T1; on sealed questions: direct lookups only |
+| Evidence requirement (declaration ≠ independent test) | inference | regression on spent E2b: 2 unjustified → 0 |
+| Document independence check (audit-hook isolation) | test | diagnostic on an evaluation copy |
+
+**Kinds of formation.**
+- *Vocabulary*: relation concepts, evidence classes and the proposition lexicon added to the developer base.
+- *Inference*: reading, rule services and the evidence requirement.
+- *Learning* (the universe changes because a document taught it): demonstrated in process only. Nothing is persisted.
+- *Transfer*: not demonstrated. Q59 is a transfer item, but it was answered from a direct statement.
+
+## 7. Limits and open problems
+
+1. **Fidelity.** The reader finds more than half of the propositions but renders few of them faithfully. The worst
+   errors are epistemic: proposals held as asserted, and a document-level "proposed" label applied to everything
+   under it. This is the limit the owner named. Recall alone must not be read as success.
+2. **Recognition across authors.** Concepts are keyed by holder and term, and almost nothing links to existing kinds.
+   Even the oracle loses 33 of 45 determinate questions to vocabulary mismatch. Reasoning over assimilated knowledge
+   is bounded by this before any reading improvement.
+3. **The ledger's "acquired" is optimistic.** A sentence with several propositions is "acquired" once one is read. A
+   per-proposition account is needed before the ledger can say what was transferred and what is unresolved.
+4. **Persistence and retention.** The guard works as designed, and its single remaining refusal is a URL slug. The
+   persisted universe and the fresh-process test on it remain to be demonstrated.
+5. **Integration measure.** It is dominated by identical text. A real test needs restatements in different words.
+6. **Evaluation.** All references and judgements are by Claude agents. The sealed passage is now spent, and lines
+   713–924 can no longer serve as held-out material.
+7. **Exposure.** The headings of the sealed range were seen during material verification, and three adjudicators
+   quoted fragments in their notes (`seals.json`, exposure note). No reading rule was tuned on the sealed lines.
+
+## 8. What would be needed next (not authorised; for the owner's decision)
+
+- **Smallest fix to unblock persistence.** Keep URL tokens out of ledger word lists, or hash them. This is a new
+  change cycle and needs authorisation.
+- **Before a wider assimilation:**
+  - attitude per proposition, not per block;
+  - a double-negation rule for norms;
+  - a per-proposition ledger;
+  - concept linking to existing kinds (the dominant loss).
+- **Sealed material.** New, unused material for any re-measurement.
+
+## 9. Private material
+
+| Location | Content |
+|---|---|
+| `$PRIVATE/a1` (outside Git) | references, questions, judgements, adjudication, scores, first-run and after-change rows, the evaluation snapshot copies, the custody-removal record |
+| `pee-knowledge/private-eval/pee-a1/` | copies of the same material, with document and quoted text replaced by SHA-256; no universe snapshot, because none was admitted |
+| `results-counts.json` (this directory) | public counts and file hashes |
