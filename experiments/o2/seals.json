@@ -1,0 +1,55 @@
+{
+ "schema": "pee.o2.seals.v1",
+ "sealed_at": "2026-10-23",
+ "note": "Sealed before any O-2 adapter, bridge or hybrid code. Files are private (outside Git); only hashes and counts are public.",
+ "package_zip_sha256": "2f3c9336fa8ece41b6becd35a5af968b887740447eac0a5992f0b30b89e21642",
+ "document": "COMPLETE-RESEARCH-COMPENDIUM.md",
+ "document_sha256": "02934f95ce799d8c51c1ca91f10828d8023dc870b145ba985edcce7f8e699ec8",
+ "passages": {
+  "sealed": {
+   "sha256": "6200ede0b99778a093b6714fcf7070369ad580b2568390f70efe2f7a8f6f3987",
+   "sections": 31,
+   "scored_prose_lines": 113
+  },
+  "dev": {
+   "sha256": "e2539dc38cf890f3d6cb3c50a626be86ec7291661ea97885cef5e4e1d8f2b5c5",
+   "sections": 17,
+   "scored_prose_lines": 84
+  }
+ },
+ "files": {
+  "R-ann1.json": "b1e868a344d70e32cf4c5e71166d311ff55bd98997e4a2905402b320b9e34da4",
+  "R-ann2.json": "e3f296282240e40377a0718ac0184f12df8fd2a96b599e42d11f7eeb01a7e1c8",
+  "R.json": "63c13780b44d54ccafa87fda67564ab975449dfd20d8ab3aed1d418548e69885",
+  "R-adjudication.json": "3048d0caa59101d8e0ccbb3ce9bf941ea8dd990dc14f4d500bf10adbaea978a0",
+  "D-ann.json": "a8566d328496ad7fb8cfd8f6d8338a4da6818ac674b793cfc3eaf8e8a93c284e"
+ },
+ "adjudication_script_sha256": "a12b50c0a77b358fe1cdfdea6e22c3829d4b5773c3d884049d4a4abb9ae99851",
+ "counts": {
+  "R_propositions": 250,
+  "R_scientific": 238,
+  "ann1": 238,
+  "ann2": 241,
+  "D": 269,
+  "R_attitude": {
+   "asserted": 216,
+   "proposed": 17,
+   "reported": 5
+  },
+  "R_evidence_kind": {
+   "expert_judgement": 4,
+   "guidance": 1,
+   "none_stated": 56,
+   "proposal": 17,
+   "standard_or_regulation": 10,
+   "synthesis": 150
+  },
+  "adjudication": {
+   "pairs_agreeing_on_every_field": 22,
+   "field_decisions": 596,
+   "kept_from_one": 12,
+   "dropped": 1
+  }
+ },
+ "exposure": "Claude (the experimenter) has not read the sealed passage or R; it saw counts only."
+}
